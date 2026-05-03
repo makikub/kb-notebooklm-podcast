@@ -1,0 +1,15 @@
+{
+  "date": "2026-05-04T03:00:16.339442+09:00",
+  "topic_id": "wiki/concepts/knowledge-base-linting.md",
+  "title": "Knowledge Base Linting",
+  "output_dir": "outputs/notebooklm-podcast/2026-05-04",
+  "page": "outputs/notebooklm-podcast/2026-05-04/notebooklm-source.md",
+  "related": [
+    "wiki/concepts/evidence-quality.md",
+    "wiki/maps/research-os-query-paths.md",
+    "wiki/maps/evidence-quality-and-source-trust.md",
+    "wiki/maps/agent-onboarding-kb-codebase.md",
+    "wiki/sources/karpathy-personal-llm-kb.md"
+  ],
+  "char_count": 9704
+}
