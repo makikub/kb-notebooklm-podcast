@@ -1,0 +1,15 @@
+{
+  "date": "2026-05-05T03:00:21.169293+09:00",
+  "topic_id": "wiki/maps/orchestration-patterns-faq.md",
+  "title": "Orchestration Patterns FAQ",
+  "output_dir": "outputs/notebooklm-podcast/2026-05-05",
+  "page": "outputs/notebooklm-podcast/2026-05-05/notebooklm-source.md",
+  "related": [
+    "wiki/concepts/multi-agent-orchestration.md",
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/sources/anthropic-2026-agentic-coding-trends-report.md",
+    "wiki/maps/harness-engineering-vendor-comparison.md",
+    "wiki/maps/coding-agent-harness-patterns.md"
+  ],
+  "char_count": 9027
+}
