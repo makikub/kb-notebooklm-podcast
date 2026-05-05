@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-06 - Context Management Decision Map</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-05-06/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB NotebookLM Podcast Pages</a> / 2026-05-06</header>
+<h1>Context Management Decision Map</h1>
+<div class="note">
+  <strong>NotebookLM用URL:</strong> <a href="source.md">source.md</a><br>
+  このHTMLページか source.md のURLをNotebookLMのソースとして追加してください。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-05-06/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-05-06">GitHub</a>
+</div>
+<h1>今日のランダムテーマ</h1>
+<h2>長く走るエージェントをどう「続ける／戻す／捨てる／任せる」か</h2>
+<h3>Context Management Decision Map を読む</h3>
+<p>今日のテーマは、長時間動くエージェントシステムにおける <strong>コンテキスト管理の意思決定</strong> です。</p>
+<p>中心になる問いはシンプルです。</p>
+<blockquote>
+<p>いまのセッションをこのまま続けるべきか。</p>
+<p>それとも、巻き戻すべきか、要約すべきか、別エージェントに任せるべきか、完全にリセットすべきか。</p>
+</blockquote>
+<p>LLMエージェントの実務では、モデルの性能だけでなく、周囲のハーネス、つまりリポジトリ構造、成果物、テスト、レビュー、役割分担、承認フロー、セッション継続の仕組みが成果を大きく左右します。</p>
+<p>その中でもコンテキスト管理は、長期作業の安定性に直結する領域です。</p>
+<p>エージェントが長く作業するほど、会話履歴は膨らみ、ノイズも増え、過去の誤った判断や曖昧な仮定が残りやすくなります。</p>
+<p>そこで必要になるのが、状況に応じて「続ける」「戻す」「消す」「圧縮する」「分担する」「作り直す」「時間をおいて再開する」といった回復・継続の手を選ぶ判断地図です。</p>
+<p>このノートでは、<code>Context Management Decision Map</code> を出発点に、長時間エージェントを安定運用するための見方を整理します。</p>
+<hr>
+<h1>なぜPodcast向きか</h1>
+<p>このテーマはPodcast向きです。理由は、単なる技術用語の説明ではなく、かなり人間的な判断に近いからです。</p>
+<p>たとえば、仕事中に「この会議、このまま続けて大丈夫か？」と思う場面があります。</p>
+<p>議論が脱線しているなら、いったん前の合意点に戻る。</p>
+<p>情報が多すぎて混乱しているなら、要約する。</p>
+<p>専門的な検討が必要なら、別チームに任せる。</p>
+<p>もう前提が壊れているなら、資料だけ残して新しい会議を立て直す。</p>
+<p>エージェントのセッション管理も、これに似ています。</p>
+<p>ただし、エージェントの場合は、コンテキストウィンドウ、セッション履歴、サブエージェント、スケジュール実行、明示的なハンドオフ成果物など、機械的な設計要素が絡みます。</p>
+<p>つまりこのテーマは、日常的な判断の比喩で話せる一方で、実際にはハーネス設計やランタイムアーキテクチャの問題でもあります。</p>
+<p>Podcastでは、以下のような対比が会話を生みやすいです。</p>
+<ul>
+<li>「今の流れを信じる」か「いったん断ち切る」か</li>
+<li>「記憶を残す」か「記憶を消す」か</li>
+<li>「人間が制御する」か「ハーネスに判断を委ねる」か</li>
+<li>「一つのエージェントに粘らせる」か「役割分担する」か</li>
+<li>「定期的に見に行く」か「必要なときに起こす」か</li>
+</ul>
+<p>単なる機能比較ではなく、「失敗からどう回復するか」「長期作業でどう正気を保つか」という話にすると、自然で深い会話になりやすいテーマです。</p>
+<hr>
+<h1>背景と文脈</h1>
+<h2>エージェント性能はモデル単体で決まらない</h2>
+<p>関連ノート <code>Agent Harness Landscape</code> では、中心命題として次の考え方が示されています。</p>
+<blockquote>
+<p>エージェントの性能はモデルだけでなく、モデルの周囲にあるハーネスに大きく依存する。</p>
+</blockquote>
+<p>ここでいうハーネスには、次のようなものが含まれます。</p>
+<ul>
+<li>行動前のガイダンス</li>
+</ul>
+<p>  - 短い地図のような指示</p>
+<p>  - アーキテクチャ文書</p>
+<p>  - 明示的な計画</p>
+<p>  - テンプレートやスキル</p>
+<ul>
+<li>行動後の補正</li>
+</ul>
+<p>  - テスト</p>
+<p>  - リンター</p>
+<p>  - 構造チェック</p>
+<p>  - AIレビューや評価エージェント</p>
+<ul>
+<li>セッションをまたぐ継続性</li>
+</ul>
+<p>  - 進捗ログ</p>
+<p>  - コミット履歴</p>
+<p>  - feature list</p>
+<p>  - initializer agent の出力</p>
+<p>  - context reset</p>
+<ul>
+<li>自律性の制御</li>
+</ul>
+<p>  - approval policy</p>
+<p>  - human-in-the-loop checkpoint</p>
+<p>  - 機械的に検査できる不変条件</p>
+<ul>
+<li>役割分担</li>
+</ul>
+<p>  - planner</p>
+<p>  - generator</p>
+<p>  - evaluator</p>
+<p>  - maintenance / cleanup agent</p>
+<p>コンテキスト管理は、このうち特に「セッションをまたぐ継続性」と「役割分担」に深く関係します。</p>
+<h2>長時間エージェントでは、継続そのものが難しい</h2>
+<p>短いタスクであれば、会話履歴をそのまま使っても問題が見えにくいかもしれません。</p>
+<p>しかし、作業が数時間、数日、あるいはそれ以上に伸びると、セッション履歴そのものがリスクになります。</p>
+<ul>
+<li>過去の失敗した仮説が残る</li>
+<li>すでに不要な細部が混ざる</li>
+<li>途中の議論が長くなりすぎる</li>
+<li>現在の目的と過去の文脈がずれる</li>
+<li>エージェントが「何を信じるべきか」を見失う</li>
+</ul>
+<p>Anthropic の長時間ハーネス関連の文脈では、明示的なハンドオフ成果物や、インクリメンタルな進捗が、リセットを実用可能にするとされています。</p>
+<p>つまり、リセットは単なる「やり直し」ではありません。</p>
+<p>うまく設計された成果物があれば、新しいセッションでも作業状態を再構築できる、という発想です。</p>
+<h2>コンテキスト管理はチャットの作法ではなく、設計問題になる</h2>
+<p><code>Context Management Decision Map</code> では、Etisha Garg / OpenClaw under the hood の貢献として、セッション解決、リセットポリシー、追記型トランスクリプト、active-run queueing、prompt assembly などが挙げられています。</p>
+<p>ここから見えてくるのは、コンテキスト管理が「チャット画面でどう振る舞うか」だけではない、ということです。</p>
+<p>それは Gateway や runtime architecture の問題にもなる。</p>
+<p>どのセッションを引き継ぐのか。</p>
+<p>どの履歴を使うのか。</p>
+<p>いつリセットするのか。</p>
+<p>複数の実行をどう並べるのか。</p>
+<p>プロンプトをどう組み立てるのか。</p>
+<p>長時間エージェントの安定性は、こうした裏側の設計にも依存します。</p>
+<hr>
+<h1>中心アイデア</h1>
+<h2>7つの基本ムーブ</h2>
+<p><code>Context Management Decision Map</code> は、長く走るエージェントシステムで使える主要な回復・継続手段を、7つに整理しています。</p>
+<h3>1. Continue：続ける</h3>
+<p>現在のセッションとコンテキストを、そのまま維持する方法です。</p>
+<p>向いているのは、セッションがまだ一貫していて、次のタスクが直前の作業と密接に関係している場合です。</p>
+<p>これは最も自然で、コストも低い選択です。</p>
+<p>ただし、現在のコンテキストが信頼できることが前提です。</p>
+<p>問い：</p>
+<ul>
+<li>いまの会話履歴はまだ整理されているか？</li>
+<li>次のタスクは直前の流れと直接つながっているか？</li>
+<li>過去の誤解やノイズが判断に影響しなさそうか？</li>
+</ul>
+<h3>2. Rewind：巻き戻す</h3>
+<p>失敗した枝を取り除き、最後にうまくいっていた地点から再開する方法です。</p>
+<p>向いているのは、現在の推論の枝が明らかに間違っているが、セッション全体にはまだ有用な周辺情報が残っている場合です。</p>
+<p>Continue と Reset の中間にある選択肢だと言えます。</p>
+<p>全部捨てるほどではないが、このまま進むと失敗が積み上がる。</p>
+<p>そんなときに「最後の健全な地点」に戻る。</p>
+<p>問い：</p>
+<ul>
+<li>間違っているのは一部の推論枝だけか？</li>
+<li>その前の状態には、まだ有用な情報があるか？</li>
+<li>要約するより、誤った枝を切ったほうが早いか？</li>
+</ul>
+<h3>3. Clear：消す</h3>
+<p>セッションコンテキストを明示的に消し、成果物からやり直す方法です。</p>
+<p>向いているのは、人間が「何が見えているか」を厳密に制御したい場合です。</p>
+<p>ここで重要なのは、「消す」と「何も残さない」は同じではないことです。</p>
+<p>Clear は、セッション履歴を消すが、明示的な成果物を起点にする。</p>
+<p>つまり、人間が残したいものだけを見える状態にするための操作です。</p>
+<p>問い：</p>
+<ul>
+<li>今の履歴に見せたくないノイズや誤情報があるか？</li>
+<li>新しい作業者に、どの成果物だけを読ませたいか？</li>
+<li>暗黙の文脈ではなく、明示的な資料で始めたいか？</li>
+</ul>
+<h3>4. Compact：圧縮する</h3>
+<p>現在のセッションを短い要約に凝縮する方法です。</p>
+<p>向いているのは、作業内容はまだ関連しているが、生の履歴が大きすぎる、またはノイズが多すぎる場合です。</p>
+<p>Compact は、継続とリセットの間にある非常に実務的な手です。</p>
+<p>全部捨てるほどではない。</p>
+<p>しかし、そのまま読み続けるには重すぎる。</p>
+<p>そこで、必要な状態だけを要約して残す。</p>
+<p>問い：</p>
+<ul>
+<li>生ログではなく、要約で十分か？</li>
+<li>重要な判断、未完了タスク、制約が要約に入っているか？</li>
+<li>圧縮によって失われる微妙な文脈は問題にならないか？</li>
+</ul>
+<h3>5. Delegate：委任する</h3>
+<p>ノイズが多い、または専門的なサブタスクを、サブエージェントや別ワーカーに任せる方法です。</p>
+<p>向いているのは、そのサブタスクが親コンテキストを汚染すべきではない場合です。</p>
+<p>この発想は、マルチエージェント設計にもつながります。</p>
+<p>planner / generator / evaluator の分離、あるいは評価エージェントの分離は、主セッションの文脈を保護する意味も持ちます。</p>
+<p>問い：</p>
+<ul>
+<li>この作業は親セッションに全部持ち込むべきか？</li>
+<li>専門的な検討だけを別に走らせたほうがよいか？</li>
+<li>結果だけをハンドオフ成果物として戻せば十分か？</li>
+</ul>
+<h3>6. Reset：作り直す</h3>
+<p>明示的なハンドオフ成果物をもとに、新しいセッションで状態を再構築する方法です。</p>
+<p>向いているのは、現在のセッションに drift や hidden confusion が蓄積しすぎた場合です。</p>
+<p>Reset は、失敗ではなく、長時間エージェントの基本技術として捉えるべきです。</p>
+<p>ただし、リセットが機能するには、作業状態を再構築できる成果物が必要です。</p>
+<p>関連する実務パターンとしては、<code>plan.md</code> のようなセッションスコープの計画ファイル、進捗ログ、feature list、仕様とテストの同期などがあります。</p>
+<p>問い：</p>
+<ul>
+<li>今のセッションには、見えない混乱が蓄積していないか？</li>
+<li>ハンドオフ成果物だけで再開できるか？</li>
+<li>新しいセッションに持ち込むべき最小情報は何か？</li>
+</ul>
+<h3>7. Loop / wake：ループまたは起床</h3>
+<p>スケジュールされたループや Monitor 的な wakeup を使い、時間をおいて作業を再訪する方法です。</p>
+<p>向いているのは、定期的なメンテナンス、長い待ち時間、状態依存のフォローアップです。</p>
+<p>これは「人間が何度も見に行く」代わりに、ハーネス側が再訪のタイミングを持つ考え方です。</p>
+<p>Anthropic の dynamic /loop docs は、scheduled loop を明示的なハーネスプリミティブとして示し、Monitor-based wakeup への方向性を示しています。</p>
+<p>問い：</p>
+<ul>
+<li>このタスクは、今すぐ続けるべきか、後で再訪すべきか？</li>
+<li>定期ループに向いているか？</li>
+<li>それとも、特定の状態変化で起こすほうがよいか？</li>
+</ul>
+<hr>
+<h1>実務での使いどころ</h1>
+<h2>1. 開発ワークフローにエージェントを導入する場合</h2>
+<p><code>Research OS Query Paths</code> では、「エージェントを開発ワークフローに導入したい」という問いに対して、<code>Agent Harness Landscape</code> から入り、ハーネス設計、承認ポリシー、エージェントに認識しやすいリポジトリなどを確認する道筋が示されています。</p>
+<p>このとき、コンテキスト管理は最初から設計対象にすべきです。</p>
+<ul>
+<li>作業計画はどこに残すのか</li>
+<li>セッションをまたぐ進捗はどう記録するのか</li>
+<li>いつレビューを挟むのか</li>
+<li>どのタイミングでリセットするのか</li>
+<li>サブエージェントに何を任せるのか</li>
+</ul>
+<p>単に「良いプロンプトを書く」だけでは、長期の安定性は作れません。</p>
+<h2>2. コーディングエージェントの品質を安定させる場合</h2>
+<p><code>Coding-Agent Harness Patterns</code> では、<code>plan.md</code> のような計画ファイルを durable handoff contract として使うことが強調されています。</p>
+<p>これは Reset や Compact と相性がよいです。</p>
+<p>なぜなら、セッション履歴が壊れても、計画ファイルや進捗ログ、仕様、テストが残っていれば、新しいセッションが状態を再構築しやすくなるからです。</p>
+<p>また、Verifier split も重要です。</p>
+<p>全部を一つのエージェントにやらせるのではなく、計画レビューや実装レビューだけを別のエージェントに任せる。</p>
+<p>これにより、自己評価バイアスを減らしつつ、完全なマルチエージェント運用ほどの複雑さは避けられます。</p>
+<p>ここでの Delegate は、単なる分業ではありません。</p>
+<p>親コンテキストを汚さず、評価や専門検討を別窓で行うための設計です。</p>
+<h2>3. レビュー負担を下げたい場合</h2>
+<p>ハーネス設計では、テスト、リンター、構造チェック、ブラウザ検証、AIレビューなどの feedback controls が重要です。</p>
+<p>コンテキスト管理とレビューはつながっています。</p>
+<ul>
+<li>ノイズだらけのセッションでは、レビュー観点がぶれやすい</li>
+<li>失敗した推論枝を残したままだと、修正方針も混乱しやすい</li>
+<li>Compact が雑だと、レビューに必要な判断根拠が消える</li>
+<li>Reset しても、ハンドオフ成果物が弱いと、同じ失敗を繰り返す</li>
+</ul>
+<p>したがって、「レビューを楽にする」には、レビュー時点のコンテキストをどう整えるかも含めて設計する必要があります。</p>
+<h2>4. 長時間エージェントを安定運用したい場合</h2>
+<p><code>Research OS Query Paths</code> では、「long-running agents を安定させたい」という問いに対して、<code>Context Management Decision Map</code> を出発点にする道筋が示されています。</p>
+<p>出力形として期待されるのは、continuation / reset / delegate の decision tree です。</p>
+<p>つまり実務では、次のような簡易判断表が役立ちます。</p>
+<p>| 状況 | 選ぶ手 |</p>
+<p>|---|---|</p>
+<p>| 文脈がまだ信頼でき、次タスクも近い | Continue |</p>
+<p>| 推論の一枝だけが明確に失敗した | Rewind |</p>
+<p>| 履歴を人間が厳密に制御したい | Clear |</p>
+<p>| 生履歴が重いが作業は有効 | Compact |</p>
+<p>| 専門的・ノイズの多い副作業がある | Delegate |</p>
+<p>| セッション全体に drift や hidden confusion がある | Reset |</p>
+<p>| 定期的・状態依存で再訪すべき | Loop / wake |</p>
+<hr>
+<h1>誤解しやすい点・論点</h1>
+<h2>誤解1：Reset は負けではない</h2>
+<p>Reset は「エージェントが失敗したから全部やり直す」という消極的な操作に見えがちです。</p>
+<p>しかし長時間作業では、リセット可能性そのものが設計品質です。</p>
+<p>明示的なハンドオフ成果物、進捗ログ、feature list、計画ファイルがあれば、Reset は安定運用の一部になります。</p>
+<p>論点：</p>
+<ul>
+<li>Reset を例外処理と見るか、通常運用の一部と見るか</li>
+<li>Reset に耐える成果物を最初から作っているか</li>
+</ul>
+<h2>誤解2：Compact すればいつでも大丈夫ではない</h2>
+<p>Compact は便利ですが、万能ではありません。</p>
+<p>要約は圧縮である以上、何かを捨てます。</p>
+<p>重要な判断根拠や曖昧な未解決事項を落とすと、見かけ上は整理されても、後で問題が再発します。</p>
+<p><code>Context Management Decision Map</code> の Open Questions でも、Compact が失敗し Reset のほうがよい場合を予測するシグナルが問われています。</p>
+<p>論点：</p>
+<ul>
+<li>どの情報は要約してよいのか</li>
+<li>どの情報は成果物として明示的に残すべきか</li>
+<li>Compact ではなく Reset を選ぶべき兆候は何か</li>
+</ul>
+<h2>誤解3：Delegate は高級なマルチエージェントだけの話ではない</h2>
+<p>Delegate というと、大規模なマルチエージェントシステムを想像しがちです。</p>
+<p>しかし <code>Coding-Agent Harness Patterns</code> では、完全なマルチエージェント運用でなくても、第二のエージェントやモデルをレビュー用途に使うだけで evaluator の利点を一部得られるとされています。</p>
+<p>つまり、Delegate は小さく始められます。</p>
+<ul>
+<li>計画だけレビューしてもらう</li>
+<li>実装だけレビューしてもらう</li>
+<li>ノイズの多い調査だけ別に任せる</li>
+<li>結果だけ親セッションに戻す</li>
+</ul>
+<p>論点：</p>
+<ul>
+<li>どの作業を親コンテキストから隔離すべきか</li>
+<li>どの結果だけを戻すべきか</li>
+<li>evaluator を分けると、どの程度レビュー負担が下がるか</li>
+</ul>
+<h2>誤解4：Loop は「ただの定期実行」ではない</h2>
+<p>Loop / wake は、単なる cron 的な定期実行としてだけ見ると浅くなります。</p>
+<p>重要なのは、長い待ち時間や状態依存のフォローアップを、ハーネスのプリミティブとして扱う点です。</p>
+<p>毎回人間が思い出して確認するのではなく、システムが再訪する。</p>
+<p>Open Questions では、どの recurring tasks が loops に向き、どれが event-driven wakes に移るべきかが問われています。</p>
+<p>論点：</p>
+<ul>
+<li>定期的に見に行くべきタスクは何か</li>
+<li>状態変化で起こすべきタスクは何か</li>
+<li>ループがノイズを増やす場合はあるか</li>
+</ul>
+<h2>誤解5：これはチャットの整理術ではなく、ハーネス設計である</h2>
+<p>Continue, Rewind, Clear, Compact だけを見ると、チャットUIの操作に見えるかもしれません。</p>
+<p>しかし関連ノート群では、コンテキスト管理はハーネス設計、ランタイム、成果物設計、評価分離、承認フローと結びついています。</p>
+<p>特にベンダー比較では、Anthropic が長時間エージェント、構造化ハンドオフ、initializer agents、context resets、planner/generator/evaluator split、scheduled tasks、skills、MCP などを強調していると整理されています。</p>
+<p>この文脈では、コンテキスト管理はプロダクトの中に組み込まれる仕組みでもあります。</p>
+<hr>
+<h1>NotebookLMが会話で拾うとよい問い</h1>
+<h2>基本の問い</h2>
+<ul>
+<li>長時間エージェントにとって、なぜ「続ける」だけでは不十分なのか？</li>
+<li>Continue と Reset のあいだに、Rewind や Compact がある意味は何か？</li>
+<li>Clear と Reset はどう違うのか？</li>
+<li>Compact はどんな場面で有効で、どんな場面で危険か？</li>
+<li>Delegate はなぜ親コンテキストの汚染を防ぐのか？</li>
+</ul>
+<h2>実務判断の問い</h2>
+<ul>
+<li>いまのコンテキストが「まだ信頼できる」と判断する基準は何か？</li>
+<li>失敗した推論枝だけを切る Rewind は、どんな失敗に向いているか？</li>
+<li>Reset を可能にするハンドオフ成果物には何が必要か？</li>
+<li><code>plan.md</code> や進捗ログは、コンテキスト管理にどう効くのか？</li>
+<li>レビューエージェントを分けると、何が改善されるのか？</li>
+</ul>
+<h2>対立軸として面白い問い</h2>
+<ul>
+<li>要約して残すべきか、いっそ新しいセッションに移るべきか？</li>
+<li>長い記憶は強みなのか、リスクなのか？</li>
+<li>人間が厳密に見える情報を制御すべき場面はどこか？</li>
+<li>ループで定期的に見るべきか、イベント駆動で起こすべきか？</li>
+<li>モデルが賢くなるほど、ハーネスの責任は減るのか、それとも形を変えるのか？</li>
+</ul>
+<h2>未解決問題として拾うとよい問い</h2>
+<p><code>Context Management Decision Map</code> の Open Questions は、そのまま会話の深掘りポイントになります。</p>
+<ul>
+<li>Compact が失敗し、Reset のほうがうまくいく兆候は何か？</li>
+<li>回復手段として Rewind と Compact をどう使い分けるべきか？</li>
+<li>recurring tasks のうち、どれを loops にし、どれを event-driven wakes にすべきか？</li>
+</ul>
+<hr>
+<h1>参照したKBノート</h1>
+<ul>
+<li><code>wiki/maps/context-management-decisions.md</code></li>
+</ul>
+<p>  - 主ノート。Continue / Rewind / Clear / Compact / Delegate / Reset / Loop-wake の判断地図。</p>
+<ul>
+<li><code>wiki/maps/agent-harness-landscape.md</code></li>
+</ul>
+<p>  - ハーネス工学の全体像。モデル性能だけでなく、文書、制御、成果物、レビュー、継続性が重要であるという背景。</p>
+<ul>
+<li><code>wiki/maps/harness-engineering-vendor-comparison.md</code></li>
+</ul>
+<p>  - OpenAI、Cursor、Cognition / Devin、Anthropic、LangChain、Martin Fowler などの比較。特に Anthropic の長時間エージェント、構造化ハンドオフ、context resets、scheduled tasks などの位置づけ。</p>
+<ul>
+<li><code>wiki/maps/coding-agent-harness-patterns.md</code></li>
+</ul>
+<p>  - <code>plan.md</code>、Verifier split、決定的チェック、進捗成果物、仕様とテストの同期など、実務パターン。</p>
+<ul>
+<li><code>wiki/maps/research-os-query-paths.md</code></li>
+</ul>
+<p>  - 「long-running agents を安定させたい」という問いに対して、<code>context-management-decisions.md</code> を起点にする道筋。</p>
+<ul>
+<li><code>wiki/sources/anthropic-2026-agentic-coding-trends-report.md</code></li>
+</ul>
+<p>  - 2026年の agentic coding に関する Anthropic の予測と事例整理。人間の監督と判断が残る協働的な framing、multi-agent coordination、long-running agents の文脈。</p>
+<hr>
+<h1>NotebookLMに期待する話し方メモ</h1>
+<ul>
+<li>まず「長く働くエージェントは、記憶を持つほど賢くなる一方で、記憶に汚染される」という直感的な導入にする。</li>
+<li>Continue / Rewind / Clear / Compact / Delegate / Reset / Loop-wake を、機能一覧ではなく「現場での判断カード」として紹介する。</li>
+<li>会話では、会議やプロジェクトの引き継ぎにたとえると自然。</li>
+<li>特に強調してほしいのは、Reset は失敗ではなく、明示的なハンドオフ成果物があるから可能になる設計上の選択肢だという点。</li>
+<li>Compact の便利さと危険性を対比してほしい。要約は整理にもなるが、重要なニュアンスを失う可能性もある。</li>
+<li>Delegate は大規模マルチエージェントだけでなく、レビュー役を分ける小さな実務パターンとして話す。</li>
+<li>最後は、「コンテキスト管理はチャットの掃除ではなく、長時間エージェントを運用するためのハーネス設計である」というまとめにする。</li>
+<li>トーンは、技術解説だが抽象論に寄りすぎず、「明日の開発ワークフローでどう判断するか」という実務感を保つ。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm. Source topic: <code>wiki/maps/context-management-decisions.md</code></p></footer>
+
+</body>
+</html>
