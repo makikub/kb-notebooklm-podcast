@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-09 - Research OS Query Paths</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-05-09/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB NotebookLM Podcast Pages</a> / 2026-05-09</header>
+<h1>Research OS Query Paths</h1>
+<div class="note">
+  <strong>NotebookLM用URL:</strong> <a href="source.md">source.md</a><br>
+  このHTMLページか source.md のURLをNotebookLMのソースとして追加してください。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-05-09/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-05-09">GitHub</a>
+</div>
+<h1>今日のランダムテーマ：Research OS Query Paths</h1>
+<p>日付: 2026-05-09</p>
+<p>主題ノート: <code>wiki/maps/research-os-query-paths.md</code></p>
+<p>今回のテーマは、知識ベースを「資料置き場」ではなく「Research OS」として使うための入口設計である。</p>
+<p>中心にある問いはシンプルだ。</p>
+<blockquote>
+<p>繰り返し出てくる実務上の質問に対して、KBはどのノートから読み始め、どの概念を経由し、どの根拠を確認し、どんな形で答えを返すべきか。</p>
+</blockquote>
+<p><code>Research OS Query Paths</code> は、この問いに対するルーティング表である。</p>
+<p>単なるリンク集ではない。質問の型ごとに、読む順番、見るべき概念、信頼できるソース、弱いシグナル、アウトプット形式、そしてリポジトリへの書き戻し先を定義する。</p>
+<p>この設計の狙いは、KBを「検索して終わり」の場所から、「問いに答え、足りないノートを見つけ、知識を更新する運用システム」へ変えることにある。</p>
+<hr>
+<h1>なぜPodcast向きか</h1>
+<p>このテーマはPodcast向きである。理由は、表面的には地味な「ノート構造」の話に見えるが、実際にはAIエージェント時代の知識運用、レビュー負荷、文脈管理、組織記憶、RAG、評価品質までつながるからだ。</p>
+<p>会話で扱いやすい対立軸が多い。</p>
+<ul>
+<li>KBは「保管庫」なのか、「作業OS」なのか</li>
+<li>検索は「キーワード検索」なのか、「質問ごとの導線設計」なのか</li>
+<li>エージェントに必要なのは「大量の文脈」なのか、「必要な順番で開ける地図」なのか</li>
+<li>レビューは「人間の最終確認」なのか、「ハーネス層として設計される評価ループ」なのか</li>
+<li>RAGは「ベクトル検索」だけで足りるのか、「階層ナビゲーション」や「グラフ探索」も必要なのか</li>
+</ul>
+<p>さらに、<code>Research OS Query Paths</code> は抽象論に閉じていない。</p>
+<p>「開発ワークフローにエージェントを導入したい」「長時間動くエージェントを安定させたい」「レビュー負荷を減らしたい」「会社やチームの脳を作りたい」といった、実務者がそのまま言いそうな問いを入口にしている。</p>
+<p>Podcastでは、この「質問の形をした入口」という発想を軸にすると話しやすい。</p>
+<p>リスナーにとっても、自分のKBやドキュメント群をどう変えればよいかを想像しやすい。</p>
+<hr>
+<h1>背景と文脈</h1>
+<h2>KBをResearch OSにするという発想</h2>
+<p><code>Research OS Query Paths</code> の目的は、KBを単なるソース要約の一覧ではなく、研究や実務判断のためのOSとして使えるようにすることだ。</p>
+<p>その中核命題は次のように言える。</p>
+<blockquote>
+<p>役に立つ compiled wiki は、繰り返し現れるユーザーの質問を安定した経路に流すべきである。まず地図から始め、概念をたどり、最も強い証拠を確認し、最後に根拠ある答えを返す。必要なら欠けているノートを作る。</p>
+</blockquote>
+<p>ここで重要なのは、「答えそのもの」よりも「答えに至る道筋」を保存する点である。</p>
+<p>同じ質問が再び来たときに、毎回ゼロから検索するのではなく、すでに整えられた経路を使う。</p>
+<h2>Query path template</h2>
+<p>Query path は、 recurring question、つまり繰り返し現れる質問ごとに定義される。</p>
+<p>テンプレートは以下の6要素で構成されている。</p>
+<p>1. <strong>Start map</strong></p>
+<p>   最初に開くべき統合ノート。入口となる地図。</p>
+<p>2. <strong>Concepts to inspect</strong></p>
+<p>   答えるために必要な再利用可能な語彙。概念ノート群。</p>
+<p>3. <strong>Strongest sources</strong></p>
+<p>   一次情報、公式文書、高信頼の根拠。</p>
+<p>4. <strong>Weak signals</strong></p>
+<p>   Xのスレッド、実務者の逸話、まだ推測的なリード。</p>
+<p>5. <strong>Output shape</strong></p>
+<p>   答え、比較、チェックリスト、ロードマップ、追加調査キューなど、最終成果物の形。</p>
+<p>6. <strong>Repo writeback</strong></p>
+<p>   耐久性のある答えをどこに保存するか。</p>
+<p>この設計は、NotebookLMのようなシステムにも相性がよい。</p>
+<p>会話の中で「まず地図」「次に概念」「強い根拠」「弱いシグナル」「アウトプット」「書き戻し」という流れを追えるため、単なる要約よりも深い議論になりやすい。</p>
+<hr>
+<h1>中心アイデア</h1>
+<h2>1. 質問を入口にする</h2>
+<p>このノートの最大の特徴は、ノート分類ではなく、ユーザーの質問を起点にしていることだ。</p>
+<p>たとえば、次のような質問がすでに Query Path として定義されている。</p>
+<ul>
+<li>「開発ワークフローにエージェントを導入したい」</li>
+<li>「長時間動くエージェントを安定させたい」</li>
+<li>「レビュー負荷を減らしつつ安全性を失いたくない」</li>
+<li>「会社やチームの脳を作りたい」</li>
+<li>「ベンダーやツールのアプローチを比較したい」</li>
+<li>「どの根拠が十分に強いのか知りたい」</li>
+<li>「RAGで広いコーパスをカバーする質問に答えたい」</li>
+<li>「エージェントのコンテキストを運用予算として管理したい」</li>
+</ul>
+<p>これは、KBの使い方を「どの文書を読むか」から「どの問いに答えるか」へ変える。</p>
+<h2>2. 地図から始める</h2>
+<p>各パスは Start map を持つ。</p>
+<p>たとえば、開発ワークフローにエージェントを導入したい場合、入口は <code>agent-harness-landscape.md</code> である。</p>
+<p>このマップは、エージェント性能がモデル単体ではなく、周囲のハーネスに強く依存するという立場を取る。</p>
+<p>ここでいうハーネスには、リポジトリ構造、制御、成果物、テスト、レビューループ、オーケストレーションパターンなどが含まれる。</p>
+<p><code>Agent Harness Landscape</code> は、主な次元を次のように整理している。</p>
+<ul>
+<li>行動前のガイダンス</li>
+</ul>
+<p>  feedforward controls、短い地図的指示、アーキテクチャ文書、明示的計画、機能リスト、テンプレートやスキル</p>
+<ul>
+<li>行動後の修正</li>
+</ul>
+<p>  テスト、リンター、構造チェック、ブラウザ検証、AIレビュー、評価エージェント、定期的なクリーンアップ</p>
+<ul>
+<li>セッションをまたぐ継続性</li>
+</ul>
+<p>  進捗ログ、コミット履歴、機能リスト、initializer agent の出力、context resets</p>
+<ul>
+<li>自律性の制御</li>
+</ul>
+<p>  approval policy、人間のチェックポイント、classifier-mediated approvals、machine-checkable invariants</p>
+<ul>
+<li>役割分離</li>
+</ul>
+<p>  planner、generator、evaluator、maintenance / cleanup agents</p>
+<p>つまり、Start map は話題全体の見取り図として機能する。</p>
+<p>いきなり個別ソースに飛ぶのではなく、まず何を問題空間として見るべきかを確認する。</p>
+<h2>3. 概念ノートで語彙をそろえる</h2>
+<p>Query Path は、必ず Concepts to inspect を持つ。</p>
+<p>これは、答えを安定させるための語彙層である。</p>
+<p>たとえば、エージェント導入のパスでは以下の概念が挙げられている。</p>
+<ul>
+<li>harness engineering</li>
+<li>agent-recognizable repository</li>
+<li>coding agents</li>
+<li>approval policy</li>
+</ul>
+<p>長時間動くエージェントを安定させるパスでは、以下が重要になる。</p>
+<ul>
+<li>long-running agents</li>
+<li>structured handoff artifacts</li>
+<li>context resets</li>
+<li>incremental progress</li>
+</ul>
+<p>レビュー負荷を減らすパスでは、以下が中心になる。</p>
+<ul>
+<li>machine-checkable invariants</li>
+<li>feedback controls</li>
+<li>self-verification</li>
+<li>human-in-the-loop</li>
+</ul>
+<p>この構造により、NotebookLMが会話を組み立てるときにも、単発の事例紹介ではなく、共通語彙を使った比較や抽象化がしやすくなる。</p>
+<h2>4. 強い根拠と弱いシグナルを分ける</h2>
+<p><code>Research OS Query Paths</code> では、Strongest sources と Weak signals を分ける。</p>
+<p>これは evidence quality の考え方と直結している。</p>
+<p>「どの根拠が十分に強いのか知りたい」という Query Path では、入口は <code>evidence-quality-and-source-trust.md</code> であり、概念として evidence-quality、knowledge-base-linting、compiled-wiki が挙げられている。</p>
+<p>強い根拠としては、一次ドキュメント、リポジトリ、ポストモーテム、内部運用ノートが重視される。</p>
+<p>一方で、Xスレッドや実務者の逸話は弱いシグナルとして扱われることがある。</p>
+<p>この区別は、Podcastで深掘りしやすい。</p>
+<p>AIエージェント領域では、実務者の観察や製品発表が速く流れる一方で、信頼できる検証や運用知見は限られる。だからこそ、ソースの強さを明示する必要がある。</p>
+<h2>5. 出力形を先に決める</h2>
+<p>Query Path では、Output shape が指定される。</p>
+<p>これが非常に実務的である。</p>
+<p>たとえば、</p>
+<ul>
+<li>エージェント導入なら</li>
+</ul>
+<p>  <strong>adoption roadmap + minimum viable harness checklist</strong></p>
+<ul>
+<li>長時間エージェントの安定化なら</li>
+</ul>
+<p>  <strong>continuation / reset / delegate decision tree</strong></p>
+<ul>
+<li>レビュー負荷削減なら</li>
+</ul>
+<p>  <strong>gate design checklist + review escalation policy</strong></p>
+<ul>
+<li>会社やチームの脳なら</li>
+</ul>
+<p>  <strong>architecture sketch + governance questions</strong></p>
+<ul>
+<li>ベンダー比較なら</li>
+</ul>
+<p>  <strong>control surface, autonomy, verification, handoff, deployment model による比較</strong></p>
+<ul>
+<li>根拠評価なら</li>
+</ul>
+<p>  <strong>evidence audit or confidence-ranked answer</strong></p>
+<ul>
+<li>RAGの広範なコーパスカバレッジなら</li>
+</ul>
+<p>  <strong>hierarchy navigation vs vector search vs graph traversal のアーキテクチャ比較</strong></p>
+<p>問いに対して、どんな成果物を返すべきかを最初から定めておく。</p>
+<p>これにより、調査が漫然とした要約に流れにくくなる。</p>
+<h2>6. Writebackで知識が育つ</h2>
+<p>最後に Repo writeback がある。</p>
+<p>これはResearch OSらしい部分である。</p>
+<p>答えを出して終わりではなく、どこに知識を戻すかを決める。</p>
+<p>例として、エージェント導入の答えが一般化するなら <code>outputs/reports/</code> または新しい map に保存する。</p>
+<p>長時間エージェントの新しい事例が出たら <code>context-management-decisions.md</code> を強化する。</p>
+<p>レビュー負荷削減なら、deployment-gate や review-rubric map を更新する。</p>
+<p>つまり、Query Path は読むための道筋であると同時に、KBを継続的に改善する運用ループでもある。</p>
+<hr>
+<h1>実務での使いどころ</h1>
+<h2>1. エージェント導入ロードマップを作る</h2>
+<p>「開発ワークフローにエージェントを導入したい」という問いでは、<code>agent-harness-landscape.md</code> が入口になる。</p>
+<p>関連する <code>coding-agent-harness-patterns.md</code> では、実務的なパターンが整理されている。</p>
+<ul>
+<li><code>plan.md</code> のような計画ファイルを、セッション単位の handoff artifact として使う</li>
+<li>独立した verifier や reviewer を使い、自己評価バイアスを抑える</li>
+<li>タスク作業前に、リポジトリを runnable な状態に整える</li>
+<li>lint、hooks、pre-commit、tests を実装に近い場所で回す</li>
+<li>タスクリストや仕様を、進捗ログや生きた意図の成果物として使う</li>
+<li>commit、push、PR作成、自動修正、自動レビューまでループを伸ばす</li>
+</ul>
+<p>これらは単なる便利テクニックではなく、ハーネス設計の部品である。</p>
+<h2>2. レビュー負荷を減らす</h2>
+<p><code>eval-review-reliability.md</code> は、レビューと評価の信頼性を実務的に整理している。</p>
+<p>中核命題は次の通り。</p>
+<blockquote>
+<p>エージェントの出力品質は、生成した同じエージェントによる最後のざっとした確認ではなく、別のハーネス層として評価を設計すると改善する。</p>
+</blockquote>
+<p>信頼性レイヤーは大きく4つある。</p>
+<p>1. <strong>決定論的チェックを先に置く</strong></p>
+<p>   lint、typecheck、tests、smoke tests、formatting、structural checks、repository-specific machine-checkable invariants</p>
+<p>2. <strong>タスク適合レビュー</strong></p>
+<p>   要件カバレッジ、エッジケース、後方互換性、ユーザー向け挙動、保守性</p>
+<p>3. <strong>独立した evaluator loop</strong></p>
+<p>   subagent review、adversarial review、blocking review gates、人間へのエスカレーション</p>
+<p>4. <strong>trace-driven improvement</strong></p>
+<p>   失敗を新しいテスト、明確な指示、repo rules、rubrics、lint checks に変換する</p>
+<p>これは、Query Path の「レビュー負荷を減らしつつ安全性を失いたくない」という問いにそのまま対応する。</p>
+<h2>3. ベンダーやツールを比較する</h2>
+<p><code>harness-engineering-vendor-comparison.md</code> は、ベンダーや実務者ごとのハーネス観を比較する地図である。</p>
+<p>比較軸としては、control surface、autonomy、verification、handoff、deployment model が挙げられている。</p>
+<p>各ソースの強調点は異なる。</p>
+<ul>
+<li>OpenAI</li>
+</ul>
+<p>  リポジトリ設計、machine-enforced invariants、agent-recognizable context、継続的クリーンアップ、cross-agent review / delegation</p>
+<ul>
+<li>Cursor</li>
+</ul>
+<p>  agent-first coding workspace、multi-agent visibility、local/cloud handoff、multi-repo operation、review surfaces、harness measurement</p>
+<ul>
+<li>Cognition / Devin</li>
+</ul>
+<p>  cloud-agent runtime substrate、microVM isolation、snapshotting、warm-pool orchestration、permission inheritance、audit trails</p>
+<ul>
+<li>Anthropic</li>
+</ul>
+<p>  long-running agents、structured handoffs、initializer agents、context resets、planner/generator/evaluator split、MCP、skills、memory、managed-agent outcomes</p>
+<ul>
+<li>LangChain</li>
+</ul>
+<p>  traces、middleware、self-verification hooks、loop detection、reasoning-budget heuristics</p>
+<p>この比較は、ツール選定だけでなく、自社のハーネスに何が足りないかを考える材料になる。</p>
+<h2>4. コンテキストを運用予算として扱う</h2>
+<p><code>Research OS Query Paths</code> には、「エージェントのコンテキストを運用予算として管理したい」という問いもある。</p>
+<p>関連ソースとして、Machine Learning Mastery の context engineering 記事が使える。</p>
+<p>このソースは、コンテキストウィンドウをRAMに例える。</p>
+<p>速いが、希少で、高価で、今のステップに必要な情報が入っていなければ役に立たない。</p>
+<p>主な主張は以下である。</p>
+<ul>
+<li>本番エージェントの失敗は、モデル能力不足ではなく context mismanagement から起きることが多い</li>
+<li>context には token billing という金融コストと、attention dilution という認知コストがある</li>
+<li>static context と dynamic context を分けるべき</li>
+<li>append-only の会話履歴は context bloat や context poisoning を招く</li>
+<li>raw recency truncation よりも anchored iterative summarization が有効</li>
+<li>retrieval は自動反射ではなく、予算化された判断であるべき</li>
+<li>token budgeting はエージェントループ全体で測るべき</li>
+<li>context utilization は最大化ではなく、おおよそ 60–80% 程度に保つという考え方が示されている</li>
+<li>recall、artifact、continuation probes などで context failure を評価できる</li>
+</ul>
+<p>この話は、長時間エージェントの安定性や、会社の脳、RAG設計とも自然につながる。</p>
+<hr>
+<h1>誤解しやすい点・論点</h1>
+<h2>誤解1: Query Path はただのリンク集である</h2>
+<p>違う。</p>
+<p>Query Path は、リンクの集合ではなく、問いに答えるためのプロセス定義である。</p>
+<p>Start map、Concepts、Strongest sources、Weak signals、Output shape、Writeback がそろって初めて機能する。</p>
+<h2>誤解2: 強いソースだけ見ればよい</h2>
+<p>強いソースは重要だが、弱いシグナルにも役割がある。</p>
+<p>新しい実務領域では、Xスレッドや実務者の逸話が早期警戒や仮説生成に使える場合がある。</p>
+<p>ただし、それらは確定的な根拠としてではなく、弱いシグナルとして明示的に扱う必要がある。</p>
+<h2>誤解3: エージェント性能はモデルを替えれば解決する</h2>
+<p><code>Agent Harness Landscape</code> や関連ノート群は、性能をモデル単体ではなくハーネス全体で見る。</p>
+<p>リポジトリ構造、テスト、レビュー、計画、進捗ログ、権限制御、コンテキスト管理が品質に影響する。</p>
+<h2>誤解4: レビューは最後に人間が見ればよい</h2>
+<p><code>Eval and Review Reliability</code> は、評価を独立したハーネス層として扱う。</p>
+<p>安い決定論的チェックを先に置き、曖昧または高リスクな変更だけ人間に上げる設計が重要になる。</p>
+<h2>誤解5: RAGはベクトル検索だけの問題である</h2>
+<p>「広いコーパスカバレッジ質問に答えたい」という Query Path では、hierarchy navigation、vector search、graph traversal の比較が出てくる。</p>
+<p>つまり、検索手法そのものだけでなく、コーパスをどう歩ける形にするかが論点になる。</p>
+<hr>
+<h1>NotebookLMが会話で拾うとよい問い</h1>
+<ul>
+<li>KBを「Research OS」と呼ぶとき、従来のドキュメント集と何が違うのか？</li>
+<li>なぜ「質問の形をした入口」が重要なのか？</li>
+<li>Start map、Concepts、Strongest sources、Weak signals、Output shape、Writeback のうち、一番見落とされやすいのはどれか？</li>
+<li>ハーネスエンジニアリングは、プロンプトエンジニアリングとどう違うのか？</li>
+<li>エージェント導入で、最小限の viable harness とは何を含むべきか？</li>
+<li>レビュー負荷を減らすには、人間を減らすのか、それとも人間が見る前の層を厚くするのか？</li>
+<li>強い証拠と弱いシグナルを分けないと、どんな失敗が起きるか？</li>
+<li>長時間エージェントに必要なのは、大きなコンテキストか、よい handoff artifact か？</li>
+<li>コンテキストをRAMのように扱うとは、実務上どういう意味か？</li>
+<li>RAGの設計で、ベクトル検索、階層ナビゲーション、グラフ探索はどう役割が違うのか？</li>
+<li>Writeback がないKBは、なぜ徐々に使いにくくなるのか？</li>
+<li>NotebookLMのようなツールは、このQuery Path構造をどう活かせるか？</li>
+</ul>
+<hr>
+<h1>参照したKBノート</h1>
+<ul>
+<li><code>wiki/maps/research-os-query-paths.md</code></li>
+</ul>
+<p>  Research OS Query Paths。質問ごとの入口、概念、根拠、出力形、書き戻し先を定義する中心ノート。</p>
+<ul>
+<li><code>wiki/maps/agent-harness-landscape.md</code></li>
+</ul>
+<p>  エージェント性能をモデル単体ではなく、リポジトリ構造、制御、成果物、テスト、レビューループ、オーケストレーションで捉える地図。</p>
+<ul>
+<li><code>wiki/maps/eval-review-reliability.md</code></li>
+</ul>
+<p>  エージェント出力の評価とレビューを、決定論的チェック、タスク適合レビュー、独立評価ループ、trace-driven improvement として整理。</p>
+<ul>
+<li><code>wiki/maps/harness-engineering-vendor-comparison.md</code></li>
+</ul>
+<p>  OpenAI、Cursor、Cognition / Devin、Anthropic、LangChain などのハーネス設計上の強調点を比較。</p>
+<ul>
+<li><code>wiki/maps/coding-agent-harness-patterns.md</code></li>
+</ul>
+<p>  <code>plan.md</code>、verifier split、環境ブートストラップ、決定論的チェック、進捗アーティファクト、PR後のループなど、実務パターンを整理。</p>
+<ul>
+<li><code>wiki/sources/machinelearningmastery-effective-context-engineering-ai-agents.md</code></li>
+</ul>
+<p>  コンテキストを希少な運用資源として扱い、static/dynamic context、履歴管理、検索予算、token budgeting、context-quality evaluation を整理する記事。</p>
+<hr>
+<h1>NotebookLMに期待する話し方メモ</h1>
+<ul>
+<li>最初は「KBを資料置き場ではなくResearch OSにする」という大きな比喩から入る。</li>
+<li>次に、Query Path の6要素を丁寧に説明する。特に「Start map」と「Writeback」が重要。</li>
+<li>会話では、抽象論だけでなく「開発ワークフローにエージェントを入れたい」という具体例を早めに出す。</li>
+<li>ハーネスエンジニアリング、レビュー信頼性、コンテキスト予算、会社の脳、RAG設計を、別々の話題ではなく Query Path でつながるものとして扱う。</li>
+<li>「強い根拠」と「弱いシグナル」を分ける姿勢を強調する。</li>
+<li>トーンは、実務者向けに落ち着いて、少し探究的に。煽らず、「これは地味だが強い設計思想」という雰囲気がよい。</li>
+<li>最後は、リスナー自身のKBに対して「よく来る質問を3つ選び、それぞれにStart map、Concepts、Sources、Output shape、Writebackを決めてみる」と促すと自然。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm. Source topic: <code>wiki/maps/research-os-query-paths.md</code></p></footer>
+
+</body>
+</html>
