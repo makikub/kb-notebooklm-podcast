@@ -1,0 +1,13 @@
+{
+  "date": "2026-05-08",
+  "generatedAt": "2026-05-08T13:01:39.721671+00:00",
+  "title": "KB Daily Digest 2026-05-08",
+  "output_dir": "outputs/kb-daily-digest-pages/2026-05-08",
+  "page": "outputs/kb-daily-digest-pages/2026-05-08/digest-source.md",
+  "source_count": 7,
+  "changed_note_count": 9,
+  "commit_count": 2,
+  "char_count": 23605,
+  "existing_report": "outputs/reports/kb-daily-digest-2026-05-08.md",
+  "llm_error": "HTTP Error 500: Internal Server Error"
+}

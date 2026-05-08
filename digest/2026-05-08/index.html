@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-08 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-08/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB NotebookLM Podcast Pages</a> / Daily Digest / 2026-05-08</header>
+<h1>KB Daily Digest 2026-05-08</h1>
+<div class="note">
+  <strong>NotebookLM用URL:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しくPodcast化しやすい文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-08/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-08">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-08</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest — 2026-05-08</h1>
+<p>今日の <code>knowledge-base-llm</code> には、UTC 00時台のXブックマーク ingest と、UTC 12時台の安斎勇樹さん「冒険する組織のつくりかた」YouTubeソースが入りました。新規 raw は <code>raw/articles/</code> に7本、加えて <code>raw/x/bookmarks/20260508T000337Z-bookmarks.json</code>。新規 source note は <code>wiki/sources/</code> に7本で、<code>wiki/concepts/</code> では <code>exploratory-organization-lens</code> が追加され、<code>navigable-agent-skills</code>、<code>tool-accessibility</code>、<code>coding-agents</code>、<code>llm-inference-performance</code>、<code>model-psychology</code>、<code>organizational-intent-clarity</code> などが更新されています。</p>
+<p>全体トレンドは、「AIエージェントを動かすための道具立て」がさらに広がったことです。OpenAI は Codex をChromeの中で動かし、OpenAI Realtime は音声会話の中で推論・中断・アクションを扱う方向に進み、AWS はMCPサーバー、skills、pluginsを束ねた公式ツールキットを提示しています。一方でGoogleの flash-lite は、高価な大モデルだけでなく、安価で大量に回せる軽量モデルをエージェントの部品として使う流れを補強しました。</p>
+<p>重要ソース1本目は、AWS Agent Toolkit for AWS です。これは単なるSDK紹介というより、クラウドAPI群をエージェントが使える「技能パック」としてどう包装するかのシグナルです。KB上では <code>navigable-agent-skills</code> と <code>tool-accessibility</code> に接続され、ハーネス設計が「ツールを渡す」段階から、「巨大な操作面を、探索可能で安全なスキル集合として編成する」段階へ移っていることを示しています。</p>
+<p>重要ソース2本目は、OpenAI の Codex Chrome plugin です。Codex がWebアプリをテストし、複数タブから文脈を集め、DevToolsを並行利用し、ブラウザを占有せずバックグラウンドで作業するという方向が記録されました。これは <code>coding-agents</code> と <code>tool-accessibility</code> にとって重要で、ブラウザが単なる人間用UIではなく、コーディングエージェントの実行・観察・検証面になるという変化を表しています。</p>
+<p>重要ソース3本目は、安斎勇樹さんの「冒険する組織のつくりかた」です。技術ソースではありませんが、今日の更新の中ではKBの射程を大きく広げています。<code>exploratory-organization-lens</code> が新設され、AI導入を「命令と統制で高速化する」話だけでなく、問い、対話、学習、自己実現、組織を可能性の土壌として扱う視点から捉えるルートができました。これは <code>organizational-intent-clarity</code> や <code>sustainable-ai-work</code> と相性がよく、AI導入のJカーブや現場疲労の議論にもつながります。</p>
+<p>その他のソースでは、Anthropic の Natural Language Autoencoders が <code>model-psychology</code> に、Claude内部状態を人間可読テキストへ翻訳する interpretability の方向を追加しました。OpenAI GPT-Realtime-2 はリアルタイム音声エージェントの操作面を、Anthropic Code with Claude workshop materials はモデル選択・技能分解・段階的検証の実践パターンを、Google AI Studio Gemini 3.1 flash-lite は低コスト・高スループットなサブタスク分担を補強しています。</p>
+<p>今日のKB更新でいちばん面白いのは、ハーネスエンジニアリングの中心が「一つの強いモデルをどう使うか」から、「モデル、ブラウザ、音声、クラウドAPI、軽量モデル、スキル階層、組織学習をどう組み合わせるか」へ移っている点です。<code>harness-engineering-vendor-comparison</code> には May 2026 xurl bookmarks ingest として、OpenAI、Anthropic、Google、AWS、Anthropic workshops の位置づけが追記され、ベンダー比較の軸がより実装面に寄りました。</p>
+<p>今後の追跡ポイントは3つです。第一に、AWSのような巨大API面をどこまで狭く型付きにし、どこから探索可能なスキルとして開くべきか。第二に、ブラウザや音声のような人間に近い操作面で、承認・ロールバック・監査ログをどう設計するか。第三に、AI導入を探索として扱う場合、曖昧な実験で終わらせず、仮説、評価、対話、意思決定記録へどう接続するかです。</p>
+<h2>重要ソース</h2>
+<h3>安斎勇樹 — 冒険する組織のつくりかた by 安斎 勇樹</h3>
+<p>Source note: <code>wiki/sources/anzai-adventurous-organization-emconf-youtube.md</code></p>
+<h1>安斎勇樹 — 冒険する組織のつくりかた by 安斎 勇樹</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/anzai-adventurous-organization-emconf-youtube-2026-05-08.md</code></li>
+<li>Original URL: https://youtu.be/64vD8W5mwwI?si=K47qFZv--ggG1twd</li>
+<li>Canonical URL: https://www.youtube.com/watch?v=64vD8W5mwwI</li>
+<li>Author / speaker: 安斎勇樹</li>
+<li>Channel: EMConf JP</li>
+<li>Published: 2026-03-17</li>
+<li>Type: YouTube talk / conference presentation</li>
+<li>Language: Japanese</li>
+</ul>
+<h2>Short Summary</h2>
+<p>This source captures a YouTube talk titled <code>冒険する組織のつくりかた by 安斎 勇樹</code>. The transcript was visible as a YouTube panel but could not be retrieved in this environment, so this note treats the source as metadata plus official book-context rather than a full talk transcript.</p>
+<p>The relevant idea for this KB is the contrast between a <code>軍事的世界観</code> and an <code>冒険的世界観</code> for organization building. In the official framing, manager exhaustion, executive loneliness, frontline suffocation, and hiring difficulty are symptoms of a worldview mismatch. The proposed shift is from command/control and people-as-tools toward inquiry, exploration, individual self-realization, and organization as a soil for possibility.</p>
+<h2>Key Claims / Frames</h2>
+<ul>
+<li>Organizations can inherit a military worldview: hierarchy, command, control, competition, and treating people as means.</li>
+<li>A more adaptive worldview treats teams as exploratory parties: diverse members, shared inquiry, curiosity, dialogue, and mutual growth.</li>
+<li>Organizational weakness can be diagnosed through lenses such as goals, teams, meetings/dialogue, growth, and organization.</li>
+<li>For AI adoption, this source is useful as a socio-technical frame: exploratory adoption requires learning-oriented goals and rituals, not only better tools or stricter execution.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>YouTube metadata confirms title, channel, provider, thumbnail, and publi</li>
+</ul>
+<h3>AnthropicAI — Natural Language Autoencoders</h3>
+<p>Source note: <code>wiki/sources/anthropicai-natural-language-autoencoders-x.md</code></p>
+<h1>AnthropicAI — Natural Language Autoencoders</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/anthropicai-natural-language-autoencoders-x-2026-05-07.md</code></li>
+<li>Original URL: https://x.com/i/status/2052435436157452769</li>
+<li>Bookmark post id: 2052435436157452769</li>
+<li>Author: Anthropic / bookmark by AnthropicAI</li>
+<li>Date: 2026-05-07</li>
+<li>Type: X post</li>
+<li>Evidence strength: high for the post itself; medium if the note leans on a linked video/repo without full source capture</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Primary URL: https://x.com/AnthropicAI/status/2052435436157452769/video/1</li>
+</ul>
+<h2>Summary</h2>
+<p>Anthropic shares research showing that Claude activations can be translated into human-readable text. The post frames activations as numeric internal state that encodes thoughts even when the model speaks in words.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Claude-like models operate on activations that are not directly human-readable.</li>
+<li>Natural language autoencoders can translate those activations back into text.</li>
+<li>Interpretability can be treated as a learnable interface rather than only an analysis technique.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post itself is the durable provenance pointer from the bookmarks feed.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/model-psychology.md]]</li>
+<li>[[../concepts/evidence-quality.md]]</li>
+<li>[[../concepts/behavioral-stability.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/evidence-quality-and-source-trust.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Could activation-to-text translators become a practical audit surface for agent systems?</li>
+<li>How much of this transfers from research framing to production debugging?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/anthropicai-natural-language-autoencoders-x-2026-05-07.md]]</li>
+</ul>
+<h3>AWS — Agent Toolkit for AWS</h3>
+<p>Source note: <code>wiki/sources/aws-agent-toolkit-for-aws-x.md</code></p>
+<h1>AWS — Agent Toolkit for AWS</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/aws-agent-toolkit-for-aws-x-2026-05-06.md</code></li>
+<li>Original URL: https://x.com/i/status/2052115538701394205</li>
+<li>Bookmark post id: 2052115538701394205</li>
+<li>Author: Clare Liguori / bookmark by clare_liguori</li>
+<li>Date: 2026-05-06</li>
+<li>Type: X post</li>
+<li>Evidence strength: high for the post itself; medium if the note leans on a linked video/repo without full source capture</li>
+<li>Capture source: xurl bookmarks capture ; xurl read</li>
+<li>Primary URL: https://github.com/aws/agent-toolkit-for-aws</li>
+<li>Secondary URL: https://docs.aws.amazon.com/agent-toolkit/latest/userguide/quick-start.html</li>
+</ul>
+<h2>Summary</h2>
+<p>AWS introduces an official agent toolkit with MCP servers, skills, and plugins for building on AWS. The post highlights broad API coverage, scripts, docs, and skill retrieval, with quick-start docs and a GitHub repo as the main entrypoints.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>AWS is packaging agent access as skills, plugins, and remote MCP servers.</li>
+<li>The toolkit is designed to expose a very large AWS API surface to agents.</li>
+<li>The GitHub repo and quick-start docs are the practical source of truth.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post itself is the durable provenance pointer from the bookmarks feed.</li>
+<li>The quick-start docs and repo are the stronger practical source for implementation details.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/navigable-agent-skills.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/coding-agents.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/harness-engineering-vendor-comparison.md]]</li>
+<li>[[../maps/coding-agent-harness-patterns.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>What parts of AWS access should remain typed and narrow even if the toolkit exposes everything?</li>
+<li>How should agent repos represent provider-specific skill packs without fragmenting the skill graph?</li>
+</ul>
+<h3>Google AI Studio — Gemini 3.1 flash-lite</h3>
+<p>Source note: <code>wiki/sources/googleaistudio-gemini-3-1-flash-lite-x.md</code></p>
+<h1>Google AI Studio — Gemini 3.1 flash-lite</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/googleaistudio-gemini-3-1-flash-lite-x-2026-05-07.md</code></li>
+<li>Original URL: https://x.com/i/status/2052453828272812310</li>
+<li>Bookmark post id: 2052453828272812310</li>
+<li>Author: Google AI Studio / bookmark by GoogleAIStudio</li>
+<li>Date: 2026-05-07</li>
+<li>Type: X post</li>
+<li>Evidence strength: high for the post itself; medium if the note leans on a linked video/repo without full source capture</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Primary URL: https://x.com/GoogleAIStudio/status/2052453828272812310/video/1</li>
+</ul>
+<h2>Summary</h2>
+<p>Google AI Studio announces Gemini 3.1 flash-lite as a cost-efficient model aimed at high-volume agentic tasks, translation, and simple data processing.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>flash-lite is positioned as a low-cost, high-throughput model.</li>
+<li>The target workload is agentic but relatively simple or repetitive.</li>
+<li>Translation and data processing are highlighted as fit cases.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post itself is the durable provenance pointer from the bookmarks feed.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/llm-inference-performance.md]]</li>
+<li>[[../concepts/ai-roi-model.md]]</li>
+<li>[[../concepts/coding-agents.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/ai-adoption-roi-and-capability-investment.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Where is the cost/performance break-even for using a lighter model in agent loops?</li>
+<li>Which agent subtasks should be routed to small models by default?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/googleaistudio-gemini-3-1-flash-lite-x-2026-05-07.md]]</li>
+</ul>
+<h3>ぬこぬこ / NUKO — Code with Claude workshop materials</h3>
+<p>Source note: <code>wiki/sources/nukonuko-code-with-claude-workshops-x.md</code></p>
+<h1>ぬこぬこ / NUKO — Code with Claude workshop materials</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/nukonuko-code-with-claude-workshops-x-2026-05-06.md</code></li>
+<li>Original URL: https://x.com/i/status/2052078242358841432</li>
+<li>Bookmark post id: 2052078242358841432</li>
+<li>Author: ぬこぬこ / NUKO 🇯🇵 / bookmark by nukonuko</li>
+<li>Date: 2026-05-06</li>
+<li>Type: X post</li>
+<li>Evidence strength: high for the post itself; medium if the note leans on a linked video/repo without full source capture</li>
+<li>Capture source: xurl bookmarks capture ; xurl read</li>
+<li>Primary URL: https://github.com/anthropics/cwc-workshops</li>
+</ul>
+<h2>Summary</h2>
+<p>A workshop-repo share for Anthropic’s Code with Claude materials. The post calls out rightmodel-style model sweep selection and agent-decomposition into skills plus code execution with stepwise validation.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Workshop materials expose practical agent workflow design patterns.</li>
+<li>One pattern is searching model/prompt settings for the best cost/latency mix.</li>
+<li>Another is decomposing a prompt inventory into skill and execution steps with validation.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post itself is the durable provenance pointer from the bookmarks feed.</li>
+<li>The linked repository is the practical primary source.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/navigable-agent-skills.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/coding-agent-harness-patterns.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>How much of workshop guidance should become repo-level defaults versus optional playbooks?</li>
+<li>Can these patterns be turned into reusable harness primitives rather than slideware?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/nukonuko-code-with-claude-workshops-x-2026-05-06.md]]</li>
+</ul>
+<h3>OpenAI — Codex browser work in Chrome</h3>
+<p>Source note: <code>wiki/sources/openai-codex-chrome-plugin-x.md</code></p>
+<h1>OpenAI — Codex browser work in Chrome</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/openai-codex-chrome-plugin-x-2026-05-07.md</code></li>
+<li>Original URL: https://x.com/i/status/2052480800004956323</li>
+<li>Bookmark post id: 2052480800004956323</li>
+<li>Author: OpenAI / bookmark by OpenAI</li>
+<li>Date: 2026-05-07</li>
+<li>Type: X post</li>
+<li>Evidence strength: high for the post itself; medium if the note leans on a linked video/repo without full source capture</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Primary URL: https://x.com/OpenAI/status/2052480800004956323/video/1</li>
+</ul>
+<h2>Summary</h2>
+<p>OpenAI says Codex can now work directly in Chrome, testing web apps, gathering context across tabs, using DevTools in parallel, and staying in the background instead of taking over the browser.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Codex now has a browser-native workflow in Chrome.</li>
+<li>Parallel tab-level work and DevTools access are part of the workflow.</li>
+<li>The browser plugin keeps the agent in the background rather than foregrounding the whole session.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post itself is the durable provenance pointer from the bookmarks feed.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/coding-agent-harness-patterns.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>How much browser automation should live inside the coding agent versus a separate harness?</li>
+<li>What review and rollback surfaces are needed when the browser becomes part of the coding loop?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/openai-codex-chrome-plugin-x-2026-05-07.md]]</li>
+</ul>
+<h3>OpenAI — GPT-Realtime-2 in the API</h3>
+<p>Source note: <code>wiki/sources/openai-gpt-realtime-2-api-x.md</code></p>
+<h1>OpenAI — GPT-Realtime-2 in the API</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/openai-gpt-realtime-2-api-x-2026-05-07.md</code></li>
+<li>Original URL: https://x.com/i/status/2052438194625593804</li>
+<li>Bookmark post id: 2052438194625593804</li>
+<li>Author: OpenAI / bookmark by OpenAI</li>
+<li>Date: 2026-05-07</li>
+<li>Type: X post</li>
+<li>Evidence strength: high for the post itself; medium if the note leans on a linked video/repo without full source capture</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Primary URL: https://x.com/OpenAI/status/2052438194625593804/video/1</li>
+</ul>
+<h2>Summary</h2>
+<p>OpenAI announces GPT-Realtime-2 for voice agents, positioning it as a production-ready API model that can listen, reason, take action, and handle interruptions in real time.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The API now supports a stronger realtime voice model for voice agents.</li>
+<li>The model is pitched as capable of reasoning while conversations unfold.</li>
+<li>Interruptions and action-taking are part of the intended interaction model.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post itself is the durable provenance pointer from the bookmarks feed.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/agent-deployment-gates-and-operational-risk.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>What approval and fallback design does realtime voice need before it is safe for high-stakes use?</li>
+<li>How much of the agent loop moves into the speech layer when voice becomes the primary interface?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/openai-gpt-realtime-2-api-x-2026-05-07.md]]</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Concept Notes</h3>
+<p>KB note: <code>wiki/concepts/README.md</code></p>
+<h1>Concept Notes</h1>
+<p>Each note in this folder should represent a reusable concept that appears across multiple sources.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>definition</li>
+<li>why it matters</li>
+<li>related concepts</li>
+<li>supporting sources</li>
+<li>tensions / tradeoffs</li>
+<li>open questions</li>
+</ul>
+<ul>
+<li>[Evidence Quality](evidence-quality.md)</li>
+<li>[Field-Deployed Engineer](field-deployed-engineer.md)</li>
+<li>[Product Responsibility Distribution](product-responsibility-distribution.md)</li>
+<li>[Organizational Intent Clarity](organizational-intent-clarity.md)</li>
+<li>[Exploratory Organization Lens](exploratory-organization-lens.md)</li>
+<li>[Intelligent Delegation](intelligent-delegation.md)</li>
+<li>[Conversational Feedback Learning](conversational-feedback-learning.md)</li>
+<li>[Spec-Code-Test Loop](spec-code-test-loop.md)</li>
+<li>[Heavy Thinking](heavy-thinking.md)</li>
+<li>[Sustainable AI Work](sustainable-ai-work.md)</li>
+<li>[AI Adoption J-Curve](ai-adoption-j-curve.md)</li>
+<li>[AI ROI Model](ai-roi-model.md)</li>
+<li>[Verification Tax](verification-tax.md)</li>
+<li>[Instability Tax](instability-tax.md)</li>
+<li>[LLM In</li>
+</ul>
+<h3>Exploratory Organization Lens</h3>
+<p>KB note: <code>wiki/concepts/exploratory-organization-lens.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Exploratory organization lens</p>
+<p>  - 冒険的世界観</p>
+<p>  - Adventurous organization lens</p>
+<hr>
+<h1>Exploratory Organization Lens</h1>
+<h2>Definition</h2>
+<p>A way to view organization design as exploration rather than command execution: goals become inquiry prompts, teams become diverse parties, meetings become dialogue spaces, growth becomes identity exploration, and the organization becomes soil for people and capabilities to develop.</p>
+<h2>Why It Matters</h2>
+<p>AI adoption often fails when organizations expect new tools to simply execute pre-existing commands faster. In uncertain workflows, teams are still discovering what good looks like, which constraints matter, and how humans and agents should divide work. An exploratory organization lens makes learning, dialogue, and evolving intent first-class parts of adoption.</p>
+<h2>Relation to Agent / AI Work</h2>
+<ul>
+<li>Complements [[organizational-intent-clarity.md]]: clear intent does not always mean fixed orders; sometimes the clearer artifact is a shared question, hypo</li>
+</ul>
+<h3>Organizational Intent Clarity</h3>
+<p>KB note: <code>wiki/concepts/organizational-intent-clarity.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Organizational intent clarity</p>
+<p>  - Goal clarity for AI adoption</p>
+<hr>
+<h1>Organizational Intent Clarity</h1>
+<h2>Definition</h2>
+<p>The degree to which a team can state stable goals, desired outcomes, constraints, and evaluation criteria clearly enough for humans and agents to act on them.</p>
+<h2>Why It Matters</h2>
+<p>When intent is vague or constantly shifting, AI systems look unreliable even when the underlying model is capable. The practical bottleneck moves from “can the model do it?” to “has the organization expressed what should be done, why, and how success will be judged?”</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[context-engineering.md]]</li>
+<li>[[exploratory-organization-lens.md]]</li>
+<li>[[company-brain.md]]</li>
+<li>[[product-responsibility-distribution.md]]</li>
+<li>[[agent-management.md]]</li>
+<li>[[evidence-quality.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/iwashi86-organizational-ai-use-goal-clarity-x.md]]</li>
+<li>[[../sources/anzai-adventurous-organization-emconf-youtube.md]]</li>
+<li>[[../sources/recerqa-pdm-abolished-speakerdeck.md]]</li>
+<li>[[</li>
+</ul>
+<h3>Coding Agents</h3>
+<p>KB note: <code>wiki/concepts/coding-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Coding Agents</p>
+<hr>
+<h1>Coding Agents</h1>
+<h2>Definition</h2>
+<p>Agents that operate in software development environments using code editing, terminal commands, tests, and repository context as part of their task execution.</p>
+<h2>Why It Matters</h2>
+<p>Coding agents are one of the most concrete and operationally demanding forms of LLM agents, making them useful for studying autonomy and oversight in practice.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent-autonomy]]</li>
+<li>[[approval-policy]]</li>
+<li>[[human-in-the-loop]]</li>
+<li>[[spec-code-test-loop.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-claude-code-auto-mode.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/openai-codex-chrome-plugin-x.md]]</li>
+<li>[[../sources/aws-agent-toolkit-for-aws-x.md]]</li>
+<li>[[../sources/nukonuko-code-with-claude-workshops-x.md]]</li>
+<li>[[../sources/anthropic-claude-code-init-interview-x.md]]</li>
+<li>[[../sources/cursor-3-blog.md]]</li>
+<li>[[../sources/storybook-mcp-react-blog.md]]</li>
+</ul>
+<p>-</p>
+<h3>LLM Inference Performance</h3>
+<p>KB note: <code>wiki/concepts/llm-inference-performance.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - LLM Inference Performance</p>
+<p>  - Time to First Token</p>
+<p>  - Inter-Token Latency</p>
+<p>  - TTFT</p>
+<p>  - ITL</p>
+<hr>
+<h1>LLM Inference Performance</h1>
+<h2>Definition</h2>
+<p>The runtime behavior of an LLM serving request, especially the latency, memory, and throughput tradeoffs between prompt processing and token streaming.</p>
+<h2>Why It Matters</h2>
+<p>Agent and harness design often treats context as only a reasoning-quality input. Inference performance adds another constraint: longer prompts, larger caches, and longer outputs change latency and concurrency even when answer quality improves.</p>
+<h2>Core Distinction</h2>
+<ul>
+<li><strong>Prefill:</strong> process the full prompt before the first output token. Usually parallel and compute-bound; measured by time-to-first-token (TTFT).</li>
+<li><strong>Decode:</strong> generate output one token at a time after prefill. Usually sequential and memory-bound; measured by inter-token latency (ITL).</li>
+</ul>
+<h2>Operational Implications</h2>
+<ul>
+<li>If an agent is slow to start, inspect prompt length, retrieved context, tool-output bloat,</li>
+</ul>
+<h3>Model Psychology</h3>
+<p>KB note: <code>wiki/concepts/model-psychology.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Model Psychology</p>
+<hr>
+<h1>Model Psychology</h1>
+<h2>Definition</h2>
+<p>A framing that treats recurring internal states, styles, or behavioral tendencies in language models as psychologically relevant to how the system acts.</p>
+<h2>Why It Matters</h2>
+<p>If agent behavior depends partly on latent internal dynamics, then external tool policy alone may not fully explain system behavior. This matters most in the current KB when trying to separate failures caused by weak harness design from failures caused by model tendencies that the harness must anticipate.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[behavioral stability]]</li>
+<li>[[agent safety]]</li>
+<li>[[failure modes]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-emotion-concepts.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropicai-natural-language-autoencoders-x.md]]</li>
+</ul>
+<h2>Tradeoffs / Tensions</h2>
+<ul>
+<li>Psychological language can clarify behavior, but may also anthropomorphize too aggressively.</li>
+<li>Interpretability findings may not map clea</li>
+</ul>
+<h3>Navigable Agent Skills</h3>
+<p>KB note: <code>wiki/concepts/navigable-agent-skills.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Navigable Agent Skills</p>
+<p>  - Corpus2Skill</p>
+<p>  - Hierarchical RAG</p>
+<hr>
+<h1>Navigable Agent Skills</h1>
+<h2>Definition</h2>
+<p>A retrieval architecture where a corpus is compiled into a hierarchy of human/model-readable skill or index files, so an agent can navigate the corpus structure before retrieving underlying documents.</p>
+<h2>Why It Matters</h2>
+<p>It changes the model’s role from passive consumer of search results to active navigator of an information architecture. This is especially useful for broad or completeness-oriented questions where top-k vector retrieval may miss scattered evidence.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled-wiki.md]]</li>
+<li>[[agent-knowledge-loop.md]]</li>
+<li>[[context-graph.md]]</li>
+<li>[[tool-accessibility.md]]</li>
+<li>[[agent-recognizable-repository.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/coreyganim-karpathy-second-brain-clearly-explained-x.md]]</li>
+<li>[[../sources/knowledgesense-corpus2skill-zenn.md]]</li>
+<li>[[../sources/aws-agent-toolkit-for-aws-x.md]]</li>
+<li>[[../sources/nukonuko-code-with-claude-worksh</li>
+</ul>
+<h3>Tool Accessibility</h3>
+<p>KB note: <code>wiki/concepts/tool-accessibility.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Tool Accessibility</p>
+<hr>
+<h1>Tool Accessibility</h1>
+<h2>Definition</h2>
+<p>The degree to which the tools humans rely on are exposed in forms agents can discover and use effectively.</p>
+<h2>Why It Matters</h2>
+<p>If agents cannot access the relevant tools and context, their practical usefulness stays artificially low.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[agent-recognizable-repository]]</li>
+<li>[[coding-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/ignorance-ai-emerging-harness-engineering-playbook.md]]</li>
+<li>[[../sources/anthropic-harnessing-claudes-intelligence.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-setup-x.md]]</li>
+<li>[[../sources/storybook-mcp-react-blog.md]]</li>
+<li>[[../sources/browser-use-cli-2-changelog.md]]</li>
+<li>[[../sources/google-gemma-4-blog.md]]</li>
+<li>[[../sources/difit-review-blog.md]]</li>
+<li>[[../sources/jerry-liu-rese</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>7</code>, commits: <code>2</code></p></footer>
+
+</body>
+</html>
