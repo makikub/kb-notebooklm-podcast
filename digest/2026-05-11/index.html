@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-11 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-11/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB NotebookLM Podcast Pages</a> / Daily Digest / 2026-05-11</header>
+<h1>KB Daily Digest 2026-05-11</h1>
+<div class="note">
+  <strong>NotebookLM用URL:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しくPodcast化しやすい文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-11/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-11">GitHub</a>
+</div>
+<h1>2026-05-11 KB日次更新ノート</h1>
+<h2>今日の全体トレンド</h2>
+<p>今日の更新は、見た目には小さなブックマーク取り込みが中心ですが、KB全体としてはかなりはっきりした方向を示しています。中心にあるのは、「LLMエージェントに何を考えさせるか」ではなく、「エージェントがどのような環境・道具・情報構造を通じて現実の作業に触れるか」という問いです。</p>
+<p>ひとつ目の軸は、Google Workspace の操作面を広げる <code>gogcli v0.16.0</code> のリリースです。これは単なるCLIの機能追加としてだけでなく、エージェントから見た外部システムの「可触化」、つまり人間が使っている業務ツールを、エージェントが発見し、呼び出し、組み合わせられる形に近づける動きとしてKBに取り込まれました。更新された概念も、<code>tool-accessibility</code>、<code>navigable-agent-skills</code>、<code>harness-engineering</code> であり、まさに「道具をどう露出するか」「その道具をどうナビゲート可能にするか」「安全で反復可能な実行環境をどう設計するか」に寄っています。</p>
+<p>もうひとつの軸は、証拠品質の管理です。Amit Shekhar氏の「Research papers every LLM engineer must read」というX articleブックマークは、タイトルだけを見ると非常に有用そうです。しかし今回のキャプチャでは本文が取得できていません。そのためKBは、内容を見たかのように要約せず、「記事カードとタイトルは確認できるが、推奨論文リストそのものは見えていない」と明示しました。この扱いは、<code>evidence-quality</code> の更新として重要です。KBは情報を増やすだけでなく、「何をまだ知らないか」を構造化して残す方向に進んでいます。</p>
+<p>今日のトレンドを一言でまとめるなら、「エージェントの実用性は、モデル単体ではなく、アクセスできる道具と、その道具を扱うためのハーネス、そして根拠の強さを見分ける知識ベース設計に依存する」ということです。</p>
+<hr>
+<h2>なぜこの更新がKBにとって重要か</h2>
+<p>今回の更新が重要なのは、KBが「ニュースの蓄積」から「エージェント運用の地図」へ少しずつ変わっていることを示しているからです。</p>
+<p><code>gogcli v0.16.0</code> の取り込みでは、Google Workspace に対するコマンド面が広がったことが記録されています。リリースノート上で挙げられている範囲は広く、管理者ユーザーや組織単位のコマンド、Sites、Analytics/Search Console、GmailのHTML本文対応、YouTubeコマンド、Formsのクイズ採点と公開、CalendarのPlaces-backedな場所解決、Driveのchanges/activity、Meetのmeeting-space操作などが含まれます。</p>
+<p>ここでKBが見ているのは、個々の機能の便利さだけではありません。より大きい論点は、こうしたコマンド群が、エージェントにとって「操作可能な面」として現れることです。人間にとってはブラウザUIで十分な業務ツールでも、エージェントにとっては、探索可能で、呼び出し可能で、戻り値を解釈可能なインターフェースが必要になります。CLIや typed wrapper、プレビュー、安全なデフォルトといったものは、単なる開発者向けの補助ではなく、エージェント運用におけるハーネスの一部になります。</p>
+<p>一方で、Amit Shekhar氏のブックマークは、反対方向の大切さを教えています。タイトルは魅力的ですが、本文が取得できていないため、KBはその中身を材料にしていません。これは地味ですが重要です。LLM向けKBでは、「それらしいタイトル」「誰かのキュレーション」「X上の断片」が、いつのまにか確定的な知識として再利用される危険があります。今回のノートは、その危険を避けるために、低〜中程度の証拠強度、本文未取得、ベストユースは後日の再確認、という形で保存されています。</p>
+<p>つまり今回の更新は、実務面では「エージェントに道具を渡す」話であり、知識管理面では「根拠の弱いものを弱いまま保存する」話です。このふたつは別々に見えて、実は同じ方向を向いています。エージェントを現場に近づけるほど、操作の安全性だけでなく、参照する知識の信頼性も重要になるからです。</p>
+<hr>
+<h2>重要ソース3本</h2>
+<h3>1. OpenClaw — gogcli v0.16.0 release</h3>
+<p>今日の最重要ソースは、<code>OpenClaw — gogcli v0.16.0 release</code> です。X投稿とGitHubリリースノートの両方が取り込まれており、具体的な機能詳細についてはGitHubリリースノートがより強い根拠として扱われています。</p>
+<p>このリリースの要点は、<code>gogcli</code> が小さなCLIから、より広い Google Workspace の制御面へ成長している、という整理です。追加された領域は、管理系ワークフローとプロダクト別ワークフローの両方にまたがっています。管理者ユーザー、組織単位、Sites、Analytics/Search Console、Gmail、YouTube、Forms、Calendar、Drive、Meet といった範囲が記録されており、単一機能の追加というより、操作面の拡張として読むべき更新です。</p>
+<p>KB上では、このソースは <code>tool-accessibility</code>、<code>navigable-agent-skills</code>、<code>harness-engineering</code> を支えるものとしてリンクされました。ただし、証拠品質のメモにもある通り、リリースノートは「機能が提供されたこと」には強い根拠になりますが、「エージェントが実際に信頼して使えるか」「UXが十分か」「安全な運用ができるか」までは直接証明しません。ここに大きな読みどころがあります。コマンド面が増えることと、エージェントが失敗なく使えることは同じではありません。</p>
+<p>このソースは、今後のKBで「外部システムをエージェント向けにどう露出するか」を考える際の、具体的な観察対象になります。</p>
+<h3>2. Amit Shekhar — Research papers every LLM engineer must read</h3>
+<p>二つ目の重要ソースは、Amit Shekhar氏による「Research papers every LLM engineer must read」というX articleブックマークです。ただし、これは内容面の強いソースではありません。今回のキャプチャでは、記事本文が取得できず、確認できたのは記事カード、タイトル、X article URL、著者情報などのメタデータに限られています。</p>
+<p>そのため、このノートの価値は「LLMエンジニア向けの研究論文リストが存在するらしい」という発見メモにあります。推奨論文の中身、既存KBとの重なり、評価・コンテキストエンジニアリング・エージェント信頼性との接続は、まだ確認できていません。</p>
+<p>ここで重要なのは、KBが不完全な情報をどう扱っているかです。タイトルだけをもとに「この論文群が重要である」と主張するのではなく、<code>evidence-quality</code> の概念に接続し、制限を明記したうえで保存しています。ベストユースも、「記事が存在することを覚えておき、別ソースで同じリストが出るか、本文が取得可能になったら再訪する」とされています。</p>
+<p>このソースは、内容そのものよりも、KB運用の姿勢を示す例として重要です。見えない本文を要約しない。弱い証拠を強く見せない。後で追えるように出所を残す。この態度は、公開HTMLやNotebookLM向けの読み物においても大切です。</p>
+<h3>3. daily X bookmarks 2026-05-11 / 取り込みとlint出力</h3>
+<p>三つ目は、個別の外部記事というより、今回の取り込みパイプラインそのものです。<code>outputs/lint/daily-x-bookmarks-2026-05-11.md</code>、<code>raw/x/bookmarks/2026-05-11/bookmarks.json</code>、関連する raw articles、そして <code>wiki/INDEX.md</code> の更新が発生しています。</p>
+<p>この更新は、Xブックマークを日次で取り込み、raw資料、source note、concept note、indexへ接続する流れを示しています。今日の二つの新規ソースはどちらもX由来ですが、扱いは同じではありません。<code>gogcli</code> はGitHubリリースノートという一次性の高い補助ソースがあり、具体機能の確認に使えます。一方、Amit Shekhar氏の記事は本文未取得で、タイトルとカード情報にとどまります。</p>
+<p>この差分をlint出力やsource noteとして残すことにより、KBは「ブックマークを全部同じ重みで取り込む」のではなく、根拠の種類に応じて利用方法を変える構造を持ちます。これは <code>evidence-quality</code> の実装例でもあり、今後の自動要約やPodcast生成で誤った確信を避けるための土台になります。</p>
+<hr>
+<h2>更新された概念・地図</h2>
+<h3>Coding Agents</h3>
+<p><code>coding-agents</code> には、Amit Shekhar氏の研究論文リストブックマークが支援ソースとして追加されました。ただし、本文未取得のため、ここでの接続は強い内容的根拠というより、LLMエンジニアリング文献への入口としての弱いシグナルです。</p>
+<p>この概念ページは、すでにコード編集、ターミナル、テスト、リポジトリ文脈を扱うエージェントの整理として使われています。今回の追加は、coding agents を実装・評価・運用するうえで、どの文献を読むべきかという方向へ伸びる可能性を示します。ただし、現時点では「どの論文か」は未確認です。</p>
+<h3>Evidence Quality</h3>
+<p><code>evidence-quality</code> は今回の更新で特に意味を持ちました。Amit Shekhar氏のソースが追加され、証拠品質の概念に「本文が取れていないブックマークをどう扱うか」という具体例が増えました。</p>
+<p>この概念の定義は、ソースノートや統合的な主張に対して、情報源の種類、直接性、制限、使い道を明示することです。今日の更新は、その必要性を非常にわかりやすく示しています。X articleのカードだけでは、内容要約の根拠にはなりません。しかし、将来の追跡対象としては価値があります。この区別をページ内で明示できることが、KBの安全性を高めます。</p>
+<h3>Harness Engineering</h3>
+<p><code>harness-engineering</code> には、<code>gogcli v0.16.0</code> が追加されました。ここでのハーネスは、エージェントの周囲にある環境、成果物、制御、ツール、フィードバックループの設計を指します。</p>
+<p><code>gogcli</code> のようなCLIの拡張は、エージェントにとっての作業環境を広げます。ただし、ハーネスエンジニアリングの観点では、「コマンドがある」だけでは不十分です。どの操作を許可するのか、どの操作にプレビューを挟むのか、失敗時に何をログとして残すのか、取り消し可能性をどう扱うのか、といった問いが続きます。今回のソースノートでも、実際のエージェント信頼性やUX品質はリリースノートだけでは判断できないとされています。</p>
+<h3>Navigable Agent Skills</h3>
+<p><code>navigable-agent-skills</code> にも <code>gogcli</code> が接続されました。この概念は、コーパスやツール群を階層化されたスキルやインデックスとして編成し、エージェントが探索しながら必要な情報へ到達できるようにする考え方です。</p>
+<p>Google Workspaceのように操作領域が広い場合、単に大量のコマンドを並べるだけでは、エージェントにとって使いやすいとは限りません。どの業務目的にどのコマンド群を使うのか、どの順番で確認すべきか、どの操作は危険かを、ナビゲート可能な形に整理する必要があります。今回の更新は、ツール面の拡張とスキル化の問題が接続していることを示しています。</p>
+<h3>Tool Accessibility</h3>
+<p><code>tool-accessibility</code> は今回の中心概念です。人間が使っているツールを、エージェントが発見し、理解し、利用できる形にどれだけ露出できているか、という問題です。</p>
+<p><code>gogcli v0.16.0</code> は、この概念の具体例として非常にわかりやすい更新です。Google Workspaceの各種機能がCLIから操作できる範囲が広がるほど、エージェントが実務システムに触れる可能性も広がります。しかし、アクセシビリティは単に「呼べる」ことでは終わりません。引数の意味、権限、出力形式、破壊的操作、確認ステップ、ログ、エラー処理まで含めて、エージェントにとって扱いやすいかが問題になります。</p>
+<hr>
+<h2>実務での読みどころ</h2>
+<p>今日の更新から実務者が持ち帰れるポイントは、まず「ツール面の拡張を、そのままエージェント対応と見なさない」ことです。<code>gogcli v0.16.0</code> のようにコマンド面が広がることは、明らかにエージェント活用の可能性を増やします。しかし、ソースノートが慎重に書いている通り、これは実際の信頼性やUX品質を証明するものではありません。</p>
+<p>現場で考えるべきなのは、コマンドをどう束ねるかです。たとえば、Google Workspace上の作業をエージェントに任せるとして、全コマンドを自由に使わせるのか、用途別のskill packに分けるのか、読み取り系と変更系を分けるのか、プレビューや承認をどこに置くのか。今回のKB更新は、こうした設計論に向かうための素材です。</p>
+<p>もうひとつの読みどころは、情報源の扱いです。現場でLLMやエージェントの知識ベースを作ると、Xの投稿、ブログ、リリースノート、ドキュメント、研究論文、リポジトリが混ざります。このとき、すべてを同じ強さで扱うと危険です。今回のAmit Shekhar氏のブックマークのように、タイトルだけは取れているが本文がないものは、追跡メモとしては有用でも、内容主張の根拠にはできません。</p>
+<p>つまり、実務では「ツールをエージェントに渡す設計」と「知識をエージェントに渡す設計」を同時に考える必要があります。どちらも、ただ渡せばよいわけではありません。渡し方、制限、確認、ナビゲーション、根拠の強さが重要になります。</p>
+<hr>
+<h2>Podcastで掘ると面白い論点</h2>
+<p>今回の更新は、Podcastでは「エージェントに仕事をさせるための二つの足場」という切り口で話すと自然です。ひとつは外部ツールへのアクセス、もうひとつは根拠の品質です。</p>
+<p><code>gogcli</code> の話では、「CLIが増えるとエージェントは賢くなるのか？」という問いが立てられます。答えは単純ではありません。CLIはエージェントに操作面を与えますが、操作面が広がるほど、誤操作や探索失敗のリスクも増えます。したがって、次に必要なのは、コマンドの羅列ではなく、ナビゲーション可能なスキル、承認フロー、フィードバックループです。</p>
+<p>Amit Shekhar氏のブックマークでは、「タイトルだけで知った気にならないKB」という話ができます。LLMは見えていない本文でもそれらしく補ってしまいがちですが、KBはそれを許さない設計にできます。本文未取得なら本文未取得と書く。証拠強度を低くする。将来の再取得対象にする。この地味な習慣が、後の自動要約やAudio Overviewの品質を左右します。</p>
+<p>また、二つの話をつなげるなら、「エージェントが外部世界を操作するほど、参照する知識の曖昧さが危険になる」という論点が面白いです。情報検索だけのエージェントなら、誤りは回答品質の問題にとどまりやすいですが、実システムを操作するエージェントでは、弱い根拠や不明確な手順が実害につながる可能性があります。今回の更新は、その前段階として、ツール面と証拠面の両方を整備しているように読めます。</p>
+<hr>
+<h2>次に追う問い</h2>
+<ul>
+<li><code>gogcli</code> の広がったコマンド面のうち、エージェントに安全に使わせられるものはどれか。</li>
+<li>Google Workspace系のワークフローでは、どの操作に typed wrapper、プレビュー、承認、安全なデフォルトが必要か。</li>
+<li>広いCLIをそのまま渡すべきか、それとも業務目的別のskill packに分けるべきか。</li>
+<li><code>navigable-agent-skills</code> の観点で、Google Workspaceのような大きな操作面をどう階層化すればよいか。</li>
+<li>Amit Shekhar氏の記事本文は後日取得できるか。</li>
+<li>その研究論文リストが、既存KBの evals、context engineering、agent reliability、coding agents の各ソースとどの程度重なるか。</li>
+<li>X articleカードやブックマークのような弱いソースを、NotebookLM向けの読み物に出すとき、どこまで本文で扱うべきか。</li>
+<li>日次ブックマーク取り込みにおいて、本文未取得、一次ソースあり、二次要約のみ、という証拠状態をどのようにUIや索引で見分けやすくするか。</li>
+</ul>
+<hr>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>今日の主題は「エージェントの実用性は、モデル性能だけでなく、道具へのアクセスと証拠品質で決まる」。</li>
+<li>メイン素材は二つ。</li>
+</ul>
+<p>  - <code>gogcli v0.16.0</code>: Google WorkspaceのCLI操作面が広がり、agent-facing interface として読む価値がある。</p>
+<p>  - Amit Shekhar氏の研究論文リストブックマーク: タイトルだけ確認、本文未取得。内容ではなく、証拠品質管理の例として重要。</p>
+<ul>
+<li>対立軸として話しやすいもの:</li>
+</ul>
+<p>  - 「コマンドが増えること」対「安全に使えること」</p>
+<p>  - 「ブックマークとして有用」対「内容根拠としては弱い」</p>
+<p>  - 「広いCLI」対「目的別skill pack」</p>
+<p>  - 「検索できる」対「ナビゲートできる」</p>
+<ul>
+<li>強調したい注意点:</li>
+</ul>
+<p>  - <code>gogcli</code> のリリースノートは機能追加の根拠としては強いが、エージェント信頼性の証明ではない。</p>
+<p>  - Amit Shekhar氏の記事は本文が取れていないため、推奨論文の内容を語ってはいけない。</p>
+<ul>
+<li>会話の流れ案:</li>
+</ul>
+<p>  1. 今日の更新は小さいが、KBの方向性が見える。</p>
+<p>  2. まず <code>gogcli</code> で、外部システムをエージェントが触れる形にする話。</p>
+<p>  3. 次に、ツールが増えるほどハーネスと安全設計が必要になる話。</p>
+<p>  4. そこから、弱い情報源を弱いまま扱う <code>evidence-quality</code> の話へ。</p>
+<p>  5. 最後に、次に追うべき問いとして、CLIのskill化と本文未取得ソースの再確認を挙げる。</p>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>2</code>, commits: <code>2</code></p></footer>
+
+</body>
+</html>
