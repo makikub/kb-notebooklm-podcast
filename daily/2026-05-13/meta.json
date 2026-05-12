@@ -1,0 +1,15 @@
+{
+  "date": "2026-05-13T03:00:26.810550+09:00",
+  "topic_id": "wiki/maps/coding-agent-cognitive-debt-and-review-capacity.md",
+  "title": "Coding-Agent Cognitive Debt and Review Capacity",
+  "output_dir": "outputs/notebooklm-podcast/2026-05-13",
+  "page": "outputs/notebooklm-podcast/2026-05-13/notebooklm-source.md",
+  "related": [
+    "wiki/sources/lars-faye-agentic-coding-is-a-trap.md",
+    "wiki/sources/anthropic-2026-agentic-coding-trends-report.md",
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md",
+    "wiki/sources/kawasima-cognitive-debt-scrapbox.md"
+  ],
+  "char_count": 8371
+}
