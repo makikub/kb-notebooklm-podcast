@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-15 - Harness Engineering Vendor / Practitioner Comparison</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-05-15/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB NotebookLM Podcast Pages</a> / 2026-05-15</header>
+<h1>Harness Engineering Vendor / Practitioner Comparison</h1>
+<div class="note">
+  <strong>NotebookLM用URL:</strong> <a href="source.md">source.md</a><br>
+  このHTMLページか source.md のURLをNotebookLMのソースとして追加してください。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-05-15/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-05-15">GitHub</a>
+</div>
+<h1>今日のランダムテーマ</h1>
+<h2>Harness Engineering Vendor / Practitioner Comparison</h2>
+<p>—「モデル性能」ではなく「周囲の設計」を比べるための地図—</p>
+<p>今回のテーマは、<strong>ハーネスエンジニアリングを、ベンダーや実務者ごとにどう捉えているか</strong>を比較することです。</p>
+<p>ここでいうハーネスエンジニアリングとは、単に「良いプロンプトを書く」ことではありません。</p>
+<p>エージェントがより信頼できる成果を出すために、その周囲にあるもの――リポジトリ構造、ドキュメント、テスト、リンター、レビュー、権限、実行環境、進捗ログ、引き継ぎ成果物、マルチエージェント構成――を設計することです。</p>
+<p>KBの定義では、ハーネスエンジニアリングは次のように整理されています。</p>
+<blockquote>
+<p>エージェントの周囲にある環境、成果物、制御、ツール、フィードバックループを設計し、時間とともにより信頼できる結果を出せるようにすること。</p>
+</blockquote>
+<p>このテーマが面白いのは、同じ「ハーネス」という言葉を使っていても、各社・各実務者が見ている焦点が少しずつ違うからです。</p>
+<ul>
+<li>OpenAIは、リポジトリ設計や機械的制約、エージェントが認識しやすい文脈を重視する。</li>
+<li>Cursorは、エージェント中心の開発ワークスペースと、訓練環境のブートストラップに注目する。</li>
+<li>Cognition / Devinは、クラウドエージェントの実行基盤や組織導入の問題として見る。</li>
+<li>Anthropicは、長時間動作するエージェント、構造化された引き継ぎ、MCP、スキル、クラウド実行、マルチエージェント評価などを強く語る。</li>
+<li>LangChainは、トレースやミドルウェア、自己検証などによる測定可能な性能改善に寄せる。</li>
+<li>Martin Fowlerは、語彙と概念整理を提供する。</li>
+<li>Gotaは、目的から逆算して何をハーネスに入れるべきかを問う。</li>
+<li>r.kagaya / Astermindsは、ルールファイルを超えたAIネイティブな開発プロセス設計として捉える。</li>
+<li>AlgomaticやAI-DLC系の議論は、チームやプロセス側のハーネスを明示する。</li>
+<li>Mitchell Hashimotoは、日々の個人ワークフローの中での採用パターンを示す。</li>
+<li>Ignorance.aiの整理は、組織内の役割変化や「環境構築」と「エージェント管理」の分離に注目する。</li>
+</ul>
+<p>つまり、これは単なるベンダー比較ではありません。</p>
+<p><strong>AIエージェント時代のソフトウェア開発を、どの層から設計し直すか</strong>という比較です。</p>
+<hr>
+<h1>なぜPodcast向きか</h1>
+<p>このテーマはPodcast向きです。理由は、単純な一覧表ではなく、いくつもの対立軸があるからです。</p>
+<p>たとえば、次のような問いが自然に出てきます。</p>
+<ul>
+<li>ハーネスは「開発者が裏側で作るもの」なのか、それとも「プロダクトUIとしてユーザーに見せるもの」なのか。</li>
+<li>大事なのは、プロンプトやルールファイルなのか、それともテスト、実行環境、レビュー、権限管理なのか。</li>
+<li>マルチエージェント化は本当に必要なのか。それとも、計画者・実装者・評価者の役割分離だけで十分なのか。</li>
+<li>長時間動くエージェントには、どのような引き継ぎや記憶が必要なのか。</li>
+<li>エージェントの生成速度が人間のレビュー速度を超えたとき、何が壊れるのか。</li>
+<li>ハーネスを増やすことは常に良いのか。それとも、目的に合わない制御は剪定すべきなのか。</li>
+</ul>
+<p>また、このテーマは「抽象論」と「実務」が行き来しやすいです。</p>
+<p>Martin Fowlerのような概念整理から始めて、OpenAIやAnthropicのような具体的な実装思想へ進めることができます。さらに、Gotaやr.kagayaのような実務寄りの論点に移ると、「では自分たちのチームでは何を設計すべきか」という話になります。</p>
+<p>会話としては、次の流れが自然です。</p>
+<p>1. まず「ハーネスエンジニアリングとは何か」を短く定義する。</p>
+<p>2. 次に「なぜモデル単体ではなく周囲の設計が重要なのか」を話す。</p>
+<p>3. そのうえで、各ベンダー・実務者の違いを比較する。</p>
+<p>4. 最後に、現場で使うならどこから始めるかを考える。</p>
+<hr>
+<h1>背景と文脈</h1>
+<h2>モデル性能だけでは足りない</h2>
+<p>KB全体の中心的な主張は、次の一文に集約できます。</p>
+<blockquote>
+<p>エージェントの性能は、モデルだけで決まるのではなく、モデルの周囲にあるハーネスに大きく依存する。</p>
+</blockquote>
+<p>ここでいう「周囲」とはかなり広いです。</p>
+<ul>
+<li>リポジトリの構造</li>
+<li>エージェントが読めるドキュメント</li>
+<li>アーキテクチャ制約</li>
+<li>テストやリンター</li>
+<li>構造チェック</li>
+<li>実行環境の検証</li>
+<li>ブラウザベースの確認</li>
+<li>AIレビューや評価エージェント</li>
+<li>進捗ログ</li>
+<li>計画ファイル</li>
+<li>セッション間の引き継ぎ</li>
+<li>承認ポリシー</li>
+<li>人間の介入ポイント</li>
+<li>クラウド実行基盤</li>
+<li>権限、監査、隔離</li>
+<li>マルチエージェントの役割分担</li>
+</ul>
+<p>これらは、モデルに「ちゃんとやって」と頼むだけでは生まれません。</p>
+<p>むしろ、モデルが間違えにくく、間違えたときに検出されやすく、長い作業でも文脈を失いにくく、危険な操作では人間や別の評価機構に止められるようにする設計です。</p>
+<h2>生成速度が上がるほど、レビュー側がボトルネックになる</h2>
+<p>関連ノート「Agent Deployment Gates and Operational Risk」では、エージェントがコードや設定変更、脆弱性発見を人間の確認速度以上に生み出せるようになると、支配的な失敗は「個別のモデルミス」ではなく、<strong>システム全体のレビュー崩壊</strong>へ移ると整理されています。</p>
+<p>この観点では、ハーネスは単なる便利ツールではありません。</p>
+<ul>
+<li>マージ前の構造的ゲート</li>
+<li>デプロイ前の検証ゲート</li>
+<li>人間へのエスカレーションゲート</li>
+<li>デプロイ後のフィードバックゲート</li>
+</ul>
+<p>こうした層がなければ、エージェントの生産性はそのまま運用リスクになります。</p>
+<p>この文脈で見ると、各社のハーネス観の違いは、「どの失敗モードを最重要視しているか」の違いにも見えてきます。</p>
+<hr>
+<h1>中心アイデア</h1>
+<h2>1. OpenAI：リポジトリをエージェントが使える地図にする</h2>
+<p>OpenAIの焦点は、リポジトリ設計、機械で強制できる不変条件、エージェントが認識しやすい文脈、継続的なクリーンアップ、そしてエージェント間レビューや委譲です。</p>
+<p>特徴的なのは、ドキュメントを単なる説明ではなく、<strong>エージェントのための地図</strong>として扱う点です。</p>
+<ul>
+<li>map-like docs</li>
+<li>custom linters</li>
+<li>structured plans</li>
+<li>architecture constraints</li>
+<li>review loops</li>
+<li>interoperable agent tooling</li>
+<li>subagentsによる明示的なモデル階層ルーティング</li>
+</ul>
+<p>ここでのハーネスは、かなり「生産工学」的です。</p>
+<p>人間が読むドキュメントではなく、エージェントが迷わず編集し、制約を破らず、他のエージェントに確認してもらえるような構造を作る。</p>
+<p>OpenAI的な見方では、良いリポジトリとは、ただ整理されているリポジトリではありません。</p>
+<p><strong>エージェントが正しく作業しやすいリポジトリ</strong>です。</p>
+<h2>2. Cursor：ハーネスをプロダクトUIと訓練基盤の両方にする</h2>
+<p>Cursorは、エージェントファーストなコーディングワークスペース設計と、モデル訓練環境のブートストラップに焦点があります。</p>
+<p>特徴的な要素は次の通りです。</p>
+<ul>
+<li>複数エージェントの可視性</li>
+<li>ローカルとクラウドのハンドオフ</li>
+<li>複数リポジトリ操作</li>
+<li>レビュー面</li>
+<li>ハーネス測定</li>
+<li>以前のモデルを使って、後続モデルのための実行可能なRL環境を作る autoinstall loop</li>
+</ul>
+<p>Cursorの比較上の重要性は、ハーネスを「裏側の実装詳細」に留めない点です。</p>
+<p>ハーネスの仕組みが、そのままユーザーが触るプロダクトUIにもなり、モデル訓練のインフラにもなる。</p>
+<p>これは、ハーネスが単なる補助輪ではなく、製品価値そのものになっていく方向性です。</p>
+<h2>3. Cognition / Devin：クラウドエージェントには実行基盤とガバナンスが必要</h2>
+<p>Cognition / Devinは、クラウド上で動くエージェントのランタイム基盤と、組織導入の問題を強く見ています。</p>
+<p>特徴はかなりインフラ寄りです。</p>
+<ul>
+<li>microVM isolation</li>
+<li>hypervisor snapshotting across async gaps</li>
+<li>warm-pool orchestration</li>
+<li>permission inheritance</li>
+<li>audit trails</li>
+<li>engineering-process redesign</li>
+</ul>
+<p>この見方では、クラウドエージェントは単なる「遠隔のCLIラッパー」ではありません。</p>
+<p>長時間・非同期で動き、途中で止まり、再開し、権限を引き継ぎ、監査される存在です。</p>
+<p>つまり、必要なのはプロンプトやエディタ連携だけではありません。</p>
+<p>隔離、スナップショット、権限、監査、組織プロセスの設計が必要になります。</p>
+<h2>4. Anthropic：長時間エージェントのための総合ハーネス</h2>
+<p>Anthropicは、KB上では最も広く、長期的なハーネス設計を語っている存在として整理されています。</p>
+<p>焦点は非常に多いです。</p>
+<ul>
+<li>long-running agents</li>
+<li>structured handoffs</li>
+<li>initializer agents</li>
+<li>context resets</li>
+<li>multi-agent evaluator patterns</li>
+<li>cloud execution</li>
+<li>scheduled tasks</li>
+<li>reusable skills</li>
+<li>MCP as the production integration layer</li>
+<li>Claude Designのような専用ワークスペース</li>
+<li>managed-agent memory / dreaming / outcomes</li>
+<li>model-speedで出荷するチーム</li>
+</ul>
+<p>特徴的なのは、長い時間軸とセッション間の連続性です。</p>
+<p>一回のチャットで完結する作業ではなく、複数セッションにまたがり、途中でコンテキストをリセットし、進捗成果物を残し、別のエージェントや人間が引き継げるようにする。</p>
+<p>また、planner / generator / evaluator の分離や、rubric-driven outcomes、環境制御、ツール境界、標準化された認証、リモートツール配布など、かなり運用に近い論点も含まれます。</p>
+<p>Anthropic的なハーネス観の面白さは、モデルが強くなるほど、ハーネス側の責任をどう移すかという問題も含んでいる点です。</p>
+<p>つまり、ハーネスは固定物ではなく、モデル能力の変化に合わせて掃除・再設計されるものです。</p>
+<h2>5. LangChain：ハーネス変更だけでも性能は変わる</h2>
+<p>LangChainは、測定可能な性能改善としてのハーネスチューニングを重視します。</p>
+<p>特徴は次のようなものです。</p>
+<ul>
+<li>traces</li>
+<li>middleware</li>
+<li>self-verification hooks</li>
+<li>loop detection</li>
+<li>reasoning-budget heuristics</li>
+</ul>
+<p>ここで重要なのは、「モデルを変えなくても、ハーネスを変えるだけで結果が大きく変わる」というベンチマーク志向の見方です。</p>
+<p>この立場は、ハーネスエンジニアリングを抽象的な設計論ではなく、観測・改善・評価の対象にします。</p>
+<p>どこでループしたか、どの検証フックが効いたか、推論予算をどう使ったかを見ることで、エージェントの振る舞いを改善する。</p>
+<h2>6. Martin Fowler：共通語彙を与える</h2>
+<p>Martin Fowlerの貢献は、実装パターンそのものというより、語彙と概念分解です。</p>
+<p>特徴的な軸は次の通りです。</p>
+<ul>
+<li>feedforward vs feedback</li>
+<li>computational controls vs inferential controls</li>
+<li>harnessability</li>
+</ul>
+<p>この語彙は、他の議論を整理するために便利です。</p>
+<p>たとえば、ドキュメントや計画、テンプレートは「行動前のガイド」、つまり feedforward 的な制御と見なせます。</p>
+<p>一方で、テスト、リンター、AIレビュー、実行確認は「行動後の補正」、つまり feedback 的な制御です。</p>
+<p>この言葉があると、「うちはプロンプトを頑張っています」ではなく、</p>
+<p>「行動前の誘導はあるが、行動後の検証が弱い」</p>
+<p>「推論的な判断に頼りすぎて、計算可能なチェックが足りない」</p>
+<p>という議論ができます。</p>
+<h2>7. Gota：目的から逆算し、増やしすぎない</h2>
+<p>Gotaの焦点は、ハーネスの変更容易性と優先順位づけです。</p>
+<p>特徴は次の通りです。</p>
+<ul>
+<li>purpose-first design</li>
+<li>structure before instruction</li>
+<li>explicit human intervention points</li>
+<li>pruning by business purpose</li>
+</ul>
+<p>ここで大事なのは、「ハーネスを増やせば良い」という発想へのブレーキです。</p>
+<p>何をハーネスにエンコードすべきか。</p>
+<p>どの制約は本当に事業目的に効いているのか。</p>
+<p>どこで人間が介入すべきなのか。</p>
+<p>構造で解ける問題を、長い指示文で解こうとしていないか。</p>
+<p>Gotaの見方は、ハーネスエンジニアリングを「制御を足す技術」ではなく、<strong>何を固定し、何を変えやすく残すかの判断</strong>にします。</p>
+<h2>8. r.kagaya / Asterminds：ルールファイルを超え、プロセス全体へ</h2>
+<p>r.kagaya / Astermindsは、AIネイティブな開発プロセス設計を、単なる <code>CLAUDE.md</code> やスキルの話より上位に置きます。</p>
+<p>特徴は次の通りです。</p>
+<ul>
+<li>hybrid orchestration</li>
+<li>eval dashboards</li>
+<li>trigger expansion</li>
+<li>self-improve loops</li>
+<li>provider-agnostic investment</li>
+<li>builder harnesses と user harnesses のスコープ分離</li>
+<li><code>CLAUDE.md</code> / skills は user-harness design の一象限にすぎないという主張</li>
+</ul>
+<p>この整理の強みは、ハーネスの層を分けることです。</p>
+<p>エージェントを作る側のハーネスと、エージェントを使う側のハーネスは違う。</p>
+<p>また、ルールファイルだけを整えても、ワークフローの入口、測定、評価ダッシュボード、自己改善ループ、組織プロセスがなければ、ハーネス全体としては不十分かもしれない。</p>
+<p>この見方は、「AIに読ませるファイルを作ったら終わり」という誤解を避ける助けになります。</p>
+<h2>9. Algomatic / AI-DLC：チームもハーネスされる</h2>
+<p>Yusuke Shibuya / Algomaticの焦点は、社会技術的なハーネス設計です。</p>
+<ul>
+<li>product principles</li>
+<li>design systems</li>
+<li>remote test runtime</li>
+<li>QA criteria</li>
+<li>models と teams の両方に対するハーネス</li>
+</ul>
+<p>ここでは、ハーネスはモデルだけのものではありません。</p>
+<p>チームがどう判断し、どう品質を揃え、どうテストし、どうプロダクト原則に従うかもハーネスです。</p>
+<p>yuukiyo / AI-DLCは、AIネイティブなプロセス適応を、アジャイル実践からの進化として捉えます。</p>
+<ul>
+<li>reduced role fragmentation</li>
+<li>flow efficiency</li>
+<li>human guardrails / approvals</li>
+<li>Scrumやfeature-team methodsからの実用的な持ち越し</li>
+</ul>
+<p>この整理では、AI時代の開発プロセスは、従来のアジャイルを完全に捨てるものではありません。</p>
+<p>むしろ、役割分担やフロー効率、人間の承認ポイントを再設計しながら進化するものです。</p>
+<h2>10. Mitchell Hashimoto：日々の個人ワークフローに現れるハーネス</h2>
+<p>Mitchell Hashimotoの焦点は、実務者のワークフロー採用です。</p>
+<p>特徴は次の通りです。</p>
+<ul>
+<li>bounded tasks</li>
+<li>background agents</li>
+<li>verification</li>
+<li>repeated failure turned into harness change</li>
+</ul>
+<p>ここでは、ハーネスエンジニアリングは大規模なプラットフォーム設計ではなく、毎日の作業習慣として現れます。</p>
+<p>何度も失敗する作業がある。</p>
+<p>それを「モデルが悪い」で終わらせず、検証手順やタスクの切り方、背景エージェントの使い方、レビュー方法を変える。</p>
+<p>この小さな反復もハーネスエンジニアリングです。</p>
+<hr>
+<h1>実務での使いどころ</h1>
+<h2>1. まず「どの層のハーネス」を作っているのかを明確にする</h2>
+<p>実務では、いきなり全部を作ろうとしない方がよいです。</p>
+<p>KBの比較から見ると、ハーネスには少なくとも次の層があります。</p>
+<ul>
+<li>リポジトリ構造のハーネス</li>
+<li>ドキュメント・計画のハーネス</li>
+<li>テスト・リンター・構造チェックのハーネス</li>
+<li>レビュー・評価エージェントのハーネス</li>
+<li>セッション継続・引き継ぎのハーネス</li>
+<li>クラウド実行・権限・監査のハーネス</li>
+<li>チームプロセス・承認のハーネス</li>
+<li>測定・トレース・改善ループのハーネス</li>
+</ul>
+<p>OpenAI的に始めるなら、エージェントが迷わないリポジトリとドキュメントを作る。</p>
+<p>LangChain的に始めるなら、トレースや検証フックを入れて測る。</p>
+<p>Anthropic的に始めるなら、長時間タスクの引き継ぎやコンテキストリセットを設計する。</p>
+<p>Gota的に始めるなら、そもそも何をハーネス化すべきかを事業目的から選ぶ。</p>
+<h2>2. 「計画」を一時的な会話ではなく成果物にする</h2>
+<p>関連ノート「Coding-Agent Harness Patterns」では、<code>plan.md</code> のようなセッション単位の計画ファイルが、耐久性のある引き継ぎ契約として紹介されています。</p>
+<p>計画を成果物にすると、次の利点があります。</p>
+<ul>
+<li>意図が検査可能になる</li>
+<li>コンテキストリセットに強くなる</li>
+<li>レビュー担当者と認識を合わせやすい</li>
+<li>検証エージェントが批評できる対象になる</li>
+</ul>
+<p>これは、OpenAIの structured plans や Anthropicの structured handoffs ともつながります。</p>
+<h2>3. 評価者を分ける。ただし過剰なマルチエージェント化には注意する</h2>
+<p>マルチエージェントオーケストレーションの基本は、計画、生成、評価、実行を分けることです。</p>
+<p>ただし、関連ノートでは、エージェントを増やせば常に良いわけではないとも整理されています。</p>
+<p>多くの推論タスクでは、一時的に複数の思考軌跡を出し、それを一つの熟慮者が批評・統合するだけでも、マルチエージェントの利点の一部を得られる可能性があります。</p>
+<p>実務上は、いきなり複雑なエージェント組織を作るよりも、</p>
+<ul>
+<li>実装者とは別のレビュアーを置く</li>
+<li>計画だけ別モデルや別エージェントに批評させる</li>
+<li>危険な変更だけ人間承認にする</li>
+</ul>
+<p>といった小さな分離から始める方が扱いやすいです。</p>
+<h2>4. デプロイゲートを明示する</h2>
+<p>エージェントが速くなるほど、レビューやデプロイの安全性が重要になります。</p>
+<p>実務では次のゲートを考える必要があります。</p>
+<ul>
+<li>マージ前：構造チェック、リンター、テスト、アーキテクチャ制約</li>
+<li>デプロイ前：E2Eテスト、スモークテスト、環境確認、ロールバック準備</li>
+<li>人間介入：破壊的操作、曖昧な修正、高リスク領域</li>
+<li>デプロイ後：観測、回帰検出、トレース確認、継続的クリーンアップ</li>
+</ul>
+<p>これは、ハーネスを「コードを書く前後」だけでなく、「本番に近づくほど強くなる安全装置」として見る発想です。</p>
+<hr>
+<h1>誤解しやすい点・論点</h1>
+<h2>誤解1：ハーネスエンジニアリングはプロンプト改善の別名である</h2>
+<p>違います。</p>
+<p>プロンプトやルールファイルは一部ですが、ハーネス全体ではありません。</p>
+<p>KB上では、<code>CLAUDE.md</code> や skills は user-harness design の一象限にすぎない、という整理もあります。</p>
+<p>重要なのは、構造、検証、実行環境、測定、レビュー、権限、チームプロセスまで含めて見ることです。</p>
+<h2>誤解2：ハーネスは多ければ多いほど良い</h2>
+<p>これも危険です。</p>
+<p>Gotaの観点では、事業目的から外れた制御は剪定すべきです。</p>
+<p>ハーネスが複雑になりすぎると、変更しづらくなり、エージェントにも人間にも扱いづらくなります。</p>
+<p>問いは「何を足すか」だけではありません。</p>
+<p>「何を固定しないか」「何を人間判断に残すか」も重要です。</p>
+<h2>誤解3：マルチエージェント化すれば自動的に賢くなる</h2>
+<p>複数エージェントは専門化を可能にしますが、調整コストも増えます。</p>
+<p>Planner / Generator / Evaluator の分離は有効なパターンですが、すべてのタスクに恒久的な複数エージェント構成が必要なわけではありません。</p>
+<p>一時的な検証者、独立レビュー、計画批評だけで十分な場合もあります。</p>
+<h2>誤解4：クラウドエージェントはローカルCLIを遠隔実行しているだけである</h2>
+<p>Cognition / Devinの整理では、それは不十分です。</p>
+<p>クラウドエージェントには、隔離、スナップショット、ウォームプール、権限継承、監査証跡が必要になります。</p>
+<p>非同期で動き続け、組織の権限境界をまたぎうる存在だからです。</p>
+<h2>誤解5：モデルが強くなればハーネスはいらなくなる</h2>
+<p>Anthropicの整理では、モデル能力が上がるほど、ハーネス側の責任は変化します。</p>
+<p>一部はモデルに移るかもしれませんが、長期作業、権限、監査、レビュー、組織プロセスの問題は残ります。</p>
+<p>むしろ、モデルが速くなるほど、ゲートや観測、引き継ぎの重要性が増す場面があります。</p>
+<hr>
+<h1>NotebookLMが会話で拾うとよい問い</h1>
+<h2>比較のための問い</h2>
+<ul>
+<li>OpenAIとAnthropicのハーネス観は、どこが似ていてどこが違うのか。</li>
+<li>Cursorが示している「ハーネスのプロダクト化」とは何か。</li>
+<li>Cognition / Devinの議論は、なぜプロンプトではなくランタイム基盤に寄っているのか。</li>
+<li>LangChainの測定志向は、他の設計論とどう補完関係にあるのか。</li>
+<li>Martin Fowlerの feedforward / feedback という語彙を使うと、各社の主張はどう整理できるか。</li>
+<li>Gotaの purpose-first design は、ハーネス過剰をどう防ぐのか。</li>
+<li>r.kagaya / Astermindsの builder harness と user harness の分離は、何を見えやすくするのか。</li>
+<li>AlgomaticやAI-DLCの議論は、なぜ「チームのハーネス」を強調するのか。</li>
+</ul>
+<h2>実務導入のための問い</h2>
+<ul>
+<li>自分たちの開発チームで最初に作るべきハーネスは何か。</li>
+<li>失敗が多いのは、行動前の指示不足か、行動後の検証不足か。</li>
+<li>ドキュメントは人間向け説明に留まっているか、それともエージェントが使える地図になっているか。</li>
+<li>テストやリンターは、エージェントがすぐ使える信号になっているか。</li>
+<li>計画や進捗は、会話の中だけで消えていないか。</li>
+<li>レビューや承認の速度は、エージェントの生成速度に追いついているか。</li>
+<li>何度も起きる失敗を、個別注意ではなくハーネス変更に変換しているか。</li>
+</ul>
+<h2>論点を深める問い</h2>
+<ul>
+<li>ハーネスはプロダクトの一部なのか、開発組織の内部インフラなのか。</li>
+<li>どこまでを機械的にチェックし、どこからを人間判断にするべきか。</li>
+<li>モデルが進化したとき、古いハーネスは技術的負債になるのか。</li>
+<li>エージェントにとって読みやすいリポジトリと、人間にとって読みやすいリポジトリは同じなのか。</li>
+<li>長時間エージェントの記憶や進捗管理は、どこまで自動化できるのか。</li>
+<li>ハーネスの改善効果をどう測るべきか。</li>
+</ul>
+<hr>
+<h1>参照したKBノート</h1>
+<ul>
+<li><code>wiki/maps/harness-engineering-vendor-comparison.md</code></li>
+</ul>
+<p>  - Harness Engineering Vendor / Practitioner Comparison</p>
+<ul>
+<li><code>wiki/maps/agent-harness-landscape.md</code></li>
+</ul>
+<p>  - Agent Harness Landscape</p>
+<ul>
+<li><code>wiki/maps/agent-deployment-gates-and-operational-risk.md</code></li>
+</ul>
+<p>  - Agent Deployment Gates and Operational Risk</p>
+<ul>
+<li><code>wiki/maps/coding-agent-harness-patterns.md</code></li>
+</ul>
+<p>  - Coding-Agent Harness Patterns</p>
+<ul>
+<li><code>wiki/concepts/harness-engineering.md</code></li>
+</ul>
+<p>  - Harness Engineering</p>
+<ul>
+<li><code>wiki/concepts/multi-agent-orchestration.md</code></li>
+</ul>
+<p>  - Multi-Agent Orchestration</p>
+<hr>
+<h1>NotebookLMに期待する話し方メモ</h1>
+<ul>
+<li>冒頭では、「ハーネスエンジニアリングはプロンプト術ではなく、エージェントの周囲の設計である」と明確に言ってほしい。</li>
+<li>ベンダー比較を単なるカタログにせず、「それぞれがどの失敗モードを重視しているか」という観点で話してほしい。</li>
+<li>OpenAIはリポジトリと機械的制約、CursorはプロダクトUIと訓練基盤、Cognition / Devinはクラウド実行基盤、Anthropicは長時間エージェントと引き継ぎ、LangChainは測定、Fowlerは語彙、Gotaは目的と剪定、というふうに対比してほしい。</li>
+<li>「ハーネスを増やせば良いわけではない」という注意点を必ず入れてほしい。</li>
+<li>実務者向けには、<code>plan.md</code> のような計画成果物、テスト・リンター、レビュー分離、デプロイゲートから始める話に落としてほしい。</li>
+<li>トーンは、流行語解説ではなく、「AIエージェント時代の開発組織をどう設計するか」という深めの議論にしてほしい。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm. Source topic: <code>wiki/maps/harness-engineering-vendor-comparison.md</code></p></footer>
+
+</body>
+</html>
