@@ -1,0 +1,15 @@
+{
+  "date": "2026-05-16T03:00:21.139570+09:00",
+  "topic_id": "wiki/maps/agent-onboarding-kb-codebase.md",
+  "title": "Agent Onboarding with Domain KB + Codebase",
+  "output_dir": "outputs/notebooklm-podcast/2026-05-16",
+  "page": "outputs/notebooklm-podcast/2026-05-16/notebooklm-source.md",
+  "related": [
+    "wiki/sources/masaki-agent-onboarding-kb-codebase-idea.md",
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/maps/research-os-query-paths.md",
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/harness-engineering-vendor-comparison.md"
+  ],
+  "char_count": 9230
+}
