@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-16 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-16/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB NotebookLM Podcast Pages</a> / Daily Digest / 2026-05-16</header>
+<h1>KB Daily Digest 2026-05-16</h1>
+<div class="note">
+  <strong>NotebookLM用URL:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しくPodcast化しやすい文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-16/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-16">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-16</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest — 2026-05-16</h1>
+<p>2026-05-16 UTC の <code>knowledge-base-llm</code> では、新規 raw / wiki / sources の追加が実質的にありました。今日の中心は二つです。ひとつは X ブックマーク由来の Pyrefly v1.0 と OpenClaw のクラウド Codex レビュー支出に関する小さめの ingest、もうひとつは ARIS / Autonomous Research via Adversarial Multi-Agent Collaboration を、研究エージェント用ハーネスの設計パターンとして取り込んだ大きめの compile です。全体としては、「生成能力を伸ばす」話よりも、「増えたエージェント出力をどう検証し、根拠に接続し、持続可能に運用するか」に焦点が寄っています。</p>
+<p>重要ソースの1本目は、Meta Open Source の Pyrefly v1.0 リリースです。KBでは、これを単なる Python type checker のニュースとしてではなく、AI agent にとっての machine-checkable invariants の例として扱いました。静的解析や language server は、人間のバグ検出・IDE補助だけでなく、エージェントが「どこまで壊れていないか」を機械的に確認するためのハーネス部品になります。これに合わせて <code>machine-checkable-invariants</code>、<code>verification-tax</code>、<code>harness-engineering</code> への接続が追加されました。</p>
+<p>重要ソースの2本目は、Jean-Michel Lemieux による OpenClaw の AI spend / “tokens don’t matter” 文脈の thread fragment です。捕捉できたテキストは限定的なので証拠強度は中程度ですが、OpenClaw がクラウド上で多数の Codex instance をレビュー用途に走らせている、という見方を支える材料として保存しました。ここから KB では <code>agentic-jevons-paradox</code> と <code>sustainable-ai-work</code> が更新され、トークン単価が下がるほど作業量が単純に減るのではなく、レビュー・実験・検証の総量が増える可能性、そして人間の判断力や回復力をどう守るか、という論点に接続しています。</p>
+<p>重要ソースの3本目は、今日いちばん大きい ARIS です。arXiv 論文 <code>Autonomous Research via Adversarial Multi-Agent Collaboration</code>、Itaru Tomita さんの X ポスト、実装 pointer の GitHub repo をそれぞれ raw と source note に分けて取り込みました。KB 上では ARIS を「研究を自動化するエージェント」そのものよりも、長時間走る研究エージェントを信用するためのハーネス設計として読んでいます。実行層、オーケストレーション層、保証層を分け、claim ledger、evidence-to-claim mapping、cross-family reviewer、visual PDF inspection などを組み合わせる点が重要です。</p>
+<p>今日新しく立った概念は <code>plausible unsupported success</code> です。これは、エージェントが明らかに失敗するのではなく、見た目はもっともらしく、数字や主張も整っているのに、実際の根拠が薄い・不完全・誤って対応づけられている、という失敗モードです。研究レポート、コードレビュー、分析レポートのように、人間が毎回すべての根拠を再構成できない成果物ではかなり危険です。ARIS はこの失敗を前提に、生成者と検証者を分け、主張を raw evidence に戻せるようにする設計として整理されました。</p>
+<p>既存 map では <code>eval-review-reliability</code> と <code>agent-harness-control-taxonomy</code> が強化されました。特に、評価は最後に同じモデルが軽く読むだけでは足りず、決定的チェック、タスク適合レビュー、独立 evaluator、trace-driven improvement の層として扱うべきだ、という方向が明確になっています。ARIS はここに研究特化の強い after-action control を追加しました。つまり、実験の整合性、結果と主張の対応、論文中の claim audit を、文章の polishing ではなく assurance workflow として扱うということです。</p>
+<p>全体トレンドとして、今日の KB は「ハーネスは生産性を上げる道具」から「増えた成果物の信頼性・費用・人間負荷を制御する仕組み」へ重心を少し移しました。Pyrefly は決定的チェックの足場、OpenClaw spend はエージェント作業量が増える経済的現実、ARIS は長時間・高リスクな知的作業で根拠を失わないための設計として読めます。これらは別々の話に見えて、実務上は同じ問いに集まります。安く大量に作れるようになった成果物を、どの層で、どのコストで、どこまで信用するのか。</p>
+<p>NotebookLM Podcast で掘るなら、「AI エージェントの成功っぽい成果物をどう疑うか」がよさそうです。まず Pyrefly のような機械的に確認できる invariant から入り、次に OpenClaw spend のような大規模レビュー運用がなぜ必要になるのかを話し、最後に ARIS の claim ledger / adversarial review / evidence audit へ進む流れが自然です。実務上の着地点は、すべてを重いレビューにするのではなく、成果物のリスクに応じて deterministic checks、fresh-context review、cross-family review、人間の承認をどう組み合わせるか、です。</p>
+<p>公開HTML: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-16/</p>
+<p>NotebookLM用 source.md: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-16/source.md</p>
+<h2>重要ソース</h2>
+<h3>wanshuiyin/Auto-claude-code-research-in-sleep - ARIS repository</h3>
+<p>Source note: <code>wiki/sources/aris-auto-claude-code-research-in-sleep-github.md</code></p>
+<h1>wanshuiyin/Auto-claude-code-research-in-sleep - ARIS repository</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/repos/aris-auto-claude-code-research-in-sleep-2026-05-16.md</li>
+<li>Original URL: https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep</li>
+<li>Author: wanshuiyin / ARIS authors</li>
+<li>Date: 2026-05-16 capture</li>
+<li>Type: GitHub repository / implementation pointer</li>
+</ul>
+<h2>Summary</h2>
+<p>The repository is the public implementation pointer for ARIS / Auto-Research-in-Sleep. GitHub describes it as lightweight Markdown-only skills for autonomous ML research, including cross-model review loops, idea discovery, and experiment automation. The visible repository layout includes skills, templates, docs, tools, tests, MCP servers, and community papers.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>ARIS is positioned as framework-light and Markdown-first rather than tied to one agent runtime.</li>
+<li>The project is intended to work with Claude Code, Codex, OpenClaw, Cursor, or other LLM agents.</li>
+<li>Repository structure supports the paper&#x27;s claim that the harness is composed from skills, templates, docs, tools, and artifact contracts.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>Visible top-level folders: skills/, templates/, docs/, tools/, tests/, mcp-servers/, community_papers/, assets/.</li>
+<li>Top-level docs include AGENT_GUIDE.md, README.md, and README_CN.md.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: public repository metadata / implementation pointer.</li>
+<li>Confidence: Medium for repository shape; low for detailed implementation quality without direct file inspection.</li>
+<li>Supports: [[../concepts/harness-engineering.md]], [[../concepts/navigable-agent-skills.md]], [[../concepts/compiled-wiki.md]]</li>
+<li>Main limitations: Web capture did not inspect full source contents; use direct repository inspection before citing exact current behavior.</li>
+<li>Best use: implementation lead and</li>
+</ul>
+<h3>arXiv - Autonomous Research via Adversarial Multi-Agent Collaboration</h3>
+<p>Source note: <code>wiki/sources/arxiv-aris-autonomous-research-adversarial-multi-agent-collaboration.md</code></p>
+<h1>arXiv - Autonomous Research via Adversarial Multi-Agent Collaboration</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/arxiv-aris-autonomous-research-adversarial-multi-agent-collaboration-2605-03042.md</li>
+<li>Original URL: https://arxiv.org/abs/2605.03042</li>
+<li>HTML URL: https://arxiv.org/html/2605.03042v1</li>
+<li>Project page: https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep</li>
+<li>Authors: Ruofeng Yang, Yongcan Li, Shuai Li</li>
+<li>Date: 2026-05-04</li>
+<li>Type: arXiv paper / autonomous research harness report</li>
+</ul>
+<h2>Summary</h2>
+<p>The paper presents <strong>Aris</strong>, an open-source harness for autonomous ML research. It treats research automation as a harness-engineering problem: long workflows need persistent state, modular stages, context routing, reviewer models, and evidence checks around the model. Its central safety and quality concern is <strong>plausible unsupported success</strong>, where a long-running agent produces credible results or manuscript claims whose evidence is incomplete, misreported, or silently inherited from the executor&#x27;s framing.</p>
+<p>Aris decomposes the system into execution, orchestration, and assurance layers. The execution layer provides Markdown skills, MCP integrations, a persistent research wiki, and deterministic figure generation. The orchestration layer coordinates five workflows from idea discovery through rebuttal. The assurance layer performs integrity checks, result-to-claim mapping, claim auditing against raw evidence, scientific-editing passes, proof checks, and visual PDF inspection.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Long-term research tasks performed by a single agent should be treated as unreliable by default.</li>
+<li>Same-model or same-family self-review can leave correlated errors uncaught.</li>
+<li>Cross-family executor/reviewer collaboration creates a more adversarial and less correlated review surf</li>
+</ul>
+<h3>Itaru Tomita - ARIS autonomous research harness X post</h3>
+<p>Source note: <code>wiki/sources/itarutomy-aris-autonomous-research-harness-x.md</code></p>
+<h1>Itaru Tomita - ARIS autonomous research harness X post</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/itarutomy-aris-autonomous-research-harness-x-2026-05-16.md</li>
+<li>Original URL: https://x.com/itarutomy/status/2055501326948143127</li>
+<li>Author: Itaru Tomita / Tomita Itaru</li>
+<li>Date: 2026-05-16</li>
+<li>Type: X post / practitioner summary</li>
+</ul>
+<h2>Summary</h2>
+<p>Tomita points to the ARIS paper and highlights its core framing: the most dangerous failure mode in autonomous ML research may be not visible breakdown, but plausible-looking results whose evidence is weak or misreported. The post foregrounds ARIS as a research-agent harness that treats evidence checking, cross-model review, and claim auditing as first-class controls.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>ARIS is an open-source harness for autonomous ML research.</li>
+<li>Its most interesting framing is <strong>plausible unsupported success</strong>: credible-looking claims that outrun the evidence.</li>
+<li>The design uses executor/reviewer separation, preferably across model families.</li>
+<li>Independent audit stages are meant to check experimental consistency, evidence-to-claim mapping, and numerical consistency.</li>
+<li>The reported prototype can run long autonomous research loops while revising or removing unsupported claims.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post links to arXiv 2605.03042.</li>
+<li>X metrics at capture: 37 likes, 26 bookmarks, 3 reposts, 1 quote, 1 reply, about 2.4k views.</li>
+<li>A separate xAI lookup summarized the attached/media-thread context, including the 65+ skills / five workflows claim and the overnight run anecdote.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X practitioner summary pointing to a primary paper.</li>
+<li>Confidence: Medium for framing and social signal; low-to-medium for details not visible in the captured text.</li>
+<li>Supports: [[../concepts/plausible-unsupported-success.md]], [[../concep</li>
+</ul>
+<h3>meta-open-source-pyrefly-v1-0</h3>
+<p>Source note: <code>wiki/sources/meta-open-source-pyrefly-v1-0.md</code></p>
+<p>Title: Meta Open Source Pyrefly v1.0</p>
+<p>Source metadata: raw/articles/meta-open-source-pyrefly-v1-0-x-2026-05-13.md; original URL https://x.com/i/status/2054632527873098139; bookmark post id 2054632527873098139; author Meta Open Source (@MetaOpenSource); date 2026-05-13; type X post / release announcement; primary source https://pyrefly.org/blog/v1.0/; repository https://github.com/facebook/pyrefly; capture source xurl bookmarks capture</p>
+<p>Summary: Meta says Pyrefly reached stable v1.0 as an open-source type checker and language server for Python. The official release page describes it as a production-ready code-analysis tool that helps find bugs, gives structure for AI agents, and improves IDE navigation.</p>
+<p>Why It Matters: static analysis can do double duty by reducing bugs for humans and giving agents machine-checkable structure to work with. Pyrefly is a good example of verification tooling becoming part of the harness rather than just a developer convenience.</p>
+<p>Concept links: [[../concepts/machine-checkable-invariants.md]], [[../concepts/verification-tax.md]], [[../concepts/harness-engineering.md]]</p>
+<p>Related concepts: machine-checkable-invariants, verification-tax, harness-engineering</p>
+<p>Backlinks: raw/articles/meta-open-source-pyrefly-v1-0-x-2026-05-13.md</p>
+<h3>openclaw-tokens-dont-matter-spend-thread</h3>
+<p>Source note: <code>wiki/sources/openclaw-tokens-dont-matter-spend-thread.md</code></p>
+<p>Title: Jean-Michel Lemieux OpenClaw spend / tokens don’t matter</p>
+<p>Source metadata: raw/articles/openclaw-tokens-dont-matter-spend-thread-x-2026-05-15.md; original URL https://x.com/i/status/2055405041843052792; bookmark post id 2055405041843052792; author Jean-Michel Lemieux (@jmwind); date 2026-05-15; type X post / thread fragment; capture source xurl bookmarks capture; evidence quality moderate because the bookmark text is truncated</p>
+<p>Summary: Jean-Michel Lemieux frames the visible AI spend around OpenClaw as a consequence of asking what software development looks like if token cost stops being the primary constraint. He says they are already running roughly 100 Codex instances in the cloud reviewing work.</p>
+<p>Why It Matters: this is concrete evidence that some agentic systems are already budgeting cloud-review spend as normal operating cost. It fits the demand-expansion story: lower marginal cost invites more agent work, more review, and more software production.</p>
+<p>Concept links: [[../concepts/sustainable-ai-work.md]], [[../concepts/agentic-jevons-paradox.md]], [[../concepts/background-agents.md]], [[../concepts/harness-engineering.md]]</p>
+<p>Related concepts: sustainable-ai-work, agentic-jevons-paradox, background-agents, harness-engineering</p>
+<p>Backlinks: raw/articles/openclaw-tokens-dont-matter-spend-thread-x-2026-05-15.md</p>
+<h2>更新された概念・地図</h2>
+<h3>Evidence Quality</h3>
+<p>KB note: <code>wiki/concepts/evidence-quality.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Evidence Quality</p>
+<p>  - Source Trust</p>
+<hr>
+<h1>Evidence Quality</h1>
+<h2>Definition</h2>
+<p>Evidence quality is the explicit confidence layer attached to a source note or synthesis claim: what kind of source it is, how directly it supports a claim, what limitations apply, and which concepts it can safely support.</p>
+<h2>Why It Matters</h2>
+<p>A compiled wiki becomes dangerous when all notes look equally authoritative. Evidence quality lets the KB distinguish primary docs, research papers, implementation repos, practitioner reports, product announcements, social threads, and speculative synthesis before those notes are reused in maps or answers.</p>
+<h2>Operational Fields</h2>
+<p>Use these fields when a source anchors an important concept or map:</p>
+<ul>
+<li>Source type: primary docs, official blog, paper, repository, practitioner report, X thread, second-order summary, internal operation note, speculative synthesis.</li>
+<li>Confidence: high / medium / low.</li>
+<li>Supports: concepts or map claims the source can directly support.</li>
+</ul>
+<p>-</p>
+<h3>Harness Engineering</h3>
+<p>KB note: <code>wiki/concepts/harness-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Harness Engineering</p>
+<hr>
+<h1>Harness Engineering</h1>
+<h2>Definition</h2>
+<p>The design of the environment, artifacts, controls, tooling, and feedback loops around an agent so that it can produce more reliable results over time.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, performance depends less on the model alone and more on the structure that surrounds it.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[guides and sensors]]</li>
+<li>[[agent recognizable repository]]</li>
+<li>[[structured handoff artifacts]]</li>
+<li>[[machine-checkable invariants]]</li>
+<li>[[heavy-thinking.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/martin-fowler-harness-engineering.md]]</li>
+<li>[[../sources/gota-purpose-first-harness-design-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-how-to-approach-harness-engineering-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-what-harness-engineering-is-and-is-not-zenn.md]]</li>
+<li>[[../sources/sergicalsix-harness-engineering-overview-design-philosophy-speakerdeck.md]]</li>
+<li>[[../sources/yuukiyo-ai-dlc</li>
+</ul>
+<h3>Multi-Agent Orchestration</h3>
+<p>KB note: <code>wiki/concepts/multi-agent-orchestration.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Multi-Agent Orchestration</p>
+<hr>
+<h1>Multi-Agent Orchestration</h1>
+<h2>Definition</h2>
+<p>The deliberate assignment of different roles or subtasks to multiple cooperating agents within a larger workflow.</p>
+<h2>Why It Matters</h2>
+<p>Some tasks benefit from separating planning, generation, evaluation, and execution rather than asking one agent to do everything.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[generator-evaluator-loop]]</li>
+<li>[[context-resets]]</li>
+<li>[[long-running-agents]]</li>
+<li>[[intelligent-delegation.md]]</li>
+<li>[[heavy-thinking.md]]</li>
+<li>[[managed-agents.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/claude-new-in-managed-agents-dreaming-outcomes-orchestration.md]]</li>
+<li>[[../sources/kevin-gu-autoagent-x-thread.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/cursor-3-x.md]]</li>
+<li>[[../sources/openai-gpt-5-4-mini-nano-blog.md]]</li>
+<li>[[../sources/codex-subagents-docs.md]]</li>
+<li>[[../sources/anthropic-m</li>
+</ul>
+<h3>Plausible Unsupported Success</h3>
+<p>KB note: <code>wiki/concepts/plausible-unsupported-success.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Plausible Unsupported Success</p>
+<hr>
+<h1>Plausible Unsupported Success</h1>
+<h2>Definition</h2>
+<p>Plausible unsupported success is a long-running agent failure mode where the final artifact looks credible and may include real-looking results, but the evidence supporting its claims is incomplete, misreported, or inherited from the agent&#x27;s own framing.</p>
+<h2>Why It Matters</h2>
+<p>Visible failure is easier to catch than a polished research report, code review, or analysis whose numbers and prose feel coherent while the underlying evidence is thin. This makes plausible unsupported success a central risk for autonomous research agents and any workflow where the human reviewer cannot cheaply reconstruct the evidence trail.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[evidence-quality.md]]</li>
+<li>[[self-verification.md]]</li>
+<li>[[self-evaluation-bias.md]]</li>
+<li>[[multi-agent-orchestration.md]]</li>
+<li>[[harness-engineering.md]]</li>
+<li>[[verification-tax.md]]</li>
+<li>[[cognitive-surrender.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/arxiv-aris-autonomou</li>
+</ul>
+<h3>Verification Tax</h3>
+<p>KB note: <code>wiki/concepts/verification-tax.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Verification Tax</p>
+<p>  - Review Tax</p>
+<hr>
+<h1>Verification Tax</h1>
+<h2>Definition</h2>
+<p>The extra cognitive, review, testing, and governance work required to verify AI-generated output, especially when AI increases the volume and velocity of changes.</p>
+<h2>Why It Matters</h2>
+<p>AI can save implementation time while moving friction into review, security, architecture, and deployment gates. If the verification tax is not reduced with better context, automation, and small batches, productivity gains disappear downstream.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[ai-adoption-j-curve]]</li>
+<li>[[comprehension-debt]]</li>
+<li>[[sustainable-ai-work]]</li>
+<li>[[human-in-the-loop]]</li>
+<li>[[self-verification]]</li>
+<li>[[machine-checkable-invariants]]</li>
+<li>[[feedback-controls]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<p>Pyrefly source: [[../sources/meta-open-source-pyrefly-v1-0.md]]</p>
+<ul>
+<li>[[../sources/dora-roi-ai-assisted-software-development.md]]</li>
+<li>[[../sources/steve-yegge-ai-vampire.md]]</li>
+<li>[[../sources/lars-faye-agentic-coding-is-a-trap.md]]</li>
+<li>[[../sources/arxiv-aris-autonom</li>
+</ul>
+<h3>Agent Harness Control Taxonomy</h3>
+<p>KB note: <code>wiki/maps/agent-harness-control-taxonomy.md</code></p>
+<h1>Agent Harness Control Taxonomy</h1>
+<h2>Purpose</h2>
+<p>Normalize the control vocabulary used across the harness-engineering cluster so the KB can compare sources without collapsing distinct mechanisms into one vague idea of &quot;guardrails.&quot;</p>
+<h2>Core split</h2>
+<p>Harness controls fall along two practical axes:</p>
+<p>1. <strong>When they act</strong> — before action, during action, or after action</p>
+<p>2. <strong>How they act</strong> — deterministic/computational or semantic/inferential</p>
+<p>This note treats those axes as complementary rather than mutually exclusive.</p>
+<h2>1. Before-action controls</h2>
+<p>These shape the agent&#x27;s trajectory before it takes a meaningful step.</p>
+<h3>Typical mechanisms</h3>
+<ul>
+<li>task scoping and decomposition</li>
+<li>repo maps, plans, and architecture docs</li>
+<li>approval policies and allowed-tool boundaries</li>
+<li>templates, skills, and initializer artifacts</li>
+<li>staged context loading and retrieval rules</li>
+</ul>
+<h3>Best-covered by current sources</h3>
+<ul>
+<li>[[../sources/martin-fowler-harness-engineering.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sour</li>
+</ul>
+<h3>Eval and Review Reliability</h3>
+<p>KB note: <code>wiki/maps/eval-review-reliability.md</code></p>
+<h1>Eval and Review Reliability</h1>
+<h2>Purpose</h2>
+<p>Collect the KB&#x27;s evaluation and review ideas into one map focused on practical reliability: how to know whether an agent-produced artifact is good enough, and how to keep review load from becoming the bottleneck.</p>
+<h2>Core thesis</h2>
+<p>Agent output quality improves when evaluation is treated as a separate harness layer, not as an informal final glance by the same agent that produced the work.</p>
+<h2>Reliability layers</h2>
+<h3>1. Deterministic checks first</h3>
+<p>Use cheap checks before semantic review:</p>
+<ul>
+<li>lint and typecheck</li>
+<li>tests and smoke tests</li>
+<li>formatting and structural checks</li>
+<li>repository-specific machine-checkable invariants</li>
+</ul>
+<p>Related concepts: [[../concepts/machine-checkable-invariants.md]], [[../concepts/feedback-controls.md]].</p>
+<h3>2. Task-fit review</h3>
+<p>Check whether the work actually satisfies the request:</p>
+<ul>
+<li>requirements coverage</li>
+<li>edge cases</li>
+<li>backward compatibility</li>
+<li>user-facing behavior</li>
+<li>maintainability</li>
+</ul>
+<p>Related maps: [[coding-agent-review-rubric.md]], [</p>
+<h3>Research OS Query Paths</h3>
+<p>KB note: <code>wiki/maps/research-os-query-paths.md</code></p>
+<h1>Research OS Query Paths</h1>
+<h2>Purpose</h2>
+<p>Define question-shaped entrypoints so the KB can be used as a research OS, not only as a list of source summaries.</p>
+<h2>Core thesis</h2>
+<p>A useful compiled wiki should route recurring user questions through stable paths: start with a map, traverse concepts, inspect strongest evidence, then return a grounded answer or create a missing note.</p>
+<h2>Query path template</h2>
+<p>For each recurring question:</p>
+<p>1. Start map: the first synthesis note to open.</p>
+<p>2. Concepts to inspect: reusable vocabulary needed for the answer.</p>
+<p>3. Strongest sources: primary or high-confidence support.</p>
+<p>4. Weak signals: X threads, practitioner anecdotes, or speculative leads.</p>
+<p>5. Output shape: answer, comparison, checklist, roadmap, or follow-up research queue.</p>
+<p>6. Repo writeback: where durable answers should be saved.</p>
+<h2>Current query paths</h2>
+<h3>1. &quot;I want to introduce agents into a development workflow&quot;</h3>
+<ul>
+<li>Start map: [[agent-harness-landscape.md]]</li>
+<li>Concepts: [[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>5</code>, commits: <code>2</code></p></footer>
+
+</body>
+</html>
