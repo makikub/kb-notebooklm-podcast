@@ -1,0 +1,15 @@
+{
+  "date": "2026-05-17T03:00:39.510254+09:00",
+  "topic_id": "wiki/maps/agent-deployment-gates-and-operational-risk.md",
+  "title": "Agent Deployment Gates and Operational Risk",
+  "output_dir": "outputs/notebooklm-podcast/2026-05-17",
+  "page": "outputs/notebooklm-podcast/2026-05-17/notebooklm-source.md",
+  "related": [
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/maps/harness-engineering-vendor-comparison.md",
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/coding-agent-cognitive-debt-and-review-capacity.md",
+    "wiki/maps/coding-agent-harness-patterns.md"
+  ],
+  "char_count": 9280
+}
