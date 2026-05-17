@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-17 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-17/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB NotebookLM Podcast Pages</a> / Daily Digest / 2026-05-17</header>
+<h1>KB Daily Digest 2026-05-17</h1>
+<div class="note">
+  <strong>NotebookLM用URL:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しくPodcast化しやすい文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-17/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-17">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-17</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest — 2026-05-17</h1>
+<p>2026-05-17 UTC の <code>knowledge-base-llm</code> では、新規 raw / wiki / sources の追加が実質的にありました。今日の更新はかなりまとまっていて、中心テーマは「ハーネスをコード生成の周辺技術ではなく、組織・知識・レビュー・安全性まで含む運用基盤として見る」ことです。昨日の ARIS で強まった「もっともらしいが根拠が薄い成功をどう疑うか」という流れが、今日は Claude Code の大規模コードベース運用、agent-first organization、ハーネス定義の整理、memory と skills の統合まで広がりました。</p>
+<p>重要ソースの1本目は、Vasilije / @tricalt の X Article「Memory isn&#x27;t a plugin. Skills aren&#x27;t a plugin. They&#x27;re the same harness.」です。直接本文の完全取得はできなかったため、X API metadata と xAI 抽出サマリを根拠にした中程度 confidence の source note ですが、KBへの寄与は大きいです。ここから新規概念 <code>memory-skill harness</code> が立ち、memory を単なる保存済み事実、skills を単なるプロンプト断片として分けるのではなく、環境を観察し、手順を選び、古くなった手順を修正し、次の実行で評価する同じループとして扱う見方が追加されました。</p>
+<p>重要ソースの2本目は、aweb.ai の「How to set up an AI-native organization」と companion template repo です。これは、AI-native company を「社員がチャットボットを使う会社」ではなく、named agents が persistent context、taskboard、decision records、handoffs、status files を持ち、builder / reviewer split で作業する運用モデルとして説明しています。KBでは新規概念 <code>agent-first organization</code> を追加し、<code>company-brain</code>、<code>multi-agent-orchestration</code>、<code>structured-handoff-artifacts</code>、<code>agent-management</code> に接続しました。小規模企業の practitioner case study なので汎用ROIの証拠ではありませんが、「組織をqueryableにするためのartifact discipline」という観点ではかなり実用的です。</p>
+<p>重要ソースの3本目は、NewsPicks Topic の「ハーネスエンジニアリングとは一体何なのか」です。このソースは、日本語圏で混ざりがちな「evaluation harness」と「agent harness」を分け、さらに agent harness を runtime / context / safety の層に分ける説明として取り込みました。KBの <code>agent-harness-control-taxonomy</code> では、before-action / in-loop / after-action controls と deterministic / inferential controls の整理に加えて、evaluation、runtime、context、safety という scope split が強化されました。これで「ハーネス」という語を使うときに、モデル評価の話なのか、エージェント実行系なのか、コンテキスト供給なのか、安全境界なのかを分けて読めるようになっています。</p>
+<p>そのほか、Izanami の Claude Code 大規模コードベース記事は、Anthropic 公式ガイダンスを日本語の運用チェックリストに落としたものとして追加されました。薄い root CLAUDE.md、サブディレクトリ単位のルール、hooks による自己改善、古いルールの棚卸し、agent-manager / DRI の必要性が整理され、<code>agent-recognizable-repository</code>、<code>context-engineering</code>、<code>rule-update-loop</code>、<code>coding-agent-harness-patterns</code> が更新されています。これは今日の全体トレンドの中では、「ハーネスを足す」より先に、リポジトリとルールをエージェントが読める形に保つ話です。</p>
+<p>X bookmarks 由来では、Peter Steinberger の Clawpatch automated code review、Claude Code champion kit、Hermes daily brief workflow も取り込まれました。Clawpatch は semantic work unit に分けて review / report / fix / revalidate するコードレビュー harness の具体例、champion kit は組織内の adoption surface、Hermes は daily brief を通じた chief-of-staff / background-agent 的な情報集約の例として扱っています。ここから <code>verification-tax</code>、<code>long-running-agents</code>、<code>background-agents</code>、<code>agent-captain</code>、<code>ai-adoption-j-curve</code> などの概念が補強されました。</p>
+<p>全体トレンドとして、今日の KB は「ハーネス = モデルの外側にある便利な補助」から一段進んで、「ハーネス = 組織とエージェントが継続的に仕事をするための運用OS」に近づいています。コードレビューでは findings と revalidation、Claude Code 運用では repo-local context と hooks、agent-first organization では taskboard / decision / handoff、memory-skill harness では手順の自己更新、NewsPicks の taxonomy では runtime / context / safety の切り分けが出てきました。どれも、単発の生成結果ではなく、繰り返し作業をどう観察し、制御し、改善するかに寄っています。</p>
+<p>NotebookLM Podcast で掘るなら、「memory と skills はなぜ同じ harness と言えるのか」から入ると面白そうです。次に、Claude Code の CLAUDE.md / hooks / skills / plugins / MCP の順序や、aweb.ai の named agents / shared artifacts とつなげると、個人の開発環境から小さな組織運用まで同じ設計原理で見えます。最後に NewsPicks の taxonomy を使って、これは context harness なのか、runtime harness なのか、safety harness なのかを整理すると、言葉だけが広がって実装判断が曖昧になるリスクを抑えられます。</p>
+<p>公開HTML: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-17/</p>
+<p>NotebookLM用 source.md: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-17/source.md</p>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents, and org ownership.</li>
+<li>[[izanami-claude-code-large-codebase-best-practices.md]] — Japanese practitioner explainer on Claude Code large-codebase setup: live repo search, thin layered CLAUDE.md, subdirectory startup, hooks, stale-rule pruning, and adoption ownership.</li>
+<li>[[newspicks-harness-engineering-what-is-it.md]] — Japanese explainer separating evaluation harnesses from agent harnesses and decomposing agent harnesses into runtime, context, and safety layers.</li>
+<li>[[tricalt-memory-skills-same-harness-x.md]] — Vasilije / tricalt X Article framing memory and skills as one evolving harness/world-model loop.</li>
+</ul>
+<h3>Vasilije / tricalt — Memory and skills as the same harness</h3>
+<p>Source note: <code>wiki/sources/tricalt-memory-skills-same-harness-x.md</code></p>
+<h1>Vasilije / tricalt — Memory and skills as the same harness</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/tricalt-memory-skills-same-harness-x-2026-05-17.md</li>
+<li>Original URL: https://x.com/tricalt/status/2055876832797581406</li>
+<li>Article URL: https://x.com/i/article/2053986800050524160</li>
+<li>Author: Vasilije / @tricalt</li>
+<li>Date: 2026-05-17</li>
+<li>Type: X post linking to X Article</li>
+<li>Capture method: X API metadata plus xAI-extracted article summary</li>
+</ul>
+<h2>Summary</h2>
+<p>This source argues that memory and skills are two views of the same agent harness. Memory is the broad world model an agent uses to act, while skills are compressed procedures and traces of what has worked before. The article&#x27;s central claim is that separating them into static product primitives misses the important loop: observe the environment, inspect whether the current skill/memory still fits, amend it, and evaluate the next run.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Agent memory is not only saved facts; it includes the codebase, tools, filesystem, conversation history, preferences, and observations that shape action.</li>
+<li>Skills are not merely static Markdown prompts; they are reusable, task-specific memory about how to act.</li>
+<li>Skills degrade when the environment changes, so skill maintenance needs an active improvement loop.</li>
+<li>A useful memory system should route, inspect, and revise skills as part of the same world model.</li>
+<li>Cognee is presented as an example where skills are ingested as first-class memory nodes and skill changes become memory events.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The X API exposes the linked article title and post metadata.</li>
+<li>xAI extraction summarizes the article&#x27;s Cognee example: cognee.remember(&quot;skills/&quot;) treats skill files as memory nodes shared by retrieval and self-improvement runtime.</li>
+<li>The source points to a broader convergence aro</li>
+</ul>
+<h3>NewsPicks Topic - ハーネスエンジニアリングとは一体何なのか</h3>
+<p>Source note: <code>wiki/sources/newspicks-harness-engineering-what-is-it.md</code></p>
+<h1>NewsPicks Topic - ハーネスエンジニアリングとは一体何なのか</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/newspicks-harness-engineering-what-is-it-2026-05-17.md</li>
+<li>Original URL: https://newspicks.com/news/16607103/body/</li>
+<li>Author / publisher: NewsPicks Topic owner / NewsPicks topic page</li>
+<li>Date: not visible in capture</li>
+<li>Type: Japanese explainer article / topic post</li>
+<li>Capture date: 2026-05-17</li>
+</ul>
+<h2>Summary</h2>
+<p>This article is a Japanese explainer on the overloaded meaning of &quot;harness engineering.&quot; Its main contribution is separating the older evaluation-harness meaning from the newer agent-harness meaning, then decomposing agent harnesses into runtime, context, and safety layers. It also warns against two common mistakes: treating harness engineering as merely prompt engineering, and treating harness wins as evidence that model capability no longer matters.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Harness engineering became prominent because multiple sources reported large performance differences from changing the system around a fixed model.</li>
+<li>Evaluation harnesses and agent harnesses should be kept distinct: the former grade model/task performance, while the latter shape real operational behavior.</li>
+<li>The agent-harness term currently bundles at least three layers: runtime harness, context harness, and safety harness.</li>
+<li>Context-harness examples include instructions, rule files, memory, retrieval indexes, MCP tools, hooks, skills, and AGENTS.md-style files.</li>
+<li>Safety-harness examples include sandboxes, permissions, approval flows, and audit logs.</li>
+<li>Harness engineering is not just prompt collection; deterministic constraints, repo-local documents, linters, CI, observability, handoff files, and review loops are core parts of the practice.</li>
+<li>Model quality still matters: models set the ceiling, while harnesses determine how much o</li>
+</ul>
+<h3>Izanami - Claude Code を大規模コードベースで使うベストプラクティス</h3>
+<p>Source note: <code>wiki/sources/izanami-claude-code-large-codebase-best-practices.md</code></p>
+<h1>Izanami - Claude Code を大規模コードベースで使うベストプラクティス</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/izanami-claude-code-large-codebase-best-practices-2026-05-16.md</li>
+<li>Original URL: https://izanami.dev/post/af045ef8-eff9-4317-b05a-abce17e14f55</li>
+<li>Author / publisher: コムテ / izanami.dev</li>
+<li>Date: 2026-05-16</li>
+<li>Type: Japanese practitioner explainer / commentary on official Anthropic guidance</li>
+<li>Capture date: 2026-05-17</li>
+<li>Primary referenced source: [[anthropic-claude-code-large-codebases.md]]</li>
+</ul>
+<h2>Summary</h2>
+<p>The article translates Anthropic&#x27;s Claude Code large-codebase guidance into an operator checklist: because Claude Code searches the live repository rather than relying on a prebuilt RAG index, large-repo performance depends on harness quality. It emphasizes thin and hierarchical CLAUDE.md files, starting work from relevant subdirectories, using hooks for self-improvement and deterministic checks, pruning stale rules after capability changes, and assigning an owner for organization-wide agent configuration.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Claude Code&#x27;s live file-tree and grep-style navigation avoids stale indexes but needs repo-local hints about where to look.</li>
+<li>The useful harness layering order is CLAUDE.md -&gt; hooks -&gt; skills -&gt; plugins -&gt; MCP; teams should stabilize context files and hooks before adding heavier extension surfaces.</li>
+<li>A thin root CLAUDE.md plus local subdirectory rules improves context precision more than one large global instruction file.</li>
+<li>Starting Claude Code from the task-relevant subdirectory is a context-engineering move: it narrows search space while still inheriting parent context.</li>
+<li>Stop hooks can turn recent session learnings into proposed CLAUDE.md updates, making rule maintenance part of normal work.</li>
+<li>Rules and hooks are perishable. Teams should audit them every 3-6 months, a</li>
+</ul>
+<h3>awebai/agent-first-company-template</h3>
+<p>Source note: <code>wiki/sources/aweb-agent-first-company-template.md</code></p>
+<h1>awebai/agent-first-company-template</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/repos/aweb-agent-first-company-template-2026-05-17.md</li>
+<li>Original URL: https://github.com/awebai/agent-first-company-template</li>
+<li>Author: aweb.ai</li>
+<li>Date: 2026-05-17 capture</li>
+<li>Type: GitHub repository / operating-model template</li>
+</ul>
+<h2>Summary</h2>
+<p>The repository is the companion template for aweb.ai&#x27;s agent-first company model. It provides a forkable directory structure for company-level agent instructions, team roles, invariants, decision logs, voice notes, status files, and per-agent role directories.</p>
+<p>The template emphasizes staged adoption: first add a reviewer voice and durable decision records without new tools; then adapt role docs and persistent contexts; finally add direct AI-to-AI messaging through aweb CLI or hosted MCP when human relay overhead becomes painful.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Agent-first operating discipline can start before direct AI-to-AI messaging.</li>
+<li>The core template surfaces are company instructions, team role map, decision log, status files, and per-agent role directories.</li>
+<li>Tools are secondary to habits: decision records, per-surface status, written handoffs, build/ship boundaries, and two-voice review.</li>
+<li>The template is intentionally provider- and stack-agnostic.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>Visible structure includes CLAUDE.md, AGENTS.md, docs/team.md, docs/decisions.md, status/weekly.md, and example agents/lead, agents/builder, agents/runner directories.</li>
+<li>README positions the repo as forkable scaffolding rather than a prescriptive org chart.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: public repository / template.</li>
+<li>Confidence: Medium for file structure and stated adoption path; low for effectiveness without external case evidence.</li>
+<li>Supports: [[../concepts/agent-first-organization.md]], [[../con</li>
+</ul>
+<h3>aweb.ai - How to set up an AI-native organization</h3>
+<p>Source note: <code>wiki/sources/aweb-ai-first-company-howto.md</code></p>
+<h1>aweb.ai - How to set up an AI-native organization</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/aweb-ai-first-company-howto-2026-05-17.md</li>
+<li>Original URL: https://aweb.ai/blog/ai-first-company-howto</li>
+<li>Author: aweb.ai</li>
+<li>Date: 2026-05-17 capture</li>
+<li>Type: company operating-model article / practitioner case study</li>
+</ul>
+<h2>Summary</h2>
+<p>The article argues that AI-native organization design is not just employees using chatbots faster. In an AI-native company, named agents own work surfaces, carry persistent context, message each other directly, and coordinate through durable artifacts such as tasks, decision records, handoffs, status files, release evidence, and signal notes. Humans keep founding judgment, direction, customer trust, hiring, and publishing authority.</p>
+<p>The aweb.ai case study describes seven persistent agents plus ephemeral coding agents and two humans. Its main durable claim is not the exact role roster, but the operating discipline: agents need identities, addresses, role docs, a shared taskboard, learning mechanisms, builder/reviewer splits, and artifact-based shared state.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>AI-assisted work speeds up individual workflows; AI-native organization changes coordination itself.</li>
+<li>Agents should be first-class citizens with stable identities, addresses, named responsibilities, and persistent context.</li>
+<li>Work that matters should produce durable artifacts, not disappear into chat.</li>
+<li>Substantial work needs at least two voices: builder and reviewer.</li>
+<li>Shared state beats status routing: the company should be queryable through taskboards, status files, decision records, and handoffs.</li>
+<li>Solo operators can start with builder+reviewer pairs; organizations should move to named roles when repeated decision surfaces need ownership.</li>
+<li>Feedback should be captured with strengt</li>
+</ul>
+<h3>Hermes Daily Brief</h3>
+<p>Source note: <code>wiki/sources/itsolelehmann-hermes-daily-brief-x-2026-05-15.md</code></p>
+<h1>Hermes Daily Brief</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/itsolelehmann-hermes-daily-brief-2026-05-17.md</code></li>
+<li>Original URL: https://x.com/i/status/2055290989577753034</li>
+<li>Canonical URL: https://x.com/i/status/2055290989577753034</li>
+<li>Author: Ole Lehmann (@itsolelehmann)</li>
+<li>Date: 2026-05-15</li>
+<li>Type: X post</li>
+</ul>
+<h2>Summary</h2>
+<p>The visible part of the post outlines a Hermes workflow that produces a morning daily brief: it collects calendar items, urgent email, weather, and a few interest-feed headlines into one scheduled digest. The post frames this as part of a larger chief-of-staff stack.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Hermes can be used as a recurring daily brief agent.</li>
+<li>The daily brief combines multiple personal context sources into one output.</li>
+<li>The workflow is meant to run on a schedule, at 7am in the example.</li>
+<li>The post suggests a broader Hermes workflow stack beyond the visible brief.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>Captured from xurl bookmarks snapshot on 2026-05-17; post id <code>2055290989577753034</code>.</li>
+<li>Only the first workflow in the thread is visible in the captured text.</li>
+<li>The visible workflow explicitly names calendar, urgent email, weather, and headlines as inputs.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post.</li>
+<li>Confidence: Medium.</li>
+<li>Supports: background-agent scheduling, agent management, and chief-of-staff style workflows.</li>
+<li>Main limitations: the capture text is truncated and does not include the rest of the 9-workflow list.</li>
+<li>Best use: a compact example of a scheduled personal-agent digest workflow.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+<li>[[../concepts/agent-captain.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+</ul>
+<h2>Related Sources</h2>
+<ul>
+<li>[[../sources/mvanhorn-hermes-agent-real-world-workflows-x.md]]</li>
+<li>[[../sources/nyk-builderz-4-agent-</li>
+</ul>
+<h3>Peter Steinberger - Clawpatch automated code review</h3>
+<p>Source note: <code>wiki/sources/steipete-clawpatch-automated-code-review-x-2026-05-16.md</code></p>
+<h1>Peter Steinberger - Clawpatch automated code review</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/steipete-clawpatch-automated-code-review-2026-05-17.md</code></li>
+<li>Original URL: https://x.com/i/status/2055657966515155293</li>
+<li>Canonical URL: https://x.com/i/status/2055657966515155293</li>
+<li>Author: Peter Steinberger (@steipete)</li>
+<li>Date: 2026-05-16</li>
+<li>Type: X post + product site</li>
+<li>Primary URL: https://clawpatch.ai</li>
+</ul>
+<h2>Summary</h2>
+<p>Clawpatch is an automated code review tool that maps a repository into semantic work units, reviews bounded context, and persists findings for follow-up. The product page makes the review loop explicit: init, map, review, report, fix, and revalidate.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Clawpatch reviews code at the feature/work-unit level rather than by file only.</li>
+<li>Findings include severity, confidence, evidence, and a recommendation.</li>
+<li>The product is designed around an explicit review-and-revalidate loop.</li>
+<li>Local Codex is presented as the default provider path for review.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>Captured from xurl bookmarks snapshot on 2026-05-17; post id <code>2055657966515155293</code>.</li>
+<li>The bookmark points to the product site <code>https://clawpatch.ai</code>, which is the stronger source for feature details.</li>
+<li>The site describes <code>clawpatch init</code>, <code>map</code>, <code>review</code>, <code>report</code>, <code>fix</code>, and <code>revalidate</code>.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post + product site.</li>
+<li>Confidence: High.</li>
+<li>Supports: harness design, review automation, and verification-cost analysis.</li>
+<li>Main limitations: the X post itself is brief; the product page is the real evidence layer.</li>
+<li>Best use: a concrete example of automated code review that turns verification into a repeatable loop.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/verification-tax.md]]</li>
+<li>[[../concepts/evi</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Concept Notes</h3>
+<p>KB note: <code>wiki/concepts/README.md</code></p>
+<h1>Concept Notes</h1>
+<p>Each note in this folder should represent a reusable concept that appears across multiple sources.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>definition</li>
+<li>why it matters</li>
+<li>related concepts</li>
+<li>supporting sources</li>
+<li>tensions / tradeoffs</li>
+<li>open questions</li>
+</ul>
+<ul>
+<li>[Evidence Quality](evidence-quality.md)</li>
+<li>[Field-Deployed Engineer](field-deployed-engineer.md)</li>
+<li>[Product Responsibility Distribution](product-responsibility-distribution.md)</li>
+<li>[Conversion Packaging](conversion-packaging.md)</li>
+<li>[Organizational Intent Clarity](organizational-intent-clarity.md)</li>
+<li>[Exploratory Organization Lens](exploratory-organization-lens.md)</li>
+<li>[Intelligent Delegation](intelligent-delegation.md)</li>
+<li>[Conversational Feedback Learning](conversational-feedback-learning.md)</li>
+<li>[Spec-Code-Test Loop](spec-code-test-loop.md)</li>
+<li>[Heavy Thinking](heavy-thinking.md)</li>
+<li>[Sustainable AI Work](sustainable-ai-work.md)</li>
+<li>[AI Adoption J-Curve](ai-adoption-j-curve.md)</li>
+<li>[AI ROI Model](ai-roi-model.md)</li>
+<li>[Verification Tax](verification-tax.md)</li>
+</ul>
+<h3>Agent Knowledge Loop</h3>
+<p>KB note: <code>wiki/concepts/agent-knowledge-loop.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent Knowledge Loop</p>
+<hr>
+<h1>Agent Knowledge Loop</h1>
+<h2>Definition</h2>
+<p>A recurring loop where an LLM ingests sources, compiles notes, answers questions over the resulting wiki, and files useful outputs back into the knowledge base.</p>
+<h2>Why It Matters</h2>
+<p>This loop turns the knowledge base into a compounding system rather than a static archive.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled-wiki.md]]</li>
+<li>[[knowledge-base-linting.md]]</li>
+<li>[[agent-autonomy.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/coreyganim-karpathy-second-brain-clearly-explained-x.md]]</li>
+<li>[[../sources/coreyganim-second-brain-monthly-audit-x.md]]</li>
+<li>[[../sources/shannholmberg-llm-wikid-x.md]]</li>
+<li>[[../sources/artemxtech-llm-wiki-vs-notebooklm-x.md]]</li>
+<li>[[../sources/arxiv-externalization-in-llm-agents.md]]</li>
+<li>[[../sources/carnot-cyclist-continual-learning-desiderata-x.md]]</li>
+<li>[[../sources/google-research-nested-learning-continual-learning.md]]</li>
+<li>[[../sources/akshay-pachaar-wiki-plus-graph-db-kb</li>
+</ul>
+<h3>Context File System</h3>
+<p>KB note: <code>wiki/concepts/context-file-system.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Context File System</p>
+<hr>
+<h1>Context File System</h1>
+<h2>Definition</h2>
+<p>A lightweight external-memory pattern where an assistant reads and updates a small set of durable files such as instructions, memory, and project context instead of relying only on chat history or product-native saved memory.</p>
+<h2>Why It Matters</h2>
+<p>It offers a practical middle layer between built-in chat memory and a full knowledge graph or second-brain system. For many workflows, a few well-maintained files provide enough persistence, inspectability, and editability to improve consistency.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled wiki]]</li>
+<li>[[obsidian as interface]]</li>
+<li>[[durability]]</li>
+<li>[[tool accessibility]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/aiedge-supercharge-claude-memory-x.md]]</li>
+<li>[[../sources/obsidian-mind-github.md]]</li>
+<li>[[../sources/sukh-saroy-obsidian-mind-x.md]]</li>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/coreyganim-karpathy-second-</li>
+</ul>
+<h3>Memory-Skill Harness</h3>
+<p>KB note: <code>wiki/concepts/memory-skill-harness.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Unified Memory-Skill Harness</p>
+<p>  - Memory-Skill Harness</p>
+<hr>
+<h1>Memory-Skill Harness</h1>
+<h2>Definition</h2>
+<p>A harness pattern where memory and skills are treated as one evolving world model: memory stores the state and evidence an agent acts from, while skills store reusable procedures derived from successful or corrected traces.</p>
+<h2>Why It Matters</h2>
+<p>Separating memory from skills can make both brittle. Memory becomes passive storage if it cannot route the right procedure, and skills become stale prompt snippets if they cannot observe environmental change, attach evidence, and update themselves. A unified memory-skill harness makes repeated work inspectable, revisable, and queryable.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent-knowledge-loop.md]]</li>
+<li>[[navigable-agent-skills.md]]</li>
+<li>[[context-file-system.md]]</li>
+<li>[[context-graph.md]]</li>
+<li>[[rule-update-loop.md]]</li>
+<li>[[harness-engineering.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/tricalt-memory-skills-same-harness-x.md]]</li>
+<li>[[../sources/knowledgesense-corp</li>
+</ul>
+<h3>Navigable Agent Skills</h3>
+<p>KB note: <code>wiki/concepts/navigable-agent-skills.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Navigable Agent Skills</p>
+<p>  - Corpus2Skill</p>
+<p>  - Hierarchical RAG</p>
+<hr>
+<h1>Navigable Agent Skills</h1>
+<h2>Definition</h2>
+<p>A retrieval architecture where a corpus is compiled into a hierarchy of human/model-readable skill or index files, so an agent can navigate the corpus structure before retrieving underlying documents.</p>
+<h2>Why It Matters</h2>
+<p>It changes the model’s role from passive consumer of search results to active navigator of an information architecture. This is especially useful for broad or completeness-oriented questions where top-k vector retrieval may miss scattered evidence.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled-wiki.md]]</li>
+<li>[[agent-knowledge-loop.md]]</li>
+<li>[[context-graph.md]]</li>
+<li>[[tool-accessibility.md]]</li>
+<li>[[agent-recognizable-repository.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/coreyganim-karpathy-second-brain-clearly-explained-x.md]]</li>
+<li>[[../sources/knowledgesense-corpus2skill-zenn.md]]</li>
+<li>[[../sources/aws-agent-toolkit-for-aws-x.md]]</li>
+<li>[[../sources/googlecloudjp-agent-skills-repos</li>
+</ul>
+<h3>Rule-Update Loop</h3>
+<p>KB note: <code>wiki/concepts/rule-update-loop.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Rule-Update Loop</p>
+<p>  - Mistake-to-Rule Loop</p>
+<hr>
+<h1>Rule-Update Loop</h1>
+<h2>Definition</h2>
+<p>A lightweight harness pattern where repeated prompts, recurring corrections, or observed agent mistakes are converted into durable rules in files such as <code>CLAUDE.md</code>, <code>AGENTS.md</code>, skills, templates, or team playbooks.</p>
+<h2>Why It Matters</h2>
+<p>It lowers repeated review cost. Instead of correcting the agent one chat at a time, the human improves the operating environment so future sessions start with better guidance.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[context-file-system]]</li>
+<li>[[behavioral-stability]]</li>
+<li>[[agent-recognizable-repository]]</li>
+<li>[[approval-policy]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/claudecode-love-boris-30-claude-code-tips-x.md]]</li>
+<li>[[../sources/gota-purpose-first-harness-design-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-what-harness-engineering-is-and-is-not-zenn.md]]</li>
+<li>[[../sources/masaki-claude-md-rules-for-non-engineers.md]]</li>
+<li>[[../sources/mnilax-karpathy-claude-md-rules-</li>
+</ul>
+<h3>Agent Harness Control Taxonomy</h3>
+<p>KB note: <code>wiki/maps/agent-harness-control-taxonomy.md</code></p>
+<h1>Agent Harness Control Taxonomy</h1>
+<h2>Purpose</h2>
+<p>Normalize the control vocabulary used across the harness-engineering cluster so the KB can compare sources without collapsing distinct mechanisms into one vague idea of &quot;guardrails.&quot;</p>
+<h2>Core split</h2>
+<p>Harness controls fall along two practical axes:</p>
+<p>1. <strong>When they act</strong> — before action, during action, or after action</p>
+<p>2. <strong>How they act</strong> — deterministic/computational or semantic/inferential</p>
+<p>This note treats those axes as complementary rather than mutually exclusive.</p>
+<h2>Scope split: evaluation, runtime, context, safety</h2>
+<p>Use this split when a source says &quot;harness&quot; but means different machinery:</p>
+<ul>
+<li><strong>Evaluation harness</strong>: infrastructure that scores models or task submissions, such as lm-evaluation-harness or SWE-bench-style graders.</li>
+<li><strong>Runtime harness</strong>: the agent loop that alternates reasoning, tool use, observation, state, and retry behavior.</li>
+<li><strong>Context harness</strong>: instructions, rule files, memory, retrieval, tools, hooks, skills, MCP servers, an</li>
+</ul>
+<h3>Context Graph and Company Brain</h3>
+<p>KB note: <code>wiki/maps/context-graph-and-company-brain.md</code></p>
+<h1>Context Graph and Company Brain</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging vocabulary around company-scale agent memory: compiled wiki, context graph, Company Brain, and context farming.</p>
+<h2>Core Pattern</h2>
+<p>1. Raw organizational signals enter the system: docs, chat, logs, emails, tickets, meetings, and decisions.</p>
+<p>2. A context layer extracts entities, relationships, rules, provenance, and validity windows.</p>
+<p>3. Agents query the layer before acting, ideally receiving only context that is relevant, permitted, and still valid.</p>
+<p>4. Humans maintain the layer through review, invalidation, conflict resolution, and context farming.</p>
+<p>5. Dreaming-style background review can propose memory cleanup and cross-session pattern promotion, but should preserve provenance and review boundaries.</p>
+<p>In an agent-first company, this context layer also becomes an operating surface: named agents read and update role docs, taskboards, status files, decision records, handoffs, and feedback-strength notes so the organiza</p>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>12</code>, commits: <code>6</code></p></footer>
+
+</body>
+</html>
