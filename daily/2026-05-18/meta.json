@@ -1,0 +1,15 @@
+{
+  "date": "2026-05-18T03:00:32.276318+09:00",
+  "topic_id": "wiki/maps/coding-agent-harness-patterns.md",
+  "title": "Coding-Agent Harness Patterns",
+  "output_dir": "outputs/notebooklm-podcast/2026-05-18",
+  "page": "outputs/notebooklm-podcast/2026-05-18/notebooklm-source.md",
+  "related": [
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/harness-engineering-vendor-comparison.md",
+    "wiki/maps/agent-harness-control-taxonomy.md",
+    "wiki/concepts/multi-agent-orchestration.md",
+    "wiki/concepts/harness-engineering.md"
+  ],
+  "char_count": 9194
+}
