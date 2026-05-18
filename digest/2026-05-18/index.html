@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-18 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-18/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB NotebookLM Podcast Pages</a> / Daily Digest / 2026-05-18</header>
+<h1>KB Daily Digest 2026-05-18</h1>
+<div class="note">
+  <strong>NotebookLM用URL:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しくPodcast化しやすい文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-18/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-18">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-18</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest - 2026-05-18</h1>
+<p>2026-05-18 UTC の knowledge-base-llm は、前日に続いて「AIエージェントをどう組織と作業環境に定着させるか」に寄った更新だった。新規 raw/wiki/source としては、X bookmarks ingest 由来の5件と、Jason Liu の Codex-maxxing heartbeats 節が入り、既存の coding-agent harness / context management / operations navigation が更新された。単発のツール紹介ではなく、長く動くエージェント、ファイルに残る記憶、セキュリティ境界、組織ロールの再設計が同じ束として扱われるようになったのが今日の大きな流れ。</p>
+<p>いちばん重要なソースは Jason Liu の「Codex-maxxing」。ここでは Codex を単なるコーディング補助ではなく、ピン留めされた長期スレッド、file-backed memory、heartbeats、browser/computer/connectors、レビュー可能な artifact surface を組み合わせた作業OSとして扱っている。KB側ではこれを \<code>coding-agent-harness-patterns\</code> に取り込み、durable operating threads と artifact-native review surface という2つの実務パターンを追加した。特に、継続性をチャット履歴だけに預けず、diff可能なファイル記憶とレビュー面に逃がす点が、OpenClaw運用やNotebookLMページ生成とも直接つながる。</p>
+<p>2本目の重要ソースは Keisuke Nishitani の Qiita 記事「AIエージェントを会社で使いたい！→ セキュリティどうするの？」。エージェント導入の論点を、プロンプト・出力・ツール呼び出しという新しい攻撃面として整理し、ログ、リスクスコア、ブロック、承認、監査レポートを agent layer に置くべきだと説明している。これにより \<code>agent-safety\</code>、\<code>tool-accessibility\</code>、\<code>gateway-control-plane\</code> の関係が強くなり、企業導入に必要なのは「賢いモデルを使うこと」だけではなく、何を実行してよいかを制御・記録する harness だという方向が明確になった。</p>
+<p>3本目は、Mitchell Hashimoto の投稿を引用した iwashi86 の AI blind faith / cloud-era design conflict のメモ。内容は短いが、現在のAI導入論争を「モデル性能への期待」ではなく「組織設計と判断基準の衝突」として見る視点を足している。これに builder-oriented PdM、Claude Code による management memory、Hermes Agent の X search 事例が並ぶことで、今日の更新は「個人が便利に使うAI」から「組織が役割・記憶・権限・評価を作り直すAI」へ視界を広げている。</p>
+<p>更新された地図としては \<code>coding-agent-harness-patterns\</code> が最重要。既存の plan files、verifier split、deterministic checks、rule-update loop に加えて、長期運用スレッドと artifact-native review surface が追加され、実装前後だけでなく、運用中の監視・再開・再レビューまで含む harness 像になった。 \<code>context-management-decisions\</code> も、file-backed memory と thread continuity を背景に、記憶をどこへ置き、どの粒度で更新し、どうレビューするかを問う方向へ寄っている。</p>
+<p>概念面では、\<code>agent-first-organization\</code>、\<code>agent-management\</code>、\<code>agent-safety\</code>、\<code>background-agents\</code>、\<code>context-file-system\</code>、\<code>memory-skill-harness\</code>、\<code>organizational-intent-clarity\</code>、\<code>rule-update-loop\</code>、\<code>tool-accessibility\</code> がまとめて動いた。つまり今日の compile は、単に6本のソースを追加しただけではなく、KB内の「長く動くエージェントを安全に組織へ入れるための語彙」を補強している。特に、heartbeats と security gatekeeper は対になる論点で、前者はエージェントを動かし続ける仕組み、後者は動き続ける対象を逸脱させない仕組みとして読める。</p>
+<p>実務上の示唆はかなりはっきりしている。エージェント導入は、ツール選定より先に、記憶の置き場所、承認境界、ログ設計、レビュー面、担当者の役割を決める必要がある。逆に言うと、小さく始めるなら、大きな multi-agent platform を作るより、1つの長期スレッド、1つのファイル記憶、1つの定期 heartbeat、1つのチェックコマンド、1つのレビュー用 artifact を揃える方が早い。今日のKB更新はその最小構成を具体例で支えている。</p>
+<p>次に追うべき問いは3つ。第一に、heartbeat 型の自律運用をどこまで「通知・下書き」に留め、どこから「実行」まで許すのか。第二に、agent security gatekeeper のルールは harness 内に置くべきか、既存のDLP/EDR/SIEMに寄せるべきか。第三に、PdMやマネージャーの builder 化、management memory の構造化は、どの artifact と評価基準に落とすと再利用可能になるのか。このあたりを掘ると、agent-first organization の地図がさらに実務寄りに育ちそう。</p>
+<h2>Important Sources</h2>
+<ul>
+<li>Jason Liu - Codex-maxxing: \<code>wiki/sources/jason-liu-codex-maxxing-heartbeats.md\</code></li>
+<li>Keisuke Nishitani - AI agent security for enterprise adoption: \<code>wiki/sources/keisuke69-ai-agent-security-enterprise-adoption-qiita.md\</code></li>
+<li>iwashi86 - Mitchell Hashimoto on AI blind faith and cloud-era design conflict: \<code>wiki/sources/iwashi86-mitchellh-ai-blind-faith-cloud-analogy-x.md\</code></li>
+</ul>
+<h2>Verification Notes</h2>
+<ul>
+<li>New/changed material was detected from git log and mtime under \<code>raw/\</code>, \<code>wiki/\</code>, and \<code>outputs/\</code> for 2026-05-18 UTC.</li>
+<li>Key commits: \<code>bf4c338 Add daily X bookmarks ingest notes\</code>, \<code>f7ebd33 Add Codex Maxxing heartbeat notes\</code>.</li>
+<li>Evidence limits: several X article/card sources expose only title or metadata-level evidence, and their source notes keep confidence low to medium where the body was not captured.</li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents, and org ownership.</li>
+<li>[[izanami-claude-code-large-codebase-best-practices.md]] — Japanese practitioner explainer on Claude Code large-codebase setup: live repo search, thin layered CLAUDE.md, subdirectory startup, hooks, stale-rule pruning, and adoption ownership.</li>
+<li>[[newspicks-harness-engineering-what-is-it.md]] — Japanese explainer separating evaluation harnesses from agent harnesses and decomposing agent harnesses into runtime, context, and safety layers.</li>
+<li>[[tricalt-memory-skills-same-harness-x.md]] — Vasilije / tricalt X Article framing memory and skills as one evolving harness/world-model loop.</li>
+<li>[[1osabori-anthropic-memory-dreaming-jp-x.md]] — Japanese X/video explainer of Anthropic Memory and Dreaming as agent experience accumulation, with secondary-source evidence limits.</li>
+<li>[[jason-liu-codex-maxxing-heartbeats.md]] — Jason Liu on Codex as a durable work sur</li>
+</ul>
+<h3>Jason Liu - Codex-maxxing</h3>
+<p>Source note: <code>wiki/sources/jason-liu-codex-maxxing-heartbeats.md</code></p>
+<h1>Jason Liu - Codex-maxxing</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/jason-liu-codex-maxxing-heartbeats-2026-05-10.md</code></li>
+<li>Original URL: https://jxnl.github.io/blog/writing/2026/05/10/codex-maxxing/#heartbeats</li>
+<li>Raw Markdown URL: https://raw.githubusercontent.com/jxnl/blog/main/docs/writing/posts/codex-maxxing.md</li>
+<li>Author: Jason Liu / jxnl</li>
+<li>Date: 2026-05-10</li>
+<li>Type: practitioner blog post</li>
+</ul>
+<h2>Summary</h2>
+<p>Jason Liu frames Codex as a durable operating surface for work, not just a coding assistant. The article&#x27;s main pattern is an operating loop made from pinned long-running threads, explicit file-backed memory, steering, computer/browser/connectors, remote control, heartbeats, goal criteria, and side-panel artifact review.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Long-running pinned threads become useful when they are paired with compaction and external memory artifacts, not only chat history.</li>
+<li>File-backed memory turns thread learning into inspectable, editable, diffable artifacts that survive compaction, thread death, or cache/cost issues.</li>
+<li>Heartbeats make pinned threads recur: a thread can schedule itself, monitor external surfaces, adjust cadence, and keep work moving until a condition is met.</li>
+<li>Connectors plus browser/computer control let recurring loops cross tool boundaries, such as Slack feedback, Remotion rendering, and GUI upload.</li>
+<li>Goals work best when they include a real oracle, such as a unit test suite, rather than merely pointing at an implementation plan.</li>
+<li>The side panel turns artifacts and web surfaces into shared review objects that both the human and agent can inspect and annotate.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>Chief-of-staff heartbeat: check Slack and Gmail every 30 minutes, prioritize, research answers, and draft replies without sending.</li>
+<li>Feedback heartbeat: monitor a Slack vi</li>
+</ul>
+<h3>iwashi86 - Mitchell Hashimoto on AI blind faith and cloud-era design conflict</h3>
+<p>Source note: <code>wiki/sources/iwashi86-mitchellh-ai-blind-faith-cloud-analogy-x.md</code></p>
+<h1>iwashi86 - Mitchell Hashimoto on AI blind faith and cloud-era design conflict</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/iwashi86-mitchellh-ai-blind-faith-x-2026-05-16.md</li>
+<li>Original URL: https://x.com/i/status/2055599591626789303</li>
+<li>Quoted URL: https://twitter.com/mitchellh/status/2055380239711457578</li>
+<li>Author: Corey Ganim / bookmark by iwashi86</li>
+<li>Date: 2026-05-16</li>
+<li>Type: X commentary post</li>
+</ul>
+<h2>Summary</h2>
+<p>The bookmark comments on Mitchell Hashimoto&#x27;s post as a warning against the current wave of AI blind faith. The analogy is that the disagreement now looks like the infrastructure-design split that showed up during the cloud migration era.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Some companies are treating AI with excessive, irrational faith.</li>
+<li>The current debate resembles earlier infrastructure-design conflicts from the cloud era.</li>
+<li>The issue is organizational design and judgment, not just model capability.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post is a commentary on a Mitchell Hashimoto tweet rather than the original post itself.</li>
+<li>The quoted URL is included in the bookmark metadata, which gives provenance but not the full source body.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X commentary post.</li>
+<li>Confidence: medium.</li>
+<li>Supports: organizational intent clarity and agent-management thinking.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/organizational-intent-clarity.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+<li>[[../concepts/agent-first-organization.md]]</li>
+</ul>
+<h2>KB Contribution</h2>
+<p>Adds an explicit caution that AI adoption debates are often really fights over organizational design, not raw model capability.</p>
+<h2>Open Questions</h2>
+<ul>
+<li>Which parts of current AI adoption are actually capability gaps versus intent/coordination gaps?</li>
+<li>How should a team tell the difference between justified skepticism and reflexive resistance?</li>
+</ul>
+<h2>Backl</h2>
+<h3>Keisuke Nishitani - AI agent security for enterprise adoption</h3>
+<p>Source note: <code>wiki/sources/keisuke69-ai-agent-security-enterprise-adoption-qiita.md</code></p>
+<h1>Keisuke Nishitani - AI agent security for enterprise adoption</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/keisuke69-ai-agent-security-enterprise-adoption-qiita-2026-05-16.md</li>
+<li>Original URL: https://qiita.com/sharu389no/items/ede7d1c0be4a14024857</li>
+<li>Bookmark post URL: https://x.com/i/status/2055688977735413884</li>
+<li>Bookmark post id: 2055688977735413884</li>
+<li>Author: Keisuke Nishitani (@Keisuke69)</li>
+<li>Date: 2026-05-16</li>
+<li>Type: Qiita article referenced from X bookmark</li>
+</ul>
+<h2>Summary</h2>
+<p>This article argues that AI agent adoption in companies needs a dedicated security layer around the agent&#x27;s input, output, and tool surfaces. The central move is to treat agent action as something that must be logged, risk-scored, gated, and auditable rather than simply allowed to run because the model is &quot;smart enough.&quot;</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Agent adoption creates a new security surface: prompts, outputs, and tool calls.</li>
+<li>Existing DLP / EDR / SIEM / firewall tooling does not fully cover the agent layer.</li>
+<li>A dedicated gatekeeper can log, score, block, or require approval for dangerous actions.</li>
+<li>Externally sourced text should not be allowed to directly trigger strong actions.</li>
+<li>Compliance and audit reporting should be generated from the recorded action history.</li>
+<li>Self-training rule updates can raise the floor over time, but they do not replace policy review.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The article uses Aigis as the concrete OSS implementation example.</li>
+<li>It describes logs that capture time, actor, operation, target, risk score, and disposition.</li>
+<li>It names practical control points such as dangerous shell commands, .env writes, and git push.</li>
+<li>It presents four-stage screening and tag-based isolation as the core guard design.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: Qiita article.</li>
+<li>Confidence: high for the article&#x27;s co</li>
+</ul>
+<h3>Claude Code - structural memory for management</h3>
+<p>Source note: <code>wiki/sources/kenichiota0711-claude-code-management-memory-x.md</code></p>
+<h1>Claude Code - structural memory for management</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/kenichiota0711-claude-code-management-memory-x-2026-04-13.md</li>
+<li>Original URL: https://x.com/i/status/2043643311039426670</li>
+<li>Article URL: https://x.com/i/article/2043637369711312896</li>
+<li>Author: 太田賢一／Design Mgr (@kenichiota0711)</li>
+<li>Date: 2026-04-13</li>
+<li>Type: X article card</li>
+</ul>
+<h2>Summary</h2>
+<p>The bookmark title suggests a workflow for structuring management memory with Claude Code so that evaluation quality improves. Because the body text was not captured, this note stays deliberately close to the title-level evidence.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Management memory can be turned into structured artifacts instead of remaining in chat or in someone&#x27;s head.</li>
+<li>Better structure appears to improve the quality of evaluation.</li>
+<li>Claude Code is being used as the operational medium for that structuring, not just as a text generator.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark exposes only the title card, so the evidence is limited to the article framing.</li>
+<li>The card still gives a strong signal that management memory belongs in a reusable artifact system.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X article card.</li>
+<li>Confidence: low to medium because the body was not captured.</li>
+<li>Supports: memory-skill harness, context-file-system, and rule-update-loop thinking.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/memory-skill-harness.md]]</li>
+<li>[[../concepts/context-file-system.md]]</li>
+<li>[[../concepts/rule-update-loop.md]]</li>
+<li>[[../concepts/agent-knowledge-loop.md]]</li>
+</ul>
+<h2>KB Contribution</h2>
+<p>Adds a management-oriented example of treating memory as a structured artifact that can change evaluation quality.</p>
+<h2>Open Questions</h2>
+<ul>
+<li>What minimum structure is enough to make management memory reusable?</li>
+<li>How much of the workflow belongs in files versus in chat?</li>
+</ul>
+<h2>Backlin</h2>
+<h3>Hermes Agent - X search without API keys</h3>
+<p>Source note: <code>wiki/sources/nukonuko-hermes-agent-x-search-api-free-x.md</code></p>
+<h1>Hermes Agent - X search without API keys</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/nukonuko-hermes-agent-x-search-x-2026-05-16.md</li>
+<li>Original URL: https://x.com/i/status/2055789273727877128</li>
+<li>Quoted URL: https://twitter.com/xai/status/2055745332919808181</li>
+<li>Author: ぬこぬこ / NUKO 🇯🇵 (@nukonuko)</li>
+<li>Date: 2026-05-16</li>
+<li>Type: X commentary post</li>
+</ul>
+<h2>Summary</h2>
+<p>The bookmark says that X Premium subscribers can use Hermes Agent to search X posts without needing an API key. That makes the post a concrete example of subscription-gated tool access for a background agent workflow.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Hermes Agent can search X posts.</li>
+<li>The path described does not require a separate API key.</li>
+<li>X Premium subscription access is enough for the workflow the poster is describing.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text itself is short but explicit.</li>
+<li>The quoted original X post is included in the metadata for provenance.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X commentary post.</li>
+<li>Confidence: medium.</li>
+<li>Supports: background agents, agent management, and tool accessibility.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+</ul>
+<h2>KB Contribution</h2>
+<p>Adds a concrete example of consumer-subscription-based access enabling agentic X search without a dedicated API key.</p>
+<h2>Open Questions</h2>
+<ul>
+<li>Which other subscription-gated tools become practically useful once wrapped as an agent workflow?</li>
+<li>How should a harness distinguish between convenience access and production-grade access?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/nukonuko-hermes-agent-x-search-x-2026-05-16.md]]</li>
+</ul>
+<h3>PdM - builder-oriented hiring and role design</h3>
+<p>Source note: <code>wiki/sources/tsubotax-pdm-builder-x.md</code></p>
+<h1>PdM - builder-oriented hiring and role design</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/tsubotax-pdm-builder-x-2026-05-14.md</li>
+<li>Original URL: https://x.com/i/status/2054720240144290291</li>
+<li>Article URL: https://x.com/i/article/2054682036863156224</li>
+<li>Author: 坪田 朋 / クラシル CPO (@tsubotax)</li>
+<li>Date: 2026-05-14</li>
+<li>Type: X article card</li>
+</ul>
+<h2>Summary</h2>
+<p>The bookmark title frames a product-management role shift: PdM hiring should be revised so that the role is closer to a builder than to a pure coordinator. The article appears to ground that shift in the Kurashiru hiring criteria.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>PdMs are increasingly expected to build, not just coordinate.</li>
+<li>Role design and hiring criteria should reflect that shift.</li>
+<li>The article treats the builder framing as a concrete organizational adjustment, not just a slogan.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark capture exposes only the title card, so the evidence is title-level.</li>
+<li>Even at title level, the article is clearly about redefining the PdM role around building.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X article card.</li>
+<li>Confidence: low to medium because the body was not captured.</li>
+<li>Supports: agent-first organization, organizational intent clarity, and agent management.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/agent-first-organization.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+<li>[[../concepts/organizational-intent-clarity.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+</ul>
+<h2>KB Contribution</h2>
+<p>Provides a product-management-facing example of the builder shift that often appears once AI-heavy workflows become operational rather than exploratory.</p>
+<h2>Open Questions</h2>
+<ul>
+<li>Which PdM tasks remain coordination, and which become hands-on building in AI-heavy teams?</li>
+<li>What evaluation criteria distinguish builder-oriented PdMs from traditional coordination-he</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Coding-Agent Harness Patterns</h3>
+<p>KB note: <code>wiki/maps/coding-agent-harness-patterns.md</code></p>
+<h1>Coding-Agent Harness Patterns</h1>
+<h2>Purpose</h2>
+<p>Synthesize practical harness patterns for coding-agent workflows using the KB&#x27;s control vocabulary plus a concrete real-world operator example.</p>
+<h2>Core claim</h2>
+<p>A coding-agent workflow becomes harness engineering when quality and reliability depend on the surrounding artifacts, controls, and review loops rather than on the model prompt alone.</p>
+<h2>Pattern 1. Plan as handoff artifact</h2>
+<p>Use a session-scoped plan file such as <code>plan.md</code> as a durable handoff contract.</p>
+<p>Why it matters:</p>
+<ul>
+<li>makes intent inspectable</li>
+<li>supports context resets and reviewer alignment</li>
+<li>creates a stable object for verifier agents to critique</li>
+</ul>
+<h2>Pattern 2. Verifier split without full multi-agent overhead</h2>
+<p>Use heavy thinking for hard, bounded reasoning: spawn independent temporary thinkers, then have one deliberator critique and synthesize their outputs.</p>
+<p>Use a second agent or model mainly for plan review or implementation review instead of duplicating the whole execution role.</p>
+<h3>Context Management Decision Map</h3>
+<p>KB note: <code>wiki/maps/context-management-decisions.md</code></p>
+<h1>Context Management Decision Map</h1>
+<h2>Purpose</h2>
+<p>Compare the main recovery and continuity moves available to long-running agent systems.</p>
+<h2>Core moves</h2>
+<h3>Continue</h3>
+<ul>
+<li>Keep the current session and context as-is.</li>
+<li>Best when the session is still coherent and the next task is closely related.</li>
+</ul>
+<h3>Rewind</h3>
+<ul>
+<li>Remove a failed branch and restart from the last good point.</li>
+<li>Best when the current line of reasoning is clearly wrong but the session still has useful surrounding state.</li>
+</ul>
+<h3>Clear</h3>
+<ul>
+<li>Explicitly wipe the session context and start over from artifacts.</li>
+<li>Best when the human wants tight control over what remains visible.</li>
+</ul>
+<h3>Compact</h3>
+<ul>
+<li>Condense the current session into a shorter summary.</li>
+<li>Best when the work is still relevant but the raw history is too large or noisy.</li>
+</ul>
+<h3>Delegate</h3>
+<ul>
+<li>Spawn a subagent or separate worker for a noisy or specialized subtask.</li>
+<li>Best when the subtask should not pollute the parent context.</li>
+</ul>
+<h3>Reset</h3>
+<ul>
+<li>Rebuild state from explicit handoff artifacts in a fresh sessi</li>
+</ul>
+<h3>Navigation: Operations / Long-Running Work</h3>
+<p>KB note: <code>wiki/navigation/operations.md</code></p>
+<h1>Navigation: Operations / Long-Running Work</h1>
+<h2>Use When</h2>
+<p>The question is about running agents over time: background agents, routines, scheduled work, handoffs, context resets, delegation, or monitoring.</p>
+<h2>Start Maps</h2>
+<ul>
+<li>[[../maps/ai-adoption-roi-and-capability-investment.md]]</li>
+<li>[[../maps/context-management-decisions.md]]</li>
+<li>[[../maps/orchestration-patterns-faq.md]]</li>
+<li>[[../maps/approval-policy-patterns-and-escalation.md]]</li>
+</ul>
+<h2>Core Concepts</h2>
+<ul>
+<li>[[../concepts/ai-adoption-j-curve.md]]</li>
+<li>[[../concepts/verification-tax.md]]</li>
+<li>[[../concepts/ai-roi-model.md]]</li>
+<li>[[../concepts/agentic-jevons-paradox.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/agent-first-organization.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/agent-dreaming.md]]</li>
+<li>[[../concepts/outcomes.md]]</li>
+<li>[[../concepts/gateway-control-plane.md]]</li>
+<li>[[../concepts/structured-handoff-artifacts.md]]</li>
+<li>[[../concepts/context-resets.md]]</li>
+<li>[[../concepts/context-engineering.md]]</li>
+</ul>
+<p>-</p>
+<h3>Agent-First Organization</h3>
+<p>KB note: <code>wiki/concepts/agent-first-organization.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent-First Organization</p>
+<p>  - AI-Native Organization</p>
+<p>  - AI-First Company</p>
+<hr>
+<h1>Agent-First Organization</h1>
+<h2>Definition</h2>
+<p>An agent-first organization is an operating model where named AI agents own durable work surfaces, carry persistent context, coordinate through shared artifacts, and communicate with each other directly, while humans retain direction, judgment, trust work, and external accountability.</p>
+<h2>Why It Matters</h2>
+<p>Most AI adoption starts as individual acceleration. Agent-first organization design asks a harder question: what changes when the company itself coordinates through agents, taskboards, status files, decision records, handoffs, and review loops rather than through humans relaying every message?</p>
+<h2>Minimum Operating Surfaces</h2>
+<ul>
+<li>Named agent identities and addresses.</li>
+<li>Written role docs such as AGENTS.md or CLAUDE.md.</li>
+<li>Shared taskboard with IDs, owners, status, and priorities.</li>
+<li>Decision records and status files.</li>
+<li>Structured handoffs between role surface</li>
+</ul>
+<h3>Agent Management</h3>
+<p>KB note: <code>wiki/concepts/agent-management.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent Management</p>
+<hr>
+<h1>Agent Management</h1>
+<h2>Definition</h2>
+<p>The human work of assigning tasks, monitoring progress, adjusting the environment, and deciding when to intervene in agent workflows.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, value comes not just from using them but from managing them well. The current source set suggests that workflow design, escalation choices, and background-task supervision are becoming durable human responsibilities rather than temporary scaffolding.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent-captain]]</li>
+<li>[[background-agents]]</li>
+<li>[[harness-engineering]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/ignorance-ai-emerging-harness-engineering-playbook.md]]</li>
+<li>[[../sources/mitchell-hashimoto-ai-adoption-journey.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/nyk-builderz-4-agent-hermes-operator-layer-x.md]]</li>
+<li>[[../sources/sydneyrunkle-agent-harness-vs-runtime-production-x.md]]</li>
+<li>[[../sources/brett-goldstein-agentic-micro-</li>
+</ul>
+<h3>Agent Safety</h3>
+<p>KB note: <code>wiki/concepts/agent-safety.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent Safety</p>
+<hr>
+<h1>Agent Safety</h1>
+<h2>Definition</h2>
+<p>The set of mechanisms and design choices used to keep an agent helpful, bounded, and resistant to harmful or misaligned behavior.</p>
+<h2>Why It Matters</h2>
+<p>As agents gain tools and autonomy, safety becomes an architectural concern rather than just a prompt concern.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[behavioral stability]]</li>
+<li>[[approval policy]]</li>
+<li>[[human-in-the-loop]]</li>
+<li>[[failure modes]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/newspicks-harness-engineering-what-is-it.md]]</li>
+<li>[[../sources/anthropic-emotion-concepts.md]]</li>
+<li>[[../sources/anthropic-claude-code-auto-mode.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-mythos-preview.md]]</li>
+<li>[[../sources/spillwave-ai-coding-hangover-harness-engineering.md]]</li>
+<li>[[../sources/openclaw-release-v2026-4-11-github.md]]</li>
+<li>[[../sources/keisuke69-ai-agent-security-enterprise-adoption-qiita.md]]</li>
+</ul>
+<ul>
+<li>[</li>
+</ul>
+<h3>Background Agents</h3>
+<p>KB note: <code>wiki/concepts/background-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Background Agents</p>
+<hr>
+<h1>Background Agents</h1>
+<h2>Definition</h2>
+<p>Agents launched to work asynchronously while the human focuses elsewhere or is offline.</p>
+<h2>Why It Matters</h2>
+<p>They can create leverage by using otherwise idle time and by parallelizing exploratory work.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[long-running-agents]]</li>
+<li>[[task-decomposition]]</li>
+<li>[[agent-management]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/mitchell-hashimoto-ai-adoption-journey.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-scheduled-tasks-x.md]]</li>
+<li>[[../sources/anthropic-claude-code-scheduled-tasks-dynamic-loop-docs.md]]</li>
+<li>[[../sources/noahzweben-dynamic-loop-x.md]]</li>
+<li>[[../sources/oikon48-monitor-tool-x.md]]</li>
+<li>[[../sources/noahzweben-autofix-pr-x.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/cursor-3-blog.md]]</li>
+<li>[[.</li>
+</ul>
+<h3>Context File System</h3>
+<p>KB note: <code>wiki/concepts/context-file-system.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Context File System</p>
+<hr>
+<h1>Context File System</h1>
+<h2>Definition</h2>
+<p>A lightweight external-memory pattern where an assistant reads and updates a small set of durable files such as instructions, memory, and project context instead of relying only on chat history or product-native saved memory.</p>
+<h2>Why It Matters</h2>
+<p>It offers a practical middle layer between built-in chat memory and a full knowledge graph or second-brain system. For many workflows, a few well-maintained files provide enough persistence, inspectability, and editability to improve consistency.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled wiki]]</li>
+<li>[[obsidian as interface]]</li>
+<li>[[durability]]</li>
+<li>[[tool accessibility]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/aiedge-supercharge-claude-memory-x.md]]</li>
+<li>[[../sources/obsidian-mind-github.md]]</li>
+<li>[[../sources/sukh-saroy-obsidian-mind-x.md]]</li>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/coreyganim-karpathy-second-</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>7</code>, commits: <code>4</code></p></footer>
+
+</body>
+</html>
