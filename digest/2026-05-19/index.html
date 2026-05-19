@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-19 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-19/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB NotebookLM Podcast Pages</a> / Daily Digest / 2026-05-19</header>
+<h1>KB Daily Digest 2026-05-19</h1>
+<div class="note">
+  <strong>NotebookLM用URL:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しくPodcast化しやすい文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-19/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-19">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-19</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest - 2026-05-19</h1>
+<p>2026-05-19 UTC の knowledge-base-llm は、前日の「長期運用・記憶・レビュー面」寄りの流れを受けて、よりプロダクト機能としての coding-agent harness に寄った更新だった。新規 raw/wiki/source としては X bookmarks ingest 由来の4件が入り、Cursor Composer 2.5、Claude Design の token limit 拡張、Devin Auto-Triage、implementation-notes.html という4つの材料が追加された。全体としては、モデル単体の賢さよりも、長く働ける agent、豊かな artifact、運用ループ、実装中の判断ログをどう組み合わせるかに焦点が移っている。</p>
+<p>いちばん大きいソースは Cursor の Composer 2.5 告知。Cursor は Composer 2.5 を「これまでで最も有能なモデル」として位置づけ、長時間タスクや instruction following の信頼性を強調している。KB上では、この材料は <code>coding-agents</code>、<code>long-running-agents</code>、<code>context-engineering</code>、<code>harness-engineering</code> に接続された。ここで重要なのは、単にベンチマーク上の性能が上がったという話ではなく、実務で崩れやすい「長い作業を継続して、指示を保持し続ける」部分がプロダクト価値の中心として語られている点。</p>
+<p>2本目の重要ソースは Claude Design の token limits doubled。Claude Design は、全プランで token limit が倍増し、より大きな creation を扱えるようになったと説明されている。KBでは <code>rich-agent-output-artifact</code>、<code>structured-handoff-artifacts</code>、<code>harness-engineering</code> に接続された。これは coding agent だけの話ではなく、設計・UI・資料・複合 artifact を一回の文脈で扱える範囲が広がるという capacity signal で、分割や再説明のコストを下げる方向の更新として読める。</p>
+<p>3本目は Cognition の Devin Auto-Triage。Devin が bug、alert、incident を監視し、調査し、文脈・次の手・場合によっては PR まで返す「AI first-responder」として紹介されている。KBでは <code>long-running-agents</code>、<code>multi-agent-orchestration</code>、<code>memory-skill-harness</code>、<code>harness-engineering</code> に接続された。これはエディタ内支援ではなく、運用面の triage loop を agent が担う例で、長期記憶、サブタスク分解、調査、実装提案が同じワークフローに入ってくる。</p>
+<p>補助的だが実務上かなり効くのが、Thariq の <code>implementation-notes.html</code> prompt pattern。spec 実装中に、仕様からの解釈・逸脱・拡張を browser-readable な HTML artifact に残し続けるというもの。KBでは <code>rich-agent-output-artifact</code>、<code>structured-handoff-artifacts</code>、<code>context-engineering</code>、<code>verification-tax</code> に接続された。これは、モデルに「覚えておいて」と頼む代わりに、判断理由をレビュー可能な成果物として残す小さな harness で、レビュー負荷や引き継ぎコストを下げるパターンとして強い。</p>
+<p>更新された地図としては <code>coding-agent-harness-patterns</code> が中心。新しく「Manager-subagent fleet with durable memory」というパターンが追加され、Devin Auto-Triage を、open-ended だが運用範囲が明確な triage / delegation 形態として整理している。既存の plan files、verifier split、deterministic checks、rule-update loop、durable operating threads、artifact-native review surface に、継続監視と incident response の具体例が加わった形だ。</p>
+<p>今日の全体トレンドは、「長く動く agent」と「大きな artifact」と「判断ログ」が同じ方向に伸びていること。Cursor は長時間タスクの信頼性、Claude は大きな creation の文脈容量、Devin は運用ループの自律化、Thariq は実装中判断の外部化を示している。つまり、KBの視点では、agent 活用の実務課題が「モデルにうまく依頼する」から「agent が働ける環境、記憶、成果物、監視範囲を設計する」へさらに寄った。</p>
+<p>実務上の示唆は、導入順序を間違えないこと。強いモデルや大きな token limit は便利だが、それだけではレビュー可能性や運用責任は生まれない。小さく始めるなら、長いタスクを渡す前に、進捗ログ、判断ログ、テストや lint、レビュー用 artifact、どこまで自動実行してよいかの境界を用意するのが筋がいい。今日の更新は、個別プロダクトのニュースを、coding-agent harness の部品表として読めるようにしている。</p>
+<p>次に追うべき問いは3つある。第一に、Composer 2.5 のような長時間タスク強化は、どの種類の作業で本当にレビュー負荷を下げるのか。第二に、Claude Design のような大きな artifact 文脈は、structured handoff とどう組み合わせると再利用可能になるのか。第三に、Devin Auto-Triage 型の first-responder agent は、どの incident / support 領域なら人間の承認前提で安全に回せるのか。この3点を追うと、agent harness の実務地図がさらに具体化しそう。</p>
+<h2>Important Sources</h2>
+<ul>
+<li>Cursor - Composer 2.5: <code>wiki/sources/cursor-ai-composer-2-5-x.md</code></li>
+<li>Claude - Claude Design token limits doubled across every plan: <code>wiki/sources/claudeai-claude-design-token-limits-doubled-x.md</code></li>
+<li>Cognition - Devin Auto-Triage: <code>wiki/sources/cognition-devin-auto-triage-long-term-memory-x.md</code></li>
+</ul>
+<h2>Supporting Source</h2>
+<ul>
+<li>Thariq - implementation-notes.html prompt: <code>wiki/sources/trq212-implementation-notes-html-prompt-x.md</code></li>
+</ul>
+<h2>Verification Notes</h2>
+<ul>
+<li>New/changed material was detected from git log and mtime under <code>raw/</code>, <code>wiki/</code>, and <code>outputs/</code> for 2026-05-19 UTC.</li>
+<li>Key commit: <code>a19dd2d Add daily x bookmarks ingest</code>.</li>
+<li>New raw/source material: 4 X bookmark-derived article/source notes plus <code>raw/x/bookmarks/bookmarks-20260519T0005Z.json</code>.</li>
+<li>Evidence limits: all four source notes are X post/card captures with moderate evidence strength; the report avoids claims beyond captured metadata and KB note summaries.</li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Claude - Claude Design token limits doubled across every plan</h3>
+<p>Source note: <code>wiki/sources/claudeai-claude-design-token-limits-doubled-x.md</code></p>
+<h1>Claude - Claude Design token limits doubled across every plan</h1>
+<h2>Source metadata</h2>
+<ul>
+<li>Raw path: raw/articles/claudeai-claude-design-token-limits-doubled-x-2026-05-18.md</li>
+<li>Original URL: https://x.com/claudeai/status/2056460045756309820</li>
+<li>Bookmark post id: 2056460045756309820</li>
+<li>Author: Claude (@claudeai)</li>
+<li>Date: 2026-05-18</li>
+<li>Type: X post / image card</li>
+<li>Evidence strength: moderate; bookmark text only</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Public metrics at capture: 567 reposts, 505 replies, 10130 likes, 260 quotes, 1796 bookmarks, 551799 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Claude says Claude Design can now handle larger creations because token limits were doubled across every plan.</p>
+<h2>Why It Matters</h2>
+<p>This is a capacity signal for rich artifact workflows. Bigger token budgets make it easier to keep more structure, layout, and design context in a single pass instead of fragmenting the output.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/rich-agent-output-artifact.md]]</li>
+<li>[[../concepts/structured-handoff-artifacts.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/claudeai-claude-design-token-limits-doubled-x-2026-05-18.md]]</li>
+</ul>
+<h3>Cognition - Devin Auto-Triage</h3>
+<p>Source note: <code>wiki/sources/cognition-devin-auto-triage-long-term-memory-x.md</code></p>
+<h1>Cognition - Devin Auto-Triage</h1>
+<h2>Source metadata</h2>
+<ul>
+<li>Raw path: raw/articles/cognition-devin-auto-triage-long-term-memory-x-2026-05-18.md</li>
+<li>Original URL: https://x.com/cognition/status/2056396941181727210</li>
+<li>Bookmark post id: 2056396941181727210</li>
+<li>Author: Cognition (@cognition)</li>
+<li>Date: 2026-05-18</li>
+<li>Type: X post / video card</li>
+<li>Evidence strength: moderate; bookmark text only</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Public metrics at capture: 43 reposts, 21 replies, 353 likes, 27 quotes, 185 bookmarks, 104214 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Devin Auto-Triage is framed as an AI first-responder with long-term memory that can monitor incoming bugs, alerts, and incidents, investigate them, and return with context, next steps, or a PR.</p>
+<h2>Why It Matters</h2>
+<p>This is a strong harness signal: the agent is not just generating code, it is taking ownership of a triage loop with memory, subtasking, and actionable incident response.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/memory-skill-harness.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/cognition-devin-auto-triage-long-term-memory-x-2026-05-18.md]]</li>
+</ul>
+<h3>Cursor - Composer 2.5</h3>
+<p>Source note: <code>wiki/sources/cursor-ai-composer-2-5-x.md</code></p>
+<h1>Cursor - Composer 2.5</h1>
+<h2>Source metadata</h2>
+<ul>
+<li>Raw path: raw/articles/cursor-ai-composer-2-5-x-2026-05-18.md</li>
+<li>Original URL: https://x.com/cursor_ai/status/2056415413077233983</li>
+<li>Bookmark post id: 2056415413077233983</li>
+<li>Author: Cursor (@cursor_ai)</li>
+<li>Date: 2026-05-18</li>
+<li>Type: X post / image card</li>
+<li>Evidence strength: moderate; bookmark text only</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Public metrics at capture: 822 reposts, 604 replies, 8746 likes, 572 quotes, 1552 bookmarks, 10383345 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Cursor positions Composer 2.5 as its most capable model yet, especially for sustained work on long-running tasks and instruction-following reliability.</p>
+<h2>Why It Matters</h2>
+<p>This is directly relevant to agent loops. The claim is not just raw benchmark strength; it is that sustained, multi-turn work is getting more dependable, which is the part that usually breaks in practice.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/context-engineering.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/cursor-ai-composer-2-5-x-2026-05-18.md]]</li>
+</ul>
+<h3>Thariq - implementation-notes.html prompt</h3>
+<p>Source note: <code>wiki/sources/trq212-implementation-notes-html-prompt-x.md</code></p>
+<h1>Thariq - implementation-notes.html prompt</h1>
+<h2>Source metadata</h2>
+<ul>
+<li>Raw path: raw/articles/trq212-implementation-notes-html-prompt-x-2026-05-18.md</li>
+<li>Original URL: https://twitter.com/trq212/status/2056415973125796184</li>
+<li>Bookmark post id: 2056419378154139656</li>
+<li>Author: Thariq (@trq212)</li>
+<li>Date: 2026-05-18</li>
+<li>Type: X post / text card</li>
+<li>Evidence strength: moderate; bookmark text only</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Public metrics at capture: 21 reposts, 0 replies, 324 likes, 6 quotes, 531 bookmarks, 34741 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>The prompt pattern asks an agent to maintain an implementation-notes.html file while implementing a spec, capturing every place where the implementation diverges from, interprets, or extends the spec.</p>
+<h2>Why It Matters</h2>
+<p>This is a concrete handoff artifact pattern. Instead of hoping the model will remember why it made decisions, the workflow makes the deviations visible in a browser-readable artifact while work is in flight.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/rich-agent-output-artifact.md]]</li>
+<li>[[../concepts/structured-handoff-artifacts.md]]</li>
+<li>[[../concepts/context-engineering.md]]</li>
+<li>[[../concepts/verification-tax.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/trq212-implementation-notes-html-prompt-x-2026-05-18.md]]</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Coding-Agent Harness Patterns</h3>
+<p>KB note: <code>wiki/maps/coding-agent-harness-patterns.md</code></p>
+<h1>Coding-Agent Harness Patterns</h1>
+<h2>Purpose</h2>
+<p>Synthesize practical harness patterns for coding-agent workflows using the KB&#x27;s control vocabulary plus a concrete real-world operator example.</p>
+<h2>Core claim</h2>
+<p>A coding-agent workflow becomes harness engineering when quality and reliability depend on the surrounding artifacts, controls, and review loops rather than on the model prompt alone.</p>
+<h2>Pattern 1. Plan as handoff artifact</h2>
+<p>Use a session-scoped plan file such as <code>plan.md</code> as a durable handoff contract.</p>
+<p>Why it matters:</p>
+<ul>
+<li>makes intent inspectable</li>
+<li>supports context resets and reviewer alignment</li>
+<li>creates a stable object for verifier agents to critique</li>
+</ul>
+<h2>Pattern 2. Verifier split without full multi-agent overhead</h2>
+<p>Use heavy thinking for hard, bounded reasoning: spawn independent temporary thinkers, then have one deliberator critique and synthesize their outputs.</p>
+<p>Use a second agent or model mainly for plan review or implementation review instead of duplicating the whole execution role.</p>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>4</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
