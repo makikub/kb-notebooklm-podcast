@@ -41,7 +41,7 @@ Masaki's bookmark signal remains heavily centered on agent harnesses, coding-age
 - Introducing GPT-Realtime-2 in the API: our most intelligent voice model yet, bringing GPT-… — @OpenAI (2026-05-07) https://x.com/OpenAI/status/2052438194625593804
 - Our new voice models are now available in the Realtime API: 🎙️ GPT-Realtime-2: Build produ… — @OpenAI (2026-05-07) https://x.com/OpenAI/status/2052438196454379986
 - gemini 3.1 flash-lite is here it's our most cost-efficient model, optimized for high-volum… — @GoogleAIStudio (2026-05-07) https://x.com/GoogleAIStudio/status/2052453828272812310
-- Codex can now take on more of your browser dev work. With the 
+- Codex can now take on more of your browser dev work. With the
 
 ## 関連ノートからの補助材料
 

@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-20 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-20/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB NotebookLM Podcast Pages</a> / Daily Digest / 2026-05-20</header>
+<h1>KB Daily Digest 2026-05-20</h1>
+<div class="note">
+  <strong>NotebookLM用URL:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しくPodcast化しやすい文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-20/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-20">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-20</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest — 2026-05-20</h1>
+<p>今日の knowledge-base-llm は、UTC 00:05 の xurl bookmarks capture から raw 1件と wiki/source 8件が追加されました。中心は Google I/O 周辺の Gemini 3.5 Flash / Gemini Spark、Claude の computer/browser use 実装指針、そして非同期コーディングや自動PRパイプラインに関する実務寄りのシグナルです。単発ニュースというより、「モデルが強く安くなるほど、現場の制約は生成能力から検証・実行基盤・責任分界へ移る」という KB の既存テーマを補強する更新でした。</p>
+<p>重要ソースの1本目は Logan Kilpatrick の Gemini 3.5 Flash launch と、usutaku の Google I/O 即時利用まとめです。どちらも launch-day の速報性が強い一方で、KB への意味は「何が発表されたか」より「今日から使える低コスト・高速・高性能モデル層がワークフロー設計をどう変えるか」にあります。Flash-tier の能力が上がると、雑に生成できる範囲は広がりますが、そのぶん人間側のレビュー、テスト、ジョブ設計、失敗検出が詰まりやすくなります。既存概念では [[verification tax]] と [[agentic Jevons paradox]] に強く接続します。</p>
+<p>2本目は Claude の computer/browser use best practices へのブックマークです。これはブラウザやコンピュータ操作をモデルに任せるときの durable harness topic で、KB の [[harness engineering]]、[[self-verification]]、[[long-running agents]] に直結します。モデル単体の賢さではなく、観測、制約、リトライ、確認、ユーザー介入点をどう置くかが主役です。今日の更新の中では、もっとも「あとで一次ソースとして掘り直す価値がある」ソースです。</p>
+<p>3本目は Boris Cherny の async coding / verification に関する引用と、r.kagaya の refactoring auto-PR pipeline です。どちらも「エージェントへ任せる」ことの価値が、非同期化と自己検証に依存していると示しています。自動PRやバックグラウンドのリファクタリングは、派手なデモより地味な検証ループが効く領域です。最小限のテスト、差分説明、レビュー可能なPR粒度、失敗時の止まり方が揃って初めて、人間は別作業へ移れます。</p>
+<p>Gemini Spark についてのメモは、24時間稼働する専用VM上の personal AI agent という実行基盤のシグナルとして追加されました。ここでも価値の中心は「モデル」より「常駐実行環境」です。KB 内では [[agent autonomy]]、[[background agents]]、[[long-running agents]]、[[managed agents]] の交差点に置かれます。今後の問いは、Spark がエンドユーザー向けアシスタントの表層なのか、より広い agent runtime pattern の兆しなのかです。</p>
+<p>Karpathy の Anthropic 参加は、今日の中ではプロダクト機能というより talent / org signal です。frontier R&amp;D、教育、プロダクト反復の接続が強まる可能性があり、[[agent-first organization]]、[[agent-management]]、[[sustainable AI work]] に薄く接続されました。直接的な実装示唆はまだ弱いですが、KB の人物・組織シグナルとしては大きい更新です。</p>
+<p>iwashi86 の「2年後のエンジニア/チームの働き方」は、開発速度が上がることで仕様書や個人単位のコードオーナーシップが揺らぐ、という組織設計の論点を追加しています。これは今日の技術更新群の裏側にある人間側の問題です。AI によって開発が速くなるほど、意図の記録、責任の分配、レビュー能力、共有所有の設計が重要になります。KB では [[product responsibility distribution]]、[[agent-first organization]]、[[agentic Jevons paradox]] に接続されました。</p>
+<p>全体トレンドとしては、Google 系の「利用可能になったモデル/エージェント」、Anthropic 系の「コンピュータ利用と非同期コーディングの実装指針」、実務者側の「自動PR・所有権・検証」の3つが同じ方向を向いています。つまり、2026-05-20 の更新は「AI が何を生成できるか」ではなく、「AI をバックグラウンドで働かせ続けるために、どの実行基盤と検証習慣が必要か」を補強する日でした。</p>
+<p>次に追うべき問いは3つです。第一に、Gemini 3.5 Flash の安価・高速な能力は、実際にどのワークフローの検証税を増やすのか減らすのか。第二に、Claude の computer/browser use best practices は、KB の harness taxonomy にどんな具体項目として取り込めるのか。第三に、自動PRパイプラインを信頼できる運用にする最小検証セットは何か。ここは NotebookLM Podcast でも、重要ソース3本を軸に実務上の示唆として掘るとよさそうです。</p>
+<p>公開HTML: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-20/</p>
+<p>NotebookLM用 source.md: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-20/source.md</p>
+<h2>重要ソース</h2>
+<h3>2年後のエンジニア/チームの働き方とコードオーナーシップ</h3>
+<p>Source note: <code>wiki/sources/iwashi86-engineer-workstyle-code-ownership-x-2026-05-19.md</code></p>
+<h1>2年後のエンジニア/チームの働き方とコードオーナーシップ</h1>
+<h2>Source metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/i/status/2056864980998193331</li>
+<li>Author: iwashi / Yoshimasa Iwase (@iwashi86)</li>
+<li>Tweet created: 2026-05-19T22:30:00.000Z</li>
+<li>Captured: 2026-05-20 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata; external/article body not independently fetched in this backfill</li>
+<li>Public metrics at capture: 99 likes, 86 bookmarks, 14 reposts, 1 replies, 6015 impressions</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>2年後のエンジニア（やチームの）働き方ってどうなるだろう、ってのを想像して書いてみました。</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>&quot;開発があまりに早すぎるので、仕様書は書かれた瞬間から古くなっていく。誰も無条件には仕様書を信用しなくなった&quot;</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>&quot;コードオーナーシップという概念は、もはや個人の単位では成立しない&quot;</p>
+</blockquote>
+<h2>Why it matters to this KB</h2>
+<p>This bookmark is a compact signal that faster development pressure is pushing teams toward shared ownership, stronger intent artifacts, and more explicit responsibility boundaries.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/product-responsibility-distribution|product responsibility distribution]]</li>
+<li>[[../concepts/agent-first-organization|agent-first organization]]</li>
+<li>[[../concepts/agentic-jevons-paradox|agentic Jevons paradox]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Which part of this shift is about AI speed, and which part is a broader org-design change?</li>
+</ul>
+<h3>Karpathy joined Anthropic</h3>
+<p>Source note: <code>wiki/sources/karpathy-joined-anthropic-x-2026-05-19.md</code></p>
+<h1>Karpathy joined Anthropic</h1>
+<h2>Source metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/i/status/2056753169888334312</li>
+<li>Author: Andrej Karpathy (@karpathy)</li>
+<li>Tweet created: 2026-05-19T15:05:42.000Z</li>
+<li>Captured: 2026-05-20 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata; external/article body not independently fetched in this backfill</li>
+<li>Public metrics at capture: 115455 likes, 10928 bookmarks, 8785 reposts, 6611 replies, 14909530 impressions</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>Personal update: I&#x27;ve joined Anthropic. I think the next few years at the frontier of LLMs will be especially formative. I am very excited to join the team here and get back to R&amp;D. I remain deeply passionate about education and plan to resume my work on it in time.</p>
+</blockquote>
+<h2>Why it matters to this KB</h2>
+<p>This is mostly a talent and org signal: frontier work is still pulling in people who care about research velocity, product iteration, and educational spillover.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/agent-first-organization|agent-first-organization]]</li>
+<li>[[../concepts/agent-management|agent management]]</li>
+<li>[[../concepts/sustainable-ai-work|sustainable AI work]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Does this move mostly signal research momentum, product momentum, or both?</li>
+</ul>
+<h3>Gemini Spark summary</h3>
+<p>Source note: <code>wiki/sources/mlbear-gemini-spark-summary-x-2026-05-19.md</code></p>
+<h1>Gemini Spark summary</h1>
+<h2>Source metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/i/status/2056793515569582361</li>
+<li>Author: ML_Bear (@MLBear2)</li>
+<li>Tweet created: 2026-05-19T17:46:02.000Z</li>
+<li>Captured: 2026-05-20 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata; external/article body not independently fetched in this backfill</li>
+<li>Public metrics at capture: 40 likes, 26 bookmarks, 9 reposts, 0 replies, 3749 impressions</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/MLBear2/status/2056793515569582361/photo/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>【Gemini Sparkまとめ】</p>
+<p>・あなた専用のパーソナルAIエージェント。デジタル生活をナビゲートし、あなたの指示のもとで代わりに行動する</p>
+<p>・Google側が用意する専用の仮想マシン上で24時間稼働。ラップトップを閉じてもタスクは継続</p>
+<p>・Gemini 3.5とGoogle https://t.co/D0CqWiPFFM</p>
+</blockquote>
+<h2>Why it matters to this KB</h2>
+<p>This is a compact product signal for a more autonomous, always-on agent execution model. The key value is the execution substrate, not just the model.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/agent-autonomy|agent autonomy]]</li>
+<li>[[../concepts/background-agents|background agents]]</li>
+<li>[[../concepts/long-running-agents|long-running agents]]</li>
+<li>[[../concepts/managed-agents|managed agents]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Is Gemini Spark primarily an end-user assistant surface, or a broader agent-runtime pattern?</li>
+</ul>
+<h3>Gemini 3.5 Flash launch</h3>
+<p>Source note: <code>wiki/sources/officiallogank-gemini-35-flash-launch-x-2026-05-19.md</code></p>
+<h1>Gemini 3.5 Flash launch</h1>
+<h2>Source metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/i/status/2056792266514329914</li>
+<li>Author: Logan Kilpatrick (@OfficialLoganK)</li>
+<li>Tweet created: 2026-05-19T17:41:04.000Z</li>
+<li>Captured: 2026-05-20 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata; external/article body not independently fetched in this backfill</li>
+<li>Public metrics at capture: 5860 likes, 729 bookmarks, 593 reposts, 335 replies, 310309 impressions</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/OfficialLoganK/status/2056792266514329914/photo/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>Welcome to Gemini 3.5 Flash, our most powerful model to date. It pushes the frontier of intelligence, speed, and cost putting 3.5 Flash in a class of its own.</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>We spent the last 6 months making sure Flash is great for real world use cases. It&#x27;s available everywhere now! https://t.co/03QG3fSh9b</p>
+</blockquote>
+<h2>Why it matters to this KB</h2>
+<p>This is a release signal for model-tier economics: more capable, cheaper, and broader availability can shift the bottleneck from generation to verification and orchestration.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/agentic-jevons-paradox|agentic Jevons paradox]]</li>
+<li>[[../concepts/sustainable-ai-work|sustainable AI work]]</li>
+<li>[[../concepts/verification-tax|verification tax]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>What workflows actually change when a cheaper, stronger flash-tier model becomes globally available?</li>
+</ul>
+<h3>Best practices for computer and browser use with Claude</h3>
+<p>Source note: <code>wiki/sources/oikon48-best-practices-computer-browser-use-with-claude-x-2026-05-19.md</code></p>
+<h1>Best practices for computer and browser use with Claude</h1>
+<h2>Source metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/i/status/2056844471187517469</li>
+<li>Author: Oikon (@oikon48)</li>
+<li>Tweet created: 2026-05-19T21:08:30.000Z</li>
+<li>Captured: 2026-05-20 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata; external/article body not independently fetched in this backfill</li>
+<li>Public metrics at capture: 14 likes, 24 bookmarks, 1 reposts, 0 replies, 2320 impressions</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://claude.com/blog/best-practices-for-computer-and-browser-use-with-claude</li>
+<li>https://x.com/oikon48/status/2056844471187517469/photo/1</li>
+<li>https://twitter.com/ClaudeDevs/status/2056835339193561170</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>Best practices for computer and browser use with Claude</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>https://t.co/9kaxhi59Jp https://t.co/8OyCjhXG2y https://t.co/iO7RBixmO2</p>
+</blockquote>
+<h2>Why it matters to this KB</h2>
+<p>This bookmark points to a durable harness topic: how to make browser/computer execution reliable enough that the model can work on real tasks without taking over the whole workflow.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/harness-engineering|harness engineering]]</li>
+<li>[[../concepts/verification-tax|verification tax]]</li>
+<li>[[../concepts/self-verification|self-verification]]</li>
+<li>[[../concepts/long-running-agents|long-running agents]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Does the official blog add implementation details that should become a separate primary source note later?</li>
+</ul>
+<h3>Boris Cherny on async coding and verification</h3>
+<p>Source note: <code>wiki/sources/oikon48-boris-cherny-async-coding-verification-x-2026-05-19.md</code></p>
+<h1>Boris Cherny on async coding and verification</h1>
+<h2>Source metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/i/status/2056659150160236706</li>
+<li>Author: Oikon (@oikon48)</li>
+<li>Tweet created: 2026-05-19T08:52:06.000Z</li>
+<li>Captured: 2026-05-20 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata; external/article body not independently fetched in this backfill</li>
+<li>Public metrics at capture: 134 likes, 47 bookmarks, 14 reposts, 4 replies, 15756 impressions</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/oikon48/status/2056659150160236706/photo/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>Claude Codeの生みの親 Boris Cherny ( @bcherny )</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>『今後コーディングは非同期(Async)で行われていくでしょう。だから検証 (Verification) が重要なんです。エージェントが自ら検証できればタスクを任せて、並行してあなたは別のタスクを進めることができます。』 https://t.co/y39A0BOvVy</p>
+</blockquote>
+<h2>Why it matters to this KB</h2>
+<p>This is a succinct articulation of the harness thesis: async delegation only scales if the system can verify its own output well enough to free the human for parallel work.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/self-verification|self-verification]]</li>
+<li>[[../concepts/verification-tax|verification tax]]</li>
+<li>[[../concepts/background-agents|background agents]]</li>
+<li>[[../concepts/long-running-agents|long-running agents]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Which verification checks are cheap enough to run continuously in the background?</li>
+</ul>
+<h3>Refactoring auto-PR pipeline as one of the best things built recently</h3>
+<p>Source note: <code>wiki/sources/ry0_kaga-refactoring-auto-pr-pipeline-agentic-engineering-x-2026-05-19.md</code></p>
+<h1>Refactoring auto-PR pipeline as one of the best things built recently</h1>
+<h2>Source metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/i/status/2056640944066433077</li>
+<li>Author: r.kagaya | オライリーAIエンジニアリングが発売中です (@ry0_kaga)</li>
+<li>Tweet created: 2026-05-19T07:39:46.000Z</li>
+<li>Captured: 2026-05-20 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata; external/article body not independently fetched in this backfill</li>
+<li>Public metrics at capture: 18 likes, 12 bookmarks, 2 reposts, 0 replies, 685 impressions</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>書き始めたら思ったよりも書くことがなかった</p>
+<p>ここ数ヶ月で一番作って良かったのは、リファクタリングの自動PRパイプラインです。</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>やはりAgentic Enginneringはルンバに似ている..</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>大規模な変更以外は、ほぼバックグラウンドで動くAgentic</p>
+</blockquote>
+<h2>Why it matters to this KB</h2>
+<p>This is a concrete practitioner signal that automated refactoring pipelines are becoming a useful background worker, not just a demo or one-off productivity trick.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/harness-engineering|harness engineering]]</li>
+<li>[[../concepts/background-agents|background agents]]</li>
+<li>[[../concepts/long-running-agents|long-running agents]]</li>
+<li>[[../concepts/verification-tax|verification tax]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>What minimum verification loop keeps an auto-PR refactoring pipeline trustworthy in a real repo?</li>
+</ul>
+<h3>Google I/O immediate-use summary for Gemini 3.5 Flash</h3>
+<p>Source note: <code>wiki/sources/usutaku-google-io-gemini-35-flash-summary-x-2026-05-19.md</code></p>
+<h1>Google I/O immediate-use summary for Gemini 3.5 Flash</h1>
+<h2>Source metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/i/status/2056795160995119429</li>
+<li>Author: usutaku (@usutaku_channel)</li>
+<li>Tweet created: 2026-05-19T17:52:34.000Z</li>
+<li>Captured: 2026-05-20 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata; external/article body not independently fetched in this backfill</li>
+<li>Public metrics at capture: 437 likes, 350 bookmarks, 84 reposts, 4 replies, 90133 impressions</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/usutaku_channel/status/2056795160995119429/photo/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>Google I/Oで新機能紹介されたけど「結局”今”使える機能がどれなのか知りたい！」が重要なので、、、</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>一覧でまとめました！</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>※最速まとめなので一部変更や修正あるかもです</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>【すぐに使えるもの】</p>
+<p>・Gemini 3.5 Flash：本日から（グローバル）</p>
+<p>・Gemini Omni Flash in Gemini app / Google https://t.co/yz0z3GXfK9</p>
+</blockquote>
+<h2>Why it matters to this KB</h2>
+<p>This is useful as a fast-moving release snapshot: the practical question is not announcement volume, but what is actually available now.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/agentic-jevons-paradox|agentic Jevons paradox]]</li>
+<li>[[../concepts/sustainable-ai-work|sustainable AI work]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Which of the I/O announcements survive beyond launch-day hype and into repeatable workflows?</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>8</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
