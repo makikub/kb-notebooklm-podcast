@@ -1,0 +1,15 @@
+{
+  "date": "2026-05-21T03:00:24.661671+09:00",
+  "topic_id": "wiki/maps/ai-adoption-roi-and-capability-investment.md",
+  "title": "AI Adoption ROI and Capability Investment",
+  "output_dir": "outputs/notebooklm-podcast/2026-05-21",
+  "page": "outputs/notebooklm-podcast/2026-05-21/notebooklm-source.md",
+  "related": [
+    "wiki/sources/dora-roi-ai-assisted-software-development.md",
+    "wiki/sources/simon-willison-gitlab-act-2.md",
+    "wiki/maps/coding-agent-cognitive-debt-and-review-capacity.md",
+    "wiki/sources/anthropic-2026-agentic-coding-trends-report.md",
+    "wiki/maps/coding-agent-harness-patterns.md"
+  ],
+  "char_count": 9343
+}
