@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-21 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-21/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB NotebookLM Podcast Pages</a> / Daily Digest / 2026-05-21</header>
+<h1>KB Daily Digest 2026-05-21</h1>
+<div class="note">
+  <strong>NotebookLM用URL:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しくPodcast化しやすい文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-21/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-21">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-21</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest - 2026-05-21</h1>
+<p>今日の knowledge-base-llm は、X bookmarks capture から 5本の新規ソースノートを追加し、6つの概念ノートを更新した。全体の流れはかなり明確で、「モデル単体の性能」よりも、エージェントを実務で使うための作業面、出力形式、リポジトリ設計、複数サーフェスの統合に焦点が寄っている。</p>
+<p>重要ソースの1本目は、OpenAI が Codex を社内でどう使っているかを紹介するPDFへの公開ポスト。KB上ではPDF本文は未取得なので証拠強度は限定的だが、セキュリティ、インフラ、フロントエンド、APIチームが、未知のコードベース理解や広範囲リファクタに Codex を日常利用しているという運用シグナルが強い。これは <code>harness-engineering</code> と <code>agent-recognizable-repository</code> の文脈で重要で、エージェントが速く役に立つかどうかは、モデル性能だけでなく、コードベースを読める構造や検証しやすい作業面に左右される。</p>
+<p>2本目は Anthropic 公式ブログ「Using Claude Code: The unreasonable effectiveness of HTML」へのブックマーク。ここでは、MarkdownだけでなくHTMLをエージェント出力の成果物として使う発想が整理されている。KBでは <code>rich-agent-output-artifact</code> に接続され、出力形式は単なる見た目ではなく、レビュー可能性、共有可能性、再利用可能性を上げるハーネスの一部として扱われている。</p>
+<p>3本目は Google Antigravity 2.0 / Gemini CLI のローンチクラスター。CLI、デスクトップ、SDK、IDE を Antigravity に統合し、マルチエージェント、スケジュールタスク、音声、Google系サーフェス連携を含むプラットフォームとして提示している。KB上では <code>managed-agents</code> と <code>multi-agent-orchestration</code> の支援ソースになり、エージェント製品が単一UIではなく、複数の操作面と実行面をまとめた platform family へ移っていることを示す材料になった。</p>
+<p>Figma Design Agent のソースも同じ流れにある。単に「AIでデザイン案を作る」より、Figmaのキャンバス、選択レイヤー、ライブラリ、コンポーネント、トークンを文脈として使えるエージェント、という点が重要。これは <code>tool-accessibility</code> と <code>managed-agents</code> の更新につながり、エージェントが本当に役に立つ場所は、実際の作業コンテキストがすでに存在するサーフェスだという見方を補強している。</p>
+<p>Karpathy の <code>CLAUDE.md</code> が GitHubで注目されたというソースは、<code>rule-update-loop</code> と <code>agent-recognizable-repository</code> に接続された。小さな repo-local instruction file が高レバレッジな制御面になる、という話で、今日の他ソースと合わせると、エージェント活用の勝ち筋は「大きな自動化」だけでなく、読みやすいルールファイル、作業しやすいリポジトリ、レビューしやすい出力形式の積み重ねにある。</p>
+<p>概念更新としては、<code>agent-recognizable-repository</code>、<code>managed-agents</code>、<code>multi-agent-orchestration</code>、<code>rich-agent-output-artifact</code>、<code>rule-update-loop</code>、<code>tool-accessibility</code> が拡張された。新しい地図ノートは増えていないが、既存概念への支持ソースが増えたことで、KB全体では「エージェントの実用性は、作業環境の設計で決まる」という軸がさらに強くなった。</p>
+<p>全体トレンドを一言で言うと、2026-05-21 の更新は「agent harness がプロダクト化している」日だった。OpenAI/Codex は社内運用、Anthropic/Claude Code はHTML成果物、Figma はキャンバス内エージェント、Google はAntigravity統合プラットフォーム、Karpathy/CLAUDE.md は repo-local rule surface という別々の話に見えるが、どれも同じ問いに収束している。つまり、エージェントに何を見せ、どこで動かし、どう出力させ、どう人間が検証するか。</p>
+<p>次に追うとよさそうな問いは3つある。まず、HTMLのような richer artifact はどのタスクでMarkdownより明確にレビュー効率を上げるのか。次に、CLI/IDE/desktop/SDK を統合する agent platform は、運用の複雑さを減らすのか、それとも別の場所へ移すだけなのか。最後に、<code>CLAUDE.md</code> 型のルールファイルは、どこまで小さく保つとエージェントにも人間にも読みやすい制御面として機能し続けるのか。</p>
+<p>NotebookLM Podcast では、まず「今日は新モデルの話ではなく、作業面の話」という導入から始めると流れが作りやすい。そこから OpenAI/Codex、Anthropic HTML、Google Antigravity を3本柱にして、補助的に Figma と CLAUDE.md を差し込む構成がよさそう。結論は、エージェント時代の実務差分はモデル選定だけではなく、コンテキスト、ツール、成果物、ルール更新を含むハーネス設計に出る、という形でまとめられる。</p>
+<h2>重要ソース</h2>
+<h3>ML_Bear - Anthropic HTML article on Claude Code</h3>
+<p>Source note: <code>wiki/sources/anthropic-using-claude-code-html-mlbear2-x-2026-05-20.md</code></p>
+<h1>ML_Bear - Anthropic HTML article on Claude Code</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/MLBear2/status/2057121256751927608</li>
+<li>Author: ML_Bear (@MLBear2)</li>
+<li>Tweet created: 2026-05-20T15:28:21.000Z</li>
+<li>Captured: 2026-05-21 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata plus the primary blog URL</li>
+<li>Public metrics at capture: 43 likes, 37 bookmarks, 6 reposts, 0 replies, 2492 impressions</li>
+<li>Raw path: [[../../raw/articles/anthropic-using-claude-code-html-mlbear2-x-2026-05-20.md]]</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>この前、話題になってた「HTMLっていいんだぜX記事」がAnthropic公式ブログ記事になってた。</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>まだ読んでなかった方は一読されるといいかと思います。ミーハーな僕はバリバリ影響を受けて、仕様書をClaudeにHTMLで書いてもらったりしてます😇</p>
+</blockquote>
+<h2>What it says</h2>
+<p>The bookmark points to Anthropic&#x27;s argument that HTML can be a better output medium than Markdown for some Claude Code workflows, especially when the human needs a richer artifact to inspect or share.</p>
+<h2>Why it matters</h2>
+<p>This is a clean example of rich output as part of the harness, not an afterthought. It reinforces that the output format should be chosen for reviewability and reuse, not only for simplicity.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/rich-agent-output-artifact.md]]</li>
+<li>[[../concepts/structured-handoff-artifacts.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Which tasks should default to HTML rather than Markdown in this KB?</li>
+<li>When does a richer artifact help enough to justify the extra generation and review cost?</li>
+</ul>
+<h3>kgsi - Figma Design Agent announcement</h3>
+<p>Source note: <code>wiki/sources/figma-design-agent-kgsi-x-2026-05-20.md</code></p>
+<h1>kgsi - Figma Design Agent announcement</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/kgsi/status/2057124178793525418</li>
+<li>Author: こぎそ (@kgsi)</li>
+<li>Tweet created: 2026-05-20T15:39:58.000Z</li>
+<li>Captured: 2026-05-21 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata; image card not independently fetched here</li>
+<li>Public metrics at capture: 99 likes, 73 bookmarks, 2 reposts, 1 reply, 5115 impressions</li>
+<li>Raw path: [[../../raw/articles/figma-design-agent-kgsi-x-2026-05-20.md]]</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/kgsi/status/2057124178793525418/photo/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>「Figma Design Agent」の発表、かなり大きいアップデートだ👀</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>AIでデザイン案を生成する...というより、Figmaのキャンバス上で、選択中のレイヤー、ライブラリ、コンポーネント、トークンを文脈にしながら作業できるエージェントが入る、という話。</p>
+</blockquote>
+<h2>What it says</h2>
+<p>The bookmark frames Figma&#x27;s design agent as an in-canvas worker that can read the current layers, libraries, components, and tokens and operate inside the existing design system context.</p>
+<h2>Why it matters</h2>
+<p>This is a clear example of tool accessibility plus a richer review surface: the agent works best when it is embedded in the workspace where the real context already lives.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/rich-agent-output-artifact.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Which design tasks belong in the agent surface, and which should stay manual?</li>
+<li>How much design-system context is enough before the agent starts drifting?</li>
+</ul>
+<h3>Gemini CLI / Google Antigravity launch cluster</h3>
+<p>Source note: <code>wiki/sources/google-antigravity-2-0-cli-geminicli-x-2026-05-19.md</code></p>
+<h1>Gemini CLI / Google Antigravity launch cluster</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X posts:</li>
+</ul>
+<p>  - https://x.com/geminicli/status/2056796084790304833</p>
+<p>  - https://x.com/antigravity/status/2056795168326754759</p>
+<ul>
+<li>Authors:</li>
+</ul>
+<p>  - Gemini CLI (@geminicli)</p>
+<p>  - Google Antigravity (@antigravity)</p>
+<ul>
+<li>Tweet created: 2026-05-19T17:56:14.000Z / 2026-05-19T17:52:36.000Z</li>
+<li>Captured: 2026-05-21 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata plus launch-video cards</li>
+<li>Public metrics at capture:</li>
+</ul>
+<p>  - Gemini CLI post: 4172 likes, 1168 bookmarks, 567 reposts, 223 replies, 480278 impressions</p>
+<p>  - Antigravity 2.0 post: 9766 likes, 4631 bookmarks, 972 reposts, 1526 replies, 2088419 impressions</p>
+<ul>
+<li>Raw path: [[../../raw/articles/google-antigravity-2-0-cli-geminicli-x-2026-05-19.md]]</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/antigravity/status/2056795168326754759/video/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>Transitioning Gemini CLI users to Antigravity CLI</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>We are unifying our efforts around a single harness and platform, Google Antigravity with four distinct surfaces:</p>
+<p>- Antigravity 2.0</p>
+<p>- Antigravity CLI</p>
+<p>- Antigravity SDK</p>
+<p>- Antigravity IDE</p>
+</blockquote>
+<blockquote>
+<p>Introducing Antigravity 2.0, a new standalone desktop application that delivers fully on that original glimpse of a truly agent-optimized experience.</p>
+</blockquote>
+<h2>What it says</h2>
+<p>Google is consolidating CLI, desktop, SDK, and IDE surfaces around one Antigravity platform. The launch copy explicitly talks about multi-agent teams, scheduled tasks, native voice, and one-click integration with other Google surfaces.</p>
+<h2>Why it matters</h2>
+<p>This is a strong signal that agent products are becoming platform families rather than single interfaces. The harness now spans multiple operator surfaces and multiple runtime surfaces.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concept</li>
+</ul>
+<h3>0xDepressionn - Karpathy&#x27;s CLAUDE.md hit #1 on GitHub</h3>
+<p>Source note: <code>wiki/sources/karpathy-claude-md-hit-1-github-0xdepressionn-x-2026-05-17.md</code></p>
+<h1>0xDepressionn - Karpathy&#x27;s CLAUDE.md hit #1 on GitHub</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/0xDepressionn/status/2055999112470839383</li>
+<li>X article card: http://x.com/i/article/2055992557620867072</li>
+<li>Author: Dep (@0xDepressionn)</li>
+<li>Tweet created: 2026-05-17T13:09:21.000Z</li>
+<li>Captured: 2026-05-21 via xurl bookmarks capture</li>
+<li>Evidence strength: article-card title plus bookmark snapshot metadata; article body not independently fetched here</li>
+<li>Public metrics at capture: 1633 likes, 9206 bookmarks, 178 reposts, 34 replies, 2596759 impressions</li>
+<li>Raw path: [[../../raw/articles/karpathy-claude-md-hit-1-github-0xdepressionn-x-2026-05-17.md]]</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>http://x.com/i/article/2055992557620867072</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>https://t.co/EKKW7dS4zk</p>
+</blockquote>
+<h2>What it says</h2>
+<p>The article-card headline argues that Karpathy&#x27;s CLAUDE.md became a major GitHub artifact and that most developers still have not read it. The practical takeaway is that a tiny repo-local instruction file can become a high-leverage control surface when it is clear, compact, and widely adopted.</p>
+<h2>Why it matters</h2>
+<p>This is a direct data point for rule-file ergonomics and for the repository-as-control-plane pattern. It also explains why small local instruction files keep showing up across agent workflows.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/rule-update-loop.md]]</li>
+<li>[[../concepts/agent-recognizable-repository.md]]</li>
+<li>[[../concepts/context-file-system.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Which CLAUDE.md rules survive independent reuse across repositories?</li>
+<li>How much structure is enough before the instruction file becomes clutter?</li>
+</ul>
+<h3>VMLops - OpenAI Codex internal use PDF</h3>
+<p>Source note: <code>wiki/sources/openai-codex-internal-use-pdf-vmlops-x-2026-05-20.md</code></p>
+<h1>VMLops - OpenAI Codex internal use PDF</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/_vmlops/status/2057080944465748109</li>
+<li>Author: Vaishnavi (@_vmlops)</li>
+<li>Tweet created: 2026-05-20T12:48:10.000Z</li>
+<li>Captured: 2026-05-21 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata; the PDF was not independently fetched here</li>
+<li>Public metrics at capture: 1097 likes, 1819 bookmarks, 85 reposts, 15 replies, 88414 impressions</li>
+<li>Raw path: [[../../raw/articles/openai-codex-internal-use-pdf-vmlops-x-2026-05-20.md]]</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/_vmlops/status/2057080944465748109/photo/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>OPENAI DROPPED A PDF ON HOW THEY USE CODEX INTERNALLY</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>and it&#x27;s actually useful</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>their engineers across security, infra, frontend, and api teams use it daily for:</p>
+<p>- understanding unfamiliar codebases fast (especially during incidents)</p>
+<p>- refactoring changes that span dozens of files</p>
+</blockquote>
+<h2>What it says</h2>
+<p>The visible signal is that Codex is used across multiple engineering functions as a practical work surface for incident-time comprehension and broad refactors. The post frames Codex less as a novelty and more as an internal operating tool.</p>
+<h2>Why it matters</h2>
+<p>This is a strong operational example of harness engineering: the model is not the story, the surrounding workflow is.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/agent-recognizable-repository.md]]</li>
+<li>[[../concepts/self-verification.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>What parts of the PDF are prescriptive versus just descriptive of OpenAI&#x27;s current internal workflow?</li>
+<li>Which of these patterns generalize cleanly to smaller teams?</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent-Recognizable Repository</h3>
+<p>KB note: <code>wiki/concepts/agent-recognizable-repository.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent-Recognizable Repository</p>
+<hr>
+<h1>Agent-Recognizable Repository</h1>
+<h2>Definition</h2>
+<p>A repository organized so that an agent can quickly discover accurate context, constraints, plans, and reliable paths for action.</p>
+<h2>Why It Matters</h2>
+<p>Agent quality depends partly on whether the operating context is legible, current, and easy to traverse. A repo can contain the right information and still be hard for an agent to use if the structure is noisy, stale, or overly monolithic.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[structured-handoff-artifacts]]</li>
+<li>[[machine-checkable-invariants]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/ignorance-ai-emerging-harness-engineering-playbook.md]]</li>
+<li>[[../sources/anthropic-claude-code-init-interview-x.md]]</li>
+<li>[[../sources/masaki-claude-md-rules-for-non-engineers.md]]</li>
+<li>[[../sources/anthropic-claude-code-large-codebases.md]]</li>
+<li>[[../sources/izanami-claude-c</li>
+</ul>
+<h3>Managed Agents</h3>
+<p>KB note: <code>wiki/concepts/managed-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Managed Agent</p>
+<p>  - Managed Agents</p>
+<hr>
+<h1>Managed Agents</h1>
+<h2>Definition</h2>
+<p>Hosted or product-managed agent runtimes that package model execution with tools, permissions, memory, tracing, sandboxing, and operational controls.</p>
+<h2>Why It Matters</h2>
+<p>Managed agents turn agent operation into a deployable surface rather than a local prompt pattern. They make it easier to build roleful domain agents, but they also move important governance decisions into the runtime: what tools are exposed, how memory persists, what is sandboxed, and how humans inspect or intervene.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[multi-agent-orchestration.md]]</li>
+<li>[[agent-dreaming.md]]</li>
+<li>[[outcomes.md]]</li>
+<li>[[tool-accessibility.md]]</li>
+<li>[[agent-management.md]]</li>
+<li>[[agent-safety.md]]</li>
+<li>[[background-agents.md]]</li>
+<li>[[context-engineering.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/claudeai-claude-managed-agents-intro-x.md]]</li>
+<li>[[../sources/claude-new-in-managed-agents-dreaming-outcomes-orchestration.md]]</li>
+<li>[[../sources/oikon48-claude-ma</li>
+</ul>
+<h3>Multi-Agent Orchestration</h3>
+<p>KB note: <code>wiki/concepts/multi-agent-orchestration.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Multi-Agent Orchestration</p>
+<hr>
+<h1>Multi-Agent Orchestration</h1>
+<h2>Definition</h2>
+<p>The deliberate assignment of different roles or subtasks to multiple cooperating agents within a larger workflow.</p>
+<h2>Why It Matters</h2>
+<p>Some tasks benefit from separating planning, generation, evaluation, and execution rather than asking one agent to do everything.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[generator-evaluator-loop]]</li>
+<li>[[context-resets]]</li>
+<li>[[long-running-agents]]</li>
+<li>[[intelligent-delegation.md]]</li>
+<li>[[heavy-thinking.md]]</li>
+<li>[[managed-agents.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/claude-new-in-managed-agents-dreaming-outcomes-orchestration.md]]</li>
+<li>[[../sources/kevin-gu-autoagent-x-thread.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/cursor-3-x.md]]</li>
+<li>[[../sources/openai-gpt-5-4-mini-nano-blog.md]]</li>
+<li>[[../sources/codex-subagents-docs.md]]</li>
+<li>[[../sources/anthropic-m</li>
+</ul>
+<h3>Rich Agent Output Artifact</h3>
+<p>KB note: <code>wiki/concepts/rich-agent-output-artifact.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Rich agent output artifact</p>
+<p>  - HTML artifact</p>
+<p>  - Agent-generated interface</p>
+<hr>
+<h1>Rich Agent Output Artifact</h1>
+<h2>Definition</h2>
+<p>An agent-produced deliverable that uses a richer medium than linear prose, such as HTML, SVG, charts, interactive controls, dashboards, slide decks, or custom editors, to help humans understand, review, steer, or reuse complex work.</p>
+<h2>Why It Matters</h2>
+<p>Human-in-the-loop workflows often fail not because the agent lacks information, but because the output is too dense, flat, or hard to inspect. Rich artifacts can reduce review friction by making structure visible: diffs can become annotated layouts, plans can become option grids, reports can become timelines, and exploratory work can become a small browser-native tool.</p>
+<h2>Relation to Harness Engineering</h2>
+<p>The output format is part of the harness. It determines how easily a human can:</p>
+<ul>
+<li>understand the agent&#x27;s reasoning and evidence</li>
+<li>notice errors or missing cases</li>
+<li>compare alternatives</li>
+<li>manipulate pa</li>
+</ul>
+<h3>Rule-Update Loop</h3>
+<p>KB note: <code>wiki/concepts/rule-update-loop.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Rule-Update Loop</p>
+<p>  - Mistake-to-Rule Loop</p>
+<hr>
+<h1>Rule-Update Loop</h1>
+<h2>Definition</h2>
+<p>A lightweight harness pattern where repeated prompts, recurring corrections, or observed agent mistakes are converted into durable rules in files such as <code>CLAUDE.md</code>, <code>AGENTS.md</code>, skills, templates, or team playbooks.</p>
+<h2>Why It Matters</h2>
+<p>It lowers repeated review cost. Instead of correcting the agent one chat at a time, the human improves the operating environment so future sessions start with better guidance.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[context-file-system]]</li>
+<li>[[behavioral-stability]]</li>
+<li>[[agent-recognizable-repository]]</li>
+<li>[[approval-policy]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/claudecode-love-boris-30-claude-code-tips-x.md]]</li>
+<li>[[../sources/gota-purpose-first-harness-design-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-what-harness-engineering-is-and-is-not-zenn.md]]</li>
+<li>[[../sources/masaki-claude-md-rules-for-non-engineers.md]]</li>
+<li>[[../sources/mnilax-karpathy-claude-md-rules-</li>
+</ul>
+<h3>Tool Accessibility</h3>
+<p>KB note: <code>wiki/concepts/tool-accessibility.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Tool Accessibility</p>
+<hr>
+<h1>Tool Accessibility</h1>
+<h2>Definition</h2>
+<p>The degree to which the tools humans rely on are exposed in forms agents can discover and use effectively.</p>
+<h2>Why It Matters</h2>
+<p>If agents cannot access the relevant tools and context, their practical usefulness stays artificially low.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[agent-recognizable-repository]]</li>
+<li>[[coding-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/ignorance-ai-emerging-harness-engineering-playbook.md]]</li>
+<li>[[../sources/anthropic-harnessing-claudes-intelligence.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-setup-x.md]]</li>
+<li>[[../sources/storybook-mcp-react-blog.md]]</li>
+<li>[[../sources/browser-use-cli-2-changelog.md]]</li>
+<li>[[../sources/google-gemma-4-blog.md]]</li>
+<li>[[../sources/difit-review-blog.md]]</li>
+<li>[[../sources/jerry-liu-rese</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>5</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
