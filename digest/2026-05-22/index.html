@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-22 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-22/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB NotebookLM Podcast Pages</a> / Daily Digest / 2026-05-22</header>
+<h1>KB Daily Digest 2026-05-22</h1>
+<div class="note">
+  <strong>NotebookLM用URL:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しくPodcast化しやすい文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-22/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-22">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-22</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest - 2026-05-22</h1>
+<p>今日の knowledge-base-llm は、X bookmarks capture から5本の新規ソースノートを追加し、7つの概念ノートを更新した。全体の流れは、「エージェントをどう賢くするか」よりも一段実務寄りで、エージェントが動く作業面、反復可能なスキル、レビュー、OS/VMまで含めた実行環境の整備に寄っている。昨日の「agent harness がプロダクト化している」という流れを、さらに現場の手触りに寄せた更新になった。</p>
+<p>重要ソースの1本目は Claude Code 2.1.147 のリリースクラスター。workflow tool が deterministic multi-agent orchestration のための明示的な機能として入り、さらに <code>/simplify</code> が <code>/code-review</code> に改名されて effort level を持つようになった。KB上では <code>multi-agent-orchestration</code>、<code>managed-agents</code>、<code>tool-accessibility</code> に接続されていて、複数エージェントの分解・制御・レビューが、プロンプトの工夫ではなく製品上の操作面として扱われ始めたことが重要。</p>
+<p>2本目は Jason Liu の「Codex-maxxing」。これは単発のプロンプト術というより、Codex を長時間の仕事が住める場所として使うための daily primitives の話として取り込まれた。persistent threads、memory、steering、connectors、heartbeats、artifact review のような要素がひとまとまりの作業基盤になっていく、という見方で、<code>harness-engineering</code> と <code>agent-recognizable-repository</code> の文脈をかなり補強している。</p>
+<p>3本目は Devin の Windows VM 対応。Devin が Windows ネイティブアプリをビルド、実行、テストできる managed runtime を持つという話で、これは「コードを書くエージェント」から「対象プラットフォームを実際に動かして検証できるエージェント」への拡張として読める。KBでは <code>managed-agents</code> と <code>long-running-agents</code> に関わる材料で、実務上の差分はモデルの返答品質だけでなく、実行環境をどこまでエージェント側に持たせるかにも出る。</p>
+<p>Goodpatch のデザイナーAIプロトタイプ活用記事は、AIをデザイン作業へどう入れるかを、抽象論ではなくプロトタイプ生成のワークフローとして扱っている。ここで面白いのは、成果物そのものがデザインの会話や検証を進める「rich artifact」になっている点。KBでは <code>rich-agent-output-artifact</code> と <code>tool-accessibility</code> に接続され、エージェントの価値がテキスト回答ではなく、作業の次の一手を早める成果物に宿る、という見方を補強した。</p>
+<p>Figma Make の custom skills は、反復ワークフローをユーザーが作成・呼び出しできる単位として扱う更新だった。これは <code>navigable-agent-skills</code> と <code>memory-skill-harness</code> にとってかなり直球のソースで、スキルが単なる内部実装ではなく、チームや組織で共有・レビューされる可能性のある操作単位になっていく流れを示している。今後は、スキルのバージョン管理、レビュー、共有範囲が実務上の論点になりそう。</p>
+<p>概念更新としては、<code>harness-engineering</code>、<code>managed-agents</code>、<code>memory-skill-harness</code>、<code>multi-agent-orchestration</code>、<code>navigable-agent-skills</code>、<code>rich-agent-output-artifact</code>、<code>tool-accessibility</code> が更新された。新しい地図ノートは増えていないが、既存概念への支持ソースが増えたことで、KB全体では「エージェント実務は、作業面・実行環境・スキル化・レビューの組み合わせで成熟する」という軸がかなり濃くなった。</p>
+<p>全体トレンドを一言で言うと、2026-05-22 の更新は「agent harness の部品が、実務者に触れる形で外へ出てきた」日だった。Claude Code は workflow と code review、Codex-maxxing は長時間作業の運用プリミティブ、Devin はWindows VM、Goodpatch はデザインプロトタイプ、Figma はcustom skills。領域は違うが、どれもエージェントに任せるための準備、境界、検証、再利用を具体的な操作面に落としている。</p>
+<p>NotebookLM Podcast では、まず「今日の話はモデル性能ではなく、エージェントの仕事場がどう変わっているか」という導入にするとよさそう。中心に置く3本は Claude Code 2.1.147、Codex-maxxing、Devin Windows VM。そこに Goodpatch と Figma を加えると、開発者向け harness だけでなく、デザインやプロダクト作業にも同じ構造が広がっていることを話せる。掘るべき問いは、どのワークフローをスキル化すべきか、どの実行環境をエージェントに渡すべきか、レビュー effort をどう設計すると人間の負担が減るのか、の3つ。</p>
+<h2>重要ソース</h2>
+<h3>Claude Code Changelog - Claude Code 2.1.147 release cluster</h3>
+<p>Source note: <code>wiki/sources/claude-code-log-2-1-147-workflow-tool-code-review-rename-cluster-x-2026-05-21.md</code></p>
+<h1>Claude Code Changelog - Claude Code 2.1.147 release cluster</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X posts:</li>
+</ul>
+<p>  - https://x.com/ClaudeCodeLog/status/2057564555174113732</p>
+<p>  - https://x.com/dani_avila7/status/2057285380186222745</p>
+<ul>
+<li>Authors:</li>
+</ul>
+<p>  - Claude Code Changelog (@ClaudeCodeLog)</p>
+<p>  - Daniel San (@dani_avila7)</p>
+<ul>
+<li>Tweet created: 2026-05-21T20:49:52.000Z / 2026-05-21T02:20:31.000Z</li>
+<li>Captured: 2026-05-22 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata plus release-card/video-card previews</li>
+<li>Public metrics at capture:</li>
+</ul>
+<p>  - Claude Code Changelog post: 193 likes, 74 bookmarks, 11 reposts, 13 replies, 17987 impressions</p>
+<p>  - Daniel San post: 659 likes, 525 bookmarks, 48 reposts, 37 replies, 77797 impressions</p>
+<ul>
+<li>Raw path: [[../../raw/articles/claude-code-log-2-1-147-workflow-tool-code-review-rename-cluster-x-2026-05-21.md]]</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/ClaudeCodeLog/status/2057564555174113732/video/1</li>
+<li>https://x.com/dani_avila7/status/2057285380186222745/video/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>Claude Code 2.1.147 has been released.</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>35 CLI changes</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>Highlights:</p>
+<p>- Workflow tool added for deterministic multi-agent orchestration; off by default, set CLAUDE_CODE_WORKFLOWS=1</p>
+<p>- /simplify→/code-review renamed; flags correctness bugs at effort level, can post inline GitHub</p>
+</blockquote>
+<blockquote>
+<p>Claude Code /simplify is now /code-review</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>Now accepts an effort parameter:</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>- low: short, scoped, latency-sensitive tasks that aren&#x27;t intelligence-sensitive</p>
+<p>- medium: cost-sensitive work that can trade off some intelligence for fewer tokens</p>
+<p>- high: balances tokens and quality</p>
+</blockquote>
+<h2>What it says</h2>
+<p>Claude Code is pushing review and orchestration into named product surfaces. The release story is not just more capability; it is more explicit control over how agent work is d</p>
+<h3>Cognition - Devin Windows VM</h3>
+<p>Source note: <code>wiki/sources/cognition-devin-windows-vm-x-2026-05-21.md</code></p>
+<h1>Cognition - Devin Windows VM</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/cognition/status/2057496130225668360</li>
+<li>Author: Cognition (@cognition)</li>
+<li>Tweet created: 2026-05-21T16:17:58.000Z</li>
+<li>Captured: 2026-05-22 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata plus video-card preview</li>
+<li>Public metrics at capture: 260 likes, 54 bookmarks, 32 reposts, 14 replies, 67713 impressions</li>
+<li>Raw path: [[../../raw/articles/cognition-devin-windows-vm-x-2026-05-21.md]]</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/cognition/status/2057496130225668360/video/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>Devin is getting a Windows PC.</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>Devin can now natively run in a Windows VM, so it can build, run, and test native Windows applications.</p>
+</blockquote>
+<h2>What it says</h2>
+<p>Devin is expanding from a general coding agent into a platform-aware agent runtime that can exercise Windows-native applications inside a managed VM.</p>
+<h2>Why it matters</h2>
+<p>This is a concrete managed-agent capability jump: the runtime now owns not just code execution but OS-specific app execution and verification.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Which classes of Windows tasks become newly practical when the agent can run inside a Windows VM?</li>
+<li>How much extra verification does a platform-specific VM reduce versus add?</li>
+</ul>
+<h3>Figma - custom skills in Make</h3>
+<p>Source note: <code>wiki/sources/figma-custom-skills-in-make-x-2026-05-11.md</code></p>
+<h1>Figma - custom skills in Make</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/figma/status/2053867832761553052</li>
+<li>Author: Figma (@figma)</li>
+<li>Tweet created: 2026-05-11T16:00:25.000Z</li>
+<li>Captured: 2026-05-22 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata plus video-card preview</li>
+<li>Public metrics at capture: 625 likes, 404 bookmarks, 71 reposts, 16 replies, 64479 impressions</li>
+<li>Raw path: [[../../raw/articles/figma-custom-skills-in-make-x-2026-05-11.md]]</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/figma/status/2053867832761553052/video/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>/custom-skills-are-now-in-make-so-you-can-create-and-call-repeated-workflows</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>Note: you can create and manage your own skills now. Sharing skills with your team and org is coming soon.</p>
+</blockquote>
+<h2>What it says</h2>
+<p>Figma is turning repeated workflows into named skills inside Make. That makes procedures more shareable and more inspectable.</p>
+<h2>Why it matters</h2>
+<p>This is a concrete example of skills as reusable operational units, which is close to how agent systems will need to package repeatable work.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/navigable-agent-skills.md]]</li>
+<li>[[../concepts/memory-skill-harness.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>How should custom skills be versioned and reviewed across a team?</li>
+<li>Which skills should stay local to a user versus shared at org scope?</li>
+</ul>
+<h3>Goodpatch - designer AI prototype workflow</h3>
+<p>Source note: <code>wiki/sources/goodpatch-designer-ai-prototype-workflow-x-2026-05-21.md</code></p>
+<h1>Goodpatch - designer AI prototype workflow</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/kc_at_/status/2057302285097869401</li>
+<li>Primary source: https://goodpatch.com/blog/2026-05-prototype</li>
+<li>Secondary X source: https://twitter.com/GoodpatchTokyo/status/2057270807920054456</li>
+<li>Author: けいし/ Goodpatch (@kc_at_)</li>
+<li>Tweet created: 2026-05-21T03:27:42.000Z</li>
+<li>Captured: 2026-05-22 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata plus primary blog card</li>
+<li>Public metrics at capture: 159 likes, 158 bookmarks, 12 reposts, 0 replies, 17322 impressions</li>
+<li>Raw path: [[../../raw/articles/goodpatch-designer-ai-prototype-workflow-x-2026-05-21.md]]</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://goodpatch.com/blog/2026-05-prototype</li>
+<li>https://x.com/kc_at_/status/2057302285097869401/photo/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>Goodpatch Blog書きました！</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>Goodpatchのデザイナーが現場で具体的にどうAIを活用しているのか、その1つの例としてのリアルを書きました。</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>「AIをデザインの仕事にどう活かせばいいんだろう」と模索しているデザイナーの方の参考になれば嬉しいです</p>
+</blockquote>
+<h2>What it says</h2>
+<p>This is a practitioner note about using AI inside design work, with the blog card pointing to a prototype workflow story rather than a speculative design vision.</p>
+<h2>Why it matters</h2>
+<p>Prototype generation is moving closer to the actual work surface. That makes the output artifact itself part of the design harness.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/field-deployed-engineer.md]]</li>
+<li>[[../concepts/rich-agent-output-artifact.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/product-responsibility-distribution.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Which parts of the prototype workflow should remain human-directed?</li>
+<li>When does a fast prototype become a product commitment?</li>
+</ul>
+<h3>Jason Liu - Codex-maxxing</h3>
+<p>Source note: <code>wiki/sources/jxnlco-codex-maxxing-x-2026-05-17.md</code></p>
+<h1>Jason Liu - Codex-maxxing</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>X post: https://x.com/jxnlco/status/2056139571641872765</li>
+<li>Primary source: https://jxnl.github.io/blog/writing/2026/05/10/codex-maxxing/</li>
+<li>Author: jason (@jxnlco)</li>
+<li>Tweet created: 2026-05-17T22:27:29.000Z</li>
+<li>Captured: 2026-05-22 via xurl bookmarks capture</li>
+<li>Evidence strength: bookmark snapshot metadata plus primary blog card</li>
+<li>Public metrics at capture: 3504 likes, 6076 bookmarks, 220 reposts, 151 replies, 371688 impressions</li>
+<li>Raw path: [[../../raw/articles/jxnlco-codex-maxxing-x-2026-05-17.md]]</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://jxnl.github.io/blog/writing/2026/05/10/codex-maxxing/</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>jason from the codex team here,</p>
+<p>heres a draft on codex maxxing and the primatives i use on a daily basis</p>
+</blockquote>
+<h2>What it says</h2>
+<p>Codex is framed as an operating substrate for long-running work. The value proposition is a stack of reusable primitives rather than one-off chat completions.</p>
+<h2>Why it matters</h2>
+<p>This is a strong harness-engineering example because it emphasizes compounding work surfaces: persistent threads, memory, steering, connectors, and reviewable artifacts.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/agent-recognizable-repository.md]]</li>
+<li>[[../concepts/structured-handoff-artifacts.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/context-file-system.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Which primitives should become default infrastructure versus optional power-user workflows?</li>
+<li>What is the minimum persistent state that makes long-running work tractable without becoming brittle?</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Harness Engineering</h3>
+<p>KB note: <code>wiki/concepts/harness-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Harness Engineering</p>
+<hr>
+<h1>Harness Engineering</h1>
+<h2>Definition</h2>
+<p>The design of the environment, artifacts, controls, tooling, and feedback loops around an agent so that it can produce more reliable results over time.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, performance depends less on the model alone and more on the structure that surrounds it.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[guides and sensors]]</li>
+<li>[[agent recognizable repository]]</li>
+<li>[[structured handoff artifacts]]</li>
+<li>[[machine-checkable invariants]]</li>
+<li>[[heavy-thinking.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/martin-fowler-harness-engineering.md]]</li>
+<li>[[../sources/gota-purpose-first-harness-design-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-how-to-approach-harness-engineering-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-what-harness-engineering-is-and-is-not-zenn.md]]</li>
+<li>[[../sources/sergicalsix-harness-engineering-overview-design-philosophy-speakerdeck.md]]</li>
+<li>[[../sources/yuukiyo-ai-dlc</li>
+</ul>
+<h3>Managed Agents</h3>
+<p>KB note: <code>wiki/concepts/managed-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Managed Agent</p>
+<p>  - Managed Agents</p>
+<hr>
+<h1>Managed Agents</h1>
+<h2>Definition</h2>
+<p>Hosted or product-managed agent runtimes that package model execution with tools, permissions, memory, tracing, sandboxing, and operational controls.</p>
+<h2>Why It Matters</h2>
+<p>Managed agents turn agent operation into a deployable surface rather than a local prompt pattern. They make it easier to build roleful domain agents, but they also move important governance decisions into the runtime: what tools are exposed, how memory persists, what is sandboxed, and how humans inspect or intervene.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[multi-agent-orchestration.md]]</li>
+<li>[[agent-dreaming.md]]</li>
+<li>[[outcomes.md]]</li>
+<li>[[tool-accessibility.md]]</li>
+<li>[[agent-management.md]]</li>
+<li>[[agent-safety.md]]</li>
+<li>[[background-agents.md]]</li>
+<li>[[context-engineering.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/claudeai-claude-managed-agents-intro-x.md]]</li>
+<li>[[../sources/claude-new-in-managed-agents-dreaming-outcomes-orchestration.md]]</li>
+<li>[[../sources/oikon48-claude-ma</li>
+</ul>
+<h3>Memory-Skill Harness</h3>
+<p>KB note: <code>wiki/concepts/memory-skill-harness.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Unified Memory-Skill Harness</p>
+<p>  - Memory-Skill Harness</p>
+<hr>
+<h1>Memory-Skill Harness</h1>
+<h2>Definition</h2>
+<p>A harness pattern where memory and skills are treated as one evolving world model: memory stores the state and evidence an agent acts from, while skills store reusable procedures derived from successful or corrected traces.</p>
+<h2>Why It Matters</h2>
+<p>Separating memory from skills can make both brittle. Memory becomes passive storage if it cannot route the right procedure, and skills become stale prompt snippets if they cannot observe environmental change, attach evidence, and update themselves. A unified memory-skill harness makes repeated work inspectable, revisable, and queryable.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent-knowledge-loop.md]]</li>
+<li>[[navigable-agent-skills.md]]</li>
+<li>[[context-file-system.md]]</li>
+<li>[[context-graph.md]]</li>
+<li>[[rule-update-loop.md]]</li>
+<li>[[harness-engineering.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/tricalt-memory-skills-same-harness-x.md]]</li>
+<li>[[../sources/knowledgesense-corp</li>
+</ul>
+<h3>Multi-Agent Orchestration</h3>
+<p>KB note: <code>wiki/concepts/multi-agent-orchestration.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Multi-Agent Orchestration</p>
+<hr>
+<h1>Multi-Agent Orchestration</h1>
+<h2>Definition</h2>
+<p>The deliberate assignment of different roles or subtasks to multiple cooperating agents within a larger workflow.</p>
+<h2>Why It Matters</h2>
+<p>Some tasks benefit from separating planning, generation, evaluation, and execution rather than asking one agent to do everything.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[generator-evaluator-loop]]</li>
+<li>[[context-resets]]</li>
+<li>[[long-running-agents]]</li>
+<li>[[intelligent-delegation.md]]</li>
+<li>[[heavy-thinking.md]]</li>
+<li>[[managed-agents.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/claude-new-in-managed-agents-dreaming-outcomes-orchestration.md]]</li>
+<li>[[../sources/kevin-gu-autoagent-x-thread.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/cursor-3-x.md]]</li>
+<li>[[../sources/openai-gpt-5-4-mini-nano-blog.md]]</li>
+<li>[[../sources/codex-subagents-docs.md]]</li>
+<li>[[../sources/anthropic-m</li>
+</ul>
+<h3>Navigable Agent Skills</h3>
+<p>KB note: <code>wiki/concepts/navigable-agent-skills.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Navigable Agent Skills</p>
+<p>  - Corpus2Skill</p>
+<p>  - Hierarchical RAG</p>
+<hr>
+<h1>Navigable Agent Skills</h1>
+<h2>Definition</h2>
+<p>A retrieval architecture where a corpus is compiled into a hierarchy of human/model-readable skill or index files, so an agent can navigate the corpus structure before retrieving underlying documents.</p>
+<h2>Why It Matters</h2>
+<p>It changes the model’s role from passive consumer of search results to active navigator of an information architecture. This is especially useful for broad or completeness-oriented questions where top-k vector retrieval may miss scattered evidence.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled-wiki.md]]</li>
+<li>[[agent-knowledge-loop.md]]</li>
+<li>[[context-graph.md]]</li>
+<li>[[tool-accessibility.md]]</li>
+<li>[[agent-recognizable-repository.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/coreyganim-karpathy-second-brain-clearly-explained-x.md]]</li>
+<li>[[../sources/knowledgesense-corpus2skill-zenn.md]]</li>
+<li>[[../sources/aws-agent-toolkit-for-aws-x.md]]</li>
+<li>[[../sources/googlecloudjp-agent-skills-repos</li>
+</ul>
+<h3>Rich Agent Output Artifact</h3>
+<p>KB note: <code>wiki/concepts/rich-agent-output-artifact.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Rich agent output artifact</p>
+<p>  - HTML artifact</p>
+<p>  - Agent-generated interface</p>
+<hr>
+<h1>Rich Agent Output Artifact</h1>
+<h2>Definition</h2>
+<p>An agent-produced deliverable that uses a richer medium than linear prose, such as HTML, SVG, charts, interactive controls, dashboards, slide decks, or custom editors, to help humans understand, review, steer, or reuse complex work.</p>
+<h2>Why It Matters</h2>
+<p>Human-in-the-loop workflows often fail not because the agent lacks information, but because the output is too dense, flat, or hard to inspect. Rich artifacts can reduce review friction by making structure visible: diffs can become annotated layouts, plans can become option grids, reports can become timelines, and exploratory work can become a small browser-native tool.</p>
+<h2>Relation to Harness Engineering</h2>
+<p>The output format is part of the harness. It determines how easily a human can:</p>
+<ul>
+<li>understand the agent&#x27;s reasoning and evidence</li>
+<li>notice errors or missing cases</li>
+<li>compare alternatives</li>
+<li>manipulate pa</li>
+</ul>
+<h3>Tool Accessibility</h3>
+<p>KB note: <code>wiki/concepts/tool-accessibility.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Tool Accessibility</p>
+<hr>
+<h1>Tool Accessibility</h1>
+<h2>Definition</h2>
+<p>The degree to which the tools humans rely on are exposed in forms agents can discover and use effectively.</p>
+<h2>Why It Matters</h2>
+<p>If agents cannot access the relevant tools and context, their practical usefulness stays artificially low.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[agent-recognizable-repository]]</li>
+<li>[[coding-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/ignorance-ai-emerging-harness-engineering-playbook.md]]</li>
+<li>[[../sources/anthropic-harnessing-claudes-intelligence.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-setup-x.md]]</li>
+<li>[[../sources/storybook-mcp-react-blog.md]]</li>
+<li>[[../sources/browser-use-cli-2-changelog.md]]</li>
+<li>[[../sources/google-gemma-4-blog.md]]</li>
+<li>[[../sources/difit-review-blog.md]]</li>
+<li>[[../sources/jerry-liu-rese</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>5</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
