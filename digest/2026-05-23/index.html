@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-23 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-23/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-05-23</header>
+<h1>KB Daily Digest 2026-05-23</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-23/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-23">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-23</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest - 2026-05-23</h1>
+<p>今日の knowledge-base-llm は、2つの更新クラスターが大きい。1つ目は X bookmarks 由来の3本で、MCPのステートレス化、Karpathy系のcoding-agent guidelines、Bunのlifetime-classify workflowが追加された。2つ目は Anthropic/Claude のPDF「The Founder&#x27;s Playbook」で、AI-native startup のライフサイクル、agent-first organization、ROI/能力投資の地図にかなり強く接続された。全体としては、昨日までの「agent harness の部品が実務者に触れる形で出てきた」という流れが、今日は「その部品をどう組織・プロトコル・起業運営に埋め込むか」へ広がった日だった。</p>
+<p>重要ソースの1本目は、MCP 2026-07-28 release candidate の stateless protocol 化。KBでは <code>wiki/sources/mcp-2026-07-28-release-candidate-stateless-protocol.md</code> として入り、<code>context-management-decisions</code> に接続された。ポイントは、MCPが単なるツール接続の規格ではなく、長期運用されるagent/tool境界の設計課題を持つプロトコルとして見えてきたこと。ステートレス化は、実装・運用・キャッシュ・セッション管理の責務分担を変えるので、エージェントの作業環境を「どこに状態を置くか」という観点で再整理する材料になる。</p>
+<p>2本目は Jiayuan/JY Zhang の Karpathy-guidelines-for-coding-agents repo。これは、coding agentをうまく使うための規律を、単発のプロンプトではなくリポジトリ/ルール/レビュー/作業単位の設計として扱う材料だった。KBでは <code>coding-agent-harness-patterns</code> に入り、特に rule-update loop、codebase legibility、context-first short iteration のような既存パターンを補強している。Karpathy系のCLAUDE.md文化や「繰り返し指示を作業規則へ昇格する」流れが、個人の使いこなしからチームで再利用できるharness設計へ寄ってきたと読める。</p>
+<p>3本目は Bun の lifetime-classify workflow。Claude Codeを使った具体的な分類・調査ワークフローとして、KBでは <code>wiki/sources/bun-lifetime-classify-claude-workflow-x.md</code> に入り、<code>coding-agent-harness-patterns</code> と <code>context-management-decisions</code> を補強した。ここで重要なのは、エージェントの価値が「コードを書く」だけでなく、コードベースや実行時挙動を調べる反復可能な調査手順にある点。うまくいった調査の型を再利用可能なworkflowとして残すことは、まさにharnessの資産化に近い。</p>
+<p>もう1つの大きなソースは Anthropic の「The Founder&#x27;s Playbook」。<code>wiki/sources/about-hiroppy-founders-playbook.md</code> が拡張され、<code>wiki/concepts/ai-native-startup-lifecycle.md</code> が新規作成された。Idea、MVP、Launch、Scale の各段階でAIをどう使うかを、Chat / Cowork / Code の使い分けや、検証・スコープ・運用・GTMの課題と結びつけて整理している。特に「AIで作る速度が上がるほど、検証不足やスコープ膨張が危険になる」という見方は、KB内の <code>verification-tax</code>、<code>instability-tax</code>、<code>agentic-jevons-paradox</code> と自然につながる。</p>
+<p>概念・地図の更新では、<code>ai-native-startup-lifecycle</code> が今日の新しい中核概念になった。これは単なるスタートアップ論ではなく、AIが実行コストを下げた後に、どの段階でどんなartifactやgateが必要になるかを見るための運用モデルとして使える。加えて <code>agent-first-organization</code>、<code>ai-adoption-roi-and-capability-investment</code>、<code>operations</code> navigation、<code>wiki/INDEX.md</code> が更新され、AI導入を「ツール採用」ではなく、組織の吸収能力・検証能力・運用面の成熟として扱う方向が強まった。</p>
+<p>今日の全体トレンドは、「agent harness が個人の作業術から、プロトコル設計・組織設計・起業運営へ拡張している」ことだと思う。MCPはツール接続の状態管理を問い、Karpathy guidelinesとBun workflowはコードベースに対する反復可能なagent作業を問い、Founder Playbookは会社づくりの各段階でAIに何を任せ、何を人間が検証するかを問う。領域は違うが、全部「AIに仕事を渡す前後の構造」を扱っている。</p>
+<p>実務上の示唆はかなり明確で、今後のKBでは「良いエージェント利用」をモデル単体で語るより、状態の置き場所、ルールの更新経路、反復workflow、検証gate、組織内の責任者をセットで見る必要がある。特にFounder Playbookは、AI-nativeな小さなチームが速く進めるほど、PMF前の作りすぎ、launch後の運用不足、scale時のfounder knowledgeの属人化が起きやすいことを示す材料として使える。これはエージェント導入のROI地図にも直結する。</p>
+<p>NotebookLM Podcast では、まず「今日はagent harnessが、コード作業の外側へ広がった日」と置くと話しやすい。中心に置く3本は MCP stateless RC、Karpathy coding-agent guidelines、Anthropic Founder Playbook。Bun workflowは具体例として挟むと、抽象的な設計論と現場のworkflowがつながる。掘るべき問いは、状態をどこに置くべきか、繰り返し指示をどのタイミングでルール化すべきか、AI-native startupが速く作れる時代にどんな検証gateを残すべきか、の3つ。</p>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents, and org ownership.</li>
+<li>[[about-hiroppy-founders-playbook.md]] — Anthropic&#x27;s official founder playbook PDF: AI-native startup lifecycle across Idea, MVP, Launch, and Scale, with Claude Chat/Cowork/Code stage usage, validation gates, agentic technical debt risks, founder bottleneck removal, and moat formation.</li>
+<li>[[izanami-claude-code-large-codebase-best-practices.md]] — Japanese practitioner explainer on Claude Code large-codebase setup: live repo search, thin layered CLAUDE.md, subdirectory startup, hooks, stale-rule pruning, and adoption ownership.</li>
+<li>[[newspicks-harness-engineering-what-is-it.md]] — Japanese explainer separating evaluation harnesses from agent harnesses and decomposing agent harnesses into runtime, context, and safety layers.</li>
+<li>[[tricalt-memory-skills-same-harness-x.md]] — Vasilije / tricalt X Article framing memory and skills as one evolving harness</li>
+</ul>
+<h3>Anthropic - The Founder&#x27;s Playbook</h3>
+<p>Source note: <code>wiki/sources/about-hiroppy-founders-playbook.md</code></p>
+<h1>Anthropic - The Founder&#x27;s Playbook</h1>
+<h2>Source metadata</h2>
+<ul>
+<li>Raw PDF text: [[../../raw/articles/anthropic-founders-playbook-pdf-2026-05-06.md]]</li>
+<li>Local PDF: [[../../raw/pdfs/anthropic-founders-playbook-2026-05-06.pdf]]</li>
+<li>Prior bookmark capture: [[../../raw/articles/about_hiroppy-founders-playbook-ai-native-startup-x-2026-05-14.md]]</li>
+<li>PDF URL: https://cdn.prod.website-files.com/6889473510b50328dbb70ae6/69fe2a55b93bb0732b1fe33c_The-Founders-Playbook-05062026_v3%20(1).pdf</li>
+<li>Canonical blog URL: https://claude.com/blog/the-founders-playbook</li>
+<li>Publisher: Anthropic / Claude</li>
+<li>Date: 2026-05-06 PDF filename; captured 2026-05-23</li>
+<li>Type: vendor playbook / startup operating guide</li>
+<li>Evidence strength: high for Anthropic&#x27;s own guidance and product framing; vendor-authored, so claims about AI-native speed and Claude product fit should be treated as product-positioned.</li>
+</ul>
+<h2>Summary</h2>
+<p>Anthropic&#x27;s playbook remaps the startup lifecycle around AI-native work. It argues that the founder&#x27;s role shifts from direct execution toward orchestration: using conversational intelligence for research and judgment, Claude Code for agentic coding, and Claude Cowork for recurring operational workflows.</p>
+<p>The core lifecycle is four stages: Idea, MVP, Launch, and Scale. Each stage has a goal, exit criteria, predictable failure modes, and stage-appropriate Claude surfaces.</p>
+<h2>Key claims</h2>
+<ul>
+<li>AI-native startup work compresses timelines, but it does not remove the need for validation, judgment, security, product-market-fit evidence, or operational design.</li>
+<li>In the Idea stage, the main risk is mistaking building for validation. A prototype is a research prop, not evidence by itself.</li>
+<li>In the MVP stage, AI-generated speed creates new debt modes: scope creep without friction, architectural drift, insecure-by-inexperienc</li>
+</ul>
+<h3>aweb.ai - How to set up an AI-native organization</h3>
+<p>Source note: <code>wiki/sources/aweb-ai-first-company-howto.md</code></p>
+<h1>aweb.ai - How to set up an AI-native organization</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/aweb-ai-first-company-howto-2026-05-17.md</li>
+<li>Original URL: https://aweb.ai/blog/ai-first-company-howto</li>
+<li>Author: aweb.ai</li>
+<li>Date: 2026-05-17 capture</li>
+<li>Type: company operating-model article / practitioner case study</li>
+</ul>
+<h2>Summary</h2>
+<p>The article argues that AI-native organization design is not just employees using chatbots faster. In an AI-native company, named agents own work surfaces, carry persistent context, message each other directly, and coordinate through durable artifacts such as tasks, decision records, handoffs, status files, release evidence, and signal notes. Humans keep founding judgment, direction, customer trust, hiring, and publishing authority.</p>
+<p>The aweb.ai case study describes seven persistent agents plus ephemeral coding agents and two humans. Its main durable claim is not the exact role roster, but the operating discipline: agents need identities, addresses, role docs, a shared taskboard, learning mechanisms, builder/reviewer splits, and artifact-based shared state.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>AI-assisted work speeds up individual workflows; AI-native organization changes coordination itself.</li>
+<li>Agents should be first-class citizens with stable identities, addresses, named responsibilities, and persistent context.</li>
+<li>Work that matters should produce durable artifacts, not disappear into chat.</li>
+<li>Substantial work needs at least two voices: builder and reviewer.</li>
+<li>Shared state beats status routing: the company should be queryable through taskboards, status files, decision records, and handoffs.</li>
+<li>Solo operators can start with builder+reviewer pairs; organizations should move to named roles when repeated decision surfaces need ownership.</li>
+<li>Feedback should be captured with strengt</li>
+</ul>
+<h3>Simon Willison — Thoughts on GitLab Act 2</h3>
+<p>Source note: <code>wiki/sources/simon-willison-gitlab-act-2.md</code></p>
+<h1>Simon Willison — Thoughts on GitLab Act 2</h1>
+<h2>Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/simon-willison-gitlab-act-2-2026-05-11.md</code></li>
+<li>Original/source URL: https://simonwillison.net/2026/May/11/gitlab-act-2/</li>
+<li>Linked primary announcement: https://about.gitlab.com/blog/gitlab-act-2/</li>
+<li>Author: Simon Willison</li>
+<li>Published: 2026-05-11</li>
+<li>Fetched/ingested: 2026-05-12</li>
+<li>Source type: link-blog commentary on GitLab strategy announcement</li>
+<li>Evidence strength: medium for Simon&#x27;s interpretation and the quoted GitLab claims; lower for forward-looking market predictions because they are strategic/business forecasts and GitLab has a direct commercial incentive</li>
+</ul>
+<h2>Summary</h2>
+<p>Simon Willison reads GitLab&#x27;s “Act 2” announcement as more than a workforce-reduction note: it is also an organizational redesign and market thesis for the agentic engineering era. The key useful frame is GitLab&#x27;s belief that cheaper software production will expand demand for software and for developer-platform seats, not merely reduce developer headcount. Simon connects this to a Jevons-paradox-style optimism while explicitly warning that GitLab&#x27;s incentives make the claim worth discounting.</p>
+<h2>Key claims</h2>
+<ul>
+<li>GitLab&#x27;s agentic-era restructuring combines workforce reduction, geographic consolidation, fewer management layers, smaller empowered R&amp;D teams, and a new values framework.</li>
+<li>Flattening management and “player-coach” management are becoming a visible organization-design response to AI-assisted work.</li>
+<li>Smaller end-to-end teams may become more capable when agentic engineering raises each team&#x27;s execution capacity.</li>
+<li>GitLab&#x27;s market thesis is Jevons-like: as the cost of producing and managing software collapses, total demand for software and builders expands.</li>
+<li>The same thesis should be treated cautiously because GitLab bene</li>
+</ul>
+<h3>Rak — Bun Claude workflow: lifetime-classify</h3>
+<p>Source note: <code>wiki/sources/bun-lifetime-classify-claude-workflow-x.md</code></p>
+<h1>Rak — Bun Claude workflow: lifetime-classify</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/bun-lifetime-classify-claude-workflow-x-2026-05-22.md</li>
+<li>Original URL: https://x.com/rakutek/status/2057632977644081257</li>
+<li>Primary URL: https://raw.githubusercontent.com/oven-sh/bun/23427dbc12fdcff30c23a96a3d6a66d62fdc091d/.claude/workflows/lifetime-classify.workflow.js</li>
+<li>Author: ラク (@rakutek)</li>
+<li>Posted: 2026-05-22T01:21:45.000Z</li>
+<li>Captured: 2026-05-23 via xurl bookmarks capture</li>
+<li>Type: X post / repo workflow promo</li>
+<li>Evidence strength: bookmark commentary plus direct workflow file</li>
+</ul>
+<h2>What it says</h2>
+<p>The Bun repo contains a .claude/workflows/lifetime-classify.workflow.js file that turns a repeatable Claude Code task into a structured workflow. It classifies pointer-like Zig struct fields into Rust ownership categories, verifies uncertain classifications with multiple votes, and synthesizes the results into TSV-style output.</p>
+<p>The important KB signal is not just that Bun uses Claude workflows. It is the shape of the workflow itself: explicit phases, a taxonomy, evidence strings, verification on uncertain cases, and a machine-readable output format.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Repo-local .claude/workflows files can encode reusable agent procedures.</li>
+<li>Multi-phase workflows can make analysis tasks more inspectable and repeatable.</li>
+<li>Verification can be built into the workflow instead of being left to a human after the fact.</li>
+<li>A small taxonomy can turn a fuzzy classification problem into a structured pipeline.</li>
+<li>Output should be machine-friendly when the task is operational rather than narrative.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The file defines Classify, Verify, and Synthesize phases.</li>
+<li>The classification stage records evidence and a confidence level for each field.</li>
+<li>The verify stage refutes uncertain or samp</li>
+</ul>
+<h3>Jiayuan (JY) Zhang — Karpathy Guidelines for coding agents</h3>
+<p>Source note: <code>wiki/sources/jiayuan-jy-zhang-karpathy-guidelines-for-coding-agents-github-repo-x.md</code></p>
+<h1>Jiayuan (JY) Zhang — Karpathy Guidelines for coding agents</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/jiayuan-jy-zhang-karpathy-guidelines-for-coding-agents-github-repo-x-2026-01-27.md</li>
+<li>Original URL: https://x.com/jiayuan_jy/status/2016000962641723668</li>
+<li>Primary URL: https://github.com/multica-ai/andrej-karpathy-skills</li>
+<li>Author: Jiayuan (JY) Zhang (@jiayuan_jy)</li>
+<li>Posted: 2026-01-27T04:10:59.000Z</li>
+<li>Captured: 2026-05-23 via xurl bookmarks capture</li>
+<li>Type: X post / GitHub repo promo</li>
+<li>Evidence strength: bookmark text plus GitHub repo README preview</li>
+</ul>
+<h2>What it says</h2>
+<p>The repo packages a small, reusable CLAUDE.md-style ruleset derived from Andrej Karpathy&#x27;s observations about LLM coding pitfalls. It presents four principles that are meant to be copied into projects or installed as a Claude Code plugin: think before coding, simplicity first, surgical changes, and goal-driven execution.</p>
+<p>The repository&#x27;s point is not just the rules themselves. It is the packaging choice: turn advice into a portable repository artifact, keep the shared file short, and leave project-specific details in local overrides rather than bloating the common ruleset.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Karpathy-style coding guidance can fit into one compact rule file.</li>
+<li>The four rules are explicitly operational, not inspirational.</li>
+<li>The repo is intended to be reused across projects as a plugin or file template.</li>
+<li>The shared rules should stay separate from project-specific instructions.</li>
+<li>Goal-driven execution should express success criteria and verification loops, not vague imperatives.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The repo README quotes Karpathy&#x27;s own observations about model confusion, overcomplication, and unrelated edits.</li>
+<li>It translates those observations into short rule sections with actionable language.</li>
+<li>It provides</li>
+</ul>
+<h3>MCP — 2026-07-28 release candidate</h3>
+<p>Source note: <code>wiki/sources/mcp-2026-07-28-release-candidate-stateless-protocol.md</code></p>
+<h1>MCP — 2026-07-28 release candidate</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/mcp-2026-07-28-release-candidate-stateless-protocol-x-2026-05-22.md</li>
+<li>Original URL: https://x.com/dsp_/status/2057780712187580924</li>
+<li>Primary URL: https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/</li>
+<li>Author: David Soria Parra (@dsp_)</li>
+<li>Posted: 2026-05-22T11:08:48.000Z</li>
+<li>Captured: 2026-05-23 via xurl bookmarks capture</li>
+<li>Type: X post / official protocol announcement</li>
+<li>Evidence strength: bookmark summary plus official MCP release-candidate article</li>
+</ul>
+<h2>What it says</h2>
+<p>The MCP 2026-07-28 release candidate makes the protocol stateless at the transport layer: the initialize/initialized handshake disappears, session ids disappear, and requests can land on any server instance. The same release also formalizes extensions, hardens authorization, and introduces a deprecation policy so the protocol can evolve without ad hoc breakage.</p>
+<p>The practical deployment angle is just as important as the protocol shift. The RC moves MCP toward ordinary HTTP routing and caching: Mcp-Method and Mcp-Name make routing easier, ttlMs and cacheScope give cache semantics to list/read results, and server/discover lets clients fetch capabilities on demand.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>MCP is becoming stateless at the protocol layer.</li>
+<li>The session-oriented handshake is removed.</li>
+<li>Extensions are now first-class, including MCP Apps and Tasks.</li>
+<li>Authorization is being aligned more closely with OAuth / OpenID Connect reality.</li>
+<li>The spec now has a formal deprecation policy.</li>
+<li>Stateless transport makes ordinary HTTP infrastructure more viable for MCP deployments.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The official RC shows the new single-request shape with protocol-version and method headers.</li>
+<li>It explicitly explains that no sticky sessio</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent-First Organization</h3>
+<p>KB note: <code>wiki/concepts/agent-first-organization.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent-First Organization</p>
+<p>  - AI-Native Organization</p>
+<p>  - AI-First Company</p>
+<hr>
+<h1>Agent-First Organization</h1>
+<h2>Definition</h2>
+<p>An agent-first organization is an operating model where named AI agents own durable work surfaces, carry persistent context, coordinate through shared artifacts, and communicate with each other directly, while humans retain direction, judgment, trust work, and external accountability.</p>
+<h2>Why It Matters</h2>
+<p>Most AI adoption starts as individual acceleration. Agent-first organization design asks a harder question: what changes when the company itself coordinates through agents, taskboards, status files, decision records, handoffs, and review loops rather than through humans relaying every message?</p>
+<h2>Minimum Operating Surfaces</h2>
+<ul>
+<li>Named agent identities and addresses.</li>
+<li>Written role docs such as AGENTS.md or CLAUDE.md.</li>
+<li>Shared taskboard with IDs, owners, status, and priorities.</li>
+<li>Decision records and status files.</li>
+<li>Structured handoffs between role surface</li>
+</ul>
+<h3>AI-Native Startup Lifecycle</h3>
+<p>KB note: <code>wiki/concepts/ai-native-startup-lifecycle.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - AI-Native Startup Lifecycle</p>
+<p>  - AI-native startup stage model</p>
+<p>  - Founder orchestration lifecycle</p>
+<hr>
+<h1>AI-Native Startup Lifecycle</h1>
+<h2>Definition</h2>
+<p>An operating model for startups where AI is treated as core infrastructure across the Idea, MVP, Launch, and Scale stages, changing the founder role from direct execution toward orchestration of research, coding, operational, and go-to-market agents.</p>
+<h2>Why It Matters</h2>
+<p>AI lowers the cost of building, but it also removes natural bottlenecks that used to force validation, scope discipline, security review, and operational handoff. The lifecycle lens keeps the question stage-specific: not just &quot;can AI build this?&quot; but &quot;what evidence, artifact, or operating surface is needed at this stage?&quot;</p>
+<h2>Stage Pattern</h2>
+<ul>
+<li>Idea: validate problem-solution fit before building; use AI for adversarial research, competitive mapping, interview design, and synthesis.</li>
+<li>MVP: build the smallest product that can generate product-market-fit evidence;</li>
+</ul>
+<h3>AI Adoption ROI and Capability Investment</h3>
+<p>KB note: <code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code></p>
+<h1>AI Adoption ROI and Capability Investment</h1>
+<h2>Purpose</h2>
+<p>Map how AI-assisted software development becomes financial value only when capability investments let the organization absorb faster generation safely.</p>
+<h2>Core thesis</h2>
+<p>AI ROI is not a direct function of model quality or code volume. It is a system outcome: AI adoption must be mediated by internal platforms, context/data quality, trust, user focus, verification guardrails, and delivery metrics before it can become durable business value. The strongest upside case is not only cheaper execution of existing backlog, but Jevons-style expansion in software demand when new tools, experiments, and automations become economical.</p>
+<h2>Path from AI adoption to ROI</h2>
+<h3>1. Capability investment first</h3>
+<p>The first question is not “which tool?” but “can the system absorb the tool?” DORA&#x27;s report emphasizes quality internal developer platforms, AI-accessible internal data, clear AI stance/trust, context engineering, user-centric focus, and automated</p>
+<h3>Navigation: Operations / Long-Running Work</h3>
+<p>KB note: <code>wiki/navigation/operations.md</code></p>
+<h1>Navigation: Operations / Long-Running Work</h1>
+<h2>Use When</h2>
+<p>The question is about running agents over time: background agents, routines, scheduled work, handoffs, context resets, delegation, or monitoring.</p>
+<h2>Start Maps</h2>
+<ul>
+<li>[[../maps/ai-adoption-roi-and-capability-investment.md]]</li>
+<li>[[../maps/context-management-decisions.md]]</li>
+<li>[[../maps/orchestration-patterns-faq.md]]</li>
+<li>[[../maps/approval-policy-patterns-and-escalation.md]]</li>
+</ul>
+<h2>Core Concepts</h2>
+<ul>
+<li>[[../concepts/ai-adoption-j-curve.md]]</li>
+<li>[[../concepts/ai-native-startup-lifecycle.md]]</li>
+<li>[[../concepts/verification-tax.md]]</li>
+<li>[[../concepts/ai-roi-model.md]]</li>
+<li>[[../concepts/agentic-jevons-paradox.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/agent-first-organization.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/agent-dreaming.md]]</li>
+<li>[[../concepts/outcomes.md]]</li>
+<li>[[../concepts/gateway-control-plane.md]]</li>
+<li>[[../concepts/structured-handoff-artifacts.md]]</li>
+<li>[[../concepts/context-resets</li>
+</ul>
+<h3>Coding-Agent Harness Patterns</h3>
+<p>KB note: <code>wiki/maps/coding-agent-harness-patterns.md</code></p>
+<h1>Coding-Agent Harness Patterns</h1>
+<h2>Purpose</h2>
+<p>Synthesize practical harness patterns for coding-agent workflows using the KB&#x27;s control vocabulary plus a concrete real-world operator example.</p>
+<h2>Core claim</h2>
+<p>A coding-agent workflow becomes harness engineering when quality and reliability depend on the surrounding artifacts, controls, and review loops rather than on the model prompt alone.</p>
+<h2>Pattern 1. Plan as handoff artifact</h2>
+<p>Use a session-scoped plan file such as <code>plan.md</code> as a durable handoff contract.</p>
+<p>Why it matters:</p>
+<ul>
+<li>makes intent inspectable</li>
+<li>supports context resets and reviewer alignment</li>
+<li>creates a stable object for verifier agents to critique</li>
+</ul>
+<h2>Pattern 2. Verifier split without full multi-agent overhead</h2>
+<p>Use heavy thinking for hard, bounded reasoning: spawn independent temporary thinkers, then have one deliberator critique and synthesize their outputs.</p>
+<p>Use a second agent or model mainly for plan review or implementation review instead of duplicating the whole execution role.</p>
+<h3>Context Management Decision Map</h3>
+<p>KB note: <code>wiki/maps/context-management-decisions.md</code></p>
+<h1>Context Management Decision Map</h1>
+<h2>Purpose</h2>
+<p>Compare the main recovery and continuity moves available to long-running agent systems.</p>
+<h2>Core moves</h2>
+<h3>Continue</h3>
+<ul>
+<li>Keep the current session and context as-is.</li>
+<li>Best when the session is still coherent and the next task is closely related.</li>
+</ul>
+<h3>Rewind</h3>
+<ul>
+<li>Remove a failed branch and restart from the last good point.</li>
+<li>Best when the current line of reasoning is clearly wrong but the session still has useful surrounding state.</li>
+</ul>
+<h3>Clear</h3>
+<ul>
+<li>Explicitly wipe the session context and start over from artifacts.</li>
+<li>Best when the human wants tight control over what remains visible.</li>
+</ul>
+<h3>Compact</h3>
+<ul>
+<li>Condense the current session into a shorter summary.</li>
+<li>Best when the work is still relevant but the raw history is too large or noisy.</li>
+</ul>
+<h3>Delegate</h3>
+<ul>
+<li>Spawn a subagent or separate worker for a noisy or specialized subtask.</li>
+<li>Best when the subtask should not pollute the parent context.</li>
+</ul>
+<h3>Reset</h3>
+<ul>
+<li>Rebuild state from explicit handoff artifacts in a fresh sessi</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>7</code>, commits: <code>2</code></p></footer>
+
+</body>
+</html>
