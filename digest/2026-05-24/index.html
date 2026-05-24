@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-24 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-24/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-05-24</header>
+<h1>KB Daily Digest 2026-05-24</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-24/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-24">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-24</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<p>今日の主なコミットは次の通りです: +0000 KB ingest: daily X bookmarks batch</p>
+<h2>重要ソース</h2>
+<h3>Cline SDK harness rebuild</h3>
+<p>Source note: <code>wiki/sources/cline-sdk-harness-rebuild-x-2026-05-13.md</code></p>
+<h1>Cline SDK harness rebuild</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/cline-sdk-harness-rebuild-x-2026-05-13.md]]</li>
+<li>Original URL: https://x.com/cline/status/2054580767779700775</li>
+<li>Primary URL: https://x.com/cline/status/2054580767779700775/video/1</li>
+<li>Author: Cline (@cline)</li>
+<li>Posted: 2026-05-13T15:13:21.000Z</li>
+<li>Captured: 2026-05-24 via xurl bookmarks capture</li>
+<li>Type: X video post</li>
+<li>Evidence strength: bookmark snapshot metadata plus video-card summary</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/cline/status/2054580767779700775</li>
+<li>https://x.com/cline/status/2054580767779700775/video/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>Introducing the Cline SDK. We rebuilt the Cline harness for our extension and CLI from scratch using all the lessons learned since creating one of the world&#x27;s first coding agents in 2024, and are open sourcing it for others to build with today.</p>
+</blockquote>
+<h2>What it says</h2>
+<p>Cline is packaging its agent harness as an SDK, which makes the runtime itself something other builders can extend rather than only consume.</p>
+<h2>Why it matters</h2>
+<p>This is a compact example of harness engineering becoming a platform boundary. The product is no longer just the agent experience; it is the control surface and composition layer around it.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Which parts of the Cline harness belong in a public SDK versus remaining product-specific?</li>
+<li>How much of the runtime should be stable API versus inspectable implementation detail?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+</ul>
+<h3>Chrome DevTools MCP CLI wrapper</h3>
+<p>Source note: <code>wiki/sources/conao3-rust-chrome-devtools-cli-wrapper-x-2026-05-22.md</code></p>
+<h1>Chrome DevTools MCP CLI wrapper</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/conao3-rust-chrome-devtools-cli-wrapper-x-2026-05-22.md]]</li>
+<li>Original URL: https://x.com/conao_3/status/2057735782157418722</li>
+<li>Primary URL: https://github.com/conao3/rust-chrome-devtools</li>
+<li>Author: Conao3 (@conao_3)</li>
+<li>Posted: 2026-05-22T08:10:16.000Z</li>
+<li>Captured: 2026-05-24 via xurl bookmarks capture</li>
+<li>Type: X post / GitHub repo pointer</li>
+<li>Evidence strength: bookmark snapshot metadata plus GitHub repo card</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://github.com/conao3/rust-chrome-devtools</li>
+<li>https://x.com/conao_3/status/2057735782157418722</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>@yusukebe Chrome devtools mcp、コンテキスト圧迫するので、軽くラップしたcli使ってます！</p>
+</blockquote>
+<h2>What it says</h2>
+<p>This is a practical browser-debugging pattern: keep Chrome DevTools access behind a thinner CLI wrapper so the main agent session does not have to carry the full complexity of browser control.</p>
+<h2>Why it matters</h2>
+<p>It is a small but useful example of tool accessibility as a harness choice. The right abstraction level can reduce context pressure without removing the capability.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/coding-agents.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Which browser-debugging actions deserve a dedicated thin CLI versus a full MCP surface?</li>
+<li>When does wrapper thinness start hiding useful state instead of reducing noise?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h3>GBrain v0.14 jobs server for OpenClaw</h3>
+<p>Source note: <code>wiki/sources/gbrain-jobs-server-openclaw-x-2026-04-20.md</code></p>
+<h1>GBrain v0.14 jobs server for OpenClaw</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/gbrain-jobs-server-openclaw-x-2026-04-20.md]]</li>
+<li>Original URL: https://x.com/garrytan/status/2046060505127895051</li>
+<li>Primary URL: https://x.com/garrytan/status/2046060505127895051</li>
+<li>Author: Garry Tan (@garrytan)</li>
+<li>Posted: 2026-04-20T02:56:53.000Z</li>
+<li>Captured: 2026-05-24 via xurl bookmarks capture</li>
+<li>Type: X image post</li>
+<li>Evidence strength: bookmark snapshot metadata plus image-card summary</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/garrytan/status/2046060505127895051</li>
+<li>https://x.com/mronge/status/2046059959759360001/photo/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>GBrain v0.14 now has a jobs server for OpenClaw that significantly increases throughput and reduces gateway load, based on proven patterns from BullMQ.</p>
+</blockquote>
+<h2>What it says</h2>
+<p>The post describes a jobs server addition to OpenClaw that improves throughput and reduces pressure on the gateway layer.</p>
+<h2>Why it matters</h2>
+<p>This is a concrete example of the control plane moving from &quot;nice to have&quot; to core infrastructure once an agent system starts handling real workload volume.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/gateway-control-plane.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/company-brain.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Which workloads should be pushed into jobs versus kept in-session?</li>
+<li>What observability is required so gateway load changes do not hide latent failures?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/gateway-control-plane.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+</ul>
+<h3>Headless Mac mini setup for AI agents</h3>
+<p>Source note: <code>wiki/sources/mronge-headless-mac-mini-ai-agents-x-2026-05-22.md</code></p>
+<h1>Headless Mac mini setup for AI agents</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/mronge-headless-mac-mini-ai-agents-x-2026-05-22.md]]</li>
+<li>Original URL: https://x.com/mronge/status/2057885356163494051</li>
+<li>Primary URL: https://x.com/mronge/status/2057885356163494051/photo/1</li>
+<li>Author: Matt Ronge (@mronge)</li>
+<li>Posted: 2026-05-22T18:04:37.000Z</li>
+<li>Captured: 2026-05-24 via xurl bookmarks capture</li>
+<li>Type: X image post</li>
+<li>Evidence strength: bookmark snapshot metadata plus image-card summary</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/mronge/status/2057885356163494051</li>
+<li>https://x.com/mronge/status/2057885356163494051/photo/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>6 mistakes I made setting up my headless Mac mini for AI agents:</p>
+<p>1. Used my personal iCloud account</p>
+<p>2. Left FileVault ON</p>
+<p>3. Forgot auto-login</p>
+<p>4. Bought an HDMI dummy plug</p>
+<p>5. Trusted the default sleep settings</p>
+<p>6. Port forwarded the public internet</p>
+</blockquote>
+<h2>What it says</h2>
+<p>The post is a practical checklist of avoidable setup mistakes for a headless Mac mini used as an agent host.</p>
+<h2>Why it matters</h2>
+<p>It is a compact reminder that agent infrastructure fails at the mundane layers first: account boundaries, login state, sleep policy, and exposure control.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/gateway-control-plane.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Which baseline hardening should be standardized for headless agent hosts?</li>
+<li>Which parts of this checklist belong in setup automation instead of tribal knowledge?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/gateway-control-plane.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+</ul>
+<h3>OpenAI Developers plugin for Codex</h3>
+<p>Source note: <code>wiki/sources/openai-developers-plugin-codex-x-2026-05-11.md</code></p>
+<h1>OpenAI Developers plugin for Codex</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/openai-developers-plugin-codex-x-2026-05-11.md]]</li>
+<li>Original URL: https://x.com/OpenAIDevs/status/2053925962287583379</li>
+<li>Primary URL: https://x.com/OpenAIDevs/status/2053925962287583379/video/1</li>
+<li>Author: OpenAI Developers (@OpenAIDevs)</li>
+<li>Posted: 2026-05-11T19:51:24.000Z</li>
+<li>Captured: 2026-05-24 via xurl bookmarks capture</li>
+<li>Type: X video post</li>
+<li>Evidence strength: bookmark snapshot metadata plus video-card summary</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/OpenAIDevs/status/2053925962287583379</li>
+<li>https://x.com/OpenAIDevs/status/2053925962287583379/video/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>Codex can now help you build AI apps and agents faster with OpenAI APIs using the OpenAI Developers plugin.</p>
+</blockquote>
+<h2>What it says</h2>
+<p>The plugin gives Codex a more direct path into the OpenAI API surface for building apps and agents.</p>
+<h2>Why it matters</h2>
+<p>It is a clean example of tool accessibility: the platform&#x27;s own dev APIs become first-class inside the agent workflow instead of living outside it.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>Which OpenAI developer surfaces should be exposed to Codex next?</li>
+<li>Does tighter product/API integration reduce friction enough to change developer habits?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h3>LegalOn - AI-driven hiring and token budget</h3>
+<p>Source note: <code>wiki/sources/tsunoda-legalon-ai-driven-hiring-token-budget-x-2026-05-20.md</code></p>
+<h1>LegalOn - AI-driven hiring and token budget</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/tsunoda-legalon-ai-driven-hiring-token-budget-x-2026-05-20.md]]</li>
+<li>Original URL: https://x.com/Tsunoda_LegalOn/status/2057007417544581313</li>
+<li>Primary URL: https://x.com/i/article/2056956761270255616</li>
+<li>Author: 角田望｜LegalOn Technologies CEO (@Tsunoda_LegalOn)</li>
+<li>Posted: 2026-05-20T07:56:00.000Z</li>
+<li>Captured: 2026-05-24 via xurl bookmarks capture</li>
+<li>Type: X quote tweet / X article pointer</li>
+<li>Evidence strength: bookmark snapshot metadata plus article title card</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/Tsunoda_LegalOn/status/2057007417544581313</li>
+<li>https://x.com/i/article/2056956761270255616</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>中途採用をゼロベースで見直し、トークン予算を確保した話_LegalOnのAI駆動化へのアプローチ</p>
+</blockquote>
+<h2>What it says</h2>
+<p>The article frames AI adoption as an operating tradeoff: rethink hiring, preserve growth drivers, and allocate token budget explicitly instead of treating model usage as free background noise.</p>
+<h2>Why it matters</h2>
+<p>It is a concrete example of AI ROI thinking turning into org design and budgeting, not just a tooling discussion.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/ai-roi-model.md]]</li>
+<li>[[../concepts/organizational-intent-clarity.md]]</li>
+<li>[[../concepts/company-brain.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>How should token budgets be tracked alongside headcount and infra budgets?</li>
+<li>Which hiring decisions actually become leverage points for AI-heavy workflows?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/ai-roi-model.md]]</li>
+<li>[[../concepts/organizational-intent-clarity.md]]</li>
+<li>[[../concepts/company-brain.md]]</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>AI ROI Model</h3>
+<p>KB note: <code>wiki/concepts/ai-roi-model.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - AI ROI Model</p>
+<p>  - ROI of AI-assisted Software Development</p>
+<p>  - AI Value Model</p>
+<hr>
+<h1>AI ROI Model</h1>
+<h2>Definition</h2>
+<p>A structured way to estimate the return on AI-assisted software development by linking AI adoption to delivery metrics, business value, and adoption costs.</p>
+<h2>Why It Matters</h2>
+<p>AI productivity claims are not enough for enterprise adoption. A credible model connects engineering indicators to financial outcomes while accounting for hard costs, learning costs, instability, and uncertainty.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[ai-adoption-j-curve]]</li>
+<li>[[verification-tax]]</li>
+<li>[[evidence-quality]]</li>
+<li>[[organizational-intent-clarity]]</li>
+<li>[[product-responsibility-distribution]]</li>
+<li>[[sustainable-ai-work]]</li>
+<li>[[agentic-jevons-paradox]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/dora-roi-ai-assisted-software-development.md]]</li>
+<li>[[../sources/simon-willison-gitlab-act-2.md]]</li>
+<li>[[../sources/tsunoda-legalon-ai-driven-hiring-token-budget-x-2026-05-20.md]]</li>
+</ul>
+<h2>Model Shape</h2>
+<ul>
+<li>Value: headcount reinvestmen</li>
+</ul>
+<h3>Company Brain</h3>
+<p>KB note: <code>wiki/concepts/company-brain.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Company Brain</p>
+<hr>
+<h1>Company Brain</h1>
+<h2>Definition</h2>
+<p>A shared organizational context substrate that collects, structures, and updates company knowledge so multiple agents and humans can work from the same durable understanding layer.</p>
+<h2>Why It Matters</h2>
+<p>A Company Brain is the company-scale version of a compiled wiki or context graph. It shifts agent performance from one-off prompting toward maintained context infrastructure.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[context graph]]</li>
+<li>[[compiled wiki]]</li>
+<li>[[agent knowledge loop]]</li>
+<li>[[agent management]]</li>
+<li>[[context farming]]</li>
+<li>[[organizational-intent-clarity.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/brett-goldstein-agentic-micro-companies-company-brain-x.md]]</li>
+<li>[[../sources/tsumotokai-context-graphs-agent-long-term-memory-x.md]]</li>
+<li>[[../sources/contextconor-enterprise-understanding-context-graph-x.md]]</li>
+<li>[[../sources/rohit-context-layer-compounding-systems-x.md]]</li>
+<li>[[../sources/recerqa-pdm-abolished-speakerdeck.md]]</li>
+<li>[[../sources/iwashi86-or</li>
+</ul>
+<h3>Gateway Control Plane</h3>
+<p>KB note: <code>wiki/concepts/gateway-control-plane.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Gateway Control Plane</p>
+<p>  - Agent Gateway</p>
+<hr>
+<h1>Gateway Control Plane</h1>
+<h2>Definition</h2>
+<p>A coordination layer that receives events from multiple channels, normalizes them, routes them to the appropriate agent/session, enforces session policy, broadcasts state, and returns results to the originating surface.</p>
+<h2>Why It Matters</h2>
+<p>Personal and managed agents often have many entry points: chat apps, web UIs, device nodes, cron jobs, hooks, and webhooks. Without a control plane, those entry points fragment state and make it hard to coordinate long-running work safely.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[tool-accessibility]]</li>
+<li>[[context-engineering]]</li>
+<li>[[structured-handoff-artifacts]]</li>
+<li>[[long-running-agents]]</li>
+<li>[[background-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/newspicks-harness-engineering-what-is-it.md]]</li>
+<li>[[../sources/voxyz-ai-openclaw-shell-jobs-x.md]]</li>
+<li>[[../sources/openclaw-clawsweeper-r</li>
+</ul>
+<h3>Harness Engineering</h3>
+<p>KB note: <code>wiki/concepts/harness-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Harness Engineering</p>
+<hr>
+<h1>Harness Engineering</h1>
+<h2>Definition</h2>
+<p>The design of the environment, artifacts, controls, tooling, and feedback loops around an agent so that it can produce more reliable results over time.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, performance depends less on the model alone and more on the structure that surrounds it.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[guides and sensors]]</li>
+<li>[[agent recognizable repository]]</li>
+<li>[[structured handoff artifacts]]</li>
+<li>[[machine-checkable invariants]]</li>
+<li>[[heavy-thinking.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/martin-fowler-harness-engineering.md]]</li>
+<li>[[../sources/gota-purpose-first-harness-design-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-how-to-approach-harness-engineering-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-what-harness-engineering-is-and-is-not-zenn.md]]</li>
+<li>[[../sources/sergicalsix-harness-engineering-overview-design-philosophy-speakerdeck.md]]</li>
+<li>[[../sources/yuukiyo-ai-dlc</li>
+</ul>
+<h3>Organizational Intent Clarity</h3>
+<p>KB note: <code>wiki/concepts/organizational-intent-clarity.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Organizational intent clarity</p>
+<p>  - Goal clarity for AI adoption</p>
+<hr>
+<h1>Organizational Intent Clarity</h1>
+<h2>Definition</h2>
+<p>The degree to which a team can state stable goals, desired outcomes, constraints, and evaluation criteria clearly enough for humans and agents to act on them.</p>
+<h2>Why It Matters</h2>
+<p>When intent is vague or constantly shifting, AI systems look unreliable even when the underlying model is capable. The practical bottleneck moves from “can the model do it?” to “has the organization expressed what should be done, why, and how success will be judged?”</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[context-engineering.md]]</li>
+<li>[[exploratory-organization-lens.md]]</li>
+<li>[[company-brain.md]]</li>
+<li>[[product-responsibility-distribution.md]]</li>
+<li>[[agent-management.md]]</li>
+<li>[[evidence-quality.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/iwashi86-organizational-ai-use-goal-clarity-x.md]]</li>
+<li>[[../sources/anzai-adventurous-organization-emconf-youtube.md]]</li>
+<li>[[../sources/recerqa-pdm-abolished-speakerdeck.md]]</li>
+<li>[[</li>
+</ul>
+<h3>Tool Accessibility</h3>
+<p>KB note: <code>wiki/concepts/tool-accessibility.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Tool Accessibility</p>
+<hr>
+<h1>Tool Accessibility</h1>
+<h2>Definition</h2>
+<p>The degree to which the tools humans rely on are exposed in forms agents can discover and use effectively.</p>
+<h2>Why It Matters</h2>
+<p>If agents cannot access the relevant tools and context, their practical usefulness stays artificially low.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[agent-recognizable-repository]]</li>
+<li>[[coding-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/ignorance-ai-emerging-harness-engineering-playbook.md]]</li>
+<li>[[../sources/anthropic-harnessing-claudes-intelligence.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-setup-x.md]]</li>
+<li>[[../sources/storybook-mcp-react-blog.md]]</li>
+<li>[[../sources/browser-use-cli-2-changelog.md]]</li>
+<li>[[../sources/google-gemma-4-blog.md]]</li>
+<li>[[../sources/difit-review-blog.md]]</li>
+<li>[[../sources/jerry-liu-rese</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>6</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
