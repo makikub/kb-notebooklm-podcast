@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-25 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-25/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-05-25</header>
+<h1>KB Daily Digest 2026-05-25</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-25/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-25">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-25</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-05-25</h1>
+<p>今日の knowledge-base-llm は、X ブックマーク由来の5本を新規ソースとして ingest / compile した。中心テーマはかなりはっきりしていて、AIコーディングを「速く書く道具」として見るより、責任・検証・並列レビュー・役割設計まで含めた作業システムとして扱う方向に寄っている。</p>
+<p>重要ソースの1本目は Lee Robinson の「AI-generated code still needs an owner」。AIでコードを書くほど、エンジニアがコードについて考えなくてよくなる、という見方への反論として入っている。KB上では [[../../wiki/concepts/coding-agents.md]]、[[../../wiki/concepts/verification-tax.md]]、[[../../wiki/concepts/product-responsibility-distribution.md]]、[[../../wiki/concepts/comprehension-debt.md]] に接続され、生成コードが増えるほど所有者の理解・保守・オンコール責任が軽くなるわけではない、という論点を補強した。</p>
+<p>2本目は Siqi Chen の「adversarial subagent review gate」。/goal の完了前に敵対的なサブエージェントレビューを入れると品質が上がり、より長く走れる、という実践メモだ。これは [[../../wiki/concepts/verification-tax.md]]、[[../../wiki/concepts/self-verification.md]]、[[../../wiki/concepts/multi-agent-orchestration.md]]、[[../../wiki/concepts/approval-policy.md]] に入り、「done」を人間の雰囲気ではなく、別視点による検証済みに近づけるパターンとして整理された。</p>
+<p>3本目は J / @xjuntaro の Codex 実装ループ。Codexと仕様を作り、3並列サブエージェントでプランをレビューし、テスト計画も3並列でレビューしてから実装する、というかなり具体的な手順が入った。KBでは [[../../wiki/concepts/spec-code-test-loop.md]]、[[../../wiki/concepts/multi-agent-orchestration.md]]、[[../../wiki/concepts/self-verification.md]] に接続され、計画レビューとテストレビューを実装前に二段で挟む「実務的なAI駆動開発ループ」の事例になっている。</p>
+<p>Boris Cherny の Claude Code auto mode / multi-clauding も重要。ここでは auto mode は単なる確認プロンプト削減ではなく、複数セッションを並行で走らせるための前提として扱われている。[[../../wiki/concepts/approval-policy.md]] と [[../../wiki/concepts/multi-agent-orchestration.md]] に追加され、承認ポリシーが安全性だけでなくスループット設計にも直結する、という見方が強まった。</p>
+<p>Konifar の stretch assignment 記事は、今日のAIコーディング群とは少し離れて見えるが、実際には「役割と期待値の明確化」という同じ運用テーマにつながる。自信を超える役割を任されたとき、期待値、役割宣言、定期チェックイン、フィードバックループ、軽い自己レビューで曖昧な不安を運用可能な問題に変える、という内容で、[[../../wiki/concepts/organizational-intent-clarity.md]] と [[../../wiki/concepts/product-responsibility-distribution.md]] を補強した。</p>
+<p>全体トレンドとしては、今日の更新は「AIが作る」から「AIチームをどう運用し、誰がどこで検証し、最後に誰が責任を持つか」へ焦点が移っている。auto mode は速度を上げるが、Lee Robinson の論点は理解責任を戻してくる。サブエージェントレビューは品質を上げるが、verification tax も増やす。つまり、今日のKBは「自動化を増やすほど、人間の設計責任とレビュー設計がむしろ重要になる」という方向にまとまった。</p>
+<p>KB内の更新としては、新規 raw 5件、wiki/sources 5件に加えて、approval-policy、coding-agents、multi-agent-orchestration、organizational-intent-clarity、product-responsibility-distribution、self-verification、spec-code-test-loop、verification-tax などが更新された。次に掘るなら、どのタスクに何段階のレビューを入れるべきか、auto mode と adversarial review を同時に採用したときの安全な運用境界、生成コードの理解責任を測る実務的なチェックリスト、あたりがよさそう。</p>
+<h2>Important sources</h2>
+<ul>
+<li>Lee Robinson — AI-generated code still needs an owner: https://x.com/leerob/status/2058577150500909108</li>
+<li>Siqi Chen — adversarial subagent review gate for /goal: https://x.com/blader/status/2058303538674217319</li>
+<li>J / @xjuntaro — planning, subagent review, and Codex implementation: https://x.com/xjuntaro/status/2055774040716132728</li>
+<li>Boris Cherny — Claude Code auto mode as multi-clauding building block: https://x.com/bcherny/status/2058519809214607704</li>
+<li>Konifar — stretch role assignment and role clarity: https://konifar-zatsu.hatenadiary.jp/entry/2026/05/24/162048</li>
+</ul>
+<h2>Changed KB files</h2>
+<ul>
+<li>raw/articles/bcherny-auto-mode-multi-clauding-x-2026-05-24.md</li>
+<li>raw/articles/blader-adversarial-subagent-review-gate-goal-x-2026-05-23.md</li>
+<li>raw/articles/konifar-stretch-role-assignment-x-2026-05-24.md</li>
+<li>raw/articles/leerob-ai-generated-code-liability-x-2026-05-24.md</li>
+<li>raw/articles/xjuntaro-planning-subagent-review-codex-x-2026-05-16.md</li>
+<li>wiki/sources/bcherny-auto-mode-multi-clauding-x-2026-05-24.md</li>
+<li>wiki/sources/blader-adversarial-subagent-review-gate-goal-x-2026-05-23.md</li>
+<li>wiki/sources/konifar-stretch-role-assignment-x-2026-05-24.md</li>
+<li>wiki/sources/leerob-ai-generated-code-liability-x-2026-05-24.md</li>
+<li>wiki/sources/xjuntaro-planning-subagent-review-codex-x-2026-05-16.md</li>
+<li>wiki/concepts/approval-policy.md</li>
+<li>wiki/concepts/coding-agents.md</li>
+<li>wiki/concepts/multi-agent-orchestration.md</li>
+<li>wiki/concepts/organizational-intent-clarity.md</li>
+<li>wiki/concepts/product-responsibility-distribution.md</li>
+<li>wiki/concepts/self-verification.md</li>
+<li>wiki/concepts/spec-code-test-loop.md</li>
+<li>wiki/concepts/verification-tax.md</li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Claude Code auto mode and multi-clauding</h3>
+<p>Source note: <code>wiki/sources/bcherny-auto-mode-multi-clauding-x-2026-05-24.md</code></p>
+<h1>Claude Code auto mode and multi-clauding</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/bcherny-auto-mode-multi-clauding-x-2026-05-24.md]]</li>
+<li>Original URL: https://x.com/bcherny/status/2058519809214607704</li>
+<li>Referenced URL: https://twitter.com/claudedevs/status/2057946803685974482</li>
+<li>Author: Boris Cherny (@bcherny)</li>
+<li>Posted: 2026-05-24T12:05:42.000Z</li>
+<li>Captured: 2026-05-25 via xurl bookmarks capture</li>
+<li>Type: X post</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked X reference</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/bcherny/status/2058519809214607704</li>
+<li>https://twitter.com/claudedevs/status/2057946803685974482</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>People often ask what my biggest tip is for getting the most out of Claude Code.</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>These days my #1 tip is: use auto mode</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>Auto mode means no more permission prompts. It is the key building block for multi-clauding: start a session, then while it runs, work on another session in</p>
+</blockquote>
+<h2>What it says</h2>
+<p>Cherny frames auto mode as the enabler for multi-clauding: let one session keep running while the human or another session does parallel work.</p>
+<h2>Why it matters</h2>
+<p>It ties approval policy directly to throughput. Removing prompt friction is not just about convenience; it can create a real parallel-work operating style.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/approval-policy.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/anthropic-session-management-1m-context.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>How much parallelism is useful before the human loses track of each session&#x27;s state?</li>
+<li>What guardrails keep promptless execution from turning into silent drift?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/bcherny-auto-mode-multi-clauding-x-2026-05-24.md]]</li>
+</ul>
+<h3>Adversarial subagent review gate for /goal</h3>
+<p>Source note: <code>wiki/sources/blader-adversarial-subagent-review-gate-goal-x-2026-05-23.md</code></p>
+<h1>Adversarial subagent review gate for /goal</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/blader-adversarial-subagent-review-gate-goal-x-2026-05-23.md]]</li>
+<li>Original URL: https://x.com/blader/status/2058303538674217319</li>
+<li>Author: Siqi Chen (@blader)</li>
+<li>Posted: 2026-05-23T21:46:19.000Z</li>
+<li>Captured: 2026-05-25 via xurl bookmarks capture</li>
+<li>Type: X post</li>
+<li>Evidence strength: bookmark snapshot metadata only</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/blader/status/2058303538674217319</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>protip: adding a adversarial subagent review gate to my plans has been a HUGE unlock to make /goal runs higher quality, and longer running.</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>prompt: &quot;update this plan: before marking a task as done, validate the task with an adversarial subagent review&quot;</p>
+</blockquote>
+<h2>What it says</h2>
+<p>Chen reports that adding an adversarial subagent review gate before marking work done improves both quality and persistence in /goal runs.</p>
+<h2>Why it matters</h2>
+<p>This is a concrete example of moving review from an ad hoc human habit into the plan itself. It turns &quot;done&quot; into &quot;validated by a second lens.&quot;</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/verification-tax.md]]</li>
+<li>[[../concepts/self-verification.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/approval-policy.md]]</li>
+<li>[[../concepts/generator-evaluator-loop.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>When does a review gate become too heavy for a short task?</li>
+<li>Which adversarial reviewers are most useful: same-family, cross-family, or fresh-context?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/blader-adversarial-subagent-review-gate-goal-x-2026-05-23.md]]</li>
+</ul>
+<h3>Konifar on stretch assignments and role clarity</h3>
+<p>Source note: <code>wiki/sources/konifar-stretch-role-assignment-x-2026-05-24.md</code></p>
+<h1>Konifar on stretch assignments and role clarity</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/konifar-stretch-role-assignment-x-2026-05-24.md]]</li>
+<li>Original URL: https://konifar-zatsu.hatenadiary.jp/entry/2026/05/24/162048</li>
+<li>Discovered via: https://x.com/konifar/status/2058450416409649534</li>
+<li>Author: Konifar (@konifar)</li>
+<li>Posted: 2026-05-24T07:29:58.000Z</li>
+<li>Captured: 2026-05-25 via xurl bookmarks capture</li>
+<li>Type: blog post shared on X</li>
+<li>Evidence strength: primary blog post plus bookmark snapshot metadata</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://konifar-zatsu.hatenadiary.jp/entry/2026/05/24/162048</li>
+<li>https://x.com/konifar/status/2058450416409649534</li>
+</ul>
+<h2>What it says</h2>
+<p>Konifar writes about stretch assignments: being asked to lead a task, project, or team that is beyond your current confidence level, and the operating habits that make that easier.</p>
+<h2>Why it matters</h2>
+<p>The note is useful because it turns &quot;I am underqualified&quot; into an operational problem: expectations, role declaration, regular check-ins, feedback loops, and self-review reduce the anxiety and ambiguity.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/organizational-intent-clarity.md]]</li>
+<li>[[../concepts/product-responsibility-distribution.md]]</li>
+<li>[[../concepts/exploratory-organization-lens.md]]</li>
+<li>[[../concepts/sustainable-ai-work.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>What lightweight ritual best keeps a stretch assignment from drifting into silent mismatch?</li>
+<li>How should organizations name and support temporary roles so the person in them can succeed faster?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/konifar-stretch-role-assignment-x-2026-05-24.md]]</li>
+</ul>
+<h3>AI-generated code still needs an owner</h3>
+<p>Source note: <code>wiki/sources/leerob-ai-generated-code-liability-x-2026-05-24.md</code></p>
+<h1>AI-generated code still needs an owner</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/leerob-ai-generated-code-liability-x-2026-05-24.md]]</li>
+<li>Original URL: https://x.com/leerob/status/2058577150500909108</li>
+<li>Author: Lee Robinson (@leerob)</li>
+<li>Posted: 2026-05-24T15:53:33.000Z</li>
+<li>Captured: 2026-05-25 via xurl bookmarks capture</li>
+<li>Type: X post</li>
+<li>Evidence strength: bookmark snapshot metadata only; tweet is truncated mid-sentence in the capture</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/leerob/status/2058577150500909108</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>You might believe you should spend less time thinking about code because of AI. I strongly disagree! We’re watching this play out live where tons of AI generated code becomes a liability. At the end of the day, an engineer needs to be responsible / on call for code that gets</p>
+</blockquote>
+<h2>What it says</h2>
+<p>The visible claim is a strong pushback against the idea that AI should reduce engineer attention. Robinson argues that generated code can become a liability if the engineer is no longer actively thinking about the system.</p>
+<h2>Why it matters</h2>
+<p>It is a concise reminder that code generation does not remove ownership. The accountable human still needs enough understanding to maintain, debug, and answer for the code that ships.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/verification-tax.md]]</li>
+<li>[[../concepts/product-responsibility-distribution.md]]</li>
+<li>[[../concepts/comprehension-debt.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>What practices keep generated code legible enough for the on-call owner to reason about it later?</li>
+<li>How much verification is enough before AI-generated code becomes more expensive than it saves?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/leerob-ai-generated-code-liability-x-2026-05-24.md]]</li>
+</ul>
+<h3>Planning, subagent review, and Codex implementation</h3>
+<p>Source note: <code>wiki/sources/xjuntaro-planning-subagent-review-codex-x-2026-05-16.md</code></p>
+<h1>Planning, subagent review, and Codex implementation</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/xjuntaro-planning-subagent-review-codex-x-2026-05-16.md]]</li>
+<li>Original URL: https://x.com/xjuntaro/status/2055774040716132728</li>
+<li>Author: J (@xjuntaro)</li>
+<li>Posted: 2026-05-16T22:15:00.000Z</li>
+<li>Captured: 2026-05-25 via xurl bookmarks capture</li>
+<li>Type: X post</li>
+<li>Evidence strength: bookmark snapshot metadata only</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/xjuntaro/status/2055774040716132728</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>AI駆動開発、この手法が最強すぎる↓</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>１）Codexと相談してプランニング、仕様書作成</p>
+<p>２）プランをサブエージェント3並列レビュー</p>
+<p>３）レビュー結果を反映</p>
+<p>４）単体・e2eテストの実装計画を仕様書に追記</p>
+<p>５）テストの網羅性についてサブエージェント3並列レビュー</p>
+<p>６）そのままCodexが実装</p>
+</blockquote>
+<h2>What it says</h2>
+<p>This is a concrete AI-driven development loop: plan with Codex, review the plan in parallel with three subagents, update the spec, review test coverage with three more subagents, then implement.</p>
+<h2>Why it matters</h2>
+<p>It is a compact practitioner version of a spec-review-implementation loop. The double review is the notable part: plan review first, then test-plan review, both before implementation starts.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/spec-code-test-loop.md]]</li>
+<li>[[../concepts/verification-tax.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/self-verification.md]]</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+<li>When does repeated parallel review become diminishing returns?</li>
+<li>Which parts of the loop are best encoded as harness policy instead of personal habit?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/xjuntaro-planning-subagent-review-codex-x-2026-05-16.md]]</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Approval Policy</h3>
+<p>KB note: <code>wiki/concepts/approval-policy.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Approval Policy</p>
+<hr>
+<h1>Approval Policy</h1>
+<h2>Definition</h2>
+<p>A rule system that decides which actions an agent may take automatically and which require explicit user approval.</p>
+<h2>Why It Matters</h2>
+<p>Approval policy is one of the main levers for balancing agent speed and operational safety.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[human-in-the-loop]]</li>
+<li>[[agent-autonomy]]</li>
+<li>[[agent-safety]]</li>
+<li>[[coding-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-claude-code-auto-mode.md]]</li>
+<li>[[../sources/codex-subagents-docs.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/claudecode-love-boris-30-claude-code-tips-x.md]]</li>
+<li>[[../sources/blader-adversarial-subagent-review-gate-goal-x-2026-05-23.md]]</li>
+<li>[[../sources/bcherny-auto-mode-multi-clauding-x-2026-05-24.md]]</li>
+<li>[[../sources/cloudflare-agents-stripe-projects-blog.md]]</li>
+<li>[[../sources/openclaw-clawsweeper-repo.md]]</li>
+<li>[[../sources/google-workspace-mcp-servers-docs.md]</li>
+</ul>
+<h3>Coding Agents</h3>
+<p>KB note: <code>wiki/concepts/coding-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Coding Agents</p>
+<hr>
+<h1>Coding Agents</h1>
+<h2>Definition</h2>
+<p>Agents that operate in software development environments using code editing, terminal commands, tests, and repository context as part of their task execution.</p>
+<h2>Why It Matters</h2>
+<p>Coding agents are one of the most concrete and operationally demanding forms of LLM agents, making them useful for studying autonomy and oversight in practice.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent-autonomy]]</li>
+<li>[[approval-policy]]</li>
+<li>[[human-in-the-loop]]</li>
+<li>[[spec-code-test-loop.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-claude-code-auto-mode.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/openai-codex-chrome-plugin-x.md]]</li>
+<li>[[../sources/aws-agent-toolkit-for-aws-x.md]]</li>
+<li>[[../sources/nukonuko-code-with-claude-workshops-x.md]]</li>
+<li>[[../sources/anthropic-claude-code-init-interview-x.md]]</li>
+<li>[[../sources/cursor-3-blog.md]]</li>
+<li>[[../sources/storybook-mcp-react-blog.md]]</li>
+</ul>
+<p>-</p>
+<h3>Multi-Agent Orchestration</h3>
+<p>KB note: <code>wiki/concepts/multi-agent-orchestration.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Multi-Agent Orchestration</p>
+<hr>
+<h1>Multi-Agent Orchestration</h1>
+<h2>Definition</h2>
+<p>The deliberate assignment of different roles or subtasks to multiple cooperating agents within a larger workflow.</p>
+<h2>Why It Matters</h2>
+<p>Some tasks benefit from separating planning, generation, evaluation, and execution rather than asking one agent to do everything.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[generator-evaluator-loop]]</li>
+<li>[[context-resets]]</li>
+<li>[[long-running-agents]]</li>
+<li>[[intelligent-delegation.md]]</li>
+<li>[[heavy-thinking.md]]</li>
+<li>[[managed-agents.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/claude-new-in-managed-agents-dreaming-outcomes-orchestration.md]]</li>
+<li>[[../sources/kevin-gu-autoagent-x-thread.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/cursor-3-x.md]]</li>
+<li>[[../sources/openai-gpt-5-4-mini-nano-blog.md]]</li>
+<li>[[../sources/codex-subagents-docs.md]]</li>
+<li>[[../sources/blader-adve</li>
+</ul>
+<h3>Organizational Intent Clarity</h3>
+<p>KB note: <code>wiki/concepts/organizational-intent-clarity.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Organizational intent clarity</p>
+<p>  - Goal clarity for AI adoption</p>
+<hr>
+<h1>Organizational Intent Clarity</h1>
+<h2>Definition</h2>
+<p>The degree to which a team can state stable goals, desired outcomes, constraints, and evaluation criteria clearly enough for humans and agents to act on them.</p>
+<h2>Why It Matters</h2>
+<p>When intent is vague or constantly shifting, AI systems look unreliable even when the underlying model is capable. The practical bottleneck moves from “can the model do it?” to “has the organization expressed what should be done, why, and how success will be judged?”</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[context-engineering.md]]</li>
+<li>[[exploratory-organization-lens.md]]</li>
+<li>[[company-brain.md]]</li>
+<li>[[product-responsibility-distribution.md]]</li>
+<li>[[agent-management.md]]</li>
+<li>[[evidence-quality.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/iwashi86-organizational-ai-use-goal-clarity-x.md]]</li>
+<li>[[../sources/anzai-adventurous-organization-emconf-youtube.md]]</li>
+<li>[[../sources/recerqa-pdm-abolished-speakerdeck.md]]</li>
+<li>[[</li>
+</ul>
+<h3>Product Responsibility Distribution</h3>
+<p>KB note: <code>wiki/concepts/product-responsibility-distribution.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Distributed product ownership</p>
+<p>  - Product responsibility distribution</p>
+<hr>
+<h1>Product Responsibility Distribution</h1>
+<h2>Definition</h2>
+<p>An organization-design pattern where product judgment, customer-context interpretation, and feature ownership are distributed across multiple roles instead of being centralized in a single PdM role.</p>
+<h2>Why It Matters</h2>
+<p>When AI lowers the cost of prototyping and customers expect faster operational fit, product management work may need to move closer to the people who hear customer pain, model workflows, and build solutions. The role label can disappear while the underlying product responsibilities become everyone’s work.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[field-deployed-engineer]]</li>
+<li>[[company-brain]]</li>
+<li>[[agent-management]]</li>
+<li>[[harness-engineering]]</li>
+<li>[[organizational-intent-clarity.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/recerqa-pdm-abolished-speakerdeck.md]]</li>
+<li>[[../sources/yuukiyo-ai-dlc-deep-dive-speakerdeck.md]]</li>
+<li>[[../sources/iwashi86-organizationa</li>
+</ul>
+<h3>Self-Verification</h3>
+<p>KB note: <code>wiki/concepts/self-verification.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Self-Verification</p>
+<hr>
+<h1>Self-Verification</h1>
+<h2>Definition</h2>
+<p>A pattern in which an agent explicitly checks its work against external tests, task requirements, or runtime evidence before declaring completion.</p>
+<h2>Why It Matters</h2>
+<p>Agents often stop too early or trust their own code reading too much. Verification creates a correction loop.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[feedback-controls]]</li>
+<li>[[task-decomposition]]</li>
+<li>[[trace-driven-improvement]]</li>
+<li>[[heavy-thinking.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/arxiv-social-meta-learning-language-feedback.md]]</li>
+<li>[[../sources/arxiv-heavyskill-heavy-thinking.md]]</li>
+<li>[[../sources/langchain-deep-agents-harness-engineering.md]]</li>
+<li>[[../sources/mitchell-hashimoto-ai-adoption-journey.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-x.md]]</li>
+<li>[[../sources/anthropic-claude-mythos-preview.md]]</li>
+<li>[[../sources/anthropic-dynamic-skill-context-x.md]]</li>
+<li>[[../sources/storybook-mcp-react-blog.md]]</li>
+<li>[[../sources/di</li>
+</ul>
+<h3>Spec-Code-Test Loop</h3>
+<p>KB note: <code>wiki/concepts/spec-code-test-loop.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Spec-Code-Test Loop</p>
+<p>  - Spec-driven implementation loop</p>
+<p>  - Behavioral contract loop</p>
+<hr>
+<h1>Spec-Code-Test Loop</h1>
+<h2>Definition</h2>
+<p>An agentic coding workflow where specs, implementation, and tests evolve together: code is used to discover missing decisions, tests preserve behavioral contracts, and specs capture intent as it changes.</p>
+<h2>Why It Matters</h2>
+<p>When code is cheap, implementation becomes a learning tool. But cheap rebuilds are only safe if the team preserves product behavior and decision intent outside the transient generated code. The loop turns agentic coding from one-shot generation into iterative discovery with durable guardrails.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[coding-agents.md]]</li>
+<li>[[self-verification.md]]</li>
+<li>[[structured-handoff-artifacts.md]]</li>
+<li>[[organizational-intent-clarity.md]]</li>
+<li>[[harness-engineering.md]]</li>
+<li>[[comprehension-debt.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/dbreunig-10-lessons-agentic-coding.md]]</li>
+<li>[[../sources/claudecode-love-boris-30-claude-code-tip</li>
+</ul>
+<h3>Verification Tax</h3>
+<p>KB note: <code>wiki/concepts/verification-tax.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Verification Tax</p>
+<p>  - Review Tax</p>
+<hr>
+<h1>Verification Tax</h1>
+<h2>Definition</h2>
+<p>The extra cognitive, review, testing, and governance work required to verify AI-generated output, especially when AI increases the volume and velocity of changes.</p>
+<h2>Why It Matters</h2>
+<p>AI can save implementation time while moving friction into review, security, architecture, and deployment gates. If the verification tax is not reduced with better context, automation, and small batches, productivity gains disappear downstream.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[ai-adoption-j-curve]]</li>
+<li>[[comprehension-debt]]</li>
+<li>[[sustainable-ai-work]]</li>
+<li>[[human-in-the-loop]]</li>
+<li>[[self-verification]]</li>
+<li>[[machine-checkable-invariants]]</li>
+<li>[[feedback-controls]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<p>Pyrefly source: [[../sources/meta-open-source-pyrefly-v1-0.md]]</p>
+<ul>
+<li>[[../sources/dora-roi-ai-assisted-software-development.md]]</li>
+<li>[[../sources/steve-yegge-ai-vampire.md]]</li>
+<li>[[../sources/lars-faye-agentic-coding-is-a-trap.md]]</li>
+<li>[[../sources/arxiv-aris-autonom</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>5</code>, commits: <code>2</code></p></footer>
+
+</body>
+</html>
