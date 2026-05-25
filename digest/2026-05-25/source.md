@@ -342,7 +342,7 @@ Coding agents are one of the most concrete and operationally demanding forms of 
 - [[../sources/anthropic-claude-code-init-interview-x.md]]
 - [[../sources/cursor-3-blog.md]]
 - [[../sources/storybook-mcp-react-blog.md]]
-- 
+-
 
 ### Multi-Agent Orchestration
 
