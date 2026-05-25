@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eval and Review Reliability - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-05-25/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 840px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-05-25</a> / 読み物版</header>
+    <p class="eyebrow">2026-05-25 Daily Topic</p>
+    <h1>Eval and Review Reliability</h1>
+    <p class="lead">エージェントの成果物を「なんとなく良さそう」で通さないための話。生成する役と評価する役を分け、まず機械で確かめられるものを固めてから、人間や評価エージェントの判断を使う。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-05-25">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 評価は別レイヤー</strong>作った本人の最終確認だけに任せると、見落としが残る。生成と判断を分ける。</div>
+      <div><strong>2. 安い検証を先に回す</strong>lint、型、テスト、リンク、構造チェックで落とせる問題は、人間レビューの前に落とす。</div>
+      <div><strong>3. 失敗は次のルールにする</strong>レビューで何度も出る指摘は、テスト、skill、rubric、repoルールに昇格させる。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは「レビューを詰まらせない」こと</h2>
+      <p>AIエージェントを使うと、コード、調査メモ、設定、設計案、文章がかなり速く出てきます。ここで問題になるのは、生成速度そのものではなく、生成されたものをどう信頼するかです。</p>
+      <p>人間が最後にざっと見るだけの運用だと、エージェントの速度にレビューが追いつかなくなります。しかも、作ったエージェント自身に「これで大丈夫？」と聞いても、同じ前提や同じ盲点を引きずりがちです。</p>
+      <p>だから、今日の中心は <code>Eval and Review Reliability</code>。成果物の品質を、作業者の自信ではなく、検証ハーネスとレビュー設計で支える話です。</p>
+
+      <h2>まず、決定的に分かる問題を先に落とす</h2>
+      <p>最初に置くべきなのは、安くて機械的なチェックです。lint、typecheck、unit test、smoke test、リンクチェック、フォーマット、JSONやfrontmatterの構造確認。こうしたものは、意味の判断に入る前に何度でも回せます。</p>
+      <p>これは人間レビューを軽視する話ではありません。むしろ、人間の注意を本当に人間が見るべき部分に残すための前処理です。型エラーやリンク切れを人間が見つけるのは、時間の使い方としてもったいない。</p>
+      <p>KBでいう <code>machine-checkable invariants</code> はここに効きます。リポジトリごとの「これは機械で守れる」という条件を増やすほど、レビューの入口が安定します。</p>
+
+      <h2>次に、依頼に合っているかを見る</h2>
+      <p>機械チェックを通ったら、次はタスク適合性です。依頼されたことを満たしているか。端のケースを落としていないか。既存の使い方を壊していないか。ユーザーに見える挙動が自然か。保守しやすい形か。</p>
+      <p>この層は、テストだけでは測りにくい。たとえば「読み物として読めるか」「Discordに出す文面として長すぎないか」「外部公開してよい情報だけになっているか」は、意味的な判断が必要です。</p>
+      <p>ここではrubricが効きます。毎回その場の気分で見るのではなく、チェック観点を短く固定しておく。すると、レビューする人間も、レビューするエージェントも、同じ土俵で判断できます。</p>
+
+      <h2>あいまいな品質は、評価役を分ける</h2>
+      <p>品質があいまいな作業や、壊したときの影響が大きい作業では、生成役と評価役を分けるのが強いです。実装したエージェントとは別のエージェントにレビューさせる。あるいは、人間の確認を明示的なゲートにする。</p>
+      <p>これは大げさなマルチエージェント構成でなくてもかまいません。たとえば、実装後に別モデルへ「この差分のバグと抜けを探して」と投げる。長い作業なら、成果物と検証結果を別セッションに渡して評価させる。それだけでも自己評価バイアスは下がります。</p>
+      <p>OpenAI CodexをClaude Codeの中から呼ぶような独立レビュー、Anthropic系の長時間ハーネスにあるfresh-context evaluator、サブエージェントレビューは、全部この発想に乗っています。</p>
+
+      <h2>レビュー崩壊は、速度が上がった後に来る</h2>
+      <p>エージェント導入で怖いのは、単発のミスだけではありません。成果物が増えすぎて、レビューと検証の容量を超えることです。コード生成が速くなるほど、人間の確認はボトルネックになります。</p>
+      <p>そこで必要になるのが、deployment gateやoperational riskの考え方です。マージ前、デプロイ前、公開前、外部送信前に、どのチェックを必須にするか。どこから人間承認にするか。どこまでならエージェントに任せるか。</p>
+      <p>この境界が曖昧だと、速く進んでいるように見えて、実際には危険な変更がレビューをすり抜けます。強いハーネスは、エージェントを止めるためではなく、止めるべき場所を決めるためにあります。</p>
+
+      <h2>失敗を、次のチェックに変換する</h2>
+      <p>良いレビュー運用は、同じ指摘を何度も人間に言わせません。繰り返し出るミスは、テスト、lint、テンプレート、skill、AGENTS.md、チェックリスト、rubricに移します。</p>
+      <p>たとえば今回のPodcast運用なら、「音声だけでなく読み物も出す」という指摘は、会話で覚えておくのではなく、NotebookLM podcast skillと公開スクリプトに入れるべきルールです。人間が一度指摘したら、次回からシステム側が先に満たす。</p>
+      <p>これが <code>trace-driven improvement</code> です。実際の失敗ログから、次の作業環境を少し強くする。エージェント運用では、この小さな昇格がかなり効きます。</p>
+
+      <h2>個人運用では、軽い仕組みで十分効く</h2>
+      <p>この話は、大規模なAI基盤だけのものではありません。個人のClawd運用でも、かなりそのまま使えます。</p>
+      <p>毎回同じ確認をしているなら、skillにする。毎回同じ出力を要求しているなら、テンプレートにする。公開ページならHTTP 200とリンクを確認する。音声ファイルならサイズとdurationを確認する。外部送信なら、送ったmessage idを残す。</p>
+      <p>全部を重いワークフローにする必要はありません。重要なのは、確認を会話の外に置くことです。会話の中だけにある注意は、次のセッションで消えます。ファイル、テスト、公開スクリプト、Linear、memoryに落とすと、次回の初動が変わります。</p>
+
+      <h2>今日の読みどころ</h2>
+      <p>このテーマの一番おいしいところは、「AIの品質問題」をモデル評価だけに閉じていないことです。実務では、モデルが賢いかどうかと同じくらい、作業後に何で確かめるか、誰が判断するか、失敗をどこに記録するかが効きます。</p>
+      <p>エージェントが速くなるほど、レビューは最後の儀式ではなく、作業環境の一部になります。決定的チェック、タスク適合レビュー、独立評価、危険操作のゲート、そして失敗からルールを育てる循環。この組み合わせが、エージェント運用を「勢い」から「再現性」に変えます。</p>
+      <div class="callout">
+        生成速度を上げるほど、評価の置き場所が重要になる。レビューを気合いで頑張るのではなく、安い検証、独立した判断、次回に残るルールへ分解する。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>いま人間が毎回見ている確認のうち、機械チェックにできるものは何か？</li>
+        <li>生成役と評価役を分けるべき作業の境界はどこか？</li>
+        <li>レビューで何度も出る指摘を、どのskillやrepoルールに移せるか？</li>
+        <li>公開、デプロイ、外部送信の前に必ず通すゲートは何か？</li>
+        <li>「良さそう」ではなく「この条件を満たした」と言える完了条件は何か？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm notes: <code>wiki/maps/eval-review-reliability.md</code>, <code>coding-agent-harness-patterns.md</code>, <code>agent-deployment-gates-and-operational-risk.md</code>, <code>agent-harness-control-taxonomy.md</code>.</p>
+    </footer>
+  </div>
+</body>
+</html>
