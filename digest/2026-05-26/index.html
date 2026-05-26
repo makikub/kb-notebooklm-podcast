@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-26 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-26/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-05-26</header>
+<h1>KB Daily Digest 2026-05-26</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-26/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-26">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-26</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-05-26</h1>
+<p>今日の knowledge-base-llm は、X ブックマーク由来の4本と、arXiv 論文 SkillOpt の1本を新規 ingest / compile した。全体としては、エージェント活用の焦点が「単発プロンプト」から「再利用可能なワークフロー」「並列探索」「知識グラフによる継続運用」、さらに「スキル文書そのものを検証付きで最適化する」方向へ進んでいる。</p>
+<p>重要ソースの1本目は arXiv の <strong>SkillOpt: Executive Strategy for Self-Evolving Agent Skills</strong>。これは、エージェントのスキル文書を、固定されたモデルとハーネスの外側にある「訓練可能な自然言語状態」として扱う研究だ。実行トレースを集め、成功・失敗パターンから optimizer model が add/delete/replace の小さな編集案を出し、held-out validation で改善した場合だけ採用する。KBでは新規概念 [[../../wiki/concepts/skill-optimization.md]] を作り、[[../../wiki/concepts/memory-skill-harness.md]]、[[../../wiki/concepts/rule-update-loop.md]]、[[../../wiki/concepts/trace-driven-improvement.md]]、[[../../wiki/maps/agent-harness-control-taxonomy.md]] に接続した。</p>
+<p>SkillOpt が特に重要なのは、これまで KB で扱ってきた「スキルは手続き記憶」「メモリとスキルはエージェントハーネスの2つの見方」という議論に、かなり具体的な最適化ループを与える点だ。人間が気づいた改善を手で SKILL.md に書く段階から、実行ログ、スコア、失敗パターン、検証ゲートを通してスキルを更新する段階に進める。ただし、スコアが明確なベンチマークでは強い一方、文章作成・設計・リサーチのような開いた仕事では、どの検証ゲートを信頼するかがまだ大きな未解決問題として残る。</p>
+<p>2本目は Daniel Miessler の Claude Code /workflows に関する投稿。ここでは、企業向けAIの重要単位が「プロンプト」ではなく「再利用可能な業務ワークフロー」になっていく、という見方が入った。KB上では [[../../wiki/concepts/harness-engineering.md]]、[[../../wiki/concepts/multi-agent-orchestration.md]]、[[../../wiki/concepts/managed-agents.md]] に接続され、Claude Code や類似ツールの価値が、単に賢いチャットではなく、組織内の反復作業を明示的な実行面に落とすところへ広がっていることを補強している。</p>
+<p>3本目は Figma の design agent automation and parallel exploration。公式デモとして、反復的なデザイン作業の自動化と、複数案の並列探索が示されている。これは [[../../wiki/concepts/multi-agent-orchestration.md]] と [[../../wiki/concepts/rich-agent-output-artifact.md]] に効いていて、並列化の対象がコード実装だけでなく、デザイン案・視覚成果物・レビュー可能なブランチにも広がっていることを示す材料になった。</p>
+<p>残る2本も同じトレンドを別角度から支えている。leopardracer の knowledge graph / Claude workflow は、モデル利用上限に達したあとも、周辺のノートやグラフが読み込み・接続・ブリーフ生成・次の問い出しを続けるという知識ループの例として入った。スナガクの Claude Design / Remotion 事例は、スタイル探索、選択、実装、動画生成までを一連の創作ワークフローとして扱っており、リッチな出力成果物をエージェントがどう作り、どのレビュー面で人間が選ぶかという論点を強めた。</p>
+<p>全体トレンドはかなり明確で、今日の更新は「AIが何かを生成する」よりも、「生成を支える作業面をどう設計し、継続運用し、改善するか」に寄っている。/workflows は手順を製品面に固定し、Figma は探索を並列ブランチ化し、knowledge graph 事例は継続的な知識更新をハーネスに任せ、SkillOpt はスキル文書自体を検証付きの更新対象にする。つまり、エージェント活用はモデル呼び出しの工夫から、周辺のハーネス、メモリ、ワークフロー、検証ゲートの設計へ重心を移している。</p>
+<p>KB内の更新としては、新規 raw 8件相当、wiki/sources 5件、wiki/concepts 1件が追加され、既存の harness-engineering、multi-agent-orchestration、agent-knowledge-loop、rich-agent-output-artifact、memory-skill-harness、rule-update-loop、trace-driven-improvement、agent-harness-landscape、agent-harness-control-taxonomy などが更新された。特に agent-harness-control-taxonomy には、自己更新するスキルを trusted context に入れる前にどう評価するか、という追跡課題が追加されている。</p>
+<p>次に掘るなら、(1) SkillOpt 型の validation-gated skill update を、実務の Clawd / Codex / Claude Code スキル更新にどう安全に適用するか、(2) /workflows や Figma design agent のような製品面ワークフローを KB の harness taxonomy にどう分類するか、(3) knowledge graph / Obsidian / compiled wiki の継続ループで、何をモデルに任せ、何を構造化ファイル側に残すべきか、がよさそう。</p>
+<h2>Important sources</h2>
+<ul>
+<li>SkillOpt: Executive Strategy for Self-Evolving Agent Skills: https://arxiv.org/abs/2605.23904</li>
+<li>Daniel Miessler — Claude Code /workflows for Enterprise AI: https://x.com/DanielMiessler/status/2058699741140222055</li>
+<li>Figma — design agent automation and parallel exploration: https://x.com/figma/status/2057164914331128060</li>
+<li>leopardracer — Claude keeps running on a knowledge graph: https://x.com/leopardracer/status/2054178069653418477</li>
+<li>スナガク — Claude Design helps generate a video workflow end to end: https://x.com/suna_gaku/status/2058518930503930144</li>
+</ul>
+<h2>Changed KB files</h2>
+<ul>
+<li>raw/articles/arxiv-skillopt-executive-strategy-self-evolving-agent-skills-2605-23904.md</li>
+<li>raw/pdfs/arxiv-2605.23904-skillopt.pdf</li>
+<li>raw/arxiv-source/arxiv-2605.23904-skillopt-source.tar.gz</li>
+<li>raw/articles/danielmiessler-claude-code-workflows-enterprise-ai-x-2026-05-25.md</li>
+<li>raw/articles/figma-design-agent-parallel-exploration-automation-x-2026-05-20.md</li>
+<li>raw/articles/leopardracer-knowledge-graph-claude-limit-x-2026-05-12.md</li>
+<li>raw/articles/suna-gaku-claude-design-remotion-video-generation-x-2026-05-24.md</li>
+<li>raw/x/bookmarks/bookmarks-20260526T0005Z.json</li>
+<li>wiki/sources/arxiv-skillopt-executive-strategy-self-evolving-agent-skills.md</li>
+<li>wiki/sources/danielmiessler-claude-code-workflows-enterprise-ai-x-2026-05-25.md</li>
+<li>wiki/sources/figma-design-agent-parallel-exploration-automation-x-2026-05-20.md</li>
+<li>wiki/sources/leopardracer-knowledge-graph-claude-limit-x-2026-05-12.md</li>
+<li>wiki/sources/suna-gaku-claude-design-remotion-video-generation-x-2026-05-24.md</li>
+<li>wiki/concepts/skill-optimization.md</li>
+<li>wiki/concepts/memory-skill-harness.md</li>
+<li>wiki/concepts/rule-update-loop.md</li>
+<li>wiki/concepts/trace-driven-improvement.md</li>
+<li>wiki/concepts/harness-engineering.md</li>
+<li>wiki/concepts/multi-agent-orchestration.md</li>
+<li>wiki/concepts/agent-knowledge-loop.md</li>
+<li>wiki/concepts/rich-agent-output-artifact.md</li>
+<li>wiki/maps/agent-harness-control-taxonomy.md</li>
+<li>wiki/maps/agent-harness-landscape.md</li>
+<li>wiki/navigation/harness.md</li>
+<li>wiki/navigation/memory.md</li>
+<li>wiki/glossary.md</li>
+<li>wiki/INDEX.md</li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents, and org ownership.</li>
+<li>[[about-hiroppy-founders-playbook.md]] — Anthropic&#x27;s official founder playbook PDF: AI-native startup lifecycle across Idea, MVP, Launch, and Scale, with Claude Chat/Cowork/Code stage usage, validation gates, agentic technical debt risks, founder bottleneck removal, and moat formation.</li>
+<li>[[izanami-claude-code-large-codebase-best-practices.md]] — Japanese practitioner explainer on Claude Code large-codebase setup: live repo search, thin layered CLAUDE.md, subdirectory startup, hooks, stale-rule pruning, and adoption ownership.</li>
+<li>[[newspicks-harness-engineering-what-is-it.md]] — Japanese explainer separating evaluation harnesses from agent harnesses and decomposing agent harnesses into runtime, context, and safety layers.</li>
+<li>[[tricalt-memory-skills-same-harness-x.md]] — Vasilije / tricalt X Article framing memory and skills as one evolving harness</li>
+</ul>
+<h3>arXiv — SkillOpt: Executive Strategy for Self-Evolving Agent Skills</h3>
+<p>Source note: <code>wiki/sources/arxiv-skillopt-executive-strategy-self-evolving-agent-skills.md</code></p>
+<h1>arXiv — SkillOpt: Executive Strategy for Self-Evolving Agent Skills</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/arxiv-skillopt-executive-strategy-self-evolving-agent-skills-2605-23904.md</code></li>
+<li>Local PDF: <code>raw/pdfs/arxiv-2605.23904-skillopt.pdf</code></li>
+<li>Local source tarball: <code>raw/arxiv-source/arxiv-2605.23904-skillopt-source.tar.gz</code></li>
+<li>Original URL: https://arxiv.org/abs/2605.23904</li>
+<li>PDF URL: https://arxiv.org/pdf/2605.23904</li>
+<li>Project page: https://microsoft.github.io/SkillOpt/</li>
+<li>Code link: https://github.com/microsoft/SkillOpt</li>
+<li>arXiv ID: 2605.23904v2</li>
+<li>Authors: Yifan Yang, Ziyang Gong, Weiquan Huang, Qihao Yang, Ziwei Zhou, Zisu Huang, Yan Li, Xuemei Gao, Qi Dai, Bei Liu, Kai Qiu, Yuqing Yang, Dongdong Chen, Xue Yang, Chong Luo</li>
+<li>Date: 2026-05-22; updated 2026-05-25</li>
+<li>Type: arXiv paper / agent-skill optimization method</li>
+</ul>
+<h2>Summary</h2>
+<p>SkillOpt proposes treating an agent skill document as the external trainable state of a frozen agent. Instead of relying on human-written skills, one-shot LLM-generated skills, or loosely controlled self-revision, the method uses a separate optimizer model to convert scored execution rollouts into bounded add/delete/replace edits. Each candidate skill is accepted only if it improves a held-out validation score, and the deployed output is a compact <code>best_skill.md</code> artifact that adds no extra inference-time model calls.</p>
+<p>The paper is especially relevant to the KB because it turns the memory/skill harness idea into an optimizer design. Traces are not just reviewed by humans; they become structured evidence for modifying procedural memory under a validation gate.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Agent skills can be treated as trainable natural-language state for adapting frozen models and fixed execution harnesses.</li>
+<li>Bounded text updates are a practical analogue of le</li>
+</ul>
+<h3>mizchi — Empirical prompt tuning with SKILL.md</h3>
+<p>Source note: <code>wiki/sources/mizchi-skill-md-empirical-prompt-tuning-x.md</code></p>
+<h1>mizchi — Empirical prompt tuning with SKILL.md</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/mizchi-skill-md-empirical-prompt-tuning-x-2026-04-18.md</code></li>
+<li>Original URL: https://x.com/mizchi/status/2045501078574350450</li>
+<li>Author: mizchi</li>
+<li>Date: 2026-04-18</li>
+<li>Type: X post</li>
+<li>Evidence strength: xAI-extracted post summary</li>
+</ul>
+<h2>Summary</h2>
+<p>mizchi shares a SKILL.md that auto-optimizes skills by reflecting on task outcomes and rewriting instructions when the skill seems weak.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The workflow turns prompt tuning into an empirical loop</li>
+<li>the system self-evaluates after tasks</li>
+<li>reproducibility improves when tacit instructions are externalized.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>xAI summary of the post and any cited primary link.</li>
+<li>Engagement and thread context were used only as supporting signals.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post</li>
+<li>Confidence: moderate to high for the post’s main framing; lower for any implied follow-up context.</li>
+<li>Supports: localized source note and concept connections.</li>
+<li>Main limitations: xAI summaries can compress or paraphrase the original post.</li>
+<li>Best use: a durable pointer into the related harness / agent / research cluster.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent-knowledge-loop]]</li>
+<li>[[trace-driven-improvement]]</li>
+<li>[[skill-optimization]]</li>
+<li>[[harness-engineering]]</li>
+<li>[[self-evaluation-bias]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which part of this pattern seems durable versus just a current product rollout?</li>
+<li>What stronger primary source should be attached next if this note proves important?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/agent-knowledge-loop.md]]</li>
+<li>[[../concepts/trace-driven-improvement.md]]</li>
+<li>[[../concepts/skill-optimization.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/self-evaluation-bias.md]]</li>
+</ul>
+<h3>Vasilije / tricalt — Memory and skills as the same harness</h3>
+<p>Source note: <code>wiki/sources/tricalt-memory-skills-same-harness-x.md</code></p>
+<h1>Vasilije / tricalt — Memory and skills as the same harness</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/tricalt-memory-skills-same-harness-x-2026-05-17.md</li>
+<li>Original URL: https://x.com/tricalt/status/2055876832797581406</li>
+<li>Article URL: https://x.com/i/article/2053986800050524160</li>
+<li>Author: Vasilije / @tricalt</li>
+<li>Date: 2026-05-17</li>
+<li>Type: X post linking to X Article</li>
+<li>Capture method: X API metadata plus xAI-extracted article summary</li>
+</ul>
+<h2>Summary</h2>
+<p>This source argues that memory and skills are two views of the same agent harness. Memory is the broad world model an agent uses to act, while skills are compressed procedures and traces of what has worked before. The article&#x27;s central claim is that separating them into static product primitives misses the important loop: observe the environment, inspect whether the current skill/memory still fits, amend it, and evaluate the next run.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Agent memory is not only saved facts; it includes the codebase, tools, filesystem, conversation history, preferences, and observations that shape action.</li>
+<li>Skills are not merely static Markdown prompts; they are reusable, task-specific memory about how to act.</li>
+<li>Skills degrade when the environment changes, so skill maintenance needs an active improvement loop.</li>
+<li>A useful memory system should route, inspect, and revise skills as part of the same world model.</li>
+<li>Cognee is presented as an example where skills are ingested as first-class memory nodes and skill changes become memory events.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The X API exposes the linked article title and post metadata.</li>
+<li>xAI extraction summarizes the article&#x27;s Cognee example: cognee.remember(&quot;skills/&quot;) treats skill files as memory nodes shared by retrieval and self-improvement runtime.</li>
+<li>The source points to a broader convergence aro</li>
+</ul>
+<h3>Daniel Miessler — Claude Code /workflows for Enterprise AI</h3>
+<p>Source note: <code>wiki/sources/danielmiessler-claude-code-workflows-enterprise-ai-x-2026-05-25.md</code></p>
+<h1>Daniel Miessler — Claude Code /workflows for Enterprise AI</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: ../../raw/articles/danielmiessler-claude-code-workflows-enterprise-ai-x-2026-05-25.md</li>
+<li>Original URL: https://x.com/DanielMiessler/status/2058699741140222055</li>
+<li>Author: Daniel Miessler (@DanielMiessler)</li>
+<li>Posted: 2026-05-25T00:00:41.000Z</li>
+<li>Captured: 2026-05-26 via xurl bookmarks capture</li>
+<li>Type: X post</li>
+<li>Evidence strength: bookmark snapshot metadata only; the post is visually anchored by an attached image card</li>
+</ul>
+<h2>What it says</h2>
+<p>Miessler frames Claude Code&#x27;s upcoming /workflows feature as a significant step, especially for enterprise AI. The key idea is that work should be encoded as reusable workflows rather than handled as a loose stream of prompts.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Workflow-level controls are becoming a first-class product surface.</li>
+<li>Enterprise AI benefits when repeatable procedures are encoded explicitly.</li>
+<li>The important unit is not just a prompt, but a reusable operational workflow.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text explicitly calls /workflows significant.</li>
+<li>The attached image card suggests the point is product-level workflow orchestration, not merely a single prompt trick.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which classes of enterprise work belong in a reusable workflow surface?</li>
+<li>How much workflow logic should stay user-authored versus product-managed?</li>
+<li>What review and safety gates should wrap reusable workflows by default?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+</ul>
+<h3>Figma — design agent automation and parallel exploration</h3>
+<p>Source note: <code>wiki/sources/figma-design-agent-parallel-exploration-automation-x-2026-05-20.md</code></p>
+<h1>Figma — design agent automation and parallel exploration</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: ../../raw/articles/figma-design-agent-parallel-exploration-automation-x-2026-05-20.md</li>
+<li>Original URL: https://x.com/figma/status/2057164914331128060</li>
+<li>Author: Figma (@figma)</li>
+<li>Posted: 2026-05-20T18:21:50.000Z</li>
+<li>Captured: 2026-05-26 via xurl bookmarks capture</li>
+<li>Type: X post / official product demo</li>
+<li>Evidence strength: bookmark snapshot metadata plus official Figma video preview</li>
+</ul>
+<h2>What it says</h2>
+<p>Figma&#x27;s design agent can automate repetitive tasks and run explorations in parallel. The demo treats design as a workflow with branches, not a single linear edit session.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Repetitive design actions can be automated.</li>
+<li>Exploration can happen in parallel instead of serially.</li>
+<li>The design agent is framed as a production workflow surface, not just a chat UI.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet explicitly names automating repetitive tasks and running explorations in parallel.</li>
+<li>The official Figma video preview anchors the claim as a product demo.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/rich-agent-output-artifact.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which design tasks are best treated as parallel branches?</li>
+<li>How does a design-agent workflow preserve authorial intent while automating routine edits?</li>
+<li>What artifact format best exposes the parallel branches for review?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/rich-agent-output-artifact.md]]</li>
+</ul>
+<h3>leopardracer — Claude keeps running on a knowledge graph</h3>
+<p>Source note: <code>wiki/sources/leopardracer-knowledge-graph-claude-limit-x-2026-05-12.md</code></p>
+<h1>leopardracer — Claude keeps running on a knowledge graph</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: ../../raw/articles/leopardracer-knowledge-graph-claude-limit-x-2026-05-12.md</li>
+<li>Original URL: https://x.com/leopardracer/status/2054178069653418477</li>
+<li>Author: leopardracer (@leopardracer)</li>
+<li>Posted: 2026-05-12T12:33:11.000Z</li>
+<li>Captured: 2026-05-26 via xurl bookmarks capture</li>
+<li>Type: X post / video demo</li>
+<li>Evidence strength: bookmark snapshot metadata plus video-card preview</li>
+</ul>
+<h2>What it says</h2>
+<p>The post describes a knowledge-graph workflow where Claude keeps operating even after the author hits a daily usage limit. The system reads new material, creates fresh connections, writes a brief, and surfaces a question worth thinking about.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>A knowledge-graph workflow can keep going beyond a single session.</li>
+<li>The surrounding notes and graph matter as much as the model call.</li>
+<li>The output is not only content generation but also synthesis and promptable next questions.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet explicitly says the author hit the daily Claude limit while the system kept running.</li>
+<li>The text references Obsidian, new connections, a brief, and one question for the day.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/agent-knowledge-loop.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>What minimum note structure keeps a self-running knowledge loop legible?</li>
+<li>How much of the loop should live in the graph versus in the model?</li>
+<li>Which checks are needed to keep this kind of autonomous compounding trustworthy?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/agent-knowledge-loop.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+</ul>
+<h3>スナガク — Claude Design helps generate a video workflow end to end</h3>
+<p>Source note: <code>wiki/sources/suna-gaku-claude-design-remotion-video-generation-x-2026-05-24.md</code></p>
+<h1>スナガク — Claude Design helps generate a video workflow end to end</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: ../../raw/articles/suna-gaku-claude-design-remotion-video-generation-x-2026-05-24.md</li>
+<li>Original URL: https://x.com/suna_gaku/status/2058518930503930144</li>
+<li>Author: スナガク (@suna_gaku)</li>
+<li>Posted: 2026-05-24T12:02:13.000Z</li>
+<li>Captured: 2026-05-26 via xurl bookmarks capture</li>
+<li>Type: X post / workflow report</li>
+<li>Evidence strength: bookmark snapshot metadata plus tweet text; media preview not fully transcribed</li>
+</ul>
+<h2>What it says</h2>
+<p>The author says Claude Design is valuable enough to keep paying for even if Claude Code usage drops. In the concrete example, the agent proposes multiple video styles, the author selects one, and the system carries the work through to video generation.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Claude Design can be worth paying for on its own.</li>
+<li>The tool can explore multiple output styles quickly.</li>
+<li>A creative workflow can move from idea to implemented video in one loop.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet explicitly describes using Claude Design to produce a YouTube-style video from an existing app.</li>
+<li>The workflow includes style exploration, selection, implementation, and final generation.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/rich-agent-output-artifact.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which media workflows are best served by agent-generated variants?</li>
+<li>What review surface is needed when the output is a video rather than text or code?</li>
+<li>How should pricing and usage limits be evaluated for creative-output workflows?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/rich-agent-output-artifact.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Concept Notes</h3>
+<p>KB note: <code>wiki/concepts/README.md</code></p>
+<h1>Concept Notes</h1>
+<p>Each note in this folder should represent a reusable concept that appears across multiple sources.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>definition</li>
+<li>why it matters</li>
+<li>related concepts</li>
+<li>supporting sources</li>
+<li>tensions / tradeoffs</li>
+<li>open questions</li>
+</ul>
+<ul>
+<li>[Evidence Quality](evidence-quality.md)</li>
+<li>[Field-Deployed Engineer](field-deployed-engineer.md)</li>
+<li>[Product Responsibility Distribution](product-responsibility-distribution.md)</li>
+<li>[Conversion Packaging](conversion-packaging.md)</li>
+<li>[Organizational Intent Clarity](organizational-intent-clarity.md)</li>
+<li>[Exploratory Organization Lens](exploratory-organization-lens.md)</li>
+<li>[Intelligent Delegation](intelligent-delegation.md)</li>
+<li>[Conversational Feedback Learning](conversational-feedback-learning.md)</li>
+<li>[Spec-Code-Test Loop](spec-code-test-loop.md)</li>
+<li>[Heavy Thinking](heavy-thinking.md)</li>
+<li>[Sustainable AI Work](sustainable-ai-work.md)</li>
+<li>[AI Adoption J-Curve](ai-adoption-j-curve.md)</li>
+<li>[AI ROI Model](ai-roi-model.md)</li>
+<li>[Verification Tax](verification-tax.md)</li>
+</ul>
+<h3>Memory-Skill Harness</h3>
+<p>KB note: <code>wiki/concepts/memory-skill-harness.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Unified Memory-Skill Harness</p>
+<p>  - Memory-Skill Harness</p>
+<hr>
+<h1>Memory-Skill Harness</h1>
+<h2>Definition</h2>
+<p>A harness pattern where memory and skills are treated as one evolving world model: memory stores the state and evidence an agent acts from, while skills store reusable procedures derived from successful or corrected traces.</p>
+<h2>Why It Matters</h2>
+<p>Separating memory from skills can make both brittle. Memory becomes passive storage if it cannot route the right procedure, and skills become stale prompt snippets if they cannot observe environmental change, attach evidence, and update themselves. A unified memory-skill harness makes repeated work inspectable, revisable, and queryable.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent-knowledge-loop.md]]</li>
+<li>[[navigable-agent-skills.md]]</li>
+<li>[[context-file-system.md]]</li>
+<li>[[context-graph.md]]</li>
+<li>[[rule-update-loop.md]]</li>
+<li>[[harness-engineering.md]]</li>
+<li>[[skill-optimization.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/tricalt-memory-skills-same-harness-x.md]]</li>
+<li>[[..</li>
+</ul>
+<h3>Rule-Update Loop</h3>
+<p>KB note: <code>wiki/concepts/rule-update-loop.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Rule-Update Loop</p>
+<p>  - Mistake-to-Rule Loop</p>
+<hr>
+<h1>Rule-Update Loop</h1>
+<h2>Definition</h2>
+<p>A lightweight harness pattern where repeated prompts, recurring corrections, or observed agent mistakes are converted into durable rules in files such as <code>CLAUDE.md</code>, <code>AGENTS.md</code>, skills, templates, or team playbooks.</p>
+<h2>Why It Matters</h2>
+<p>It lowers repeated review cost. Instead of correcting the agent one chat at a time, the human improves the operating environment so future sessions start with better guidance.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[context-file-system]]</li>
+<li>[[behavioral-stability]]</li>
+<li>[[agent-recognizable-repository]]</li>
+<li>[[approval-policy]]</li>
+<li>[[skill-optimization]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/claudecode-love-boris-30-claude-code-tips-x.md]]</li>
+<li>[[../sources/gota-purpose-first-harness-design-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-what-harness-engineering-is-and-is-not-zenn.md]]</li>
+<li>[[../sources/masaki-claude-md-rules-for-non-engineers.md]]</li>
+<li>[[../sources/mnilax-</li>
+</ul>
+<h3>Skill Optimization</h3>
+<p>KB note: <code>wiki/concepts/skill-optimization.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Skill Optimization</p>
+<p>  - Text-Space Skill Optimization</p>
+<p>  - Trainable Skill Document</p>
+<hr>
+<h1>Skill Optimization</h1>
+<h2>Definition</h2>
+<p>Skill optimization is the practice of improving a reusable agent skill document through scored execution evidence, bounded text edits, and validation gates, while keeping the task-execution model and harness fixed.</p>
+<h2>Why It Matters</h2>
+<p>Skills are increasingly used as procedural memory for agents. If they remain purely hand-written or one-shot generated, they improve only when a human notices a pattern and edits the file. Skill optimization makes the update loop more systematic: traces supply evidence, an optimizer proposes small edits, and held-out checks decide whether the skill actually improved.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[memory-skill-harness.md]]</li>
+<li>[[rule-update-loop.md]]</li>
+<li>[[trace-driven-improvement.md]]</li>
+<li>[[feedback-controls.md]]</li>
+<li>[[machine-checkable-invariants.md]]</li>
+<li>[[behavioral-stability.md]]</li>
+<li>[[workflow-compilation.md]]</li>
+<li>[[navigable-agent-</li>
+</ul>
+<h3>Trace-Driven Improvement</h3>
+<p>KB note: <code>wiki/concepts/trace-driven-improvement.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Trace-Driven Improvement</p>
+<hr>
+<h1>Trace-Driven Improvement</h1>
+<h2>Definition</h2>
+<p>Improving an agent harness by analyzing execution traces to identify recurring errors, bottlenecks, and loop failures.</p>
+<h2>Why It Matters</h2>
+<p>When model internals are opaque, traces become a practical substrate for systematic iteration.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[self-verification]]</li>
+<li>[[middleware-controls]]</li>
+<li>[[skill-optimization]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/langchain-deep-agents-harness-engineering.md]]</li>
+<li>[[../sources/kevin-gu-autoagent-x-thread.md]]</li>
+<li>[[../sources/neural-avb-agentic-memory-transfer-learning-x.md]]</li>
+</ul>
+<ul>
+<li>[[../sources/vmlops-openai-agents-sdk-clean-x.md]]</li>
+<li>[[../sources/mizchi-skill-md-empirical-prompt-tuning-x.md]]</li>
+<li>[[../sources/arxiv-skillopt-executive-strategy-self-evolving-agent-skills.md]]</li>
+</ul>
+<h2>Tradeoffs / Tensions</h2>
+<ul>
+<li>Trace analysis can overfit to specific benchmarks or workloads.</li>
+<li>Good trace capture requires strong observability discipline.</li>
+<li>Trac</li>
+</ul>
+<h3>Agent Harness Control Taxonomy</h3>
+<p>KB note: <code>wiki/maps/agent-harness-control-taxonomy.md</code></p>
+<h1>Agent Harness Control Taxonomy</h1>
+<h2>Purpose</h2>
+<p>Normalize the control vocabulary used across the harness-engineering cluster so the KB can compare sources without collapsing distinct mechanisms into one vague idea of &quot;guardrails.&quot;</p>
+<h2>Core split</h2>
+<p>Harness controls fall along two practical axes:</p>
+<p>1. <strong>When they act</strong> — before action, during action, or after action</p>
+<p>2. <strong>How they act</strong> — deterministic/computational or semantic/inferential</p>
+<p>This note treats those axes as complementary rather than mutually exclusive.</p>
+<h2>Scope split: evaluation, runtime, context, safety</h2>
+<p>Use this split when a source says &quot;harness&quot; but means different machinery:</p>
+<ul>
+<li><strong>Evaluation harness</strong>: infrastructure that scores models or task submissions, such as lm-evaluation-harness or SWE-bench-style graders.</li>
+<li><strong>Runtime harness</strong>: the agent loop that alternates reasoning, tool use, observation, state, and retry behavior.</li>
+<li><strong>Context harness</strong>: instructions, rule files, memory, retrieval, tools, hooks, skills, MCP servers, an</li>
+</ul>
+<h3>Navigation: Harness</h3>
+<p>KB note: <code>wiki/navigation/harness.md</code></p>
+<h1>Navigation: Harness</h1>
+<h2>Use When</h2>
+<p>The question is about making agents more reliable through prompts, tools, permissions, repository structure, checks, or workflow design.</p>
+<h2>Start Maps</h2>
+<ul>
+<li>[[../maps/ai-adoption-roi-and-capability-investment.md]]</li>
+<li>[[../maps/agent-harness-landscape.md]]</li>
+<li>[[../maps/agent-harness-control-taxonomy.md]]</li>
+<li>[[../maps/coding-agent-harness-patterns.md]]</li>
+<li>[[../maps/coding-agent-cognitive-debt-and-review-capacity.md]]</li>
+<li>[[../maps/harness-engineering-vendor-comparison.md]]</li>
+<li>[[../maps/eval-review-reliability.md]]</li>
+</ul>
+<h2>Core Concepts</h2>
+<ul>
+<li>[[../concepts/ai-adoption-j-curve.md]]</li>
+<li>[[../concepts/verification-tax.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/context-first-development.md]]</li>
+<li>[[../concepts/agent-recognizable-repository.md]]</li>
+<li>[[../concepts/context-engineering.md]]</li>
+<li>[[../concepts/environment-bootstrapping.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/gateway-control-plane.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concept</li>
+</ul>
+<h3>Navigation: Memory / Knowledge Substrate</h3>
+<p>KB note: <code>wiki/navigation/memory.md</code></p>
+<h1>Navigation: Memory / Knowledge Substrate</h1>
+<h2>Use When</h2>
+<p>The question is about agent memory, knowledge bases, compiled notes, context graphs, team/company brains, or retrieval architecture.</p>
+<h2>Start Maps</h2>
+<ul>
+<li>[[../maps/context-graph-and-company-brain.md]]</li>
+<li>[[../maps/research-os-query-paths.md]]</li>
+<li>[[../maps/agent-onboarding-kb-codebase.md]]</li>
+</ul>
+<h2>Core Concepts</h2>
+<ul>
+<li>[[../concepts/compiled-wiki.md]]</li>
+<li>[[../concepts/agent-knowledge-loop.md]]</li>
+<li>[[../concepts/continual-learning.md]]</li>
+<li>[[../concepts/agent-dreaming.md]]</li>
+<li>[[../concepts/context-file-system.md]]</li>
+<li>[[../concepts/context-engineering.md]]</li>
+<li>[[../concepts/llm-inference-performance.md]]</li>
+<li>[[../concepts/workflow-compilation.md]]</li>
+<li>[[../concepts/kv-cache.md]]</li>
+<li>[[../concepts/context-graph.md]]</li>
+<li>[[../concepts/company-brain.md]]</li>
+<li>[[../concepts/agent-first-organization.md]]</li>
+<li>[[../concepts/organizational-intent-clarity.md]]</li>
+<li>[[../concepts/navigable-agent-skills.md]]</li>
+<li>[[../concepts/memory-skill-harness.md]]</li>
+<li>[[../concepts/skill-optimization.</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>8</code>, commits: <code>3</code></p></footer>
+
+</body>
+</html>
