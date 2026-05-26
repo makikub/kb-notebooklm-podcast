@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Harness Control Taxonomy - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-05-26/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f7f6ef;
+      --text: #202528;
+      --muted: #61706e;
+      --line: #d7ddd4;
+      --panel: #edf2ea;
+      --accent: #276b63;
+      --accent-2: #9b5f36;
+      --code: rgba(39, 107, 99, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 840px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 780px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 154px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(155, 95, 54, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d4a076;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-05-26</a> / 読み物版</header>
+    <p class="eyebrow">2026-05-26 Daily Topic</p>
+    <h1>Agent Harness Control Taxonomy</h1>
+    <p class="lead">エージェントを制御する仕組みを、全部まとめて「ガードレール」と呼ぶと設計がぼやける。今日のテーマは、制御をいつ効かせるか、どう効かせるか、どの範囲に効かせるかで分解するための分類表。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-05-26">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. いつ効くか</strong>行動前、作業中、行動後で制御の役割は違う。計画、hook、testを同じ言葉で扱わない。</div>
+      <div><strong>2. どう効くか</strong>決定的チェックと意味的判断を分ける。lintとレビューエージェントは同じ種類の制御ではない。</div>
+      <div><strong>3. どこに効くか</strong>評価、実行、文脈、安全の4層を分けると、足りないハーネスが見えやすい。</div>
+    </section>
+
+    <main>
+      <h2>「ガードレール」だけでは足りない</h2>
+      <p>AIエージェント運用では、よく「ガードレールを入れる」と言います。便利な言葉ですが、実装を考える段階では少し粗すぎます。テストも、権限確認も、計画ファイルも、メモリも、サンドボックスも、全部ガードレールと言えてしまうからです。</p>
+      <p>今日の <code>Agent Harness Control Taxonomy</code> は、この曖昧さをほどくための分類です。エージェントの性能や安全性は、モデルだけでなく、その周囲にあるハーネスでかなり変わります。だからこそ、制御の種類を分けて考えないと、どこを強くすべきか分かりにくくなります。</p>
+
+      <h2>1つ目の軸は「いつ効くか」</h2>
+      <p>まず見るべきなのは、制御がいつ働くかです。行動前に進路を整える制御、作業中に介入する制御、作業後に確認する制御では、設計も得意な失敗の種類も違います。</p>
+      <p>行動前の制御には、タスク分解、計画、アーキテクチャ文書、承認ポリシー、使ってよいツールの境界、スキル、初期化用の文脈があります。これはエージェントが走り出す前に、迷いにくい地形を作る仕事です。</p>
+      <p>作業中の制御には、tool callのhook、権限チェック、途中ログ、進捗確認、リトライ制御、context追加があります。エージェントがすでに動いている最中に、危険な操作を止めたり、判断を補助したりします。</p>
+      <p>行動後の制御には、test、lint、typecheck、review、diff確認、公開URLの検証、postmortemがあります。成果物を見て、通してよいか、直すべきか、次回のルールに移すべきかを判断する層です。</p>
+
+      <h2>2つ目の軸は「どう効くか」</h2>
+      <p>次に、制御が決定的に働くのか、意味的に判断するのかを分けます。ここを混ぜると、レビュー設計が不安定になります。</p>
+      <p>決定的な制御は、同じ入力なら同じ結果を返すものです。lint、型チェック、テスト、JSON schema、ファイル存在確認、HTTP status確認、禁止パスへの書き込み拒否。これは速く、安く、何度でも回せます。</p>
+      <p>意味的な制御は、文脈を読んで判断するものです。依頼に合っているか、文章が人間向けか、公開してよい情報だけか、設計が将来の作業に耐えるか、別エージェントによるレビューが妥当か。こちらは強力ですが、曖昧さとコストがあります。</p>
+      <p>実務では、先に決定的チェックを厚くして、その後に意味的レビューを置くのが強いです。人間や評価エージェントの注意を、機械で落とせる問題に使わないためです。</p>
+
+      <h2>4つのスコープで見る</h2>
+      <p>この分類は、評価、実行、文脈、安全の4つのスコープにも分けられます。同じhookでも、何を守るかによって意味が変わります。</p>
+      <ul>
+        <li><strong>評価ハーネス:</strong> modelや成果物を採点する仕組み。SWE-bench風のgrader、unit test、rubric、review loop。</li>
+        <li><strong>実行ハーネス:</strong> エージェントがreasoning、tool use、observation、retryを回すループ。途中介入や状態管理もここ。</li>
+        <li><strong>文脈ハーネス:</strong> instructions、AGENTS.md、memory、skills、retrieval、MCP、repo docs。モデルに何を見せ、どう振る舞わせるか。</li>
+        <li><strong>安全ハーネス:</strong> sandbox、approval、credential boundary、audit log、外部送信前の確認。被害の範囲を制御する層。</li>
+      </ul>
+      <p>大事なのは、この4つが排他的ではないことです。たとえばスキルは文脈ハーネスですが、外部送信前の確認ルールを含むなら安全ハーネスにも関わります。テストは評価ハーネスですが、デプロイ前ゲートになれば安全側にも効きます。</p>
+
+      <h2>memoryとskillは「文脈ハーネス」の中心にある</h2>
+      <p>今回の分類で特に面白いのは、memoryとskillの位置づけです。memoryはただの過去ログではありません。次の作業で何を思い出し、何を避け、どの手順を選ぶかを変える文脈面の制御です。</p>
+      <p>skillは手続き的な記憶です。NotebookLMの音声生成、KBページ公開、X API取得、Linear記録のように、失敗しやすい手順や確認項目を、次回のエージェントが再利用できる形にします。</p>
+      <p>この2つは別物というより、同じハーネスの違う面です。memoryが「何を覚えるか」を持ち、skillが「どう動くか」を持つ。うまくつながると、会話で一度指摘されたことが、次回以降の初動に反映されます。</p>
+
+      <h2>個人運用での使い方</h2>
+      <p>MasakiのClawd運用に落とすなら、この分類はチェックリストとして使えます。何かを自動化したり、公開したり、Discordに送ったりするときに、どの層が足りないかを見る。</p>
+      <p>たとえば今回の読み物ページなら、行動前の制御は「読み物を人間向け成果物として扱う」というskillルールです。作業中の制御は、出力ディレクトリと公開スクリプトの導線確認。行動後の制御は、HTTP 200、リンク確認、git diff check、Linear/memoryへの記録です。</p>
+      <p>これを毎回その場の注意力だけでやると、抜けます。だから、スクリプト、skill、memory、Linearに分散して残す。エージェントの信頼性は、賢い返答よりも、こういう地味な足場で上がります。</p>
+
+      <h2>分類表としての読みどころ</h2>
+      <p>このノートの価値は、「エージェント制御」を大きな精神論にしないところです。制御は、導入するタイミング、判定方法、作用するスコープに分けられます。すると、今の仕組みに何が足りないかを会話ではなく設計で議論できます。</p>
+      <p>行動前の文脈が弱いなら、repo docsやskillを足す。作業中の危険操作が不安なら、approvalやhookを足す。作業後の品質が揺れるなら、testと独立レビューを足す。公開や送信が怖いなら、安全ハーネスの境界を明確にする。</p>
+      <div class="callout">
+        「guardrailを入れる」ではなく、「どのタイミングで、どの方式で、どのスコープに効く制御を入れるか」と言えるようにする。それだけで、エージェント運用の設計精度がかなり上がる。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>いまの自動化で、行動前・作業中・行動後のどこが一番薄いか？</li>
+        <li>人間レビューで見ている項目のうち、決定的チェックに移せるものは何か？</li>
+        <li>memoryとskillのどちらに残すべき学習なのか？</li>
+        <li>外部送信、公開、デプロイ前に必ず止めるべきゲートは何か？</li>
+        <li>「安全」「評価」「文脈」「実行」を混同している言葉はないか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm notes: <code>wiki/maps/agent-harness-control-taxonomy.md</code>, <code>coding-agent-harness-patterns.md</code>, <code>agent-harness-landscape.md</code>, <code>harness-engineering-vendor-comparison.md</code>, <code>eval-review-reliability.md</code>.</p>
+    </footer>
+  </div>
+</body>
+</html>
