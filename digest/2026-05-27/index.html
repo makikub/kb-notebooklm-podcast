@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-27 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-27/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-05-27</header>
+<h1>KB Daily Digest 2026-05-27</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-27/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-27">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-27</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-05-27</h1>
+<p>今日の knowledge-base-llm は、X ブックマーク由来の5本を新規 ingest / compile した。全体としては、agent harness を「プロンプトや設定ファイル」より広い実行環境として捉え直す更新になっている。安全境界、セキュリティ助言、ツール配布、ブラウザ操作、静的HTML成果物が同じ束に入り、エージェントを実務に置く時の論点がかなり具体化した。</p>
+<p>重要ソースの1本目は <strong>Anthropic — How we contain Claude across products</strong>。Anthropic は、エージェントに与える権限は能力に合わせて変わるべきで、破壊的な操作を制約する中心的な面として sandboxing を位置づけている。KB上では [[../../wiki/concepts/harness-engineering.md]]、[[../../wiki/concepts/harnessability.md]]、[[../../wiki/concepts/agent-management.md]] に接続され、harness engineering が単に便利な作業補助ではなく、能力上昇に合わせた権限設計と安全境界の問題でもあることを補強した。</p>
+<p>2本目は <strong>ClaudeDevs — security guidance plugin for Claude Code</strong>。Claude Code の plugin marketplace に、コードを書いている最中に脆弱性の発見と修正を助ける security-guidance plugin が入った、というシグナルだ。ここで面白いのは、セキュリティが後段レビューだけではなく、コーディングループの内側にプラグインとして入り込んでいる点。KBでは、guardrail や remediation が core harness に入るべきなのか、plugin として追加されるべきなのか、という実装境界の問いが立った。</p>
+<p>3本目は <strong>riywo — nix-claude-code GitHub repo</strong>。Claude Code CLI を Nix flake overlay として配布し、公式 Anthropic release の pre-built binary を再現可能に入れるための repo が紹介されている。これは地味だが実務上かなり大きい。エージェントの性能はモデルだけでなく、同じCLI、同じ環境、同じ導入手順で動かせるかに左右される。KBでは [[../../wiki/concepts/agent-recognizable-repository.md]] とも接続され、ツール配布・環境再現性が harness の一部として扱われるようになった。</p>
+<p>残り2本は、harness の出力面と操作面を広げている。<strong>super_bonochin — Webwright for coding agents</strong> は、Playwright を置き換えるのではなく、Codex / Claude Code / OpenClaw / Hermes 向けの plugin / skill として包み直す発想を示す。つまり browser automation の価値は automation core だけではなく、複数の agent ecosystem に差し込める形で配布されることにもある。<strong>Paras Chopra — static HTML outputs for Claude Code</strong> は、report、exploration、code structure、mockup を static HTML として出し、ブラウザ上でコメントしながら Claude に更新させるワークフローを示している。KBでは [[../../wiki/concepts/structured-handoff-artifacts.md]] に入り、HTML成果物が最終納品だけでなく、レビューと再編集の作業面にもなりうることを補強した。</p>
+<p>全体トレンドとしては、「エージェントに何を言うか」から「エージェントをどの環境で、どの権限で、どの成果物形式で、どの配布面から動かすか」へ焦点が移っている。Anthropic の sandbox は安全境界、ClaudeDevs の plugin はコーディング中のガードレール、nix-claude-code は再現可能な導入面、Webwright は browser automation の agent-native 化、static HTML は人間がレビューしやすい成果物面をそれぞれ担当している。別々の話に見えるが、KBの harness-engineering から見ると全部「agent が安定して仕事を進めるための周辺設計」だ。</p>
+<p>KB内の更新としては、raw/articles 5件、raw/x/bookmarks 1件、wiki/sources 5件が追加され、既存の [[../../wiki/concepts/harness-engineering.md]] と [[../../wiki/concepts/structured-handoff-artifacts.md]] が更新された。新規 concept や map は作られていないが、harness-engineering の supporting sources に、セキュリティ、配布、sandbox、browser automation、HTML artifact という実務寄りの補助線が追加されたのが大きい。</p>
+<p>次に掘るなら、(1) sandbox / plugin / package manager / browser wrapper / HTML artifact を harness taxonomy 上でどう分けるか、(2) security guidance plugin のような助言型ガードレールをいつ実行型 remediation に進めるべきか、(3) static HTML を durable handoff artifact として運用する時に、Markdown や wiki note とどう役割分担するか、がよさそう。</p>
+<h2>Important sources</h2>
+<ul>
+<li>Anthropic — How we contain Claude across products: https://www.anthropic.com/engineering/how-we-contain-claude</li>
+<li>ClaudeDevs — security guidance plugin for Claude Code: https://x.com/ClaudeDevs/status/2059385239781384341</li>
+<li>riywo — nix-claude-code GitHub repo: https://github.com/ryoppippi/nix-claude-code</li>
+<li>super_bonochin — Webwright for coding agents: https://x.com/super_bonochin/status/2059284808988344370</li>
+<li>Paras Chopra — static HTML outputs for Claude Code: https://x.com/paraschopra/status/2059167147516199152</li>
+</ul>
+<h2>Changed KB files</h2>
+<ul>
+<li>raw/articles/anthropic-how-we-contain-claude-across-products-x-2026-05-26.md</li>
+<li>raw/articles/claudedevs-security-guidance-plugin-claude-code-x-2026-05-26.md</li>
+<li>raw/articles/paraschopra-static-html-claude-code-x-2026-05-26.md</li>
+<li>raw/articles/riywo-nix-claude-code-github-x-2026-05-26.md</li>
+<li>raw/articles/super-bonochin-webwright-coding-agents-x-2026-05-26.md</li>
+<li>raw/x/bookmarks/bookmarks-20260527T0004Z.json</li>
+<li>wiki/sources/anthropic-how-we-contain-claude-across-products-x-2026-05-26.md</li>
+<li>wiki/sources/claudedevs-security-guidance-plugin-claude-code-x-2026-05-26.md</li>
+<li>wiki/sources/paraschopra-static-html-claude-code-x-2026-05-26.md</li>
+<li>wiki/sources/riywo-nix-claude-code-github-x-2026-05-26.md</li>
+<li>wiki/sources/super-bonochin-webwright-coding-agents-x-2026-05-26.md</li>
+<li>wiki/concepts/harness-engineering.md</li>
+<li>wiki/concepts/structured-handoff-artifacts.md</li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Anthropic — How we contain Claude across products</h3>
+<p>Source note: <code>wiki/sources/anthropic-how-we-contain-claude-across-products-x-2026-05-26.md</code></p>
+<h1>Anthropic — How we contain Claude across products</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/anthropic-how-we-contain-claude-across-products-x-2026-05-26.md</li>
+<li>Original URL: https://x.com/AnthropicAI/status/2059351260243919269</li>
+<li>Primary URL: https://www.anthropic.com/engineering/how-we-contain-claude</li>
+<li>Author: Anthropic</li>
+<li>Date: 2026-05-26</li>
+<li>Type: X post linking to engineering blog</li>
+<li>Evidence strength: direct xurl bookmarks capture</li>
+</ul>
+<h2>Summary</h2>
+<p>Anthropic says the permissions granted to agents should evolve with their capabilities, and that sandboxing is how they constrain potentially destructive actions in their own products.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Access policy should be capability-adaptive.</li>
+<li>Sandboxing is a core control surface for destructive actions.</li>
+<li>Product guardrails should evolve as agents become more capable.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The X post points to Anthropic&#x27;s engineering blog as the stronger primary source.</li>
+<li>The post frames sandboxing as the concrete mechanism for limiting scope.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post linking to blog</li>
+<li>Confidence: high for the post&#x27;s framing, moderate for any details not visible in the bookmark text.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[harnessability]]</li>
+<li>[[agent-management]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which permission changes should be automatic, and which should require explicit human review?</li>
+<li>What sandbox boundaries are most effective for long-running agent products?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/harnessability.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+</ul>
+<h3>ClaudeDevs — security guidance plugin for Claude Code</h3>
+<p>Source note: <code>wiki/sources/claudedevs-security-guidance-plugin-claude-code-x-2026-05-26.md</code></p>
+<h1>ClaudeDevs — security guidance plugin for Claude Code</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/claudedevs-security-guidance-plugin-claude-code-x-2026-05-26.md</li>
+<li>Original URL: https://x.com/ClaudeDevs/status/2059385239781384341</li>
+<li>Author: ClaudeDevs</li>
+<li>Date: 2026-05-26</li>
+<li>Type: X post</li>
+<li>Evidence strength: direct xurl bookmarks capture</li>
+</ul>
+<h2>Summary</h2>
+<p>ClaudeDevs says Claude Code now has a security-guidance plugin that helps identify and fix vulnerabilities while code is being written. It is available to all Claude Code users through the plugin marketplace.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Security guidance is moving into the coding loop instead of staying a separate review step.</li>
+<li>Plugin surfaces are becoming a first-class place for guardrails and remediation help.</li>
+<li>Claude Code users can install the plugin from the marketplace.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The captured post text is the only evidence in this note.</li>
+<li>The post announces availability for all users and points to /plugins.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post</li>
+<li>Confidence: moderate for the feature framing, lower for implementation details not present in the post.</li>
+<li>Main limitation: no stronger primary source was captured in this bookmark.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[harnessability]]</li>
+<li>[[agent-management]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>How much security guidance belongs in a plugin versus in the core agent harness?</li>
+<li>Which remediation actions should be advisory only versus directly executable?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/harnessability.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+</ul>
+<h3>Paras Chopra — static HTML outputs for Claude Code</h3>
+<p>Source note: <code>wiki/sources/paraschopra-static-html-claude-code-x-2026-05-26.md</code></p>
+<h1>Paras Chopra — static HTML outputs for Claude Code</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/paraschopra-static-html-claude-code-x-2026-05-26.md</li>
+<li>Original URL: https://x.com/paraschopra/status/2059167147516199152</li>
+<li>Author: Paras Chopra</li>
+<li>Date: 2026-05-26</li>
+<li>Type: X post</li>
+<li>Evidence strength: direct xurl bookmarks capture</li>
+</ul>
+<h2>Summary</h2>
+<p>Paras Chopra says his favorite way to use Claude Code is to have it generate static HTML outputs like reports, explorations, code structure, and mockups. He then iterates on the file in the browser by commenting and having Claude update the output live.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Static HTML is a strong artifact format for agent output.</li>
+<li>Browser commenting creates a tight review-and-revise loop.</li>
+<li>Output artifacts can be treated as editable workspaces rather than final deliverables.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text itself is the core evidence.</li>
+<li>The post references a live HTML artifact workflow, but no stronger source was captured here.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post</li>
+<li>Confidence: moderate for the workflow pattern, lower for any claimed broader best practice.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[structured-handoff-artifacts]]</li>
+<li>[[harness-engineering]]</li>
+<li>[[workflow-compilation]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which kinds of outputs are best served by static HTML instead of markdown or plain text?</li>
+<li>When does an output artifact become a durable handoff artifact rather than a one-off result?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/structured-handoff-artifacts.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/workflow-compilation.md]]</li>
+</ul>
+<h3>riywo — nix-claude-code GitHub repo</h3>
+<p>Source note: <code>wiki/sources/riywo-nix-claude-code-github-x-2026-05-26.md</code></p>
+<h1>riywo — nix-claude-code GitHub repo</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/riywo-nix-claude-code-github-x-2026-05-26.md</li>
+<li>Original URL: https://x.com/riywo/status/2059348291058586092</li>
+<li>Primary URL: https://github.com/ryoppippi/nix-claude-code</li>
+<li>Author: Ryosuke Iwanaga</li>
+<li>Date: 2026-05-26</li>
+<li>Type: X post linking to GitHub repo</li>
+<li>Evidence strength: direct xurl bookmarks capture</li>
+</ul>
+<h2>Summary</h2>
+<p>Ryosuke Iwanaga highlights ryoppippi&#x27;s nix-claude-code repo as very useful and says he uses it across all of his environments. The linked repo provides a Nix flake overlay that ships pre-built Claude Code CLI binaries from official Anthropic releases.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Packaging Claude Code through Nix makes the toolchain easier to reproduce across machines.</li>
+<li>Pre-built official binaries reduce setup friction.</li>
+<li>A reusable installer layer can become part of an agent harness.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The X post gives the adoption signal.</li>
+<li>The GitHub repo is the stronger source for installation details and packaging behavior.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post + linked GitHub repo</li>
+<li>Confidence: high for the existence of the repo and the user&#x27;s endorsement; moderate for broader harness implications.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[harnessability]]</li>
+<li>[[agent-recognizable-repository]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which parts of agent-tool distribution are best solved by package managers like Nix?</li>
+<li>How much does tool reproducibility matter for agent reliability in daily use?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/harnessability.md]]</li>
+<li>[[../concepts/agent-recognizable-repository.md]]</li>
+</ul>
+<h3>super_bonochin — Webwright for coding agents</h3>
+<p>Source note: <code>wiki/sources/super-bonochin-webwright-coding-agents-x-2026-05-26.md</code></p>
+<h1>super_bonochin — Webwright for coding agents</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/super-bonochin-webwright-coding-agents-x-2026-05-26.md</li>
+<li>Original URL: https://x.com/super_bonochin/status/2059284808988344370</li>
+<li>Author: 炎鎮🔥 - ₿onochin -</li>
+<li>Date: 2026-05-26</li>
+<li>Type: X post</li>
+<li>Evidence strength: direct xurl bookmarks capture</li>
+</ul>
+<h2>Summary</h2>
+<p>The post describes Webwright as Playwright tuned for coding agents. It says plugins and skills are available for Codex, Claude Code, OpenClaw, and Hermes, and that Webwright wraps Playwright rather than replacing it.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Browser automation is being repackaged as agent-specific tooling.</li>
+<li>Thin wrappers around Playwright can make browser control easier to slot into multiple agent ecosystems.</li>
+<li>Plugin and skill distribution matters as much as the automation core.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark includes a preview image and a linked thread reference, but no stronger primary source was captured here.</li>
+<li>The post itself is enough to treat Webwright as an agent-tooling signal, not as a technical specification.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post</li>
+<li>Confidence: moderate for the high-level pattern, lower for implementation specifics.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[harnessability]]</li>
+<li>[[navigable-agent-skills]]</li>
+<li>[[agent-recognizable-repository]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>How much value comes from the wrapper versus the underlying Playwright control model?</li>
+<li>What does a portable browser-automation skill need to expose to stay useful across agent frameworks?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/harnessability.md]]</li>
+<li>[[../concepts/navigable-agent-skills.md]]</li>
+<li>[[../concepts/agent-recognizable-repository.md]]</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Harness Engineering</h3>
+<p>KB note: <code>wiki/concepts/harness-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Harness Engineering</p>
+<hr>
+<h1>Harness Engineering</h1>
+<h2>Definition</h2>
+<p>The design of the environment, artifacts, controls, tooling, and feedback loops around an agent so that it can produce more reliable results over time.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, performance depends less on the model alone and more on the structure that surrounds it.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[guides and sensors]]</li>
+<li>[[agent recognizable repository]]</li>
+<li>[[structured handoff artifacts]]</li>
+<li>[[machine-checkable invariants]]</li>
+<li>[[heavy-thinking.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/martin-fowler-harness-engineering.md]]</li>
+<li>[[../sources/gota-purpose-first-harness-design-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-how-to-approach-harness-engineering-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-what-harness-engineering-is-and-is-not-zenn.md]]</li>
+<li>[[../sources/sergicalsix-harness-engineering-overview-design-philosophy-speakerdeck.md]]</li>
+<li>[[../sources/yuukiyo-ai-dlc</li>
+</ul>
+<h3>Structured Handoff Artifacts</h3>
+<p>KB note: <code>wiki/concepts/structured-handoff-artifacts.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Structured Handoff Artifacts</p>
+<hr>
+<h1>Structured Handoff Artifacts</h1>
+<h2>Definition</h2>
+<p>Persistent artifacts such as progress logs, feature lists, plans, and commit history that allow one agent session to hand work off to another cleanly.</p>
+<h2>Why It Matters</h2>
+<p>Without structured handoffs, long-running work across multiple context windows becomes brittle and repetitive.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[initializer-agent]]</li>
+<li>[[rich-agent-output-artifact.md]]</li>
+<li>[[context-resets]]</li>
+<li>[[incremental-progress]]</li>
+<li>[[long-running-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/oikon48-team-onboarding-x.md]]</li>
+<li>[[../sources/oikon48-ultraplan-x.md]]</li>
+<li>[[../sources/anthropic-claude-code-ultraplan-docs.md]]</li>
+<li>[[../sources/cursor-pr-demos-x.md]]</li>
+<li>[[../sources/noahzweben-autofix-pr-x.md]]</li>
+<li>[[../sources/aparnadhinak-harness-vs-sandbox-trajectory-x.md]]</li>
+<li>[[../sources/nyk-builderz-4-agent-h</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>5</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
