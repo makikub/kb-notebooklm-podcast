@@ -1,0 +1,15 @@
+{
+  "date": "2026-05-29T03:00:10.379698+09:00",
+  "topic_id": "wiki/maps/context-graph-and-company-brain.md",
+  "title": "Context Graph and Company Brain",
+  "output_dir": "outputs/notebooklm-podcast/2026-05-29",
+  "page": "outputs/notebooklm-podcast/2026-05-29/notebooklm-source.md",
+  "related": [
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/maps/research-os-query-paths.md",
+    "wiki/maps/harness-engineering-vendor-comparison.md",
+    "wiki/concepts/company-brain.md"
+  ],
+  "char_count": 9021
+}
