@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-28 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-28/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-05-28</header>
+<h1>KB Daily Digest 2026-05-28</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-28/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-28">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-28</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-05-28</h1>
+<p>今日の knowledge-base-llm は、X ブックマーク由来の5本を新規 ingest / compile した。中心にあるのは、AI coding agent のレビュー能力をどう維持するか、そしてそのレビューを単発の人間チェックではなく、hook、browser automation、test clock、wiki linkage、autoreview skill といった周辺構造へどう分散するか、という話だ。</p>
+<p>重要ソースの1本目は <strong>mizchi — review visibility and black-box testing</strong>。AI生成コードの量が増えると、レビューの失敗は「読めばわかる」ではなく「読み切れない」ことから起きる。mizchi の指摘は、レビュー能力そのものがボトルネックになり、line-by-line の目視だけでは追いつかないというもの。KB上では [[../../wiki/maps/coding-agent-review-rubric.md]] に接続され、レビュー観点として correctness や safety だけでなく、comprehension / reviewability を明示的に扱う理由が強くなった。</p>
+<p>2本目は <strong>Oikon — security guidance hooks for Claude Code</strong>。Claude Code の security-guidance plugin hook が、裏側で Claude Agent SDK を呼び、メインの agent 作業と並行して脆弱性レビューを走らせるというパターンを示している。特に asyncRewake は、レビューを同期的な gate に閉じ込めず、background agent として後から戻す設計の手がかりになる。KBでは [[../../wiki/concepts/harness-engineering.md]]、[[../../wiki/concepts/multi-agent-orchestration.md]]、[[../../wiki/concepts/background-agents.md]] に接続され、hook が単なる通知機構ではなく、review harness の実行面にもなりうることを補強した。</p>
+<p>3本目は <strong>steipete — autoreview skill and Codex review loop</strong>。autoreview skill を PR 前に走らせ、何時間もかけて edge case を拾うという話で、レビューが lint の延長ではなく、長時間走る検証プロセスとして扱われ始めていることがわかる。重要なのは「自動レビューは速いから便利」ではなく、「レビュー yield が高いなら latency を払う価値がある」という実務判断だ。KBでは [[../../wiki/maps/coding-agent-review-rubric.md]] と [[../../wiki/maps/coding-agent-harness-patterns.md]] に入り、レビューのコスト、深さ、エスカレーション条件を考える材料になった。</p>
+<p>残り2本も、同じトレンドを別角度から支えている。<strong>catnose99 — Stripe test clock plus Codex browser checklist</strong> は、支払い系 SaaS の QA で、Stripe test clock と事前チェックリスト、Codex browser action を組み合わせる実務パターンを示す。subscription renewal、cancellation、expired card のような edge case を、都度の勘ではなく再現可能な checklist / sandbox に落とし込む発想だ。<strong>Haruhiko Okumura — LLM Wiki and knowledge linking</strong> は、Karpathy-style LLM wiki の価値を、単なる保存ではなく知識同士の接続に置く。これは今日の digest 自体とも直結していて、review hook や test checklist のような一回限りの運用知を、KBの concept / map に戻して再利用可能にする意味を支えている。</p>
+<p>全体トレンドとしては、AI coding の課題が「コードを生成できるか」から「生成された変更を、誰が、どの視点で、どの環境で、どのくらい深く確認するか」へ移っている。review visibility は人間側の認知限界、security hook は非同期の専門レビュー、autoreview skill は長時間検証、Stripe test clock は再現可能な外部状態、LLM wiki は学習した運用知の蓄積をそれぞれ担当している。別々の小ネタに見えて、全部 review capacity と harness engineering の話としてつながる。</p>
+<p>KB内の更新としては、raw/articles 5件、raw/x/bookmarks 1件、wiki/sources 5件が追加された。既存の [[../../wiki/concepts/harness-engineering.md]]、[[../../wiki/concepts/coding-agents.md]]、[[../../wiki/concepts/agent-knowledge-loop.md]]、[[../../wiki/concepts/compiled-wiki.md]] が更新され、[[../../wiki/maps/coding-agent-review-rubric.md]] には新しい supporting sources が追加された。特に review rubric は、AI生成コードの増加に対して「正しさ」だけでなく「レビュー可能性」そのものを評価軸として持つ必要がある、という方向に少し強くなった。</p>
+<p>実務上の含意はかなりはっきりしている。agent による実装が増えるほど、レビューは人間の最後の気合いでは回らない。重要な workflow では、チェックリスト、browser automation、sandbox/test clock、非同期 hook、長時間 autoreview、そして結果をKBへ戻す知識ループを組み合わせる必要がある。逆に言うと、まだ人間が毎回ゼロからレビュー観点を考えている箇所は、harness 化できる余地がある。</p>
+<p>次に掘るなら、(1) review hook / autoreview / browser checklist / black-box test を review taxonomy 上でどう分けるか、(2) async review の結果をいつ main agent に割り込ませ、いつ後段の注意として扱うべきか、(3) payment や auth のような状態依存ワークフローを agent-readable checklist としてどう標準化するか、がよさそう。</p>
+<h2>Important sources</h2>
+<ul>
+<li>mizchi — review visibility and black-box testing: https://x.com/mizchi/status/2059567539878068246</li>
+<li>Oikon — security guidance hooks for Claude Code: https://x.com/oikon48/status/2059758293414023464</li>
+<li>Peter Steinberger — autoreview skill and Codex review loop: https://x.com/steipete/status/2059453909819654554</li>
+<li>catnose — Stripe test clock plus Codex browser checklist: https://x.com/catnose99/status/2059635758731026533</li>
+<li>Haruhiko Okumura — LLM Wiki and knowledge linking: https://x.com/h_okumura/status/2059504313744199932</li>
+</ul>
+<h2>Changed KB files</h2>
+<ul>
+<li>raw/articles/catnose99-stripe-test-clock-codex-browser-checklist-x-2026-05-27.md</li>
+<li>raw/articles/h-okumura-llm-wiki-connecting-knowledge-x-2026-05-27.md</li>
+<li>raw/articles/mizchi-review-visibility-black-box-testing-x-2026-05-27.md</li>
+<li>raw/articles/oikon48-security-guidance-hooks-claude-code-x-2026-05-27.md</li>
+<li>raw/articles/steipete-autoreview-skill-codex-review-loop-x-2026-05-27.md</li>
+<li>raw/x/bookmarks/bookmarks-20260528T0004Z.json</li>
+<li>wiki/sources/catnose99-stripe-test-clock-codex-browser-checklist-x-2026-05-27.md</li>
+<li>wiki/sources/h-okumura-llm-wiki-connecting-knowledge-x-2026-05-27.md</li>
+<li>wiki/sources/mizchi-review-visibility-black-box-testing-x-2026-05-27.md</li>
+<li>wiki/sources/oikon48-security-guidance-hooks-claude-code-x-2026-05-27.md</li>
+<li>wiki/sources/steipete-autoreview-skill-codex-review-loop-x-2026-05-27.md</li>
+<li>wiki/concepts/agent-knowledge-loop.md</li>
+<li>wiki/concepts/coding-agents.md</li>
+<li>wiki/concepts/compiled-wiki.md</li>
+<li>wiki/concepts/harness-engineering.md</li>
+<li>wiki/maps/coding-agent-review-rubric.md</li>
+</ul>
+<h2>重要ソース</h2>
+<h3>catnose99 — Stripe test clock plus Codex browser checklist</h3>
+<p>Source note: <code>wiki/sources/catnose99-stripe-test-clock-codex-browser-checklist-x-2026-05-27.md</code></p>
+<h1>catnose99 — Stripe test clock plus Codex browser checklist</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/catnose99-stripe-test-clock-codex-browser-checklist-x-2026-05-27.md</li>
+<li>Original URL: https://x.com/catnose99/status/2059635758731026533</li>
+<li>Author: catnose</li>
+<li>Date: 2026-05-27</li>
+<li>Type: X post</li>
+<li>Evidence strength: direct xurl bookmarks capture</li>
+</ul>
+<h2>Summary</h2>
+<p>catnose recommends a practical workflow for paid web services: prepare a checklist for payment-related checks, then use Codex browser actions to run through the checklist. The post specifically calls out Stripe test clocks as a way to reproduce subscription renewals, cancellations, and expired cards inside a sandbox.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Payment flows are easier to validate when the checks are prewritten as a checklist.</li>
+<li>Browser automation turns the checklist into a repeatable QA loop.</li>
+<li>Stripe test clocks make subscription edge cases reproducible instead of ad hoc.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post text is the only evidence in this capture.</li>
+<li>The bookmark is image-only, so there is no richer article metadata here.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post</li>
+<li>Confidence: moderate for the operational pattern, lower for any generalization beyond the author’s own workflow.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/spec-code-test-loop.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which recurring QA flows should become checklists by default?</li>
+<li>Where should the browser runner end and a dedicated test harness begin?</li>
+<li>How much of payment-edge-case testing can be standardized across SaaS products?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/</li>
+</ul>
+<h3>Haruhiko Okumura — LLM Wiki and knowledge linking</h3>
+<p>Source note: <code>wiki/sources/h-okumura-llm-wiki-connecting-knowledge-x-2026-05-27.md</code></p>
+<h1>Haruhiko Okumura — LLM Wiki and knowledge linking</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/h-okumura-llm-wiki-connecting-knowledge-x-2026-05-27.md</li>
+<li>Original URL: https://x.com/h_okumura/status/2059504313744199932</li>
+<li>Author: Haruhiko Okumura</li>
+<li>Date: 2026-05-27</li>
+<li>Type: X post</li>
+<li>Evidence strength: direct xurl bookmarks capture</li>
+<li>Primary URLs:</li>
+</ul>
+<p>  - https://zenn.dev/tsurubee/articles/llm-wiki-connecting-knowledge</p>
+<p>  - https://zenn.dev/nori_handa/articles/llm-knowledge-base-karpathy-wiki</p>
+<h2>Summary</h2>
+<p>Haruhiko Okumura bookmarks two Japanese articles about operating a Karpathy-style LLM wiki. One article focuses on how an LLM wiki helps connect knowledge over time; the other frames the same idea as a design for letting AI reliably collect internal know-how without leakage or fragmentation.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>A well-run LLM wiki is valuable because it helps connect related knowledge, not just store notes.</li>
+<li>Karpathy-style personal wikis are now being adapted into practical internal knowledge workflows.</li>
+<li>The core value is curation and linkage, not raw accumulation.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The X post is a two-link curation post.</li>
+<li>The Zenn article titles provide the strongest provenance in this capture.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post linking to secondary articles.</li>
+<li>Confidence: moderate for the theme of connected knowledge; lower for any claims that depend on the full article bodies, which were not fetched here.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/compiled-wiki.md]]</li>
+<li>[[../concepts/agent-knowledge-loop.md]]</li>
+<li>[[../concepts/context-graph.md]]</li>
+<li>[[../concepts/structured-handoff-artifacts.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which linking practices most improve retrieval in a personal wiki?</li>
+<li>When does a linked note graph become a true context graph?</li>
+<li>What is the smallest dura</li>
+</ul>
+<h3>mizchi — review visibility and black-box testing</h3>
+<p>Source note: <code>wiki/sources/mizchi-review-visibility-black-box-testing-x-2026-05-27.md</code></p>
+<h1>mizchi — review visibility and black-box testing</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/mizchi-review-visibility-black-box-testing-x-2026-05-27.md</li>
+<li>Original URL: https://x.com/mizchi/status/2059567539878068246</li>
+<li>Author: mizchi</li>
+<li>Date: 2026-05-27</li>
+<li>Type: X post</li>
+<li>Evidence strength: direct xurl bookmarks capture</li>
+</ul>
+<h2>Summary</h2>
+<p>mizchi argues that the current failure mode in AI-generated code review is a visibility problem: teams are producing too much code to inspect line by line, so they need review methods beyond plain text reading. The post also says black-box testing is becoming more valuable because it checks behavior without requiring the reviewer to understand every implementation detail.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Review capacity is now a bottleneck when AI generates large code volumes.</li>
+<li>New visualization and inspection methods are needed for review to keep up.</li>
+<li>Black-box testing gains value when internal inspection becomes too expensive.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post text is the only evidence in the capture.</li>
+<li>No linked primary source was included in the bookmark.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post</li>
+<li>Confidence: moderate for the diagnosis, lower for the implied remedies.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/evidence-quality.md]]</li>
+<li>[[../concepts/verification-tax.md]]</li>
+<li>[[../maps/coding-agent-review-rubric.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which review views are better than line-by-line text for generated code?</li>
+<li>How should a harness balance black-box tests against internal reasoning checks?</li>
+<li>When does review capacity become the limiting factor rather than code generation?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/evidence-q</li>
+</ul>
+<h3>Oikon — security guidance hooks for Claude Code</h3>
+<p>Source note: <code>wiki/sources/oikon48-security-guidance-hooks-claude-code-x-2026-05-27.md</code></p>
+<h1>Oikon — security guidance hooks for Claude Code</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/oikon48-security-guidance-hooks-claude-code-x-2026-05-27.md</li>
+<li>Original URL: https://x.com/oikon48/status/2059758293414023464</li>
+<li>Author: Oikon</li>
+<li>Date: 2026-05-27</li>
+<li>Type: X post</li>
+<li>Evidence strength: direct xurl bookmarks capture</li>
+<li>Primary URL: https://github.com/anthropics/claude-code/blob/b7339920b69f4a395c28727a1e2305dc5b122cb2/plugins/security-guidance/hooks/hooks.json#L63</li>
+</ul>
+<h2>Summary</h2>
+<p>Oikon highlights the Claude Code security-guidance plugin hook design. The post says Claude Code hooks can call Claude Agent SDK in the background so a model can review vulnerabilities while the main agent continues, then report back asynchronously. Oikon calls out the asyncRewake pattern as worth studying.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Security review is being pushed into hooks rather than bolted on after the fact.</li>
+<li>A background review agent can run while the main agent keeps working.</li>
+<li>asyncRewake: true is an example of a useful async hook pattern.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post text itself is the main evidence.</li>
+<li>The captured URL points at the Claude Code security-guidance hook file in the Anthropic repo.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post with a linked GitHub file.</li>
+<li>Confidence: moderate for the architectural pattern, lower for any implementation detail not visible in the captured hook file excerpt.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which review work belongs in hooks versus in the main agent loop?</li>
+<li>How should hook output be surfaced so it helps without becoming noisy?</li>
+<li>Which asynchronous review patterns are safe to sta</li>
+</ul>
+<h3>steipete — autoreview skill and Codex review loop</h3>
+<p>Source note: <code>wiki/sources/steipete-autoreview-skill-codex-review-loop-x-2026-05-27.md</code></p>
+<h1>steipete — autoreview skill and Codex review loop</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: raw/articles/steipete-autoreview-skill-codex-review-loop-x-2026-05-27.md</li>
+<li>Original URL: https://x.com/steipete/status/2059453909819654554</li>
+<li>Author: Peter Steinberger</li>
+<li>Date: 2026-05-27</li>
+<li>Type: X post</li>
+<li>Evidence strength: direct xurl bookmarks capture</li>
+<li>Primary URLs:</li>
+</ul>
+<p>  - http://crabbox.sh</p>
+<p>  - https://github.com/openclaw/agent-skills/blob/main/skills/autoreview/SKILL.md</p>
+<h2>Summary</h2>
+<p>Peter Steinberger says autoreview is one of the most impactful skills in his stack because it automatically reviews code before a PR lands and catches many edge cases. He adds that the loop can run for hours, which implies the skill is used as a serious review harness rather than a quick lint pass.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Automated review before merge can catch edge cases that humans miss.</li>
+<li>Long-running review loops are acceptable when the review yield is high enough.</li>
+<li>Review skills are becoming a meaningful part of the coding stack, not just a convenience.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post text is the main evidence.</li>
+<li>The bookmark also points to a docs page and an agent skill file for autoreview.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post with primary links.</li>
+<li>Confidence: moderate for the workflow pattern, lower for any performance claims about the underlying skill.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../maps/coding-agent-review-rubric.md]]</li>
+<li>[[../maps/coding-agent-harness-patterns.md]]</li>
+<li>[[../concepts/evidence-quality.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>When is a long-running automated review loop worth the latency cost?</li>
+<li>What cases still require a human reviewer even after autoreview passes?</li>
+<li>Which review findings should trigger immediate autofix versus es</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent Knowledge Loop</h3>
+<p>KB note: <code>wiki/concepts/agent-knowledge-loop.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent Knowledge Loop</p>
+<hr>
+<h1>Agent Knowledge Loop</h1>
+<h2>Definition</h2>
+<p>A recurring loop where an LLM ingests sources, compiles notes, answers questions over the resulting wiki, and files useful outputs back into the knowledge base.</p>
+<h2>Why It Matters</h2>
+<p>This loop turns the knowledge base into a compounding system rather than a static archive.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled-wiki.md]]</li>
+<li>[[knowledge-base-linting.md]]</li>
+<li>[[agent-autonomy.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/coreyganim-karpathy-second-brain-clearly-explained-x.md]]</li>
+<li>[[../sources/coreyganim-second-brain-monthly-audit-x.md]]</li>
+<li>[[../sources/shannholmberg-llm-wikid-x.md]]</li>
+<li>[[../sources/artemxtech-llm-wiki-vs-notebooklm-x.md]]</li>
+<li>[[../sources/arxiv-externalization-in-llm-agents.md]]</li>
+<li>[[../sources/carnot-cyclist-continual-learning-desiderata-x.md]]</li>
+<li>[[../sources/google-research-nested-learning-continual-learning.md]]</li>
+<li>[[../sources/akshay-pachaar-wiki-plus-graph-db-kb</li>
+</ul>
+<h3>Coding Agents</h3>
+<p>KB note: <code>wiki/concepts/coding-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Coding Agents</p>
+<hr>
+<h1>Coding Agents</h1>
+<h2>Definition</h2>
+<p>Agents that operate in software development environments using code editing, terminal commands, tests, and repository context as part of their task execution.</p>
+<h2>Why It Matters</h2>
+<p>Coding agents are one of the most concrete and operationally demanding forms of LLM agents, making them useful for studying autonomy and oversight in practice.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent-autonomy]]</li>
+<li>[[approval-policy]]</li>
+<li>[[human-in-the-loop]]</li>
+<li>[[spec-code-test-loop.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-claude-code-auto-mode.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/openai-codex-chrome-plugin-x.md]]</li>
+<li>[[../sources/aws-agent-toolkit-for-aws-x.md]]</li>
+<li>[[../sources/nukonuko-code-with-claude-workshops-x.md]]</li>
+<li>[[../sources/anthropic-claude-code-init-interview-x.md]]</li>
+<li>[[../sources/cursor-3-blog.md]]</li>
+<li>[[../sources/storybook-mcp-react-blog.md]]</li>
+</ul>
+<p>-</p>
+<h3>Compiled Wiki</h3>
+<p>KB note: <code>wiki/concepts/compiled-wiki.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Compiled Wiki</p>
+<hr>
+<h1>Compiled Wiki</h1>
+<h2>Definition</h2>
+<p>A compiled wiki is a curated layer of linked Markdown notes derived from raw sources, rather than a direct dump of source material.</p>
+<h2>Why It Matters</h2>
+<p>It lets an LLM work over a cleaner, more connected representation of knowledge while preserving traceability back to raw evidence.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent knowledge loop]]</li>
+<li>[[obsidian as interface]]</li>
+<li>[[knowledge base linting]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/coreyganim-karpathy-second-brain-clearly-explained-x.md]]</li>
+<li>[[../sources/coreyganim-second-brain-monthly-audit-x.md]]</li>
+<li>[[../sources/shannholmberg-llm-wikid-x.md]]</li>
+<li>[[../sources/farza-farzapedia-x.md]]</li>
+<li>[[../sources/fieldtheory-cli-github.md]]</li>
+<li>[[../sources/obsidian-mind-github.md]]</li>
+<li>[[../sources/contextconor-enterprise-understanding-context-graph-x.md]]</li>
+<li>[[../sources/artemxtech-llm-wiki-vs-notebooklm-x.md]]</li>
+<li>[[../sources/akshay-pachaar-wiki-plus-graph-</li>
+</ul>
+<h3>Harness Engineering</h3>
+<p>KB note: <code>wiki/concepts/harness-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Harness Engineering</p>
+<hr>
+<h1>Harness Engineering</h1>
+<h2>Definition</h2>
+<p>The design of the environment, artifacts, controls, tooling, and feedback loops around an agent so that it can produce more reliable results over time.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, performance depends less on the model alone and more on the structure that surrounds it.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[guides and sensors]]</li>
+<li>[[agent recognizable repository]]</li>
+<li>[[structured handoff artifacts]]</li>
+<li>[[machine-checkable invariants]]</li>
+<li>[[heavy-thinking.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/martin-fowler-harness-engineering.md]]</li>
+<li>[[../sources/gota-purpose-first-harness-design-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-how-to-approach-harness-engineering-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-what-harness-engineering-is-and-is-not-zenn.md]]</li>
+<li>[[../sources/sergicalsix-harness-engineering-overview-design-philosophy-speakerdeck.md]]</li>
+<li>[[../sources/yuukiyo-ai-dlc</li>
+</ul>
+<h3>Coding-Agent Review Rubric</h3>
+<p>KB note: <code>wiki/maps/coding-agent-review-rubric.md</code></p>
+<h1>Coding-Agent Review Rubric</h1>
+<h2>Purpose</h2>
+<p>Provide a lightweight reusable review rubric for coding-agent workflows so reviewer agents, human reviewers, and automated review routines use the same judgment axes.</p>
+<h2>Why this note exists</h2>
+<p>The current KB has strong vocabulary for harness controls, but it does not yet turn that vocabulary into a compact operational review standard. This note bridges that gap.</p>
+<h2>Recommended core rubric</h2>
+<h3>1. Correctness</h3>
+<ul>
+<li>Does the change satisfy the intended requirement?</li>
+<li>Does it avoid regressions in existing behavior?</li>
+<li>Are edge cases or failure paths obviously mishandled?</li>
+</ul>
+<h3>2. Safety / Blast Radius</h3>
+<ul>
+<li>Is the scope of change proportionate to the task?</li>
+<li>Could it create dangerous side effects, permission mistakes, data corruption, or risky automation behavior?</li>
+<li>Are rollback and containment concerns reasonable?</li>
+</ul>
+<h3>3. Maintainability / Simplicity</h3>
+<ul>
+<li>Is the change understandable and locally coherent?</li>
+<li>Are responsibilities separated cleanly?</li>
+<li>Did the impl</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>5</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
