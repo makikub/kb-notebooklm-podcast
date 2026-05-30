@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-30 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-30/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-05-30</header>
+<h1>KB Daily Digest 2026-05-30</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-30/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-30">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-30</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-05-30</h1>
+<p>2026-05-30 UTC の knowledge-base-llm では、新規 raw/wiki/sources の追加は確認できませんでした。一方で <code>outputs/notebooklm-podcast/2026-05-30/notebooklm-source.md</code> が新規生成され、今日の compile テーマとして <code>wiki/maps/approval-policy-patterns-and-escalation.md</code> が取り上げられています。内容は「approval policy」を単なる自動実行のオン・オフではなく、行為のリスク、レビューのタイミング、権限の広がり、失敗時のエスカレーションを組み合わせた設計空間として扱うものです。</p>
+<p>今日の全体トレンドは、エージェントの自律性を増やすほど重要になる「承認の置き場所」を、ハーネス設計の中核として捉え直す流れです。低リスクの read や bounded search は安く通し、状態変更や外部公開、広い権限付与、再帰的な委任にはレビューや人間の明示承認を残す、という勾配のある設計が軸になっています。これは既存KBの <code>agent-harness-landscape</code>、<code>coding-agent-harness-patterns</code>、<code>eval-review-reliability</code>、<code>agent-deployment-gates-and-operational-risk</code> と強く接続しています。</p>
+<p>重要ソースの1本目は Anthropic auto mode です。ここでは承認プロンプトの摩擦を、単なるUX問題ではなく安全性とスループットの両方に効くプロダクト設計問題として扱っています。常に確認する運用は遅く、完全バイパスは危険なので、classifier-mediated auto approval のような中間層を置く発想が、今日の地図に「静的 allow/deny だけでは足りない」という観点を与えています。</p>
+<p>2本目は Codex subagents docs です。承認ポリシーは単体エージェントのツール利用だけで閉じず、委任そのものにも拡張されます。サブエージェントが親の sandbox や approval policy をどう継承するか、同時実行数やネスト深度をどう制限するかは、エージェントに「誰へ何を任せる権限を与えるか」という別レイヤーの承認問題です。KB上では、delegation chains の権限を最小化する問いとして整理されています。</p>
+<p>3本目は OpenAI Codex plugin for Claude Code です。このソースは、同じ reviewer agent でも、使い方によって advisory review と blocking review に分かれることを明確にします。実装途中や完了前に助言を返すレビューは速度を保ちやすい一方、merge、deploy、publish のような境界に置くレビューは作業完了を止めるゲートになります。今日の compile では、この差分が「レビューのタイミング」という設計軸として取り込まれています。</p>
+<p>関連する補助材料として、Anthropic scheduled tasks docs は recurring autonomous work における環境、connector、branch control の重要性を示し、Mercury / Zaid 周辺の材料は hard-block、明示的な tool approval、token budget、inspectable identity file をローカルエージェントの差別化要素として位置づけています。Akshay Pachaar の材料は、permissive permissions は速く感じられるが production では restrictive defaults が安全であり、tool overexposure 自体が隠れた承認・安全性リスクになる、という実務上の緊張を補っています。</p>
+<p>KB内の概念地図としては、<code>approval-policy-patterns-and-escalation</code> が、auto-allowed actions、advisory review、blocking review、human-only execution というエスカレーション段階を明示し、<code>eval-review-reliability</code> の generator/evaluator split や <code>agent-deployment-gates-and-operational-risk</code> の operational risk とつながる形になりました。つまり、品質保証の話と権限管理の話が別々ではなく、「どこで止めるか」「何を機械的に検査するか」「どの曖昧さを人間に戻すか」という同じ設計面に載っています。</p>
+<p>実務上の読みどころは、承認負荷を品質やレイテンシと同じく測定対象にすることです。すべてを人間承認に寄せると運用が詰まり、すべてを自動承認に寄せると被害範囲が広がります。したがって、read と bounded local inspection は安く、medium-risk changes は advisory review や branch-safe defaults へ、merge/deploy/publish/high-impact background work は blocking gate へ、繰り返し失敗や広範囲変更や不確実性上昇時には human approval へ、という運用ルールに落とすのが今日の要点です。</p>
+<p>Podcastで掘るなら、「承認はモデル品質が上がるほど不要になるのか、それとも強いモデルほど権限設計が重要になるのか」という対立軸がよさそうです。また、classifier-mediated approval がどの程度信頼できるのか、常に block すべき行為は何か、delegation chains では権限をどう減衰させるべきか、token budget や cost ceiling を承認ポリシーに含めるべきか、という未解決問いも自然に会話にできます。</p>
+<p>公開ページと NotebookLM Podcast では、今日の新規 raw/source 追加がないことを前提に、単なる新着紹介ではなく「compile によって approval policy の地図がどう読みやすくなったか」を中心に扱うのが適切です。特に、ハーネスエンジニアリングの中で approval policy を安全機構、レビュー機構、委任制御、運用コスト制御の交点として説明すると、KB全体の地図更新として意味が通りやすくなります。</p>
+<h2>重要ソース</h2>
+<h2>更新された概念・地図</h2>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>0</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
