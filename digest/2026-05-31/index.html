@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-05-31 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-31/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-05-31</header>
+<h1>KB Daily Digest 2026-05-31</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-05-31/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-05-31">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-05-31</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-05-31</h1>
+<p>今日の knowledge-base-llm は、agentic coding の「できるようになったこと」から一歩進んで、「組織がその能力をどう吸収し、どう検証し、どう費用対効果として扱うか」に焦点が移った更新でした。UTC 2026-05-31 の新規 ingest / compile では、Salesforce の組織的な Claude Code 採用、Cognition の agentic development 検証論、OpenAI の GPT-Rosalind / Rosalind Biodefense、Codex 側の dynamic workflows 実装パターン、そして Simon Willison による OpenAI / Anthropic の product-market fit 論が追加されました。全体として、agent harness は単なる開発者個人の作法ではなく、企業の標準ワークフロー、検証基盤、価格設計、安全ガバナンスをつなぐ中核概念として強化されています。</p>
+<p>重要ソースの1本目は、Boris Cherny が共有した Salesforce Engineering の agentic 化です。Claude Code を標準ツールとして扱い、トークン制限の撤廃や移行作業の短縮を含む具体的な成果が記録されました。KB上では、これは <code>agent-harness-landscape</code> と <code>ai-adoption-roi-and-capability-investment</code> の両方に効いています。つまり、agentic coding の価値は「AIがコードを書く」だけでは測れず、組織の権限設計、レビュー経路、標準ツール化、成果KPIに組み込まれて初めてROIの議論になる、という方向です。</p>
+<p>2本目は Cognition の “Verifying Agentic Development at Scale” です。ここでの中心は、agent がクラウドで非同期に作業するほど、ローカルな自信や見た目の完成度ではなく、エンドツーエンドの証拠、test-mode、verified PR のような「証明可能な完了」が必要になるという点です。これは <code>eval-review-reliability</code> に直接つながり、生成側と評価側を分けるだけでなく、検証をホストされた harness の一部として設計する流れを強めました。agentic work のスループットが上がるほど、検証能力が足りないと review debt や instability tax に転化する、というKBの既存テーマがより明確になっています。</p>
+<p>3本目は Simon Willison の product-market fit 論です。Simon は、Claude Code / Cowork や Codex のような coding / agent product が、OpenAI と Anthropic にとって本格的なPMFに近づいていると見ています。KBにとって重要なのは、これは技術論というより経済論だという点です。coding agents は通常のチャットよりはるかに多くのトークンを消費する一方、高価な専門職の日常業務に入り込むため、usage-based enterprise pricing が成立しうる。これは <code>agentic-product-market-fit</code>、<code>agentic-jevons-paradox</code>、<code>ai-roi-model</code> をつなぎ、予算超過を単なる失敗ではなく「需要が想定より広がった可能性」と「検証されない機械作業が増えただけの可能性」の両面から読む必要がある、という見方を追加しました。</p>
+<p>OpenAI の Rosalind Biodefense / GPT-Rosalind は、今日の更新の中で少し異なる方向の重要ソースです。汎用チャットやcoding agentではなく、生命科学・公衆衛生・バイオディフェンスという高信頼領域に、アクセス制御された reasoning model を入れる話として位置づけられています。ここでは「強いモデルを誰にでも開く」よりも、許可されたミッション、パートナー、ガバナンス、研究ワークフローの境界が主役になります。KB全体の文脈では、agentic system が普及するほど、harness は生産性だけでなく安全性・権限・監査可能性の設計でもある、という補助線になります。</p>
+<p>Dan McAteer の Codex dynamic workflows は、Claude Code の dynamic workflow 的なパターンが Codex 側にも移植可能であることを示す、実務寄りの更新でした。モデルに orchestration script を書かせ、subagent へ並列に仕事を分配し、進捗を会話の外に保存する。このパターンは <code>orchestration-patterns-faq</code> の「generated control flow」「resumable execution」「orchestrator-subagent」に相当し、dynamic workflow が単一プロダクト固有機能ではなく、agent harness の再利用可能な形になりつつあることを示しています。</p>
+<p>compile 側では、<code>agent-harness-landscape</code>、<code>eval-review-reliability</code>、<code>orchestration-patterns-faq</code>、<code>ai-adoption-roi-and-capability-investment</code> が特に重要です。前者2つは、agent harness を「文脈を渡す仕組み」と「検証を成立させる仕組み」に分解し直しています。後者2つは、multi-agent / dynamic workflow の制御フローと、企業導入における費用対効果の読み方を整理しています。加えて、<code>agentic-product-market-fit</code>、<code>agentic-jevons-paradox</code>、<code>ai-roi-model</code>、<code>coding-agents</code>、<code>glossary</code>、<code>operations</code> も更新され、KBの地図が「個人の開発効率」から「組織の吸収能力・価格・検証・運用」へ広がりました。</p>
+<p>今日の全体トレンドを一言でまとめるなら、agentic coding は「速く作れる」段階から、「速く作られたものを組織がどのくらい信用し、どのくらい支払い、どのくらい安全に運用できるか」の段階に移っています。Salesforce は組織導入の成功シグナル、Cognition は検証能力の必要条件、Simon は市場と価格の読み方、OpenAI Rosalind は高信頼領域での境界設計、dynamic workflows は実装パターンの再利用性を示しました。次に追うべき問いは、agentic demand expansion と単なる artifact volume をどう区別するか、verified PR や evaluator loop をどのレベルで標準化すべきか、usage-based pricing が健全なROI測定を促すのか、それとも探索を早すぎる段階で抑制するのか、です。</p>
+<p>重要ソース3本:</p>
+<ul>
+<li>Salesforce Engineering became truly agentic: <code>wiki/sources/bcherny-salesforce-engineering-truly-agentic-x-2026-05-29.md</code></li>
+<li>Cognition / Verifying Agentic Development at Scale: <code>wiki/sources/ido_pesok-verifying-agentic-development-at-scale-x-2026-05-29.md</code></li>
+<li>Simon Willison / Anthropic and OpenAI product-market fit: <code>wiki/sources/simon-willison-product-market-fit.md</code></li>
+</ul>
+<p>公開ページ / NotebookLM Podcast では、今日の更新を「agentic coding のPMFと検証税」という軸で掘ると話しやすいです。Salesforce の成功事例と Simon の価格論を並べると、企業が高いagent使用料を払える条件が見えます。一方で Cognition と eval map を並べると、速度が増すほど検証が主戦場になることがわかります。OpenAI Rosalind は、その議論を高信頼領域に拡張し、harness を単なる生産性ツールではなく、アクセス制御・安全・責任分界の設計として読むきっかけになります。</p>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-product-market-fit.md]] — Simon Willison&#x27;s market analysis that Anthropic/OpenAI have found product-market fit through coding/general-purpose agents, API-aligned enterprise pricing, and high-value professional usage.</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents, and org ownership.</li>
+<li>[[about-hiroppy-founders-playbook.md]] — Anthropic&#x27;s official founder playbook PDF: AI-native startup lifecycle across Idea, MVP, Launch, and Scale, with Claude Chat/Cowork/Code stage usage, validation gates, agentic technical debt risks, founder bottleneck removal, and moat formation.</li>
+<li>[[izanami-claude-code-large-codebase-best-practices.md]] — Japanese practitioner explainer on Claude Code large-codebase setup: live repo search, thin layered CLAUDE.md, subdirectory startup, hooks, stale-rule pruning, and adoption ownership.</li>
+<li>[[newspicks-harness-engineering-what-is-it.md]] — Japanese explainer separating evalua</li>
+</ul>
+<h3>Simon Willison - I think Anthropic and OpenAI have found product-market fit</h3>
+<p>Source note: <code>wiki/sources/simon-willison-product-market-fit.md</code></p>
+<h1>Simon Willison - I think Anthropic and OpenAI have found product-market fit</h1>
+<h2>Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/simon-willison-product-market-fit-2026-05-27.md</code></li>
+<li>Original/source URL: https://simonwillison.net/2026/May/27/product-market-fit/</li>
+<li>Author: Simon Willison</li>
+<li>Published: 2026-05-27</li>
+<li>Fetched/ingested: 2026-05-31</li>
+<li>Source type: weblog article / market analysis</li>
+<li>Evidence strength: medium for Simon&#x27;s interpretation and first-person usage comparison; lower for product-market-fit certainty because the thesis depends on unaudited financial reports, job-listing classification, and future IPO disclosures.</li>
+</ul>
+<h2>Summary</h2>
+<p>Simon Willison argues that Anthropic and OpenAI have likely found product-market fit through coding and general-purpose agent products such as Claude Code/Cowork and Codex. The article&#x27;s useful KB contribution is the pricing and demand-side frame: coding agents burn far more tokens than ordinary chat, but are valuable enough to become daily tools for high-value knowledge work, making enterprise usage-based pricing a plausible revenue engine.</p>
+<h2>Key claims</h2>
+<ul>
+<li>Coding agents change the economics of frontier labs because they create much higher token consumption than chat subscriptions while serving professionally valuable workflows.</li>
+<li>April 2026 is a second inflection point after the November 2025 agent-capability inflection: leading labs released more expensive frontier models and moved enterprise agent usage closer to API-token pricing.</li>
+<li>Stories about Uber budget overruns and Microsoft reducing Claude Code licenses may be better read as signs of pricing pressure and demand than as simple AI-failure stories.</li>
+<li>OpenAI and Anthropic job listings suggest heavy investment in enterprise sales, support, and forward-deployed roles, which fits an enterprise-ag</li>
+</ul>
+<h3>Boris Cherny - Salesforce engineering became truly agentic</h3>
+<p>Source note: <code>wiki/sources/bcherny-salesforce-engineering-truly-agentic-x-2026-05-29.md</code></p>
+<h1>Boris Cherny - Salesforce engineering became truly agentic</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/bcherny-salesforce-engineering-truly-agentic-x-2026-05-29.md</code></li>
+<li>Original URL: https://x.com/i/status/2060390852619272526</li>
+<li>Primary source: https://www.salesforce.com/news/stories/how-engineering-became-agentic/</li>
+<li>Author: Boris Cherny / @bcherny</li>
+<li>Date: 2026-05-29</li>
+<li>Type: X post / company story</li>
+<li>Evidence strength: bookmark snapshot metadata plus official Salesforce story</li>
+<li>Capture source: xurl bookmarks capture</li>
+</ul>
+<h2>Summary</h2>
+<p>Salesforce is presenting its engineering shift as a concrete agentic transformation: Claude Code becomes the primary AI agent tool, token limits are removed, and a large migration ships in days rather than months.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Standardizing on Claude Code changed throughput and quality at Salesforce.</li>
+<li>Removing token limits improved output rather than harming it.</li>
+<li>An agentic workflow can compress a 231-person-day migration into 13 days.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post text points to the Salesforce story and highlights the migration example.</li>
+<li>The official article is the durable source for the organizational change claim.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post plus official company story</li>
+<li>Confidence: high for the organizational signal, moderate for the generalizability</li>
+<li>Supports: [[../concepts/agent-first-organization.md]], [[../concepts/product-responsibility-distribution.md]], [[../concepts/harness-engineering.md]], [[../concepts/organizational-intent-clarity.md]]</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/agent-first-organization.md]]</li>
+<li>[[../concepts/product-responsibility-distribution.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/organizational-intent-clarity.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/agent-harness-landscape.md</li>
+</ul>
+<h3>Dan McAteer - Codex Dynamic workflows</h3>
+<p>Source note: <code>wiki/sources/daniel_mac8-codex-dynamic-workflows-x-2026-05-30.md</code></p>
+<h1>Dan McAteer - Codex Dynamic workflows</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/daniel_mac8-codex-dynamic-workflows-x-2026-05-30.md</code></li>
+<li>Original URL: https://x.com/i/status/2060677155055427844</li>
+<li>Primary source: https://claude.com/blog/introducing-dynamic-workflows-in-claude-code</li>
+<li>Author: Dan McAteer / @daniel_mac8</li>
+<li>Date: 2026-05-30</li>
+<li>Type: X post / workflow demo</li>
+<li>Evidence strength: xurl bookmarks capture plus primary Claude product post</li>
+<li>Capture source: xurl bookmarks capture</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark is a portable-pattern signal: the post shows a Codex-side skill or workflow that recreates Claude-style dynamic orchestration by generating an orchestration script, fanning out to parallel subagents, and keeping coordination outside the main chat thread.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Dynamic workflows can be recreated as a reusable agent skill pattern.</li>
+<li>The useful unit is orchestration, not just a better prompt.</li>
+<li>Parallel subagents and generated control flow are the main lever.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text is largely operational instruction, so the main evidence is the post&#x27;s description of the workflow shape.</li>
+<li>The linked Claude launch post supplies the strongest anchor for the pattern definition.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post plus primary vendor launch post</li>
+<li>Confidence: moderate for the pattern, lower for the specific Codex implementation details</li>
+<li>Supports: [[../concepts/multi-agent-orchestration.md]], [[../concepts/workflow-compilation.md]], [[../concepts/harness-engineering.md]], [[../concepts/navigable-agent-skills.md]]</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/workflow-compilation.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/navigable-agent-skills.md]]</li>
+<li>[[../concepts/self-verific</li>
+</ul>
+<h3>Ido Pesok - Verifying Agentic Development at Scale</h3>
+<p>Source note: <code>wiki/sources/ido_pesok-verifying-agentic-development-at-scale-x-2026-05-29.md</code></p>
+<h1>Ido Pesok - Verifying Agentic Development at Scale</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/ido_pesok-verifying-agentic-development-at-scale-x-2026-05-29.md</code></li>
+<li>Original URL: https://x.com/i/status/2060416230641881336</li>
+<li>Primary source: https://cognition.ai/blog/testing-development</li>
+<li>Author: Ido Pesok / @ido_pesok</li>
+<li>Date: 2026-05-29</li>
+<li>Type: X article card / blog post</li>
+<li>Evidence strength: bookmark snapshot metadata plus official Cognition article</li>
+<li>Capture source: xurl bookmarks capture</li>
+</ul>
+<h2>Summary</h2>
+<p>Cognition frames agentic development as an asynchronous system problem: if Devins can trigger work in the cloud, then verification must also happen in the cloud and return a ready-to-merge result.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Agentic development at scale needs end-to-end verification, not just code generation.</li>
+<li>Cloud test runs are the natural place to verify async agent output.</li>
+<li>The review bottleneck shifts from &quot;can we inspect it?&quot; to &quot;can we prove it?&quot;</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark exposes the article title and official source URL.</li>
+<li>The supporting post text highlights test-mode Devins and the shift to async software engineering.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X article card plus primary company blog</li>
+<li>Confidence: high for the verification thesis, moderate for exact implementation details</li>
+<li>Supports: [[../concepts/real-world-evaluation.md]], [[../concepts/self-verification.md]], [[../concepts/verification-tax.md]], [[../concepts/human-in-the-loop.md]]</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/real-world-evaluation.md]]</li>
+<li>[[../concepts/self-verification.md]]</li>
+<li>[[../concepts/verification-tax.md]]</li>
+<li>[[../concepts/human-in-the-loop.md]]</li>
+<li>[[../concepts/agent-safety.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/eval-review-reliability.md]]</li>
+<li>[[../maps/agent-deployment-gates-and-operatio</li>
+</ul>
+<h3>OpenAI - Rosalind Biodefense and GPT-Rosalind</h3>
+<p>Source note: <code>wiki/sources/openai-rosalind-biodefense-gpt-rosalind-x-2026-05-29.md</code></p>
+<h1>OpenAI - Rosalind Biodefense and GPT-Rosalind</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/openai-rosalind-biodefense-gpt-rosalind-x-2026-05-29.md</code></li>
+<li>Original URL: https://x.com/i/status/2060376598642405492</li>
+<li>Primary sources:</li>
+</ul>
+<p>  - https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense/</p>
+<p>  - https://openai.com/index/introducing-gpt-rosalind/</p>
+<p>  - https://help.openai.com/en/articles/20001193-introducing-gpt-rosalind-for-life-sciences-research</p>
+<ul>
+<li>Author: OpenAI / @OpenAI</li>
+<li>Date: 2026-05-29</li>
+<li>Type: X post / product announcement</li>
+<li>Evidence strength: bookmark snapshot metadata plus official OpenAI announcement and help-center pages</li>
+<li>Capture source: xurl bookmarks capture</li>
+</ul>
+<h2>Summary</h2>
+<p>OpenAI is positioning GPT-Rosalind as a life-sciences reasoning model and pairing it with a biodefense initiative. The key signal is the combination of frontier biological reasoning, trusted access, and mission-bounded deployment.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>GPT-Rosalind is available for qualified research workflows in ChatGPT, Codex, and the API.</li>
+<li>Rosalind Biodefense is meant to support defensive biological work.</li>
+<li>Trusted access and governance are part of the product, not an afterthought.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The X post provides the launch signal and the intended audience.</li>
+<li>The OpenAI blog and help-center pages provide the durable product framing.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post plus official OpenAI announcement and docs</li>
+<li>Confidence: high for the launch and access framing</li>
+<li>Supports: [[../concepts/agent-safety.md]], [[../concepts/real-world-evaluation.md]], [[../concepts/evidence-quality.md]], [[../concepts/human-in-the-loop.md]]</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/agent-safety.md]]</li>
+<li>[[../concepts/real-world-evaluation.md]]</li>
+<li>[[../concepts/evidence-quality</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agentic Jevons Paradox</h3>
+<p>KB note: <code>wiki/concepts/agentic-jevons-paradox.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agentic Jevons Paradox</p>
+<p>  - Jevons paradox for software agents</p>
+<p>  - AI software demand expansion</p>
+<hr>
+<h1>Agentic Jevons Paradox</h1>
+<h2>Definition</h2>
+<p>The thesis that as AI agents reduce the cost of producing and managing software, total demand for software, software experiments, and agent-supported builders may expand rather than shrink.</p>
+<h2>Why It Matters</h2>
+<p>This is the optimistic economic counterpoint to headcount-reduction narratives. If software becomes cheaper to create, organizations may ask for more internal tools, integrations, experiments, personalization, and automation. The bottleneck then shifts from “can we write the code?” to “can we choose, verify, operate, and maintain the extra software?”</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[coding-agents.md]]</li>
+<li>[[ai-roi-model.md]]</li>
+<li>[[ai-adoption-j-curve.md]]</li>
+<li>[[verification-tax.md]]</li>
+<li>[[instability-tax.md]]</li>
+<li>[[comprehension-debt.md]]</li>
+<li>[[organizational-intent-clarity.md]]</li>
+<li>[[sustainable-ai-work.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<p>OpenClaw spend s</p>
+<h3>Agentic Product-Market Fit</h3>
+<p>KB note: <code>wiki/concepts/agentic-product-market-fit.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agentic Product-Market Fit</p>
+<p>  - Coding-agent product-market fit</p>
+<p>  - Agent PMF</p>
+<hr>
+<h1>Agentic Product-Market Fit</h1>
+<h2>Definition</h2>
+<p>The point where agent products become valuable and habit-forming enough that users or enterprises accept high recurring usage costs, operational changes, and workflow dependency around them.</p>
+<h2>Why It Matters</h2>
+<p>Agentic product-market fit is stronger than generic chatbot popularity. It implies that agents are doing enough economically valuable work that customers tolerate usage-based bills, enterprise procurement, governance, and workflow redesign.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[coding-agents.md]]</li>
+<li>[[ai-roi-model.md]]</li>
+<li>[[agentic-jevons-paradox.md]]</li>
+<li>[[ai-adoption-j-curve.md]]</li>
+<li>[[verification-tax.md]]</li>
+<li>[[instability-tax.md]]</li>
+<li>[[evidence-quality.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/simon-willison-product-market-fit.md]]</li>
+<li>[[../sources/simon-willison-gitlab-act-2.md]]</li>
+<li>[[../sources/dora-roi-ai-assisted-software-development.md]]</li>
+<li>[[../sources/</li>
+</ul>
+<h3>AI ROI Model</h3>
+<p>KB note: <code>wiki/concepts/ai-roi-model.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - AI ROI Model</p>
+<p>  - ROI of AI-assisted Software Development</p>
+<p>  - AI Value Model</p>
+<hr>
+<h1>AI ROI Model</h1>
+<h2>Definition</h2>
+<p>A structured way to estimate the return on AI-assisted software development by linking AI adoption to delivery metrics, business value, and adoption costs.</p>
+<h2>Why It Matters</h2>
+<p>AI productivity claims are not enough for enterprise adoption. A credible model connects engineering indicators to financial outcomes while accounting for hard costs, learning costs, instability, and uncertainty.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[ai-adoption-j-curve]]</li>
+<li>[[verification-tax]]</li>
+<li>[[evidence-quality]]</li>
+<li>[[organizational-intent-clarity]]</li>
+<li>[[product-responsibility-distribution]]</li>
+<li>[[sustainable-ai-work]]</li>
+<li>[[agentic-jevons-paradox]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/dora-roi-ai-assisted-software-development.md]]</li>
+<li>[[../sources/simon-willison-gitlab-act-2.md]]</li>
+<li>[[../sources/simon-willison-product-market-fit.md]]</li>
+<li>[[../sources/tsunoda-legalon-ai-driven-hiring-token-budget-x-2026-05-</li>
+</ul>
+<h3>Coding Agents</h3>
+<p>KB note: <code>wiki/concepts/coding-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Coding Agents</p>
+<hr>
+<h1>Coding Agents</h1>
+<h2>Definition</h2>
+<p>Agents that operate in software development environments using code editing, terminal commands, tests, and repository context as part of their task execution.</p>
+<h2>Why It Matters</h2>
+<p>Coding agents are one of the most concrete and operationally demanding forms of LLM agents, making them useful for studying autonomy and oversight in practice.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent-autonomy]]</li>
+<li>[[approval-policy]]</li>
+<li>[[human-in-the-loop]]</li>
+<li>[[spec-code-test-loop.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-claude-code-auto-mode.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/openai-codex-chrome-plugin-x.md]]</li>
+<li>[[../sources/aws-agent-toolkit-for-aws-x.md]]</li>
+<li>[[../sources/nukonuko-code-with-claude-workshops-x.md]]</li>
+<li>[[../sources/anthropic-claude-code-init-interview-x.md]]</li>
+<li>[[../sources/cursor-3-blog.md]]</li>
+<li>[[../sources/storybook-mcp-react-blog.md]]</li>
+</ul>
+<p>-</p>
+<h3>AI Adoption ROI and Capability Investment</h3>
+<p>KB note: <code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code></p>
+<h1>AI Adoption ROI and Capability Investment</h1>
+<h2>Purpose</h2>
+<p>Map how AI-assisted software development becomes financial value only when capability investments let the organization absorb faster generation safely.</p>
+<h2>Core thesis</h2>
+<p>AI ROI is not a direct function of model quality or code volume. It is a system outcome: AI adoption must be mediated by internal platforms, context/data quality, trust, user focus, verification guardrails, and delivery metrics before it can become durable business value. The strongest upside case is not only cheaper execution of existing backlog, but Jevons-style expansion in software demand when new tools, experiments, and automations become economical.</p>
+<h2>Path from AI adoption to ROI</h2>
+<h3>1. Capability investment first</h3>
+<p>The first question is not “which tool?” but “can the system absorb the tool?” DORA&#x27;s report emphasizes quality internal developer platforms, AI-accessible internal data, clear AI stance/trust, context engineering, user-centric focus, and automated</p>
+<h3>Navigation: Operations / Long-Running Work</h3>
+<p>KB note: <code>wiki/navigation/operations.md</code></p>
+<h1>Navigation: Operations / Long-Running Work</h1>
+<h2>Use When</h2>
+<p>The question is about running agents over time: background agents, routines, scheduled work, handoffs, context resets, delegation, or monitoring.</p>
+<h2>Start Maps</h2>
+<ul>
+<li>[[../maps/ai-adoption-roi-and-capability-investment.md]]</li>
+<li>[[../maps/context-management-decisions.md]]</li>
+<li>[[../maps/orchestration-patterns-faq.md]]</li>
+<li>[[../maps/approval-policy-patterns-and-escalation.md]]</li>
+</ul>
+<h2>Core Concepts</h2>
+<ul>
+<li>[[../concepts/ai-adoption-j-curve.md]]</li>
+<li>[[../concepts/agentic-product-market-fit.md]]</li>
+<li>[[../concepts/ai-native-startup-lifecycle.md]]</li>
+<li>[[../concepts/verification-tax.md]]</li>
+<li>[[../concepts/ai-roi-model.md]]</li>
+<li>[[../concepts/agentic-jevons-paradox.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/agent-first-organization.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/agent-dreaming.md]]</li>
+<li>[[../concepts/outcomes.md]]</li>
+<li>[[../concepts/gateway-control-plane.md]]</li>
+<li>[[../concepts/structured-hando</li>
+</ul>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Main dimensions</h2>
+<h3>1. Guidance before action</h3>
+<ul>
+<li>feedforward controls</li>
+<li>short map-like instructions</li>
+<li>architecture docs</li>
+<li>explicit plans</li>
+<li>feature lists</li>
+<li>templates and skills</li>
+</ul>
+<h3>2. Correction after action</h3>
+<ul>
+<li>tests</li>
+<li>linters</li>
+<li>structural checks</li>
+<li>browser-based verification</li>
+<li>AI review / evaluator agents</li>
+<li>recurring cleanup tasks</li>
+</ul>
+<h3>3. Continuity across sessions</h3>
+<ul>
+<li>progress logs</li>
+<li>commit history</li>
+<li>feature list artifacts</li>
+<li>initializer agent outputs</li>
+<li>context resets</li>
+</ul>
+<h3>4. Control of autonomy</h3>
+<ul>
+<li>approval policy</li>
+<li>human-in-the-loop checkpoints</li>
+<li>classifier-mediated approvals</li>
+<li>machine-c</li>
+</ul>
+<h3>Eval and Review Reliability</h3>
+<p>KB note: <code>wiki/maps/eval-review-reliability.md</code></p>
+<h1>Eval and Review Reliability</h1>
+<h2>Purpose</h2>
+<p>Collect the KB&#x27;s evaluation and review ideas into one map focused on practical reliability: how to know whether an agent-produced artifact is good enough, and how to keep review load from becoming the bottleneck.</p>
+<h2>Core thesis</h2>
+<p>Agent output quality improves when evaluation is treated as a separate harness layer, not as an informal final glance by the same agent that produced the work.</p>
+<h2>Reliability layers</h2>
+<h3>1. Deterministic checks first</h3>
+<p>Use cheap checks before semantic review:</p>
+<ul>
+<li>lint and typecheck</li>
+<li>tests and smoke tests</li>
+<li>formatting and structural checks</li>
+<li>repository-specific machine-checkable invariants</li>
+</ul>
+<p>Related concepts: [[../concepts/machine-checkable-invariants.md]], [[../concepts/feedback-controls.md]].</p>
+<h3>2. Task-fit review</h3>
+<p>Check whether the work actually satisfies the request:</p>
+<ul>
+<li>requirements coverage</li>
+<li>edge cases</li>
+<li>backward compatibility</li>
+<li>user-facing behavior</li>
+<li>maintainability</li>
+</ul>
+<p>Related maps: [[coding-agent-review-rubric.md]], [</p>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>6</code>, commits: <code>2</code></p></footer>
+
+</body>
+</html>
