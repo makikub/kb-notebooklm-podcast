@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-02 - Coding-Agent Review Rubric</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-06-02/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / 2026-06-02</header>
+<h1>Coding-Agent Review Rubric</h1>
+<div class="note">
+  
+  <strong>ソース:</strong> <a href="source.md">source.md</a> はNotebookLMにも追加できます。
+</div>
+<div class="actions">
+
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-06-02/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-06-02">GitHub</a>
+</div>
+<h1>Coding-Agent Review Rubric</h1>
+<ul>
+<li>Date: 2026-06-02</li>
+<li>Primary topic: <code>wiki/maps/coding-agent-review-rubric.md</code></li>
+<li>Purpose: KB由来の材料を、人間がHTMLで読んで理解しやすい読み物にする</li>
+</ul>
+<h2>今日のランダムテーマ</h2>
+<p>Coding-Agent Review Rubric を入口に、関連するKBノートをつないで実務上の論点を整理する。</p>
+<h2>主要ソース抜粋</h2>
+<h3>Coding-Agent Review Rubric</h3>
+<h1>Coding-Agent Review Rubric</h1>
+<h2>Purpose</h2>
+<p>Provide a lightweight reusable review rubric for coding-agent workflows so reviewer agents, human reviewers, and automated review routines use the same judgment axes.</p>
+<h2>Why this note exists</h2>
+<p>The current KB has strong vocabulary for harness controls, but it does not yet turn that vocabulary into a compact operational review standard. This note bridges that gap.</p>
+<h2>Recommended core rubric</h2>
+<h3>1. Correctness</h3>
+<ul>
+<li>Does the change satisfy the intended requirement?</li>
+<li>Does it avoid regressions in existing behavior?</li>
+<li>Are edge cases or failure paths obviously mishandled?</li>
+</ul>
+<h3>2. Safety / Blast Radius</h3>
+<ul>
+<li>Is the scope of change proportionate to the task?</li>
+<li>Could it create dangerous side effects, permission mistakes, data corruption, or risky automation behavior?</li>
+<li>Are rollback and containment concerns reasonable?</li>
+</ul>
+<h3>3. Maintainability / Simplicity</h3>
+<ul>
+<li>Is the change understandable and locally coherent?</li>
+<li>Are responsibilities separated cleanly?</li>
+<li>Did the implementation avoid unnecessary complexity?</li>
+</ul>
+<h3>4. Test Adequacy</h3>
+<ul>
+<li>Are tests proportional to the change?</li>
+<li>Do they cover more than only the happy path?</li>
+<li>Is the claimed behavior actually exercised by deterministic checks where possible?</li>
+</ul>
+<h3>5. Repo Fit / Harness Fit</h3>
+<ul>
+<li>Does the change fit existing repository conventions, naming, structure, and architecture?</li>
+<li>Does it align with the intent recorded in plan or handoff artifacts?</li>
+<li>Does it respect the existing lint, hook, pre-commit, or review harness?</li>
+</ul>
+<h3>6. Comprehension / Reviewability</h3>
+<ul>
+<li>Can a responsible reviewer explain the design and failure modes after reviewing the change?</li>
+<li>Is the diff small enough to inspect deeply, or should it be split?</li>
+<li>Did generated code outpace tests, documentation, or human mental-model maintenance?</li>
+</ul>
+<h2>Suggested verdict format</h2>
+<ul>
+<li><code>PASS</code></li>
+<li><code>PASS WITH NITS</code></li>
+<li><code>NEEDS FIX</code></li>
+</ul>
+<h2>Suggested output structure</h2>
+<ul>
+<li>Verdict</li>
+<li>Critical issues</li>
+<li>Nits</li>
+<li>Suggested fix</li>
+<li>Confidence</li>
+</ul>
+<h2>Why this works as a harness component</h2>
+<ul>
+<li>It gives verifier agents explicit grading criteria.</li>
+<li>It reduces drift across different review passes.</li>
+<li>It makes semantic review more comparable across humans and models.</li>
+<li>It complements deterministic checks instead of replacing them.</li>
+</ul>
+<h2>Relationship to KB concepts</h2>
+<ul>
+<li>It operationalizes [[../concepts/guides-and-sensors.md]] into a concrete review tool.</li>
+<li>It complements [[../concepts/machine-checkable-invariants.md]] by covering what linters and tests cannot fully judge.</li>
+<li>It fits Fowler&#x27;s split between computational and inferential controls.</li>
+</ul>
+<h2>Tradeoffs / Tensions</h2>
+<ul>
+<li>A short rubric is easy</li>
+</ul>
+<h2>関連ノートからの補助材料</h2>
+<h3>Coding-Agent Harness Patterns</h3>
+<p>Source: <code>wiki/maps/coding-agent-harness-patterns.md</code></p>
+<h1>Coding-Agent Harness Patterns</h1>
+<h2>Purpose</h2>
+<p>Synthesize practical harness patterns for coding-agent workflows using the KB&#x27;s control vocabulary plus a concrete real-world operator example.</p>
+<h2>Core claim</h2>
+<p>A coding-agent workflow becomes harness engineering when quality and reliability depend on the surrounding artifacts, controls, and review loops rather than on the model prompt alone.</p>
+<h2>Pattern 1. Plan as handoff artifact</h2>
+<p>Use a session-scoped plan file such as <code>plan.md</code> as a durable handoff contract.</p>
+<p>Why it matters:</p>
+<ul>
+<li>makes intent inspectable</li>
+<li>supports context resets and reviewer alignment</li>
+<li>creates a stable object for verifier agents to critique</li>
+</ul>
+<h2>Pattern 2. Verifier split without full multi-agent overhead</h2>
+<p>Use heavy thinking for hard, bounded reasoning: spawn independent temporary thinkers, then have one deliberator critique and synthesize their outputs.</p>
+<p>Use a second agent or model mainly for plan review or implementation review instead of duplicating the whole execution role.</p>
+<p>Why it matters:</p>
+<ul>
+<li>captures evaluator benefits cheaply</li>
+<li>reduces self-evaluation bias</li>
+<li>preserves a simple operator mental model</li>
+</ul>
+<h2>Pattern 3. Environment bootstrapping before task work</h2>
+<p>Prepare a runnable repository baseline before asking an agent to solve future coding tasks.</p>
+<p>Why it matters:</p>
+<ul>
+<li>prevents setup failures from consuming the task budget</li>
+<li>gives tests, linters, and smoke commands a mea</li>
+</ul>
+<h3>Eval and Review Reliability</h3>
+<p>Source: <code>wiki/maps/eval-review-reliability.md</code></p>
+<h1>Eval and Review Reliability</h1>
+<h2>Purpose</h2>
+<p>Collect the KB&#x27;s evaluation and review ideas into one map focused on practical reliability: how to know whether an agent-produced artifact is good enough, and how to keep review load from becoming the bottleneck.</p>
+<h2>Core thesis</h2>
+<p>Agent output quality improves when evaluation is treated as a separate harness layer, not as an informal final glance by the same agent that produced the work.</p>
+<h2>Reliability layers</h2>
+<h3>1. Deterministic checks first</h3>
+<p>Use cheap checks before semantic review:</p>
+<ul>
+<li>lint and typecheck</li>
+<li>tests and smoke tests</li>
+<li>formatting and structural checks</li>
+<li>repository-specific machine-checkable invariants</li>
+</ul>
+<p>Related concepts: [[../concepts/machine-checkable-invariants.md]], [[../concepts/feedback-controls.md]].</p>
+<h3>2. Task-fit review</h3>
+<p>Check whether the work actually satisfies the request:</p>
+<ul>
+<li>requirements coverage</li>
+<li>edge cases</li>
+<li>backward compatibility</li>
+<li>user-facing behavior</li>
+<li>maintainability</li>
+</ul>
+<p>Related maps: [[coding-agent-review-rubric.md]], [[agent-deployment-gates-and-operational-risk.md]].</p>
+<h3>3. Independent evaluator loop</h3>
+<p>Separate generation from judgment when quality is fuzzy or high-stakes:</p>
+<ul>
+<li>subagent review</li>
+<li>adversarial review</li>
+<li>blocking review gates</li>
+<li>human escalation for ambiguous or high-blast-radius changes</li>
+</ul>
+<p>Related concepts: [[../concepts/generator-evaluator-loop.md]], [[../concepts/self-evaluation-bias.md]], [[../concept</p>
+<h3>Harness Engineering Vendor / Practitioner Comparison</h3>
+<p>Source: <code>wiki/maps/harness-engineering-vendor-comparison.md</code></p>
+<h1>Harness Engineering Vendor / Practitioner Comparison</h1>
+<h2>Purpose</h2>
+<p>Compare how different sources frame harness engineering, what they optimize for, and what distinctive mechanisms they emphasize.</p>
+<h2>Comparison axes</h2>
+<h3>OpenAI</h3>
+<ul>
+<li>Focus: repository design, machine-enforced invariants, agent-recognizable context, continuous cleanup, and cross-agent review / delegation</li>
+<li>Distinctive emphasis: docs as map, custom linters, structured plans, architecture constraints, review loops, interoperable agent tooling, and explicit model-tier routing via subagents</li>
+<li>Main contribution: shows harness engineering as both a production engineering discipline and a composable ecosystem where one agent can check or extend another</li>
+</ul>
+<h3>Cursor</h3>
+<ul>
+<li>Focus: agent-first coding workspace design plus model-training environment bootstrapping</li>
+<li>Distinctive emphasis: multi-agent visibility, local/cloud handoff, multi-repo operation, review surfaces, harness measurement, and autoinstall loops that use earlier models to create runnable RL environments for later models</li>
+<li>Main contribution: shows how harness mechanisms become both product UI and training infrastructure rather than remaining hidden implementation detail</li>
+</ul>
+<h3>Cognition / Devin</h3>
+<ul>
+<li>Focus: cloud-agent runtime substrate and organizational rollout</li>
+<li>Distinctive emphasis: microVM isolation, hypervisor snapshotting across async gaps, warm-pool orchestration, p</li>
+</ul>
+<h3>Agent Harness Landscape</h3>
+<p>Source: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Main dimensions</h2>
+<h3>1. Guidance before action</h3>
+<ul>
+<li>feedforward controls</li>
+<li>short map-like instructions</li>
+<li>architecture docs</li>
+<li>explicit plans</li>
+<li>feature lists</li>
+<li>templates and skills</li>
+</ul>
+<h3>2. Correction after action</h3>
+<ul>
+<li>tests</li>
+<li>linters</li>
+<li>structural checks</li>
+<li>browser-based verification</li>
+<li>AI review / evaluator agents</li>
+<li>recurring cleanup tasks</li>
+</ul>
+<h3>3. Continuity across sessions</h3>
+<ul>
+<li>progress logs</li>
+<li>commit history</li>
+<li>feature list artifacts</li>
+<li>initializer agent outputs</li>
+<li>context resets</li>
+</ul>
+<h3>4. Control of autonomy</h3>
+<ul>
+<li>approval policy</li>
+<li>human-in-the-loop checkpoints</li>
+<li>classifier-mediated approvals</li>
+<li>machine-checkable invariants</li>
+</ul>
+<h3>5. Role separation</h3>
+<ul>
+<li>planner</li>
+<li>generator</li>
+<li>evaluator</li>
+<li>maintenance / cleanup agents</li>
+</ul>
+<h2>Source contributions</h2>
+<h3>Karpathy</h3>
+<p>Provides the raw → compiled wiki loop and the idea that LLM-maintained Markdown systems can become a working knowledge substrate.</p>
+<h3>OpenAI</h3>
+<p>Shows harness engineering in a production-like coding environment, emphasizing repo structure, machine-enforce</p>
+<h2>次に考えるとよさそうな問い</h2>
+<ul>
+<li>このテーマは、どの現場課題を減らすための考え方か？</li>
+<li>人間が見るべき判断軸と、エージェントに任せられる作業はどう分かれるか？</li>
+<li>導入するときに失敗しやすい雑な抽象化は何か？</li>
+<li>既存の開発・レビュー・ナレッジ運用にどう接続できるか？</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm. Source topic: <code>wiki/maps/coding-agent-review-rubric.md</code></p></footer>
+
+</body>
+</html>
