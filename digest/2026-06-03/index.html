@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-03 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-03/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-03</header>
+<h1>KB Daily Digest 2026-06-03</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-03/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-03">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-03</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-03</h1>
+<p>2026-06-03 UTC の knowledge-base-llm では、日次 X ブックマーク ingest により <code>raw/x/bookmarks/bookmarks-20260603T0000Z.json</code> が追加され、7件の raw article と 7件の wiki source note が新規に取り込まれました。対象は Claude Code の <code>/fork</code> background agent、自己点検フィードバックループ、dynamic workflows、Anthropic/Claude との operator loop、Devin Desktop、Hermes Desktop、そして token maximization から token management への移行です。コミットは <code>30a00bb</code>（<code>Ingest daily X bookmarks</code>）で、今回の更新は compile 済み source note の追加が中心です。</p>
+<p>今日の全体トレンドは「単体のエージェント性能」から「人間が監督し、複数エージェントを動かし、コストと文脈を管理する harness / desktop / control plane」への移動です。Claude Code では background agent、自己チェック、task-specific workflow が並び、Cognition と Nous Research ではローカルまたはデスクトップ上の操作面が前面に出ています。エージェントが賢いかどうかだけでなく、どのセッション文脈で走るか、どこで人間が見ているか、いくつの作業単位をどう束ねるかが重要になっています。</p>
+<p>重要ソースの1本目は、ClaudeDevs の Claude Code <code>/fork</code> background agent です。source note は、<code>/fork</code> が caller の exact session context を持った background agent として動き、結果を active session に返すという点を記録しています。これは従来の transcript copying に近い <code>/branch</code> とは違い、実行中の作業文脈を保ったまま off-thread に委譲する方向のシグナルです。KB上では、background agents、prompt cache reuse、session-return semantics を考えるための具体例になります。</p>
+<p>重要ソースの2本目は、ClaudeDevs の Claude Code self-check feedback loop です。投稿は、Claude Code に「返す前に自分の作業を確認する」動きを教えられるという内容で、KBでは単なるプロンプト小技ではなく review-loop pattern として扱うべき更新です。実務的には、手元で人間が毎回やっている確認観点を harness 側へ移し、完了条件や guardrail を明示する流れと読めます。これは agent safety、self-verification、handoff quality の整理に直結します。</p>
+<p>重要ソースの3本目は、Cognition の Devin Desktop です。source note は、local と cloud の agent fleet をひとつの surface で管理し、planning、delegation、review、shipping を editor から扱う方向を強調しています。これは一回の agent 実行よりも、複数作業を束ねる control-plane product の話です。Devin Desktop と Hermes Desktop public preview を並べると、2026年6月時点の強い流れとして、エージェントがチャット欄からデスクトップ常駐・作業面・fleet 管理へ移っていることが見えます。</p>
+<p>trq212 の dynamic workflows in Claude Code は、この日の Claude Code 系更新をつなぐ重要な補助線です。記事タイトル自体が「task ごとの harness」を示しており、orchestration scripts や coordinated subagents を workflow material として扱う方向を示唆しています。同じ作者の operator loop / staying in the loop with Claude は、人間が Claude の作業を理解し続けるための visibility の話です。つまり、今日の更新は「任せる」だけでなく「見える状態で任せる」「戻ってきた結果を検査する」「作業ごとに harness を変える」という運用の層を厚くしています。</p>
+<p>Nous Research の Hermes Desktop public preview は、Hermes Agent から native desktop surface へ進む動きとして記録されました。研究ブランドやモデル単体の発表ではなく、ユーザーのマシン上で動く operator surface の公開プレビューである点が重要です。Devin Desktop と合わせて読むと、ローカル環境、クラウド実行、複数 agent、レビュー面をどう一体化するかが、AIエージェント製品の差別化軸になっていることがわかります。</p>
+<p>fukkyy 氏の token management after token maximization は、今日の運用面の締めとして効いています。文脈をたくさん入れる、長いセッションを維持する、背景 agent を増やす、といった方向は有効ですが、その先には token usage の discipline が必要になります。KB上では、raw capability の拡張だけではなく、費用・再利用・文脈圧縮・持続可能な利用を含めた operating discipline のテーマに接続する更新です。</p>
+<p>実務での読みどころは、エージェント導入の設計単位が「プロンプト」から「セッション、サブエージェント、検査ループ、デスクトップ操作面、token budget」へ広がっていることです。チームで取り入れるなら、まず background/off-thread 実行に任せる作業、自己チェックを必須化する作業、人間が常に loop に残るべき作業を分ける必要があります。そのうえで、Claude Code や Devin/Hermes のような surface を、作業の見える化と fleet 管理のための control plane として評価するとよさそうです。</p>
+<p>NotebookLM Podcast では、「チャット型エージェントから作業面・制御面への移動」を主軸にすると話しやすいです。最初に Claude Code の <code>/fork</code>、self-check、dynamic workflows をまとめ、次に Devin Desktop と Hermes Desktop を比較し、最後に operator loop と token management を、人間の監督と持続可能な運用の話として接続する構成が向いています。次に追う問いは、background agent の結果をどの粒度でレビューするか、desktop control plane は既存IDEやタスク管理とどう重なるか、token management を個人の節約術ではなくチームの運用標準にできるか、の3点です。</p>
+<h2>重要ソース</h2>
+<h3>ClaudeDevs - Claude Code /fork background agent</h3>
+<p>Source note: <code>wiki/sources/claudedevs-claude-code-fork-background-agent-x-2026-06-02.md</code></p>
+<h1>ClaudeDevs - Claude Code /fork background agent</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/claudedevs-claude-code-fork-background-agent-x-2026-06-02.md</code></li>
+<li>Original URL: https://x.com/i/status/2061947411141169494</li>
+<li>Author: ClaudeDevs / @ClaudeDevs</li>
+<li>Date: 2026-06-02</li>
+<li>Type: X post / video card</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked video card</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Public metrics at capture: 46 reposts, 38 replies, 719 likes, 13 quotes, 301 bookmarks, 33526 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>ClaudeDevs says Claude Code&#x27;s <code>/fork</code> now runs a background agent with the exact session context, including system prompt, tools, history, model, and prompt cache, and returns the result back to the live session.</p>
+<h2>Key Claims</h2>
+<ul>
+<li><code>/fork</code> is becoming a true background-agent primitive, not just a session copy.</li>
+<li>Exact session context and prompt cache are treated as part of the handoff.</li>
+<li>The older <code>/branch</code> behavior still exists as a transcript-copying escape hatch.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The captured post text is the only evidence in this note.</li>
+<li>The post explicitly contrasts <code>/fork</code> with <code>/branch</code>, which makes the harness semantics easy to distinguish.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / video card</li>
+<li>Confidence: high for the feature framing, medium for implementation details beyond the wording in the post</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/agent-harness-landscape.md]]</li>
+<li>[[../maps/coding-agent-harness-patterns.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>What checks should a background <code>/fork</code> run before returning results to the parent session?</li>
+<li>When does exact-context offloading impro</li>
+</ul>
+<h3>ClaudeDevs - Claude Code self-check feedback loop</h3>
+<p>Source note: <code>wiki/sources/claudedevs-claude-code-self-check-feedback-loop-x-2026-06-02.md</code></p>
+<h1>ClaudeDevs - Claude Code self-check feedback loop</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/claudedevs-claude-code-self-check-feedback-loop-x-2026-06-02.md</code></li>
+<li>Original URL: https://x.com/i/status/2061900434722496604</li>
+<li>Author: ClaudeDevs / @ClaudeDevs</li>
+<li>Date: 2026-06-02</li>
+<li>Type: X post / video card</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked video card</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Public metrics at capture: 104 reposts, 58 replies, 2003 likes, 6 quotes, 2555 bookmarks, 103375 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>ClaudeDevs says you can encode manual checks into Claude Code so the agent closes its own feedback loop before returning work.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Self-checking is being treated as an explicit loop design, not an informal habit.</li>
+<li>Human review criteria can be encoded into the agent workflow.</li>
+<li>Review quality becomes part of the harness, not only a post-hoc human task.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The captured text explicitly asks how to get Claude Code to check its own work.</li>
+<li>The post says manual checks can be encoded so the agent closes the loop itself.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / video card</li>
+<li>Confidence: high for the loop framing, medium for any specific implementation details</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/spec-code-test-loop.md]]</li>
+<li>[[../concepts/agent-knowledge-loop.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/agent-safety.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/coding-agent-harness-patterns.md]]</li>
+<li>[[../maps/coding-agent-review-rubric.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which manual checks can be made machine-readable without losing important nuance?</li>
+<li>When does self-checking meaningfully reduce reviewer burden versus just adding another stage?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/claudedevs-claude-code-self-check-feed</li>
+</ul>
+<h3>Cognition - Devin Desktop</h3>
+<p>Source note: <code>wiki/sources/cognition-devin-desktop-fleet-surface-x-2026-06-02.md</code></p>
+<h1>Cognition - Devin Desktop</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/cognition-devin-desktop-fleet-surface-x-2026-06-02.md</code></li>
+<li>Original URL: https://x.com/i/status/2061889596703551926</li>
+<li>Author: Cognition / @cognition</li>
+<li>Date: 2026-06-02</li>
+<li>Type: X post / video card</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked video card</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Public metrics at capture: 67 reposts, 48 replies, 563 likes, 64 quotes, 233 bookmarks, 640310 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Cognition announces Devin Desktop, a surface for managing fleets of local and cloud agents from one place.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Devin is moving toward a fleet-management control surface.</li>
+<li>The desktop app is framed as the place to plan, delegate, review, and ship.</li>
+<li>Local and cloud agents are being treated as a unified operational set.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post text explicitly uses &quot;manage fleets&quot; and &quot;one surface.&quot;</li>
+<li>It describes a workflow that spans planning, delegation, review, and delivery.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / video card</li>
+<li>Confidence: high for the product framing, medium for any implementation details not visible in the post</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/agent-harness-landscape.md]]</li>
+<li>[[../maps/harness-engineering-vendor-comparison.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>How much fleet control belongs in a single desktop surface versus separate operator tools?</li>
+<li>What review and approval patterns keep local and cloud fleets legible?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/cognition-devin-desktop-fleet-surface-x-2026-06-02.md]]</li>
+</ul>
+<h3>fukkyy - token management after token maximization</h3>
+<p>Source note: <code>wiki/sources/fukkyy-token-management-token-maximization-x-2026-06-01.md</code></p>
+<h1>fukkyy - token management after token maximization</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/fukkyy-token-management-token-maximization-x-2026-06-01.md</code></li>
+<li>Original URL: https://x.com/i/status/2061285149774663814</li>
+<li>Primary source: https://x.com/i/article/2060529434390863873</li>
+<li>Author: 福島良典 | LayerX / @fukkyy</li>
+<li>Date: 2026-06-01</li>
+<li>Type: X post / article card</li>
+<li>Evidence strength: bookmark snapshot metadata plus the linked X article title and URL</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Public metrics at capture: 105 reposts, 0 replies, 585 likes, 43 quotes, 703 bookmarks, 279293 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark points to an article titled &quot;From token maximization to token management.&quot; The note is useful as a framing shift: once tokens become a managed operational cost, optimization alone is no longer the right mental model.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Token use should be managed as a budgeted operational resource.</li>
+<li>The useful question shifts from &quot;maximize tokens&quot; to &quot;manage tokens well.&quot;</li>
+<li>This is a cost and sustainability signal for real-world agent use.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The captured title is the main evidence available in the bookmark.</li>
+<li>The article card suggests a broader operating stance rather than a one-off tip.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X article card</li>
+<li>Confidence: moderate for the framing shift, low for details not present in the capture</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/sustainable-ai-work.md]]</li>
+<li>[[../concepts/agentic-jevons-paradox.md]]</li>
+<li>[[../concepts/agentic-product-market-fit.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/agent-harness-landscape.md]]</li>
+<li>[[../maps/coding-agent-harness-patterns.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which teams need explicit token governance versus simply better defaults?</li>
+<li>At what point does token management become an operating di</li>
+</ul>
+<h3>Nous Research - Hermes Desktop public preview</h3>
+<p>Source note: <code>wiki/sources/nousresearch-hermes-desktop-public-preview-x-2026-06-02.md</code></p>
+<h1>Nous Research - Hermes Desktop public preview</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/nousresearch-hermes-desktop-public-preview-x-2026-06-02.md</code></li>
+<li>Original URL: https://x.com/i/status/2061843507417944552</li>
+<li>Author: Nous Research / @NousResearch</li>
+<li>Date: 2026-06-02</li>
+<li>Type: X post / video card</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked video card</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Public metrics at capture: 842 reposts, 724 replies, 7601 likes, 333 quotes, 4193 bookmarks, 2532301 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Nous Research announces Hermes Desktop, a native desktop version of Hermes Agent that is in public preview.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Hermes is moving from a model or assistant brand into a desktop-native operator surface.</li>
+<li>The product is now meant to live on the user&#x27;s machine instead of remaining a remote or abstract agent concept.</li>
+<li>Public preview signals an operational product push rather than a closed prototype.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The captured post text says Hermes Desktop is the next evolution of Hermes Agent.</li>
+<li>The post explicitly says it is native on the user&#x27;s machine and in public preview.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / video card</li>
+<li>Confidence: moderate to high for the surface shift, medium for any implementation details not present in the post</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/agent-harness-landscape.md]]</li>
+<li>[[../maps/harness-engineering-vendor-comparison.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which parts of a desktop-native agent belong in the local UI versus in the backend harness?</li>
+<li>How much control does a desktop surface add before it becomes a burden?</li>
+</ul>
+<h2>Ba</h2>
+<h3>trq212 - Anthropic operator loop / staying in the loop with Claude</h3>
+<p>Source note: <code>wiki/sources/trq212-anthropic-operator-loop-keeping-up-with-claude-x-2026-06-01.md</code></p>
+<h1>trq212 - Anthropic operator loop / staying in the loop with Claude</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/trq212-anthropic-operator-loop-keeping-up-with-claude-x-2026-06-01.md</code></li>
+<li>Original URL: https://x.com/i/status/2061545633560010826</li>
+<li>Author: Thariq / @trq212</li>
+<li>Date: 2026-06-01</li>
+<li>Type: X post / photo card</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked photo card</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Public metrics at capture: 481 reposts, 179 replies, 7871 likes, 78 quotes, 12597 bookmarks, 557541 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark captures a note about how Anthropic people stay in the loop with Claude and understand the work being done. The emphasis is on operator awareness and review, not on the specific implementation shown in the card.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Humans need better visibility into agent work as tasks become more autonomous.</li>
+<li>Keeping up with an agent&#x27;s work is itself becoming a first-class workflow problem.</li>
+<li>Anthropic&#x27;s internal practice is useful evidence for human-AI coordination patterns.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The captured post explicitly says this is one of the author&#x27;s favorite ideas from Suzanne.</li>
+<li>The post&#x27;s main substance is the operator workflow around keeping up with Claude&#x27;s work.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / photo card</li>
+<li>Confidence: moderate; the note is about workflow framing rather than a fully specified feature</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/agent-knowledge-loop.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+<li>[[../concepts/agent-first-organization.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/coding-agent-harness-patterns.md]]</li>
+<li>[[../maps/agent-harness-landscape.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which review surfaces best preserve operator understanding as agents take</li>
+</ul>
+<h3>trq212 - dynamic workflows in Claude Code</h3>
+<p>Source note: <code>wiki/sources/trq212-dynamic-workflows-claude-code-x-2026-06-02.md</code></p>
+<h1>trq212 - dynamic workflows in Claude Code</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/trq212-dynamic-workflows-claude-code-x-2026-06-02.md</code></li>
+<li>Original URL: https://x.com/i/status/2061907337154367865</li>
+<li>Primary source: https://x.com/i/article/2061850535708483585</li>
+<li>Author: Thariq / @trq212</li>
+<li>Date: 2026-06-02</li>
+<li>Type: X post / article card</li>
+<li>Evidence strength: bookmark snapshot metadata plus the linked X article title and URL</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Public metrics at capture: 194 reposts, 70 replies, 2124 likes, 58 quotes, 4963 bookmarks, 351792 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark points to an X article titled &quot;A harness for every task: dynamic workflows in Claude Code.&quot; The title alone is a strong signal that Claude Code workflows are being treated as compilable orchestration harnesses rather than only interactive prompts.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Workflows are becoming a distinct harness layer in Claude Code.</li>
+<li>The article appears to center orchestration scripts and coordinated subagents.</li>
+<li>The framing suggests a compile-orchestrate-execute pattern for complex tasks.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The captured post text is only the article card URL.</li>
+<li>The article title provides the main semantic evidence.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X article card</li>
+<li>Confidence: moderate for the high-level framing, low to medium for any details not visible in the capture</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/workflow-compilation.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/coding-agents.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/coding-agent-harness-patterns.md]]</li>
+<li>[[../maps/agent-harness-landscape.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>What parts of a dynamic workflow should be generated on the fly versus pre-authored?</li>
+<li>How much</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>7</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
