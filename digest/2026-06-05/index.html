@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-05 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-05/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-05</header>
+<h1>KB Daily Digest 2026-06-05</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-05/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-05">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-05</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest - 2026-06-05</h1>
+<p>今日の knowledge-base-llm は、UTC 2026-06-05 の <code>KB ingest: daily X bookmarks 2026-06-05</code> により、Xブックマーク由来の新規ソース4本と、それに対応する <code>wiki/sources</code> 4本、さらに <code>wiki/maps</code> の複数更新が入りました。全体トレンドは、AIエージェントの競争軸が「モデルがどれだけ賢いか」から、「価値・文脈・証拠・開発ループを、プロダクトの表面でどう扱うか」へ移っていることです。今日の更新は、ROI保証、ソース帰属、永続メモリ、モバイル開発ループという別々の話に見えますが、どれもエージェント利用を実務の中で信頼可能にするための包装・導線・検証面の話として読めます。</p>
+<p>重要ソース1本目は、Cognition の AI Productivity Guarantee です。Devin が支払額以上のエンジニアリング価値を出せなければ、Cognition 側が最大1,000万ドルまで利用を支援する、という価格・価値メッセージでした。KB上では <code>ai-adoption-roi-and-capability-investment.md</code> と <code>agent-harness-landscape.md</code> に接続され、AI導入ROIが抽象的な期待値ではなく、プロダクト境界で明示的に問われ始めているシグナルとして位置づけられました。重要なのは、これは単なる値引きではなく、生成量やモデル性能よりも「顧客が吸収できる実効価値」が前面に出てきた点です。</p>
+<p>重要ソース2本目は、NotebookLM の Source Attribution です。生成された成果物について、どのプロンプトとソースから作られたかを見せ、そこから反復できるという発表でした。KBでは <code>evidence-quality-and-source-trust.md</code> と <code>context-management-decisions.md</code> に接続され、生成物を一回限りのブラックボックス出力ではなく、来歴を持った編集可能なアーティファクトとして扱う例になっています。これは、研究OSや社内ナレッジ基盤にとってかなり大きい方向性です。要約が正しいかどうかだけでなく、「何に基づいてそう言っているのか」を作業面の中で辿れることが、再利用可能性と信頼性を左右します。</p>
+<p>重要ソース3本目は、OpenAI の ChatGPT memory dreaming です。ChatGPT のメモリが、会話をまたいだ文脈維持や好みの更新を担う、より強い継続性システムとして説明されています。KB上では <code>agent-dreaming</code>、<code>company-brain</code>、<code>context-file-system</code>、<code>agent-knowledge-loop</code> と結びつき、記憶が隠れた内部状態ではなく、ユーザー向けのプロダクト能力として扱われる流れを補強しました。Anthropic 系の long-running harness や dreaming の話だけでなく、OpenAI 側からも「永続文脈」が明確な競争領域になっていることが見えます。</p>
+<p>4本目の重要な補助ソースは、OpenAI Developers による Codex の Build iOS Apps plugin です。Codex の中でアプリを表示・テストし、SwiftUI previews を開き、hot reload で編集サイクルを回せるという内容です。これは <code>tool-accessibility</code>、<code>coding-agents</code>、<code>harness-engineering</code>、<code>workflow-compilation</code> に接続され、エージェントが単にコードを書く存在から、テスト・プレビュー・反復まで含む開発面を持つ方向へ進んでいることを示しています。今日の他の3本が価値、証拠、記憶の話だとすれば、このソースは実際の作業ループをどれだけエージェント内へ閉じ込められるかの話です。</p>
+<p>更新された地図を見ると、<code>ai-adoption-roi-and-capability-investment.md</code> では Cognition の保証が「agentic PMF と価格露出」の延長として追加されました。ここでは、AI ROI はモデル品質やコード量の直接関数ではなく、内部プラットフォーム、文脈品質、信頼、検証能力、配送指標を通して初めて財務価値になる、という既存の読み筋がさらに強くなっています。Cognition の保証は、その議論をベンダー側が製品メッセージとして引き受け始めた例です。</p>
+<p><code>context-management-decisions.md</code> では、OpenAI の memory dreaming が、会話をまたいだ preference retention、context freshness、productized memory の例として追加されました。<code>evidence-quality-and-source-trust.md</code> では、NotebookLM の Source Attribution が、重要ソースの backfill 優先度に入っています。つまり、今日の更新は「長期記憶」と「証拠来歴」という、エージェントを実務で使うときの二大基盤を同時に進めています。片方は何を覚えるか、もう片方は何を根拠に出力したかです。</p>
+<p><code>agent-harness-landscape.md</code> では、OpenAI の項目に、Codex iOS app loop と ChatGPT memory が追加されました。ここでの読みどころは、OpenAI のプロダクト群が、開発環境・継続文脈・ツールアクセスをそれぞれ別の点ではなく、同じハーネス設計の要素として広げていることです。エージェントの実力はモデル単体ではなく、テストできるか、プレビューできるか、記憶できるか、根拠を示せるか、価値を測れるかによって決まるというKBの中心仮説に、今日の4本はかなりきれいに重なっています。</p>
+<p>実務上の示唆は、AIエージェント導入を評価するときに、ライセンス費やベンチマークだけを見ても足りないということです。Devin 型のROI保証は価値測定を迫り、NotebookLM 型のソース帰属は証拠の追跡可能性を要求し、ChatGPT 型のメモリは継続文脈の管理を前面化し、Codex iOS plugin は開発ループの摩擦を減らします。これらをまとめて見ると、次の競争は「良い回答を出すAI」ではなく、「価値が説明でき、根拠を辿れ、文脈を保ち、現場のループ内で検証できるAI」に寄っています。</p>
+<p>Podcastで掘るなら、論点は4つあります。第一に、ROI保証は本当に顧客価値を保証するのか、それとも利用量拡大のための販売メッセージなのか。第二に、ソース帰属は生成物の信頼性をどこまで改善し、どこからユーザーの検証負担になるのか。第三に、永続メモリは便利な継続性と、不要な文脈の持ち越しをどう切り分けるべきか。第四に、Codex のような開発ループ統合は、開発者を速くするだけでなく、レビューやテストの責務をどこへ移すのか。今日の更新は、エージェント時代のプロダクト設計を「能力」ではなく「運用可能性」から読むための材料でした。</p>
+<h2>Important Sources</h2>
+<ul>
+<li>Cognition / AI Productivity Guarantee: https://x.com/i/status/2062597242167628019</li>
+<li>NotebookLM / Source Attribution: https://x.com/NotebookLM/status/2062653124326863077</li>
+<li>OpenAI / ChatGPT memory dreaming: https://x.com/i/status/2062567556524003631</li>
+<li>OpenAI Developers / Build iOS Apps plugin in Codex: https://x.com/i/status/2062599291479478275</li>
+</ul>
+<h2>Changed KB Notes</h2>
+<ul>
+<li><code>wiki/sources/cognition-ai-productivity-guarantee-x-2026-06-04.md</code></li>
+<li><code>wiki/sources/notebooklm-source-attribution-x-2026-06-04.md</code></li>
+<li><code>wiki/sources/openai-chatgpt-memory-dreaming-x-2026-06-04.md</code></li>
+<li><code>wiki/sources/openai-developers-build-ios-apps-plugin-codex-x-2026-06-04.md</code></li>
+<li><code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code></li>
+<li><code>wiki/maps/context-management-decisions.md</code></li>
+<li><code>wiki/maps/evidence-quality-and-source-trust.md</code></li>
+<li><code>wiki/maps/agent-harness-landscape.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Cognition - AI Productivity Guarantee</h3>
+<p>Source note: <code>wiki/sources/cognition-ai-productivity-guarantee-x-2026-06-04.md</code></p>
+<h1>Cognition - AI Productivity Guarantee</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/cognition-ai-productivity-guarantee-x-2026-06-04.md]]</li>
+<li>Original URL: https://x.com/i/status/2062597242167628019</li>
+<li>Primary URL: https://x.com/cognition/status/2062597242167628019/photo/1</li>
+<li>Author: Cognition / @cognition</li>
+<li>Posted: 2026-06-04T18:07:58.000Z</li>
+<li>Captured: 2026-06-05 via xurl bookmarks capture</li>
+<li>Type: X post / image card</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked image card</li>
+<li>Public metrics at capture: 65 reposts, 50 replies, 665 likes, 74 quotes, 246 bookmarks, 192661 impressions</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/i/status/2062597242167628019</li>
+<li>https://x.com/cognition/status/2062597242167628019/photo/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>AI should earn its keep.</p>
+</blockquote>
+<h2>What it says</h2>
+<p>Cognition is marketing Devin with an explicit productivity guarantee: if the product does not deliver enough engineering value relative to the spend, the company says it will fund usage until it does, up to $10 million.</p>
+<h2>Why it matters</h2>
+<p>This makes the ROI conversation part of the product itself. The post is useful as a vendor-side signal that AI tooling is moving from feature claims to outcome claims.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/ai-adoption-j-curve.md]]</li>
+<li>[[../concepts/agentic-product-market-fit.md]]</li>
+<li>[[../concepts/verification-tax.md]]</li>
+<li>[[../concepts/agent-deployment-gates-and-operational-risk.md]]</li>
+</ul>
+<h2>Related maps</h2>
+<ul>
+<li>[[../maps/ai-adoption-roi-and-capability-investment.md]]</li>
+<li>[[../maps/agent-harness-landscape.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/cognition-ai-productivity-guarantee-x-2026-06-04.md]]</li>
+</ul>
+<h3>NotebookLM - Source attribution</h3>
+<p>Source note: <code>wiki/sources/notebooklm-source-attribution-x-2026-06-04.md</code></p>
+<h1>NotebookLM - Source attribution</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/notebooklm-source-attribution-x-2026-06-04.md]]</li>
+<li>Original URL: https://x.com/NotebookLM/status/2062653124326863077</li>
+<li>Primary URL: https://x.com/NotebookLM/status/2062653124326863077/video/1</li>
+<li>Author: NotebookLM</li>
+<li>Posted: 2026-06-04T21:50:01.000Z</li>
+<li>Captured: 2026-06-05 via xurl bookmarks capture</li>
+<li>Type: X post / video card</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked video card</li>
+<li>Public metrics at capture: 41 reposts, 11 replies, 352 likes, 4 quotes, 106 bookmarks, 12409 impressions</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/NotebookLM/status/2062653124326863077</li>
+<li>https://x.com/NotebookLM/status/2062653124326863077/video/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>No more guessing.</p>
+</blockquote>
+<h2>What it says</h2>
+<p>NotebookLM is adding Source Attribution so users can see the exact prompts and sources used to create each artifact and then iterate on it.</p>
+<h2>Why it matters</h2>
+<p>This is a strong provenance and evidence-quality signal. It mirrors the KB&#x27;s own interest in making source lineage visible instead of burying it in hidden context.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/evidence-quality.md]]</li>
+<li>[[../concepts/compiled-wiki.md]]</li>
+<li>[[../concepts/agent-knowledge-loop.md]]</li>
+<li>[[../concepts/rich-agent-output-artifact.md]]</li>
+</ul>
+<h2>Related maps</h2>
+<ul>
+<li>[[../maps/evidence-quality-and-source-trust.md]]</li>
+<li>[[../maps/context-management-decisions.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/notebooklm-source-attribution-x-2026-06-04.md]]</li>
+</ul>
+<h3>OpenAI - ChatGPT memory dreaming</h3>
+<p>Source note: <code>wiki/sources/openai-chatgpt-memory-dreaming-x-2026-06-04.md</code></p>
+<h1>OpenAI - ChatGPT memory dreaming</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/openai-chatgpt-memory-dreaming-x-2026-06-04.md]]</li>
+<li>Original URL: https://x.com/i/status/2062567556524003631</li>
+<li>Primary URL: https://openai.com/index/chatgpt-memory-dreaming/</li>
+<li>Author: OpenAI / @OpenAI</li>
+<li>Posted: 2026-06-04T16:10:00.000Z</li>
+<li>Captured: 2026-06-05 via xurl bookmarks capture</li>
+<li>Type: X post / company announcement</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked official announcement</li>
+<li>Public metrics at capture: 644 reposts, 402 replies, 6638 likes, 310 quotes, 1794 bookmarks, 960796 impressions</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/i/status/2062567556524003631</li>
+<li>https://openai.com/index/chatgpt-memory-dreaming/</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>more capable memory system in ChatGPT</p>
+</blockquote>
+<h2>What it says</h2>
+<p>OpenAI says ChatGPT memory is being upgraded to better carry context across conversations and remember preferences in a way that stays fresh and relevant.</p>
+<h2>Why it matters</h2>
+<p>This is a product-level memory and continuity signal. It belongs next to the repo&#x27;s memory, company-brain, and dreaming sources because it treats persistent context as an explicit user-facing capability.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/agent-dreaming.md]]</li>
+<li>[[../concepts/company-brain.md]]</li>
+<li>[[../concepts/context-file-system.md]]</li>
+<li>[[../concepts/agent-knowledge-loop.md]]</li>
+</ul>
+<h2>Related maps</h2>
+<ul>
+<li>[[../maps/context-management-decisions.md]]</li>
+<li>[[../maps/agent-harness-landscape.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/openai-chatgpt-memory-dreaming-x-2026-06-04.md]]</li>
+</ul>
+<h3>OpenAI Developers - Build iOS Apps plugin in Codex</h3>
+<p>Source note: <code>wiki/sources/openai-developers-build-ios-apps-plugin-codex-x-2026-06-04.md</code></p>
+<h1>OpenAI Developers - Build iOS Apps plugin in Codex</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/openai-developers-build-ios-apps-plugin-codex-x-2026-06-04.md]]</li>
+<li>Original URL: https://x.com/i/status/2062599291479478275</li>
+<li>Primary URL: https://x.com/OpenAIDevs/status/2062599291479478275/video/1</li>
+<li>Author: OpenAI Developers / @OpenAIDevs</li>
+<li>Posted: 2026-06-04T18:16:06.000Z</li>
+<li>Captured: 2026-06-05 via xurl bookmarks capture</li>
+<li>Type: X post / video card</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked video card</li>
+<li>Public metrics at capture: 326 reposts, 154 replies, 4817 likes, 170 quotes, 2510 bookmarks, 417911 impressions</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/i/status/2062599291479478275</li>
+<li>https://x.com/OpenAIDevs/status/2062599291479478275/video/1</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>More of the iOS app loop, now inside Codex.</p>
+</blockquote>
+<h2>What it says</h2>
+<p>The Build iOS Apps plugin lets Codex view and test an iOS app inside the in-app browser, open SwiftUI previews, and hot reload edits without leaving Codex.</p>
+<h2>Why it matters</h2>
+<p>This is a good example of tool accessibility moving deeper into the agent surface. The product is absorbing more of the edit-test loop instead of forcing the developer back to separate tools.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/workflow-compilation.md]]</li>
+</ul>
+<h2>Related maps</h2>
+<ul>
+<li>[[../maps/agent-harness-landscape.md]]</li>
+<li>[[../maps/harness-engineering-vendor-comparison.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/openai-developers-build-ios-apps-plugin-codex-x-2026-06-04.md]]</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Main dimensions</h2>
+<h3>1. Guidance before action</h3>
+<ul>
+<li>feedforward controls</li>
+<li>short map-like instructions</li>
+<li>architecture docs</li>
+<li>explicit plans</li>
+<li>feature lists</li>
+<li>templates and skills</li>
+</ul>
+<h3>2. Correction after action</h3>
+<ul>
+<li>tests</li>
+<li>linters</li>
+<li>structural checks</li>
+<li>browser-based verification</li>
+<li>AI review / evaluator agents</li>
+<li>recurring cleanup tasks</li>
+</ul>
+<h3>3. Continuity across sessions</h3>
+<ul>
+<li>progress logs</li>
+<li>commit history</li>
+<li>feature list artifacts</li>
+<li>initializer agent outputs</li>
+<li>context resets</li>
+</ul>
+<h3>4. Control of autonomy</h3>
+<ul>
+<li>approval policy</li>
+<li>human-in-the-loop checkpoints</li>
+<li>classifier-mediated approvals</li>
+<li>machine-c</li>
+</ul>
+<h3>AI Adoption ROI and Capability Investment</h3>
+<p>KB note: <code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code></p>
+<h1>AI Adoption ROI and Capability Investment</h1>
+<h2>Purpose</h2>
+<p>Map how AI-assisted software development becomes financial value only when capability investments let the organization absorb faster generation safely.</p>
+<h2>Core thesis</h2>
+<p>AI ROI is not a direct function of model quality or code volume. It is a system outcome: AI adoption must be mediated by internal platforms, context/data quality, trust, user focus, verification guardrails, and delivery metrics before it can become durable business value. The strongest upside case is not only cheaper execution of existing backlog, but Jevons-style expansion in software demand when new tools, experiments, and automations become economical.</p>
+<h2>Path from AI adoption to ROI</h2>
+<h3>1. Capability investment first</h3>
+<p>The first question is not “which tool?” but “can the system absorb the tool?” DORA&#x27;s report emphasizes quality internal developer platforms, AI-accessible internal data, clear AI stance/trust, context engineering, user-centric focus, and automated</p>
+<h3>Context Management Decision Map</h3>
+<p>KB note: <code>wiki/maps/context-management-decisions.md</code></p>
+<h1>Context Management Decision Map</h1>
+<h2>Purpose</h2>
+<p>Compare the main recovery and continuity moves available to long-running agent systems.</p>
+<h2>Core moves</h2>
+<h3>Continue</h3>
+<ul>
+<li>Keep the current session and context as-is.</li>
+<li>Best when the session is still coherent and the next task is closely related.</li>
+</ul>
+<h3>Rewind</h3>
+<ul>
+<li>Remove a failed branch and restart from the last good point.</li>
+<li>Best when the current line of reasoning is clearly wrong but the session still has useful surrounding state.</li>
+</ul>
+<h3>Clear</h3>
+<ul>
+<li>Explicitly wipe the session context and start over from artifacts.</li>
+<li>Best when the human wants tight control over what remains visible.</li>
+</ul>
+<h3>Compact</h3>
+<ul>
+<li>Condense the current session into a shorter summary.</li>
+<li>Best when the work is still relevant but the raw history is too large or noisy.</li>
+</ul>
+<h3>Delegate</h3>
+<ul>
+<li>Spawn a subagent or separate worker for a noisy or specialized subtask.</li>
+<li>Best when the subtask should not pollute the parent context.</li>
+</ul>
+<h3>Reset</h3>
+<ul>
+<li>Rebuild state from explicit handoff artifacts in a fresh sessi</li>
+</ul>
+<h3>Evidence Quality and Source Trust</h3>
+<p>KB note: <code>wiki/maps/evidence-quality-and-source-trust.md</code></p>
+<h1>Evidence Quality and Source Trust</h1>
+<h2>Purpose</h2>
+<p>Turn the KB from a flat summary collection into a research OS that can reason about claim strength, provenance, and safe reuse.</p>
+<h2>Core thesis</h2>
+<p>The wiki should not only answer &quot;what does this source say?&quot; It should answer &quot;how much should we trust this source for this specific claim, and what can it safely support?&quot;</p>
+<h2>Evidence tiers</h2>
+<h3>Tier 1: Direct primary evidence</h3>
+<p>Use for definitions, product behavior, and hard constraints.</p>
+<ul>
+<li>official docs</li>
+<li>source repositories</li>
+<li>papers with clear methods</li>
+<li>reproducible examples or code</li>
+</ul>
+<p>Typical confidence: high, unless the capture is partial or outdated.</p>
+<h3>Tier 2: Practitioner operational evidence</h3>
+<p>Use for workflow patterns, heuristics, and lived failure modes.</p>
+<ul>
+<li>first-person engineering reports</li>
+<li>postmortems</li>
+<li>detailed implementation notes</li>
+<li>Masaki operation notes</li>
+</ul>
+<p>Typical confidence: medium to high for &quot;this pattern worked in this setting,&quot; lower for broad generalization.</p>
+<h3>Tier 3: Public s</h3>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>4</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
