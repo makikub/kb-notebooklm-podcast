@@ -1,0 +1,15 @@
+{
+  "date": "2026-06-08T03:00:10.630117+09:00",
+  "topic_id": "wiki/maps/context-management-decisions.md",
+  "title": "Context Management Decision Map",
+  "output_dir": "outputs/notebooklm-podcast/2026-06-08",
+  "page": "outputs/notebooklm-podcast/2026-06-08/notebooklm-source.md",
+  "related": [
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/harness-engineering-vendor-comparison.md",
+    "wiki/maps/research-os-query-paths.md",
+    "wiki/concepts/multi-agent-orchestration.md"
+  ],
+  "char_count": 9018
+}
