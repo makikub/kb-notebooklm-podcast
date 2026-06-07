@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-07 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-07/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-07</header>
+<h1>KB Daily Digest 2026-06-07</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-07/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-07">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-07</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest - 2026-06-07</h1>
+<p>今日の knowledge-base-llm は、UTC 2026-06-07 の ingest で X ブックマークのスナップショット <code>raw/x/bookmarks/bookmarks-20260607T0000Z.json</code> が入り、そこから新規 raw articles 3本と対応する <code>wiki/sources</code> 3本が追加されました。compile 側では <code>ai-adoption-j-curve</code>、<code>ai-roi-model</code>、<code>background-agents</code>、<code>incremental-progress</code>、<code>tool-accessibility</code>、<code>verification-tax</code> の6つの concept note が更新されています。全体トレンドは、エージェント導入が「便利そう」から一段進み、実際の実行環境、テスト高速化、料金・クレジット消費、検証負荷という運用上の現実に接続されてきたことです。</p>
+<p>重要ソース1本目は、OpenAI Codex の <code>codex-app-server-daemon</code> に関する GitHub repo card です。VPS 上で app-server daemon を立ち上げておくことで、SSH に頼らずスマホから Codex の実行環境として使える、という利用イメージが共有されています。source note では、この daemon が machine-readable な <code>codex app-server</code> lifecycle commands を支え、remote client、remote control、Unix-only daemonization、fresh machine bootstrap の流れを持つ experimental な実行基盤として整理されています。</p>
+<p>KB 的にこの Codex daemon の重要性は、<code>tool-accessibility</code> と <code>background-agents</code> に強く接続する点です。エージェントを長時間・遠隔・非同期に動かすには、単にモデルが賢いだけでは足りません。起動、状態、更新、接続、再開といった lifecycle が明示的な面として露出している必要があります。今回の更新は、Codex が「ローカル端末で対話する CLI」から「遠隔操作可能な実行 substrate」へ少し寄っているシグナルとして読めます。</p>
+<p>重要ソース2本目は、azukiazusa さんの <code>/goal</code> コマンド活用例です。リンク先ブログは、Claude Code の <code>/goal</code> コマンドを使って Vitest の実行時間を6倍高速化した事例として取り込まれました。source note では、これは単なる prompt trick ではなく、Vitest の設定やコード変更を含む非自明なリファクタを、明確な目標に向けて進めた実務例として扱われています。</p>
+<p>この事例が <code>incremental-progress</code> に追加されたのは自然です。エージェントに「この小さな作業をして」と細かく指示するだけでなく、「テスト実行時間を大きく短縮する」という outcome を与え、途中の調査・変更・確認を agent に選ばせる。ここには、目標駆動の実行、自己検証、構造化された handoff、workflow compilation が一体になっています。テスト高速化という成果も重要ですが、KB の観点では、エージェントが扱える仕事の単位が「命令」から「検証可能なゴール」へ移っている点がより重要です。</p>
+<p>重要ソース3本目は、ITmedia NEWS による GitHub Copilot の新料金への反発記事です。6月1日からの usage-based billing 変更後、クレジット消費が想定より速いという不満や、他ツールへの移行表明が SNS で出ている、という内容です。source note では、これは AI ツールの人気そのものとは別に、料金設計と使用量可視化が adoption friction になり得る具体例として整理されています。</p>
+<p>この Copilot 料金反発は、<code>ai-roi-model</code>、<code>ai-adoption-j-curve</code>、<code>verification-tax</code> の更新に効いています。従来の flat subscription では見えにくかった power-user economics が、usage-based billing ではプロダクト体験そのものに入ってきます。さらに、AI は実装時間を短縮しても、レビュー、検証、セキュリティ、設計判断の負荷を後段に移すことがあります。利用料と検証コストが同時に見え始めると、AI 導入の ROI は「速く書けるか」だけではなく、「どの工程で誰が何を支払うか」というモデルに変わります。</p>
+<p>今日の concept 更新は、この3本をそれぞれ既存の KB 地図に接続しています。Codex daemon は <code>tool-accessibility</code> と <code>background-agents</code> に、<code>/goal</code> の Vitest 高速化は <code>incremental-progress</code> に、Copilot 料金反発は <code>ai-adoption-j-curve</code>、<code>ai-roi-model</code>、<code>verification-tax</code> に追加されました。新規概念を乱立させるというより、既存概念の operational signal を厚くする更新です。つまり、KB の中心テーマである agent harness、workflow compilation、ROI、verification tax が、より現場の具体例で補強された日だと言えます。</p>
+<p>実務上の読みどころは、エージェントの価値が「実行環境」「目標設定」「費用・検証モデル」の3点セットで決まることです。Codex daemon はエージェントをどこでどう動かすかを問います。<code>/goal</code> 事例は、何を達成させる単位で任せるかを問います。Copilot 料金反発は、その利用がどれだけの費用とレビュー負荷を生むかを問います。どれか一つだけでは導入判断にならず、3つが揃って初めて、持続可能な AI-assisted development の設計論になります。</p>
+<p>Podcast で掘るなら、まず「リモート実行基盤としての Codex daemon」と「ゴール駆動で成果を出す <code>/goal</code>」をつなぎ、エージェントが長く・遠く・自律的に動くほど、作業単位と lifecycle 管理が重要になる話をするとよさそうです。次に Copilot の料金反発を入れて、エージェント能力の伸びがそのまま採用拡大になるわけではなく、usage-based billing、verification tax、J-Curve の谷をどう管理するかが現場の意思決定を左右する、という流れにすると今日の更新が一つにまとまります。</p>
+<h2>Important Sources</h2>
+<ul>
+<li>OpenAI Codex app-server daemon: https://github.com/openai/codex/tree/main/codex-rs/app-server-daemon</li>
+<li>azukiazusa / <code>/goal</code> command use case for Vitest speedup: https://azukiazusa.dev/blog/goal-command-use-case-vitest/</li>
+<li>ITmedia NEWS / GitHub Copilot pricing backlash: https://www.itmedia.co.jp/news/articles/2606/03/news124.html</li>
+</ul>
+<h2>Changed KB Notes</h2>
+<ul>
+<li><code>raw/x/bookmarks/bookmarks-20260607T0000Z.json</code></li>
+<li><code>raw/articles/azukiazusa-goal-command-vitest-x-2026-06-06.md</code></li>
+<li><code>raw/articles/itmedia-github-copilot-pricing-backlash-x-2026-06-03.md</code></li>
+<li><code>raw/articles/openai-codex-app-server-daemon-github-x-2026-06-06.md</code></li>
+<li><code>wiki/sources/azukiazusa-goal-command-vitest-x-2026-06-06.md</code></li>
+<li><code>wiki/sources/itmedia-github-copilot-pricing-backlash-x-2026-06-03.md</code></li>
+<li><code>wiki/sources/openai-codex-app-server-daemon-github-x-2026-06-06.md</code></li>
+<li><code>wiki/concepts/ai-adoption-j-curve.md</code></li>
+<li><code>wiki/concepts/ai-roi-model.md</code></li>
+<li><code>wiki/concepts/background-agents.md</code></li>
+<li><code>wiki/concepts/incremental-progress.md</code></li>
+<li><code>wiki/concepts/tool-accessibility.md</code></li>
+<li><code>wiki/concepts/verification-tax.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>azukiazusa - <code>/goal</code> command use case for Vitest speedup</h3>
+<p>Source note: <code>wiki/sources/azukiazusa-goal-command-vitest-x-2026-06-06.md</code></p>
+<h1>azukiazusa - <code>/goal</code> command use case for Vitest speedup</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/azukiazusa-goal-command-vitest-x-2026-06-06.md]]</li>
+<li>Original URL: https://x.com/i/status/2063210420052377985</li>
+<li>Primary URL: https://azukiazusa.dev/blog/goal-command-use-case-vitest/</li>
+<li>Author: azukiazusa / @azukiazusa9</li>
+<li>Posted: 2026-06-06T10:44:31.000Z</li>
+<li>Captured: 2026-06-07 via xurl bookmarks capture</li>
+<li>Type: X post / blog card</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked blog card</li>
+<li>Public metrics at capture: 26 reposts, 0 replies, 265 likes, 9 quotes, 260 bookmarks, 24613 impressions</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/i/status/2063210420052377985</li>
+<li>https://azukiazusa.dev/blog/goal-command-use-case-vitest/</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p><code>/goal</code> コマンドの活用例: Vitest の実行時間を 6 倍高速化した話</p>
+</blockquote>
+<h2>What it says</h2>
+<p>The linked blog post shows a case where <code>/goal</code> was useful for a nontrivial refactor: the work involved changing Vitest configuration and making the code changes needed to cut test runtime dramatically.</p>
+<h2>Why it matters</h2>
+<p>This is a good example of goal-driven execution as a practical agent pattern. The useful unit is not a prompt but a stated outcome plus enough context for the agent to choose the intermediate steps.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/workflow-compilation.md]]</li>
+<li>[[../concepts/incremental-progress.md]]</li>
+<li>[[../concepts/structured-handoff-artifacts.md]]</li>
+<li>[[../concepts/self-verification.md]]</li>
+<li>[[../concepts/coding-agents.md]]</li>
+</ul>
+<h2>Related maps</h2>
+<ul>
+<li>[[../maps/coding-agent-harness-patterns.md]]</li>
+<li>[[../maps/agent-harness-landscape.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/azukiazusa-goal-command-vitest-x-2026-06-06.md]]</li>
+</ul>
+<h3>ITmedia NEWS - GitHub Copilot pricing backlash</h3>
+<p>Source note: <code>wiki/sources/itmedia-github-copilot-pricing-backlash-x-2026-06-03.md</code></p>
+<h1>ITmedia NEWS - GitHub Copilot pricing backlash</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/itmedia-github-copilot-pricing-backlash-x-2026-06-03.md]]</li>
+<li>Original URL: https://x.com/i/status/2062089429825830922</li>
+<li>Primary URL: https://www.itmedia.co.jp/news/articles/2606/03/news124.html</li>
+<li>Author: ITmedia NEWS / @itmedia_news</li>
+<li>Posted: 2026-06-03T08:30:06.000Z</li>
+<li>Captured: 2026-06-07 via xurl bookmarks capture</li>
+<li>Type: X post / news article card</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked news card</li>
+<li>Public metrics at capture: 434 reposts, 21 replies, 815 likes, 127 quotes, 233 bookmarks, 377246 impressions</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/i/status/2062089429825830922</li>
+<li>https://www.itmedia.co.jp/news/articles/2606/03/news124.html</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>「使い物にならなくなった」──6月1日からの「GitHub Copilot」新料金、SNSで不満続出　他ツールへの移行表明も</p>
+</blockquote>
+<h2>What it says</h2>
+<p>The article reports that GitHub Copilot&#x27;s June 1 move to usage-based billing triggered complaints on social media, especially around faster-than-expected credit consumption, and prompted some users to consider switching tools.</p>
+<h2>Why it matters</h2>
+<p>It is a concrete adoption-friction example. When pricing shifts become visible enough for users to complain loudly, the workflow cost is no longer abstract and the ROI conversation gets pushed directly into the product surface.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/ai-adoption-j-curve.md]]</li>
+<li>[[../concepts/verification-tax.md]]</li>
+<li>[[../concepts/ai-roi-model.md]]</li>
+<li>[[../concepts/instability-tax.md]]</li>
+</ul>
+<h2>Related maps</h2>
+<ul>
+<li>[[../maps/ai-adoption-roi-and-capability-investment.md]]</li>
+<li>[[../maps/agent-deployment-gates-and-operational-risk.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/itmedia-github-copilot-pricing-backlash-x-2026-06-03.md]]</li>
+</ul>
+<h3>OpenAI Codex - app-server daemon for remote lifecycle management</h3>
+<p>Source note: <code>wiki/sources/openai-codex-app-server-daemon-github-x-2026-06-06.md</code></p>
+<h1>OpenAI Codex - app-server daemon for remote lifecycle management</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/openai-codex-app-server-daemon-github-x-2026-06-06.md]]</li>
+<li>Original URL: https://x.com/i/status/2063197982749766067</li>
+<li>Primary URL: https://github.com/openai/codex/tree/main/codex-rs/app-server-daemon</li>
+<li>Author: Iaiso / @laiso</li>
+<li>Posted: 2026-06-06T09:55:06.000Z</li>
+<li>Captured: 2026-06-07 via xurl bookmarks capture</li>
+<li>Type: X post / GitHub repo card</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked repo card</li>
+<li>Public metrics at capture: 2 reposts, 0 replies, 71 likes, 0 quotes, 82 bookmarks, 9258 impressions</li>
+</ul>
+<h2>Linked URLs</h2>
+<ul>
+<li>https://x.com/i/status/2063197982749766067</li>
+<li>https://github.com/openai/codex/tree/main/codex-rs/app-server-daemon</li>
+</ul>
+<h2>Bookmark text</h2>
+<blockquote>
+<p>codex-app-server-daemonをVPSで立ち上げておくことでsshとかなしにスマホからCodexの実行環境として使えた</p>
+</blockquote>
+<h2>What it says</h2>
+<p>The repo&#x27;s README documents an experimental <code>codex-app-server-daemon</code> that backs machine-readable <code>codex app-server</code> lifecycle commands. It supports remote clients, remote control, Unix-only daemonization, and a bootstrap flow that can bring up a fresh machine for remote use.</p>
+<h2>Why it matters</h2>
+<p>This is a concrete harness-control primitive. It moves Codex closer to a remote execution substrate where lifecycle, state, and updater behavior are explicit rather than improvised over ad hoc shell sessions.</p>
+<h2>Related concepts</h2>
+<ul>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/gateway-control-plane.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Related maps</h2>
+<ul>
+<li>[[../maps/agent-harness-landscape.md]]</li>
+<li>[[../maps/harness-engineering-vendor-comparison.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/openai-codex-app-server-daemon-github-x-2026-06-</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>AI Adoption J-Curve</h3>
+<p>KB note: <code>wiki/concepts/ai-adoption-j-curve.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - AI Adoption J-Curve</p>
+<p>  - J-Curve of AI Value Realization</p>
+<p>  - Tuition Cost of AI Adoption</p>
+<hr>
+<h1>AI Adoption J-Curve</h1>
+<h2>Definition</h2>
+<p>A temporary productivity dip and instability period that can occur when teams adopt AI-assisted development before later realizing higher throughput and value.</p>
+<h2>Why It Matters</h2>
+<p>AI adoption changes workflows, review load, context practices, and deployment pipelines. Treating the initial dip as failure can cause leaders to cut funding too early; ignoring it can make ROI forecasts unrealistic.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[ai-roi-model]]</li>
+<li>[[verification-tax]]</li>
+<li>[[harness-engineering]]</li>
+<li>[[context-engineering]]</li>
+<li>[[sustainable-ai-work]]</li>
+<li>[[human-in-the-loop]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/dora-roi-ai-assisted-software-development.md]]</li>
+<li>[[../sources/iwashi86-ai-lowers-barrier-to-starting-coding-work-x.md]]</li>
+<li>[[../sources/suna_gaku-claude-code-champion-kit-x-2026-05-16.md]]</li>
+<li>[[../sources/itmedia-github-copilot-pricing-backlash-x-2026-06-0</li>
+</ul>
+<h3>AI ROI Model</h3>
+<p>KB note: <code>wiki/concepts/ai-roi-model.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - AI ROI Model</p>
+<p>  - ROI of AI-assisted Software Development</p>
+<p>  - AI Value Model</p>
+<hr>
+<h1>AI ROI Model</h1>
+<h2>Definition</h2>
+<p>A structured way to estimate the return on AI-assisted software development by linking AI adoption to delivery metrics, business value, and adoption costs.</p>
+<h2>Why It Matters</h2>
+<p>AI productivity claims are not enough for enterprise adoption. A credible model connects engineering indicators to financial outcomes while accounting for hard costs, learning costs, instability, and uncertainty.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[ai-adoption-j-curve]]</li>
+<li>[[verification-tax]]</li>
+<li>[[evidence-quality]]</li>
+<li>[[organizational-intent-clarity]]</li>
+<li>[[product-responsibility-distribution]]</li>
+<li>[[sustainable-ai-work]]</li>
+<li>[[agentic-jevons-paradox]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/dora-roi-ai-assisted-software-development.md]]</li>
+<li>[[../sources/simon-willison-gitlab-act-2.md]]</li>
+<li>[[../sources/simon-willison-product-market-fit.md]]</li>
+<li>[[../sources/tsunoda-legalon-ai-driven-hiring-token-budget-x-2026-05-</li>
+</ul>
+<h3>Background Agents</h3>
+<p>KB note: <code>wiki/concepts/background-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Background Agents</p>
+<hr>
+<h1>Background Agents</h1>
+<h2>Definition</h2>
+<p>Agents launched to work asynchronously while the human focuses elsewhere or is offline.</p>
+<h2>Why It Matters</h2>
+<p>They can create leverage by using otherwise idle time and by parallelizing exploratory work.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[long-running-agents]]</li>
+<li>[[task-decomposition]]</li>
+<li>[[agent-management]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/mitchell-hashimoto-ai-adoption-journey.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-scheduled-tasks-x.md]]</li>
+<li>[[../sources/anthropic-claude-code-scheduled-tasks-dynamic-loop-docs.md]]</li>
+<li>[[../sources/noahzweben-dynamic-loop-x.md]]</li>
+<li>[[../sources/oikon48-monitor-tool-x.md]]</li>
+<li>[[../sources/noahzweben-autofix-pr-x.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/cursor-3-blog.md]]</li>
+<li>[[.</li>
+</ul>
+<h3>Incremental Progress</h3>
+<p>KB note: <code>wiki/concepts/incremental-progress.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Incremental Progress</p>
+<hr>
+<h1>Incremental Progress</h1>
+<h2>Definition</h2>
+<p>A working style in which an agent deliberately tackles one bounded unit at a time and leaves the environment in a clean state after each step.</p>
+<h2>Why It Matters</h2>
+<p>It counters the tendency of agents to overreach, lose coherence, or leave half-finished states behind.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[long-running-agents]]</li>
+<li>[[initializer-agent]]</li>
+<li>[[structured-handoff-artifacts]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+</ul>
+<ul>
+<li>[[../sources/y-matsuwitter-harness-roles-meta-definition-x.md]]</li>
+<li>[[../sources/ryu-f-web-claude-design-portfolio-redesign-x.md]]</li>
+<li>[[../sources/zento-ai-gemini-claude-design-lp-workflow-x.md]]</li>
+<li>[[../sources/azukiazusa-goal-command-vitest-x-2026-06-06.md]]</li>
+</ul>
+<h2>Tradeoffs / Tensions</h2>
+<ul>
+<li>Very small increments can increase overhead.</li>
+<li>Very large increments can destabilize the whole run.</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>How should an agent choose the right granularit</li>
+</ul>
+<h3>Tool Accessibility</h3>
+<p>KB note: <code>wiki/concepts/tool-accessibility.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Tool Accessibility</p>
+<hr>
+<h1>Tool Accessibility</h1>
+<h2>Definition</h2>
+<p>The degree to which the tools humans rely on are exposed in forms agents can discover and use effectively.</p>
+<h2>Why It Matters</h2>
+<p>If agents cannot access the relevant tools and context, their practical usefulness stays artificially low.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[agent-recognizable-repository]]</li>
+<li>[[coding-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/ignorance-ai-emerging-harness-engineering-playbook.md]]</li>
+<li>[[../sources/anthropic-harnessing-claudes-intelligence.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-setup-x.md]]</li>
+<li>[[../sources/storybook-mcp-react-blog.md]]</li>
+<li>[[../sources/browser-use-cli-2-changelog.md]]</li>
+<li>[[../sources/google-gemma-4-blog.md]]</li>
+<li>[[../sources/difit-review-blog.md]]</li>
+<li>[[../sources/jerry-liu-rese</li>
+</ul>
+<h3>Verification Tax</h3>
+<p>KB note: <code>wiki/concepts/verification-tax.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Verification Tax</p>
+<p>  - Review Tax</p>
+<hr>
+<h1>Verification Tax</h1>
+<h2>Definition</h2>
+<p>The extra cognitive, review, testing, and governance work required to verify AI-generated output, especially when AI increases the volume and velocity of changes.</p>
+<h2>Why It Matters</h2>
+<p>AI can save implementation time while moving friction into review, security, architecture, and deployment gates. If the verification tax is not reduced with better context, automation, and small batches, productivity gains disappear downstream.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[ai-adoption-j-curve]]</li>
+<li>[[comprehension-debt]]</li>
+<li>[[sustainable-ai-work]]</li>
+<li>[[human-in-the-loop]]</li>
+<li>[[self-verification]]</li>
+<li>[[machine-checkable-invariants]]</li>
+<li>[[feedback-controls]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<p>Pyrefly source: [[../sources/meta-open-source-pyrefly-v1-0.md]]</p>
+<ul>
+<li>[[../sources/dora-roi-ai-assisted-software-development.md]]</li>
+<li>[[../sources/steve-yegge-ai-vampire.md]]</li>
+<li>[[../sources/lars-faye-agentic-coding-is-a-trap.md]]</li>
+<li>[[../sources/arxiv-aris-autonom</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>3</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
