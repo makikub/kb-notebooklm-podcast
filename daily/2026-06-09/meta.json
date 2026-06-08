@@ -1,0 +1,15 @@
+{
+  "date": "2026-06-09T03:00:11.074043+09:00",
+  "topic_id": "wiki/maps/agent-harness-landscape.md",
+  "title": "Agent Harness Landscape",
+  "output_dir": "outputs/notebooklm-podcast/2026-06-09",
+  "page": "outputs/notebooklm-podcast/2026-06-09/notebooklm-source.md",
+  "related": [
+    "wiki/maps/harness-engineering-vendor-comparison.md",
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/concepts/harness-engineering.md",
+    "wiki/concepts/multi-agent-orchestration.md",
+    "wiki/maps/agent-harness-control-taxonomy.md"
+  ],
+  "char_count": 8993
+}
