@@ -1,0 +1,15 @@
+{
+  "date": "2026-06-10T03:00:14.735669+09:00",
+  "topic_id": "wiki/maps/harness-engineering-vendor-comparison.md",
+  "title": "Harness Engineering Vendor / Practitioner Comparison",
+  "output_dir": "outputs/notebooklm-podcast/2026-06-10",
+  "page": "outputs/notebooklm-podcast/2026-06-10/notebooklm-source.md",
+  "related": [
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/concepts/harness-engineering.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md",
+    "wiki/maps/agent-harness-control-taxonomy.md"
+  ],
+  "char_count": 9083
+}

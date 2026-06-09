@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-10 - Harness Engineering Vendor / Practitioner Comparison</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-06-10/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / 2026-06-10</header>
+<h1>Harness Engineering Vendor / Practitioner Comparison</h1>
+<div class="note">
+  
+  <strong>ソース:</strong> <a href="source.md">source.md</a> はNotebookLMにも追加できます。
+</div>
+<div class="actions">
+
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-06-10/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-06-10">GitHub</a>
+</div>
+<h1>Harness Engineering Vendor / Practitioner Comparison</h1>
+<ul>
+<li>Date: 2026-06-10</li>
+<li>Primary topic: <code>wiki/maps/harness-engineering-vendor-comparison.md</code></li>
+<li>Purpose: KB由来の材料を、人間がHTMLで読んで理解しやすい読み物にする</li>
+</ul>
+<h2>今日のランダムテーマ</h2>
+<p>Harness Engineering Vendor / Practitioner Comparison を入口に、関連するKBノートをつないで実務上の論点を整理する。</p>
+<h2>主要ソース抜粋</h2>
+<h3>Harness Engineering Vendor / Practitioner Comparison</h3>
+<h1>Harness Engineering Vendor / Practitioner Comparison</h1>
+<h2>Purpose</h2>
+<p>Compare how different sources frame harness engineering, what they optimize for, and what distinctive mechanisms they emphasize.</p>
+<h2>Comparison axes</h2>
+<h3>OpenAI</h3>
+<ul>
+<li>Focus: repository design, machine-enforced invariants, agent-recognizable context, continuous cleanup, and cross-agent review / delegation</li>
+<li>Distinctive emphasis: docs as map, custom linters, structured plans, architecture constraints, review loops, interoperable agent tooling, and explicit model-tier routing via subagents</li>
+<li>Main contribution: shows harness engineering as both a production engineering discipline and a composable ecosystem where one agent can check or extend another</li>
+</ul>
+<h3>Cursor</h3>
+<ul>
+<li>Focus: agent-first coding workspace design plus model-training environment bootstrapping</li>
+<li>Distinctive emphasis: multi-agent visibility, local/cloud handoff, multi-repo operation, review surfaces, harness measurement, and autoinstall loops that use earlier models to create runnable RL environments for later models</li>
+<li>Main contribution: shows how harness mechanisms become both product UI and training infrastructure rather than remaining hidden implementation detail</li>
+</ul>
+<h3>Cognition / Devin</h3>
+<ul>
+<li>Focus: cloud-agent runtime substrate and organizational rollout</li>
+<li>Distinctive emphasis: microVM isolation, hypervisor snapshotting across async gaps, warm-pool orchestration, permission inheritance, audit trails, and engineering-process redesign</li>
+<li>Main contribution: grounds cloud agents in concrete runtime and governance requirements rather than treating them as just remote CLI wrappers</li>
+</ul>
+<h3>Anthropic</h3>
+<ul>
+<li>Focus: long-running agents, structured handoffs, initializer agents, context resets, multi-agent evaluator patterns, cloud execution, scheduled tasks, reusable skills, MCP as the production integration layer, dedicated workspaces like Claude Design, managed-agent memory/dreaming/outcomes, and teams shipping at model-speed</li>
+<li>Distinctive emphasis: session-to-session continuity, feature lists, progress artifacts, planner/generator/evaluator split, progressive disclosure, model-managed orchestration, environment controls, careful tool boundaries, standardized auth, remote tool distribution, task-specific UI surfaces, rubric-driven outcomes, cross-session memory curation, and model-upgrade-driven harness cleanup</li>
+<li>Main contribution: strongest articulation of long-horizon harness design plus a clear argument that harness responsibilities should shift as model capabilities improve while productizing many of those mechanisms directly</li>
+</ul>
+<h3>LangChain</h3>
+<ul>
+<li>Focus: measu</li>
+</ul>
+<h2>関連ノートからの補助材料</h2>
+<h3>Agent Harness Landscape</h3>
+<p>Source: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Main dimensions</h2>
+<h3>1. Guidance before action</h3>
+<ul>
+<li>feedforward controls</li>
+<li>short map-like instructions</li>
+<li>architecture docs</li>
+<li>explicit plans</li>
+<li>feature lists</li>
+<li>templates and skills</li>
+</ul>
+<h3>2. Correction after action</h3>
+<ul>
+<li>tests</li>
+<li>linters</li>
+<li>structural checks</li>
+<li>browser-based verification</li>
+<li>AI review / evaluator agents</li>
+<li>recurring cleanup tasks</li>
+</ul>
+<h3>3. Continuity across sessions</h3>
+<ul>
+<li>progress logs</li>
+<li>commit history</li>
+<li>feature list artifacts</li>
+<li>initializer agent outputs</li>
+<li>context resets</li>
+</ul>
+<h3>4. Control of autonomy</h3>
+<ul>
+<li>approval policy</li>
+<li>human-in-the-loop checkpoints</li>
+<li>classifier-mediated approvals</li>
+<li>machine-checkable invariants</li>
+</ul>
+<h3>5. Role separation</h3>
+<ul>
+<li>planner</li>
+<li>generator</li>
+<li>evaluator</li>
+<li>maintenance / cleanup agents</li>
+</ul>
+<h2>Source contributions</h2>
+<h3>Karpathy</h3>
+<p>Provides the raw → compiled wiki loop and the idea that LLM-maintained Markdown systems can become a working knowledge substrate.</p>
+<h3>OpenAI</h3>
+<p>Shows harness engineering in a production-like coding environment, emphasizing repo structure, machine-enforce</p>
+<h3>Coding-Agent Harness Patterns</h3>
+<p>Source: <code>wiki/maps/coding-agent-harness-patterns.md</code></p>
+<h1>Coding-Agent Harness Patterns</h1>
+<h2>Purpose</h2>
+<p>Synthesize practical harness patterns for coding-agent workflows using the KB&#x27;s control vocabulary plus a concrete real-world operator example.</p>
+<h2>Core claim</h2>
+<p>A coding-agent workflow becomes harness engineering when quality and reliability depend on the surrounding artifacts, controls, and review loops rather than on the model prompt alone.</p>
+<h2>Pattern 1. Plan as handoff artifact</h2>
+<p>Use a session-scoped plan file such as <code>plan.md</code> as a durable handoff contract.</p>
+<p>Why it matters:</p>
+<ul>
+<li>makes intent inspectable</li>
+<li>supports context resets and reviewer alignment</li>
+<li>creates a stable object for verifier agents to critique</li>
+</ul>
+<h2>Pattern 2. Verifier split without full multi-agent overhead</h2>
+<p>Use heavy thinking for hard, bounded reasoning: spawn independent temporary thinkers, then have one deliberator critique and synthesize their outputs.</p>
+<p>Use a second agent or model mainly for plan review or implementation review instead of duplicating the whole execution role.</p>
+<p>Why it matters:</p>
+<ul>
+<li>captures evaluator benefits cheaply</li>
+<li>reduces self-evaluation bias</li>
+<li>preserves a simple operator mental model</li>
+</ul>
+<h2>Pattern 3. Environment bootstrapping before task work</h2>
+<p>Prepare a runnable repository baseline before asking an agent to solve future coding tasks.</p>
+<p>Why it matters:</p>
+<ul>
+<li>prevents setup failures from consuming the task budget</li>
+<li>gives tests, linters, and smoke commands a mea</li>
+</ul>
+<h3>Harness Engineering</h3>
+<p>Source: <code>wiki/concepts/harness-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Harness Engineering</p>
+<hr>
+<h1>Harness Engineering</h1>
+<h2>Definition</h2>
+<p>The design of the environment, artifacts, controls, tooling, and feedback loops around an agent so that it can produce more reliable results over time.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, performance depends less on the model alone and more on the structure that surrounds it.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[guides and sensors]]</li>
+<li>[[agent recognizable repository]]</li>
+<li>[[structured handoff artifacts]]</li>
+<li>[[machine-checkable invariants]]</li>
+<li>[[heavy-thinking.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/martin-fowler-harness-engineering.md]]</li>
+<li>[[../sources/gota-purpose-first-harness-design-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-how-to-approach-harness-engineering-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-what-harness-engineering-is-and-is-not-zenn.md]]</li>
+<li>[[../sources/sergicalsix-harness-engineering-overview-design-philosophy-speakerdeck.md]]</li>
+<li>[[../sources/yuukiyo-ai-dlc-deep-dive-speakerdeck.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/spillwave-ai-coding-hangover-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-harnessing-claudes-intelligence.md]]</li>
+<li>[[../sources/addyosmani-agent-harness-engineering-x-2026-05-09.md]]</li>
+<li>[[../sources/kevin-gu-autoagent-x-th</li>
+</ul>
+<h3>Agent Deployment Gates and Operational Risk</h3>
+<p>Source: <code>wiki/maps/agent-deployment-gates-and-operational-risk.md</code></p>
+<h1>Agent Deployment Gates and Operational Risk</h1>
+<h2>Purpose</h2>
+<p>Connect harness engineering ideas to the specific problem of keeping agent-generated work from outrunning review, testing, and production safety.</p>
+<h2>Core thesis</h2>
+<p>Once agents can generate code, configuration changes, or exploit findings faster than humans can inspect them, the harness needs explicit deployment gates. Otherwise the dominant failure shifts from isolated model mistakes to system-level review collapse.</p>
+<h2>Main gate layers</h2>
+<h3>1. Pre-merge structural gates</h3>
+<ul>
+<li>machine-checkable invariants</li>
+<li>repo structure checks</li>
+<li>lint and test requirements</li>
+<li>architecture constraints that agents can read before editing</li>
+</ul>
+<h3>2. Pre-deploy verification gates</h3>
+<ul>
+<li>end-to-end tests</li>
+<li>runtime smoke tests</li>
+<li>browser or environment verification</li>
+<li>explicit rollback readiness and observability checks</li>
+</ul>
+<h3>3. Human escalation gates</h3>
+<ul>
+<li>approval policy for risky actions</li>
+<li>human-in-the-loop checkpoints for deploys, destructive actions, and ambiguous fixes</li>
+<li>adversarial or independent review when the agent is operating near the blast radius boundary</li>
+</ul>
+<h3>4. Post-deploy feedback gates</h3>
+<ul>
+<li>production observability</li>
+<li>regression detection</li>
+<li>trace review for recurring failure modes</li>
+<li>recurring cleanup tasks when drift starts accumulating</li>
+</ul>
+<h2>Cross-source synthesis</h2>
+<h3>Spillwave</h3>
+<p>Frames the main operational danger as review discipline collapsing under h</p>
+<h2>次に考えるとよさそうな問い</h2>
+<ul>
+<li>このテーマは、どの現場課題を減らすための考え方か？</li>
+<li>人間が見るべき判断軸と、エージェントに任せられる作業はどう分かれるか？</li>
+<li>導入するときに失敗しやすい雑な抽象化は何か？</li>
+<li>既存の開発・レビュー・ナレッジ運用にどう接続できるか？</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm. Source topic: <code>wiki/maps/harness-engineering-vendor-comparison.md</code></p></footer>
+
+</body>
+</html>
