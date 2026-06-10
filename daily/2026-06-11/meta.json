@@ -1,0 +1,15 @@
+{
+  "date": "2026-06-11T03:00:11.109746+09:00",
+  "topic_id": "wiki/maps/eval-review-reliability.md",
+  "title": "Eval and Review Reliability",
+  "output_dir": "outputs/notebooklm-podcast/2026-06-11",
+  "page": "outputs/notebooklm-podcast/2026-06-11/notebooklm-source.md",
+  "related": [
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md",
+    "wiki/maps/agent-harness-control-taxonomy.md",
+    "wiki/maps/harness-engineering-vendor-comparison.md"
+  ],
+  "char_count": 9012
+}
