@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-10 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-10/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-10</header>
+<h1>KB Daily Digest 2026-06-10</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-10/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-10">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-10</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-10</h1>
+<p>2026-06-10 UTC の knowledge-base-llm では、Anthropic の Claude Fable 5 / Mythos 5 発表、NotebookLM の研究ワークスペース強化、Claude Code の nested subagent support、Fable 5 を前提にした loop design、そして組織AI推進ロードマップが新規 ingest された。全体のトレンドはかなり明確で、単体プロンプトや単発チャットではなく、「長く動くエージェント」「複数ワーカーを束ねるループ」「評価・検証を含むハーネス」「組織に定着させる行動変容」へ知識ベースの焦点が寄っている。</p>
+<p>重要ソースの1本目は、Anthropic の Claude Fable 5 / Mythos 5 launch cluster。新モデルは難しい知識労働とコーディングを主戦場に置き、長めの自律作業、より良い不確実性の扱い、動的ワークフロー、並列 subagent、検証を前面に出している。KB上では long-running agents、agent autonomy、self-verification、multi-agent orchestration、harness engineering の周辺概念に接続された。これは「良いモデルを呼ぶ」から「モデルが走る仕事場を設計する」への移行を補強する材料になっている。</p>
+<p>2本目は、RLanceMartin の “Designing loops with Fable 5”。取得できた本文は限定的だが、検索可視断片とメタデータから、Fable 5 級モデルでは小さな直接指示ではなく、より大きな目的、agent worker、grading step を含むループ設計が重要になる、という実務的な主張として整理された。この ingest により <code>loop-engineering.md</code> が新規作成され、generator-evaluator loop、harness engineering、task decomposition と結び直された。今日の更新の中では、技術トレンドを運用パターンに落とす中核ノードになっている。</p>
+<p>3本目は、しんちゃん氏の note「組織のAI推進：完全ロードマップ」。このソースは、AI導入をツール配布ではなく利用率ごとの行動変容設計として扱っている。20%未満、20〜50%、50〜80%、80%以上という大まかな段階を置き、初期は利用実態の可視化と早期利用者の火付け、中盤はリテラシーと部門別ユースケース、高利用率ではAI前提の業務変革に進む、という筋立てだ。KBでは <code>ai-adoption-thresholds.md</code> が新規作成され、AI adoption J-curve、AI ROI model、organizational intent clarity、context file system、agent management に接続された。</p>
+<p>Claude Code nested subagent support の短いリリースノートも重要な補助線になった。Boris Cherny 氏の投稿は、Claude Code に agent が agent を起動できる nested subagent support が入り、文脈管理のための実験として depth=5 から始める、という内容だった。これは multi-agent orchestration と coding agents の更新に反映され、1つの巨大なセッションに全作業を抱え込ませるのではなく、文脈を分割しながら階層的に作業する方向を示している。</p>
+<p>NotebookLM の better research launch cluster は、KBの「compiled knowledge」側を強く支える更新だった。Gemini 3.5、モデルの思考過程の可視化、secure cloud computer、100以上の curated software skills という方向性は、NotebookLM を単なるQA付きノートではなく、出典つき調査・分析・成果物生成のワークスペースとして位置付けている。KBでは compiled wiki、agent knowledge loop、context graph、rich agent output artifact、evidence quality と接続され、今日のDigestページやPodcast生成そのものの背景にもなる。</p>
+<p>概念・地図の更新としては、<code>loop-engineering.md</code> と <code>ai-adoption-thresholds.md</code> の追加が特に大きい。前者はモデル性能の進歩を、目的、文脈、役割、ツール、努力量、チェックポイント、評価、リトライ、停止条件の設計問題として捉える。後者は組織導入を、利用率という観測可能な状態に応じて打ち手を変える問題として捉える。片方はエージェントの作業ループ、もう片方は組織の学習ループであり、今日の更新はこの2つを同時に進めたと言える。</p>
+<p>実務上の読みどころは、強いモデルの登場が自動的に成果を生むわけではなく、むしろ「どう走らせ、どう採点し、どう組織に定着させるか」の設計責任が増している点にある。技術側では subagent、grader、loop、harness が重要になり、組織側では利用率測定、行動変容、文脈ファイル化、業務テンプレート、slash command、review DB のような反復可能な仕組みが重要になる。今日のKB更新は、モデル発表をニュースとして処理するのではなく、現場で使える設計語彙に変換する方向で compile されている。</p>
+<p>次に追う問いは3つある。第一に、nested subagent や大規模な並列 worker は、どの粒度のタスクで品質向上が coordination cost を上回るのか。第二に、loop engineering の rubric や grader は、どこまで汎用化でき、どこから領域固有に作り込むべきか。第三に、組織AI導入の利用率しきい値は、活動量ではなく成果・品質・持続性とどう結びつけて測るべきか。今日の更新は、この3点を今後のKB拡張テーマとしてかなりはっきり浮かび上がらせている。</p>
+<h2>重要ソース</h2>
+<ul>
+<li>Anthropic - Claude Fable 5 / Mythos 5 launch cluster: <code>raw/articles/anthropic-fable-5-mythos-5-launch-cluster-x-2026-06-09.md</code></li>
+<li>RLanceMartin - Designing loops with Fable 5: <code>raw/articles/rlancemartin-designing-loops-with-fable-5-x-2026-06-09.md</code></li>
+<li>shin_suge - Organization AI rollout roadmap and behavior-change design: <code>raw/articles/shin-suge-ai-ops-roadmap-behavior-change-note-2026-06-09.md</code></li>
+</ul>
+<h2>新規・更新された主なKBノード</h2>
+<ul>
+<li><code>wiki/concepts/loop-engineering.md</code></li>
+<li><code>wiki/concepts/ai-adoption-thresholds.md</code></li>
+<li><code>wiki/concepts/multi-agent-orchestration.md</code></li>
+<li><code>wiki/concepts/coding-agents.md</code></li>
+<li><code>wiki/concepts/generator-evaluator-loop.md</code></li>
+<li><code>wiki/concepts/harness-engineering.md</code></li>
+<li><code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-product-market-fit.md]] — Simon Willison&#x27;s market analysis that Anthropic/OpenAI have found product-market fit through coding/general-purpose agents, API-aligned enterprise pricing, and high-value professional usage.</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents, and org ownership.</li>
+<li>[[about-hiroppy-founders-playbook.md]] — Anthropic&#x27;s official founder playbook PDF: AI-native startup lifecycle across Idea, MVP, Launch, and Scale, with Claude Chat/Cowork/Code stage usage, validation gates, agentic technical debt risks, founder bottleneck removal, and moat formation.</li>
+<li>[[izanami-claude-code-large-codebase-best-practices.md]] — Japanese practitioner explainer on Claude Code large-codebase setup: live repo search, thin layered CLAUDE.md, subdirectory startup, hooks, stale-rule pruning, and adoption ownership.</li>
+<li>[[newspicks-harness-engineering-what-is-it.md]] — Japanese explainer separating evalua</li>
+</ul>
+<h3>shin_suge - Organization AI rollout roadmap and behavior-change design</h3>
+<p>Source note: <code>wiki/sources/shin-suge-ai-ops-roadmap-behavior-change-note-2026-06-09.md</code></p>
+<h1>shin_suge - Organization AI rollout roadmap and behavior-change design</h1>
+<h2>Metadata</h2>
+<ul>
+<li>Source: note.com article</li>
+<li>URL: https://note.com/shin_suge/n/ne89b086a3063</li>
+<li>Author: しんちゃん ｜ ログラス 社長室 AIOps / CursorAmbassador</li>
+<li>Published: 2026-06-09</li>
+<li>Raw capture: [[../../raw/articles/shin-suge-ai-ops-roadmap-behavior-change-note-2026-06-09.md]]</li>
+<li>Evidence quality: practitioner field report; strong for rollout heuristics and operating patterns, weaker for universal numeric thresholds because the article explicitly treats percentages as rough guides.</li>
+</ul>
+<h2>Summary</h2>
+<p>This article presents an organization-level AI rollout roadmap from the perspective of an AI-Ops practitioner. Its central thesis is that AI adoption is less a tool-installation problem than a behavior-change and workflow-design problem. The recommended playbook changes by adoption phase: measure current usage, ignite early adopters, reach a majority with targeted use cases and literacy, then only after broad adoption move into deeper workflow transformation.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>AI usage rate should guide rollout strategy. Under 20%, visualize usage and build early-adopter momentum; around 20-50%, focus on targeted use cases and behavior-change design; around 50-80%, let social proof and data/context loops compound; at 80%+, pursue workflow transformation.</li>
+<li>Starting from business-process improvement can fail when people lack lived understanding of what AI can and cannot do; literacy and personal usage need to come first.</li>
+<li>&quot;Organization usage&quot; is not just individual usage multiplied by headcount. Shared work patterns, context artifacts, and adoption roles matter.</li>
+<li>Cursor, Claude Code, Codex, and similar tools are useful not only as interfaces, but because they help accumulate reusable data and context.</li>
+<li>Internal constraints</li>
+</ul>
+<h3>RLanceMartin - Designing loops with Fable 5</h3>
+<p>Source note: <code>wiki/sources/rlancemartin-designing-loops-with-fable-5-x-2026-06-09.md</code></p>
+<h1>RLanceMartin - Designing loops with Fable 5</h1>
+<h2>Metadata</h2>
+<ul>
+<li>Source: X Article shared by Lance Martin</li>
+<li>URL: https://x.com/RLanceMartin/status/2064397389189071163</li>
+<li>Article URL: https://x.com/RLanceMartin/article/2064397389189071163</li>
+<li>Author: Lance Martin (@RLanceMartin)</li>
+<li>Date: 2026-06-09</li>
+<li>Raw capture: [[../../raw/articles/rlancemartin-designing-loops-with-fable-5-x-2026-06-09.md]]</li>
+<li>Evidence quality: partial capture; X API provided metadata and title, while content is inferred from public search snippets.</li>
+</ul>
+<h2>Summary</h2>
+<p>Lance Martin&#x27;s X Article is a practitioner signal that Claude Fable 5 usage should be organized around loops, not only better prompts. The available snippets say Mythos-class models changed work practices at Anthropic, recommend giving Fable 5 larger and more ambitious tasks, and point toward high-effort modes plus agent-worker/evaluator loops for best results.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Fable 5 makes larger task scopes more practical than earlier models, shifting the useful unit of work upward.</li>
+<li>The operator&#x27;s job moves from direct instruction alone toward designing the loop the model runs inside.</li>
+<li>Evaluation or grading is part of the loop, not an afterthought, because ambitious tasks need convergence pressure.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The X article title and share metadata are available through X API.</li>
+<li>Search snippets expose the core framing: &quot;Designing loops with Fable 5&quot;, larger tasks, high/xhigh effort, and an agent-worker plus grading loop.</li>
+<li>The article sits in the same launch cluster as Anthropic&#x27;s Fable 5 / Mythos 5 messaging around longer autonomous runs, dynamic workflows, and self-verification.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/loop-engineering.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/generator-evaluator-loop.md]]</li>
+<li>[[../con</li>
+</ul>
+<h3>Boris Cherny — Claude Code nested subagent support</h3>
+<p>Source note: <code>wiki/sources/bcherny-claude-code-nested-subagents-x-2026-06-09.md</code></p>
+<h1>Boris Cherny — Claude Code nested subagent support</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/bcherny-claude-code-nested-subagents-x-2026-06-09.md</code></li>
+<li>Original URL: https://x.com/bcherny/status/2064327225504403752</li>
+<li>Author: Boris Cherny (<code>@bcherny</code>)</li>
+<li>Date: 2026-06-09</li>
+<li>Type: X post / product release note</li>
+<li>Evidence strength: High for feature announcement; low for operational outcomes</li>
+</ul>
+<h2>Summary</h2>
+<p>Boris Cherny announced that Claude Code added nested subagent support, allowing agents to start other agents as an explicit context-management mechanism. The initial release caps nesting at depth 5.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Claude Code now supports nested subagents.</li>
+<li>Agent-to-agent spawning is being explored as a way to manage context.</li>
+<li>The first rollout constrains recursion with a depth cap of 5.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The source is a direct public post from Boris Cherny, a Claude Code product leader.</li>
+<li>The post does not include docs, examples, pricing implications, or measured workflow outcomes.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: first-party X announcement</li>
+<li>Confidence: High that the feature landed in the referenced release</li>
+<li>Main limitations: terse announcement; does not specify concurrency limits, permission inheritance, termination behavior, memory sharing, or best practices</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[multi-agent-orchestration]]</li>
+<li>[[coding-agents]]</li>
+<li>[[context-resets]]</li>
+<li>[[background-agents]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>When does recursive subagent spawning improve context isolation versus merely increasing coordination overhead?</li>
+<li>What depth and concurrency limits keep nested delegation useful in real coding projects?</li>
+<li>How should nested agents inherit tools, permissions, memory, and approval boundaries from parent agents?</li>
+<li>What observability does a parent agent need to avoid l</li>
+</ul>
+<h3>Anthropic - Claude Fable 5 / Mythos 5 launch cluster</h3>
+<p>Source note: <code>wiki/sources/anthropic-fable-5-mythos-5-launch-cluster-x-2026-06-09.md</code></p>
+<h1>Anthropic - Claude Fable 5 / Mythos 5 launch cluster</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/anthropic-fable-5-mythos-5-launch-cluster-x-2026-06-09.md</code></li>
+<li>Original URL: https://x.com/i/status/2064394146916229443</li>
+<li>Primary URL: https://www.anthropic.com/news/claude-fable-5-mythos-5</li>
+<li>Author: Claude / @claudeai</li>
+<li>Date: 2026-06-09</li>
+<li>Type: X post / release cluster</li>
+<li>Evidence strength: bookmark snapshot metadata plus official Anthropic launch article</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Public metrics at capture: 10747 reposts, 3560 replies, 76499 likes, 6911 quotes, 14599 bookmarks, 18687414 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Anthropic introduces Claude Fable 5 and Claude Mythos 5 as a new top-end model release for the hardest knowledge work and coding problems. The launch messaging emphasizes longer autonomous runs, better honesty about uncertainty, and dynamic workflows that can spin up many parallel subagents and verify the result before reporting back.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Fable 5 and Mythos 5 are the newest Anthropic flagship models in this launch cluster.</li>
+<li>The release is framed around more autonomous work, stronger coding help, and better support for knowledge work.</li>
+<li>Anthropic is making dynamic workflows a first-class product surface in Claude Code.</li>
+<li>The model and product messaging both stress honesty and reduced unsupported claims.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The official launch post says the models are safe for general use and exceed previous generally available models.</li>
+<li>The official Anthropic article says the models can work autonomously for longer and that dynamic workflows can coordinate hundreds of parallel subagents.</li>
+<li>The surrounding bookmarked commentary reinforces that the release is being read as a major step up in day-to-day Claude Code use.</li>
+</ul>
+<h2>Evidenc</h2>
+<h3>NotebookLM - better research launch cluster</h3>
+<p>Source note: <code>wiki/sources/notebooklm-better-research-gemini-3-5-antigravity-x-2026-06-08.md</code></p>
+<h1>NotebookLM - better research launch cluster</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/notebooklm-better-research-gemini-3-5-antigravity-x-2026-06-08.md</code></li>
+<li>Original URL: https://x.com/i/status/2064084153533165588</li>
+<li>Primary URL: https://blog.google/innovation-and-ai/products/notebooklm/better-research-notebooklm/</li>
+<li>Author: NotebookLM / @NotebookLM</li>
+<li>Date: 2026-06-08</li>
+<li>Type: X post / launch cluster</li>
+<li>Evidence strength: bookmark snapshot metadata plus official Google blog launch article</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Public metrics at capture: 216 reposts, 49 replies, 1760 likes, 35 quotes, 809 bookmarks, 170229 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>NotebookLM upgrades its research experience with Gemini 3.5, better visibility into the model&#x27;s thinking, a secure cloud computer, and a bundled set of more than 100 curated software skills. The product direction is clearly toward an agentic research workspace that can reason over sources, run code, and generate richer artifacts.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>NotebookLM is moving deeper into an agentic research workflow.</li>
+<li>Gemini 3.5 and Antigravity are being used to improve visible reasoning and reliability.</li>
+<li>Each notebook now has access to a secure cloud computer for deeper analysis.</li>
+<li>Skills are packaged as part of the product surface, not as a separate afterthought.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text says the launch adds better visibility into the AI&#x27;s thinking process.</li>
+<li>The official Google blog article says each notebook gets a secure cloud computer and more than 100 curated software skills.</li>
+<li>The article positions the change as a more thoughtful chat and research experience rather than a narrow notebook editor.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X launch cluster plus official Google product blog</li>
+<li>Confidence: high f</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Concept Notes</h3>
+<p>KB note: <code>wiki/concepts/README.md</code></p>
+<h1>Concept Notes</h1>
+<p>Each note in this folder should represent a reusable concept that appears across multiple sources.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>definition</li>
+<li>why it matters</li>
+<li>related concepts</li>
+<li>supporting sources</li>
+<li>tensions / tradeoffs</li>
+<li>open questions</li>
+</ul>
+<ul>
+<li>[Evidence Quality](evidence-quality.md)</li>
+<li>[Field-Deployed Engineer](field-deployed-engineer.md)</li>
+<li>[Product Responsibility Distribution](product-responsibility-distribution.md)</li>
+<li>[Conversion Packaging](conversion-packaging.md)</li>
+<li>[Organizational Intent Clarity](organizational-intent-clarity.md)</li>
+<li>[Exploratory Organization Lens](exploratory-organization-lens.md)</li>
+<li>[Intelligent Delegation](intelligent-delegation.md)</li>
+<li>[Conversational Feedback Learning](conversational-feedback-learning.md)</li>
+<li>[Spec-Code-Test Loop](spec-code-test-loop.md)</li>
+<li>[Heavy Thinking](heavy-thinking.md)</li>
+<li>[Sustainable AI Work](sustainable-ai-work.md)</li>
+<li>[AI Adoption J-Curve](ai-adoption-j-curve.md)</li>
+<li>[AI Adoption Thresholds](ai-adoption-thresholds.md) — usage-rate bands th</li>
+</ul>
+<h3>Agent Management</h3>
+<p>KB note: <code>wiki/concepts/agent-management.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent Management</p>
+<hr>
+<h1>Agent Management</h1>
+<h2>Definition</h2>
+<p>The human work of assigning tasks, monitoring progress, adjusting the environment, and deciding when to intervene in agent workflows.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, value comes not just from using them but from managing them well. The current source set suggests that workflow design, escalation choices, and background-task supervision are becoming durable human responsibilities rather than temporary scaffolding.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent-captain]]</li>
+<li>[[background-agents]]</li>
+<li>[[harness-engineering]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/ignorance-ai-emerging-harness-engineering-playbook.md]]</li>
+<li>[[../sources/mitchell-hashimoto-ai-adoption-journey.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/nyk-builderz-4-agent-hermes-operator-layer-x.md]]</li>
+<li>[[../sources/sydneyrunkle-agent-harness-vs-runtime-production-x.md]]</li>
+<li>[[../sources/brett-goldstein-agentic-micro-</li>
+</ul>
+<h3>AI Adoption J-Curve</h3>
+<p>KB note: <code>wiki/concepts/ai-adoption-j-curve.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - AI Adoption J-Curve</p>
+<p>  - J-Curve of AI Value Realization</p>
+<p>  - Tuition Cost of AI Adoption</p>
+<hr>
+<h1>AI Adoption J-Curve</h1>
+<h2>Definition</h2>
+<p>A temporary productivity dip and instability period that can occur when teams adopt AI-assisted development before later realizing higher throughput and value.</p>
+<h2>Why It Matters</h2>
+<p>AI adoption changes workflows, review load, context practices, and deployment pipelines. Treating the initial dip as failure can cause leaders to cut funding too early; ignoring it can make ROI forecasts unrealistic.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[ai-roi-model]]</li>
+<li>[[verification-tax]]</li>
+<li>[[harness-engineering]]</li>
+<li>[[context-engineering]]</li>
+<li>[[sustainable-ai-work]]</li>
+<li>[[human-in-the-loop]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/dora-roi-ai-assisted-software-development.md]]</li>
+<li>[[../sources/iwashi86-ai-lowers-barrier-to-starting-coding-work-x.md]]</li>
+<li>[[../sources/suna_gaku-claude-code-champion-kit-x-2026-05-16.md]]</li>
+<li>[[../sources/itmedia-github-copilot-pricing-backlash-x-2026-06-0</li>
+</ul>
+<h3>AI Adoption Thresholds</h3>
+<p>KB note: <code>wiki/concepts/ai-adoption-thresholds.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - AI Adoption Thresholds</p>
+<p>  - AI Usage Rate Thresholds</p>
+<p>  - Adoption-Phase AI Rollout</p>
+<hr>
+<h1>AI Adoption Thresholds</h1>
+<h2>Definition</h2>
+<p>AI adoption thresholds are rough usage-rate bands that change which organization-level AI rollout moves are appropriate.</p>
+<h2>Why It Matters</h2>
+<p>AI rollout failures often come from applying the wrong move at the wrong maturity level: buying tools before measuring usage, pushing workflow transformation before literacy, or treating individual experimentation as organization-wide adoption. Thresholds make adoption strategy conditional on observed behavior.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[ai-adoption-j-curve.md]]</li>
+<li>[[ai-roi-model.md]]</li>
+<li>[[organizational-intent-clarity.md]]</li>
+<li>[[agent-management.md]]</li>
+<li>[[context-engineering.md]]</li>
+<li>[[loop-engineering.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/shin-suge-ai-ops-roadmap-behavior-change-note-2026-06-09.md]]</li>
+<li>[[../sources/dora-roi-ai-assisted-software-development.md]]</li>
+<li>[[../sources/suna_gaku-claude-code-champion-kit</li>
+</ul>
+<h3>AI ROI Model</h3>
+<p>KB note: <code>wiki/concepts/ai-roi-model.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - AI ROI Model</p>
+<p>  - ROI of AI-assisted Software Development</p>
+<p>  - AI Value Model</p>
+<hr>
+<h1>AI ROI Model</h1>
+<h2>Definition</h2>
+<p>A structured way to estimate the return on AI-assisted software development by linking AI adoption to delivery metrics, business value, and adoption costs.</p>
+<h2>Why It Matters</h2>
+<p>AI productivity claims are not enough for enterprise adoption. A credible model connects engineering indicators to financial outcomes while accounting for hard costs, learning costs, instability, and uncertainty.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[ai-adoption-j-curve]]</li>
+<li>[[verification-tax]]</li>
+<li>[[evidence-quality]]</li>
+<li>[[organizational-intent-clarity]]</li>
+<li>[[product-responsibility-distribution]]</li>
+<li>[[sustainable-ai-work]]</li>
+<li>[[agentic-jevons-paradox]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/dora-roi-ai-assisted-software-development.md]]</li>
+<li>[[../sources/simon-willison-gitlab-act-2.md]]</li>
+<li>[[../sources/simon-willison-product-market-fit.md]]</li>
+<li>[[../sources/tsunoda-legalon-ai-driven-hiring-token-budget-x-2026-05-</li>
+</ul>
+<h3>Context File System</h3>
+<p>KB note: <code>wiki/concepts/context-file-system.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Context File System</p>
+<hr>
+<h1>Context File System</h1>
+<h2>Definition</h2>
+<p>A lightweight external-memory pattern where an assistant reads and updates a small set of durable files such as instructions, memory, and project context instead of relying only on chat history or product-native saved memory.</p>
+<h2>Why It Matters</h2>
+<p>It offers a practical middle layer between built-in chat memory and a full knowledge graph or second-brain system. For many workflows, a few well-maintained files provide enough persistence, inspectability, and editability to improve consistency.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled wiki]]</li>
+<li>[[obsidian as interface]]</li>
+<li>[[durability]]</li>
+<li>[[tool accessibility]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/aiedge-supercharge-claude-memory-x.md]]</li>
+<li>[[../sources/obsidian-mind-github.md]]</li>
+<li>[[../sources/sukh-saroy-obsidian-mind-x.md]]</li>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/coreyganim-karpathy-second-</li>
+</ul>
+<h3>Organizational Intent Clarity</h3>
+<p>KB note: <code>wiki/concepts/organizational-intent-clarity.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Organizational intent clarity</p>
+<p>  - Goal clarity for AI adoption</p>
+<hr>
+<h1>Organizational Intent Clarity</h1>
+<h2>Definition</h2>
+<p>The degree to which a team can state stable goals, desired outcomes, constraints, and evaluation criteria clearly enough for humans and agents to act on them.</p>
+<h2>Why It Matters</h2>
+<p>When intent is vague or constantly shifting, AI systems look unreliable even when the underlying model is capable. The practical bottleneck moves from “can the model do it?” to “has the organization expressed what should be done, why, and how success will be judged?”</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[context-engineering.md]]</li>
+<li>[[exploratory-organization-lens.md]]</li>
+<li>[[company-brain.md]]</li>
+<li>[[product-responsibility-distribution.md]]</li>
+<li>[[agent-management.md]]</li>
+<li>[[evidence-quality.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/iwashi86-organizational-ai-use-goal-clarity-x.md]]</li>
+<li>[[../sources/anzai-adventurous-organization-emconf-youtube.md]]</li>
+<li>[[../sources/recerqa-pdm-abolished-speakerdeck.md]]</li>
+<li>[[</li>
+</ul>
+<h3>AI Adoption ROI and Capability Investment</h3>
+<p>KB note: <code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code></p>
+<h1>AI Adoption ROI and Capability Investment</h1>
+<h2>Purpose</h2>
+<p>Map how AI-assisted software development becomes financial value only when capability investments let the organization absorb faster generation safely.</p>
+<h2>Core thesis</h2>
+<p>AI ROI is not a direct function of model quality or code volume. It is a system outcome: AI adoption must be mediated by internal platforms, context/data quality, trust, user focus, verification guardrails, and delivery metrics before it can become durable business value. The strongest upside case is not only cheaper execution of existing backlog, but Jevons-style expansion in software demand when new tools, experiments, and automations become economical.</p>
+<h2>Path from AI adoption to ROI</h2>
+<h3>1. Capability investment first</h3>
+<p>The first question is not “which tool?” but “can the system absorb the tool?” DORA&#x27;s report emphasizes quality internal developer platforms, AI-accessible internal data, clear AI stance/trust, context engineering, user-centric focus, and automated</p>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>6</code>, commits: <code>4</code></p></footer>
+
+</body>
+</html>
