@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-11 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-11/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-11</header>
+<h1>KB Daily Digest 2026-06-11</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-11/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-11">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-11</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-11</h1>
+<p>2026-06-11 UTC の新規確認では、<code>raw/x/bookmarks/bookmarks-20260611T0000Z.json</code> が追加されました。<code>wiki/</code> 側の新規 compile は見つからず、今日の更新は X bookmark raw ingest が中心です。前日の <code>bookmarks-20260610T0000Z.json</code> と比較すると、新しく入った bookmark は 9 件で、テーマは Claude Fable 5 / Claude Code / Claude Managed Agents を軸にした「長時間・自律・運用可能なエージェント」へかなり寄っています。</p>
+<p>全体トレンドとして一番大きいのは、エージェントを単発の対話ツールではなく、スケジュール実行、vault 経由の環境変数、動的 workflow、自己検証、メモリ管理まで含む業務実行基盤として扱う方向が強まっている点です。Claude の公式アカウントは、Code with Claude Tokyo に合わせて Claude Managed Agents の scheduled deployments と vault 内 environment variables の public beta、Claude Code の dynamic workflows の GA を告知しています。これは KB の既存テーマでいう「harness engineering」「long-running agents」「agent runtime と運用境界」の具体例として重要です。</p>
+<p>重要ソースの1本目は Claude 公式の Code with Claude Tokyo 告知です。内容は、Managed Agents がスケジュールで走り、ツールを安全に使い、より大きな仕事を担えるようになるというものです。ここで注目すべきは、モデル能力そのものの話よりも、実務に載せるための周辺機能が前面に出ていることです。エージェントに仕事を任せるには、いつ実行するか、どの権限で何にアクセスするか、失敗や完了をどう扱うかが必要になります。今回の raw ingest は、その運用面が製品機能として一段具体化していることを示しています。</p>
+<p>重要ソースの2本目は Lance Martin 氏の Fable 5 を使った自律ループに関する X article と、それを日本語で紹介する投稿です。取得できた raw では記事本文までは展開されていませんが、紹介文からは、Fable 5 の性能を引き出すには単に強いプロンプトを投げるのではなく、goal / outcome / environment feedback / automatic memory management を組み込んだ loop 設計が必要だ、という論点が見えます。これは KB 内で繰り返し扱ってきた「agent は prompt ではなく環境とフィードバックで強くなる」という見方に重なります。</p>
+<p>重要ソースの3本目は Apple Container 1.0 のリリースです。直接の AI agent ニュースではありませんが、Apple silicon 上で軽量 VM による Linux container を作成・実行する Swift 製ツールとして、ローカル開発・検証環境の足場に関係します。長時間 agent や coding agent が現実の作業を担うほど、隔離された再現可能な実行環境、ローカル/リモートをまたぐテスト環境、権限境界の設計が重要になります。Claude/agent 側の運用機能と、開発環境側の container tooling が同じ日の bookmark に並んでいるのは、agentic coding の「頭脳」だけでなく「作業場」も整備されつつある兆候として読めます。</p>
+<p>その他の新規 bookmark では、ITmedia AI+ の Code with Claude Tokyo 記事、Cognition による Devin での Claude Fable 5 対応、Gemini 3.5 Flash Live Translate、Google Docs の Markdown paste 対応、社内向け AI agent ツール開発インタビューが入っています。これらは一見ばらけていますが、共通しているのは「AI を専門家だけの実験環境から、日常の業務面・ドキュメント面・組織利用面へ広げる」流れです。特に Google Docs の Markdown paste は小さな機能に見えて、LLM が生成する Markdown と既存の業務ドキュメントの接続を滑らかにするため、ナレッジワークの摩擦を下げる更新として扱えます。</p>
+<p>今日の KB 地図としては、compile された wiki ノートは増えていないため、概念ページの直接更新はありません。ただし raw ingest の示す追記候補は明確です。<code>long-running agents</code> にはスケジュール実行、vault、dynamic workflows、自己検証ループを接続できます。<code>harness engineering</code> には、モデル選択よりも環境フィードバックと権限境界を設計する観点を追加できます。<code>agentic coding</code> には、Apple Container のような隔離実行環境と、Codex/Claude Code/Devin のブラウザ・テスト・自己検証ループを合わせて読む視点が有用です。</p>
+<p>実務上の示唆は、次の段階のエージェント導入では「強いモデルを選ぶ」だけでは足りないということです。エージェントが長く走れるほど、失敗したときの止まり方、権限を渡す単位、定期実行の監査、作業結果の検証、記憶の更新ルールが重要になります。今日の bookmark 群は、そこに対する製品側の答えが、scheduled deployments、vaults、dynamic workflows、自律 loop、container tooling として現れている、とまとめられます。</p>
+<p>NotebookLM Podcast で掘るなら、まず「Claude Fable 5 / Managed Agents / Claude Code workflows」が何を変えるのかを話し、そのあと「プロンプト術から loop / environment design への移行」を整理し、最後に「実務チームが明日から設計すべきガードレール」を議論するとよさそうです。重要な問いは、どの作業をスケジュール agent に任せるべきか、vault に入れるべき情報と渡してはいけない情報の境界はどこか、自己検証は何をもって完了とするのか、そしてローカル/クラウドの実行環境をどう分けるかです。</p>
+<h2>重要ソース</h2>
+<ul>
+<li>Claude / Code with Claude Tokyo: scheduled deployments and environment variables in vaults are in public beta in Claude Managed Agents, dynamic workflows in Claude Code are generally available. https://x.com/claudeai/status/2064741174317924421/video/1</li>
+<li>Lance Martin / Fable 5 autonomous loops article, referenced by Japanese summary post. http://x.com/i/article/2064380553919676416</li>
+<li>Apple Container 1.0 repository: lightweight Linux containers on Apple silicon using VMs. https://github.com/apple/container</li>
+</ul>
+<h2>確認メモ</h2>
+<ul>
+<li>UTC 対象日: 2026-06-11</li>
+<li>新規 raw: <code>raw/x/bookmarks/bookmarks-20260611T0000Z.json</code></li>
+<li>前日比の新規 bookmark: 9 件</li>
+<li>新規 wiki compile: なし</li>
+<li>新規 source note: なし</li>
+</ul>
+<h2>重要ソース</h2>
+<h2>更新された概念・地図</h2>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>0</code>, commits: <code>0</code></p></footer>
+
+</body>
+</html>
