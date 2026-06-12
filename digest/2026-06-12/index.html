@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-12 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-12/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-12</header>
+<h1>KB Daily Digest 2026-06-12</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-12/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-12">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-12</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-12</h1>
+<p>今日の knowledge-base-llm は、Fable 5 / Mythos 5 世代の強いモデルを「単発プロンプト」ではなく、ループ、ルーチン、ファイルベースの記憶、ハンドオフで運用する方向に大きく寄った更新でした。UTC 2026-06-12 の新規 ingest は 3 コミットで、X ブックマーク由来の raw 記録が 7 件、wiki/source ノートが 7 件追加され、<code>agent-knowledge-loop</code>、<code>loop-engineering</code>、<code>long-running-agents</code>、<code>structured-handoff-artifacts</code>、<code>context-file-system</code>、<code>skill-optimization</code> などの概念ページが更新されています。</p>
+<p>全体トレンドは、「モデルが強くなるほど、価値の中心がプロンプト文面から運用ループの設計へ移る」というものです。0xCodez の Fable 5 self-improving agent system 記事は本文の完全取得まではできていませんが、公開断片からは loops、dynamic workflows、routines を組み合わせる方向が示されていました。KB 側ではこれを、モデル自身が重みを更新する意味の自己改善ではなく、外部化されたルーチン、スキル、ワークフロー、検証ゲートを継続的に改善していく実務パターンとして整理しています。</p>
+<p>重要ソースの1本目は、0xCodez の「Build self-improving agent system with Fable 5」です。14ステップ本文は未取得なので強い根拠としては扱わず、Fable 5 周辺の実践者が「ループを設計する」「動的ワークフローを使う」「ルーチン化する」という語彙で新世代モデルの使い方を説明し始めている、という弱いが有用な市場シグナルとして取り込みました。この更新により、<code>agent-knowledge-loop</code> と <code>skill-optimization</code> には「自己改善」という言葉を過大解釈しないための注意が追加されています。</p>
+<p>重要ソースの2本目は、Harry Tandy による Fable 5 overnight sub-agent setup の投稿です。こちらも10ステップ全体は取得できていませんが、見えている範囲だけでも <code>CLAUDE.md</code> にスタック、コマンド、コードスタイル、禁止ファイル、レビュー規則を置き、<code>PROJECT_MEMORY.md</code> に検証済み事実、失敗した試行、前回セッション、次回実行を置くという、かなり実用的な最小構成が示されています。KB ではこれを <code>context-file-system</code>、<code>long-running-agents</code>、<code>structured-handoff-artifacts</code> に接続し、夜間サブエージェントや長時間実行を増やす前に必要な文脈基盤として位置づけました。</p>
+<p>重要ソースの3本目は、Cognition の Devin CLI <code>/handoff</code> オープンソース化です。投稿の取得内容は短いものの、「ラップトップを閉じてもクラウド側でエージェントが作業を続ける」という分離が明確で、これは長時間エージェントのプロダクトプリミティブとして重要です。KB の既存テーマである long-running agents、structured handoff、cloud agents と自然につながり、作業の継続性をチャット履歴ではなく、クラウド常駐の実行状態と明示的なハンドオフ機構で支える流れを補強しています。</p>
+<p>周辺ソースでは、社内メンバーだけがアクセス可能な CLI / MCP を作るという farstep の記事カード、Figma 公式 Chrome 拡張で Web UI を編集可能レイヤーとして Figma に取り込む話、Apple Foundation Models framework から Claude を呼べるという ClaudeDevs の投稿、Apple Container 1.0 リリースが追加されました。これらは一見ばらばらですが、共通して「AIエージェントの作業面が、チャット単体から、社内権限、デザイン構造、Apple ネイティブ統合、ローカルサンドボックスへ広がっている」という読み方ができます。</p>
+<p>概念更新としては、<code>loop-engineering</code> に self-improving agent claims を外部化されたループ改善とモデル内部の継続学習に分けて扱う注意が入り、<code>skill-optimization</code> には実践者の自己改善レシピを「固定モデルの周囲にある routine / skill 改善」と見る整理が追加されました。<code>context-file-system</code> では <code>CLAUDE.md</code> と <code>PROJECT_MEMORY.md</code> の分担が、<code>structured-handoff-artifacts</code> では PROJECT_MEMORY 風ファイルが軽量な引き継ぎ成果物になることが明示されました。</p>
+<p>実務上の読みどころは、強いモデルを使うほど「どこまで任せるか」より先に「何を読ませ、何を禁止し、どこに状態を残し、どの証拠で完了判定するか」を決める必要がある点です。今日の更新は、長時間・夜間・クラウド常駐のエージェント運用に対して、コンテキストファイル、ハンドオフ、アクセス制御、検証ゲートを同じ地図上に置き直す更新になっています。</p>
+<p>次に追う問いは、Fable 5 系の「自己改善」記事本文や動画内チェックリストをどこまで一次情報として取得できるか、Devin <code>/handoff</code> のオープンソース実装がどの粒度で状態を保存・移送しているか、社内 CLI / MCP のアクセス制御を KB の tool-access / gateway-control-plane にどう接続するかです。Podcast では、自己改善という言葉の危うさ、夜間サブエージェントを安全に回す最小ファイル構成、そしてクラウド handoff がもたらす働き方の変化を軸に掘るとよさそうです。</p>
+<h2>重要ソース3本</h2>
+<ul>
+<li><code>wiki/sources/0xcodez-fable-5-self-improving-agent-system-x-2026-06-11.md</code></li>
+<li><code>wiki/sources/harrytandy-fable-5-overnight-subagents-setup-x-2026-06-11.md</code></li>
+<li><code>wiki/sources/cognition-devin-handoff-open-source-x.md</code></li>
+</ul>
+<h2>更新された主なKBノート</h2>
+<ul>
+<li><code>wiki/concepts/agent-knowledge-loop.md</code></li>
+<li><code>wiki/concepts/context-file-system.md</code></li>
+<li><code>wiki/concepts/long-running-agents.md</code></li>
+<li><code>wiki/concepts/loop-engineering.md</code></li>
+<li><code>wiki/concepts/structured-handoff-artifacts.md</code></li>
+<li><code>wiki/concepts/skill-optimization.md</code></li>
+<li><code>wiki/navigation/operations.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-product-market-fit.md]] — Simon Willison&#x27;s market analysis that Anthropic/OpenAI have found product-market fit through coding/general-purpose agents, API-aligned enterprise pricing, and high-value professional usage.</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents, and org ownership.</li>
+<li>[[about-hiroppy-founders-playbook.md]] — Anthropic&#x27;s official founder playbook PDF: AI-native startup lifecycle across Idea, MVP, Launch, and Scale, with Claude Chat/Cowork/Code stage usage, validation gates, agentic technical debt risks, founder bottleneck removal, and moat formation.</li>
+<li>[[izanami-claude-code-large-codebase-best-practices.md]] — Japanese practitioner explainer on Claude Code large-codebase setup: live repo search, thin layered CLAUDE.md, subdirectory startup, hooks, stale-rule pruning, and adoption ownership.</li>
+<li>[[newspicks-harness-engineering-what-is-it.md]] — Japanese explainer separating evalua</li>
+</ul>
+<h3>Harry Tandy - Fable 5 overnight sub-agent setup</h3>
+<p>Source note: <code>wiki/sources/harrytandy-fable-5-overnight-subagents-setup-x-2026-06-11.md</code></p>
+<h1>Harry Tandy - Fable 5 overnight sub-agent setup</h1>
+<h2>Metadata</h2>
+<ul>
+<li>Source: X post by Harry Tandy</li>
+<li>URL: https://x.com/harrytandy/status/2065112964768645150</li>
+<li>Author: Harry Tandy (@HarryTandy)</li>
+<li>Date: 2026-06-11</li>
+<li>Raw capture: [[../../raw/x/harrytandy-fable-5-overnight-subagents-setup-x-2026-06-11.md]]</li>
+<li>Quoted source: [[0xcodez-fable-5-self-improving-agent-system-x-2026-06-11.md]]</li>
+<li>Evidence quality: partial text capture; X API exposed only the beginning of the 10-step setup and a video attachment, not a full transcript.</li>
+</ul>
+<h2>Summary</h2>
+<p>Harry Tandy reframes Boris Cherny&#x27;s reported overnight sub-agent workflow as a copyable Fable 5 setup. The visible setup starts with two file-backed context artifacts: <code>CLAUDE.md</code> for project operating rules and <code>PROJECT_MEMORY.md</code> for durable state across sessions. This strengthens the KB&#x27;s pattern that long-running coding-agent work needs explicit context files and handoff memory before it can safely run overnight or across many subagents.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Overnight or background sub-agent work depends on explicit project rules and persistent memory, not only model strength.</li>
+<li><code>CLAUDE.md</code> acts as a repo-local operating contract: stack, commands, style, forbidden files, and review rules.</li>
+<li><code>PROJECT_MEMORY.md</code> acts as a continuation surface: verified facts, failed attempts, last session, and next run.</li>
+<li>The post connects Fable 5 practitioner guidance to routines, loops, and long-running sub-agent operation.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The X API capture includes the visible text for steps 1 and 2.</li>
+<li>The post quotes the earlier 0xCodez Fable 5 self-improving agent article.</li>
+<li>Public search results around the Boris quote point to secondary reporting that Cherny runs multiple Claude Code sessions with many subagents and uses <code>/loops</code> and Routines for</li>
+</ul>
+<h3>0xCodez - Fable 5 self-improving agent system</h3>
+<p>Source note: <code>wiki/sources/0xcodez-fable-5-self-improving-agent-system-x-2026-06-11.md</code></p>
+<h1>0xCodez - Fable 5 self-improving agent system</h1>
+<h2>Metadata</h2>
+<ul>
+<li>Source: X Article shared by Codez</li>
+<li>URL: https://x.com/0xcodez/status/2065089060104720776</li>
+<li>Article URL: https://x.com/0xCodez/article/2065089060104720776</li>
+<li>Author: Codez (@0xCodez)</li>
+<li>Date: 2026-06-11</li>
+<li>Raw capture: [[../../raw/articles/0xcodez-fable-5-self-improving-agent-system-x-2026-06-11.md]]</li>
+<li>Evidence quality: partial capture; X API provided metadata and title, while body-level claims are inferred only from public search-visible fragments.</li>
+</ul>
+<h2>Summary</h2>
+<p>This X Article is a practitioner signal that Fable 5 should be used with a self-improving agent-system frame: loops, dynamic workflows, and routines. The durable point is not the exact 14-step checklist, which was not captured, but the implied operating shift from prompting a stronger model directly to designing a recurring process around it.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Stronger coding models increase the value of process design around the model: loops, routines, dynamic workflows, and persistent improvement surfaces.</li>
+<li>&quot;Self-improving agent system&quot; should be read as a harness pattern unless stronger evidence shows actual model-weight learning.</li>
+<li>Fable 5 practitioner guidance is converging around larger task scopes plus explicit review/update loops rather than only better single prompts.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>X API confirms the title, author, date, public metrics, and article attachment.</li>
+<li>Public search snippets expose the article&#x27;s framing around Fable 5, loops, dynamic workflows, and routines.</li>
+<li>Existing adjacent sources in the KB already support the broader pattern: Lance Martin on designing loops with Fable 5, Anthropic&#x27;s Fable 5 / Mythos 5 launch cluster, dynamic workflow docs, and SkillOpt-style skill update loops.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/loo</li>
+</ul>
+<h3>ClaudeDevs — Apple Foundation Models support for Claude</h3>
+<p>Source note: <code>wiki/sources/claude-devs-apple-foundation-models-claude-x.md</code></p>
+<h1>ClaudeDevs — Apple Foundation Models support for Claude</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/claude-devs-apple-foundation-models-claude-x-2026-06-10.md</code></li>
+<li>Original URL: https://x.com/ClaudeDevs/status/2064756984617021807</li>
+<li>Author: ClaudeDevs (@ClaudeDevs)</li>
+<li>Published: 2026-06-10</li>
+<li>Type: X post / image card</li>
+<li>Capture source: xurl bookmarks capture</li>
+</ul>
+<h2>Short Summary</h2>
+<p>The post says Apple&#x27;s Foundation Models framework can now call Claude for multi-step reasoning, code generation, and longer-context work. The important signal is that Claude is being embedded into Apple&#x27;s developer framework surface rather than only used through a standalone chat product.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Apple developers can call Claude through the Foundation Models framework.</li>
+<li>The use cases called out are multi-step reasoning, code generation, and longer-context tasks.</li>
+<li>The integration is framed as a developer-facing feature.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text itself names the supported tasks.</li>
+<li>The linked image card was not separately fetched, so the note stays close to the text evidence.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / image card</li>
+<li>Confidence: Medium</li>
+<li>Supports: tool accessibility, managed agent surfaces, long-running agent workflows, cross-platform integration</li>
+<li>Main limitations: the visual card was not separately fetched in this ingest</li>
+<li>Best use: as a signal that model access is moving into platform-native developer frameworks</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+</ul>
+<h2>KB Contribution</h2>
+<p>This source widens the KB&#x27;s integration-surface cluster. It shows Claude being exposed as a callable capability inside another platform&#x27;s frame</p>
+<h3>Cognition — Devin CLI handoff open source</h3>
+<p>Source note: <code>wiki/sources/cognition-devin-handoff-open-source-x.md</code></p>
+<h1>Cognition — Devin CLI handoff open source</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/cognition-devin-handoff-open-source-x-2026-06-11.md</code></li>
+<li>Original URL: https://x.com/cognition/status/2065156301668171873</li>
+<li>Author: Cognition (@cognition)</li>
+<li>Published: 2026-06-11</li>
+<li>Type: X post</li>
+<li>Capture source: xurl bookmarks capture</li>
+</ul>
+<h2>Short Summary</h2>
+<p>The post says <code>/handoff</code> is one of Devin CLI&#x27;s most powerful features and that Cognition has open sourced it. The core idea is that a user can close the laptop while the agent keeps working from the cloud, with the handoff mechanism carrying continuity across sessions.</p>
+<h2>Key Claims</h2>
+<ul>
+<li><code>handoff</code> is a central Devin CLI feature.</li>
+<li>The feature supports continuation after the local machine is closed.</li>
+<li>Cognition has open sourced the handoff mechanism.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text directly states that agents keep working from the cloud after the laptop is closed.</li>
+<li>The external quote link suggests the feature is part of a broader Devin workflow discussion, but this ingest did not fetch the quote source.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / product signal</li>
+<li>Confidence: Medium</li>
+<li>Supports: structured handoff artifacts, long-running agents, background agents, cloud continuation</li>
+<li>Main limitations: the open-source artifact itself was not fetched in this ingest</li>
+<li>Best use: as practitioner evidence that session handoff is becoming a productized, reusable runtime primitive</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/structured-handoff-artifacts.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/context-resets.md]]</li>
+</ul>
+<h2>KB Contribution</h2>
+<p>This source reinforces the KB&#x27;s handoff cluster with a direct vendor statement that the handoff mechanism itself is worth open sourcing. That is stronge</p>
+<h3>farstep_ — private CLI / MCP access control article</h3>
+<p>Source note: <code>wiki/sources/farstep-private-cli-mcp-access-x.md</code></p>
+<h1>farstep_ — private CLI / MCP access control article</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/farstep-private-cli-mcp-access-x-2026-06-11.md</code></li>
+<li>Original URL: https://x.com/farstep_/status/2064860995466809848</li>
+<li>Author: farstep (@farstep_)</li>
+<li>Published: 2026-06-11</li>
+<li>Type: X post / X Article card</li>
+<li>Article title: <code>社内のメンバーだけがアクセス可能な CLI / MCP を作る</code></li>
+<li>Capture source: xurl bookmarks capture</li>
+</ul>
+<h2>Short Summary</h2>
+<p>The article-card title points at a common but under-documented problem: internal CLI and MCP tools need to be accessible only to the right people inside the company. The useful signal is that access control is part of the design, not an afterthought.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Internal CLI and MCP tools should not be treated as public by default.</li>
+<li>Access boundaries are a first-class part of the tool design.</li>
+<li>A private tool surface can still be useful if it is packaged well for the company.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark only preserves the article title, so this note keeps the claim level intentionally narrow.</li>
+<li>The title itself is enough to mark the source as a tool-access / security pattern rather than a generic CLI post.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X Article card</li>
+<li>Confidence: Medium-low</li>
+<li>Supports: tool accessibility, internal tool scoping, agent-recognizable repositories, gateway/control-plane design</li>
+<li>Main limitations: the article body was not fetched in this ingest</li>
+<li>Best use: as a navigation hint for internal-tool security and access scoping questions</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/agent-recognizable-repository.md]]</li>
+<li>[[../concepts/gateway-control-plane.md]]</li>
+</ul>
+<h2>KB Contribution</h2>
+<p>This source helps distinguish &quot;a CLI exists&quot; from &quot;a CLI is safely operable inside a company.&quot; That boundary is central to turning a</p>
+<h3>kgsi — Figma official Chrome extension for editable UI capture</h3>
+<p>Source note: <code>wiki/sources/kgsi-figma-editable-layers-chrome-extension-x.md</code></p>
+<h1>kgsi — Figma official Chrome extension for editable UI capture</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/kgsi-figma-editable-layers-chrome-extension-x-2026-06-11.md</code></li>
+<li>Original URL: https://x.com/kgsi/status/2065116383441191387</li>
+<li>Author: こぎそ (@kgsi)</li>
+<li>Published: 2026-06-11</li>
+<li>Type: X post / video</li>
+<li>Capture source: xurl bookmarks capture</li>
+</ul>
+<h2>Short Summary</h2>
+<p>The post says Figma&#x27;s official Chrome extension can capture a whole web page or a specific UI and import it into Figma as editable layers rather than a flat image. The useful detail is that the capture stays structured enough to edit as text, frames, images, and shapes.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The extension can capture either an entire page or a selected UI region.</li>
+<li>The imported result is editable structure, not just a bitmap.</li>
+<li>The resulting artifact keeps text and layout elements in a form Figma can continue to manipulate.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text explicitly contrasts editable layers with a pasted image.</li>
+<li>The post had substantial engagement at capture time, but the evidence here is still the bookmark text rather than a product demo transcript.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / video bookmark</li>
+<li>Confidence: Medium</li>
+<li>Supports: rich agent output artifacts, editable design captures, structured handoff from browser to design workspace</li>
+<li>Main limitations: the release details and demo behavior were not separately fetched in this ingest</li>
+<li>Best use: as a practitioner signal that browser-to-design capture is becoming an editable workflow primitive</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/rich-agent-output-artifact.md]]</li>
+<li>[[../concepts/structured-handoff-artifacts.md]]</li>
+<li>[[../concepts/agent-recognizable-repository.md]]</li>
+</ul>
+<h2>KB Contribution</h2>
+<p>This source adds a concrete example of rich output becoming editab</p>
+<h3>渋川よしき — Apple Container 1.0</h3>
+<p>Source note: <code>wiki/sources/shibu-jp-apple-container-1-0-x.md</code></p>
+<h1>渋川よしき — Apple Container 1.0</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/shibu-jp-apple-container-1-0-x-2026-06-10.md</code></li>
+<li>Original URL: https://x.com/shibu_jp/status/2064572435048145097</li>
+<li>Author: 渋川よしき (@shibu_jp)</li>
+<li>Published: 2026-06-10</li>
+<li>Type: X post / GitHub link</li>
+<li>Repository URL: https://github.com/apple/container</li>
+<li>Capture source: xurl bookmarks capture</li>
+</ul>
+<h2>Short Summary</h2>
+<p>The post announces that Apple Container has reached version 1.0. The linked repository describes a Mac-focused tool for creating and running Linux containers using lightweight virtual machines on Apple silicon.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Apple Container is at version 1.0.</li>
+<li>The tool runs Linux containers on Mac using lightweight VMs.</li>
+<li>The implementation is optimized for Apple silicon.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text directly points to the GitHub repository.</li>
+<li>The repository title in the capture identifies the runtime model clearly enough for KB classification.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post linking to a GitHub repo</li>
+<li>Confidence: Medium</li>
+<li>Supports: long-running agents, background execution environments, tool accessibility, sandboxed local workflows</li>
+<li>Main limitations: the repository contents were not separately fetched in this ingest</li>
+<li>Best use: as infrastructure evidence for local isolated agent environments on Mac</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+</ul>
+<h2>KB Contribution</h2>
+<p>This source adds a concrete Apple-platform runtime to the local-agent environment cluster. The practical value is not just containers in general, but a first-party Mac path for isolated Linux execution.</p>
+<h2>Open Questions</h2>
+<ul>
+<li>How much of the agent workflow can stay local on Apple silicon before needing remote compu</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Context File System</h3>
+<p>KB note: <code>wiki/concepts/context-file-system.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Context File System</p>
+<hr>
+<h1>Context File System</h1>
+<h2>Definition</h2>
+<p>A lightweight external-memory pattern where an assistant reads and updates a small set of durable files such as instructions, memory, and project context instead of relying only on chat history or product-native saved memory.</p>
+<h2>Why It Matters</h2>
+<p>It offers a practical middle layer between built-in chat memory and a full knowledge graph or second-brain system. For many workflows, a few well-maintained files provide enough persistence, inspectability, and editability to improve consistency.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled-wiki.md]]</li>
+<li>[[obsidian-as-interface.md]]</li>
+<li>[[durability]]</li>
+<li>[[tool-accessibility.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/aiedge-supercharge-claude-memory-x.md]]</li>
+<li>[[../sources/obsidian-mind-github.md]]</li>
+<li>[[../sources/sukh-saroy-obsidian-mind-x.md]]</li>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/coreyganim-karpath</li>
+</ul>
+<h3>Long-Running Agents</h3>
+<p>KB note: <code>wiki/concepts/long-running-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Long-Running Agents</p>
+<hr>
+<h1>Long-Running Agents</h1>
+<h2>Definition</h2>
+<p>Agents that work on tasks spanning multiple context windows, often across hours or days, while needing to maintain useful continuity.</p>
+<h2>Why It Matters</h2>
+<p>Many practical agent tasks cannot fit cleanly into a single session, so state transfer becomes part of the architecture.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[durability]]</li>
+<li>[[structured-handoff-artifacts]]</li>
+<li>[[initializer-agent]]</li>
+<li>[[incremental-progress]]</li>
+<li>[[context-resets]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-cwc-long-running-agents-repo.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/trq212-claude-code-usage-context-management-x.md]]</li>
+<li>[[../sources/arxiv-autogenesis-self-evolving-agent-protocol.md]]</li>
+<li>[[../sources/aparnadhinak-harness-vs-sandbox-trajectory-x.md]]</li>
+<li>[[../sources/sydneyr</li>
+</ul>
+<h3>Loop Engineering</h3>
+<p>KB note: <code>wiki/concepts/loop-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Loop Engineering</p>
+<p>  - Agent Loop Design</p>
+<hr>
+<h1>Loop Engineering</h1>
+<h2>Definition</h2>
+<p>Loop engineering is the practice of designing the repeatable work loop an agent runs inside: objective, context, worker roles, tool access, effort level, checkpoints, grading, retries, and stopping conditions.</p>
+<h2>Why It Matters</h2>
+<p>As models handle larger tasks, the operator&#x27;s leverage shifts from writing one perfect prompt toward defining a loop that can generate work, evaluate it, and converge. This makes loop design a practical sub-surface of [[harness-engineering.md]].</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering.md]]</li>
+<li>[[generator-evaluator-loop.md]]</li>
+<li>[[task-decomposition.md]]</li>
+<li>[[feedback-controls.md]]</li>
+<li>[[heavy-thinking.md]]</li>
+<li>[[long-running-agents.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/rlancemartin-designing-loops-with-fable-5-x-2026-06-09.md]]</li>
+<li>[[../sources/0xcodez-fable-5-self-improving-agent-system-x-2026-06-11.md]]</li>
+<li>[[../sources/harrytandy-fable-5-overnight-subagents-setup-x-2</li>
+</ul>
+<h3>Structured Handoff Artifacts</h3>
+<p>KB note: <code>wiki/concepts/structured-handoff-artifacts.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Structured Handoff Artifacts</p>
+<hr>
+<h1>Structured Handoff Artifacts</h1>
+<h2>Definition</h2>
+<p>Persistent artifacts such as progress logs, feature lists, plans, and commit history that allow one agent session to hand work off to another cleanly.</p>
+<h2>Why It Matters</h2>
+<p>Without structured handoffs, long-running work across multiple context windows becomes brittle and repetitive.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[initializer-agent]]</li>
+<li>[[rich-agent-output-artifact.md]]</li>
+<li>[[context-resets]]</li>
+<li>[[incremental-progress]]</li>
+<li>[[long-running-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/oikon48-team-onboarding-x.md]]</li>
+<li>[[../sources/oikon48-ultraplan-x.md]]</li>
+<li>[[../sources/anthropic-claude-code-ultraplan-docs.md]]</li>
+<li>[[../sources/cursor-pr-demos-x.md]]</li>
+<li>[[../sources/noahzweben-autofix-pr-x.md]]</li>
+<li>[[../sources/aparnadhinak-harness-vs-sandbox-trajectory-x.md]]</li>
+<li>[[../sources/nyk-builderz-4-agent-h</li>
+</ul>
+<h3>Agent Knowledge Loop</h3>
+<p>KB note: <code>wiki/concepts/agent-knowledge-loop.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent Knowledge Loop</p>
+<hr>
+<h1>Agent Knowledge Loop</h1>
+<h2>Definition</h2>
+<p>A recurring loop where an LLM ingests sources, compiles notes, answers questions over the resulting wiki, and files useful outputs back into the knowledge base.</p>
+<h2>Why It Matters</h2>
+<p>This loop turns the knowledge base into a compounding system rather than a static archive.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled-wiki.md]]</li>
+<li>[[knowledge-base-linting.md]]</li>
+<li>[[agent-autonomy.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/coreyganim-karpathy-second-brain-clearly-explained-x.md]]</li>
+<li>[[../sources/coreyganim-second-brain-monthly-audit-x.md]]</li>
+<li>[[../sources/shannholmberg-llm-wikid-x.md]]</li>
+<li>[[../sources/artemxtech-llm-wiki-vs-notebooklm-x.md]]</li>
+<li>[[../sources/arxiv-externalization-in-llm-agents.md]]</li>
+<li>[[../sources/carnot-cyclist-continual-learning-desiderata-x.md]]</li>
+<li>[[../sources/google-research-nested-learning-continual-learning.md]]</li>
+<li>[[../sources/akshay-pachaar-wiki-plus-graph-db-kb</li>
+</ul>
+<h3>Skill Optimization</h3>
+<p>KB note: <code>wiki/concepts/skill-optimization.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Skill Optimization</p>
+<p>  - Text-Space Skill Optimization</p>
+<p>  - Trainable Skill Document</p>
+<hr>
+<h1>Skill Optimization</h1>
+<h2>Definition</h2>
+<p>Skill optimization is the practice of improving a reusable agent skill document through scored execution evidence, bounded text edits, and validation gates, while keeping the task-execution model and harness fixed.</p>
+<h2>Why It Matters</h2>
+<p>Skills are increasingly used as procedural memory for agents. If they remain purely hand-written or one-shot generated, they improve only when a human notices a pattern and edits the file. Skill optimization makes the update loop more systematic: traces supply evidence, an optimizer proposes small edits, and held-out checks decide whether the skill actually improved.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[memory-skill-harness.md]]</li>
+<li>[[rule-update-loop.md]]</li>
+<li>[[trace-driven-improvement.md]]</li>
+<li>[[feedback-controls.md]]</li>
+<li>[[machine-checkable-invariants.md]]</li>
+<li>[[behavioral-stability.md]]</li>
+<li>[[workflow-compilation.md]]</li>
+<li>[[navigable-agent-</li>
+</ul>
+<h3>Navigation: Operations / Long-Running Work</h3>
+<p>KB note: <code>wiki/navigation/operations.md</code></p>
+<h1>Navigation: Operations / Long-Running Work</h1>
+<h2>Use When</h2>
+<p>The question is about running agents over time: background agents, routines, scheduled work, handoffs, context resets, delegation, or monitoring.</p>
+<p>It also covers whether a recurring workflow should stay explicit or be compiled into model behavior.</p>
+<h2>Start Maps</h2>
+<ul>
+<li>[[../maps/ai-adoption-roi-and-capability-investment.md]]</li>
+<li>[[../maps/context-management-decisions.md]]</li>
+<li>[[../maps/orchestration-patterns-faq.md]]</li>
+<li>[[../maps/approval-policy-patterns-and-escalation.md]]</li>
+</ul>
+<h2>Core Concepts</h2>
+<ul>
+<li>[[../concepts/ai-adoption-j-curve.md]]</li>
+<li>[[../concepts/agentic-product-market-fit.md]]</li>
+<li>[[../concepts/ai-native-startup-lifecycle.md]]</li>
+<li>[[../concepts/verification-tax.md]]</li>
+<li>[[../concepts/ai-roi-model.md]]</li>
+<li>[[../concepts/agentic-jevons-paradox.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/agent-first-organization.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/agent-dreaming.md]]</li>
+<li>[[</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>8</code>, commits: <code>3</code></p></footer>
+
+</body>
+</html>
