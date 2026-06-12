@@ -1,0 +1,15 @@
+{
+  "date": "2026-06-13T03:00:10.711577+09:00",
+  "topic_id": "wiki/maps/approval-policy-patterns-and-escalation.md",
+  "title": "Approval Policy Patterns and Escalation",
+  "output_dir": "outputs/notebooklm-podcast/2026-06-13",
+  "page": "outputs/notebooklm-podcast/2026-06-13/notebooklm-source.md",
+  "related": [
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md",
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/maps/harness-engineering-vendor-comparison.md"
+  ],
+  "char_count": 9054
+}
