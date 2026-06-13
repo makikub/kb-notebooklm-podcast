@@ -1,0 +1,15 @@
+{
+  "date": "2026-06-14T03:00:12.974623+09:00",
+  "topic_id": "wiki/maps/agent-harness-control-taxonomy.md",
+  "title": "Agent Harness Control Taxonomy",
+  "output_dir": "outputs/notebooklm-podcast/2026-06-14",
+  "page": "outputs/notebooklm-podcast/2026-06-14/notebooklm-source.md",
+  "related": [
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/harness-engineering-vendor-comparison.md",
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md"
+  ],
+  "char_count": 9021
+}
