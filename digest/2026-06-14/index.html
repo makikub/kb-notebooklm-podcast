@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-14 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-14/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-14</header>
+<h1>KB Daily Digest 2026-06-14</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-14/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-14">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-14</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-14</h1>
+<p>今日の knowledge-base-llm は、「エージェントに何をさせるか」から一段進んで、「エージェントが参照・反復・交換できる知識とループをどう設計するか」に焦点が寄った更新でした。UTC 2026-06-14 の新規 ingest / compile は 3 コミットで、raw 記録が 8 件、wiki/source ノートが 7 件追加され、<code>open-knowledge-format</code>、<code>compiled-wiki</code>、<code>context-graph</code>、<code>loop-engineering</code>、<code>context-graph-and-company-brain</code> などが更新されています。</p>
+<p>全体トレンドは、Markdown ベースの知識、状態を持つエージェント実行基盤、ループ設計、モデル/クォータ運用が同じ運用面に集まりつつある、というものです。Google Cloud の Open Knowledge Format は、LLM wiki 的な知識を「サービス」ではなく「交換可能なファイル形式」として扱う提案です。一方で Addy Osmani の loop engineering は、人間が毎回プロンプトを書くのではなく、目的、状態、検証、再試行、停止条件を持つループそのものを設計対象にする見方を強めています。</p>
+<p>重要ソースの1本目は、Google Cloud Blog の「Introducing the Open Knowledge Format」です。OKF v0.1 は、Markdown ファイル、YAML frontmatter、ファイルパスによる概念識別、Markdown リンク、任意の <code>index.md</code> / <code>log.md</code> を組み合わせ、エージェントやカタログ、ビジュアライザが同じ知識束を読み書きできるようにする提案です。KB にとっては、これまでの <code>compiled-wiki</code> や <code>context-graph</code> の方向性を外部の一次ソースで補強する更新であり、ローカルな知識整理を超えて「別の producer / consumer と交換できる最小契約」へ話が広がりました。</p>
+<p>重要ソースの2本目は、Addy Osmani の「Loop Engineering」です。この記事は、プロンプト、コンテキスト、ハーネスの上位に、定期実行、worktree、skills、plugins/connectors、sub-agents、外部メモリを含むループ設計の層を置きます。特に KB では、loop engineering を「1回の agent run を支える harness」より上にある、反復・発見・検証・状態保存の運用設計として整理しました。無人ループにはコスト上限と停止条件が必要で、強いモデルほどループを雑に大きくするのではなく、何を証拠に完了とするかを先に決める必要があります。</p>
+<p>重要ソースの3本目は、Cloudflare Agents SDK / Build Agents on Cloudflare の docs カードです。X ブックマーク由来なので本文全体の一次取得ではありませんが、公式 docs preview と日本語コメントからは、persistent memory、realtime WebSockets、scheduled tasks、Durable Objects による状態保持、React の <code>useAgent</code>、CLI からの更新といった実行基盤の特徴が読み取れます。これは loop engineering の実装先として重要で、ループや長時間エージェントを「チャット履歴」ではなく、状態同期できる runtime に載せる流れを示しています。</p>
+<p>周辺ソースでは、Z.ai の GLM-5.2 / devpack 最新モデル、Kimi-K2.7-Code、OpenAI Codex の rate limit reset を後で使える機能、Akshay Pachaar の self-repairing agent harness 記事カードが追加されました。これらは単体ではモデルリリースや小さなプロダクト更新に見えますが、まとめると「モデルを切り替えられること」「トークン効率や agent performance を見ること」「利用枠を作業タイミングに合わせて保存すること」「ハーネスが自分の詰まりを検出・修復すること」が、エージェント運用の当たり前の面になってきていると読めます。</p>
+<p>概念更新としては、<code>open-knowledge-format</code> が新設され、OKF を Markdown-first な知識束の交換形式として定義しました。<code>compiled-wiki</code> と <code>context-graph</code> には、Markdown の inspectability と typed graph の権限・時間・関係処理をどう組み合わせるかという論点が補強されています。<code>context-graph-and-company-brain</code> では、OKF-style bundle を Markdown wiki と typed graph の中間的な相互運用層として位置づけ、<code>loop-engineering</code> では term の起源、実務部品、コスト/停止条件の注意が整理されました。</p>
+<p>実務上の読みどころは、知識基盤とエージェント基盤を別々に考えないことです。OKF のような形式が普及すると、エージェントは「検索で似たテキストを拾う」だけでなく、概念、リンク、ログ、frontmatter、鮮度、出典をもつ知識 bundle を前提に行動できるようになります。そのうえで loop engineering を組むなら、ループの入力はただの長いプロンプトではなく、検証可能で差分管理できる知識リポジトリになります。</p>
+<p>次に追う問いは、OKF が provenance、permissions、freshness、confidence、derived claims をどこまで最小スキーマで扱えるか、Cloudflare の stateful agent runtime がどの程度まで業務ループの system of record になれるか、そして self-repairing harness の修復範囲をどう監査可能に保つかです。Podcast では、OKF を「LLM wiki の HTML 化」ではなく「agent knowledge の可搬形式」として捉えること、loop engineering を「自動化の美名」ではなく停止条件と証拠設計の技術として扱うこと、モデル/クォータ/ランタイムの更新が運用設計にどう跳ね返るかを掘るとよさそうです。</p>
+<h2>重要ソース3本</h2>
+<ul>
+<li><code>wiki/sources/google-cloud-open-knowledge-format.md</code></li>
+<li><code>wiki/sources/addyosmani-loop-engineering.md</code></li>
+<li><code>wiki/sources/yusuke-wada-cloudflare-agents-sdk-build-agents-on-cloudflare-x-2026-06-13.md</code></li>
+</ul>
+<h2>更新された主なKBノート</h2>
+<ul>
+<li><code>wiki/concepts/open-knowledge-format.md</code></li>
+<li><code>wiki/concepts/compiled-wiki.md</code></li>
+<li><code>wiki/concepts/context-graph.md</code></li>
+<li><code>wiki/concepts/loop-engineering.md</code></li>
+<li><code>wiki/maps/context-graph-and-company-brain.md</code></li>
+<li><code>wiki/navigation/memory.md</code></li>
+<li><code>wiki/sources/README.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-product-market-fit.md]] — Simon Willison&#x27;s market analysis that Anthropic/OpenAI have found product-market fit through coding/general-purpose agents, API-aligned enterprise pricing, and high-value professional usage.</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents, and org ownership.</li>
+<li>[[about-hiroppy-founders-playbook.md]] — Anthropic&#x27;s official founder playbook PDF: AI-native startup lifecycle across Idea, MVP, Launch, and Scale, with Claude Chat/Cowork/Code stage usage, validation gates, agentic technical debt risks, founder bottleneck removal, and moat formation.</li>
+<li>[[izanami-claude-code-large-codebase-best-practices.md]] — Japanese practitioner explainer on Claude Code large-codebase setup: live repo search, thin layered CLAUDE.md, subdirectory startup, hooks, stale-rule pruning, and adoption ownership.</li>
+<li>[[newspicks-harness-engineering-what-is-it.md]] — Japanese explainer separating evalua</li>
+</ul>
+<h3>Addy Osmani - Loop Engineering</h3>
+<p>Source note: <code>wiki/sources/addyosmani-loop-engineering.md</code></p>
+<h1>Addy Osmani - Loop Engineering</h1>
+<h2>Metadata</h2>
+<ul>
+<li>Source: blog post</li>
+<li>URL: https://addyosmani.com/blog/loop-engineering/</li>
+<li>Author: Addy Osmani</li>
+<li>Date: 2026-06-07</li>
+<li>Raw capture: [[../../raw/articles/addyosmani-loop-engineering-2026-06-07.md]]</li>
+<li>Evidence quality: primary synthesis article by a named practitioner; cites public statements from Peter Steinberger and Boris Cherny as the trigger signals.</li>
+</ul>
+<h2>Summary</h2>
+<p>Addy Osmani&#x27;s article popularizes &quot;loop engineering&quot; as the next operator surface after prompt, context, and harness engineering. The core shift is from manually prompting a coding agent turn by turn to designing a small system that finds work, prompts agents, verifies outputs, stores state, and decides the next action.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Loop engineering replaces the human as the direct prompter with a system that prompts agents against a recurring goal.</li>
+<li>A loop sits one level above an agent harness: the harness supports one agent run; the loop runs harnessed agents over time.</li>
+<li>Practical loops need automations, worktrees, skills, plugins/connectors, sub-agents, and durable state.</li>
+<li>The useful loop shape is becoming tool-agnostic across Codex-style and Claude Code-style systems.</li>
+<li>Cost controls and verifiable stopping conditions are necessary because unattended loops can amplify mistakes.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>Osmani cites Peter Steinberger&#x27;s framing that developers should design loops that prompt agents.</li>
+<li>Osmani cites Boris Cherny&#x27;s statement that he writes loops instead of prompting Claude directly.</li>
+<li>The article maps loop primitives to Codex and Claude Code capabilities: scheduled automations, worktree isolation, skills, MCP-style connectors, sub-agents, and external state.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/loop-engineering.md]]</li>
+<li>[[../concepts/harness-eng</li>
+</ul>
+<h3>Google Cloud - Introducing the Open Knowledge Format</h3>
+<p>Source note: <code>wiki/sources/google-cloud-open-knowledge-format.md</code></p>
+<h1>Google Cloud - Introducing the Open Knowledge Format</h1>
+<h2>Source metadata</h2>
+<ul>
+<li>Raw path: raw/articles/google-cloud-open-knowledge-format-blog-2026-06-12.md</li>
+<li>Original URL: https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing/?hl=en</li>
+<li>Published: 2026-06-12</li>
+<li>Authors: Sam McVeety; Amir Hormati</li>
+<li>Publisher: Google Cloud Blog</li>
+<li>Type: vendor primary source / open specification announcement</li>
+<li>Evidence strength: high for Google Cloud&#x27;s OKF design intent and shipped reference artifacts; early for ecosystem adoption</li>
+</ul>
+<h2>Summary</h2>
+<p>Google Cloud introduces Open Knowledge Format (OKF) v0.1, an open specification for packaging LLM-wiki style knowledge as portable Markdown files with YAML frontmatter and normal Markdown links. The article argues that agentic systems are bottlenecked by fragmented organizational context and that the missing layer is not another knowledge service, but a simple interoperable format that producers and consumers can share.</p>
+<h2>Key claims</h2>
+<ul>
+<li>Agent usefulness is often limited by missing relevant context rather than model capability alone.</li>
+<li>Organizational context is fragmented across catalogs, wikis, drives, code comments, notebooks, and individual expertise.</li>
+<li>OKF formalizes the emerging LLM-wiki pattern into a vendor-neutral, agent- and human-friendly bundle format.</li>
+<li>The core bundle is &quot;just&quot; Markdown files, a filesystem/git-friendly directory structure, and a small frontmatter surface.</li>
+<li>OKF v0.1 requires a <code>type</code> field and leaves domain models, sections, and producer-specific details open.</li>
+<li>Producer and consumer independence is the main design contract: humans, metadata pipelines, or LLMs can produce bundles; agents, visualizers, search systems, or other LLMs can consume them.</li>
+</ul>
+<h2>Evidence / examples</h2>
+<p>-</p>
+<h3>Akshay Pachaar - Your Agent Harness Should Repair Itself</h3>
+<p>Source note: <code>wiki/sources/akshay-pachaar-your-agent-harness-should-repair-itself-x-2026-06-08.md</code></p>
+<h1>Akshay Pachaar - Your Agent Harness Should Repair Itself</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/akshay-pachaar-your-agent-harness-should-repair-itself-x-2026-06-08.md</code></li>
+<li>Original URL: https://x.com/i/status/2064051835636498924</li>
+<li>Primary URL: https://x.com/i/article/2063964921495523328</li>
+<li>Author: Akshay Pachaar / @akshay_pachaar</li>
+<li>Posted: 2026-06-08T18:28:00.000Z</li>
+<li>Captured: 2026-06-14 via xurl bookmarks capture</li>
+<li>Type: X post / X article card</li>
+<li>Evidence strength: bookmark snapshot metadata plus article title card</li>
+<li>Public metrics at capture: 138 reposts, 28 replies, 1043 likes, 6 quotes, 2353 bookmarks, 479637 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>The article argues that an effective agent harness should be able to repair its own bottlenecks instead of depending on the operator to keep every loop healthy. That framing pushes the design problem away from one-off prompting and toward feedback loops, routines, and operational self-maintenance.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The operator should not remain the bottleneck for a running agent system.</li>
+<li>Harness quality is partly about whether the system can detect and repair its own failure points.</li>
+<li>Loop design matters because repeated routines can absorb work that would otherwise require human attention.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark is only an article card in the captured X data, so the title is the strongest directly visible evidence here.</li>
+<li>The share from Avi Chawla reinforces the same theme by quoting the article&#x27;s leverage/bottleneck language.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/failure-modes.md]]</li>
+<li>[[../concepts/self-verification.md]]</li>
+<li>[[../concepts/loop-engineering.md]]</li>
+<li>[[../concepts/agent-autonomy.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/coding-agent-harness-patterns.md]]</li>
+<li>[[../maps/agent-h</li>
+</ul>
+<h3>Kimi.ai - Kimi-K2.7-Code release</h3>
+<p>Source note: <code>wiki/sources/kimi-k2-7-code-release-x-2026-06-12.md</code></p>
+<h1>Kimi.ai - Kimi-K2.7-Code release</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/kimi-k2-7-code-release-x-2026-06-12.md</code></li>
+<li>Original URL: https://x.com/i/status/2065377579130142937</li>
+<li>Related bookmarked post: https://x.com/i/status/2065473287761891621</li>
+<li>Author: Kimi.ai / @Kimi_Moonshot</li>
+<li>Posted: 2026-06-12T10:16:02.000Z</li>
+<li>Captured: 2026-06-14 via xurl bookmarks capture</li>
+<li>Type: X post / model release card</li>
+<li>Evidence strength: bookmark snapshot metadata with benchmark-heavy release messaging</li>
+<li>Public metrics at capture: 1545 reposts, 575 replies, 12940 likes, 660 quotes, 2530 bookmarks, 1769148 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Kimi&#x27;s K2.7 Code release is framed as a coding-specialized, open-sourced model with better benchmark performance and lower token use than K2.6. The announcement is mostly product messaging, but it is still a useful signal that coding-model competition is continuing to move toward lower-token and higher-agent-performance claims.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>K2.7 Code is positioned as the latest coding model in the Kimi line.</li>
+<li>The release claims better coding and agent performance than K2.6.</li>
+<li>The model is being marketed as more token-efficient, not just more accurate.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text explicitly cites benchmark deltas and a lower-token-efficiency claim.</li>
+<li>The related Cline bookmark repeats the same positioning in a more adoption-oriented way.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/llm-inference-performance.md]]</li>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/agent-autonomy.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/agent-harness-landscape.md]]</li>
+<li>[[../maps/harness-engineering-vendor-comparison.md]]</li>
+<li>[[../maps/coding-agent-harness-patterns.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>How much of the token reduction survives in real</li>
+</ul>
+<h3>OpenAI - Codex rate limit resets can be saved for later</h3>
+<p>Source note: <code>wiki/sources/openai-codex-rate-limit-resets-x-2026-06-12.md</code></p>
+<h1>OpenAI - Codex rate limit resets can be saved for later</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/openai-codex-rate-limit-resets-x-2026-06-12.md</code></li>
+<li>Original URL: https://x.com/i/status/2065225362544726371</li>
+<li>Author: OpenAI / @OpenAI</li>
+<li>Posted: 2026-06-12T00:11:11.000Z</li>
+<li>Captured: 2026-06-14 via xurl bookmarks capture</li>
+<li>Type: X post / product update</li>
+<li>Evidence strength: bookmark snapshot metadata plus rollout announcement</li>
+<li>Public metrics at capture: 1714 reposts, 1245 replies, 21384 likes, 1475 quotes, 3609 bookmarks, 4148349 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>OpenAI is making Codex rate-limit resets bankable, so users can save a reset and spend it later instead of losing it when they do not need it. That is a small feature on paper, but it changes how users schedule bursts of agent work around their own time and attention.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Rate-limit resets can now be deferred and used later.</li>
+<li>The feature is rolling out with one free saved reset for several paid tiers.</li>
+<li>Usage budgeting is becoming a more explicit product surface.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The announcement is directly visible in the captured tweet text.</li>
+<li>The feature is tied to a tiered rollout, so it is not just a design idea.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/sustainable-ai-work.md]]</li>
+<li>[[../concepts/agent-autonomy.md]]</li>
+<li>[[../concepts/approval-policy.md]]</li>
+<li>[[../concepts/verification-tax.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/approval-policy-patterns-and-escalation.md]]</li>
+<li>[[../maps/agent-deployment-gates-and-operational-risk.md]]</li>
+<li>[[../maps/coding-agent-cognitive-debt-and-review-capacity.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Does banked quota meaningfully reduce interruption, or does it just shift when the interruption happens?</li>
+<li>Which kinds of agent work benefit most from time-shifted rate limits?</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[..</li>
+</ul>
+<h3>Yusuke Wada - Cloudflare Agents SDK / Build Agents on Cloudflare</h3>
+<p>Source note: <code>wiki/sources/yusuke-wada-cloudflare-agents-sdk-build-agents-on-cloudflare-x-2026-06-13.md</code></p>
+<h1>Yusuke Wada - Cloudflare Agents SDK / Build Agents on Cloudflare</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/yusuke-wada-cloudflare-agents-sdk-build-agents-on-cloudflare-x-2026-06-13.md</code></li>
+<li>Original URL: https://x.com/i/status/2065743993531777173</li>
+<li>Related bookmarked post: https://x.com/i/status/2065737438853747124</li>
+<li>Primary URL: https://developers.cloudflare.com/agents/</li>
+<li>Author: Yusuke Wada / @yusukebe</li>
+<li>Posted: 2026-06-13T10:32:02.000Z</li>
+<li>Captured: 2026-06-14 via xurl bookmarks capture</li>
+<li>Type: X post / docs card</li>
+<li>Evidence strength: bookmark snapshot metadata plus official docs preview</li>
+<li>Public metrics at capture: 30 reposts, 0 replies, 365 likes, 4 quotes, 418 bookmarks, 90384 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Cloudflare&#x27;s Agents SDK is being framed as a practical stateful-agent runtime: persistent memory, realtime WebSocket connections, and scheduled tasks, with the Japanese commentary emphasizing that state can be retained, synchronized, paused, and even updated from the CLI.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Agents on Cloudflare are now presented as stateful rather than purely request/response tools.</li>
+<li>Durable Objects are doing the persistence and synchronization work underneath the SDK.</li>
+<li><code>useAgent</code> makes the runtime feel native to React.</li>
+<li>CLI updates are part of the operational surface, not an afterthought.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The docs card itself names persistent memory, realtime WebSockets, and scheduled tasks.</li>
+<li>The commentary post adds implementation intuition: keep state, sync it, pause it, and mutate it from a command line.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/agent-</li>
+</ul>
+<h3>Z.ai - GLM-5.2 / How to Switch Models</h3>
+<p>Source note: <code>wiki/sources/zai-glm-5-2-devpack-latest-model-x-2026-06-13.md</code></p>
+<h1>Z.ai - GLM-5.2 / How to Switch Models</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/zai-glm-5-2-devpack-latest-model-x-2026-06-13.md</code></li>
+<li>Original URL: https://x.com/i/status/2065704919299235870</li>
+<li>Primary URL: https://docs.z.ai/devpack/latest-model</li>
+<li>Author: Z.ai / @Zai_org</li>
+<li>Posted: 2026-06-13T07:56:46.000Z</li>
+<li>Captured: 2026-06-14 via xurl bookmarks capture</li>
+<li>Type: X post / docs card</li>
+<li>Evidence strength: bookmark snapshot metadata plus official docs preview</li>
+<li>Public metrics at capture: 751 reposts, 263 replies, 6204 likes, 341 quotes, 1046 bookmarks, 975234 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Z.ai is surfacing GLM-5.2 as the latest model in its developer plan, and the linked docs page shows how model switching works inside the coding-plan product. The most KB-relevant detail is that the docs explicitly map model names and environment variables, which makes the release feel operational rather than just promotional.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>GLM-5.2 is available to GLM Coding Plan users across multiple plan tiers.</li>
+<li>The docs treat model switching as a first-class developer workflow.</li>
+<li>The page exposes environment-variable mapping for agentic tooling, which matters for portability across coding agents.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The docs preview explicitly says the plan supports GLM-5.2 and tells readers to use <code>/llms.txt</code> for the documentation index.</li>
+<li>The captured preview also lists environment variable mappings for Claude Code.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/llm-inference-performance.md]]</li>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/agent-harness-landscape.md]]</li>
+<li>[[../maps/harness-engineering-vendor-comparison.md]]</li>
+<li>[[../maps/coding-agent-harness-patterns.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>How muc</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Loop Engineering</h3>
+<p>KB note: <code>wiki/concepts/loop-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Loop Engineering</p>
+<p>  - Agent Loop Design</p>
+<hr>
+<h1>Loop Engineering</h1>
+<h2>Definition</h2>
+<p>Loop engineering is the practice of designing the repeatable work loop an agent runs inside: objective, context, worker roles, tool access, effort level, checkpoints, grading, retries, and stopping conditions.</p>
+<h2>Origin / Framing</h2>
+<p>The term was popularized in June 2026 by Addy Osmani&#x27;s &quot;Loop Engineering&quot; article. Osmani framed it around two public practitioner signals: Peter Steinberger&#x27;s claim that developers should design loops that prompt coding agents, and Boris Cherny&#x27;s claim that his job had shifted from prompting Claude directly to writing loops.</p>
+<h2>Why It Matters</h2>
+<p>As models handle larger tasks, the operator&#x27;s leverage shifts from writing one perfect prompt toward defining a loop that can generate work, evaluate it, and converge. This makes loop design a practical sub-surface of [[harness-engineering.md]].</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering.md]]</li>
+<li>[[generator-evaluator-loop.md</li>
+</ul>
+<h3>Concept Notes</h3>
+<p>KB note: <code>wiki/concepts/README.md</code></p>
+<h1>Concept Notes</h1>
+<p>Each note in this folder should represent a reusable concept that appears across multiple sources.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>definition</li>
+<li>why it matters</li>
+<li>related concepts</li>
+<li>supporting sources</li>
+<li>tensions / tradeoffs</li>
+<li>open questions</li>
+</ul>
+<ul>
+<li>[Evidence Quality](evidence-quality.md)</li>
+<li>[Field-Deployed Engineer](field-deployed-engineer.md)</li>
+<li>[Product Responsibility Distribution](product-responsibility-distribution.md)</li>
+<li>[Conversion Packaging](conversion-packaging.md)</li>
+<li>[Organizational Intent Clarity](organizational-intent-clarity.md)</li>
+<li>[Exploratory Organization Lens](exploratory-organization-lens.md)</li>
+<li>[Intelligent Delegation](intelligent-delegation.md)</li>
+<li>[Conversational Feedback Learning](conversational-feedback-learning.md)</li>
+<li>[Spec-Code-Test Loop](spec-code-test-loop.md)</li>
+<li>[Heavy Thinking](heavy-thinking.md)</li>
+<li>[Sustainable AI Work](sustainable-ai-work.md)</li>
+<li>[AI Adoption J-Curve](ai-adoption-j-curve.md)</li>
+<li>[AI Adoption Thresholds](ai-adoption-thresholds.md) — usage-rate bands th</li>
+</ul>
+<h3>Compiled Wiki</h3>
+<p>KB note: <code>wiki/concepts/compiled-wiki.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Compiled Wiki</p>
+<hr>
+<h1>Compiled Wiki</h1>
+<h2>Definition</h2>
+<p>A compiled wiki is a curated layer of linked Markdown notes derived from raw sources, rather than a direct dump of source material.</p>
+<h2>Why It Matters</h2>
+<p>It lets an LLM work over a cleaner, more connected representation of knowledge while preserving traceability back to raw evidence.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent knowledge loop]]</li>
+<li>[[obsidian as interface]]</li>
+<li>[[knowledge base linting]]</li>
+<li>[[open-knowledge-format]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/coreyganim-karpathy-second-brain-clearly-explained-x.md]]</li>
+<li>[[../sources/coreyganim-second-brain-monthly-audit-x.md]]</li>
+<li>[[../sources/shannholmberg-llm-wikid-x.md]]</li>
+<li>[[../sources/farza-farzapedia-x.md]]</li>
+<li>[[../sources/fieldtheory-cli-github.md]]</li>
+<li>[[../sources/obsidian-mind-github.md]]</li>
+<li>[[../sources/contextconor-enterprise-understanding-context-graph-x.md]]</li>
+<li>[[../sources/artemxtech-llm-wiki-vs-notebooklm-x.md]]</li>
+<li>[[../sources/aks</li>
+</ul>
+<h3>Context Graph</h3>
+<p>KB note: <code>wiki/concepts/context-graph.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Context Graph</p>
+<p>  - Context Graphs</p>
+<hr>
+<h1>Context Graph</h1>
+<h2>Definition</h2>
+<p>A persistent graph-structured memory layer that represents facts, relationships, rules, exceptions, provenance, validity windows, and decision traces for agent use.</p>
+<h2>Why It Matters</h2>
+<p>Context graphs aim to make agent memory auditable and updateable. They move beyond retrieving similar documents toward querying valid, permitted, relationship-aware context for a specific action.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[company brain]]</li>
+<li>[[compiled wiki]]</li>
+<li>[[open-knowledge-format]]</li>
+<li>[[agent knowledge loop]]</li>
+<li>[[human in the loop]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/tsumotokai-context-graphs-agent-long-term-memory-x.md]]</li>
+<li>[[../sources/contextconor-enterprise-understanding-context-graph-x.md]]</li>
+<li>[[../sources/brett-goldstein-agentic-micro-companies-company-brain-x.md]]</li>
+</ul>
+<ul>
+<li>[[../sources/notebooklm-gemini-app-integration-x.md]]</li>
+</ul>
+<ul>
+<li>[[../sources/knowledgesense-corpus2skill-zenn.md]]</li>
+<li>[[../sources/google-cloud-open-knowle</li>
+</ul>
+<h3>Open Knowledge Format</h3>
+<p>KB note: <code>wiki/concepts/open-knowledge-format.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - OKF</p>
+<p>  - Open Knowledge Format</p>
+<hr>
+<h1>Open Knowledge Format</h1>
+<h2>Definition</h2>
+<p>Open Knowledge Format (OKF) is a proposed open specification for packaging knowledge as Markdown files with YAML frontmatter, filesystem paths, and Markdown links so humans, agents, catalogs, and visualizers can exchange LLM-wiki style context without a vendor-specific service or SDK.</p>
+<h2>Why It Matters</h2>
+<p>OKF makes the compiled-wiki pattern portable. Instead of each team building a bespoke agent knowledge repo, a minimal common bundle format can let one system produce knowledge and another system consume, inspect, index, visualize, or reason over it.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled-wiki.md]]</li>
+<li>[[context-file-system.md]]</li>
+<li>[[context-graph.md]]</li>
+<li>[[company-brain.md]]</li>
+<li>[[navigable-agent-skills.md]]</li>
+<li>[[evidence-quality.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/google-cloud-open-knowledge-format.md]]</li>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/nori-handa-karpathy-llm-wiki-zenn.md]]</li>
+</ul>
+<h3>Context Graph and Company Brain</h3>
+<p>KB note: <code>wiki/maps/context-graph-and-company-brain.md</code></p>
+<h1>Context Graph and Company Brain</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging vocabulary around company-scale agent memory: compiled wiki, context graph, Company Brain, and context farming.</p>
+<h2>Core Pattern</h2>
+<p>1. Raw organizational signals enter the system: docs, chat, logs, emails, tickets, meetings, and decisions.</p>
+<p>2. A context layer extracts entities, relationships, rules, provenance, and validity windows.</p>
+<p>3. Agents query the layer before acting, ideally receiving only context that is relevant, permitted, and still valid.</p>
+<p>4. Humans maintain the layer through review, invalidation, conflict resolution, and context farming.</p>
+<p>5. Dreaming-style background review can propose memory cleanup and cross-session pattern promotion, but should preserve provenance and review boundaries.</p>
+<p>In an agent-first company, this context layer also becomes an operating surface: named agents read and update role docs, taskboards, status files, decision records, handoffs, and feedback-strength notes so the organiza</p>
+<h3>Navigation: Memory / Knowledge Substrate</h3>
+<p>KB note: <code>wiki/navigation/memory.md</code></p>
+<h1>Navigation: Memory / Knowledge Substrate</h1>
+<h2>Use When</h2>
+<p>The question is about agent memory, knowledge bases, compiled notes, context graphs, team/company brains, or retrieval architecture.</p>
+<h2>Start Maps</h2>
+<ul>
+<li>[[../maps/context-graph-and-company-brain.md]]</li>
+<li>[[../maps/research-os-query-paths.md]]</li>
+<li>[[../maps/agent-onboarding-kb-codebase.md]]</li>
+</ul>
+<h2>Core Concepts</h2>
+<ul>
+<li>[[../concepts/compiled-wiki.md]]</li>
+<li>[[../concepts/agent-knowledge-loop.md]]</li>
+<li>[[../concepts/continual-learning.md]]</li>
+<li>[[../concepts/agent-dreaming.md]]</li>
+<li>[[../concepts/context-file-system.md]]</li>
+<li>[[../concepts/context-engineering.md]]</li>
+<li>[[../concepts/llm-inference-performance.md]]</li>
+<li>[[../concepts/workflow-compilation.md]]</li>
+<li>[[../concepts/kv-cache.md]]</li>
+<li>[[../concepts/context-graph.md]]</li>
+<li>[[../concepts/company-brain.md]]</li>
+<li>[[../concepts/open-knowledge-format.md]]</li>
+<li>[[../concepts/agent-first-organization.md]]</li>
+<li>[[../concepts/organizational-intent-clarity.md]]</li>
+<li>[[../concepts/navigable-agent-skills.md]]</li>
+<li>[[../concepts/memory-skill-harne</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>8</code>, commits: <code>3</code></p></footer>
+
+</body>
+</html>
