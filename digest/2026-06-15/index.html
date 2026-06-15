@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-15 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-15/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-15</header>
+<h1>KB Daily Digest 2026-06-15</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-15/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-15">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-15</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-15</h1>
+<p>今日の knowledge-base-llm は、UTC 2026-06-15 に X ブックマーク由来の ingest が 1 コミット入り、raw 記録 5 件、wiki/source ノート 4 件が追加されました。大きな compile 更新や concept/map の直接更新はなく、今回は source 層の追加が中心です。ただし内容の方向はかなり揃っていて、単発のプロンプトや単体モデルよりも、保存されたワークフロー、Agent Skills、プロジェクトループ、compound model、組織エコシステムといった「再利用される運用構造」に焦点が寄っています。</p>
+<p>全体トレンドは、エージェント活用の競争軸が「どのモデルを使うか」だけではなく、「どう繰り返し可能な仕組みに包むか」へ移っていることです。Gota さんの pi-dynamic-workflows は、保存できる workflow を Agent Skills から呼び出すという小さな実装上の観察ですが、KB の文脈では大きいです。スキルを毎回の作業手順そのものにするのではなく、保存済み workflow の dispatcher として薄く保つ発想は、<code>workflow-compilation</code>、<code>navigable-agent-skills</code>、<code>loop-engineering</code> をつなぐ実務的な橋になります。</p>
+<p>重要ソースの1本目は、<strong>Gota - pi-dynamic-workflows and Agent Skills</strong> です。ここでの読みどころは、Agent Skills を「ワークフローを再記述する場所」ではなく「すでに保存された orchestration を短い指示で呼ぶ場所」と見ている点です。ワークフローが保存可能なら、手順の本体は workflow 側に置き、skill は発見性、起動条件、入出力の説明、失敗時の扱いを担う薄い層にできます。これはスキルライブラリが肥大化したときにも、実行ロジックと利用者向けナビゲーションを分離しやすくする設計です。</p>
+<p>重要ソースの2本目は、<strong>OpenRouter - Fusion API / compound model</strong> です。Fusion は、複数モデルの回答と judge / synthesis をひとつの API 面にまとめる compound model の製品化として整理されました。単一モデルの性能比較ではなく、調査、批評、高リスク判断のように間違いのコストが高いタスクで、複数モデルの合意、矛盾、盲点、部分的なカバレッジを扱う発想です。KB の <code>generator-evaluator-loop</code> や <code>llm-inference-performance</code> から見ると、これは「自前でループを組む」パターンの一部が推論 API 側へ吸収される動きでもあります。</p>
+<p>重要ソースの3本目は、<strong>Vox - claude code-maxxing: treat Claude Code like a project loop</strong> です。本文取得は article card の範囲に限られますが、タイトルだけでも、Claude Code を単なる高速ターミナルや一回限りの質問窓としてではなく、プロジェクト単位の反復ループとして扱う見方が強く出ています。これも Gota さんの workflow / skills の話と同じ方向で、プロンプトそのものより、繰り返す手順、保存される判断、次回に引き継がれる状態が価値の中心になっています。</p>
+<p>Satya Nadella さんの <strong>A frontier without an ecosystem is not stable</strong> は、今回の4本の中では最も抽象度が高いソースです。取得できているのは X article card のタイトル中心ですが、frontier capability だけでは安定しない、という言い方は、今日の他3本をまとめる上位概念としてよく効きます。モデル、スキル、ワークフロー、組織知、トークン資本、人間の判断が接続されていないと、いくら frontier model を導入しても運用としては脆い。KB 内では <code>company-brain</code>、<code>context-graph</code>、<code>ai-roi-model</code> に近い問いです。</p>
+<p>今回の source 追加によって、KB の地図上では <code>loop-engineering</code>、<code>workflow-compilation</code>、<code>multi-agent-orchestration</code>、<code>navigable-agent-skills</code>、<code>managed-agents</code> の周辺がまた少し濃くなりました。concept/map 本体は今日は更新されていませんが、次に compile するなら、スキルを「実行ロジックの置き場」として扱う場合と「保存済み workflow / tool / API を呼ぶ発見・制御レイヤー」として扱う場合の違いを整理するとよさそうです。OpenRouter Fusion も、モデル選択というより「API化された evaluator loop」として地図に戻す余地があります。</p>
+<p>実務上の読みどころは、チームがAI活用を運用に落とすとき、最初からすべてを agent に任せる必要はない一方で、毎回の使い捨てプロンプトに閉じると学習が蓄積しにくい、という点です。保存できる workflow、呼び出せる skill、プロジェクト単位の loop、複数モデルをまとめる compound API、組織としての ecosystem を、それぞれ小さく接続していくことが重要になります。特に、どの層に何を保存するか、どの層で検証するか、どの層を人間がレビューするかを決めないと、便利な自動化が再現不能な属人芸になりやすいです。</p>
+<p>Podcast では、今日の4本を「AIエージェント運用の再利用レイヤー」という一本の話にまとめると聞きやすそうです。前半で、スキルと workflow の境界、Claude Code を project loop として見る意味を話し、後半で Fusion のような compound model が自前ループをどこまで肩代わりするか、最後に Satya さんの ecosystem 論で、モデル導入だけでは安定しない理由を組織設計の話へ広げる流れが自然です。</p>
+<h2>重要ソース3本</h2>
+<ul>
+<li><code>wiki/sources/gota-bara-pi-dynamic-workflows-agent-skills-x-2026-06-14.md</code></li>
+<li><code>wiki/sources/openrouter-fusion-api-compound-model-x-2026-06-13.md</code></li>
+<li><code>wiki/sources/voxyz-ai-claude-code-maxxing-project-loop-x-2026-06-14.md</code></li>
+</ul>
+<h2>追加された主なKBノート</h2>
+<ul>
+<li><code>wiki/sources/gota-bara-pi-dynamic-workflows-agent-skills-x-2026-06-14.md</code></li>
+<li><code>wiki/sources/openrouter-fusion-api-compound-model-x-2026-06-13.md</code></li>
+<li><code>wiki/sources/satya-nadella-frontier-without-an-ecosystem-is-not-stable-x-2026-06-14.md</code></li>
+<li><code>wiki/sources/voxyz-ai-claude-code-maxxing-project-loop-x-2026-06-14.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-product-market-fit.md]] — Simon Willison&#x27;s market analysis that Anthropic/OpenAI have found product-market fit through coding/general-purpose agents, API-aligned enterprise pricing, and high-value professional usage.</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents, and org ownership.</li>
+<li>[[about-hiroppy-founders-playbook.md]] — Anthropic&#x27;s official founder playbook PDF: AI-native startup lifecycle across Idea, MVP, Launch, and Scale, with Claude Chat/Cowork/Code stage usage, validation gates, agentic technical debt risks, founder bottleneck removal, and moat formation.</li>
+<li>[[izanami-claude-code-large-codebase-best-practices.md]] — Japanese practitioner explainer on Claude Code large-codebase setup: live repo search, thin layered CLAUDE.md, subdirectory startup, hooks, stale-rule pruning, and adoption ownership.</li>
+<li>[[newspicks-harness-engineering-what-is-it.md]] — Japanese explainer separating evalua</li>
+</ul>
+<h3>Gota - pi-dynamic-workflows and Agent Skills</h3>
+<p>Source note: <code>wiki/sources/gota-bara-pi-dynamic-workflows-agent-skills-x-2026-06-14.md</code></p>
+<h1>Gota - pi-dynamic-workflows and Agent Skills</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/gota-bara-pi-dynamic-workflows-agent-skills-x-2026-06-14.md]]</li>
+<li>Source type: X bookmark snapshot / X post with repository link</li>
+<li>Bookmark source: xurl bookmarks capture</li>
+<li>Canonical URL: https://x.com/i/status/2066272466792521884</li>
+<li>Primary URL: https://github.com/QuintinShaw/pi-dynamic-workflows</li>
+<li>Author: Gota / @gota_bara</li>
+<li>Posted: 2026-06-14T21:32:00.000Z</li>
+<li>Captured: 2026-06-15 via xurl bookmarks capture</li>
+<li>Public metrics at capture: 0 reposts, 0 replies, 10 likes, 0 quotes, 7 bookmarks, 883 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This post connects a concrete dynamic-workflows repository to a practical agent-skill insight: if workflows can be saved, Agent Skills can simply invoke them. That makes the skill layer a dispatcher for reusable orchestration rather than a place where every workflow has to be reauthored.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Saved workflows should become reusable operational assets.</li>
+<li>Agent Skills can call existing workflows instead of duplicating orchestration logic.</li>
+<li>Dynamic workflow ideas are more durable when they are packaged for reuse and invocation.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post directly names <code>pi-dynamic-workflows</code>.</li>
+<li>The post explicitly says workflows can be saved and called from Agent Skills with a short instruction.</li>
+<li>The GitHub repository is the stronger primary source for the workflow implementation itself.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/navigable-agent-skills.md]]</li>
+<li>[[../concepts/workflow-compilation.md]]</li>
+<li>[[../concepts/loop-engineering.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/skill-optimization.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/agent-harness-landscape.md]]</li>
+<li>[[../maps/orchestration-patterns-faq.md]]</li>
+<li>[[../maps/agent-harness-co</li>
+</ul>
+<h3>OpenRouter - Fusion API / compound model</h3>
+<p>Source note: <code>wiki/sources/openrouter-fusion-api-compound-model-x-2026-06-13.md</code></p>
+<h1>OpenRouter - Fusion API / compound model</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/openrouter-fusion-api-compound-model-x-2026-06-13.md]]</li>
+<li>Source type: X bookmark snapshot / X product announcement</li>
+<li>Bookmark source: xurl bookmarks capture</li>
+<li>Canonical URL: https://x.com/i/status/2065856853989270011</li>
+<li>Primary URL: https://openrouter.ai/openrouter</li>
+<li>Supporting primary source: https://openrouter.ai/openrouter</li>
+<li>Supporting announcement page: https://openrouter.ai/blog/announcements/</li>
+<li>Author: OpenRouter / @OpenRouter</li>
+<li>Posted: 2026-06-13T18:00:30.000Z</li>
+<li>Captured: 2026-06-15 via xurl bookmarks capture</li>
+<li>Public metrics at capture: 1529 reposts, 588 replies, 13099 likes, 1064 quotes, 11974 bookmarks, 4793178 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>OpenRouter&#x27;s Fusion announcement turns model routing into a productized compound-model pattern. Instead of exposing one model at a time, Fusion wraps a panel of models plus a judge into one API surface, which makes cost/performance tradeoffs explicit and operator-friendly.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Multiple models can be fused into one user-facing API.</li>
+<li>A judge model can synthesize a panel&#x27;s answers into a structured result.</li>
+<li>The best use cases are research, critique, and other high-stakes tasks where the cost of being wrong is high.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The X post says Fusion is a &quot;compound model&quot; and claims frontier-level quality at roughly half the price.</li>
+<li>OpenRouter&#x27;s own model page says Fusion performs a small multi-model deliberation with web search and web fetch enabled, then synthesizes consensus, contradictions, partial coverage, and blind spots.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/llm-inference-performance.md]]</li>
+<li>[[../concepts/ai-roi-model.md]]</li>
+<li>[[../concepts/generator-evaluator-loop.md]]</li>
+<li>[[../concepts/loop-engineering.md]]</li>
+</ul>
+<h3>Satya Nadella - A frontier without an ecosystem is not stable</h3>
+<p>Source note: <code>wiki/sources/satya-nadella-frontier-without-an-ecosystem-is-not-stable-x-2026-06-14.md</code></p>
+<h1>Satya Nadella - A frontier without an ecosystem is not stable</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/satya-nadella-frontier-without-an-ecosystem-is-not-stable-x-2026-06-14.md]]</li>
+<li>Source type: X bookmark snapshot / X article card</li>
+<li>Bookmark source: xurl bookmarks capture</li>
+<li>Canonical URL: https://x.com/i/status/2066182223213293753</li>
+<li>Primary URL: https://x.com/i/article/2065582894790365184</li>
+<li>Author: Satya Nadella / @satyanadella</li>
+<li>Posted: 2026-06-14T15:33:24.000Z</li>
+<li>Captured: 2026-06-15 via xurl bookmarks capture</li>
+<li>Public metrics at capture: 3331 reposts, 1601 replies, 17814 likes, 1906 quotes, 24066 bookmarks, 24744719 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Satya&#x27;s X article frames AI-era competition as an ecosystem-compounding problem, not only a frontier-model problem. The title signals that human capital, token capital, and operational layers need to reinforce one another if an organization wants frontier technology to stay stable and useful.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Frontier technology without an ecosystem is unstable.</li>
+<li>Value comes from the loop between human capital and token capital.</li>
+<li>AI-era firms need connected layers that compound together rather than isolated model adoption.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark capture only exposes the article title card, so the title is the strongest directly visible evidence.</li>
+<li>The post&#x27;s volume suggests the &quot;ecosystem&quot; framing is resonating as a broad operating-model metaphor, not just a product take.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/company-brain.md]]</li>
+<li>[[../concepts/ai-roi-model.md]]</li>
+<li>[[../concepts/context-graph.md]]</li>
+<li>[[../concepts/organizational-intent-clarity.md]]</li>
+<li>[[../concepts/agentic-jevons-paradox.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/context-graph-and-company-brain.md]]</li>
+<li>[[../maps/ai-adoption-roi-and-capability-invest</li>
+</ul>
+<h3>Vox - claude code-maxxing: treat Claude Code like a project loop</h3>
+<p>Source note: <code>wiki/sources/voxyz-ai-claude-code-maxxing-project-loop-x-2026-06-14.md</code></p>
+<h1>Vox - claude code-maxxing: treat Claude Code like a project loop</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/voxyz-ai-claude-code-maxxing-project-loop-x-2026-06-14.md]]</li>
+<li>Source type: X bookmark snapshot / X article card</li>
+<li>Bookmark source: xurl bookmarks capture</li>
+<li>Canonical URL: https://x.com/i/status/2066126725348532530</li>
+<li>Primary URL: https://x.com/i/article/2066119113991188480</li>
+<li>Author: Vox / @Voxyz_ai</li>
+<li>Posted: 2026-06-14T11:52:52.000Z</li>
+<li>Captured: 2026-06-15 via xurl bookmarks capture</li>
+<li>Public metrics at capture: 21 reposts, 6 replies, 123 likes, 1 quotes, 274 bookmarks, 21224 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This article card frames Claude Code as something to loop around at the project level, not just as a faster terminal. That is a small but important shift: the unit of reuse becomes the workflow, the saved procedure, and the recurring project loop.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Claude Code should be run as part of a project loop rather than a one-off prompt interface.</li>
+<li>Repeated orchestration should be saved and reused.</li>
+<li>Skills and workflows are the durable layer; prompts are just the entry point.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark capture exposes only the title card, so the note should stay close to that title.</li>
+<li>The title itself is a strong signal that the article is about loop design rather than merely tool tips.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/loop-engineering.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/workflow-compilation.md]]</li>
+<li>[[../concepts/navigable-agent-skills.md]]</li>
+<li>[[../concepts/memory-skill-harness.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/coding-agent-harness-patterns.md]]</li>
+<li>[[../maps/orchestration-patterns-faq.md]]</li>
+<li>[[../maps/agent-harness-control-taxonomy.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>What is the cleanest boundary between a project loop and</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>5</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
