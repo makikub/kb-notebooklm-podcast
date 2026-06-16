@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-16 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-16/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-16</header>
+<h1>KB Daily Digest 2026-06-16</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-16/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-16">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-16</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-16</h1>
+<p>今日の knowledge-base-llm は、UTC 2026-06-16 に X ブックマーク由来の ingest が 1 コミット入り、raw 記録 4 件、wiki/source ノート 4 件が追加されました。大きな compile 更新や concept/map 本体の直接更新はなく、今回も source 層の追加が中心です。ただし、昨日に続いて「エージェントを一回きりの応答装置ではなく、目標、監督、検証、探索面を持つ運用システムとして扱う」という流れがはっきりしています。</p>
+<p>全体トレンドは、AI エージェントの実務利用が「人間が逐次確認する HITL」から、「人間がループ全体を監督し、必要な箇所だけ介入する HOTL」へ少しずつ重心を移していることです。スナガクさんの HOTL / Human on the Loop は、その方向をもっとも短く表したソースです。確認を毎段階に挟むと、品質保証のつもりがワークフロー全体の停止点になりやすい。今日追加された他のソースも、Claude Code の反復ループ、Codex の <code>/goal</code>、Twitter Atlas の関係グラフという形で、「人間がどこを見るべきか」「エージェントにどこまで走らせるか」を考える材料になっています。</p>
+<p>重要ソースの1本目は、<strong>スナガク — HOTL / Human on the Loop</strong> です。ここでの読みどころは、HITL を否定するというより、確認の置き場所を再設計している点です。人間が全工程のゲートになると、AI は自律的に完了へ進めません。一方で、人間を完全に外すと、 silent failure や意図のズレが見逃されます。KB の文脈では、<code>approval-policy</code>、<code>agent-autonomy</code>、<code>long-running-agents</code> をつなぐ実務的な論点であり、「どのステップを自動化し、どの判断を人間に残すか」を決めるための短いラベルとして使えます。</p>
+<p>重要ソースの2本目は、<strong>0xMorty — The 9-Step Loop That Turns Claude Code Into a Senior Engineer</strong> です。取得できているのは X article card のタイトル中心で、9ステップの本文はまだ KB 内では検証できません。それでも、タイトルが示す方向は重要です。Claude Code を単なるプロンプト入力先ではなく、シニアエンジニア的な振る舞いに近づけるための反復プロセスとして扱っているからです。これは <code>loop-engineering</code>、<code>self-verification</code>、<code>coding-agent-harness-patterns</code> の周辺に置ける信号で、今後本文が取得できれば、どのステップが harness 側の設計で、どのステップが repo や skill 側の設計なのかを分けて整理したいところです。</p>
+<p>重要ソースの3本目は、<strong>Tibo — Codex can see and set its own /goal</strong> です。Codex が <code>/goal</code> を見て、自分で設定できるという話は、エージェントの制御面が「外から与えられるタスク」だけではなく、「意図を読んで自分の作業境界を作る面」へ広がっていることを示しています。これは便利な一方で、境界設定がズレると、 agent が自信を持って間違った目的へ進むリスクもあります。KB では <code>agent-autonomy</code> や <code>goal-driven execution</code> の議論に戻し、「自己目標設定を許すなら、どんな制約、ログ、レビュー面が必要か」を考える材料になります。</p>
+<p>4本目の <strong>tiago — Twitter Atlas</strong> は、今日の流れの中では少し異なる入口です。Twitter Atlas は、アカウント同士の会話や近さを空間的なマップとして見せるプロダクト launch card で、ソーシャルネットワークを平たいリストではなく、隣接関係とクラスターで理解する発想を示しています。KB の <code>context-graph</code>、<code>compiled-wiki</code>、<code>research-os-query-paths</code> と相性がよく、エージェント運用でも「次に読むべき近傍」「判断に関係する隣接概念」「人間が監督すべきクラスタ」をどう見せるかという UI / 知識地図の話につながります。</p>
+<p>今回の source 追加によって、KB の地図上では <code>loop-engineering</code>、<code>agent-autonomy</code>、<code>approval-policy</code>、<code>context-graph</code> の周辺が少し濃くなりました。concept/map 本体は今日は更新されていませんが、次に compile するなら、HOTL と goal 自己設定を同じ地図に置き、エージェントを走らせる自由度と、人間が観測・介入する面の関係を整理するとよさそうです。Claude Code の 9-step loop はプロセス側、Codex の <code>/goal</code> は制御面、Twitter Atlas は観測面の比喩として、それぞれ別の角度から同じ問題を照らしています。</p>
+<p>実務上の読みどころは、「自動化を強めるほど、人間の役割が消える」のではなく、「人間の役割を細かい確認者から、ループ設計者、例外処理者、観測面の編集者へ移す必要がある」という点です。毎回の approve / reject ではなく、どこでエージェントが自分の目標を確認し、どこで検証し、どこで人間に戻すかを設計できるチームほど、長いタスクを止めずに走らせやすくなります。</p>
+<p>Podcast では、今日の4本を「エージェントの自律性を上げるとき、人間はどこに立つのか」という一本の話にまとめると聞きやすそうです。前半で HOTL と HITL の違いを説明し、中盤で Claude Code の loop と Codex の <code>/goal</code> を使って、エージェント自身が工程や目的を持つ意味を掘る。後半で Twitter Atlas を持ち出し、長いループを人間が監督するには、ログやグラフや近傍探索のような観測面が不可欠だ、という流れにすると自然です。</p>
+<h2>重要ソース3本</h2>
+<ul>
+<li><code>wiki/sources/suna-gaku-hotl-human-on-the-loop-ai-complete-x-2026-06-14.md</code></li>
+<li><code>wiki/sources/0xmorty-9-step-loop-claude-code-senior-engineer-x-2026-06-15.md</code></li>
+<li><code>wiki/sources/thsottiaux-codex-set-own-goal-x-2026-06-14.md</code></li>
+</ul>
+<h2>追加された主なKBノート</h2>
+<ul>
+<li><code>wiki/sources/0xmorty-9-step-loop-claude-code-senior-engineer-x-2026-06-15.md</code></li>
+<li><code>wiki/sources/suna-gaku-hotl-human-on-the-loop-ai-complete-x-2026-06-14.md</code></li>
+<li><code>wiki/sources/thsottiaux-codex-set-own-goal-x-2026-06-14.md</code></li>
+<li><code>wiki/sources/tiagozip-twitter-atlas-all-of-twitter-map-x-2026-06-13.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>0xMorty — The 9-Step Loop That Turns Claude Code Into a Senior Engineer</h3>
+<p>Source note: <code>wiki/sources/0xmorty-9-step-loop-claude-code-senior-engineer-x-2026-06-15.md</code></p>
+<h1>0xMorty — The 9-Step Loop That Turns Claude Code Into a Senior Engineer</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/0xmorty-9-step-loop-claude-code-senior-engineer-x-2026-06-15.md]]</li>
+<li>Original URL: https://x.com/i/status/2066469702075920794</li>
+<li>Article URL: https://x.com/i/article/2066436932624629760</li>
+<li>Author: 0xMorty / @0xMortyx</li>
+<li>Posted: 2026-06-15T10:35:44.000Z</li>
+<li>Captured: 2026-06-16 via xurl bookmarks capture</li>
+<li>Type: X article card</li>
+<li>Evidence strength: bookmark snapshot metadata plus article title; the capture does not expose the article body</li>
+</ul>
+<h2>Summary</h2>
+<p>The bookmark surfaces an X article titled &quot;The 9-Step Loop That Turns Claude Code Into a Senior Engineer.&quot; Even without the body text, the title is a strong signal for a structured, repeatable operating loop around Claude Code rather than a single prompt pattern.</p>
+<h2>Key claims</h2>
+<ul>
+<li>Claude Code can be improved through a staged loop instead of ad hoc prompting.</li>
+<li>The useful unit is a recurring operating process, not a one-off instruction.</li>
+<li>The article frames the result as moving Claude Code toward more senior-engineer-like behavior.</li>
+</ul>
+<h2>Evidence / examples</h2>
+<ul>
+<li>The capture contains the article title and the canonical post ID.</li>
+<li>No article body was exposed in the bookmark payload, so the exact 9-step content is not yet independently inspectable here.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X article card capture</li>
+<li>Confidence: medium</li>
+<li>Supports: loop-engineering, long-running-agent, and workflow-design claims</li>
+<li>Main limitations: title-only capture; the article body is not present in the bookmark payload</li>
+<li>Best use: practitioner signal for recurring operational loops around coding agents</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/loop-engineering.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/self-verification.</li>
+</ul>
+<h3>スナガク — HOTL / Human on the Loop</h3>
+<p>Source note: <code>wiki/sources/suna-gaku-hotl-human-on-the-loop-ai-complete-x-2026-06-14.md</code></p>
+<h1>スナガク — HOTL / Human on the Loop</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/suna-gaku-hotl-human-on-the-loop-ai-complete-x-2026-06-14.md]]</li>
+<li>Original URL: https://x.com/i/status/2065952537132630320</li>
+<li>Author: スナガク / @suna_gaku</li>
+<li>Posted: 2026-06-14T00:20:43.000Z</li>
+<li>Captured: 2026-06-16 via xurl bookmarks capture</li>
+<li>Type: X post</li>
+<li>Evidence strength: direct bookmark text from xurl bookmarks capture</li>
+</ul>
+<h2>Summary</h2>
+<p>The post proposes HOTL, &quot;Human on the Loop,&quot; as a way to remove the manual confirmation phase from an AI workflow and let the AI finish the flow itself. The main objection to HITL here is that a blocked human can stall the entire system.</p>
+<h2>Key claims</h2>
+<ul>
+<li>Human-on-the-loop is preferable when the goal is end-to-end completion.</li>
+<li>Human-in-the-loop introduces a human bottleneck if confirmation is required at every phase.</li>
+<li>The useful shift is from supervision-by-default to supervision only where it matters.</li>
+</ul>
+<h2>Evidence / examples</h2>
+<ul>
+<li>The bookmark text explicitly contrasts HOTL and HITL.</li>
+<li>The claim is expressed as a workflow principle, not as a benchmark or implementation study.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: practitioner X post</li>
+<li>Confidence: medium</li>
+<li>Supports: agent-autonomy, approval-policy, and workflow-decomposition discussions</li>
+<li>Main limitations: no concrete system design, evaluation data, or counterexample discussion</li>
+<li>Best use: shorthand for a less-blocking oversight model</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/human-in-the-loop.md]]</li>
+<li>[[../concepts/agent-autonomy.md]]</li>
+<li>[[../concepts/approval-policy.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/approval-policy-patterns-and-escalation.md]]</li>
+<li>[[../maps/agent-deployment-gates-and-operational-risk.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which steps can safely move from HITL to HOTL without cr</li>
+</ul>
+<h3>Tibo — Codex can see and set its own /goal</h3>
+<p>Source note: <code>wiki/sources/thsottiaux-codex-set-own-goal-x-2026-06-14.md</code></p>
+<h1>Tibo — Codex can see and set its own /goal</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/thsottiaux-codex-set-own-goal-x-2026-06-14.md]]</li>
+<li>Original URL: https://x.com/i/status/2066270561081454989</li>
+<li>Related post: https://twitter.com/skirano/status/2066225908202053818</li>
+<li>Author: Tibo / @thsottiaux</li>
+<li>Posted: 2026-06-14T21:24:25.000Z</li>
+<li>Captured: 2026-06-16 via xurl bookmarks capture</li>
+<li>Type: X post / quote-fragment</li>
+<li>Evidence strength: direct bookmark text from xurl bookmarks capture</li>
+</ul>
+<h2>Summary</h2>
+<p>The post frames Codex as more than a command executor: it can see and set its own <code>/goal</code>, which is a concise way to describe meta-prompting moving into the agent&#x27;s operating loop. The underlying intuition is that the agent should be able to infer task boundaries from intent and keep steering itself.</p>
+<h2>Key claims</h2>
+<ul>
+<li>Codex can participate in goal formation, not just goal execution.</li>
+<li>Goal-setting can be treated as part of the agent surface itself.</li>
+<li>Meta prompting becomes more useful when the agent can translate intent into its own task structure.</li>
+</ul>
+<h2>Evidence / examples</h2>
+<ul>
+<li>The bookmark text explicitly names <code>/goal</code> and the generalization to meta prompting.</li>
+<li>The linked Skirano status provides adjacent context, but the bookmark already contains the core claim.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: practitioner X post</li>
+<li>Confidence: medium</li>
+<li>Supports: loop-engineering, agent-autonomy, and goal-driven execution claims</li>
+<li>Main limitations: brief quote-style capture, no implementation detail, and no evaluation data</li>
+<li>Best use: a compact signal that <code>/goal</code> is becoming a self-directed control surface</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/loop-engineering.md]]</li>
+<li>[[../concepts/agent-autonomy.md]]</li>
+<li>[[../concepts/incremental-progress.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+</ul>
+<h2>Related M</h2>
+<h3>tiago — Twitter Atlas</h3>
+<p>Source note: <code>wiki/sources/tiagozip-twitter-atlas-all-of-twitter-map-x-2026-06-13.md</code></p>
+<h1>tiago — Twitter Atlas</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/tiagozip-twitter-atlas-all-of-twitter-map-x-2026-06-13.md]]</li>
+<li>Original URL: https://x.com/i/status/2065735939507601802</li>
+<li>Product URL: https://atlas.tiago.zip?ref=launch_tweet</li>
+<li>Author: tiago / @tiagozip_</li>
+<li>Posted: 2026-06-13T10:00:02.000Z</li>
+<li>Captured: 2026-06-16 via xurl bookmarks capture</li>
+<li>Type: X post / product launch card</li>
+<li>Evidence strength: bookmark snapshot metadata plus the linked product title and description</li>
+</ul>
+<h2>Summary</h2>
+<p>Twitter Atlas is a map of social proximity: each account is placed near the people it talks to, and the product pitches itself as a way to understand your cluster, neighbors, and position in the network. The useful KB signal is the graph-first way it makes relationships visible.</p>
+<h2>Key claims</h2>
+<ul>
+<li>Social networks can be understood as spatial maps of adjacency.</li>
+<li>Cluster position can reveal context that a flat list of accounts does not.</li>
+<li>Graph visualization can surface relational structure for exploration.</li>
+</ul>
+<h2>Evidence / examples</h2>
+<ul>
+<li>The bookmark text explicitly describes an account map and cluster placement.</li>
+<li>The linked product title says it is a map of all of Twitter, not just a single profile view.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: product launch card</li>
+<li>Confidence: medium</li>
+<li>Supports: context-graph and graph-navigation analogies</li>
+<li>Main limitations: this is a launch claim, not a study of actual analytic value</li>
+<li>Best use: inspiration for graph-shaped context surfaces and neighborhood exploration</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/context-graph.md]]</li>
+<li>[[../concepts/compiled-wiki.md]]</li>
+<li>[[../concepts/open-knowledge-format.md]]</li>
+<li>[[../concepts/context-engineering.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/context-graph-and-company-brain.md]]</li>
+<li>[[../maps/research-os-query-paths.md]]</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>4</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
