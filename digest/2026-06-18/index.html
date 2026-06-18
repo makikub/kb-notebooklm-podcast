@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-18 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-18/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-18</header>
+<h1>KB Daily Digest 2026-06-18</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-18/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-18">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-18</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-18</h1>
+<p>今日の knowledge-base-llm は、UTC 2026-06-18 に X ブックマーク由来の新規 ingest / compile がありました。確認できた追加は、Cursor の cloud agent handoff、Figma MCP の Slides / FigJam / Make 拡張、Claude loop 作成記事へのポインタ、そして Codex の open source model 対応ドキュメントポインタの4本です。いずれも単発のTipsというより、エージェントをどこで動かし、どの成果物へ接続し、どのモデルやループで運用するかという「agent harness」の実装面に寄っています。</p>
+<p>全体トレンドは、「AIエージェントがチャット欄やローカルIDEの中だけで完結しなくなっている」ことです。Cursor はローカルで始めた agent をクラウドへ移し、ノートPCを閉じても走らせ、スマートフォンから指示し、複数agentを並列に動かしてPRとdemoを返す流れを示しています。一方で Figma は MCP server の操作対象をデザインキャンバスだけでなく、Slides、FigJam、Figma Make の code-to-canvas round trip、custom fonts、image export へ広げています。コード生成の先にあるレビュー資料、ホワイトボード、デザイン成果物まで agent-accessible surface に入ってきた、という読みができます。</p>
+<p>重要ソースの1本目は、<strong>Cursor - local agents can move to the cloud and keep working</strong> です。これは公式X投稿のproduct teaserで、証拠としては高いものの、正確なrollout範囲や制約はまだ分かりません。それでも、phone prompting、parallel agents、PR delivery、demo返却が同じ文脈で語られている点は大きいです。KB上では <code>background-agents</code>、<code>long-running-agents</code>、<code>managed-agents</code>、<code>multi-agent-orchestration</code> に接続され、agentを「一回の補完」ではなく「遠隔で継続する作業単位」として扱う方向を補強しました。</p>
+<p>重要ソースの2本目は、<strong>Figma - MCP server expands to Slides, FigJam, and Make round-tripping</strong> です。Figma MCP の拡張は、agentic design workflow の対象が「画面を少し編集する」だけではなく、deck生成、board作成、code/canvas往復、fontやimage exportを含む成果物生成へ広がることを示しています。実務的には、AIが作るものをコード差分だけでレビューするのではなく、design review、planning board、presentation deck といった別形式のartifactでも検証できるようになる可能性があります。</p>
+<p>重要ソースの3本目は、<strong>Tibo - Codex works with open source models too</strong> です。これはX投稿自体は短い reminder ですが、リンク先が OpenAI の Codex advanced config docs であるため、Codex App / CLI / SDK が local provider 経由で open source model と組み合わせられるという deployment signal として扱えます。KBでは、モデル選択がプロダクト境界ではなく構成項目になっていく、という観点で <code>coding-agents</code>、<code>tool-accessibility</code>、<code>agent-management</code>、<code>harness-engineering</code> に接続されました。</p>
+<p>4本目の <strong>MIKE - How to Create Loops with Claude</strong> は、現時点では記事本文がcaptureされておらず、article card title だけの薄いソースです。そのため深い主張は避けつつ、<code>loop-engineering</code>、<code>generator-evaluator-loop</code>、<code>feedback-controls</code>、<code>self-verification</code> の後続enrichment候補として登録されています。今日の他3本が実行環境、成果物面、モデル構成の話だとすると、このソースは「その上でagentをどう反復させるか」という運用設計側の入口です。</p>
+<p>KB内の地図更新としては、今回の4ソースが <code>agent-harness-landscape</code>、<code>harness-engineering-vendor-comparison</code>、<code>coding-agent-harness-patterns</code>、<code>coding-agent-cognitive-debt-and-review-capacity</code> に分散して接続されました。特に Cursor と Figma は vendor comparison に載せやすい対比です。Cursor は agent execution / PR workflow のcontrol plane、Figma は agent output artifact / design surface の拡張として読めます。Codex OSS mode は、同じharnessを別モデルへ差し替える portability の論点を足します。</p>
+<p>実務上の示唆は、agent導入を「どのモデルが賢いか」だけで見ない方がよい、ということです。長時間実行できるか、モバイルや非同期レビューで扱えるか、成果物がPRだけでなくデモやスライドやボードとして残るか、そしてモデルbackendを将来差し替えられるか。今日の更新は、こうした運用上の接続面が製品差になり始めていることを示しています。逆に言えば、agentを並列化・クラウド化するほど、reviewability、guardrails、repo内の衝突管理、生成artifactの品質確認が重くなるはずです。</p>
+<p>Podcast化するなら、今日の回は「agent harness はIDEから運用基盤へ広がる」を主題にすると聞きやすそうです。前半で Cursor の cloud handoff を取り上げ、agent がローカル端末から離れて継続作業化する流れを説明する。中盤で Figma MCP を使って、エージェントの出力先がコードからデザイン、スライド、ホワイトボードへ広がる話をする。後半で Codex OSS mode と Claude loops をつなぎ、モデル選択とloop設計はharness側の構成問題になっていく、というまとめにすると、今日の4本が一つの線になります。</p>
+<h2>重要ソース3本</h2>
+<ul>
+<li><code>wiki/sources/cursor-ai-cloud-agents-phone-x-2026-06-17.md</code></li>
+<li><code>wiki/sources/figma-figma-mcp-server-slides-figjam-make-x-2026-06-16.md</code></li>
+<li><code>wiki/sources/thsottiaux-codex-open-source-models-x-2026-06-17.md</code></li>
+</ul>
+<h2>追加・更新された主なKBノート</h2>
+<ul>
+<li><code>raw/x/bookmarks/bookmarks-20260618T0000Z.json</code></li>
+<li><code>raw/articles/cursor-ai-cloud-agents-phone-x-2026-06-17.md</code></li>
+<li><code>raw/articles/figma-figma-mcp-server-slides-figjam-make-x-2026-06-16.md</code></li>
+<li><code>raw/articles/mikenevermiss-how-to-create-loops-with-claude-x-2026-06-15.md</code></li>
+<li><code>raw/articles/thsottiaux-codex-open-source-models-x-2026-06-17.md</code></li>
+<li><code>wiki/sources/cursor-ai-cloud-agents-phone-x-2026-06-17.md</code></li>
+<li><code>wiki/sources/figma-figma-mcp-server-slides-figjam-make-x-2026-06-16.md</code></li>
+<li><code>wiki/sources/mikenevermiss-how-to-create-loops-with-claude-x-2026-06-15.md</code></li>
+<li><code>wiki/sources/thsottiaux-codex-open-source-models-x-2026-06-17.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Cursor - local agents can move to the cloud and keep working</h3>
+<p>Source note: <code>wiki/sources/cursor-ai-cloud-agents-phone-x-2026-06-17.md</code></p>
+<h1>Cursor - local agents can move to the cloud and keep working</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/cursor-ai-cloud-agents-phone-x-2026-06-17.md]]</li>
+<li>Original URL: https://x.com/i/status/2067366343817805899</li>
+<li>Primary URL: https://x.com/cursor_ai/status/2067366343817805899/video/1</li>
+<li>Author: Cursor (@cursor_ai)</li>
+<li>Posted: 2026-06-17T21:58:40.000Z</li>
+<li>Captured: 2026-06-18 via xurl bookmarks capture</li>
+<li>Type: X post / product teaser</li>
+<li>Evidence strength: bookmark snapshot metadata plus official product teaser video</li>
+</ul>
+<h2>Summary</h2>
+<p>Cursor frames a cloud handoff for local agents as a practical workflow improvement: agents can keep running after the laptop is closed, be prompted from a phone, run in parallel, and return PRs with demos.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Cursor is moving agent execution from local machines into the cloud.</li>
+<li>Mobile prompting is part of the intended control surface.</li>
+<li>Parallel agent execution is a first-class use case.</li>
+<li>Returned PRs and demos imply an end-to-end remote work loop rather than only code editing.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text directly names cloud handoff, phone prompting, parallel agents, and PR delivery.</li>
+<li>The attached video preview indicates this is a product announcement, not just a community workaround.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X official product teaser</li>
+<li>Confidence: high for the announcement; medium for exact rollout scope</li>
+<li>Supports: long-running agents, managed agents, background execution, and remote operator control</li>
+<li>Main limitations: the bookmark does not expose technical constraints or pricing</li>
+<li>Best use: compare cloud agent control planes and remote workflow surfaces</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../co</li>
+</ul>
+<h3>Figma - MCP server expands to Slides, FigJam, and Make round-tripping</h3>
+<p>Source note: <code>wiki/sources/figma-figma-mcp-server-slides-figjam-make-x-2026-06-16.md</code></p>
+<h1>Figma - MCP server expands to Slides, FigJam, and Make round-tripping</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/figma-figma-mcp-server-slides-figjam-make-x-2026-06-16.md]]</li>
+<li>Original URL: https://x.com/i/status/2066923337889305038</li>
+<li>Primary URL: https://x.com/figma/status/2066923337889305038/video/1</li>
+<li>Author: Figma (@figma)</li>
+<li>Posted: 2026-06-16T16:38:19.000Z</li>
+<li>Captured: 2026-06-18 via xurl bookmarks capture</li>
+<li>Type: X post / official product update</li>
+<li>Evidence strength: bookmark snapshot metadata plus official product video preview</li>
+</ul>
+<h2>Summary</h2>
+<p>Figma says the MCP server now reaches beyond a single design canvas. The captured post highlights Slides generation/editing, FigJam board creation, code-to-canvas round-tripping in Make, plus custom font support and image exports.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The Figma MCP server can now handle slide decks, not just canvas edits.</li>
+<li>FigJam boards are part of the same agent-accessible workflow surface.</li>
+<li>Figma Make now supports code-to-canvas round-tripping in the captured product update.</li>
+<li>Custom font support and image exports make the surface more usable for production artifact generation.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text explicitly names Slides, FigJam, Make, custom fonts, and image exports.</li>
+<li>The attached video preview indicates this is a product update rather than an isolated user report.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X official product update</li>
+<li>Confidence: high for the feature announcement; medium for broader workflow implications</li>
+<li>Supports: richer design-agent artifact generation, agent-accessible design surfaces, and code/canvas round-tripping</li>
+<li>Main limitations: the bookmark does not expose the full demo details or implementation limits</li>
+<li>Best use: connect to agentic design workflows and output-artifact handli</li>
+</ul>
+<h3>MIKE - How to Create Loops with Claude</h3>
+<p>Source note: <code>wiki/sources/mikenevermiss-how-to-create-loops-with-claude-x-2026-06-15.md</code></p>
+<h1>MIKE - How to Create Loops with Claude</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/mikenevermiss-how-to-create-loops-with-claude-x-2026-06-15.md]]</li>
+<li>Original URL: https://x.com/i/status/2066401066518802637</li>
+<li>Primary URL: https://x.com/i/article/2066041362298912768</li>
+<li>Author: MIKE (@mikenevermiss)</li>
+<li>Posted: 2026-06-15T06:03:00.000Z</li>
+<li>Captured: 2026-06-18 via xurl bookmarks capture</li>
+<li>Type: X article card</li>
+<li>Evidence strength: bookmark snapshot metadata plus article title</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark is an X article card titled &quot;How to Create Loops with Claude.&quot; The captured payload does not expose the article body, but the title itself is a useful pointer into practical loop design around Claude.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The source is explicitly about creating loops with Claude.</li>
+<li>The article-card framing suggests a practical workflow write-up rather than a product teaser.</li>
+<li>The bookmark is best treated as a source pointer until the article body is separately enriched.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The article title is captured in the bookmark payload.</li>
+<li>The post links to an X article URL rather than a generic thread or image card.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X article card</li>
+<li>Confidence: medium for the existence of a loop-design article; low for any deeper claims without the article body</li>
+<li>Supports: loop engineering, agent self-prompting, feedback loops, and workflow design</li>
+<li>Main limitations: the bookmark text is just a title and the article body was not captured here</li>
+<li>Best use: seed later enrichment or pair with other loop-engineering sources</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/loop-engineering.md]]</li>
+<li>[[../concepts/generator-evaluator-loop.md]]</li>
+<li>[[../concepts/feedback-controls.md]]</li>
+<li>[[../concepts/self-verification.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+</ul>
+<p>##</p>
+<h3>Tibo - Codex works with open source models too</h3>
+<p>Source note: <code>wiki/sources/thsottiaux-codex-open-source-models-x-2026-06-17.md</code></p>
+<h1>Tibo - Codex works with open source models too</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/thsottiaux-codex-open-source-models-x-2026-06-17.md]]</li>
+<li>Original URL: https://x.com/i/status/2067181377028538431</li>
+<li>Primary URL: https://developers.openai.com/codex/config-advanced#oss-mode-local-providers</li>
+<li>Author: Tibo (@thsottiaux)</li>
+<li>Posted: 2026-06-17T09:43:41.000Z</li>
+<li>Captured: 2026-06-18 via xurl bookmarks capture</li>
+<li>Type: X post / docs pointer</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked OpenAI docs page</li>
+</ul>
+<h2>Summary</h2>
+<p>The bookmark points to OpenAI docs showing that Codex App, CLI, and SDK can run with any open source model via local providers. That is a useful deployment signal because it makes Codex more portable across model backends.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Codex App, CLI, and SDK are not limited to OpenAI-hosted models.</li>
+<li>Open source models can be used through the documented local-provider path.</li>
+<li>Model backend choice is becoming a configuration concern rather than a product boundary.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text explicitly calls out support for any open source model.</li>
+<li>The linked docs page is the strongest provenance for the claim.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X docs pointer</li>
+<li>Confidence: high for the existence of the documented OSS-mode path; medium for details without reading the docs page directly here</li>
+<li>Supports: model-agnostic agent setups, local-provider configuration, and portable Codex deployments</li>
+<li>Main limitations: the tweet is a reminder rather than a detailed explanation</li>
+<li>Best use: compare Codex portability across backends and deployment modes</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../co</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>4</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
