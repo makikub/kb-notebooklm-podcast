@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-19 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-19/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-19</header>
+<h1>KB Daily Digest 2026-06-19</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-19/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-19">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-19</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-19</h1>
+<p>UTC 2026-06-19 の knowledge-base-llm 更新は、Dan Farrelly の X Article「The Agent Loop Architecture」の partial capture を中心にした小さめだが焦点のはっきりした ingest だった。新規 raw は <code>raw/articles/djfarrelly-agent-loop-architecture-x-2026-06-18.md</code>、新規 wiki source は <code>wiki/sources/djfarrelly-agent-loop-architecture-x.md</code>。あわせて <code>loop-engineering</code>、<code>agent-harness-landscape</code>、<code>operations</code> navigation、<code>INDEX</code>、source README が更新され、KB上では「loop をどう設計するか」から一歩進んで「その loop を何が走らせるのか」という運用ランタイム側の問いが補強された。</p>
+<p>今回の重要ソースは1本だけだが、既存KB内の関連ソースと合わせると、今日の読みどころは3点に整理できる。第一に Dan Farrelly の新規 source note は、agent loop を単なる「LLM + tools」や while-loop 的な推論パターンとしてではなく、永続化・リトライ・再開・人間チェックポイントを含む durable orchestration の問題として扱う。第二に Addy Osmani の「Loop Engineering」は、agent に成果へ向かう反復構造を与える設計面の語彙を提供しており、Farrelly の問いはそこに runtime / runner のレイヤーを足す位置づけになる。第三に Lance Martin / Fable 5 系の loop design notes は、大きめのタスク、worker loop、grading、effort selection、停止条件という実践側の設計課題を示していて、Farrelly の「what runs the loop?」と自然に接続する。</p>
+<p>ただし証拠品質には注意が必要。今回の raw capture は X の公開カードと検索スニペットに基づく partial capture で、本文全文はログインが必要だった。X API 側も <code>CreditsDepleted</code> で取得できていないため、KB note では「公開カードと検索-visible snippets で確認できる範囲」に主張を限定している。特に「durable orchestration is fundamental」という方向性は見えているが、Farrelly が具体的にどの orchestration primitives を推奨しているか、決定論的 workflow engine と model-directed loop control をどう分けているかは、今後全文を取得できたら再確認すべき open question として残った。</p>
+<p>全体トレンドとしては、KB内の agent harness landscape がさらに「内側の agent loop」から「外側の実行基盤」へ重心を移している。ここ数日の KB では loop engineering、Fable 5、dynamic workflows、project loop、self-improving system など、反復構造そのものを語るソースが増えていた。今日の更新は、その反復構造が実務システムになる瞬間に必要な、状態の置き場所、失敗時の復帰、非同期イベント、監視、権限境界、human checkpoint をまとめて扱う視点を足している。</p>
+<p>概念更新では <code>wiki/concepts/loop-engineering.md</code> に、async gap、retry、human checkpoint、external event をまたぐ loop には prompt pattern だけでなく runner / runtime が必要だ、という一文が追加された。これにより、loop engineering は「プロンプトや評価器の設計」だけでなく、「loop がどこで継続し、どこで止まり、どの証拠で再開するか」を扱う概念として少し広がった。安定した高頻度 loop は将来的に workflow compilation の候補になりうる、という既存の論点とも相性がよい。</p>
+<p>地図更新では <code>wiki/maps/agent-harness-landscape.md</code> に Dan Farrelly / Agent loop architecture のセクションが追加された。ここでは「what runs the loop?」が、inner loop の話から durable orchestration、persistence、retry、event resumption、operational runtime へのシフトとして位置づけられている。<code>wiki/navigation/operations.md</code> にも source entrypoint が追加され、長時間稼働、scheduled work、monitoring、handoff、context reset などの運用系の問いからこのソースに辿れるようになった。</p>
+<p>実務上の示唆は、agent loop を導入するときに「ループの形」だけを設計しても足りないという点にある。1回のセッションで完結する探索なら、LLMに tools を渡して self-check させる程度で十分なこともある。しかし、外部イベントを待つ、数時間後に再開する、失敗時に再試行する、人間承認を挟む、複数の worker / reviewer / grader を使う、といった条件が入ると、設計対象は prompt から orchestration substrate に移る。どの状態を durable にするか、どのログを evidence として残すか、retry budget と停止条件をどこに置くかが、品質と安全性を左右する。</p>
+<p>Podcastで掘るなら、今日は「loop は agent の思考様式なのか、それとも運用システムなのか」という問いを中心にすると話しやすい。まず Addy Osmani 的な loop engineering の背景を置き、次に Fable 5 / dynamic workflow 系の実践例を挟み、最後に Farrelly の「what runs the loop?」で runner / runtime / durable orchestration の話へ広げる構成がよい。明日以降の追跡ポイントは、Farrelly 本文の full capture、durable orchestration primitives の具体例、そして ephemeral loop と durable loop を分ける判断基準の3つ。</p>
+<p>公開HTML: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-19/</p>
+<p>NotebookLM用 source.md: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-19/source.md</p>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-product-market-fit.md]] — Simon Willison&#x27;s market analysis that Anthropic/OpenAI have found product-market fit through coding/general-purpose agents, API-aligned enterprise pricing, and high-value professional usage.</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents, and org ownership.</li>
+<li>[[about-hiroppy-founders-playbook.md]] — Anthropic&#x27;s official founder playbook PDF: AI-native startup lifecycle across Idea, MVP, Launch, and Scale, with Claude Chat/Cowork/Code stage usage, validation gates, agentic technical debt risks, founder bottleneck removal, and moat formation.</li>
+<li>[[izanami-claude-code-large-codebase-best-practices.md]] — Japanese practitioner explainer on Claude Code large-codebase setup: live repo search, thin layered CLAUDE.md, subdirectory startup, hooks, stale-rule pruning, and adoption ownership.</li>
+<li>[[newspicks-harness-engineering-what-is-it.md]] — Japanese explainer separating evalua</li>
+</ul>
+<h3>Dan Farrelly - The Agent Loop Architecture</h3>
+<p>Source note: <code>wiki/sources/djfarrelly-agent-loop-architecture-x.md</code></p>
+<h1>Dan Farrelly - The Agent Loop Architecture</h1>
+<h2>Metadata</h2>
+<ul>
+<li>Source: X post linking to X Article</li>
+<li>URL: https://x.com/djfarrelly/status/2067677007140278630</li>
+<li>Article URL: https://x.com/i/article/2067632189865365504</li>
+<li>Author: Dan Farrelly | Inngest.com (@djfarrelly)</li>
+<li>Date: 2026-06-18</li>
+<li>Raw capture: [[../../raw/articles/djfarrelly-agent-loop-architecture-x-2026-06-18.md]]</li>
+<li>Evidence quality: partial capture; public X card and search snippets only, because X API returned <code>CreditsDepleted</code> and the full article required login.</li>
+</ul>
+<h2>Summary</h2>
+<p>Farrelly&#x27;s article card frames &quot;The Agent Loop Architecture&quot; around a sharper question than &quot;what is a loop?&quot;: what runs the loop? The available snippets suggest the answer is durable orchestration. This makes the source useful as a bridge between [[../concepts/loop-engineering.md]] and [[../concepts/harness-engineering.md]]: agent loops are not just a reasoning pattern, but a runtime architecture that needs persistence, retries, observability, and operational boundaries.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The AI-agent discussion has converged on loops as a core primitive, but the design question shifts to the system that runs the loop.</li>
+<li>A bare &quot;LLM + tools&quot; framing is too thin for practical agent-loop architecture.</li>
+<li>Durable orchestration is a central ingredient for building agent loops that survive beyond a single prompt-response interaction.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The X card explicitly says the article asks &quot;what runs the loop?&quot; after noting that the discourse has converged on loops.</li>
+<li>Search snippets expose the phrase &quot;durable orchestration is fundamental to building your agent loop architecture.&quot;</li>
+<li>The source is affiliated with Inngest, so the durable-orchestration emphasis likely reflects workflow-runtime concerns, but that is an inference from aff</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Loop Engineering</h3>
+<p>KB note: <code>wiki/concepts/loop-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Loop Engineering</p>
+<p>  - Agent Loop Design</p>
+<hr>
+<h1>Loop Engineering</h1>
+<h2>Definition</h2>
+<p>Loop engineering is the practice of designing the repeatable work loop an agent runs inside: objective, context, worker roles, tool access, effort level, checkpoints, grading, retries, and stopping conditions.</p>
+<h2>Origin / Framing</h2>
+<p>The term was popularized in June 2026 by Addy Osmani&#x27;s &quot;Loop Engineering&quot; article. Osmani framed it around two public practitioner signals: Peter Steinberger&#x27;s claim that developers should design loops that prompt coding agents, and Boris Cherny&#x27;s claim that his job had shifted from prompting Claude directly to writing loops.</p>
+<h2>Why It Matters</h2>
+<p>As models handle larger tasks, the operator&#x27;s leverage shifts from writing one perfect prompt toward defining a loop that can generate work, evaluate it, and converge. This makes loop design a practical sub-surface of [[harness-engineering.md]].</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering.md]]</li>
+<li>[[generator-evaluator-loop.md</li>
+</ul>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Main dimensions</h2>
+<h3>1. Guidance before action</h3>
+<ul>
+<li>feedforward controls</li>
+<li>short map-like instructions</li>
+<li>architecture docs</li>
+<li>explicit plans</li>
+<li>feature lists</li>
+<li>templates and skills</li>
+</ul>
+<h3>2. Correction after action</h3>
+<ul>
+<li>tests</li>
+<li>linters</li>
+<li>structural checks</li>
+<li>browser-based verification</li>
+<li>AI review / evaluator agents</li>
+<li>recurring cleanup tasks</li>
+</ul>
+<h3>3. Continuity across sessions</h3>
+<ul>
+<li>progress logs</li>
+<li>commit history</li>
+<li>feature list artifacts</li>
+<li>initializer agent outputs</li>
+<li>context resets</li>
+</ul>
+<h3>4. Control of autonomy</h3>
+<ul>
+<li>approval policy</li>
+<li>human-in-the-loop checkpoints</li>
+<li>classifier-mediated approvals</li>
+<li>machine-c</li>
+</ul>
+<h3>Navigation: Operations / Long-Running Work</h3>
+<p>KB note: <code>wiki/navigation/operations.md</code></p>
+<h1>Navigation: Operations / Long-Running Work</h1>
+<h2>Use When</h2>
+<p>The question is about running agents over time: background agents, routines, scheduled work, handoffs, context resets, delegation, or monitoring.</p>
+<p>It also covers whether a recurring workflow should stay explicit or be compiled into model behavior.</p>
+<h2>Start Maps</h2>
+<ul>
+<li>[[../maps/ai-adoption-roi-and-capability-investment.md]]</li>
+<li>[[../maps/context-management-decisions.md]]</li>
+<li>[[../maps/orchestration-patterns-faq.md]]</li>
+<li>[[../maps/approval-policy-patterns-and-escalation.md]]</li>
+</ul>
+<h2>Core Concepts</h2>
+<ul>
+<li>[[../concepts/ai-adoption-j-curve.md]]</li>
+<li>[[../concepts/agentic-product-market-fit.md]]</li>
+<li>[[../concepts/ai-native-startup-lifecycle.md]]</li>
+<li>[[../concepts/verification-tax.md]]</li>
+<li>[[../concepts/ai-roi-model.md]]</li>
+<li>[[../concepts/agentic-jevons-paradox.md]]</li>
+<li>[[../concepts/long-running-agents.md]]</li>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/agent-first-organization.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/agent-dreaming.md]]</li>
+<li>[[</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>2</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
