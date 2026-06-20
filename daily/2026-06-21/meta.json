@@ -1,0 +1,15 @@
+{
+  "date": "2026-06-21T03:00:12.600155+09:00",
+  "topic_id": "wiki/maps/evidence-quality-and-source-trust.md",
+  "title": "Evidence Quality and Source Trust",
+  "output_dir": "outputs/notebooklm-podcast/2026-06-21",
+  "page": "outputs/notebooklm-podcast/2026-06-21/notebooklm-source.md",
+  "related": [
+    "wiki/maps/research-os-query-paths.md",
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/concepts/evidence-quality.md",
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/maps/harness-engineering-vendor-comparison.md"
+  ],
+  "char_count": 8976
+}
