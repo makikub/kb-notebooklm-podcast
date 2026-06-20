@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-20 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-20/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-20</header>
+<h1>KB Daily Digest 2026-06-20</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-20/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-20">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-20</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-20</h1>
+<p>UTC 2026-06-20 の knowledge-base-llm 更新は、agent harness が「個別ツールを呼ぶ仕組み」から「組織の業務面に埋め込まれる運用基盤」へ寄っていることを示す ingest だった。新規 raw は AWS Blocks の Zenn 記事 1本と、X bookmark batch 由来の 5本、計 6本。新規 wiki source は <code>aws-japan-aws-blocks-ai-agent-intro-zenn.md</code>、<code>claudedevs-enterprise-managed-auth-extension-to-mcp-x-2026-06-18.md</code>、<code>layerx-tech-prompt-log-driven-ai-workflow-x-2026-06-18.md</code>、<code>openaidevs-codex-record-replay-skill-x-2026-06-18.md</code>、<code>slackhq-slackbot-mcp-client-x-2026-06-18.md</code>、<code>tyehoshua-claude-agent-for-jira-x-2026-06-18.md</code>。あわせて <code>infrastructure-from-code</code>、<code>harness-engineering</code>、<code>human-in-the-loop</code>、<code>managed-agents</code>、<code>tool-accessibility</code>、<code>agent-harness-landscape</code>、<code>harness</code> navigation が更新され、KB全体では「agent をどう作るか」よりも「どの実行面・承認面・接続面に置くか」が強調された。</p>
+<p>全体トレンドは、MCP / managed agents / workflow compilation / infrastructure from code が同じ地図上に乗ってきたことだ。Slackbot の MCP client、Claude Agent for Jira、ClaudeDevs の Enterprise-Managed Auth は、いずれも agent や connector をエンドユーザーのチャットやチケットに置きつつ、裏側では管理者承認、権限、監査、組織スケールの接続性を必要とする。LayerX と OpenAI Developers の Record &amp; Replay は、繰り返し発生する作業をログや実演から抽出し、Skill / Command / Schedule のような再利用可能な artifact に変換する流れを補強している。AWS Blocks はそのさらに下で、RAG、streaming、tool calls、approval、conversation state、CDK synthesis を typed application construct として束ねる例になっている。</p>
+<p>重要ソースの1本目は AWS Japan / showish による AWS Blocks のハンズオン記事。AWS Blocks は TypeScript の Infrastructure from Code framework として紹介され、<code>Agent</code> と <code>KnowledgeBase</code> Blocks を使った support agent demo が扱われている。KB上で特に重要なのは、local mocks、CDK synthesis、deployed runtime implementation、Bedrock/RAG wiring、streaming、tool calls、conversation state、human approval/resume までが一つの開発面に圧縮されている点だ。<code>needsApproval: true</code> によって tool call を人間承認チェックポイントに変えられることも、agent harness の承認設計として大きい。著者の実行では v0.1.1 の template / dependency / local dev-server まわりに揺れもあり、証拠品質は「具体的な hands-on として中程度、運用判断には公式docsとの照合が必要」と見ている。</p>
+<p>重要ソースの2本目は Slack の Slackbot MCP client announcement。Slackbot が Replit、Amplitude、Linear、Canva などを含む 20以上の partner apps を MCP 経由で扱う、という公式 product update で、KBでは tool accessibility と managed-agent control plane の材料になる。ここでの読みどころは、MCP が単体の開発者向け protocol ではなく、チームの日常業務が集まるチャット面に入ってくることだ。いっぽうで bookmark snapshot だけでは、connector auth、admin approval、read/write scope、監査ログの詳細は分からない。したがってこの source は「Slack が MCP を業務ハブの接続層として扱っている」という方向性には強いが、セキュリティモデルの判断材料としては追跡が必要。</p>
+<p>重要ソースの3本目は OpenAI Developers の Record &amp; Replay と LayerX の prompt-log-driven AI workflow を合わせて読むのがよい。Record &amp; Replay は「一度ワークフローを見せると Codex skill として再利用できる」という product framing で、生成される skill が inspectable / editable であることが強調されている。LayerX 側は、AI conversation logs を見直して繰り返し作業を見つけ、Skills、Commands、Schedules に昇格する仕組みを示している。片方は実演から skill を作る話、もう片方はログの集約とレビューから workflow artifact を作る話だが、KB上ではどちらも workflow compilation と trace-driven improvement の同じ流れに入る。</p>
+<p>ClaudeDevs の Enterprise-Managed Auth extension for MCP と Tamar Yehoshua の Claude Agent for Jira は、agent が企業内で使われるときの運用境界を補強した。Enterprise-Managed Auth は、admin が connector を組織単位で centrally authorize し、ユーザーが初回ログイン時から接続済みの tool / data に到達できる、という方向性を示す。Claude Agent for Jira は、Jira task をそのまま prompt / handoff unit とし、Claude が issue を読み、codeを書き、PRを返すという managed background agent の形を示す。どちらも便利さだけでなく、central policy、revocation、audit、review gate、ticketing system への状態反映が次の問いになる。</p>
+<p>概念更新では <code>wiki/concepts/infrastructure-from-code.md</code> が新規追加され、application code から infrastructure を導出する設計として AWS Blocks が位置づけられた。<code>harness-engineering</code>、<code>human-in-the-loop</code>、<code>managed-agents</code>、<code>tool-accessibility</code> には AWS Blocks や X bookmark batch 由来の接続が追加され、<code>agent-harness-landscape</code> では agent framework、enterprise connector、chat hub、issue-driven agent、workflow compilation が一枚の landscape に近づいた。<code>harness</code> navigation にも AWS Blocks source が追加され、local-first agent demo から cloud deployment / generated resource review に入る導線ができている。</p>
+<p>実務上の示唆は、agent 導入の重心が「モデルに何を頼むか」から「作業面をどこに置き、権限と再利用性をどう管理するか」へ移っていることだ。Slack や Jira のような既存業務面に agent が入るほど、ユーザーの採用障壁は下がるが、connector scope、admin consent、承認フロー、PR review、ログ保持が設計の中心になる。AWS Blocks のような framework は cloud 側の構成を速く作れるが、生成される CloudFormation resources、コスト、runtime behavior、local mock と本番 Bedrock の差分を review gate に乗せる必要がある。Record &amp; Replay や LayerX 型の仕組みは、良い手順を reusable skill にしやすい一方で、低品質な手順を schedule や command として固定化しないためのレビューが必要になる。</p>
+<p>Podcastで掘るなら、今日は「agent harness は、開発者の手元の便利ツールから、組織の control plane へどう変わっているのか」を主題にすると話しやすい。最初に AWS Blocks で下層の infrastructure / runtime 圧縮を見て、次に Slackbot MCP と Claude Agent for Jira で業務面への埋め込みを見て、最後に Record &amp; Replay / LayerX で繰り返し作業の skill 化を扱う構成がよい。次に追う問いは、MCP connector の enterprise auth / audit semantics、Jira-driven coding agent の review gate、AWS Blocks v0.1.x の安定性、そして workflow compilation の品質基準の4つ。</p>
+<p>公開HTML: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-20/</p>
+<p>NotebookLM用 source.md: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-20/source.md</p>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-product-market-fit.md]] — Simon Willison&#x27;s market analysis that Anthropic/OpenAI have found product-market fit through coding/general-purpose agents, API-aligned enterprise pricing, and high-value professional usage.</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents, and org ownership.</li>
+<li>[[about-hiroppy-founders-playbook.md]] — Anthropic&#x27;s official founder playbook PDF: AI-native startup lifecycle across Idea, MVP, Launch, and Scale, with Claude Chat/Cowork/Code stage usage, validation gates, agentic technical debt risks, founder bottleneck removal, and moat formation.</li>
+<li>[[izanami-claude-code-large-codebase-best-practices.md]] — Japanese practitioner explainer on Claude Code large-codebase setup: live repo search, thin layered CLAUDE.md, subdirectory startup, hooks, stale-rule pruning, and adoption ownership.</li>
+<li>[[newspicks-harness-engineering-what-is-it.md]] — Japanese explainer separating evalua</li>
+</ul>
+<h3>AWS Japan / showish - AWS Blocks AI Agent Intro</h3>
+<p>Source note: <code>wiki/sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - AWS Blocks AI agent intro Zenn</p>
+<p>  - AWS Blocks support agent demo</p>
+<p>source_url: &quot;https://zenn.dev/aws_japan/articles/aws-blocks-ai-agent-intro&quot;</p>
+<p>raw: &quot;../../raw/articles/aws-japan-aws-blocks-ai-agent-intro-zenn-2026-06-18.md&quot;</p>
+<p>captured: &quot;2026-06-20&quot;</p>
+<hr>
+<h1>AWS Japan / showish - AWS Blocks AI Agent Intro</h1>
+<h2>Summary</h2>
+<p>This Zenn article introduces AWS Blocks as a TypeScript [[../concepts/infrastructure-from-code.md]] framework and walks through a local-first AI support-agent demo built with <code>Agent</code> and <code>KnowledgeBase</code> Blocks.</p>
+<p>The important KB signal is that AWS Blocks packages several agent-harness concerns into typed application constructs: local mocks, CDK synthesis, deployed runtime implementations, Bedrock/RAG wiring, streaming, tool calls, conversation state, and [[../concepts/human-in-the-loop.md]] approval/resume.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>AWS Blocks follows an &quot;Infrastructure from Code&quot; model: application code is the source from which AWS infrastructure is derived.</li>
+<li>A single <code>Block</code> can expose a local implementation, a CDK construct, and a deployed runtime implementation.</li>
+<li>Local development can start without AWS credentials or Docker-style emulation; the local path is mainly for wiring verification.</li>
+<li>The <code>Agent</code> and <code>KnowledgeBase</code> Blocks compress RAG, tools, streaming, conversation state, and approval mechanics into a small TypeScript surface.</li>
+<li><code>needsApproval: true</code> turns a tool call into a human approval checkpoint.</li>
+<li>The same app can be deployed to AWS, where the Blocks expand into resources such as Bedrock Knowledge Bases, S3 Vectors, DynamoDB, API Gateway, SQS/Lambda, Step Functions, IAM, S3, and CloudFront/S3 hosting.</li>
+<li>AWS Blocks is promising but still early; the author&#x27;s v0.1.1 run hit template, dependency, and local dev-server issues.</li>
+</ul>
+<h2>Evidence /</h2>
+<h3>ClaudeDevs - Enterprise-Managed Auth extension comes to MCP</h3>
+<p>Source note: <code>wiki/sources/claudedevs-enterprise-managed-auth-extension-to-mcp-x-2026-06-18.md</code></p>
+<h1>ClaudeDevs - Enterprise-Managed Auth extension comes to MCP</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/claudedevs-enterprise-managed-auth-extension-to-mcp-x-2026-06-18.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260620T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2067655887662272723</li>
+<li>Primary URL: https://x.com/ClaudeDevs/status/2067655887662272723/video/1</li>
+<li>Author: ClaudeDevs (@ClaudeDevs)</li>
+<li>Posted: 2026-06-18T17:09:13.000Z</li>
+<li>Captured: 2026-06-20 via xurl bookmarks capture</li>
+<li>Type: X post / product update</li>
+<li>Evidence strength: bookmark snapshot metadata plus official product teaser</li>
+</ul>
+<h2>Summary</h2>
+<p>This post announces Enterprise-Managed Auth support for MCP. The core claim is that admins can centrally authorize connectors for their organization, reducing first-login friction and making MCP more viable in enterprise deployments.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>MCP now supports the Enterprise-Managed Auth extension.</li>
+<li>Admins can centrally authorize connectors for the whole organization.</li>
+<li>Users should reach a useful first-login state with tools and data already connected.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text directly names centrally managed authorization.</li>
+<li>The announcement is framed as an admin and deployment feature rather than a consumer-facing convenience.</li>
+<li>This is the kind of control plane that matters when connectors scale beyond a small team.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X official product update</li>
+<li>Confidence: high for the extension announcement; medium for implementation details</li>
+<li>Supports: enterprise tool accessibility, gateway control, and approval-policy design</li>
+<li>Main limitations: the bookmark does not expose connector scoping rules or audit semantics</li>
+<li>Best use: connect MCP adoption discussions to operational governance and permi</li>
+</ul>
+<h3>LayerX Tech - prompt-log-driven AI workflow</h3>
+<p>Source note: <code>wiki/sources/layerx-tech-prompt-log-driven-ai-workflow-x-2026-06-18.md</code></p>
+<h1>LayerX Tech - prompt-log-driven AI workflow</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/layerx-tech-prompt-log-driven-ai-workflow-x-2026-06-18.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260620T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2067463450348196081</li>
+<li>Primary URL: https://tech.layerx.co.jp/entry/prompt-log-driven-ai-workflow</li>
+<li>Author: LayerX Tech (@LayerX_tech)</li>
+<li>Posted: 2026-06-18T04:24:32.000Z</li>
+<li>Captured: 2026-06-20 via xurl bookmarks capture</li>
+<li>Type: X bookmark / blog article card</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked blog title and description</li>
+</ul>
+<h2>Summary</h2>
+<p>LayerX describes a system for reviewing prompt logs, finding repeated work, and turning those repeats into Skills, Commands, and Schedules. This is one of the clearest examples in the capture set of trace-driven improvement becoming a reusable workflow layer.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>AI conversation logs can be mined for repeated work.</li>
+<li>Repetitive work can be promoted into reusable Skills, Commands, and Schedules.</li>
+<li>Workflow review is part of the operational loop, not an afterthought.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The captured tweet explicitly mentions prompt-log aggregation.</li>
+<li>The linked blog article title says the team built a system to review AI interactions.</li>
+<li>The description points to a process for converting repeated prompts into reusable work artifacts.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X bookmark snapshot with linked blog article card</li>
+<li>Confidence: medium-high for the workflow pattern; medium for implementation specifics</li>
+<li>Supports: workflow compilation, trace-driven improvement, skill packaging, and KB linting</li>
+<li>Main limitations: the bookmark does not include the full article body</li>
+<li>Best use: connect recurring-task detection to durable workflow ar</li>
+</ul>
+<h3>OpenAI Developers - Record &amp; Replay turns a workflow into a reusable skill</h3>
+<p>Source note: <code>wiki/sources/openaidevs-codex-record-replay-skill-x-2026-06-18.md</code></p>
+<h1>OpenAI Developers - Record &amp; Replay turns a workflow into a reusable skill</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/openaidevs-codex-record-replay-skill-x-2026-06-18.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260620T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2067681320281723113</li>
+<li>Primary URL: https://x.com/OpenAIDevs/status/2067681320281723113/video/1</li>
+<li>Author: OpenAI Developers (@OpenAIDevs)</li>
+<li>Posted: 2026-06-18T18:50:17.000Z</li>
+<li>Captured: 2026-06-20 via xurl bookmarks capture</li>
+<li>Type: X post / product announcement</li>
+<li>Evidence strength: bookmark snapshot metadata plus official product teaser</li>
+</ul>
+<h2>Summary</h2>
+<p>OpenAI frames Record &amp; Replay as a way to show Codex a workflow once and then reuse it as a skill. The feature is explicitly described as turning a demo into an inspectable, editable skill, which makes the underlying automation much easier to maintain and audit than a one-off run.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>A workflow can be recorded once and reused as a Codex skill.</li>
+<li>The resulting skill is inspectable and editable.</li>
+<li>Recurrent administrative work is a legitimate target for this packaging approach.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text explicitly uses &quot;Show Codex a workflow once. Reuse it as a skill.&quot;</li>
+<li>The post names recurring tasks such as expense reports and time-off requests.</li>
+<li>The wording suggests a durable workflow artifact rather than a single ephemeral completion.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X official product teaser</li>
+<li>Confidence: high for the feature framing; medium for exact UX and lifecycle details</li>
+<li>Supports: navigable agent skills, workflow compilation, and rule-update loops</li>
+<li>Main limitations: the bookmark does not expose the full authoring model or review flow</li>
+<li>Best use: compare skill creation and reuse with oth</li>
+</ul>
+<h3>Slackbot - MCP client adds more than 20 partner apps</h3>
+<p>Source note: <code>wiki/sources/slackhq-slackbot-mcp-client-x-2026-06-18.md</code></p>
+<h1>Slackbot - MCP client adds more than 20 partner apps</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/slackhq-slackbot-mcp-client-x-2026-06-18.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260620T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2067638851938463962</li>
+<li>Primary URL: https://x.com/SlackHQ/status/2067638851938463962/video/1</li>
+<li>Author: Slack (@SlackHQ)</li>
+<li>Posted: 2026-06-18T16:01:31.000Z</li>
+<li>Captured: 2026-06-20 via xurl bookmarks capture</li>
+<li>Type: X post / product announcement</li>
+<li>Evidence strength: bookmark snapshot metadata plus official product teaser</li>
+</ul>
+<h2>Summary</h2>
+<p>Slackbot&#x27;s MCP client is framed as a general work hub with more than 20 partner apps. The explicit examples are Replit, Amplitude, Linear, and Canva, which suggests Slack is treating MCP as a connector layer for day-to-day team operations rather than a niche integration demo.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Slackbot can now front a large set of partner apps through MCP.</li>
+<li>The integration surface spans coding, analytics, task tracking, and design tools.</li>
+<li>The product direction is toward a chat-native control plane for work.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text explicitly says &quot;more than 20 partner apps&quot;.</li>
+<li>Named examples include Replit, Amplitude, Linear, and Canva.</li>
+<li>The linked video implies this is an official product update rather than a community workaround.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X official product teaser</li>
+<li>Confidence: high for the announcement; medium for exact rollout breadth</li>
+<li>Supports: tool accessibility, managed-agent control planes, and cross-app workflow orchestration</li>
+<li>Main limitations: no technical detail on permissions, connector auth, or admin controls in the bookmark text</li>
+<li>Best use: compare Slack&#x27;s connector strategy with MCP surfaces from other vendors</li>
+</ul>
+<h2>R</h2>
+<h3>Tamar Yehoshua - Claude Agent for Jira</h3>
+<p>Source note: <code>wiki/sources/tyehoshua-claude-agent-for-jira-x-2026-06-18.md</code></p>
+<h1>Tamar Yehoshua - Claude Agent for Jira</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/tyehoshua-claude-agent-for-jira-x-2026-06-18.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260620T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2067715685871214817</li>
+<li>Primary URL: https://x.com/TYehoshua/status/2067715685871214817/video/1</li>
+<li>Author: Tamar Yehoshua (@TYehoshua)</li>
+<li>Posted: 2026-06-18T21:06:50.000Z</li>
+<li>Captured: 2026-06-20 via xurl bookmarks capture</li>
+<li>Type: X post / product announcement</li>
+<li>Evidence strength: bookmark snapshot metadata plus product teaser video</li>
+</ul>
+<h2>Summary</h2>
+<p>The post announces Claude Agent for Jira and says it is built on Anthropic&#x27;s Claude Managed Agents infrastructure. The operational idea is simple but important: a Jira work item becomes the prompt, Claude reads the task, writes code, and returns a PR.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Claude Agent for Jira is shipped.</li>
+<li>The integration uses Claude Managed Agents infrastructure.</li>
+<li>Jira tasks can be assigned directly to Claude.</li>
+<li>Claude can read the issue, write code, and open a PR.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text explicitly names the workflow from issue to code to PR.</li>
+<li>The post frames the work item itself as the prompt, which is a strong handoff abstraction.</li>
+<li>The product positioning implies a managed background agent rather than a chat assistant.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X product announcement</li>
+<li>Confidence: high for the shipped integration claim; medium for the deeper operational model</li>
+<li>Supports: managed agents, background agents, tool accessibility, and task decomposition</li>
+<li>Main limitations: the bookmark does not expose the review gate or security model</li>
+<li>Best use: compare issue-driven agent handoffs with other long-running work surfaces</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concep</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Concept Notes</h3>
+<p>KB note: <code>wiki/concepts/README.md</code></p>
+<h1>Concept Notes</h1>
+<p>Each note in this folder should represent a reusable concept that appears across multiple sources.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>definition</li>
+<li>why it matters</li>
+<li>related concepts</li>
+<li>supporting sources</li>
+<li>tensions / tradeoffs</li>
+<li>open questions</li>
+</ul>
+<ul>
+<li>[Evidence Quality](evidence-quality.md)</li>
+<li>[Field-Deployed Engineer](field-deployed-engineer.md)</li>
+<li>[Product Responsibility Distribution](product-responsibility-distribution.md)</li>
+<li>[Conversion Packaging](conversion-packaging.md)</li>
+<li>[Organizational Intent Clarity](organizational-intent-clarity.md)</li>
+<li>[Exploratory Organization Lens](exploratory-organization-lens.md)</li>
+<li>[Intelligent Delegation](intelligent-delegation.md)</li>
+<li>[Conversational Feedback Learning](conversational-feedback-learning.md)</li>
+<li>[Spec-Code-Test Loop](spec-code-test-loop.md)</li>
+<li>[Heavy Thinking](heavy-thinking.md)</li>
+<li>[Sustainable AI Work](sustainable-ai-work.md)</li>
+<li>[AI Adoption J-Curve](ai-adoption-j-curve.md)</li>
+<li>[AI Adoption Thresholds](ai-adoption-thresholds.md) — usage-rate bands th</li>
+</ul>
+<h3>Harness Engineering</h3>
+<p>KB note: <code>wiki/concepts/harness-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Harness Engineering</p>
+<hr>
+<h1>Harness Engineering</h1>
+<h2>Definition</h2>
+<p>The design of the environment, artifacts, controls, tooling, and feedback loops around an agent so that it can produce more reliable results over time.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, performance depends less on the model alone and more on the structure that surrounds it.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[guides and sensors]]</li>
+<li>[[agent recognizable repository]]</li>
+<li>[[structured handoff artifacts]]</li>
+<li>[[machine-checkable invariants]]</li>
+<li>[[heavy-thinking.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/martin-fowler-harness-engineering.md]]</li>
+<li>[[../sources/gota-purpose-first-harness-design-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-how-to-approach-harness-engineering-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-what-harness-engineering-is-and-is-not-zenn.md]]</li>
+<li>[[../sources/sergicalsix-harness-engineering-overview-design-philosophy-speakerdeck.md]]</li>
+<li>[[../sources/yuukiyo-ai-dlc</li>
+</ul>
+<h3>Human in the Loop</h3>
+<p>KB note: <code>wiki/concepts/human-in-the-loop.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Human in the Loop</p>
+<hr>
+<h1>Human in the Loop</h1>
+<h2>Definition</h2>
+<p>An operating pattern where the human remains the final or periodic decision-maker for selected agent actions or checkpoints.</p>
+<h2>Why It Matters</h2>
+<p>It allows practical deployment of more capable agents without requiring full trust in autonomous action.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[approval-policy]]</li>
+<li>[[agent-autonomy]]</li>
+<li>[[agent-safety]]</li>
+<li>[[intelligent-delegation.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-claude-code-auto-mode.md]]</li>
+<li>[[../sources/tsumotokai-context-graphs-agent-long-term-memory-x.md]]</li>
+</ul>
+<ul>
+<li>[[../sources/y-matsuwitter-harness-roles-meta-definition-x.md]]</li>
+<li>[[../sources/zento-ai-claude-web-slack-summary-routine-x.md]]</li>
+<li>[[../sources/claudeai-claude-code-routines-research-preview-x.md]]</li>
+<li>[[../sources/noahzweben-claude-code-routines-x.md]]</li>
+<li>[[../sources/trq212-ultraplan-x.md]]</li>
+<li>[[../sources/arxiv-intelligent-ai-delegation.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+</ul>
+<h2>Trade</h2>
+<h3>Infrastructure from Code</h3>
+<p>KB note: <code>wiki/concepts/infrastructure-from-code.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Infrastructure from Code</p>
+<p>  - IFC</p>
+<hr>
+<h1>Infrastructure from Code</h1>
+<h2>Definition</h2>
+<p>An application-development pattern where infrastructure is derived from application code and framework constructs, instead of being authored primarily as a separate infrastructure definition.</p>
+<h2>Why It Matters</h2>
+<p>Infrastructure from Code can reduce the setup cost for agent applications because runtime state, queues, permissions, streaming channels, retrieval infrastructure, and deployment resources can be generated from higher-level app concepts.</p>
+<p>For agent systems, this makes the harness more productized: a developer may instantiate an <code>Agent</code>, <code>KnowledgeBase</code>, or auth block and get local mocks plus deployable cloud infrastructure without manually assembling every service.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering.md]]</li>
+<li>[[managed-agents.md]]</li>
+<li>[[environment-bootstrapping.md]]</li>
+<li>[[tool-accessibility.md]]</li>
+<li>[[machine-checkable-invariants.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/aws-japan</li>
+</ul>
+<h3>Managed Agents</h3>
+<p>KB note: <code>wiki/concepts/managed-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Managed Agent</p>
+<p>  - Managed Agents</p>
+<hr>
+<h1>Managed Agents</h1>
+<h2>Definition</h2>
+<p>Hosted or product-managed agent runtimes that package model execution with tools, permissions, memory, tracing, sandboxing, and operational controls.</p>
+<h2>Why It Matters</h2>
+<p>Managed agents turn agent operation into a deployable surface rather than a local prompt pattern. They make it easier to build roleful domain agents, but they also move important governance decisions into the runtime: what tools are exposed, how memory persists, what is sandboxed, and how humans inspect or intervene.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[multi-agent-orchestration.md]]</li>
+<li>[[agent-dreaming.md]]</li>
+<li>[[outcomes.md]]</li>
+<li>[[tool-accessibility.md]]</li>
+<li>[[agent-management.md]]</li>
+<li>[[agent-safety.md]]</li>
+<li>[[background-agents.md]]</li>
+<li>[[context-engineering.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/claudeai-claude-managed-agents-intro-x.md]]</li>
+<li>[[../sources/claude-new-in-managed-agents-dreaming-outcomes-orchestration.md]]</li>
+<li>[[../sources/oikon48-claude-ma</li>
+</ul>
+<h3>Tool Accessibility</h3>
+<p>KB note: <code>wiki/concepts/tool-accessibility.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Tool Accessibility</p>
+<hr>
+<h1>Tool Accessibility</h1>
+<h2>Definition</h2>
+<p>The degree to which the tools humans rely on are exposed in forms agents can discover and use effectively.</p>
+<h2>Why It Matters</h2>
+<p>If agents cannot access the relevant tools and context, their practical usefulness stays artificially low.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[agent-recognizable-repository]]</li>
+<li>[[coding-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/ignorance-ai-emerging-harness-engineering-playbook.md]]</li>
+<li>[[../sources/anthropic-harnessing-claudes-intelligence.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-setup-x.md]]</li>
+<li>[[../sources/storybook-mcp-react-blog.md]]</li>
+<li>[[../sources/browser-use-cli-2-changelog.md]]</li>
+<li>[[../sources/google-gemma-4-blog.md]]</li>
+<li>[[../sources/difit-review-blog.md]]</li>
+<li>[[../sources/jerry-liu-rese</li>
+</ul>
+<h3>Map Notes</h3>
+<p>KB note: <code>wiki/maps/README.md</code></p>
+<h1>Map Notes</h1>
+<p>Map notes connect multiple concepts and sources.</p>
+<p>Examples:</p>
+<ul>
+<li>landscape overviews</li>
+<li>comparison notes</li>
+<li>timelines</li>
+<li>architecture maps</li>
+<li>taxonomy notes</li>
+<li>control vocabularies and cross-source synthesis notes</li>
+<li>deployment-gate and operational-risk notes that connect repo controls to production safety</li>
+<li>evidence-quality and source-trust notes that rank claim support</li>
+<li>query-path notes that route recurring user questions through stable map/concept/source paths</li>
+<li>navigation-support notes that help <code>wiki/navigation/</code> expose corpus shape before source-level lookup</li>
+<li>approval-pattern and escalation maps that connect autonomy settings to review burden</li>
+<li>infrastructure-from-code notes that connect application constructs to generated cloud/runtime harnesses</li>
+</ul>
+<h2>Current maps</h2>
+<ul>
+<li>[Context Graph and Company Brain](context-graph-and-company-brain.md)</li>
+<li>[Agent Onboarding with Domain KB + Codebase](agent-onboarding-kb-codebase.md)</li>
+<li>[Context Management Decision Map](context-management-decisi</li>
+</ul>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Main dimensions</h2>
+<h3>1. Guidance before action</h3>
+<ul>
+<li>feedforward controls</li>
+<li>short map-like instructions</li>
+<li>architecture docs</li>
+<li>explicit plans</li>
+<li>feature lists</li>
+<li>templates and skills</li>
+</ul>
+<h3>2. Correction after action</h3>
+<ul>
+<li>tests</li>
+<li>linters</li>
+<li>structural checks</li>
+<li>browser-based verification</li>
+<li>AI review / evaluator agents</li>
+<li>recurring cleanup tasks</li>
+</ul>
+<h3>3. Continuity across sessions</h3>
+<ul>
+<li>progress logs</li>
+<li>commit history</li>
+<li>feature list artifacts</li>
+<li>initializer agent outputs</li>
+<li>context resets</li>
+</ul>
+<h3>4. Control of autonomy</h3>
+<ul>
+<li>approval policy</li>
+<li>human-in-the-loop checkpoints</li>
+<li>classifier-mediated approvals</li>
+<li>machine-c</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>7</code>, commits: <code>2</code></p></footer>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "date": "2026-06-20",
+  "generatedAt": "2026-06-20T13:02:02.901239+00:00",
+  "title": "KB Daily Digest 2026-06-20",
+  "output_dir": "outputs/kb-daily-digest-pages/2026-06-20",
+  "page": "outputs/kb-daily-digest-pages/2026-06-20/digest-source.md",
+  "source_count": 7,
+  "changed_note_count": 9,
+  "commit_count": 2,
+  "char_count": 27190,
+  "existing_report": "outputs/reports/kb-daily-digest-2026-06-20.md",
+  "llm_error": null
+}
