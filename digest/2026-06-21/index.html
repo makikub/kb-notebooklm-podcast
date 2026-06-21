@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-21 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-21/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-21</header>
+<h1>KB Daily Digest 2026-06-21</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-21/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-21">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-21</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-21</h1>
+<p>UTC 2026-06-21 の knowledge-base-llm 更新は、X bookmark ingest 由来の新規ソース2本と、それに伴う概念・地図の小さめだが意味のある更新だった。新規 raw は <code>raw/articles/aiclambake-ai-engineer-claims-to-have-cracked-linear-a-2026-06-16.md</code> と <code>raw/articles/microsoft-presidio-pii-detection-sdk-x-2026-06-18.md</code>。新規 wiki source は <code>wiki/sources/aiclambake-ai-engineer-claims-to-have-cracked-linear-a-2026-06-16.md</code> と <code>wiki/sources/microsoft-presidio-pii-detection-sdk-x-2026-06-18.md</code>。概念側では <code>agent-safety</code>、<code>evidence-quality</code>、<code>middleware-controls</code>、<code>self-verification</code> が更新され、地図側では <code>agent-harness-landscape</code> に「model input 前の data redaction / PII filtering」が control of autonomy の一部として追加された。</p>
+<p>全体トレンドは、agent harness を「賢いモデルをうまく使うための作業環境」から、より明示的な検証・安全・前処理のレイヤーとして見る方向に寄っている。Linear A の話は、Claude Code を使った corpus query / cross-reference / lexicon creation という研究支援ワークフローとして面白い一方、主張そのものは専門家レビュー待ちであり、KBでは evidence-quality と self-verification の例として扱うのが妥当だ。Presidio の話は反対に、主張の新規性よりも実務上の再利用性が強い。PII を model call の前で検出・匿名化するという形は、prompt や model behavior に安全性を押し込めるのではなく、middleware control としてリスクを分離する設計を補強する。</p>
+<p>重要ソースの1本目は AI Clambake の「AI Engineer Claims to Have Cracked Linear A」。記事は Tom Di Mino による Linear A decipherment claim を紹介し、Claude Code が digitized corpus を検索・照合・整理する Python scripts の構築に使われたと説明している。KB上での読みどころは、「AIが古代文字を解読した」という見出しではなく、AI coding agent が研究用 corpus に対する仮説検証の作業台になっている点だ。ソースノートでは evidence strength を medium-low とし、Rutgers や Cambridge の専門家レビューが進行中であること、記事自体に cautionary edit note があることを明示した。これは、魅力的なAI-assisted research storyをKBに入れるときに、検証前の主張と再現可能な作業フローを分けて扱うためのよい事例になる。</p>
+<p>重要ソースの2本目は Microsoft Presidio の PII detection / anonymization SDK。X投稿は短いが、GitHub と公式ドキュメントが示す通り、Presidio は names、emails、SSNs、credit cards、medical records などの sensitive data を検出・redact・mask・anonymize するための data-protection / de-identification framework として位置づけられている。KBでは、これは <code>agent-safety</code> と <code>middleware-controls</code> に接続された。特に重要なのは、PII対策を「モデルが漏らさないようにする」だけではなく、「モデルに渡す前に入力経路で変換する」制御として扱えることだ。agent が多くの外部ツールや業務データに触れるほど、こうした前段の共通部品は prompt discipline より監査しやすく、再利用もしやすい。</p>
+<p>重要ソースの3本目は単独の新規記事ではなく、今回更新された <code>agent-harness-landscape</code> 自体だ。これまで landscape は guidance before action、correction after action、continuity、autonomy control、role separation という軸で agent harness を整理していた。今回、autonomy control の項目に data redaction / PII filtering before model input が加わったことで、権限承認や human-in-the-loop だけでなく、入力データの安全な整形も autonomy control の構成要素として扱う方向が明確になった。これは小さな1行追加に見えるが、今後 enterprise connector、personal agent、RAG、tool-calling workflow を読むときの基準になる。</p>
+<p>概念更新の意味は、二つのソースがKBの別々の弱点を補ったことにある。Linear A ソースは <code>evidence-quality</code> と <code>self-verification</code> に入り、AIを使った研究支援が「面白いが未確定」な段階にあるとき、どのように強さを評価するかを示した。Presidio ソースは <code>agent-safety</code> と <code>middleware-controls</code> に入り、agent安全性を model alignment の抽象論だけにせず、入力経路に置ける具体的なソフトウェア部品として示した。どちらも agent harness の話だが、片方は知識の信頼性、もう片方はデータ境界の安全性を扱っている。</p>
+<p>実務上の示唆は、AI導入の判断では「その主張は本当に正しいのか」と「失敗しても被害が広がらない構造になっているか」を別々に見る必要があるということだ。Linear A のような研究 claim は、生成された artifacts、corpus、scripts、外部レビュー、反証可能性を揃えて初めて強い根拠になる。Presidio のような middleware は、モデルの応答品質とは独立に、名前やメールや医療情報がLLM pipelineへ素通りする危険を下げられる。ただし anonymization が downstream reasoning に必要な文脈を壊す場合もあるので、semantic fidelity、構造化データ、画像や添付ファイルの扱いは別途設計が必要になる。</p>
+<p>Podcastで掘るなら、今日は「agent harness は検証装置でもあり、安全装置でもある」というテーマがよい。前半で Linear A の事例を使い、Claude Code が研究者の作業をどこまで助け、どこから先は専門家レビューが必要なのかを話す。後半で Presidio を使い、PII redaction を prompt のお願いではなく pipeline の middleware として置く意味を話す。最後に、KBの地図更新として、autonomy control が承認や権限だけでなく、入力データの整形・匿名化まで含むようになったことを確認すると、今日の2本が一本の流れとしてつながる。</p>
+<p>次に追う問いは、Linear A claim の peer review 結果や再現性、Claude Code が生成した scripts / lexicon / manuscript の公開範囲、Presidio を agent toolchain に入れたときの検出漏れ・過剰redaction・多言語対応、そしてPII以外の機密情報を同じ middleware pattern で扱えるかどうかの4つ。今日の更新は量としては小さいが、KBの読み方としては重要で、「AIが何を可能にしたか」と同じくらい「どの段階で検証し、どの経路で安全にするか」を前面に出している。</p>
+<p>公開HTML: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-21/</p>
+<p>NotebookLM用 source.md: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-21/source.md</p>
+<h2>重要ソース</h2>
+<h3>AI Clambake - AI Engineer Claims to Have Cracked Linear A</h3>
+<p>Source note: <code>wiki/sources/aiclambake-ai-engineer-claims-to-have-cracked-linear-a-2026-06-16.md</code></p>
+<h1>AI Clambake - AI Engineer Claims to Have Cracked Linear A</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/aiclambake-ai-engineer-claims-to-have-cracked-linear-a-2026-06-16.md]]</li>
+<li>Original URL: https://x.com/i/status/2068064304503660962</li>
+<li>Shared article URL: https://aiclambake.com/clamtakes/linear-a/</li>
+<li>X post author: Boris Cherny (@bcherny)</li>
+<li>Article date: 2026-06-16</li>
+<li>X post date: 2026-06-19T20:12:07.000Z</li>
+<li>Type: article / X bookmark</li>
+<li>Evidence strength: medium-low; the article is detailed, but the core decipherment claim is explicitly still under peer review</li>
+<li>Capture source: xurl bookmarks capture</li>
+</ul>
+<h2>Summary</h2>
+<p>AI Clambake reports on Tom Di Mino&#x27;s claim that Linear A can be decoded as an extinct Semitic language. The article says the work is being reviewed by linguistics experts and highlights that Claude Code was used to build Python scripts for querying, cross-referencing, and organizing the digitized corpus.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Claude Code can be used as a research workflow engine for corpus-driven hypothesis testing.</li>
+<li>The claimed Linear A decipherment is not settled; review by specialists is still pending.</li>
+<li>The workflow produced a larger artifact set, including a lexicon and draft manuscript.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The article explicitly states that Claude Code was used to build scripts around the Linear A corpus.</li>
+<li>The article also states that the claim is under review by Rutgers and Cambridge experts.</li>
+<li>The article includes a cautionary edit note, which is a useful signal that the story may evolve.</li>
+</ul>
+<h2>Why It Matters</h2>
+<p>This source is a good evidence-quality example. It shows how a compelling AI-assisted research claim can be paired with explicit caveats, external review, and a reproducible data workflow. That combination is more useful to the KB than the cl</p>
+<h3>Microsoft Presidio - PII detection and anonymization SDK</h3>
+<p>Source note: <code>wiki/sources/microsoft-presidio-pii-detection-sdk-x-2026-06-18.md</code></p>
+<h1>Microsoft Presidio - PII detection and anonymization SDK</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/microsoft-presidio-pii-detection-sdk-x-2026-06-18.md]]</li>
+<li>Original URL: https://x.com/i/status/2067543602302230576</li>
+<li>Author: Vaishnavi (@_vmlops)</li>
+<li>Date: 2026-06-18</li>
+<li>Type: X post / product mention</li>
+<li>Evidence strength: moderate; the bookmark text is terse, but the project docs are explicit about the SDK&#x27;s purpose</li>
+<li>Capture source: xurl bookmarks capture</li>
+<li>Primary URLs:</li>
+</ul>
+<p>  - https://github.com/microsoft/presidio</p>
+<p>  - https://microsoft.github.io/presidio/</p>
+<h2>Summary</h2>
+<p>Microsoft Presidio is an open-source SDK for detecting, redacting, masking, and anonymizing PII. The bookmark frames it as a way to keep sensitive data out of LLM pipelines before model input is ever processed.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>PII detection belongs in the input path, not only in downstream review.</li>
+<li>Anonymization/redaction can be treated as a reusable middleware control.</li>
+<li>Text pipelines carrying names, emails, SSNs, credit cards, or medical records need a dedicated safety layer.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet explicitly says Presidio detects and anonymizes sensitive data before it reaches the model.</li>
+<li>The official Presidio docs and GitHub repo describe the SDK as a data-protection and de-identification framework.</li>
+</ul>
+<h2>Why It Matters</h2>
+<p>This is a concrete example of an agent-safety control that does not depend on the model becoming better behaved. It shifts one class of risk into a pre-model normalization step, which is easier to audit and reuse across prompts, tools, and agent surfaces.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/agent-safety.md]]</li>
+<li>[[../concepts/middleware-controls.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/feedback-controls.md]]</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>How much semantic f</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent Safety</h3>
+<p>KB note: <code>wiki/concepts/agent-safety.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent Safety</p>
+<hr>
+<h1>Agent Safety</h1>
+<h2>Definition</h2>
+<p>The set of mechanisms and design choices used to keep an agent helpful, bounded, and resistant to harmful or misaligned behavior.</p>
+<h2>Why It Matters</h2>
+<p>As agents gain tools and autonomy, safety becomes an architectural concern rather than just a prompt concern.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[behavioral stability]]</li>
+<li>[[approval policy]]</li>
+<li>[[human-in-the-loop]]</li>
+<li>[[failure modes]]</li>
+<li>[[middleware-controls]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/newspicks-harness-engineering-what-is-it.md]]</li>
+<li>[[../sources/anthropic-emotion-concepts.md]]</li>
+<li>[[../sources/anthropic-claude-code-auto-mode.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-mythos-preview.md]]</li>
+<li>[[../sources/spillwave-ai-coding-hangover-harness-engineering.md]]</li>
+<li>[[../sources/openclaw-release-v2026-4-11-github.md]]</li>
+<li>[[../sources/keisuke69-ai-agent-security-enterpris</li>
+</ul>
+<h3>Evidence Quality</h3>
+<p>KB note: <code>wiki/concepts/evidence-quality.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Evidence Quality</p>
+<p>  - Source Trust</p>
+<hr>
+<h1>Evidence Quality</h1>
+<h2>Definition</h2>
+<p>Evidence quality is the explicit confidence layer attached to a source note or synthesis claim: what kind of source it is, how directly it supports a claim, what limitations apply, and which concepts it can safely support.</p>
+<h2>Why It Matters</h2>
+<p>A compiled wiki becomes dangerous when all notes look equally authoritative. Evidence quality lets the KB distinguish primary docs, research papers, implementation repos, practitioner reports, product announcements, social threads, and speculative synthesis before those notes are reused in maps or answers.</p>
+<h2>Operational Fields</h2>
+<p>Use these fields when a source anchors an important concept or map:</p>
+<ul>
+<li>Source type: primary docs, official blog, paper, repository, practitioner report, X thread, second-order summary, internal operation note, speculative synthesis.</li>
+<li>Confidence: high / medium / low.</li>
+<li>Supports: concepts or map claims the source can directly support.</li>
+</ul>
+<p>-</p>
+<h3>Middleware Controls</h3>
+<p>KB note: <code>wiki/concepts/middleware-controls.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Middleware Controls</p>
+<hr>
+<h1>Middleware Controls</h1>
+<h2>Definition</h2>
+<p>Hooks or interception layers around model and tool calls that can inject context, apply checks, or alter execution flow.</p>
+<h2>Why It Matters</h2>
+<p>They offer a flexible way to shape behavior without changing the underlying model.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[feedback-controls]]</li>
+<li>[[self-verification]]</li>
+<li>[[harness-engineering]]</li>
+<li>[[agent-safety]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/langchain-deep-agents-harness-engineering.md]]</li>
+<li>[[../sources/arxiv-skill-rag-failure-state-aware-retrieval.md]]</li>
+<li>[[../sources/microsoft-presidio-pii-detection-sdk-x-2026-06-18.md]]</li>
+</ul>
+<h2>Tradeoffs / Tensions</h2>
+<ul>
+<li>Too much middleware can make behavior hard to reason about.</li>
+<li>Middleware-specific heuristics may age poorly as models improve.</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>Which middleware controls generalize across agent types?</li>
+<li>When should hidden-state diagnostics or skill routing sit in middleware rather than inside the base prompt loop?</li>
+</ul>
+<h3>Self-Verification</h3>
+<p>KB note: <code>wiki/concepts/self-verification.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Self-Verification</p>
+<hr>
+<h1>Self-Verification</h1>
+<h2>Definition</h2>
+<p>A pattern in which an agent explicitly checks its work against external tests, task requirements, or runtime evidence before declaring completion.</p>
+<h2>Why It Matters</h2>
+<p>Agents often stop too early or trust their own code reading too much. Verification creates a correction loop.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[feedback-controls]]</li>
+<li>[[task-decomposition]]</li>
+<li>[[trace-driven-improvement]]</li>
+<li>[[heavy-thinking.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/arxiv-social-meta-learning-language-feedback.md]]</li>
+<li>[[../sources/arxiv-heavyskill-heavy-thinking.md]]</li>
+<li>[[../sources/langchain-deep-agents-harness-engineering.md]]</li>
+<li>[[../sources/mitchell-hashimoto-ai-adoption-journey.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-x.md]]</li>
+<li>[[../sources/anthropic-claude-mythos-preview.md]]</li>
+<li>[[../sources/anthropic-dynamic-skill-context-x.md]]</li>
+<li>[[../sources/storybook-mcp-react-blog.md]]</li>
+<li>[[../sources/di</li>
+</ul>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Main dimensions</h2>
+<h3>1. Guidance before action</h3>
+<ul>
+<li>feedforward controls</li>
+<li>short map-like instructions</li>
+<li>architecture docs</li>
+<li>explicit plans</li>
+<li>feature lists</li>
+<li>templates and skills</li>
+</ul>
+<h3>2. Correction after action</h3>
+<ul>
+<li>tests</li>
+<li>linters</li>
+<li>structural checks</li>
+<li>browser-based verification</li>
+<li>AI review / evaluator agents</li>
+<li>recurring cleanup tasks</li>
+</ul>
+<h3>3. Continuity across sessions</h3>
+<ul>
+<li>progress logs</li>
+<li>commit history</li>
+<li>feature list artifacts</li>
+<li>initializer agent outputs</li>
+<li>context resets</li>
+</ul>
+<h3>4. Control of autonomy</h3>
+<ul>
+<li>approval policy</li>
+<li>human-in-the-loop checkpoints</li>
+<li>classifier-mediated approvals</li>
+<li>machine-c</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>2</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
