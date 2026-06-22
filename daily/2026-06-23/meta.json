@@ -1,0 +1,15 @@
+{
+  "date": "2026-06-23T03:00:12.086144+09:00",
+  "topic_id": "wiki/maps/ai-adoption-roi-and-capability-investment.md",
+  "title": "AI Adoption ROI and Capability Investment",
+  "output_dir": "outputs/notebooklm-podcast/2026-06-23",
+  "page": "outputs/notebooklm-podcast/2026-06-23/notebooklm-source.md",
+  "related": [
+    "wiki/sources/dora-roi-ai-assisted-software-development.md",
+    "wiki/sources/anthropic-2026-agentic-coding-trends-report.md",
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/concepts/ai-roi-model.md",
+    "wiki/sources/simon-willison-gitlab-act-2.md"
+  ],
+  "char_count": 9081
+}
