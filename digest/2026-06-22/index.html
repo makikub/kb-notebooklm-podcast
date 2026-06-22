@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-22 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-22/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-22</header>
+<h1>KB Daily Digest 2026-06-22</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-22/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-22">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-22</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-22</h1>
+<p>UTC 2026-06-22 の knowledge-base-llm 更新は、X bookmark ingest 由来の新規ソース4本と、それに伴う concept note / compiled wiki の更新だった。新規 raw は <code>raw/articles/ktknd-atlassian-ai-design-system-design-md-x-2026-06-20.md</code>、<code>raw/articles/oikon48-claude-code-catchup-zennfes-slides-x-2026-06-20.md</code>、<code>raw/articles/oikon48-claude-code-customization-seven-methods-x-2026-06-19.md</code>、<code>raw/articles/yusuke-wada-zennfes-2026-clear-communication-slides-x-2026-06-20.md</code>。対応する wiki source も4本追加され、<code>compiled-wiki</code>、<code>context-file-system</code>、<code>context-first-development</code>、<code>harness-engineering</code>、<code>navigable-agent-skills</code>、<code>rich-agent-output-artifact</code> が更新された。</p>
+<p>全体トレンドは、agent / AI product development を「その場の会話」ではなく、持ち運び可能な文脈、再利用できる設定、レビュー可能な発信物として扱う方向に寄っている。Claude Code 関連の2本は、学習やカスタマイズを個人の勘に閉じず、harness maintenance や onboarding artifact として整理するための材料になる。Atlassian / DESIGN.md の bookmark は、design-system context を Markdown として運べるという点で <code>context-file-system</code> と強くつながる。Zennfes の「伝わる発信のつくりかた」は、説明そのものを artifact 化するという観点で <code>rich-agent-output-artifact</code> と <code>context-first-development</code> に接続された。</p>
+<p>重要ソースの1本目は、Oikon 氏の Zennfes 登壇資料「Claude Codeをどのようにキャッチアップしているか」。X bookmark からは deck title card と Speaker Deck URL が確認でき、KBでは evidence strength を medium-high とした。中身の全文は ingest していないため、詳細な手法の断定は避けるべきだが、「速く変わる agent tool をどう追い続けるか」を talk artifact として残している点が重要だ。これは単なる学習メモではなく、チームで共有できる onboarding / workflow capture の入口になる。</p>
+<p>重要ソースの2本目は、Oikon 氏による Claude Code カスタマイズ記事への bookmark。捕捉できた本文は短いが、Claude Code の振る舞いを変える手段が7つあり、少なくとも「いつ context に読み込まれるか」「長い session でどう振る舞うか」「どれくらい指示に従いやすいか」という観点が含まれる。KB上では、これは prompt writing の話だけではなく、configuration-driven behavior shaping と harness tuning の話として扱われた。特に long-session behavior は、単発回答よりも継続作業を前提にする Codex / Claude Code 的な使い方では重要な制御面になる。</p>
+<p>重要ソースの3本目は、かつき氏の Atlassian AI and design systems / DESIGN.md に関する bookmark。DESIGN.md は design-system context を Markdown で持ち運ぶ形式だという短い signal だが、KBにとっては大きい。design system を Figma や実装コードだけのものとしてではなく、agent や別ツールへ渡せる portable textual context として扱えるからだ。これは <code>compiled-wiki</code> や <code>context-file-system</code> の「文脈をファイルとして運用する」発想と同じ方向を向いており、将来的には repo 内の <code>DESIGN.md</code> schema、component guideline、token、interaction rule をどう束ねるかという問いにつながる。</p>
+<p>もう1本の重要な補助ソースは、Yusuke Wada 氏が紹介した Zennfes 2026 の slide deck「伝わる発信のつくりかた」。bookmark 上では title card レベルの情報に限られるため、deck の内容を細かく要約する段階ではない。ただし、この source は「発信の質」を個人の文章術としてではなく、構造化された reviewable artifact として扱う材料になる。agent が作る report、digest、slide、rich output は、あとから人間が読み返し、別の文脈に再利用できて初めて knowledge artifact になる、という KB の方向性を補強している。</p>
+<p>概念更新では、<code>context-file-system</code> が DESIGN.md と Claude Code customization の両方を吸収し、文脈を「会話中に思い出すもの」ではなく「適切な時点で読み込まれ、長い session を支えるファイル群」として扱う見方が強まった。<code>harness-engineering</code> と <code>navigable-agent-skills</code> は、Claude Code のキャッチアップ資料とカスタマイズ面を受けて、agent harness を継続的に調整・学習・説明する対象として見る方向に更新された。<code>rich-agent-output-artifact</code> は Zennfes slide deck 群を、単発の共有リンクではなく、知識の受け渡し形式として読む足場を得た。</p>
+<p>実務上の示唆は、AI開発や agent 運用の品質は、モデル選定や一回の prompt だけでは決まらないということだ。チームが使う design system を Markdown 化して渡せるか、Claude Code のカスタマイズ面をどこまで明示できるか、長い session の振る舞いをどう安定させるか、学習資料や発信物をあとから再利用できる artifact として残せるか。今日の4本は派手な新製品ニュースではないが、agent を日常業務に組み込むための地味で重要な基盤を示している。</p>
+<p>Podcastで掘るなら、今日は「文脈はどこに置くべきか」という一本の問いにまとめるとよい。前半で DESIGN.md を使い、design system の暗黙知を Markdown として持ち運ぶ意味を話す。中盤で Claude Code customization と catch-up deck を使い、agent の振る舞いを設定・学習・共有する harness engineering として捉える。後半で「伝わる発信のつくりかた」を使い、知識を人間にも agent にも再利用しやすい artifact にするには、説明そのものの構造が必要だという話につなげる。</p>
+<p>次に追う問いは、DESIGN.md の実際の schema や Atlassian 記事本文、Oikon 氏の2つの Claude Code 資料の具体的な checklist / workflow、そして Zennfes slide deck の中身をどこまで KB の durable note に落とし込めるかの4つ。今日の ingest は bookmark snapshot が多く、証拠強度は medium 止まりのものもある。次の compile では、primary source の本文や deck 本体を読んで、現在の source note をより強い evidence に育てるのが自然だ。</p>
+<p>公開HTML: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-22/</p>
+<p>NotebookLM用 source.md: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-22/source.md</p>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-product-market-fit.md]] — Simon Willison&#x27;s market analysis that Anthropic/OpenAI have found product-market fit through coding/general-purpose agents, API-aligned enterprise pricing, and high-value professional usage.</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents, and org ownership.</li>
+<li>[[about-hiroppy-founders-playbook.md]] — Anthropic&#x27;s official founder playbook PDF: AI-native startup lifecycle across Idea, MVP, Launch, and Scale, with Claude Chat/Cowork/Code stage usage, validation gates, agentic technical debt risks, founder bottleneck removal, and moat formation.</li>
+<li>[[izanami-claude-code-large-codebase-best-practices.md]] — Japanese practitioner explainer on Claude Code large-codebase setup: live repo search, thin layered CLAUDE.md, subdirectory startup, hooks, stale-rule pruning, and adoption ownership.</li>
+<li>[[newspicks-harness-engineering-what-is-it.md]] — Japanese explainer separating evalua</li>
+</ul>
+<h3>ktknd - Atlassian AI and design systems note on DESIGN.md</h3>
+<p>Source note: <code>wiki/sources/ktknd-atlassian-ai-design-system-design-md-x-2026-06-20.md</code></p>
+<h1>ktknd - Atlassian AI and design systems note on DESIGN.md</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/ktknd-atlassian-ai-design-system-design-md-x-2026-06-20.md]]</li>
+<li>Original URL: https://x.com/i/status/2068156556513050971</li>
+<li>Author: かつき🌏AI時代のプロダクト開発と事業創出 / @ktknd</li>
+<li>Posted: 2026-06-20T02:18:42.000Z</li>
+<li>Captured: 2026-06-22 via xurl bookmarks capture</li>
+<li>Type: X post / bookmark snapshot</li>
+<li>Evidence strength: bookmark snapshot text only; no primary article URL or title card was exposed</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark highlights an Atlassian article about AI and design systems and calls out DESIGN.md as a portable Markdown format for carrying design-system context. The useful implication for this KB is that design-system knowledge can be treated as structured, transferable context rather than only as visual assets or scattered docs.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>DESIGN.md is a format for carrying design-system context in Markdown.</li>
+<li>AI and design-system practice can be discussed together as a workflow, not only as separate disciplines.</li>
+<li>Portable textual context is valuable when design systems need to move across tools or teams.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text explicitly says the article was good and that DESIGN.md is a Markdown format for transporting design-system context.</li>
+<li>No URL, article title, or body text was captured, so the claim should be read as a bookmark-level signal rather than a full article summary.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: practitioner X post</li>
+<li>Confidence: medium</li>
+<li>Supports: compiled-wiki practices, context-file-system framing, and design-context portability</li>
+<li>Main limitations: no primary article link exposed; the note is based on a short bookmark excerpt</li>
+<li>Best use: a compact pointer for discussions about design systems as portable machine-readabl</li>
+</ul>
+<h3>Oikon - Claude Code catch-up Zennfes slides</h3>
+<p>Source note: <code>wiki/sources/oikon48-claude-code-catchup-zennfes-slides-x-2026-06-20.md</code></p>
+<h1>Oikon - Claude Code catch-up Zennfes slides</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/oikon48-claude-code-catchup-zennfes-slides-x-2026-06-20.md]]</li>
+<li>Original URL: https://x.com/i/status/2068237495381418113</li>
+<li>Primary URL: https://speakerdeck.com/oikon48/claude-codewodonoyouni-kiyatutiatupusiteiruka</li>
+<li>Author: Oikon / @oikon48</li>
+<li>Posted: 2026-06-20T07:40:19.000Z</li>
+<li>Captured: 2026-06-22 via xurl bookmarks capture</li>
+<li>Type: X post / slide deck</li>
+<li>Evidence strength: bookmark snapshot metadata plus title card and linked slides</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark points to a Zennfes slide deck about how the author keeps up with Claude Code. It is valuable as a practitioner artifact because it likely packages habits, workflow choices, and learning loops into a shareable deck rather than a loose thread.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The deck is a concrete Zennfes talk artifact on Claude Code adoption and learning.</li>
+<li>A slide deck can serve as a compact reusable explanation of a workflow.</li>
+<li>Practitioner notes about staying current on tooling are part of harness maintenance, not just personal study.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text explicitly identifies the deck as the author&#x27;s talk materials.</li>
+<li>The linked deck title is directly visible in the X card.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: slide-deck bookmark</li>
+<li>Confidence: medium-high</li>
+<li>Supports: navigable-agent-skills, harness engineering, and onboarding / workflow capture</li>
+<li>Main limitations: the deck content itself was not read in this ingest</li>
+<li>Best use: a practical pointer for Claude Code onboarding and workflow-sharing discussions</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/navigable-agent-skills.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/rich-agent-output-artifact.md]]</li>
+<li>[[../concepts/context-file-system.md]]</li>
+</ul>
+<h2>Related M</h2>
+<h3>Oikon - Claude Code customization article for beginners</h3>
+<p>Source note: <code>wiki/sources/oikon48-claude-code-customization-seven-methods-x-2026-06-19.md</code></p>
+<h1>Oikon - Claude Code customization article for beginners</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/oikon48-claude-code-customization-seven-methods-x-2026-06-19.md]]</li>
+<li>Original URL: https://x.com/i/status/2067986260803645898</li>
+<li>Author: Oikon / @oikon48</li>
+<li>Posted: 2026-06-19T15:02:00.000Z</li>
+<li>Captured: 2026-06-22 via xurl bookmarks capture</li>
+<li>Type: X post / bookmark snapshot</li>
+<li>Evidence strength: bookmark snapshot summary text only; no primary article URL or title card was exposed</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark points to a beginner-friendly article about customizing Claude Code. The summarized hook is that there are seven separate ways to shape behavior, spanning context-loading, long-session behavior, and how willing the agent is to follow instructions. That makes it a useful source for thinking about Claude Code as a configurable operating environment rather than a fixed product.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Claude Code behavior can be customized through multiple distinct control surfaces.</li>
+<li>At least some of those surfaces relate to when context is loaded, how the agent behaves over long sessions, and how strictly it follows instructions.</li>
+<li>Practical Claude Code usage should consider harness tuning, not only prompt writing.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark explicitly summarizes the article as describing seven ways to customize Claude Code behavior.</li>
+<li>The captured excerpt names three of the categories, which is enough to place the source in the harness and context-management cluster.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: practitioner X post</li>
+<li>Confidence: medium</li>
+<li>Supports: harness engineering, context management, and configuration-driven behavior shaping</li>
+<li>Main limitations: no article title or URL exposed in the capture</li>
+<li>Best use: a compact pointer for Claude Code configuratio</li>
+</ul>
+<h3>Yusuke Wada - Zennfes talk slides on clear communication</h3>
+<p>Source note: <code>wiki/sources/yusuke-wada-zennfes-2026-clear-communication-slides-x-2026-06-20.md</code></p>
+<h1>Yusuke Wada - Zennfes talk slides on clear communication</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/yusuke-wada-zennfes-2026-clear-communication-slides-x-2026-06-20.md]]</li>
+<li>Original URL: https://x.com/i/status/2068362160468893784</li>
+<li>Primary URL: https://yoshiko-pg.github.io/talks/zennfes-2026/</li>
+<li>Author: Yusuke Wada / @yusukebe</li>
+<li>Posted: 2026-06-20T15:55:42.000Z</li>
+<li>Captured: 2026-06-22 via xurl bookmarks capture</li>
+<li>Type: X post / slide deck</li>
+<li>Evidence strength: bookmark snapshot metadata plus title card and linked slides</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark points to a slide deck titled 「伝わる発信のつくりかた」 from Zennfes 2026. Even without the full deck body in capture, the source is useful as a reminder that effective communication often deserves the same artifact quality as code: a slide deck can externalize the structure of an explanation, not just the result.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The deck is a talk artifact about how to make communication land clearly.</li>
+<li>Slide decks can act as rich, reviewable handoff artifacts.</li>
+<li>Communication quality is itself a workflow problem, not only a writing-style problem.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The X card exposes the slide title and notes that it is the Zennfes 2026 slide deck.</li>
+<li>The bookmark text is short, so the title card is the main directly visible evidence.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: slide-deck bookmark</li>
+<li>Confidence: medium</li>
+<li>Supports: rich output artifacts, context-first development, and explanation design</li>
+<li>Main limitations: no deck body was captured here; title-level interpretation only</li>
+<li>Best use: a reference for turning explanations and talks into durable reviewable artifacts</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/rich-agent-output-artifact.md]]</li>
+<li>[[../concepts/context-first-development.md]]</li>
+<li>[[../concepts/compiled-wiki.md]]</li>
+</ul>
+<h2>Rela</h2>
+<h2>更新された概念・地図</h2>
+<h3>Compiled Wiki</h3>
+<p>KB note: <code>wiki/concepts/compiled-wiki.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Compiled Wiki</p>
+<hr>
+<h1>Compiled Wiki</h1>
+<h2>Definition</h2>
+<p>A compiled wiki is a curated layer of linked Markdown notes derived from raw sources, rather than a direct dump of source material.</p>
+<h2>Why It Matters</h2>
+<p>It lets an LLM work over a cleaner, more connected representation of knowledge while preserving traceability back to raw evidence.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent knowledge loop]]</li>
+<li>[[obsidian as interface]]</li>
+<li>[[knowledge base linting]]</li>
+<li>[[open-knowledge-format]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/coreyganim-karpathy-second-brain-clearly-explained-x.md]]</li>
+<li>[[../sources/coreyganim-second-brain-monthly-audit-x.md]]</li>
+<li>[[../sources/shannholmberg-llm-wikid-x.md]]</li>
+<li>[[../sources/farza-farzapedia-x.md]]</li>
+<li>[[../sources/fieldtheory-cli-github.md]]</li>
+<li>[[../sources/obsidian-mind-github.md]]</li>
+<li>[[../sources/contextconor-enterprise-understanding-context-graph-x.md]]</li>
+<li>[[../sources/artemxtech-llm-wiki-vs-notebooklm-x.md]]</li>
+<li>[[../sources/aks</li>
+</ul>
+<h3>Context File System</h3>
+<p>KB note: <code>wiki/concepts/context-file-system.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Context File System</p>
+<hr>
+<h1>Context File System</h1>
+<h2>Definition</h2>
+<p>A lightweight external-memory pattern where an assistant reads and updates a small set of durable files such as instructions, memory, and project context instead of relying only on chat history or product-native saved memory.</p>
+<h2>Why It Matters</h2>
+<p>It offers a practical middle layer between built-in chat memory and a full knowledge graph or second-brain system. For many workflows, a few well-maintained files provide enough persistence, inspectability, and editability to improve consistency.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled-wiki.md]]</li>
+<li>[[obsidian-as-interface.md]]</li>
+<li>[[durability]]</li>
+<li>[[tool-accessibility.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/aiedge-supercharge-claude-memory-x.md]]</li>
+<li>[[../sources/obsidian-mind-github.md]]</li>
+<li>[[../sources/sukh-saroy-obsidian-mind-x.md]]</li>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/coreyganim-karpath</li>
+</ul>
+<h3>Context-First Development</h3>
+<p>KB note: <code>wiki/concepts/context-first-development.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Context-First Development</p>
+<p>  - Context Checking</p>
+<p>  - 30-Minute Waterfall</p>
+<hr>
+<h1>Context-First Development</h1>
+<h2>Definition</h2>
+<p>Context-first development is an AI-assisted software workflow where the main engineering control is not only tests or code-writing, but actively shaping, checking, and refreshing the context that the agent uses to plan and act.</p>
+<h2>Why It Matters</h2>
+<p>When implementation becomes fast, missing or stale context can dominate failure. The engineer&#x27;s leverage shifts toward deciding what the agent should know, what constraints matter, how the work is sliced, and when the produced artifact should be checked or redirected.</p>
+<h2>Workflow Pattern</h2>
+<ul>
+<li>Define a small outcome and context pack.</li>
+<li>Let the agent implement or draft quickly.</li>
+<li>Check the result and, crucially, check whether the context was sufficient.</li>
+<li>Update context, constraints, or work item state.</li>
+<li>Repeat in short cycles, sometimes framed as &quot;30-minute waterfall&quot; rather than multi-week sprint cadence.</li>
+</ul>
+<h2>R</h2>
+<h3>Harness Engineering</h3>
+<p>KB note: <code>wiki/concepts/harness-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Harness Engineering</p>
+<hr>
+<h1>Harness Engineering</h1>
+<h2>Definition</h2>
+<p>The design of the environment, artifacts, controls, tooling, and feedback loops around an agent so that it can produce more reliable results over time.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, performance depends less on the model alone and more on the structure that surrounds it.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[guides and sensors]]</li>
+<li>[[agent recognizable repository]]</li>
+<li>[[structured handoff artifacts]]</li>
+<li>[[machine-checkable invariants]]</li>
+<li>[[heavy-thinking.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/martin-fowler-harness-engineering.md]]</li>
+<li>[[../sources/gota-purpose-first-harness-design-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-how-to-approach-harness-engineering-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-what-harness-engineering-is-and-is-not-zenn.md]]</li>
+<li>[[../sources/sergicalsix-harness-engineering-overview-design-philosophy-speakerdeck.md]]</li>
+<li>[[../sources/yuukiyo-ai-dlc</li>
+</ul>
+<h3>Navigable Agent Skills</h3>
+<p>KB note: <code>wiki/concepts/navigable-agent-skills.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Navigable Agent Skills</p>
+<p>  - Corpus2Skill</p>
+<p>  - Hierarchical RAG</p>
+<hr>
+<h1>Navigable Agent Skills</h1>
+<h2>Definition</h2>
+<p>A retrieval architecture where a corpus is compiled into a hierarchy of human/model-readable skill or index files, so an agent can navigate the corpus structure before retrieving underlying documents.</p>
+<h2>Why It Matters</h2>
+<p>It changes the model’s role from passive consumer of search results to active navigator of an information architecture. This is especially useful for broad or completeness-oriented questions where top-k vector retrieval may miss scattered evidence.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled-wiki.md]]</li>
+<li>[[agent-knowledge-loop.md]]</li>
+<li>[[context-graph.md]]</li>
+<li>[[tool-accessibility.md]]</li>
+<li>[[agent-recognizable-repository.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/coreyganim-karpathy-second-brain-clearly-explained-x.md]]</li>
+<li>[[../sources/knowledgesense-corpus2skill-zenn.md]]</li>
+<li>[[../sources/aws-agent-toolkit-for-aws-x.md]]</li>
+<li>[[../sources/googlecloudjp-agent-skills-repos</li>
+</ul>
+<h3>Rich Agent Output Artifact</h3>
+<p>KB note: <code>wiki/concepts/rich-agent-output-artifact.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Rich agent output artifact</p>
+<p>  - HTML artifact</p>
+<p>  - Agent-generated interface</p>
+<hr>
+<h1>Rich Agent Output Artifact</h1>
+<h2>Definition</h2>
+<p>An agent-produced deliverable that uses a richer medium than linear prose, such as HTML, SVG, charts, interactive controls, dashboards, slide decks, or custom editors, to help humans understand, review, steer, or reuse complex work.</p>
+<h2>Why It Matters</h2>
+<p>Human-in-the-loop workflows often fail not because the agent lacks information, but because the output is too dense, flat, or hard to inspect. Rich artifacts can reduce review friction by making structure visible: diffs can become annotated layouts, plans can become option grids, reports can become timelines, and exploratory work can become a small browser-native tool.</p>
+<h2>Relation to Harness Engineering</h2>
+<p>The output format is part of the harness. It determines how easily a human can:</p>
+<ul>
+<li>understand the agent&#x27;s reasoning and evidence</li>
+<li>notice errors or missing cases</li>
+<li>compare alternatives</li>
+<li>manipulate pa</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>5</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
