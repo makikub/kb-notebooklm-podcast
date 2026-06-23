@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-23 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-23/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-23</header>
+<h1>KB Daily Digest 2026-06-23</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-23/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-23">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-23</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest — 2026-06-23</h1>
+<p>2026-06-23 UTC の knowledge-base-llm は、前日に公開・捕捉された AI エージェント基盤、セキュリティ、モデル/API統合のソースを5本追加した。全体としては「エージェントをどう動かすか」から一歩進んで、「複数モデル・複数エージェントを、単一の製品/API面としてどう提供し、どう安全に運用するか」に焦点が移っている。</p>
+<p>重要ソースの1本目は Sakana AI の Fugu。これは、複数の専門モデル/エージェントを動的に束ねる仕組みを「ひとつのモデルAPI」として提供する、という主張を持つ。KB上では <code>multi-agent-orchestration</code>、<code>managed-agents</code>、<code>agent-autonomy</code>、<code>agent-safety</code> に接続されており、手書きのワークフローではなく、学習済み/製品化されたオーケストレーションをユーザーに渡す流れの代表例として読める。</p>
+<p>2本目は Google AI Studio の Interactions API GA。短いX由来の捕捉ではあるが、モデルとエージェントを横断して調整する「新しいデフォルトAPI」として位置づけられている点が重要だ。Sakana Fugu が「モデルAPIとしてのマルチエージェント」を示すなら、Google の発表は「開発者向け標準インターフェースとしてのマルチエージェント」を示す。どちらも、エージェント制御をアプリ側の個別実装からプラットフォーム側の面へ寄せるシグナルになっている。</p>
+<p>3本目は OpenAI Daybreak の拡張で、Codex Security plugin と GPT-5.5-Cyber が含まれる。KB上の読みどころは、脆弱性対応が単なるコードレビュー支援ではなく、検出、検証、修正を含むプロダクト化されたワークフローとして語られている点にある。<code>agent-safety</code> と <code>agent-deployment-gates-and-operational-risk</code> の文脈では、エージェントが「変更できる」だけでなく、どこまで自律修正してよいか、どこで人間の検証を挟むべきかが次の論点になる。</p>
+<p>同じセキュリティ領域では、Publickey 経由で AWS Contiuum も追加された。こちらはコードだけでなく、インフラ構成、権限、ネットワークトポロジー、ドキュメント、ビジネス優先度まで使って脆弱性を優先順位づけると説明されている。OpenAI Daybreak が coding-agent surface 内での修復ワークフローに寄っているのに対し、AWS Contiuum は実運用環境の文脈を集めてリスク判断する方向に見える。今日のセキュリティ2本は、エージェント安全性が「モデルが賢いか」ではなく「どの文脈を読み、どの環境で検証し、どの権限で直すか」に移っていることを強く示している。</p>
+<p>Cursor の Compile keynote teaser も追加された。捕捉できている内容は短く、3つの発表のうち明示されているのは SpaceX と訓練している新モデルという点だけだが、Cursor が単なるエディタ機能の拡張ではなく、モデル・パートナーシップを含むプラットフォーム競争に入っていることを示すシグナルとして価値がある。KB上では <code>tool-accessibility</code>、<code>managed-agents</code>、<code>agentic-product-market-fit</code>、<code>model-psychology</code> に接続されている。</p>
+<p>全体トレンドとして、今日の5本は「モデル」「API」「エージェント」「セキュリティ製品」の境界がかなり曖昧になってきたことを示す。Sakana Fugu はマルチエージェントを単一モデルとして見せ、Google はモデルとエージェントを横断するAPIを前面に出し、OpenAI と AWS はセキュリティ運用をエージェント化された製品面へ寄せている。結果として、アプリ開発者や運用者が設計すべきものは、単発のプロンプトではなく、可視性、制御、権限、検証、ロールバックまで含む harness になっている。</p>
+<p>KB内の概念地図としては、新規 source note は既存の <code>multi-agent-orchestration</code>、<code>managed-agents</code>、<code>agent-safety</code>、<code>tool-accessibility</code>、<code>workflow-compilation</code> へ主に接続された。新しい概念ファイルの追加はなかったが、同じ概念群に複数ベンダーの最新ソースが集まったことで、これらのノートは「抽象概念」から「製品比較の軸」として使いやすくなっている。特に <code>agent-deployment-gates-and-operational-risk</code> は、Daybreak と Contiuum の両方を読むための中核地図になりそうだ。</p>
+<p>なお同日に静的監査 seed も生成され、wiki markdown 596件、source note 481件、concept note 86件、map note 18件という規模感が確認された。監査では broken wiki/markdown link が3件、明示的な source backlink が弱い概念が3件示されている。今日の ingest そのものとは別枠だが、KBが拡大するにつれて、リンク整合性と概念の証拠密度を定期的に見直す必要があることも示している。</p>
+<p>Podcastで掘るなら、論点は3つに絞れる。第一に、単一API化されたマルチエージェントは、開発者の制御性を増やすのか、それとも内部挙動をブラックボックス化するのか。第二に、セキュリティ領域でエージェントが修復まで担うとき、検証環境、権限境界、人間の承認はどう設計されるべきか。第三に、Cursor のような開発環境が独自モデルやパートナーシップに踏み込むと、エディタ、モデル、業務文脈の結合はどこまで強くなるのか。この3点を追うと、今日の更新は単なるニュースまとめではなく、エージェント基盤の次の競争軸として読める。</p>
+<h2>重要ソース</h2>
+<h3>Cursor - Compile keynote announcements including a new model trained with SpaceX</h3>
+<p>Source note: <code>wiki/sources/cursor-ai-compile-keynote-spacex-model-x-2026-06-22.md</code></p>
+<h1>Cursor - Compile keynote announcements including a new model trained with SpaceX</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>Bookmark source: xurl bookmarks capture</li>
+<li>Raw bookmark capture: <code>../x/bookmarks/bookmarks-20260623T0000Z.json</code></li>
+<li>Canonical URL: https://x.com/i/status/2069149296436330776</li>
+<li>Author: Cursor (@cursor_ai)</li>
+<li>Posted: 2026-06-22T20:03:29.000Z</li>
+<li>Captured: 2026-06-23 via xurl bookmarks capture</li>
+<li>Type: X post / keynote teaser</li>
+<li>Evidence quality: bookmark snapshot text plus video card; only one announcement detail is exposed in the capture</li>
+<li>Public metrics at capture: 146 reposts, 69 replies, 2132 likes, 43 quotes, 775 bookmarks, 129788 impressions</li>
+</ul>
+<h2>Captured Fields</h2>
+<ul>
+<li>Tweet text: Three announcements from our keynote at Compile.</li>
+<li>Tweet text: One of the announced items is a new model being trained with SpaceX.</li>
+<li>Linked URL: https://x.com/cursor_ai/status/2069149296436330776/video/1</li>
+</ul>
+<h2>Notes</h2>
+<ul>
+<li>The most important signal is the SpaceX model training announcement, which suggests a product-model partnership worth tracking.</li>
+<li>The rest of the keynote is not expanded in the bookmark text, so this note stays close to the exposed evidence.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/agentic-product-market-fit.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/cursor-ai-compile-keynote-spacex-model-x-2026-06-22.md]]</li>
+</ul>
+<h3>Google AI Studio - Interactions API enters GA</h3>
+<p>Source note: <code>wiki/sources/google-ai-studio-interactions-api-ga-x-2026-06-22.md</code></p>
+<h1>Google AI Studio - Interactions API enters GA</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>Bookmark source: xurl bookmarks capture</li>
+<li>Raw bookmark capture: <code>../x/bookmarks/bookmarks-20260623T0000Z.json</code></li>
+<li>Canonical URL: https://x.com/i/status/2069115284519346263</li>
+<li>Author: Logan Kilpatrick (@OfficialLoganK)</li>
+<li>Posted: 2026-06-22T17:48:20.000Z</li>
+<li>Captured: 2026-06-23 via xurl bookmarks capture</li>
+<li>Type: X post / API announcement</li>
+<li>Evidence quality: bookmark snapshot text only</li>
+<li>Public metrics at capture: 54 reposts, 59 replies, 727 likes, 8 quotes, 224 bookmarks, 84318 impressions</li>
+</ul>
+<h2>Captured Fields</h2>
+<ul>
+<li>Tweet text: Today we are shipping the Interactions API into GA.</li>
+<li>Tweet text: The API is described as the new default API for orchestrating across models and agents in the same interface.</li>
+<li>Linked URL: https://x.com/GoogleAIStudio/status/2069108412453908791?s=20</li>
+</ul>
+<h2>Notes</h2>
+<ul>
+<li>The bookmark is notable because it treats orchestration as a first-class API surface rather than an implementation detail.</li>
+<li>The capture is short, so this note stays at the announcement level.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/google-ai-studio-interactions-api-ga-x-2026-06-22.md]]</li>
+</ul>
+<h3>OpenAI - Daybreak expands with Codex Security plugin and GPT-5.5-Cyber</h3>
+<p>Source note: <code>wiki/sources/openai-daybreak-security-plugin-gpt-55-cyber-x-2026-06-22.md</code></p>
+<h1>OpenAI - Daybreak expands with Codex Security plugin and GPT-5.5-Cyber</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>Bookmark source: xurl bookmarks capture</li>
+<li>Raw bookmark capture: <code>../x/bookmarks/bookmarks-20260623T0000Z.json</code></li>
+<li>Canonical URL: https://x.com/i/status/2069104283824640023</li>
+<li>Author: OpenAI (@OpenAI)</li>
+<li>Posted: 2026-06-22T17:04:38.000Z</li>
+<li>Captured: 2026-06-23 via xurl bookmarks capture</li>
+<li>Type: X post / security product announcement</li>
+<li>Evidence quality: bookmark snapshot text only; the final bullet is truncated</li>
+<li>Public metrics at capture: 325 reposts, 190 replies, 3044 likes, 142 quotes, 759 bookmarks, 584981 impressions</li>
+</ul>
+<h2>Captured Fields</h2>
+<ul>
+<li>Tweet text: OpenAI is expanding Daybreak to help democratize patching vulnerable software at machine speed.</li>
+<li>Tweet text: The post explicitly names a Codex Security plugin and a GPT-5.5-Cyber model.</li>
+<li>Tweet text: The final item in the list is truncated in the capture.</li>
+</ul>
+<h2>Notes</h2>
+<ul>
+<li>The most interesting KB signal is the move to package vulnerability finding and remediation as a productized agent workflow.</li>
+<li>Because the post is truncated, this note should be treated as announcement-level evidence rather than a full feature spec.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/agent-safety.md]]</li>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/tool-accessibility.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/openai-daybreak-security-plugin-gpt-55-cyber-x-2026-06-22.md]]</li>
+</ul>
+<h3>Publickey - AWS Contiuum reasons about vulnerabilities with infrastructure and business context</h3>
+<p>Source note: <code>wiki/sources/publickey-aws-continuum-vulnerability-reasoning-x-2026-06-21.md</code></p>
+<h1>Publickey - AWS Contiuum reasons about vulnerabilities with infrastructure and business context</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>Bookmark source: xurl bookmarks capture</li>
+<li>Raw bookmark capture: <code>../x/bookmarks/bookmarks-20260623T0000Z.json</code></li>
+<li>Canonical URL: https://x.com/i/status/2068687975509270531</li>
+<li>Author: Publickey (@publickey)</li>
+<li>Posted: 2026-06-21T13:30:22.000Z</li>
+<li>Captured: 2026-06-23 via xurl bookmarks capture</li>
+<li>Type: X post / article bookmark</li>
+<li>Evidence quality: bookmark snapshot plus linked article metadata</li>
+<li>Public metrics at capture: 13 reposts, 1 replies, 34 likes, 2 quotes, 18 bookmarks, 4601 impressions</li>
+<li>Primary URL: https://www.publickey1.jp/blog/26/awsaws_contiuumai.html</li>
+</ul>
+<h2>Captured Fields</h2>
+<ul>
+<li>Tweet text: Blog post about AWS Contiuum and its model-agnostic design.</li>
+<li>Tweet text: The article title says AWS can reason about vulnerabilities using infrastructure and business context.</li>
+<li>Linked URL: https://www.publickey1.jp/blog/26/awsaws_contiuumai.html</li>
+</ul>
+<h2>Notes</h2>
+<ul>
+<li>The bookmark is useful because the article is much richer than the X excerpt alone.</li>
+<li>The primary article describes sandbox verification and remediation advice, which are important guardrails for security automation.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/agent-safety.md]]</li>
+<li>[[../concepts/workflow-compilation.md]]</li>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/publickey-aws-continuum-vulnerability-reasoning-x-2026-06-21.md]]</li>
+</ul>
+<h3>Sakana AI - Sakana Fugu multi-agent system as a model</h3>
+<p>Source note: <code>wiki/sources/sakana-ai-fugu-multi-agent-system-as-a-model-x-2026-06-22.md</code></p>
+<h1>Sakana AI - Sakana Fugu multi-agent system as a model</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Source type: X bookmark snapshot</li>
+<li>Bookmark source: xurl bookmarks capture</li>
+<li>Raw bookmark capture: <code>../x/bookmarks/bookmarks-20260623T0000Z.json</code></li>
+<li>Canonical URL: https://x.com/i/status/2068861630327443966</li>
+<li>Author: Sakana AI (@SakanaAILabs)</li>
+<li>Posted: 2026-06-22T01:00:24.000Z</li>
+<li>Captured: 2026-06-23 via xurl bookmarks capture</li>
+<li>Type: X post / product announcement</li>
+<li>Evidence quality: bookmark snapshot text plus official product page</li>
+<li>Public metrics at capture: 5284 reposts, 1011 replies, 33725 likes, 3414 quotes, 27055 bookmarks, 20199888 impressions</li>
+<li>Primary URL: https://sakana.ai/fugu/</li>
+</ul>
+<h2>Captured Fields</h2>
+<ul>
+<li>Tweet text: Sakana Fugu is introduced as a full multi-agent orchestration system accessible via a single model API.</li>
+<li>Tweet text: The X post points to the official product page at sakana.ai/fugu.</li>
+</ul>
+<h2>Notes</h2>
+<ul>
+<li>The strongest signal here is the product framing: orchestration is being packaged as a model surface, not just a controller loop.</li>
+<li>The product page emphasizes model-pool selection, provider opt-out controls, and multi-step task handling.</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/multi-agent-orchestration.md]]</li>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/agent-safety.md]]</li>
+</ul>
+<h2>Backlinks</h2>
+<ul>
+<li>[[../../raw/articles/sakana-ai-fugu-multi-agent-system-as-a-model-x-2026-06-22.md]]</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>5</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
