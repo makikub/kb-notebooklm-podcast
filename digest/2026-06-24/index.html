@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-24 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-24/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-24</header>
+<h1>KB Daily Digest 2026-06-24</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-24/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-24">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-24</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-24</h1>
+<p>2026-06-24 UTC の knowledge-base-llm は、X bookmarks の新規取り込みを起点に、background agent と個人知識ループの2方向を補強した更新だった。新規 raw は <code>raw/x/bookmarks/bookmarks-20260624T0000Z.json</code> と、そこから切り出された記事メモ2本。wiki 側では <code>ClaudeDevs - Background watchers and thresholded CI monitoring</code> と <code>Peter Steinberger - Birdclaw local Twitter memory in SQLite</code> が sources に追加され、既存の <code>Background Agents</code>、<code>Agent Knowledge Loop</code>、<code>Harness Engineering Vendor / Practitioner Comparison</code> に接続された。</p>
+<p>全体トレンドは、「エージェントを常時見る」のではなく、「しきい値・検証・記憶の仕組みを先に置いて、必要な時だけ起動する」方向に寄っている。ClaudeDevs の background watcher は、CIが赤いという状態そのものではなく、「赤い状態が長すぎる」「原因コミットと失敗テストが揃った」という条件を起点にする。これは単なる監視ダッシュボードではなく、次の修正作業に渡せる単位までまとめてから人間やエージェントを呼ぶ、という harness engineering の具体例として扱える。</p>
+<p>重要ソースの1本目は ClaudeDevs の background watcher で、KB内では <code>Background Agents</code> と harness comparison に効いている。ポイントは、通知の価値を「何かが起きた」から「直せる形で渡された」に引き上げていること。CI監視を例にすると、失敗テスト、しきい値、culprit commit、同じスレッドから修正に入る導線がまとまることで、background agent が雑音ではなく作業キューとして機能する。</p>
+<p>2本目は Peter Steinberger の Birdclaw。こちらは Twitter/X の読み物を、ローカルファーストでSQLiteに入る「Twitter memory」として捉えるソースで、<code>Agent Knowledge Loop</code> に接続された。フィード上で流れて消える情報を、ローカルに保存し、後から検索・再利用できる形にするという点で、KBの raw -&gt; wiki -&gt; digest/podcast という流れとかなり相性がよい。今回の更新では、社会的な読書ログが個人の外部記憶やコンテキストグラフに変わる線が強くなった。</p>
+<p>3本目として見る価値があるのは、raw bookmark に含まれていた Anthropic engineer の loops / dreaming / self-verification 系の投稿だ。今回これ自体は個別 source note には昇格していないが、captured bookmark の中では、自己検証できる agent loop と dreaming を結びつける文脈として現れている。今日のcompile更新と合わせると、background watcher は「いつ起きるか」、Birdclaw は「何を記憶するか」、loops/dreaming は「どう改善し続けるか」という役割分担で読める。</p>
+<p>概念更新では、<code>Agent Knowledge Loop</code> に Birdclaw が supporting source として追加され、外部化された知識ループの入力源がまたひとつ広がった。ここで重要なのは、単に保存先がSQLiteであることではなく、ソーシャルリーディングを raw archive のまま終わらせず、後続の検索、要約、wiki化、Podcast化に接続できる substrate として扱えることだ。KBの問いとしては、どこまでをdurable noteに正規化し、どこからは raw archive として残すべきかが残る。</p>
+<p><code>Background Agents</code> には ClaudeDevs の source が追加され、background作業の安全な起動条件という観点が増えた。これまでの background agents は、非同期・長時間・scheduled task・managed agents という広い話が中心だったが、今回の source はより運用寄りで、「どのチェックをダッシュボードからしきい値つきwake-upに変換するか」という実務的な問いを足している。これは、レビュー負荷や通知疲れを抑えながらエージェントを使う設計に直結する。</p>
+<p><code>Harness Engineering Vendor / Practitioner Comparison</code> では、June 2026 xurl bookmarks ingest として、ClaudeDevs と Birdclaw が追記された。OpenAI、Anthropic、Cursor、Cognition、LangChainなどの大きなベンダー比較に対し、今回の2本は小さな実践例として効いている。ひとつはCI監視を「thresholded remediation payload」にする話、もうひとつはTwitter読書を「local queryable memory」にする話で、どちらもモデル単体ではなく周辺システムが価値を決めるという既存の収束点を補強している。</p>
+<p>実務上の読みどころは、監視、記憶、検証を別々の便利機能としてではなく、ひとつのループとして見ることだと思う。CI watcher が失敗を検出し、culprit commit 付きで作業化する。Birdclaw のようなローカルメモリが日々の発見を再利用可能にする。そこに self-verification / dreaming 的な整理が入ると、個々の作業ログや読書ログが、次のエージェント運用を良くする材料になる。今日の更新は小粒だが、KB全体では「agent harness は通知・記憶・検証の設計である」という線を濃くしている。</p>
+<p>公開ページとPodcastでは、特に「ダッシュボードからしきい値つきwake-upへ」「ソーシャルフィードからSQLite-backed memoryへ」「raw bookmarkをどこまでwiki/sourceへ昇格するか」を掘るとよい。次に追う問いは、1) background watcher が持つべき provenance の最小単位、2) social memory tool の継続利用を支えるUX、3) raw bookmarkからsource noteへ昇格する基準、4) compile済みKBが誤りを増幅しないためのlint/audit設計、の4つ。</p>
+<h2>重要ソース</h2>
+<h3>ClaudeDevs - Background watchers and thresholded CI monitoring</h3>
+<p>Source note: <code>wiki/sources/claudedevs-background-watchers-threshold-ci-monitor-x-2026-06-23.md</code></p>
+<h1>ClaudeDevs - Background watchers and thresholded CI monitoring</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/claudedevs-background-watchers-threshold-ci-monitor-x-2026-06-23.md</code></li>
+<li>Source type: X bookmark snapshot / X video card</li>
+<li>Bookmark source: xurl bookmarks capture</li>
+<li>Canonical URL: https://x.com/i/status/2069468909858873779</li>
+<li>Primary URL: https://x.com/ClaudeDevs/status/2069468909858873779/video/1</li>
+<li>Author: ClaudeDevs / @ClaudeDevs</li>
+<li>Posted: 2026-06-23T17:13:31.000Z</li>
+<li>Captured: 2026-06-24 via xurl bookmarks capture</li>
+<li>Public metrics at capture: 0 reposts, 8 replies, 27 likes, 0 quotes, 6 bookmarks, 9083 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>ClaudeDevs sketches a background watcher that stays silent until a CI problem crosses a threshold, then posts with the failure and culprit commit already attached.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Threshold-based monitoring is more useful than a constant dashboard for some agent workflows.</li>
+<li>A watcher should return an actionable failure bundle, not just a notification.</li>
+<li>The surrounding harness can decide when an issue is worth waking a human or agent.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text explicitly says to give Claude a threshold instead of a dashboard.</li>
+<li>It also says the watcher should post with the failing test and culprit commit attached.</li>
+<li>The post frames the fix as something to continue from the same thread.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / video card</li>
+<li>Confidence: medium-high for the workflow framing, medium for implementation details not visible in the card</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concepts/feedforward-controls.md]]</li>
+<li>[[../concepts/ai-adoption-thresholds.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/harness-engineering-vendor-comparison.md]]</li>
+<li>[[../maps/coding-agen</li>
+</ul>
+<h3>Peter Steinberger - Birdclaw local Twitter memory in SQLite</h3>
+<p>Source note: <code>wiki/sources/steipete-birdclaw-local-twitter-memory-sqlite-x-2026-06-22.md</code></p>
+<h1>Peter Steinberger - Birdclaw local Twitter memory in SQLite</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/steipete-birdclaw-local-twitter-memory-sqlite-x-2026-06-22.md</code></li>
+<li>Source type: X bookmark snapshot / website link</li>
+<li>Bookmark source: xurl bookmarks capture</li>
+<li>Canonical URL: https://x.com/i/status/2068965200343224367</li>
+<li>Primary URL: https://birdclaw.sh/</li>
+<li>Author: Peter Steinberger / @steipete</li>
+<li>Posted: 2026-06-22T07:51:57.000Z</li>
+<li>Captured: 2026-06-24 via xurl bookmarks capture</li>
+<li>Public metrics at capture: 461 reposts, 256 replies, 7481 likes, 52 quotes, 9561 bookmarks, 550681 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Birdclaw is framed as a local-first Twitter memory workspace in SQLite, turning social reading into something archiveable and queryable rather than purely ephemeral.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Twitter/X content can be stored as local memory instead of only consumed in the feed.</li>
+<li>SQLite makes the memory layer durable and searchable.</li>
+<li>Social reading becomes part of a broader knowledge workflow when capture and recall are cheap.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text says this is becoming the author&#x27;s favorite way to read Twitter.</li>
+<li>The linked site title is explicitly &quot;Local Twitter memory in SQLite.&quot;</li>
+<li>The combination points to a lightweight personal knowledge-system pattern rather than just a reader UI.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X bookmark snapshot plus product/site metadata</li>
+<li>Confidence: medium-high for the product framing, medium for any broader workflow generalization</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/agent-knowledge-loop.md]]</li>
+<li>[[../concepts/compiled-wiki.md]]</li>
+<li>[[../concepts/context-graph.md]]</li>
+<li>[[../concepts/evidence-quality.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/context-graph-and-company-brain.md]]</li>
+<li>[[../maps/evidence-quality-and-source-trust.md]]</li>
+</ul>
+<h2>Open Ques</h2>
+<h2>更新された概念・地図</h2>
+<h3>Agent Knowledge Loop</h3>
+<p>KB note: <code>wiki/concepts/agent-knowledge-loop.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent Knowledge Loop</p>
+<hr>
+<h1>Agent Knowledge Loop</h1>
+<h2>Definition</h2>
+<p>A recurring loop where an LLM ingests sources, compiles notes, answers questions over the resulting wiki, and files useful outputs back into the knowledge base.</p>
+<h2>Why It Matters</h2>
+<p>This loop turns the knowledge base into a compounding system rather than a static archive.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled-wiki.md]]</li>
+<li>[[open-knowledge-format.md]]</li>
+<li>[[context-graph.md]]</li>
+<li>[[loop-engineering.md]]</li>
+<li>[[knowledge-base-linting.md]]</li>
+<li>[[rich-agent-output-artifact.md]]</li>
+<li>[[agent-autonomy.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/coreyganim-karpathy-second-brain-clearly-explained-x.md]]</li>
+<li>[[../sources/coreyganim-second-brain-monthly-audit-x.md]]</li>
+<li>[[../sources/shannholmberg-llm-wikid-x.md]]</li>
+<li>[[../sources/artemxtech-llm-wiki-vs-notebooklm-x.md]]</li>
+<li>[[../sources/arxiv-externalization-in-llm-agents.md]]</li>
+<li>[[../sources/carnot-cyclist-continual-learning-desiderata-x.md]]</li>
+<li>[[..</li>
+</ul>
+<h3>Background Agents</h3>
+<p>KB note: <code>wiki/concepts/background-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Background Agents</p>
+<hr>
+<h1>Background Agents</h1>
+<h2>Definition</h2>
+<p>Agents launched to work asynchronously while the human focuses elsewhere or is offline.</p>
+<h2>Why It Matters</h2>
+<p>They can create leverage by using otherwise idle time and by parallelizing exploratory work.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[long-running-agents]]</li>
+<li>[[task-decomposition]]</li>
+<li>[[agent-management]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/mitchell-hashimoto-ai-adoption-journey.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-scheduled-tasks-x.md]]</li>
+<li>[[../sources/anthropic-claude-code-scheduled-tasks-dynamic-loop-docs.md]]</li>
+<li>[[../sources/noahzweben-dynamic-loop-x.md]]</li>
+<li>[[../sources/oikon48-monitor-tool-x.md]]</li>
+<li>[[../sources/noahzweben-autofix-pr-x.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/cursor-3-blog.md]]</li>
+<li>[[.</li>
+</ul>
+<h3>Harness Engineering Vendor / Practitioner Comparison</h3>
+<p>KB note: <code>wiki/maps/harness-engineering-vendor-comparison.md</code></p>
+<h1>Harness Engineering Vendor / Practitioner Comparison</h1>
+<h2>Purpose</h2>
+<p>Compare how different sources frame harness engineering, what they optimize for, and what distinctive mechanisms they emphasize.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/codex-subagents-docs.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/cursor-3-blog.md]]</li>
+<li>[[../sources/anthropic-claude-code-large-codebases.md]]</li>
+<li>[[../sources/anthropic-2026-agentic-coding-trends-report.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+</ul>
+<h2>Comparison axes</h2>
+<h3>OpenAI</h3>
+<ul>
+<li>Focus: repository design, machine-enforced invariants, agent-recognizable contex</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>2</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
