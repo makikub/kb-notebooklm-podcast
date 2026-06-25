@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-25 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-25/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-25</header>
+<h1>KB Daily Digest 2026-06-25</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-25/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-25">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-25</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-25</h1>
+<p>2026-06-25 UTC の knowledge-base-llm は、X bookmarks の新規取り込みを起点に、coding agent / design agent / secrets management の3本を source note として追加した更新だった。新規 raw は <code>raw/x/bookmarks/bookmarks-20260625T0000Z.json</code> と、そこから切り出された記事メモ3本。wiki 側では Devin Desktop/CLI のモデル提供、Figma Config 2026 の generative plugins、1Password Environments による <code>.env</code> 管理が sources に追加され、<code>harness-engineering</code>、<code>coding-agents</code>、<code>workflow-compilation</code>、<code>context-engineering</code>、<code>environment-bootstrapping</code>、<code>tool-accessibility</code> などの既存概念に接続された。</p>
+<p>全体トレンドは、「AI機能を単体ツールとして足す」段階から、「日常の作業面にモデル・スキル・秘密情報の扱いを埋め込む」段階への移行として読める。Devin は Kimi K2.7 Code と GLM 5.2 を Desktop/CLI の選択肢として出し、Figma は generative plugin と design agent の custom tools / context / skills を前面に出し、1Password Environments は <code>.env</code> を平文ファイルやチャット共有ではなく、権限付きの実行時注入として扱う。いずれも、モデルやプロンプトだけではなく、作業環境そのものが agent-ready に整備されていく流れを補強している。</p>
+<p>重要ソースの1本目は Devin Desktop / CLI のモデル提供に関する投稿。KB内では <code>coding-agents</code>、<code>llm-inference-performance</code>、<code>tool-accessibility</code>、<code>agentic-jevons-paradox</code> に接続されている。ポイントは、Kimi K2.7 Code と GLM 5.2 のようなモデルが、単なるリリース情報ではなく、Desktop と CLI という実作業面に組み込まれていること。FrontierCode Extended のスコアも提示されているが、KB上の扱いとしてはベンチマーク値そのものより、「どのモデルをどの作業面で使えるようにするか」が product UX の判断になっている点が重要になる。</p>
+<p>2本目は Figma Config 2026 の generative plugins と design-agent tools。ここでは、Figma が受動的なキャンバスから、生成・拡張・文脈理解を備えた作業面へ寄っていることが読みどころになる。source note は <code>navigable-agent-skills</code>、<code>workflow-compilation</code>、<code>rich-agent-output-artifact</code>、<code>context-engineering</code> に接続されており、デザイン作業を「一回限りの生成」ではなく、再利用できる tool / skill / plugin として編成する方向を示す。特に「custom tools」「real context」「skills」という語彙は、KBが追っている agent skill substrate の設計論と相性がよい。</p>
+<p>3本目は Takahiro Ikeuchi 氏の 1Password Environments 記事。これは <code>.env</code> を Slack DM などで共有する運用を避け、1Password 側で環境変数を管理し、<code>op environment read</code> や <code>op run --environment</code> で必要時に注入する実務パターンとして追加された。KBでは <code>environment-bootstrapping</code>、<code>context-file-system</code>、<code>approval-policy</code>、<code>sustainable-ai-work</code> に効いている。agent がリポジトリや開発環境を扱うほど、秘密情報をどこに置くか、いつ読み込むか、どの承認境界で使うかが品質と安全性の一部になる。</p>
+<p>今日の概念地図としては、3本すべてが <code>tool-accessibility</code> に接続されている点が目立つ。Devin のモデル選択、Figma の生成プラグイン、1Password のCLI注入は、表面上は別ジャンルだが、どれも「正しい能力を、作業者やagentが使える場所に置く」話である。KB全体の harness engineering 観点では、ツールを増やすこと自体ではなく、選択・権限・文脈・出力物の扱いまで含めて、作業ループにどう編み込むかが焦点になる。</p>
+<p>実務上の読みどころは、agent時代のチーム環境を「モデル」「作業キャンバス」「秘密情報」の3層で点検できることだと思う。まず、coding agent で使えるモデルは誰が選び、どう比較し、いつ切り替えるのか。次に、デザインやドキュメントの作業面は、単なるチャット応答ではなく、再実行可能なスキルやプラグインとして残せるのか。最後に、そうした agent が開発環境へ入るとき、<code>.env</code> やトークンを生のファイルとして置かず、安全に注入できるのか。この3つが揃うと、agent導入はデモから日常運用に近づく。</p>
+<p>公開ページとPodcastでは、「モデル可用性はベンダー発表ではなくUX設計である」「design agent の skill 化は workflow compilation の別表現である」「秘密情報管理はagent harnessの土台である」という3点を掘るとよい。次に追う問いは、1) coding agent が複数モデルを自律的に選ぶときの評価基準、2) Figmaのgenerative pluginがどこまで再利用可能なskillとして扱えるか、3) 1Password Environments のような実行時注入が unattended automation にどこまで向くか、4) tool accessibility と approval boundary を同じ設計図で扱えるか、の4つ。</p>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-product-market-fit.md]] — Simon Willison&#x27;s market analysis that Anthropic/OpenAI have found product-market fit through coding/general-purpose agents, API-aligned enterprise pricing, and high-value professional usage.</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents, and org ownership.</li>
+<li>[[about-hiroppy-founders-playbook.md]] — Anthropic&#x27;s official founder playbook PDF: AI-native startup lifecycle across Idea, MVP, Launch, and Scale, with Claude Chat/Cowork/Code stage usage, validation gates, agentic technical debt risks, founder bottleneck removal, and moat formation.</li>
+<li>[[izanami-claude-code-large-codebase-best-practices.md]] — Japanese practitioner explainer on Claude Code large-codebase setup: live repo search, thin layered CLAUDE.md, subdirectory startup, hooks, stale-rule pruning, and adoption ownership.</li>
+<li>[[newspicks-harness-engineering-what-is-it.md]] — Japanese explainer separating evalua</li>
+</ul>
+<h3>Cognition - Devin Desktop and CLI model availability</h3>
+<p>Source note: <code>wiki/sources/cognition-devin-model-availability-kimi-glm-x-2026-06-24.md</code></p>
+<h1>Cognition - Devin Desktop and CLI model availability</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/cognition-devin-model-availability-kimi-glm-x-2026-06-24.md</code></li>
+<li>Original URL: https://x.com/i/status/2069918091245699456</li>
+<li>Bookmark source: xurl bookmarks capture</li>
+<li>Canonical URL: https://x.com/i/status/2069918091245699456</li>
+<li>Primary URL: https://x.com/devindesktop/status/2069918091245699456/photo/1</li>
+<li>Author: Devin Desktop / @devindesktop</li>
+<li>Posted: 2026-06-24T22:58:24.000Z</li>
+<li>Captured: 2026-06-25 via xurl bookmarks capture</li>
+<li>Public metrics at capture: 10 reposts, 6 replies, 79 likes, 12 quotes, 15 bookmarks, 13254 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmarked post is a small but useful product-distribution signal: Devin Desktop and CLI surfaced Kimi K2.7 Code and GLM 5.2 directly to users, along with benchmark numbers on FrontierCode Extended and a limited free-try window.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Devin Desktop and CLI are serving Kimi K2.7 Code and GLM 5.2 as selectable models.</li>
+<li>The post uses FrontierCode Extended scores to position the models for real-world engineering tasks.</li>
+<li>The rollout is temporarily free for Pro, Max, and Teams users until July 5.</li>
+<li>Model availability is becoming a product-surface decision, not just a model-release decision.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text explicitly names both models and both Devin surfaces.</li>
+<li>It reports FrontierCode Extended scores of 43.0% for GLM 5.2 and 39.5% for Kimi K2.7 Code.</li>
+<li>The post says users can try both models for free until July 5.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / image card</li>
+<li>Confidence: medium-high for the rollout claim, medium for benchmark interpretation because the benchmark details are only lightly surfaced</li>
+<li>Supports: model availability, product integration, and benchmark-driven model selection</li>
+<li>Mai</li>
+</ul>
+<h3>Figma - Config 2026 generative plugins and design-agent tools</h3>
+<p>Source note: <code>wiki/sources/figma-config-2026-generative-plugins-x-2026-06-24.md</code></p>
+<h1>Figma - Config 2026 generative plugins and design-agent tools</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/figma-config-2026-generative-plugins-x-2026-06-24.md</code></li>
+<li>Original URL: https://www.figma.com/blog/config/</li>
+<li>Bookmark source: xurl bookmarks capture</li>
+<li>Canonical URL: https://x.com/i/status/2069824816279154840</li>
+<li>Primary URL: https://www.figma.com/blog/config/</li>
+<li>Related primary URL: https://www.figma.com/blog/the-figma-agent-is-here/</li>
+<li>Author: Figma / @figma</li>
+<li>Posted: 2026-06-24T16:47:46.000Z</li>
+<li>Captured: 2026-06-25 via xurl bookmarks capture</li>
+<li>Public metrics at capture: 100 reposts, 26 replies, 1073 likes, 47 quotes, 273 bookmarks, 58073 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This source packages Figma&#x27;s Config 2026 announcements as an increasingly agent-shaped design surface. The bookmark text points at generative plugins, and Figma&#x27;s own product pages add that the design agent now has custom tools, more context, and skills.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Figma is moving beyond passive design surfaces toward generative, programmable canvas tooling.</li>
+<li>Generative plugins are part of the Config 2026 launch set.</li>
+<li>The design agent is being extended with custom tools, real context, and skills.</li>
+<li>The result is a design workflow where users can describe a tool or behavior and get a more tailored canvas output.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text says, &quot;Generative plugins, built by you and the Figma agent.&quot;</li>
+<li>The Config 2026 blog teaser explicitly lists generative plugins among the new materials/tools.</li>
+<li>The design-agent blog teaser says custom tools, real context, and skills take the design agent further.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / video card plus official product blog previews</li>
+<li>Confidence: medium-high for the product direction, medium for implementation details because the</li>
+</ul>
+<h3>Takahiro Ikeuchi - 1Password Environments for secure .env handling</h3>
+<p>Source note: <code>wiki/sources/iktakahiro-1password-environments-secure-env-2026-06-23.md</code></p>
+<h1>Takahiro Ikeuchi - 1Password Environments for secure .env handling</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/iktakahiro-1password-environments-secure-env-2026-06-23.md</code></li>
+<li>Original URL: https://zenn.dev/iktakahiro/articles/cc0692b8673184</li>
+<li>Bookmark source: xurl bookmarks capture</li>
+<li>Canonical URL: https://x.com/i/status/2069418304960364774</li>
+<li>Primary URL: https://zenn.dev/iktakahiro/articles/cc0692b8673184</li>
+<li>Author: Takahiro Ikeuchi / @iktakahiro</li>
+<li>Posted: 2026-06-23T13:52:26.000Z</li>
+<li>Captured: 2026-06-25 via xurl bookmarks capture</li>
+<li>Public metrics at capture: 3 reposts, 0 replies, 38 likes, 0 quotes, 41 bookmarks, 3788 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This source argues that <code>.env</code> files are better treated as managed environment data than as ad hoc text blobs shared through chat. The article recommends 1Password Environments as a secure way to store project variables, then load them into commands with <code>op environment read</code> or <code>op run --environment</code>.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Sharing <code>.env</code> contents over Slack is a security risk and an operational smell.</li>
+<li>1Password Environments gives teams a centralized way to manage project environment variables.</li>
+<li>The CLI workflow lets developers inject environment variables at runtime without placing a plaintext <code>.env</code> file on disk.</li>
+<li>The feature was still beta at the time of writing, so operational details may change.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The article describes environment-variable import/export, environment scoping, and per-environment access control.</li>
+<li>It shows <code>op environment read &lt;&lt;Environment-ID&gt;&gt;</code> for inspection.</li>
+<li>It shows <code>op run --environment &lt;&lt;Environment-ID&gt;&gt; -- pnpm run dev</code> as the basic runtime pattern.</li>
+<li>It explicitly warns against sending <code>.env</code> contents in Slack DMs.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: practitioner blog post prom</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>4</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
