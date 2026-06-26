@@ -1,0 +1,15 @@
+{
+  "date": "2026-06-27T03:00:18.043554+09:00",
+  "topic_id": "wiki/maps/coding-agent-review-rubric.md",
+  "title": "Coding-Agent Review Rubric",
+  "output_dir": "outputs/notebooklm-podcast/2026-06-27",
+  "page": "outputs/notebooklm-podcast/2026-06-27/notebooklm-source.md",
+  "related": [
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/maps/harness-engineering-vendor-comparison.md",
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md"
+  ],
+  "char_count": 9005
+}
