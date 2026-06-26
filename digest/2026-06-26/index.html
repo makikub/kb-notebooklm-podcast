@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-26 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-26/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-26</header>
+<h1>KB Daily Digest 2026-06-26</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-26/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-26">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-26</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-26</h1>
+<p>2026-06-26 UTC の knowledge-base-llm は、X bookmarks の新規取り込みを起点に、agent identity、enterprise rollout、review capacity、integration/E2E test、goal-setting skill、loop engineering の6本を source note として追加した更新だった。新規 raw は <code>raw/x/bookmarks/bookmarks-20260626T0000Z.json</code> と、記事メモ6本、GitHub repository メモ1本。wiki 側では sources 6本が追加され、<code>agent-management</code>、<code>approval-policy</code>、<code>loop-engineering</code>、<code>managed-agents</code>、<code>navigable-agent-skills</code> と、<code>agent-harness-landscape</code>、<code>coding-agent-cognitive-debt-and-review-capacity</code>、<code>harness-engineering-vendor-comparison</code> の各 map が更新された。</p>
+<p>全体トレンドは、「agent をどう使うか」から「agent をどの境界・ループ・証拠で運用するか」への移動として読める。Claude Tag の agent identity は、agent が人間の資格情報を借りるのではなく、独自の認証境界を持つ teammate として扱われる方向を示す。CloudNative の Claude Code enterprise starter kit は、managed settings、permissions、hooks、MCP governance、logs を、導入キットではなく公式 control plane として切り分ける。t-wada 氏の loop engineering / cybernetics framing は、目的・評価・収束という古典的な制御の語彙で、最近の agent loop 設計を捉え直している。</p>
+<p>重要ソースの1本目は ClaudeDevs の Claude Tag / agent identity。source note は <code>managed-agents</code>、<code>agent-management</code>、<code>multi-agent-orchestration</code>、<code>tool-accessibility</code> に接続された。読みどころは、agent の能力そのものよりも、複数人の channel 上で agent をタグ付けしたときに、agent が自分自身の credentials を持つという access model が前面に出ていること。これは audit log、credential rotation、revocation、workspace/thread/task の境界設計を、managed-agent product の中核に押し上げる。</p>
+<p>2本目は CloudNative BLOGs の Claude Code enterprise starter kit best practices。KB上では <code>approval-policy</code>、<code>managed-agents</code>、<code>tool-accessibility</code>、<code>agent-management</code> に接続されている。このソースは、企業導入で starter kit が担うべき範囲と、製品側の org-level controls が担うべき範囲を分けて読むための材料になる。権限、hooks、MCP、log visibility は配布テンプレートに閉じ込めるものではなく、運用者が監査・変更・段階導入できる control surface として扱う必要がある。</p>
+<p>3本目は <code>gotalab/goal-setter-skill</code>。これは荒い依頼を、結果、成功証拠、境界、停止条件を持つ compact goal に変換する Codex skill として追加された。KBでは <code>navigable-agent-skills</code>、<code>workflow-compilation</code>、<code>task-decomposition</code>、<code>feedback-controls</code> に効いている。特に、長時間作業に必要なのは巨大な手順書ではなく、実装を過剰指定しない短い goal contract だという点が、今日の loop / evaluation / review capacity の流れときれいにつながる。</p>
+<p>review capacity の側では、hiraoku 氏の NewsPicks 共有と erukiti 氏の integration/E2E 重視の投稿が対になっている。前者は、AIが生成速度を上げるほど「人間が全部レビューする」という前提が現実的でなくなると指摘し、後者は unit test より integration/E2E が acceptance criteria と refactor safety を担いやすいという実務寄りの主張を置いている。<code>coding-agent-cognitive-debt-and-review-capacity</code> map にはこの2本が入り、生成量ではなく、理解可能性・機械チェック・人間の独立判断をどう保つかがさらに強調された。</p>
+<p>loop engineering の更新は、t-wada 氏の cybernetics rediscovery framing によって、最近の agent 用語を古い feedback-control の語彙に接続した点が大きい。<code>loop-engineering</code> concept には、評価関数、generator-evaluator loop、自己検証、収束条件が単なるプロンプト技法ではなく、loop そのものを設計対象にする話として追記された。今日のソース群をまとめると、agent identity は「誰が動くか」、approval / enterprise controls は「どこまで動けるか」、goal-setter skill は「何を達成したら止まるか」、E2E は「何をもって通ったと言えるか」を補う。</p>
+<p>実務上の読みどころは、agent 導入の設計図を4つの問いに分けられることだと思う。まず agent は人間の代理権限で動くのか、それとも独立した identity と credential を持つのか。次に、組織の許可・hook・MCP・ログは starter kit ではなく control plane に載っているか。さらに、依頼は goal contract として成功証拠・境界・停止条件を持っているか。最後に、review bottleneck を人間の努力だけで吸収しようとしていないか、integration/E2E や評価関数で機械チェック可能な境界を作れているか。</p>
+<p>Podcastでは、「agent teammate に identity を与えると、権限設計はどう変わるか」「starter kit と policy layer を混同すると何が危ないか」「goal-setting skill は planning skill ではなく stop-condition skill として読めるのではないか」「AI時代に unit/integration/E2E の価値配分はどう変わるか」を掘るとよい。次に追う問いは、1) per-agent credentials の実装と監査ログの最小要件、2) enterprise starter kit が担ってよい governance 範囲、3) review capacity を測る実務指標、4) loop engineering の評価関数をどの粒度で reusable skill / harness に落とすか、の4つ。</p>
+<h2>重要ソース</h2>
+<h3>hiraoku - code review should not be a human fantasy</h3>
+<p>Source note: <code>wiki/sources/2020-hira-code-review-human-fantasy-newspicks-x-2026-06-25.md</code></p>
+<h1>hiraoku - code review should not be a human fantasy</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/2020-hira-code-review-human-fantasy-newspicks-x-2026-06-25.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260626T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2069966824629039262</li>
+<li>Primary URL: https://newspicks.com/news/16930133/body/?from=twitter</li>
+<li>Author: hiraoku / @2020_hira</li>
+<li>Posted: 2026-06-25T02:12:03.000Z</li>
+<li>Captured: 2026-06-26 via xurl bookmarks capture</li>
+<li>Type: X bookmark share of NewsPicks article</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark highlights a sharp AI-era review-capacity argument: the real bottleneck is not writing more code, but reading and judging the flood of changes that AI makes possible. The post positions human-only review as increasingly unrealistic at higher throughput.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>AI changes make review the scarce resource.</li>
+<li>Review should be treated as a system design problem, not just an individual discipline.</li>
+<li>The team needs mechanisms that scale what can be understood and checked.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text explicitly says the old &quot;humans should review everything&quot; assumption no longer holds.</li>
+<li>It points to the pressure AI puts on senior engineers who become the review bottleneck.</li>
+<li>The framing matches the broader KB theme that throughput without comprehension capacity creates debt.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X bookmark share of a NewsPicks article</li>
+<li>Confidence: medium-high for the bottleneck diagnosis</li>
+<li>Supports: review capacity, cognitive debt, evaluation tax</li>
+<li>Main limitations: this note is based on a share and excerpt, not a full article read</li>
+<li>Best use: anchor the argument that review tooling and process must scale with generation speed</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/human-in-the-loo</li>
+</ul>
+<h3>ClaudeDevs - Claude Tag and agent identity</h3>
+<p>Source note: <code>wiki/sources/claudedevs-agent-identity-claude-tag-x-2026-06-25.md</code></p>
+<h1>ClaudeDevs - Claude Tag and agent identity</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/claudedevs-agent-identity-claude-tag-x-2026-06-25.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260626T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2070235730295865661</li>
+<li>Primary URL: https://x.com/ClaudeDevs/status/2070235730295865661/video/1</li>
+<li>Author: ClaudeDevs (@ClaudeDevs)</li>
+<li>Posted: 2026-06-25T20:00:35.000Z</li>
+<li>Captured: 2026-06-26 via xurl bookmarks capture</li>
+<li>Type: X post / video card</li>
+</ul>
+<h2>Summary</h2>
+<p>Claude Tag is presented as a productized agent-identity model: when Claude is tagged in a channel, it gets provisioned with its own credentials rather than borrowing a human&#x27;s identity. That makes the agent look more like a teammate with its own access boundary.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Agent identity is becoming a visible product surface.</li>
+<li>Tagged agents can be provisioned with their own credentials.</li>
+<li>Multi-user collaboration changes the importance of identity, not just prompts or tool access.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text explicitly says Claude gets its own credentials when tagged.</li>
+<li>The post frames this as &quot;the next evolution of agents,&quot; which ties identity to the broader managed-agent story.</li>
+<li>The multi-person channel context implies this is about shared workspace use, not solo automation.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / video card</li>
+<li>Confidence: medium-high for the access-model claim</li>
+<li>Supports: agent identity, credential scoping, collaboration surfaces</li>
+<li>Main limitations: the linked video card does not expose full implementation details</li>
+<li>Best use: connect managed-agent products to authorization and audit questions</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/agent-management.md]]</li>
+<li>[[../concepts/mult</li>
+</ul>
+<h3>CloudNative BLOGs - Claude Code enterprise starter kit best practices</h3>
+<p>Source note: <code>wiki/sources/cloudnative-claude-code-enterprise-starter-kit-best-practices-x-2026-06-24.md</code></p>
+<h1>CloudNative BLOGs - Claude Code enterprise starter kit best practices</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/cloudnative-claude-code-enterprise-starter-kit-best-practices-x-2026-06-24.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260626T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2069923527688667446</li>
+<li>Primary URL: https://blog.cloudnative.co.jp/articles/claude-code-enterprise-starter-kit-best-practices/</li>
+<li>Author: 天野 / @AmanoH0909</li>
+<li>Posted: 2026-06-24T23:20:00.000Z</li>
+<li>Captured: 2026-06-26 via xurl bookmarks capture</li>
+<li>Type: X bookmark share of a blog post</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark points to a practical enterprise-distribution guide for Claude Code. The framing is that official org-level controls do the hard governance work, while a starter kit helps teams adopt the tool without turning the kit into the policy layer itself.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Managed settings and permissions are the official control plane for enterprise use.</li>
+<li>Hooks, MCP governance, and logs matter for safe distribution.</li>
+<li>The starter kit is a deployment helper, not a replacement for org policy.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark description explicitly mentions managed settings, permissions, hooks, MCP control, and log visibility.</li>
+<li>The linked blog title frames the topic as safe enterprise distribution.</li>
+<li>The post is useful because it distinguishes product features from rollout scaffolding.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X bookmark share of a blog post</li>
+<li>Confidence: medium-high for the rollout framing</li>
+<li>Supports: enterprise governance, approval policy, tool accessibility</li>
+<li>Main limitations: this note relies on bookmark metadata unless the blog itself is separately ingested</li>
+<li>Best use: remind readers that adoption scaffolding and policy controls are different</li>
+</ul>
+<h3>erukiti - integration tests and E2E over unit tests</h3>
+<p>Source note: <code>wiki/sources/erukiti-integration-tests-e2e-over-unit-tests-x-2026-06-24.md</code></p>
+<h1>erukiti - integration tests and E2E over unit tests</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/erukiti-integration-tests-e2e-over-unit-tests-x-2026-06-24.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260626T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2069931454986064199</li>
+<li>Primary URL: https://twitter.com/nuits_jp/status/2069580384602567100</li>
+<li>Author: erukiti (@erukiti)</li>
+<li>Posted: 2026-06-24T23:51:30.000Z</li>
+<li>Captured: 2026-06-26 via xurl bookmarks capture</li>
+<li>Type: X post / quote post</li>
+</ul>
+<h2>Summary</h2>
+<p>This post is a strong practitioner opinion that the test layers with the most value are integration and E2E, not unit tests. The underlying idea is that the tests closest to real user flow provide the clearest acceptance boundary and the best refactor safety.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Unit tests are low leverage compared with integration/E2E in many product workflows.</li>
+<li>Integration and E2E tests can double as acceptance criteria.</li>
+<li>Robust end-to-end coverage makes large refactors easier to justify.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text states the claim directly and gives two reasons: acceptance criteria and refactor support.</li>
+<li>The post uses a concrete team-development framing rather than a generic test philosophy slogan.</li>
+<li>Because this is a quote post, the strongest evidence is the quoted opinion itself, not a full technical explanation.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X quote post</li>
+<li>Confidence: medium</li>
+<li>Supports: real-world evaluation, self-verification, test strategy</li>
+<li>Main limitations: it is an opinionated summary, not a rigorous benchmark</li>
+<li>Best use: reinforce the case for testing at the level that matches actual product risk</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/real-world-evaluation.md]]</li>
+<li>[[../concepts/self-verification.md]]</li>
+<li>[[../concep</li>
+</ul>
+<h3>Gota - goal-setter-skill repository</h3>
+<p>Source note: <code>wiki/sources/gotalab-goal-setter-skill.md</code></p>
+<h1>Gota - goal-setter-skill repository</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/repos/gotalab-goal-setter-skill.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260626T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2070071191512174779</li>
+<li>Primary URL: https://github.com/gotalab/goal-setter-skill</li>
+<li>Author: Gota / @gota_bara</li>
+<li>Posted: 2026-06-25T09:06:46.000Z</li>
+<li>Captured: 2026-06-26 via xurl bookmarks capture</li>
+<li>Type: GitHub repository / Codex skill</li>
+</ul>
+<h2>Summary</h2>
+<p>This repository packages goal drafting as a reusable Codex skill. Its purpose is to convert rough requests into compact goals that define the result, evidence, boundaries, and stop conditions without over-specifying the implementation.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Goal drafting can be standardized as a skill.</li>
+<li>Long-running work benefits from explicit success evidence and stop rules.</li>
+<li>The right abstraction is a short goal contract, not a giant procedural recipe.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The repository README says the skill turns rough long-running work into a compact <code>/goal</code>.</li>
+<li>It emphasizes verification targets rather than rule-heavy procedures.</li>
+<li>The install instructions show that the pattern is meant to be reused in both Codex and Claude Code contexts.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: GitHub repository</li>
+<li>Confidence: high for the repository&#x27;s own design claims</li>
+<li>Supports: goal-setting, navigable agent skills, workflow compilation</li>
+<li>Main limitations: this note is based on repository documentation, not a live operational deployment study</li>
+<li>Best use: show how request shaping can be turned into a shareable skill artifact</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/navigable-agent-skills.md]]</li>
+<li>[[../concepts/workflow-compilation.md]]</li>
+<li>[[../concepts/task-decomposition.md]]</li>
+<li>[[../concepts/feedback-controls.md]]</li>
+</ul>
+<h3>t_wada - loop engineering as cybernetics rediscovery</h3>
+<p>Source note: <code>wiki/sources/t-wada-loop-engineering-cybernetics-rediscovery-x-2026-06-24.md</code></p>
+<h1>t_wada - loop engineering as cybernetics rediscovery</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/t-wada-loop-engineering-cybernetics-rediscovery-x-2026-06-24.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260626T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2069695760464318816</li>
+<li>Primary URL: https://htn.to/U3La2cAJiV</li>
+<li>Author: Takuto Wada (@t_wada)</li>
+<li>Posted: 2026-06-24T08:14:57.000Z</li>
+<li>Captured: 2026-06-26 via xurl bookmarks capture</li>
+<li>Type: X bookmark share of a Hatena blog post</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark reinforces the loop-engineering thesis by framing it as a rediscovery of cybernetics: define the target state, attach evaluation, and let the loop converge. The note is useful because it links the current agent-era vocabulary back to older control-theory language.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Loop engineering is not just a trendy label; it maps to older feedback-control ideas.</li>
+<li>Evaluation functions are central to agent convergence.</li>
+<li>The useful unit is the loop, not a single prompt or isolated action.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text directly quotes the loop/cybernetics framing.</li>
+<li>It cites t-wada as having anticipated the structure earlier than the recent term.</li>
+<li>The linked article is a commentary source, so the strongest claim here is about framing rather than implementation.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X bookmark share of a blog post</li>
+<li>Confidence: medium</li>
+<li>Supports: loop engineering, feedback controls, generator-evaluator loops</li>
+<li>Main limitations: this is a secondary interpretation of earlier practitioner ideas</li>
+<li>Best use: vocabulary bridge between control theory and agent loop design</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/loop-engineering.md]]</li>
+<li>[[../concepts/feedback-controls.md]]</li>
+<li>[[../concepts/generator-evaluator-loop.md]]</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent Management</h3>
+<p>KB note: <code>wiki/concepts/agent-management.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent Management</p>
+<hr>
+<h1>Agent Management</h1>
+<h2>Definition</h2>
+<p>The human work of assigning tasks, monitoring progress, adjusting the environment, and deciding when to intervene in agent workflows.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, value comes not just from using them but from managing them well. The current source set suggests that workflow design, escalation choices, and background-task supervision are becoming durable human responsibilities rather than temporary scaffolding.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent-captain]]</li>
+<li>[[background-agents]]</li>
+<li>[[harness-engineering]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/ignorance-ai-emerging-harness-engineering-playbook.md]]</li>
+<li>[[../sources/mitchell-hashimoto-ai-adoption-journey.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/nyk-builderz-4-agent-hermes-operator-layer-x.md]]</li>
+<li>[[../sources/sydneyrunkle-agent-harness-vs-runtime-production-x.md]]</li>
+<li>[[../sources/brett-goldstein-agentic-micro-</li>
+</ul>
+<h3>Approval Policy</h3>
+<p>KB note: <code>wiki/concepts/approval-policy.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Approval Policy</p>
+<hr>
+<h1>Approval Policy</h1>
+<h2>Definition</h2>
+<p>A rule system that decides which actions an agent may take automatically and which require explicit user approval.</p>
+<h2>Why It Matters</h2>
+<p>Approval policy is one of the main levers for balancing agent speed and operational safety.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[human-in-the-loop]]</li>
+<li>[[agent-autonomy]]</li>
+<li>[[agent-safety]]</li>
+<li>[[coding-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-claude-code-auto-mode.md]]</li>
+<li>[[../sources/codex-subagents-docs.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/claudecode-love-boris-30-claude-code-tips-x.md]]</li>
+<li>[[../sources/blader-adversarial-subagent-review-gate-goal-x-2026-05-23.md]]</li>
+<li>[[../sources/bcherny-auto-mode-multi-clauding-x-2026-05-24.md]]</li>
+<li>[[../sources/cloudflare-agents-stripe-projects-blog.md]]</li>
+<li>[[../sources/openclaw-clawsweeper-repo.md]]</li>
+<li>[[../sources/google-workspace-mcp-servers-docs.md]</li>
+</ul>
+<h3>Loop Engineering</h3>
+<p>KB note: <code>wiki/concepts/loop-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Loop Engineering</p>
+<p>  - Agent Loop Design</p>
+<hr>
+<h1>Loop Engineering</h1>
+<h2>Definition</h2>
+<p>Loop engineering is the practice of designing the repeatable work loop an agent runs inside: objective, context, worker roles, tool access, effort level, checkpoints, grading, retries, and stopping conditions.</p>
+<h2>Origin / Framing</h2>
+<p>The term was popularized in June 2026 by Addy Osmani&#x27;s &quot;Loop Engineering&quot; article. Osmani framed it around two public practitioner signals: Peter Steinberger&#x27;s claim that developers should design loops that prompt coding agents, and Boris Cherny&#x27;s claim that his job had shifted from prompting Claude directly to writing loops.</p>
+<h2>Why It Matters</h2>
+<p>As models handle larger tasks, the operator&#x27;s leverage shifts from writing one perfect prompt toward defining a loop that can generate work, evaluate it, and converge. This makes loop design a practical sub-surface of [[harness-engineering.md]].</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering.md]]</li>
+<li>[[generator-evaluator-loop.md</li>
+</ul>
+<h3>Managed Agents</h3>
+<p>KB note: <code>wiki/concepts/managed-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Managed Agent</p>
+<p>  - Managed Agents</p>
+<hr>
+<h1>Managed Agents</h1>
+<h2>Definition</h2>
+<p>Hosted or product-managed agent runtimes that package model execution with tools, permissions, memory, tracing, sandboxing, and operational controls.</p>
+<h2>Why It Matters</h2>
+<p>Managed agents turn agent operation into a deployable surface rather than a local prompt pattern. They make it easier to build roleful domain agents, but they also move important governance decisions into the runtime: what tools are exposed, how memory persists, what is sandboxed, and how humans inspect or intervene.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[multi-agent-orchestration.md]]</li>
+<li>[[agent-dreaming.md]]</li>
+<li>[[outcomes.md]]</li>
+<li>[[tool-accessibility.md]]</li>
+<li>[[agent-management.md]]</li>
+<li>[[agent-safety.md]]</li>
+<li>[[background-agents.md]]</li>
+<li>[[context-engineering.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/claudeai-claude-managed-agents-intro-x.md]]</li>
+<li>[[../sources/claude-new-in-managed-agents-dreaming-outcomes-orchestration.md]]</li>
+<li>[[../sources/oikon48-claude-ma</li>
+</ul>
+<h3>Navigable Agent Skills</h3>
+<p>KB note: <code>wiki/concepts/navigable-agent-skills.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Navigable Agent Skills</p>
+<p>  - Corpus2Skill</p>
+<p>  - Hierarchical RAG</p>
+<hr>
+<h1>Navigable Agent Skills</h1>
+<h2>Definition</h2>
+<p>A retrieval architecture where a corpus is compiled into a hierarchy of human/model-readable skill or index files, so an agent can navigate the corpus structure before retrieving underlying documents.</p>
+<h2>Why It Matters</h2>
+<p>It changes the model’s role from passive consumer of search results to active navigator of an information architecture. This is especially useful for broad or completeness-oriented questions where top-k vector retrieval may miss scattered evidence.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled-wiki.md]]</li>
+<li>[[agent-knowledge-loop.md]]</li>
+<li>[[context-graph.md]]</li>
+<li>[[tool-accessibility.md]]</li>
+<li>[[agent-recognizable-repository.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/coreyganim-karpathy-second-brain-clearly-explained-x.md]]</li>
+<li>[[../sources/knowledgesense-corpus2skill-zenn.md]]</li>
+<li>[[../sources/aws-agent-toolkit-for-aws-x.md]]</li>
+<li>[[../sources/googlecloudjp-agent-skills-repos</li>
+</ul>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/djfarrelly-agent-loop-architecture-x.md]]</li>
+<li>[[../sources/jason-liu-codex-maxxing-heartbeats.md]]</li>
+<li>[[../sources/openai-chatgpt-memory-dreaming-x-2026-06</li>
+</ul>
+<h3>Coding-Agent Cognitive Debt and Review Capacity</h3>
+<p>KB note: <code>wiki/maps/coding-agent-cognitive-debt-and-review-capacity.md</code></p>
+<h1>Coding-Agent Cognitive Debt and Review Capacity</h1>
+<h2>Purpose</h2>
+<p>Map sources that warn coding-agent throughput can outrun human comprehension, review skill, and implementation judgment.</p>
+<h2>Core thesis</h2>
+<p>The central risk in agentic coding is not only that models make mistakes. It is that teams may produce and accept more code than they can understand, while also weakening the skills required to detect mistakes. Good harnesses must therefore preserve human review capacity and implementation contact, not merely automate more steps.</p>
+<h2>Main patterns</h2>
+<h3>1. Throughput beyond review capacity</h3>
+<p>Coding agents can generate large diffs quickly. If review remains shallow, the system shifts risk from typing speed to hidden architectural and maintainability debt.</p>
+<h3>2. Supervision paradox</h3>
+<p>The human supervisor needs coding, debugging, and architectural skill to judge agent output. Heavy agent use can reduce hands-on practice and erode the very skill required for supervision.</p>
+<h3>3. Coding as design d</h3>
+<h3>Harness Engineering Vendor / Practitioner Comparison</h3>
+<p>KB note: <code>wiki/maps/harness-engineering-vendor-comparison.md</code></p>
+<h1>Harness Engineering Vendor / Practitioner Comparison</h1>
+<h2>Purpose</h2>
+<p>Compare how different sources frame harness engineering, what they optimize for, and what distinctive mechanisms they emphasize.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/codex-subagents-docs.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/cursor-3-blog.md]]</li>
+<li>[[../sources/anthropic-claude-code-large-codebases.md]]</li>
+<li>[[../sources/anthropic-2026-agentic-coding-trends-report.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+</ul>
+<h2>Comparison axes</h2>
+<h3>OpenAI</h3>
+<ul>
+<li>Focus: repository design, machine-enforced invariants, agent-recognizable contex</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>6</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
