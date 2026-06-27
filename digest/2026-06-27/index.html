@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-27 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-27/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-27</header>
+<h1>KB Daily Digest 2026-06-27</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-27/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-27">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-27</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-27</h1>
+<p>2026-06-27 UTC の knowledge-base-llm は、X bookmarks の新規取り込みを起点に、6本の raw article と6本の wiki source note を追加し、<code>agent-harness-landscape</code> と <code>ai-adoption-roi-and-capability-investment</code> を更新した。新規 raw は <code>raw/x/bookmarks/bookmarks-20260627T0000Z.json</code> と、Anthropic Cadences、OpenAI GPT-5.6 Sol、Raytar の background Claude workflow、たくびー氏の team AI-driven dev loop、技術評論社の「具体と抽象」書籍告知、Transit API の6本。wiki 側では source note 6本に加えて、<code>harness-engineering</code>、<code>navigable-agent-skills</code>、<code>tool-accessibility</code> の concept note も更新されている。</p>
+<p>全体トレンドは、モデル能力の単発ニュースから、能力を実務価値に変えるための「運用ハーネス」へさらに寄っている。OpenAI は GPT-5.6 Sol / Terra / Luna という tiered model family と、<code>max</code> reasoning、subagent を使う <code>ultra</code> mode を前面に出した。Anthropic は Claude の Economic Index Cadences で、AI利用の価値を一回きりの導入ではなく、利用頻度・出力・体験の変化として測ろうとしている。そこに、チーム開発ループ、背景実行、抽象度合わせ、agent が使いやすい API surface の話が重なり、「賢いモデルを選ぶ」だけではなく「どう回し、どう止め、どう証拠化するか」が焦点になっている。</p>
+<p>重要ソースの1本目は OpenAI の GPT-5.6 Sol preview。source note は、Sol を flagship、Terra を balanced、Luna を fast / affordable な選択肢として整理し、さらに <code>max</code> reasoning と <code>ultra</code> mode による subagent 利用を、model routing と delegation が製品表面に出てきたシグナルとして扱っている。KB上では <code>coding-agents</code>、<code>worker-based-composition</code>、<code>agent-autonomy</code>、<code>tool-accessibility</code>、<code>harness-engineering</code> に接続された。読みどころは、性能競争だけでなく、どのタスクを高価なモデルに渡し、どのサブタスクを cheaper / faster worker に分配するかが、ユーザーや組織の設計対象になり始めている点。</p>
+<p>重要ソースの2本目は Anthropic の Economic Index Cadences。これは Claude 利用を、仕事の出力、利用の cadence、AIが仕事に与える影響の知覚という軸で見る first-party report として取り込まれた。<code>ai-adoption-roi-and-capability-investment</code> map には、AI ROI はモデル品質や生成量だけでなく、利用習慣、学習曲線、検証税、組織の吸収力によって決まるという文脈で追加されている。特に、AI導入の価値を「導入したかどうか」ではなく「どんな頻度で、どの仕事に、どの程度慣れて使っているか」と結びつける点が重要。</p>
+<p>重要ソースの3本目は、たくびー氏の「個人のプロンプト術をやめて、チームで回るAI駆動開発ループを作った話」。source note では、個人の prompt craft を <code>interview-dev-loop</code> のような reusable skill / workflow に変換し、コード・ドキュメント・テスト・過去計画を読んだ上で不足質問を出し、計画承認とレビュー修正まで回す実務パターンとして整理している。これは <code>navigable-agent-skills</code>、<code>structured-handoff-artifacts</code>、<code>context-engineering</code> とつながり、AI利用が「うまい人の手癖」から「チームで再利用できる作業ループ」へ移る具体例になっている。</p>
+<p>Raytar の “Stop Being the Loop” は、Claude を毎ターン手で促す対象ではなく、背景実行や scheduled loop に渡す対象として見る方向のシグナルだった。full article は限定的にしか読めていないため evidence quality は medium だが、<code>background-agents</code>、<code>long-running-agents</code>、<code>agent-autonomy</code>、<code>structured-handoff-artifacts</code> に効いている。ここでの論点は、自律性を上げること自体ではなく、人間が runtime の一部になる状態から抜け、仕様・境界・確認点を渡す側に移るには何が必要か、ということ。</p>
+<p>技術評論社の「システム開発と『具体と抽象』」は、AI agent そのものの話ではないが、今日の更新ではかなり重要な補助線になる。要件定義や合意形成で「合意したつもり」が起きるのは、ステークホルダー同士が違う抽象度で話しているからだ、という framing は、agent に渡す依頼や goal contract の品質にもそのまま効く。KB上では <code>organizational-intent-clarity</code>、<code>context-engineering</code>、<code>coding-agents</code> に接続され、agent harness の前段にある「そもそも何を作るのか」を揃える問題として位置づけられた。</p>
+<p>Transit API は、今日の中では小さめの実装寄りソースだが、<code>tool-accessibility</code> の観点ではよい具体例になっている。日本の公共交通経路検索を、read-only、認証不要、CORS open、OpenAPI 対応という形で公開しており、agent がブラウザや typed client から扱いやすい service boundary を持っている。これは「便利なAPI」以上に、agent-facing tool surface の条件、つまり discoverable で、権限が限定され、機械可読で、attribution や運用上の境界が見えることの実例として読める。</p>
+<p>今回の map 更新では、<code>agent-harness-landscape</code> が6本すべてを取り込み、ハーネスを「モデルの外側にある repo structure、controls、artifacts、tests、review loops、orchestration patterns」として捉える流れをさらに強めた。OpenAI の model tier / subagent、Anthropic の cadence / ROI、チームAI開発ループ、background execution、具体と抽象、Transit API は、それぞれ「モデル」「利用習慣」「チームワークフロー」「実行継続」「意図の粒度」「外部ツール境界」を補う部品になっている。</p>
+<p>実務上の示唆は、AI導入の設計を4つの問いに分けると見通しがよくなることだと思う。まず、タスクは Sol / Terra / Luna のような tier や subagent に分解できる形になっているか。次に、利用頻度や学習曲線を測れるだけの cadence データや業務指標があるか。さらに、個人のプロンプト術を skill / workflow / handoff artifact としてチーム資産に変換しているか。最後に、agent が使う外部ツールは Transit API のように read-only、typed、auditable な境界を持っているか。</p>
+<p>Podcastでは、「model routing が製品表面に出ると、チームの設計責任はどう変わるか」「AI ROI は利用頻度と経験でどう変化するか」「prompt craft を team loop に変換すると、属人性はどこまで減るか」「background agent に任せる前に必要な停止条件・証拠・レビュー境界は何か」「agent-friendly API の最低条件は何か」を掘るとよい。次に追う問いは、1) subagent mode の実運用での権限とコスト管理、2) cadence ベースのAI活用メトリクス、3) reusable skill の評価方法、4) 抽象度ミスマッチを agent handoff 前に検出するチェック、5) public API を agent tool として採用する時の reliability / attribution / rate-limit 設計、の5つ。</p>
+<h2>重要ソース</h2>
+<h3>Anthropic - Economic Index report: Cadences</h3>
+<p>Source note: <code>wiki/sources/anthropic-economic-index-cadences-x-2026-06-26.md</code></p>
+<h1>Anthropic - Economic Index report: Cadences</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/anthropic-economic-index-cadences-x-2026-06-26.md]]</li>
+<li>Original URL: https://x.com/i/status/2070528961235575278</li>
+<li>Canonical URL: https://x.com/i/status/2070528961235575278</li>
+<li>Primary URL: https://www.anthropic.com/research/economic-index-june-2026-report</li>
+<li>Author: Anthropic / @AnthropicAI</li>
+<li>Posted: 2026-06-26T15:25:47.000Z</li>
+<li>Captured: 2026-06-27 via xurl bookmarks capture</li>
+<li>Type: X bookmark share of first-party research report</li>
+</ul>
+<h2>Summary</h2>
+<p>Anthropic&#x27;s Cadences report is a first-party economic analysis of Claude usage that focuses on when people come to Claude, what they produce, and how they perceive AI&#x27;s impact on their work. The report is especially useful because it studies cadence and experience over time instead of treating usage as a one-shot adoption event.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The report studies usage cadence, work output, and perceptions of AI&#x27;s impact.</li>
+<li>It uses aggregate, privacy-preserving analysis rather than individual traces.</li>
+<li>The report is aimed at understanding how work patterns and user experience change over time.</li>
+<li>It adds a first-party data point to the idea that AI value depends on learned usage habits.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The X post says Anthropic is advancing how it studies Claude&#x27;s economic impact.</li>
+<li>The research page is a first-party report rather than a repost or commentary.</li>
+<li>The publication date is June 26, 2026, making it part of the current wave of usage-economics reporting.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: official research report shared through an X bookmark</li>
+<li>Confidence: high for the descriptive findings and medium for any causal interpretation</li>
+<li>Supports: economic impact, adoption learning curves, work-pattern analysis</li>
+<li>Main limitatio</li>
+</ul>
+<h3>技術評論社販売促進部 - システム開発と「具体と抽象」</h3>
+<p>Source note: <code>wiki/sources/gihyo-system-development-concrete-abstract-x-2026-06-26.md</code></p>
+<h1>技術評論社販売促進部 - システム開発と「具体と抽象」</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/gihyo-system-development-concrete-abstract-x-2026-06-26.md]]</li>
+<li>Original URL: https://x.com/i/status/2070311087757545889</li>
+<li>Canonical URL: https://x.com/i/status/2070311087757545889</li>
+<li>Primary URL: https://gihyo.jp/book/2026/978-4-297-15790-6</li>
+<li>Author: 技術評論社販売促進部 / @gihyo_hansoku</li>
+<li>Posted: 2026-06-26T01:00:02.000Z</li>
+<li>Captured: 2026-06-27 via xurl bookmarks capture</li>
+<li>Type: X bookmark share of book page</li>
+</ul>
+<h2>Summary</h2>
+<p>This book announcement uses the concrete/abstract distinction to frame a common systems problem: stakeholders and implementers often believe they agreed, but they were talking at different abstraction levels. The book presents &quot;思考のメタ化&quot; as a way to move back and forth between problem discovery and problem solving.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>System development fails when people stay stuck at mismatched abstraction levels.</li>
+<li>The book targets communication gaps between management, consulting, engineering, and sales.</li>
+<li>&quot;Thinking metacognition&quot; is presented as a practical way to switch between levels.</li>
+<li>The book treats the issue as structural, not merely interpersonal.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The official book page explicitly describes the &quot;で、具体的に何を作ればいいんですか&quot; problem.</li>
+<li>The page says the book is built around concrete vs abstract thinking in system development.</li>
+<li>The release is dated 2026-07-28, so this is a future book announcement rather than a retrospective review.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: official book page shared through an X bookmark</li>
+<li>Confidence: high for the book&#x27;s framing and release details, medium for the practical impact it may have</li>
+<li>Supports: organizational intent clarity, context engineering, coding-agent requirements framing</li>
+<li>Main limitations: this is a book announcement</li>
+</ul>
+<h3>OpenAI - Previewing GPT-5.6 Sol</h3>
+<p>Source note: <code>wiki/sources/openai-previewing-gpt-5-6-sol-x-2026-06-26.md</code></p>
+<h1>OpenAI - Previewing GPT-5.6 Sol</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/openai-previewing-gpt-5-6-sol-x-2026-06-26.md]]</li>
+<li>Original URL: https://x.com/i/status/2070555272230384038</li>
+<li>Canonical URL: https://x.com/i/status/2070555272230384038</li>
+<li>Primary URL: https://openai.com/index/previewing-gpt-5-6-sol/</li>
+<li>Author: OpenAI / @OpenAI</li>
+<li>Posted: 2026-06-26T17:10:20.000Z</li>
+<li>Captured: 2026-06-27 via xurl bookmarks capture</li>
+<li>Type: X bookmark share of official blog post</li>
+</ul>
+<h2>Summary</h2>
+<p>OpenAI is previewing GPT-5.6 Sol as the top of a three-model family, with Terra and Luna filling lower-cost and higher-throughput roles. The official launch page explicitly adds a <code>max</code> reasoning effort and an <code>ultra</code> mode that uses subagents for complex work, which makes model routing and delegation a first-class product surface.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>GPT-5.6 Sol is the flagship model in the family.</li>
+<li>GPT-5.6 Terra is the balanced, everyday-work option.</li>
+<li>GPT-5.6 Luna is the fast, affordable option for high-volume work.</li>
+<li>The launch introduces <code>max</code> reasoning and <code>ultra</code> mode with subagents.</li>
+<li>The launch frames coding, science, and cybersecurity as central capability areas.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text explicitly names Sol, Terra, and Luna.</li>
+<li>The official page says <code>ultra</code> goes beyond a single agent by leveraging subagents.</li>
+<li>The official page says Sol sets a state of the art on Terminal-Bench 2.1.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: official product blog post shared through an X bookmark</li>
+<li>Confidence: high for the launch facts, medium for downstream interpretation of the tiering strategy</li>
+<li>Supports: model-tier routing, subagents, coding agents, harness engineering</li>
+<li>Main limitations: product-launch framing may emphasize strengths more than operational tradeoffs</li>
+<li>Best use: prima</li>
+</ul>
+<h3>Raytar - Stop Being the Loop. Here&#x27;s How to Make Claude Work While You Sleep.</h3>
+<p>Source note: <code>wiki/sources/raytar-stop-being-the-loop-claude-work-while-you-sleep-x-2026-06-23.md</code></p>
+<h1>Raytar - Stop Being the Loop. Here&#x27;s How to Make Claude Work While You Sleep.</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/raytar-stop-being-the-loop-claude-work-while-you-sleep-x-2026-06-23.md]]</li>
+<li>Original URL: https://x.com/i/status/2069212188619805179</li>
+<li>Canonical URL: https://x.com/i/status/2069212188619805179</li>
+<li>Primary URL: https://x.com/i/article/2052792872672415744</li>
+<li>Author: Raytar / @Raytar</li>
+<li>Posted: 2026-06-23T00:13:24.000Z</li>
+<li>Captured: 2026-06-27 via xurl bookmarks capture</li>
+<li>Type: X article card</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmarked X article card appears to frame Claude as something you can hand off to a background or scheduled loop instead of prompting manually in every turn. The title and search snippet both point toward an &quot;out of the loop&quot; workflow where the human stops acting as the runtime and starts acting as the specifier.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Claude work can be structured so the human no longer has to sit in the loop for every step.</li>
+<li>Background or scheduled execution is the implied mechanism.</li>
+<li>The article is aligned with long-running-agent and offloaded-execution patterns rather than single-shot prompting.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The article title explicitly says &quot;Stop Being the Loop.&quot;</li>
+<li>The search snippet says the person who built Claude Code at Anthropic stopped prompting Claude.</li>
+<li>The title asks how to make Claude work while you sleep, which strongly implies autonomous continuation.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X article card with limited preview</li>
+<li>Confidence: medium</li>
+<li>Supports: background agents, long-running agents, agent autonomy</li>
+<li>Main limitations: the full article body was not readable here</li>
+<li>Best use: directional signal for scheduled or background agent workflows</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/background-agents.md]]</li>
+<li>[[../concept</li>
+</ul>
+<h3>たくびー - 個人のプロンプト術をやめて、チームで回るAI駆動開発ループを作った話</h3>
+<p>Source note: <code>wiki/sources/takubii-team-ai-driven-dev-loop-zenn-x-2026-06-23.md</code></p>
+<h1>たくびー - 個人のプロンプト術をやめて、チームで回るAI駆動開発ループを作った話</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/takubii-team-ai-driven-dev-loop-zenn-x-2026-06-23.md]]</li>
+<li>Original URL: https://x.com/i/status/2069770382387851446</li>
+<li>Canonical URL: https://x.com/i/status/2069770382387851446</li>
+<li>Primary URL: https://zenn.dev/explaza/articles/d0aeb08fcd1888</li>
+<li>Author: たくびー / @takubii0</li>
+<li>Posted: 2026-06-24T13:11:28.000Z</li>
+<li>Captured: 2026-06-27 via xurl bookmarks capture</li>
+<li>Type: X bookmark share of Zenn article</li>
+</ul>
+<h2>Summary</h2>
+<p>The Zenn article turns individual prompt habits into a team-level AI development loop. It formalizes an <code>interview-dev-loop</code> skill that reads code, docs, tests, and previous plans, asks the missing questions, and then keeps the work moving until the review loop is clean.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Team AI usage works better when the prompt-writing step becomes a reusable loop.</li>
+<li>The <code>interview-dev-loop</code> skill should ask questions before implementation begins.</li>
+<li>Human involvement should be limited to answering questions, approving the plan, and validating behavior.</li>
+<li>Review and post-review correction can be looped separately with another skill.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The article explicitly says it is replacing individual prompt craft with a team AI development loop.</li>
+<li>It describes a workflow that reads code/docs/tests/previous plans before asking unresolved questions.</li>
+<li>It also shows a <code>codex-review-loop</code> flow for continuing review and correction after PR creation.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: practitioner article shared through an X bookmark</li>
+<li>Confidence: medium-high</li>
+<li>Supports: coding agents, skill workflows, team adoption patterns, review loops</li>
+<li>Main limitations: this is a single-team practice note rather than a general benchmarked study</li>
+<li>Best use: concrete example of turning</li>
+</ul>
+<h3>trkbt10 - Transit API</h3>
+<p>Source note: <code>wiki/sources/trkbt10-transit-api-x-2026-06-25.md</code></p>
+<h1>trkbt10 - Transit API</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/trkbt10-transit-api-x-2026-06-25.md]]</li>
+<li>Original URL: https://x.com/i/status/2070092629644378321</li>
+<li>Canonical URL: https://x.com/i/status/2070092629644378321</li>
+<li>Primary URL: https://api.transit.ls8h.com/</li>
+<li>Docs URL: https://api.transit.ls8h.com/api/docs</li>
+<li>Author: てるきち / @trkbt10</li>
+<li>Posted: 2026-06-25T10:31:58.000Z</li>
+<li>Captured: 2026-06-27 via xurl bookmarks capture</li>
+<li>Type: X bookmark share of API release</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark announces a public transit routing API for Japan that is read-only, CORS-open, and backed by OpenAPI. It is a useful source for agent-facing tool design because it exposes a real service boundary, attribution endpoints, and machine-readable client generation.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The API supports public transit route search for Japan.</li>
+<li>It is read-only and does not require authentication.</li>
+<li>CORS is open, so it can be used from browser-facing contexts.</li>
+<li>OpenAPI support makes typed client generation possible.</li>
+<li>Feed and operator attribution are surfaced as first-class endpoints.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text explicitly mentions GTFS / ODPT data.</li>
+<li>The site homepage says it is a public API and shows quick-start examples.</li>
+<li>The docs mention typed client generation via OpenAPI.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X bookmark share plus official API site/docs</li>
+<li>Confidence: high for the existence and surface area of the API, medium for operational durability</li>
+<li>Supports: tool accessibility, worker-based composition, machine-readable interfaces</li>
+<li>Main limitations: no independent reliability or traffic information is provided here</li>
+<li>Best use: example of a small but agent-usable external tool surface</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/tool-accessibility.md]]</li>
+<li>[[../concept</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/djfarrelly-agent-loop-architecture-x.md]]</li>
+<li>[[../sources/jason-liu-codex-maxxing-heartbeats.md]]</li>
+<li>[[../sources/openai-chatgpt-memory-dreaming-x-2026-06</li>
+</ul>
+<h3>AI Adoption ROI and Capability Investment</h3>
+<p>KB note: <code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code></p>
+<h1>AI Adoption ROI and Capability Investment</h1>
+<h2>Purpose</h2>
+<p>Map how AI-assisted software development becomes financial value only when capability investments let the organization absorb faster generation safely.</p>
+<h2>Core thesis</h2>
+<p>AI ROI is not a direct function of model quality or code volume. It is a system outcome: AI adoption must be mediated by internal platforms, context/data quality, trust, user focus, verification guardrails, and delivery metrics before it can become durable business value. The strongest upside case is not only cheaper execution of existing backlog, but Jevons-style expansion in software demand when new tools, experiments, and automations become economical.</p>
+<h2>Path from AI adoption to ROI</h2>
+<h3>1. Capability investment first</h3>
+<p>The first question is not “which tool?” but “can the system absorb the tool?” DORA&#x27;s report emphasizes quality internal developer platforms, AI-accessible internal data, clear AI stance/trust, context engineering, user-centric focus, and automated</p>
+<h3>Harness Engineering</h3>
+<p>KB note: <code>wiki/concepts/harness-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Harness Engineering</p>
+<hr>
+<h1>Harness Engineering</h1>
+<h2>Definition</h2>
+<p>The design of the environment, artifacts, controls, tooling, and feedback loops around an agent so that it can produce more reliable results over time.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, performance depends less on the model alone and more on the structure that surrounds it.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[guides and sensors]]</li>
+<li>[[agent recognizable repository]]</li>
+<li>[[structured handoff artifacts]]</li>
+<li>[[machine-checkable invariants]]</li>
+<li>[[heavy-thinking.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/martin-fowler-harness-engineering.md]]</li>
+<li>[[../sources/gota-purpose-first-harness-design-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-how-to-approach-harness-engineering-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-what-harness-engineering-is-and-is-not-zenn.md]]</li>
+<li>[[../sources/sergicalsix-harness-engineering-overview-design-philosophy-speakerdeck.md]]</li>
+<li>[[../sources/yuukiyo-ai-dlc</li>
+</ul>
+<h3>Navigable Agent Skills</h3>
+<p>KB note: <code>wiki/concepts/navigable-agent-skills.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Navigable Agent Skills</p>
+<p>  - Corpus2Skill</p>
+<p>  - Hierarchical RAG</p>
+<hr>
+<h1>Navigable Agent Skills</h1>
+<h2>Definition</h2>
+<p>A retrieval architecture where a corpus is compiled into a hierarchy of human/model-readable skill or index files, so an agent can navigate the corpus structure before retrieving underlying documents.</p>
+<h2>Why It Matters</h2>
+<p>It changes the model’s role from passive consumer of search results to active navigator of an information architecture. This is especially useful for broad or completeness-oriented questions where top-k vector retrieval may miss scattered evidence.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled-wiki.md]]</li>
+<li>[[agent-knowledge-loop.md]]</li>
+<li>[[context-graph.md]]</li>
+<li>[[tool-accessibility.md]]</li>
+<li>[[agent-recognizable-repository.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/coreyganim-karpathy-second-brain-clearly-explained-x.md]]</li>
+<li>[[../sources/knowledgesense-corpus2skill-zenn.md]]</li>
+<li>[[../sources/aws-agent-toolkit-for-aws-x.md]]</li>
+<li>[[../sources/googlecloudjp-agent-skills-repos</li>
+</ul>
+<h3>Tool Accessibility</h3>
+<p>KB note: <code>wiki/concepts/tool-accessibility.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Tool Accessibility</p>
+<hr>
+<h1>Tool Accessibility</h1>
+<h2>Definition</h2>
+<p>The degree to which the tools humans rely on are exposed in forms agents can discover and use effectively.</p>
+<h2>Why It Matters</h2>
+<p>If agents cannot access the relevant tools and context, their practical usefulness stays artificially low.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[agent-recognizable-repository]]</li>
+<li>[[coding-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/ignorance-ai-emerging-harness-engineering-playbook.md]]</li>
+<li>[[../sources/anthropic-harnessing-claudes-intelligence.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-setup-x.md]]</li>
+<li>[[../sources/storybook-mcp-react-blog.md]]</li>
+<li>[[../sources/browser-use-cli-2-changelog.md]]</li>
+<li>[[../sources/google-gemma-4-blog.md]]</li>
+<li>[[../sources/difit-review-blog.md]]</li>
+<li>[[../sources/jerry-liu-rese</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>6</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
