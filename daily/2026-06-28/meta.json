@@ -1,15 +1,15 @@
 {
-  "date": "2026-06-28T03:00:12.384304+09:00",
-  "topic_id": "wiki/maps/agent-harness-landscape.md",
-  "title": "Agent Harness Landscape",
+  "date": "2026-06-28T16:59:18.562834+09:00",
+  "topic_id": "wiki/maps/agent-harness-control-taxonomy.md",
+  "title": "Agent Harness Control Taxonomy",
   "output_dir": "outputs/notebooklm-podcast/2026-06-28",
   "page": "outputs/notebooklm-podcast/2026-06-28/notebooklm-source.md",
   "related": [
-    "wiki/maps/harness-engineering-vendor-comparison.md",
+    "wiki/maps/agent-harness-landscape.md",
     "wiki/maps/coding-agent-harness-patterns.md",
-    "wiki/concepts/harness-engineering.md",
-    "wiki/concepts/multi-agent-orchestration.md",
-    "wiki/maps/agent-harness-control-taxonomy.md"
+    "wiki/maps/harness-engineering-vendor-comparison.md",
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md"
   ],
-  "char_count": 8993
+  "char_count": 9021
 }

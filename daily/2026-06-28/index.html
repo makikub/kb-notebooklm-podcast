@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>2026-06-28 - Agent Harness Landscape</title>
+  <title>2026-06-28 - Agent Harness Control Taxonomy</title>
   <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-06-28/">
   <style>
     :root { color-scheme: light dark; }
@@ -23,7 +23,7 @@
 <body>
 
 <header><a href="../../">KB Reading Pages</a> / 2026-06-28</header>
-<h1>Agent Harness Landscape</h1>
+<h1>Agent Harness Control Taxonomy</h1>
 <div class="note">
   
   <strong>ソース:</strong> <a href="source.md">source.md</a> はNotebookLMにも追加できます。
@@ -34,16 +34,70 @@
   <a href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-06-28/source.md">Copy/source URL</a>
   <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-06-28">GitHub</a>
 </div>
-<h1>Agent Harness Landscape</h1>
+<h1>Agent Harness Control Taxonomy</h1>
 <ul>
 <li>Date: 2026-06-28</li>
-<li>Primary topic: <code>wiki/maps/agent-harness-landscape.md</code></li>
+<li>Primary topic: <code>wiki/maps/agent-harness-control-taxonomy.md</code></li>
 <li>Purpose: KB由来の材料を、人間がHTMLで読んで理解しやすい読み物にする</li>
 </ul>
 <h2>今日のランダムテーマ</h2>
-<p>Agent Harness Landscape を入口に、関連するKBノートをつないで実務上の論点を整理する。</p>
+<p>Agent Harness Control Taxonomy を入口に、関連するKBノートをつないで実務上の論点を整理する。</p>
 <h2>主要ソース抜粋</h2>
+<h3>Agent Harness Control Taxonomy</h3>
+<h1>Agent Harness Control Taxonomy</h1>
+<h2>Purpose</h2>
+<p>Normalize the control vocabulary used across the harness-engineering cluster so the KB can compare sources without collapsing distinct mechanisms into one vague idea of &quot;guardrails.&quot;</p>
+<h2>Core split</h2>
+<p>Harness controls fall along two practical axes:</p>
+<p>1. <strong>When they act</strong> — before action, during action, or after action</p>
+<p>2. <strong>How they act</strong> — deterministic/computational or semantic/inferential</p>
+<p>This note treats those axes as complementary rather than mutually exclusive.</p>
+<h2>Scope split: evaluation, runtime, context, safety</h2>
+<p>Use this split when a source says &quot;harness&quot; but means different machinery:</p>
+<ul>
+<li><strong>Evaluation harness</strong>: infrastructure that scores models or task submissions, such as lm-evaluation-harness or SWE-bench-style graders.</li>
+<li><strong>Runtime harness</strong>: the agent loop that alternates reasoning, tool use, observation, state, and retry behavior.</li>
+<li><strong>Context harness</strong>: instructions, rule files, memory, retrieval, tools, hooks, skills, MCP servers, and other context surfaces exposed to the model.</li>
+<li><strong>Safety harness</strong>: sandboxing, permission boundaries, approval flows, identity, audit logs, and other external risk controls.</li>
+</ul>
+<p>These scopes cross-cut the timing/control axes below. For example, a hook can be an in-loop runtime control, a context-injection control, or a safety boundary depending on what it does.</p>
+<p>The memory-skill harness framing sharpens the context-harness category: skills are procedural memory, and memory is useful only when it can route, constrain, and revise those procedures.</p>
+<h2>1. Before-action controls</h2>
+<p>These shape the agent&#x27;s trajectory before it takes a meaningful step.</p>
+<h3>Typical mechanisms</h3>
+<ul>
+<li>task scoping and decomposition</li>
+<li>repo maps, plans, and architecture docs</li>
+<li>approval policies and allowed-tool boundaries</li>
+<li>templates, skills, and initializer artifacts</li>
+<li>staged context loading and retrieval rules</li>
+</ul>
+<h3>Best-covered by current sources</h3>
+<ul>
+<li>[[../sources/martin-fowler-harness-engineering.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/newspicks-harness-engineering-what-is-it.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-cwc-long-running-agents-repo.md]]</li>
+</ul>
+<h3>Closest concepts</h3>
+<ul>
+<li>[[../concepts/feedforward-controls.md]]</li>
+<li>[[../concepts/approval-policy.md]]</li>
+<li>[[../concepts/agent-recognizable-repository.md]]</li>
+<li>[[../concepts/task-decomposition.md]]</li>
+<li>[[../concepts/initializer-agent.md]]</li>
+</ul>
+<h2>2. In-loop controls</h2>
+<p>These intervene while the agent is already working.</p>
+<h3>Typical mechanisms</h3>
+<ul>
+<li>middleware hooks around model or tool calls</li>
+<li>loo</li>
+</ul>
+<h2>関連ノートからの補助材料</h2>
 <h3>Agent Harness Landscape</h3>
+<p>Source: <code>wiki/maps/agent-harness-landscape.md</code></p>
 <h1>Agent Harness Landscape</h1>
 <h2>Purpose</h2>
 <p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
@@ -66,84 +120,6 @@
 <li>[[../sources/figma-figma-mcp-server-slides-figjam-make-x-2026-06-16.md]]</li>
 <li>[[../sources/raytar-stop-being-the-loop-claude-work-while-you-sleep-x-2026-06-23.md]]</li>
 <li>[[../sources/openai-previewing-gpt-5-6-sol-x-2026-06-26.md]]</li>
-<li>[[../sources/anthropic-economic-index-cadences-x-2026-06-26.md]]</li>
-<li>[[../sources/trkbt10-transit-api-x-2026-06-25.md]]</li>
-<li>[[../sources/takubii-team-ai-driven-dev-loop-zenn-x-2026-06-23.md]]</li>
-<li>[[../sources/gihyo-system-development-concrete-abstract-x-2026-06-26.md]]</li>
-</ul>
-<h2>Main dimensions</h2>
-<h3>1. Guidance before action</h3>
-<ul>
-<li>feedforward controls</li>
-<li>short map-like instructions</li>
-<li>architecture docs</li>
-<li>explicit plans</li>
-<li>feature lists</li>
-<li>templates and skills</li>
-</ul>
-<h3>2. Correction after action</h3>
-<ul>
-<li>tests</li>
-<li>linters</li>
-<li>structural checks</li>
-<li>browser-based verification</li>
-<li>AI review / evaluator agents</li>
-<li>recurring cleanup tasks</li>
-</ul>
-<h3>3. Continuity across sessions</h3>
-<ul>
-<li>progress logs</li>
-<li>commit history</li>
-<li>feature list artifacts</li>
-<li>initializer agent outputs</li>
-<li>context resets</li>
-</ul>
-<h3>4. Control of autonomy</h3>
-<ul>
-<li>approval policy</li>
-<li>human-in-the-loop checkpoints</li>
-<li>classifier-mediated approvals</li>
-<li>machine-checkable invariants</li>
-<li>data redaction / PII filtering before model input</li>
-</ul>
-<h3>5. Role separation</h3>
-<ul>
-<li>planner</li>
-<li>generator</li>
-<li>evaluator</li>
-<li>maintenance / cleanup agents</li>
-</ul>
-<h2>Source contributions</h2>
-<h3>Karpathy</h3>
-<p>Provides the raw → compiled wiki loop and the idea that LLM-maintained Markdown systems can become a working knowledge substrate.</p>
-<h3>Open</h3>
-<h2>関連ノートからの補助材料</h2>
-<h3>Harness Engineering Vendor / Practitioner Comparison</h3>
-<p>Source: <code>wiki/maps/harness-engineering-vendor-comparison.md</code></p>
-<h1>Harness Engineering Vendor / Practitioner Comparison</h1>
-<h2>Purpose</h2>
-<p>Compare how different sources frame harness engineering, what they optimize for, and what distinctive mechanisms they emphasize.</p>
-<h2>Source anchors</h2>
-<ul>
-<li>[[../sources/openai-harness-engineering.md]]</li>
-<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
-<li>[[../sources/codex-subagents-docs.md]]</li>
-<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
-<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
-<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
-<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
-<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
-<li>[[../sources/cursor-3-blog.md]]</li>
-<li>[[../sources/anthropic-claude-code-large-codebases.md]]</li>
-<li>[[../sources/anthropic-2026-agentic-coding-trends-report.md]]</li>
-<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
-</ul>
-<h2>Comparison axes</h2>
-<h3>OpenAI</h3>
-<ul>
-<li>Focus: repository design, machine-enforced invariants, agent-recognizable context, continuous cleanup, and cross-agent review / delegation</li>
-<li>Distinctive emphasis: docs as map, custom linters, structured plans, architecture constraints, review loops, interoperable agent tooling, and explicit model-tier routing via subagents</li>
-<li>Main contribution: shows harness engineering as both a production engineering discipline and a composable ecosystem where one agent can check or extend a</li>
 </ul>
 <h3>Coding-Agent Harness Patterns</h3>
 <p>Source: <code>wiki/maps/coding-agent-harness-patterns.md</code></p>
@@ -176,79 +152,69 @@
 <li>prevents setup failures from consuming the task budget</li>
 <li>gives tests, linters, and smoke commands a mea</li>
 </ul>
-<h3>Harness Engineering</h3>
-<p>Source: <code>wiki/concepts/harness-engineering.md</code></p>
-<hr>
-<p>aliases:</p>
-<p>  - Harness Engineering</p>
-<hr>
-<h1>Harness Engineering</h1>
-<h2>Definition</h2>
-<p>The design of the environment, artifacts, controls, tooling, and feedback loops around an agent so that it can produce more reliable results over time.</p>
-<h2>Why It Matters</h2>
-<p>As agents become more capable, performance depends less on the model alone and more on the structure that surrounds it.</p>
-<h2>Related Concepts</h2>
-<ul>
-<li>[[guides and sensors]]</li>
-<li>[[agent recognizable repository]]</li>
-<li>[[structured handoff artifacts]]</li>
-<li>[[machine-checkable invariants]]</li>
-<li>[[heavy-thinking.md]]</li>
-</ul>
-<h2>Supporting Sources</h2>
+<h3>Harness Engineering Vendor / Practitioner Comparison</h3>
+<p>Source: <code>wiki/maps/harness-engineering-vendor-comparison.md</code></p>
+<h1>Harness Engineering Vendor / Practitioner Comparison</h1>
+<h2>Purpose</h2>
+<p>Compare how different sources frame harness engineering, what they optimize for, and what distinctive mechanisms they emphasize.</p>
+<h2>Source anchors</h2>
 <ul>
 <li>[[../sources/openai-harness-engineering.md]]</li>
-<li>[[../sources/martin-fowler-harness-engineering.md]]</li>
-<li>[[../sources/gota-purpose-first-harness-design-speakerdeck.md]]</li>
-<li>[[../sources/rkaga-how-to-approach-harness-engineering-speakerdeck.md]]</li>
-<li>[[../sources/rkaga-what-harness-engineering-is-and-is-not-zenn.md]]</li>
-<li>[[../sources/sergicalsix-harness-engineering-overview-design-philosophy-speakerdeck.md]]</li>
-<li>[[../sources/yuukiyo-ai-dlc-deep-dive-speakerdeck.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/codex-subagents-docs.md]]</li>
 <li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
 <li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
-<li>[[../sources/spillwave-ai-coding-hangover-harness-engineering.md]]</li>
-<li>[[../sources/anthropic-harnessing-claudes-intelligence.md]]</li>
-<li>[[../sources/addyosmani-agent-harness-engineering-x-2026-05-09.md]]</li>
-<li>[[../sources/kevin-gu-autoagent-x-th</li>
-</ul>
-<h3>Multi-Agent Orchestration</h3>
-<p>Source: <code>wiki/concepts/multi-agent-orchestration.md</code></p>
-<hr>
-<p>aliases:</p>
-<p>  - Multi-Agent Orchestration</p>
-<hr>
-<h1>Multi-Agent Orchestration</h1>
-<h2>Definition</h2>
-<p>The deliberate assignment of different roles or subtasks to multiple cooperating agents within a larger workflow.</p>
-<h2>Why It Matters</h2>
-<p>Some tasks benefit from separating planning, generation, evaluation, and execution rather than asking one agent to do everything.</p>
-<h2>Related Concepts</h2>
-<ul>
-<li>[[generator-evaluator-loop]]</li>
-<li>[[context-resets]]</li>
-<li>[[long-running-agents]]</li>
-<li>[[intelligent-delegation.md]]</li>
-<li>[[heavy-thinking.md]]</li>
-<li>[[managed-agents.md]]</li>
-</ul>
-<h2>Supporting Sources</h2>
-<ul>
-<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
-<li>[[../sources/claude-new-in-managed-agents-dreaming-outcomes-orchestration.md]]</li>
-<li>[[../sources/kevin-gu-autoagent-x-thread.md]]</li>
-<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
 <li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
-<li>[[../sources/cursor-3-x.md]]</li>
-<li>[[../sources/openai-gpt-5-4-mini-nano-blog.md]]</li>
-<li>[[../sources/codex-subagents-docs.md]]</li>
-<li>[[../sources/blader-adversarial-subagent-review-gate-goal-x-2026-05-23.md]]</li>
-<li>[[../sources/bcherny-auto-mode-multi-clauding-x-2026-05-24.md]]</li>
-<li>[[../sources/xjuntaro-planning-subagent-review-codex-x-2026-05-16.md]]</li>
-<li>[[../sources/anthropic-multi-agent-coordination-patterns.md]]</li>
-<li>[[../sources/arxiv-autogenesis-self-evolving-agent-protocol.md]]</li>
-<li>[[../sources/nyk-builderz-4-agent-hermes-operator-layer-x.md]]</li>
-<li>[[../source</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/cursor-3-blog.md]]</li>
+<li>[[../sources/anthropic-claude-code-large-codebases.md]]</li>
+<li>[[../sources/anthropic-2026-agentic-coding-trends-report.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
 </ul>
+<h2>Comparison axes</h2>
+<h3>OpenAI</h3>
+<ul>
+<li>Focus: repository design, machine-enforced invariants, agent-recognizable context, continuous cleanup, and cross-agent review / delegation</li>
+<li>Distinctive emphasis: docs as map, custom linters, structured plans, architecture constraints, review loops, interoperable agent tooling, and explicit model-tier routing via subagents</li>
+<li>Main contribution: shows harness engineering as both a production engineering discipline and a composable ecosystem where one agent can check or extend a</li>
+</ul>
+<h3>Eval and Review Reliability</h3>
+<p>Source: <code>wiki/maps/eval-review-reliability.md</code></p>
+<h1>Eval and Review Reliability</h1>
+<h2>Purpose</h2>
+<p>Collect the KB&#x27;s evaluation and review ideas into one map focused on practical reliability: how to know whether an agent-produced artifact is good enough, and how to keep review load from becoming the bottleneck.</p>
+<h2>Core thesis</h2>
+<p>Agent output quality improves when evaluation is treated as a separate harness layer, not as an informal final glance by the same agent that produced the work.</p>
+<h2>Reliability layers</h2>
+<h3>1. Deterministic checks first</h3>
+<p>Use cheap checks before semantic review:</p>
+<ul>
+<li>lint and typecheck</li>
+<li>tests and smoke tests</li>
+<li>formatting and structural checks</li>
+<li>repository-specific machine-checkable invariants</li>
+</ul>
+<p>Related concepts: [[../concepts/machine-checkable-invariants.md]], [[../concepts/feedback-controls.md]].</p>
+<h3>2. Task-fit review</h3>
+<p>Check whether the work actually satisfies the request:</p>
+<ul>
+<li>requirements coverage</li>
+<li>edge cases</li>
+<li>backward compatibility</li>
+<li>user-facing behavior</li>
+<li>maintainability</li>
+</ul>
+<p>Related maps: [[coding-agent-review-rubric.md]], [[agent-deployment-gates-and-operational-risk.md]].</p>
+<h3>3. Independent evaluator loop</h3>
+<p>Separate generation from judgment when quality is fuzzy or high-stakes:</p>
+<ul>
+<li>subagent review</li>
+<li>adversarial review</li>
+<li>blocking review gates</li>
+<li>human escalation for ambiguous or high-blast-radius changes</li>
+</ul>
+<p>Related concepts: [[../concepts/generator-evaluator-loop.md]], [[../concepts/self-evaluation-bias.md]], [[../concept</p>
 <h2>次に考えるとよさそうな問い</h2>
 <ul>
 <li>このテーマは、どの現場課題を減らすための考え方か？</li>
@@ -256,7 +222,7 @@
 <li>導入するときに失敗しやすい雑な抽象化は何か？</li>
 <li>既存の開発・レビュー・ナレッジ運用にどう接続できるか？</li>
 </ul>
-<footer><p>Generated from knowledge-base-llm. Source topic: <code>wiki/maps/agent-harness-landscape.md</code></p></footer>
+<footer><p>Generated from knowledge-base-llm. Source topic: <code>wiki/maps/agent-harness-control-taxonomy.md</code></p></footer>
 
 </body>
 </html>
