@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-29 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-29/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-29</header>
+<h1>KB Daily Digest 2026-06-29</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-29/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-29">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-29</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-29</h1>
+<p>2026-06-29 UTC の knowledge-base-llm は、X bookmarks の日次取り込みを起点に、3本の raw article と3本の wiki source note を追加した。新規 raw は <code>raw/x/bookmarks/bookmarks-20260629T0000Z.json</code>、まかねこ氏の Codex + GPT-5.5 Pro advisor skill 記事共有、Yusuke Wada 氏の AI agent framework Flue 記事共有、Google Sheets の canvas 作成機能共有の3本。wiki 側では、それぞれ <code>makaneko-codex-gpt-55-pro-advisor-skill-x-2026-06-28.md</code>、<code>yusuke-wada-ai-agent-framework-flue-x-2026-06-28.md</code>、<code>lin-create-a-sheets-canvas-x-2026-06-26.md</code> が追加され、<code>wiki/INDEX.md</code> と4つの概念ノートも更新された。</p>
+<p>全体トレンドは、AI agent の価値が「モデル単体の能力」から、「外側の harness、skill、artifact surface をどう組み合わせるか」へさらに寄っていること。Flue は agent を tools / skills / subagents / workflows / chat integration まで含む harness として扱い、まかねこ氏の記事は Codex の実装・検証ループにブラウザ側の上位 advisor model を差し込む運用パターンを示す。Google Sheets canvas は、AI生成結果をただのテキスト回答ではなく、チームで扱える構造化された可視 artifact に落とす方向を補強している。</p>
+<p>重要ソースの1本目は、Yusuke Wada 氏による Flue の記事共有。source note では、Flue を TypeScript の AI agent framework としてだけでなく、prompt wrapper ではない harness-driven architecture として位置付けている。具体的には、runbook を skills として扱うこと、subagent delegation、structured workflows、Slack などの chat integration、SRE agent の例が取り上げられている。KB では <code>harness-engineering</code>、<code>coding-agents</code>、<code>workflow-compilation</code>、<code>multi-agent-orchestration</code> に接続され、agent framework を「モデルを呼ぶ薄い層」ではなく、実務に耐える運用外骨格として比較する材料になった。</p>
+<p>重要ソースの2本目は、まかねこ氏の Codex GPT-5.5 Pro advisor skill。これは Codex がローカルで実装や検証を担い、重要な計画、設計、アーキテクチャ比較、調査の局面ではブラウザ上の ChatGPT Pro / GPT-5.5 Pro を外部 advisor として使い、その結果を Codex に戻すという loop を扱っている。source note の evidence quality は practitioner recipe として medium-high だが、実務上の問いははっきりしている。つまり、どの判断だけを高コストな advisor pass に回すべきか、advisor と implementer の分業をどう監査するか、これを一時的な workaround ではなく reusable skill や policy rule にすべきか、という問いである。</p>
+<p>重要ソースの3本目は、Google Sheets の Create a canvas 機能共有。Google Docs help page を一次的な裏付けとして、Sheets から canvas を作り、Gemini によって Kanban board や gallery view のような interactive visualization を生成できる点が取り込まれた。KB 上では <code>rich-agent-output-artifact</code>、<code>structured-handoff-artifacts</code>、<code>tool-accessibility</code> に接続されている。これは agent UI の話であると同時に、日常的な productivity surface の中に AI-generated structured artifact が入ってくる話でもある。</p>
+<p>今回の概念更新は小さいが、方向性は明確だった。<code>harness-engineering</code> には Flue が追加され、agent harness を構成する tools、skills、delegation、workflow、chat surface を比較する足場が増えた。<code>navigable-agent-skills</code> と <code>skill-optimization</code> には advisor skill が追加され、skill が単なる手順書ではなく、必要に応じて外部 reasoning resource に移動する navigation layer にもなり得ることが示された。<code>structured-handoff-artifacts</code> には Sheets canvas が入り、handoff artifact が Markdown や issue だけでなく、スプレッドシート内の interactive visualization に広がる可能性が補強された。</p>
+<p>同時に、<code>outputs/audit/kb-static-audit-seed-2026-06-29.md</code> も生成されている。現時点の wiki markdown は620件、source note は505件、concept note は86件、map note は18件。broken wiki/markdown links は3件で、いずれも <code>openclaw-gogcli-release-v0.16</code> に関するリンクの表記揺れらしい。source note without concept links は0件なので、新規 source note の接続漏れは起きていない。一方で <code>infrastructure-from-code</code>、<code>intention-debt</code>、<code>kv-cache</code> は source backlink が1件の弱い概念として残っており、月次 audit ではこのあたりの補強や整理が候補になる。</p>
+<p>実務上の示唆は、agent 導入を「どのモデルを使うか」だけで見ないこと。Flue のような framework は、runbook、tool schema、subagent、workflow、chat invocation をどう束ねるかを問う。advisor skill は、全てを同じ agent に任せるのではなく、判断の重い局面だけを別の reasoning surface に渡す設計を示す。Sheets canvas は、agent の出力が次の人間やチームに渡るとき、どの artifact ならそのまま作業面になるかを問う。3本を合わせると、今日のKBは「agent の能力」よりも「agent が働く面、移動する面、成果を残す面」を厚くした更新だった。</p>
+<p>Podcast では、「Flue の harness-driven な見方は既存の coding agent harness pattern と何が違うのか」「advisor model を挟む skill は、品質改善なのか、責任分界の明確化なのか」「Sheets canvas のような structured artifact は、agent output の終点なのか、それとも次の workflow の入口なのか」を掘るとよい。次に追う問いは、1) Flue の実装と Pi foundation の境界、2) advisor skill をどの判断にだけ適用すると費用対効果が出るか、3) AI-generated canvas がチームの handoff artifact として再利用できる条件、4) static audit で出た broken links と weak concepts の整理、の4つ。</p>
+<h2>重要ソース</h2>
+<h3>LIN - Create a Sheets canvas</h3>
+<p>Source note: <code>wiki/sources/lin-create-a-sheets-canvas-x-2026-06-26.md</code></p>
+<h1>LIN - Create a Sheets canvas</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/lin-create-a-sheets-canvas-x-2026-06-26.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260629T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2070430015439974597</li>
+<li>Primary URL: https://support.google.com/docs/answer/17035851?hl=en</li>
+<li>Author: LIN / @ai_lin_creation</li>
+<li>Posted: 2026-06-26T08:52:37.000Z</li>
+<li>Captured: 2026-06-29 via xurl bookmarks capture</li>
+<li>Type: X post / feature screenshot share</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark highlights Google Sheets&#x27; new canvas workflow. The feature matters because it turns a spreadsheet into a lightweight AI-assisted workspace where Gemini can generate interactive task boards and other structured visualizations.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Google Sheets now has a canvas creation flow accessible from the UI.</li>
+<li>Gemini can be prompted to generate interactive visualizations inside the canvas.</li>
+<li>Kanban boards and gallery views are explicitly listed as supported examples.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text explicitly calls out &quot;Create a Canvas&quot;.</li>
+<li>The Google Docs help page describes the UI entry points and example canvas types.</li>
+<li>The screenshot share makes the feature feel like a practical product capability rather than a conceptual roadmap item.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post backed by an official Google Docs help page</li>
+<li>Confidence: high for the documented UI behavior</li>
+<li>Supports: rich agent output artifact, structured handoff artifacts, tool accessibility</li>
+<li>Main limitations: this is a product feature note, not an agent framework or eval result</li>
+<li>Best use: connect everyday productivity surfaces to AI-assisted artifact generation</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/rich-agent-output-artifact.md]]</li>
+<li>[[../concepts/structured-handoff-artifact</li>
+</ul>
+<h3>makaneko - Codex GPT-5.5 Pro advisor skill</h3>
+<p>Source note: <code>wiki/sources/makaneko-codex-gpt-55-pro-advisor-skill-x-2026-06-28.md</code></p>
+<h1>makaneko - Codex GPT-5.5 Pro advisor skill</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/makaneko-codex-gpt-55-pro-advisor-skill-x-2026-06-28.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260629T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2071136501937872956</li>
+<li>Primary URL: https://note.com/makaneko_ai/n/n179a9876911b</li>
+<li>Author: まかねこ / @makaneko_AI</li>
+<li>Posted: 2026-06-28T07:39:56.000Z</li>
+<li>Captured: 2026-06-29 via xurl bookmarks capture</li>
+<li>Type: X bookmark share of note.com article</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark points to a note article describing a Codex skill that uses GPT-5.5 Pro as an external advisor. The pattern is interesting because it combines coding-agent execution with a higher-end reasoning pass in the browser, then feeds the result back into Codex for verification.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Codex can be paired with GPT-5.5 Pro as a consultation step.</li>
+<li>The skill is intended for important planning, design, architecture, comparisons, and research.</li>
+<li>The Pro model is used as an advisor because it can spend more effort on ambiguous decisions.</li>
+<li>Codex still performs the local verification and implementation step.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The article description explicitly lays out the Codex -&gt; browser ChatGPT Pro -&gt; Codex loop.</li>
+<li>The writeup says Pro is being used for advisory work because Codex cannot directly use the Pro model in the same way.</li>
+<li>The suggested use cases are planning-heavy, which makes the source relevant to decision-support workflows rather than ordinary code generation.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X bookmark share of a note.com article</li>
+<li>Confidence: medium-high for the workflow pattern</li>
+<li>Supports: navigable agent skills, coding agents, skill optimization, human-in-the-loop</li>
+<li>Main limitations: this is a practitioner recip</li>
+</ul>
+<h3>Yusuke Wada - AI Agent Framework Flue</h3>
+<p>Source note: <code>wiki/sources/yusuke-wada-ai-agent-framework-flue-x-2026-06-28.md</code></p>
+<h1>Yusuke Wada - AI Agent Framework Flue</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/yusuke-wada-ai-agent-framework-flue-x-2026-06-28.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260629T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2071254229633946041</li>
+<li>Primary URL: https://azukiazusa.dev/blog/ai-agent-framework-flue/</li>
+<li>Author: Yusuke Wada / @yusukebe</li>
+<li>Posted: 2026-06-28T15:27:45.000Z</li>
+<li>Captured: 2026-06-29 via xurl bookmarks capture</li>
+<li>Type: X bookmark share of technical blog post</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark points to a detailed blog post about Flue, a TypeScript framework for building AI agents. The article is useful because it treats agent construction as a harness problem: the framework provides the surrounding pieces for tools, skills, subagents, workflows, and chat integration, not just a prompt wrapper.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Flue is a TypeScript framework for building AI agents.</li>
+<li>The article frames Flue as harness-driven rather than prompt-driven.</li>
+<li>The framework covers practical building blocks such as runbooks as skills, subagent delegation, workflows, and chat integration.</li>
+<li>The post uses an SRE agent example, which grounds the framework in operational work.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark description explicitly says Flue is a TypeScript framework for AI agents.</li>
+<li>The linked article describes harness-driven architecture and points to Pi as a minimal terminal coding harness foundation.</li>
+<li>The article outline includes SRE agent setup, runbooks as skills, subagent delegation, structured workflows, and Slack invocation.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X bookmark share of a technical blog post</li>
+<li>Confidence: high for the framework and architecture framing</li>
+<li>Supports: harness engineering, coding agents, workflow compilation, mult</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Harness Engineering</h3>
+<p>KB note: <code>wiki/concepts/harness-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Harness Engineering</p>
+<hr>
+<h1>Harness Engineering</h1>
+<h2>Definition</h2>
+<p>The design of the environment, artifacts, controls, tooling, and feedback loops around an agent so that it can produce more reliable results over time.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, performance depends less on the model alone and more on the structure that surrounds it.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[guides and sensors]]</li>
+<li>[[agent recognizable repository]]</li>
+<li>[[structured handoff artifacts]]</li>
+<li>[[machine-checkable invariants]]</li>
+<li>[[heavy-thinking.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/martin-fowler-harness-engineering.md]]</li>
+<li>[[../sources/gota-purpose-first-harness-design-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-how-to-approach-harness-engineering-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-what-harness-engineering-is-and-is-not-zenn.md]]</li>
+<li>[[../sources/sergicalsix-harness-engineering-overview-design-philosophy-speakerdeck.md]]</li>
+<li>[[../sources/yuukiyo-ai-dlc</li>
+</ul>
+<h3>Navigable Agent Skills</h3>
+<p>KB note: <code>wiki/concepts/navigable-agent-skills.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Navigable Agent Skills</p>
+<p>  - Corpus2Skill</p>
+<p>  - Hierarchical RAG</p>
+<hr>
+<h1>Navigable Agent Skills</h1>
+<h2>Definition</h2>
+<p>A retrieval architecture where a corpus is compiled into a hierarchy of human/model-readable skill or index files, so an agent can navigate the corpus structure before retrieving underlying documents.</p>
+<h2>Why It Matters</h2>
+<p>It changes the model’s role from passive consumer of search results to active navigator of an information architecture. This is especially useful for broad or completeness-oriented questions where top-k vector retrieval may miss scattered evidence.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[compiled-wiki.md]]</li>
+<li>[[agent-knowledge-loop.md]]</li>
+<li>[[context-graph.md]]</li>
+<li>[[tool-accessibility.md]]</li>
+<li>[[agent-recognizable-repository.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/coreyganim-karpathy-second-brain-clearly-explained-x.md]]</li>
+<li>[[../sources/knowledgesense-corpus2skill-zenn.md]]</li>
+<li>[[../sources/aws-agent-toolkit-for-aws-x.md]]</li>
+<li>[[../sources/googlecloudjp-agent-skills-repos</li>
+</ul>
+<h3>Skill Optimization</h3>
+<p>KB note: <code>wiki/concepts/skill-optimization.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Skill Optimization</p>
+<p>  - Text-Space Skill Optimization</p>
+<p>  - Trainable Skill Document</p>
+<hr>
+<h1>Skill Optimization</h1>
+<h2>Definition</h2>
+<p>Skill optimization is the practice of improving a reusable agent skill document through scored execution evidence, bounded text edits, and validation gates, while keeping the task-execution model and harness fixed.</p>
+<h2>Why It Matters</h2>
+<p>Skills are increasingly used as procedural memory for agents. If they remain purely hand-written or one-shot generated, they improve only when a human notices a pattern and edits the file. Skill optimization makes the update loop more systematic: traces supply evidence, an optimizer proposes small edits, and held-out checks decide whether the skill actually improved.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[memory-skill-harness.md]]</li>
+<li>[[rule-update-loop.md]]</li>
+<li>[[trace-driven-improvement.md]]</li>
+<li>[[feedback-controls.md]]</li>
+<li>[[machine-checkable-invariants.md]]</li>
+<li>[[behavioral-stability.md]]</li>
+<li>[[workflow-compilation.md]]</li>
+<li>[[navigable-agent-</li>
+</ul>
+<h3>Structured Handoff Artifacts</h3>
+<p>KB note: <code>wiki/concepts/structured-handoff-artifacts.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Structured Handoff Artifacts</p>
+<hr>
+<h1>Structured Handoff Artifacts</h1>
+<h2>Definition</h2>
+<p>Persistent artifacts such as progress logs, feature lists, plans, and commit history that allow one agent session to hand work off to another cleanly.</p>
+<h2>Why It Matters</h2>
+<p>Without structured handoffs, long-running work across multiple context windows becomes brittle and repetitive.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[initializer-agent]]</li>
+<li>[[rich-agent-output-artifact.md]]</li>
+<li>[[context-resets]]</li>
+<li>[[incremental-progress]]</li>
+<li>[[long-running-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/oikon48-team-onboarding-x.md]]</li>
+<li>[[../sources/oikon48-ultraplan-x.md]]</li>
+<li>[[../sources/anthropic-claude-code-ultraplan-docs.md]]</li>
+<li>[[../sources/cursor-pr-demos-x.md]]</li>
+<li>[[../sources/noahzweben-autofix-pr-x.md]]</li>
+<li>[[../sources/aparnadhinak-harness-vs-sandbox-trajectory-x.md]]</li>
+<li>[[../sources/nyk-builderz-4-agent-h</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>3</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
