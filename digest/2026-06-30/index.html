@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-30 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-30/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-06-30</header>
+<h1>KB Daily Digest 2026-06-30</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-06-30/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-06-30">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-06-30</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-06-30</h1>
+<p>2026-06-30 UTC の knowledge-base-llm は、X bookmarks の日次取り込みを起点に、3本の raw article と3本の wiki source note を追加した。新規 raw は <code>raw/x/bookmarks/bookmarks-20260630T0000Z.json</code>、Cognition の Devin Fusion、Cursor for iOS、OpenClaw の iOS / Android アプリ告知の3本。wiki 側では <code>cognition-devin-fusion-hybrid-model-harness-x-2026-06-29.md</code>、<code>cursor-ai-cursor-for-ios-x-2026-06-29.md</code>、<code>openclaw-openclaw-ios-android-apps-x-2026-06-29.md</code> が追加され、<code>wiki/INDEX.md</code> も更新された。今日の追加は量としては小さいが、agent harness の「計算資源の最適化」と「操作面のモバイル化」が同じ日に揃ったのが特徴。</p>
+<p>全体トレンドは、AI agent プロダクトがデスクトップ上の対話ツールから、常時稼働する作業システムとその control plane へ移っていること。Cognition は hybrid-model harness によってコストと品質の両立を狙い、Cursor と OpenClaw はスマートフォンを agent の起動、監視、返信、遠隔操作の面として扱う。つまり今日のKB更新は、モデルそのものの賢さよりも、どのモデルをどこで使い、どの画面から任せ、どのタイミングで人間が介入するかという「agent運用の外側」を厚くした。</p>
+<p>重要ソースの1本目は、Cognition の Devin Fusion。source note では、Devin Fusion を「agentic coding のための hybrid-model harness」として位置付けている。ポイントは、単なる model routing ではなく、ベンチマーク上は良く見えても実際には merge できないコードを出す routing への批判から始まっていること。発表は「Fable-level intelligence」のコストを35%下げると主張しているが、方法論は公開されていないため、KBでは performance claim そのものよりも、mergeability や developer usability を評価軸に置いた routing / harness の事例として読むのがよい。</p>
+<p>重要ソースの2本目は、Cursor for iOS。Cursor は iOS アプリを、always-on cloud agents を外出先から立ち上げたり、手元のコンピュータ上で動く agent をリモート操作したりする surface として打ち出している。これは「スマホでもチャットできる」以上の意味を持つ。長時間走る coding agent の状態確認、追加入力、停止、レビュー、再指示といった operator action がモバイルに移ることで、agent の利用時間帯と場所が広がるからである。一方で、source note は permissions、pricing、技術的境界が未記載である点も制約として残している。</p>
+<p>重要ソースの3本目は、OpenClaw の iOS / Android アプリ告知。OpenClaw は「Agents in your pocket」という短い比喩で、channels、tasks、replies を mobile から扱う方向を示した。Cursor が coding agent の remote control を前面に出しているのに対し、OpenClaw は agent management と会話・タスク・返信の継続性を押し出している。KB上では <code>managed-agents</code>、<code>background-agents</code>、<code>long-running-agents</code>、<code>gateway-control-plane</code>、<code>sustainable-ai-work</code> に接続され、agent platform が mobile control plane を持つ意味を比較する材料になった。</p>
+<p>3本を並べると、今日の焦点は「agent の実行」と「agent の監督」を分けて考えることにある。Devin Fusion は実行側の内部構造、つまりどのモデルをどう混ぜるとコストを抑えながら実用的なコード品質を保てるかを問う。Cursor と OpenClaw は監督側の外部構造、つまり常時稼働する agent に人間がどこからどう関与するかを問う。どちらも、agent を一回のチャット応答ではなく、継続的な作業単位として扱うと自然に出てくる問題である。</p>
+<p>今回の概念接続では、Cognition の発表が <code>llm-inference-performance</code>、<code>ai-roi-model</code>、<code>generator-evaluator-loop</code>、<code>loop-engineering</code>、<code>harness-engineering</code> を補強した。特に「安いモデルへ回す」だけではなく、「実際に merge できるコードか」を routing の評価に含める視点は、AI ROI を単純な token cost では測れないことを示している。Cursor と OpenClaw は <code>background-agents</code>、<code>long-running-agents</code>、<code>managed-agents</code> に加え、remote operator control や gateway control plane の議論を進める材料になった。</p>
+<p>実務上の示唆は、mobile agent UI を便利機能としてだけ見ないこと。スマホから agent を動かせるなら、承認、差分確認、権限、失敗時の停止、通知の粒度、実行ログの要約がさらに重要になる。画面が小さいほど状態は隠れやすく、agent が長く走るほど途中介入の設計が難しくなる。Devin Fusion のような hybrid harness も同様に、コスト削減が目的であっても、どの判断を安い経路に回し、どの判断は強い経路や人間レビューに残すかという policy が必要になる。</p>
+<p>Podcast では、「mergeability を routing 評価に入れると model selection はどう変わるか」「スマホが agent の control plane になると、どの操作だけを mobile に載せるべきか」「Cursor 型の coding remote control と OpenClaw 型の channel/task management は同じ市場に向かっているのか、それとも別の operator workflow なのか」を掘るとよい。次に追う問いは、1) hybrid-model harness の評価指標を benchmark から実務成果へどう移すか、2) mobile approval / review の最小安全セットは何か、3) 長時間 agent の状態を小さい画面でどこまで圧縮できるか、4) agent platform の価値が model quality から control plane quality へどの程度移っているか、の4つ。</p>
+<h2>重要ソース</h2>
+<h3>Cognition - Devin Fusion</h3>
+<p>Source note: <code>wiki/sources/cognition-devin-fusion-hybrid-model-harness-x-2026-06-29.md</code></p>
+<h1>Cognition - Devin Fusion</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/cognition-devin-fusion-hybrid-model-harness-x-2026-06-29.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260630T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2071624568465490170</li>
+<li>Primary URL: https://x.com/cognition/status/2071624568465490170/photo/1</li>
+<li>Author: Cognition (@cognition)</li>
+<li>Posted: 2026-06-29T15:59:20.000Z</li>
+<li>Captured: 2026-06-30 via xurl bookmarks capture</li>
+<li>Type: X post / product teaser</li>
+<li>Evidence strength: bookmark snapshot metadata plus official photo card</li>
+<li>Public metrics at capture: 77 reposts, 40 replies, 685 likes, 83 quotes, 294 bookmarks, 170278 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Devin Fusion is Cognition&#x27;s hybrid-model harness for agentic coding. The announcement matters because it treats routing as an operator problem: a system can mix models to lower cost, but it still has to produce code a developer would actually merge.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Conventional model routing can look good on benchmarks while still producing low-mergeability code.</li>
+<li>Devin Fusion uses a hybrid-model harness for agentic coding.</li>
+<li>The claimed effect is lower cost with preserved usability.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text directly criticizes conventional routing and explicitly names Devin Fusion as a hybrid-model harness.</li>
+<li>The post claims a 35% reduction in the cost of &quot;Fable-level intelligence.&quot;</li>
+<li>The announcement is framed around practical coding usefulness, not only benchmark performance.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / product teaser</li>
+<li>Confidence: high for the product framing, medium for exact performance claims</li>
+<li>Supports: inference performance, model routing, generator-evaluator loops, harness engineering</li>
+<li>Main limitations: the post gives no methodology for the cost claim</li>
+<li>B</li>
+</ul>
+<h3>Cursor - Cursor for iOS</h3>
+<p>Source note: <code>wiki/sources/cursor-ai-cursor-for-ios-x-2026-06-29.md</code></p>
+<h1>Cursor - Cursor for iOS</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/cursor-ai-cursor-for-ios-x-2026-06-29.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260630T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2071641103191998810</li>
+<li>Primary URL: https://x.com/cursor_ai/status/2071641103191998810/video/1</li>
+<li>Author: Cursor (@cursor_ai)</li>
+<li>Posted: 2026-06-29T17:05:02.000Z</li>
+<li>Captured: 2026-06-30 via xurl bookmarks capture</li>
+<li>Type: X post / product teaser</li>
+<li>Evidence strength: bookmark snapshot metadata plus official video teaser</li>
+<li>Public metrics at capture: 763 reposts, 725 replies, 9168 likes, 635 quotes, 2518 bookmarks, 3340790 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Cursor&#x27;s iOS launch frames the phone as a real control surface for long-running work. The important move is not just that Cursor exists on mobile, but that the mobile app can launch always-on cloud agents or remotely control agents already running elsewhere.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Cursor now has an iOS app.</li>
+<li>The app can launch always-on cloud agents from anywhere.</li>
+<li>The app can remotely control agents running on the user&#x27;s computer.</li>
+<li>The launch is paired with a limited-time Composer 2.5 in-app discount.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text explicitly names &quot;Cursor for iOS&quot; and &quot;always-on cloud agents.&quot;</li>
+<li>The same post says users can &quot;remotely control agents running on your computer from the app.&quot;</li>
+<li>The engagement metrics suggest the launch resonated as a product announcement rather than a small tweak.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / product teaser</li>
+<li>Confidence: high for the announcement, medium for details not visible in the teaser</li>
+<li>Supports: managed agents, background execution, long-running agents, remote operator control</li>
+<li>Main limitations: the post does not spell out permissions, pricing, or techn</li>
+</ul>
+<h3>OpenClaw - iOS and Android apps</h3>
+<p>Source note: <code>wiki/sources/openclaw-openclaw-ios-android-apps-x-2026-06-29.md</code></p>
+<h1>OpenClaw - iOS and Android apps</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/openclaw-openclaw-ios-android-apps-x-2026-06-29.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260630T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2071688039114342592</li>
+<li>Primary URLs:</li>
+</ul>
+<p>  - https://apps.apple.com/us/app/openclaw-ai-that-does-things/id6780396132</p>
+<p>  - https://play.google.com/store/apps/details?id=ai.openclaw.app</p>
+<ul>
+<li>Author: OpenClaw (@openclaw)</li>
+<li>Posted: 2026-06-29T20:11:33.000Z</li>
+<li>Captured: 2026-06-30 via xurl bookmarks capture</li>
+<li>Type: X post / product announcement</li>
+<li>Evidence strength: bookmark snapshot metadata plus app-store listings</li>
+<li>Public metrics at capture: 457 reposts, 212 replies, 3477 likes, 186 quotes, 1576 bookmarks, 530189 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>OpenClaw&#x27;s mobile launch turns the phone into a first-class operator surface. The post is short, but it clearly signals that channels, tasks, and replies are now expected to work on mobile, which pushes the product toward persistent, always-available agent management.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>OpenClaw has native iOS and Android apps.</li>
+<li>Agents can be managed from a mobile device.</li>
+<li>Channels, tasks, and replies are available on the go.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text explicitly says &quot;OpenClaw is now on iOS + Android.&quot;</li>
+<li>The post pairs the announcement with App Store and Play Store links.</li>
+<li>&quot;Agents in your pocket&quot; is the clearest product metaphor in the post.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / product announcement</li>
+<li>Confidence: high for the mobile launch, medium for feature depth beyond the announcement</li>
+<li>Supports: managed agents, background agents, long-running agents, remote operator control</li>
+<li>Main limitations: the tweet does not describe mobile-specific guardrails or limitations</li>
+<li>Best use: track how</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>3</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
