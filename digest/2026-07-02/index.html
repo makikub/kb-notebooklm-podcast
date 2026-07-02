@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-02 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-02/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-07-02</header>
+<h1>KB Daily Digest 2026-07-02</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-02/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-07-02">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-07-02</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest — 2026-07-02</h1>
+<p>今日の knowledge-base-llm は、UTC 2026-07-02 00:07 の <code>kb: ingest x bookmarks for 2026-07-02</code> により、Xブックマーク由来の新規 source notes が3本追加されました。新規 raw は <code>raw/articles/claudeai-claude-sonnet-5-launch-x-2026-06-30.md</code>、<code>raw/articles/notebooklm-video-overviews-shorts-x-2026-06-30.md</code>、<code>raw/articles/xdevelopers-developer-exhibit-x-2026-07-01.md</code>、および <code>raw/x/bookmarks/bookmarks-20260702T0000Z.json</code> です。wiki 側では対応する <code>wiki/sources/</code> が3本増え、<code>long-running-agents</code>、<code>managed-agents</code>、<code>rich-agent-output-artifact</code> の3概念が更新されています。</p>
+<p>全体トレンドは、「モデル単体の性能」よりも「モデルをどう作業面・配布面・成果物面へ接続するか」に寄っています。Claude Sonnet 5 は、1M context window と Claude Code のデフォルト化という形で、長時間・大文脈の coding agent 実務に接続されます。NotebookLM の Video Overviews shorts は、研究・読解の成果を短尺動画という richer artifact に変換する方向を示しています。X Developers の Developer Exhibit は、APIやアプリ開発を、開発者向け showcase、流入、収益、検証フローへつなぐ packaging/control-plane 的な動きとして読めます。</p>
+<p>重要ソース1本目は、<code>Claude - Claude Sonnet 5 launch</code> です。ソースノートでは、Sonnet 5 が coding と tool use に向けられ、1M context window を持ち、Claude Code for Pro users のデフォルトになる、と整理されています。KB上では <code>long-running-agents</code> に接続され、長時間作業の実用性が「大きなコンテキスト」と「周辺 harness」のどちらから来るのか、という問いを追加しています。発表そのものは first-party teaser として強い一方、ベンチマークや方法論は含まれていないため、性能評価ではなく実務配置のシグナルとして読むのが安全です。</p>
+<p>重要ソース2本目は、<code>NotebookLM - Video Overviews shorts</code> です。NotebookLM が 60秒の縦型 Shorts を生成するという内容で、KBでは <code>rich-agent-output-artifact</code> の支持ソースとして追加されました。ここで面白いのは、NotebookLM が単なる要約ツールではなく、研究素材を「視聴される artifact」に変える方向へ進んでいる点です。文章要約、Audio Overview、Video Overview、Shorts のように出力面が増えるほど、provenance をどのメディアでどう保持するかが問題になります。</p>
+<p>重要ソース3本目は、<code>X Developers - Developer Exhibit</code> です。X Developers が Developer Exhibit を通じてアプリを展示し、console から submit/verify する流れを案内している、という source note が追加されました。KBでは <code>managed-agents</code> や <code>agent-management</code>、<code>gateway-control-plane</code>、<code>tool-accessibility</code> へ接続されています。これは直接 agent runtime の発表ではありませんが、開発者向け機能を「公開展示」「検証」「収益機会」に束ねる動きとして、managed platform がどのように adoption surface を作るかの参考になります。</p>
+<p>概念更新としては、まず <code>long-running-agents</code> に Sonnet 5 launch が加わりました。これにより、長時間 agent の議論が、状態継承や structured handoff だけでなく、モデル側の大文脈化とも接続されました。ただし、source note の open question が示す通り、実際の価値は context window 単体ではなく、Claude Code のような実行環境、tool use、レビュー、継続状態の設計と組み合わさったときに現れるはずです。</p>
+<p><code>managed-agents</code> 側では、X Developers の Exhibit が入ったことで、managed runtime の話が少し外側へ広がりました。つまり、agent やアプリを動かす基盤だけでなく、それを発見・審査・配布・収益化する面も control plane の一部として見る視点です。<code>rich-agent-output-artifact</code> には NotebookLM shorts が加わり、HTMLやMarkdown、チャート、スライドだけでなく、生成動画も「人間が理解・共有・再利用するための artifact」として扱う地図が補強されました。</p>
+<p>実務上の読みどころは、今日の3本がそれぞれ agent workflow の別レイヤーを押さえていることです。Sonnet 5 は作業を支えるモデル/コンテキスト層、NotebookLM shorts は成果物のメディア層、Developer Exhibit は作ったものを見せる配布・検証層です。KBとしては、これらを個別ニュースとして消費するより、「long-running work を支えるもの」「rich output を作るもの」「platform が採用経路を作るもの」という3つの軸で結ぶと、今後の更新にも再利用しやすくなります。</p>
+<p>次に追う問いは、Sonnet 5 の実務上の差分が context length 由来なのか harness 由来なのか、NotebookLM の audiovisual artifact が出典提示や検証可能性をどう保つのか、Developer Exhibit のような showcase が単なる一覧ではなく governance や revenue control plane に育つのか、の三つです。Podcastでは、「AIの更新は、モデル・成果物・配布面が同時に動いている」という切り口で話すと、今日のKB更新を一つの流れとして説明しやすいはずです。</p>
+<h2>重要ソース</h2>
+<h3>Claude - Claude Sonnet 5 launch</h3>
+<p>Source note: <code>wiki/sources/claudeai-claude-sonnet-5-launch-x-2026-06-30.md</code></p>
+<h1>Claude - Claude Sonnet 5 launch</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/claudeai-claude-sonnet-5-launch-x-2026-06-30.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260702T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2072018504392601762</li>
+<li>Primary URL: https://x.com/claudeai/status/2072017450611142835/video/1</li>
+<li>Author: ClaudeDevs (@ClaudeDevs)</li>
+<li>Posted: 2026-06-30T18:04:42.000Z</li>
+<li>Captured: 2026-07-02 via xurl bookmarks capture</li>
+<li>Type: X post / launch teaser</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked official teaser</li>
+<li>Public metrics at capture: 753 reposts, 386 replies, 8753 likes, 188 quotes, 1019 bookmarks, 1146078 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Claude Sonnet 5 is being positioned as a high-utility coding model with tool use at Sonnet pricing and a 1M context window, and the post says it becomes the default in Claude Code for Pro users.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Sonnet 5 targets coding and tool use.</li>
+<li>The model comes with a 1M context window.</li>
+<li>Claude Code for Pro users defaults to Sonnet 5.</li>
+<li>The model is available across the Claude Platform.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post text explicitly names the context window and Claude Code defaulting.</li>
+<li>The linked video teaser is the strongest primary surface in the capture.</li>
+<li>The announcement complements, but does not duplicate, the Fable 5 launch cluster.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: first-party product teaser</li>
+<li>Confidence: high for the launch and defaulting claim, medium for performance implications beyond the teaser</li>
+<li>Supports: long-running agents, agent autonomy, self-verification, multi-agent orchestration, llm inference performance</li>
+<li>Main limitations: the tweet itself does not include methodology or benchmark detail</li>
+<li>Best use: a reference point for the Sonnet-tier model that powers pract</li>
+</ul>
+<h3>NotebookLM - Video Overviews shorts</h3>
+<p>Source note: <code>wiki/sources/notebooklm-video-overviews-shorts-x-2026-06-30.md</code></p>
+<h1>NotebookLM - Video Overviews shorts</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/notebooklm-video-overviews-shorts-x-2026-06-30.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260702T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2072092749281526236</li>
+<li>Primary URL: https://x.com/NotebookLM/status/2071987494799716626</li>
+<li>Author: TestingCatalog (@testingcatalog)</li>
+<li>Posted: 2026-06-30T22:59:43.000Z</li>
+<li>Captured: 2026-07-02 via xurl bookmarks capture</li>
+<li>Type: X post / product teaser</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked NotebookLM post</li>
+<li>Public metrics at capture: 29 reposts, 9 replies, 366 likes, 1 quote, 65 bookmarks, 22488 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>NotebookLM&#x27;s Video Overviews now produce 60-second vertical Shorts, pushing the product from text-first research synthesis toward richer output artifacts that can be consumed like lightweight social video.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>NotebookLM can generate 60-second vertical Shorts.</li>
+<li>The feature is part of Video Overviews.</li>
+<li>The rollout is on web and mobile, first for Pro and Ultra users.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text directly names the Shorts output and the Video Overviews surface.</li>
+<li>The tweet links to an official NotebookLM post, which makes the headline credible even though this capture is secondary.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: secondary X product teaser</li>
+<li>Confidence: high for the existence of the feature headline, medium for rollout details</li>
+<li>Supports: rich artifact output, provenance-aware research flows, artifact-first synthesis</li>
+<li>Main limitations: the bookmark does not include the official launch text itself</li>
+<li>Best use: a marker that NotebookLM is moving beyond prose summaries into shareable generated media</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/rich-agent-output-artifact.md]]</li>
+<li>[</li>
+</ul>
+<h3>X Developers - Developer Exhibit</h3>
+<p>Source note: <code>wiki/sources/xdevelopers-developer-exhibit-x-2026-07-01.md</code></p>
+<h1>X Developers - Developer Exhibit</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/xdevelopers-developer-exhibit-x-2026-07-01.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260702T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2072126677535346779</li>
+<li>Primary URL: https://developer.x.com/exhibit</li>
+<li>Author: Developers (@XDevelopers)</li>
+<li>Posted: 2026-07-01T01:14:32.000Z</li>
+<li>Captured: 2026-07-02 via xurl bookmarks capture</li>
+<li>Type: X post / product announcement</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked product page</li>
+<li>Public metrics at capture: 130 reposts, 80 replies, 1004 likes, 40 quotes, 530 bookmarks, 91425 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>X Developers is reviving its builder community with a Developer Exhibit that surfaces X apps in a showcase-oriented product page and frames the platform around traffic, revenue, and app verification from the console.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>X has a Developer Exhibit surface for showcasing apps.</li>
+<li>The listing flow starts from the console&#x27;s apps page.</li>
+<li>The product is tied to traffic and revenue generation, not just API access.</li>
+<li>The surrounding pitch uses consumption-based billing language.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post explicitly says to submit and verify an app from the console.</li>
+<li>The linked exhibit page is the strongest primary surface in the capture.</li>
+<li>The message is framed as a builder-community reactivation, which suggests a wider ecosystem play.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: first-party X developer announcement</li>
+<li>Confidence: high for the announcement and intended workflow</li>
+<li>Supports: managed agents, agent management, platform packaging, tool-accessibility</li>
+<li>Main limitations: the capture does not include the full exhibit page text</li>
+<li>Best use: track how a platform turns developer tooling into a presentation and rev</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Long-Running Agents</h3>
+<p>KB note: <code>wiki/concepts/long-running-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Long-Running Agents</p>
+<hr>
+<h1>Long-Running Agents</h1>
+<h2>Definition</h2>
+<p>Agents that work on tasks spanning multiple context windows, often across hours or days, while needing to maintain useful continuity.</p>
+<h2>Why It Matters</h2>
+<p>Many practical agent tasks cannot fit cleanly into a single session, so state transfer becomes part of the architecture.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[durability]]</li>
+<li>[[structured-handoff-artifacts]]</li>
+<li>[[initializer-agent]]</li>
+<li>[[incremental-progress]]</li>
+<li>[[context-resets]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-cwc-long-running-agents-repo.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/trq212-claude-code-usage-context-management-x.md]]</li>
+<li>[[../sources/arxiv-autogenesis-self-evolving-agent-protocol.md]]</li>
+<li>[[../sources/aparnadhinak-harness-vs-sandbox-trajectory-x.md]]</li>
+<li>[[../sources/sydneyr</li>
+</ul>
+<h3>Managed Agents</h3>
+<p>KB note: <code>wiki/concepts/managed-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Managed Agent</p>
+<p>  - Managed Agents</p>
+<hr>
+<h1>Managed Agents</h1>
+<h2>Definition</h2>
+<p>Hosted or product-managed agent runtimes that package model execution with tools, permissions, memory, tracing, sandboxing, and operational controls.</p>
+<h2>Why It Matters</h2>
+<p>Managed agents turn agent operation into a deployable surface rather than a local prompt pattern. They make it easier to build roleful domain agents, but they also move important governance decisions into the runtime: what tools are exposed, how memory persists, what is sandboxed, and how humans inspect or intervene.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[multi-agent-orchestration.md]]</li>
+<li>[[agent-dreaming.md]]</li>
+<li>[[outcomes.md]]</li>
+<li>[[tool-accessibility.md]]</li>
+<li>[[agent-management.md]]</li>
+<li>[[agent-safety.md]]</li>
+<li>[[background-agents.md]]</li>
+<li>[[context-engineering.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/claudeai-claude-managed-agents-intro-x.md]]</li>
+<li>[[../sources/claude-new-in-managed-agents-dreaming-outcomes-orchestration.md]]</li>
+<li>[[../sources/oikon48-claude-ma</li>
+</ul>
+<h3>Rich Agent Output Artifact</h3>
+<p>KB note: <code>wiki/concepts/rich-agent-output-artifact.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Rich agent output artifact</p>
+<p>  - HTML artifact</p>
+<p>  - Agent-generated interface</p>
+<hr>
+<h1>Rich Agent Output Artifact</h1>
+<h2>Definition</h2>
+<p>An agent-produced deliverable that uses a richer medium than linear prose, such as HTML, SVG, charts, interactive controls, dashboards, slide decks, or custom editors, to help humans understand, review, steer, or reuse complex work.</p>
+<h2>Why It Matters</h2>
+<p>Human-in-the-loop workflows often fail not because the agent lacks information, but because the output is too dense, flat, or hard to inspect. Rich artifacts can reduce review friction by making structure visible: diffs can become annotated layouts, plans can become option grids, reports can become timelines, and exploratory work can become a small browser-native tool.</p>
+<h2>Relation to Harness Engineering</h2>
+<p>The output format is part of the harness. It determines how easily a human can:</p>
+<ul>
+<li>understand the agent&#x27;s reasoning and evidence</li>
+<li>notice errors or missing cases</li>
+<li>compare alternatives</li>
+<li>manipulate pa</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>3</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
