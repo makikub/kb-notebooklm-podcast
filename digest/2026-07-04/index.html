@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-04 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-04/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-07-04</header>
+<h1>KB Daily Digest 2026-07-04</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-04/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-07-04">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-07-04</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest — 2026-07-04</h1>
+<p>今日の knowledge-base-llm は、UTC 2026-07-04 00:12 の <code>KB ingest: daily X bookmarks 2026-07-04</code> により、Xブックマーク由来の新規 raw/source notes が4本追加されました。新規 raw は <code>raw/articles/cat-claude-tag-computer-use-setup-x-2026-07-03.md</code>、<code>raw/articles/openwiki-background-docs-agents-md-x-2026-07-02.md</code>、<code>raw/articles/shinyaa31-slackbot-mcp-client-spec-zenn-x-2026-07-02.md</code>、<code>raw/repos/ctxrs-ctx-search-coding-agent-history-github-2026-07-03.md</code>、および <code>raw/x/bookmarks/bookmarks-20260704T0000Z.json</code> です。wiki 側では対応する <code>wiki/sources/</code> が4本増え、<code>agent-harness-landscape</code>、<code>approval-policy-patterns-and-escalation</code>、<code>coding-agent-harness-patterns</code> の3つの map が更新されています。</p>
+<p>全体トレンドは、「エージェントに作業させる」段階から、「エージェントの記憶、オンボーディング、権限境界、repo legibility をどう維持するか」へ寄っています。ctxrs/ctx は過去の coding-agent 履歴をローカル検索可能な SQLite substrate に変える話で、OpenWiki は repo docs と AGENTS.md を背景で保守する話です。Claude Tag の setup tip は docs と computer use をオンボーディング面として使う方向を示し、Slackbot MCP client spec は MCP 導入を connection/auth/rollout の設計問題として扱う必要を示しています。</p>
+<p>重要ソース1本目は、<code>ctxrs/ctx - search the coding agent history on your machine</code> です。これは Codex、Claude Code、Cursor などの coding-agent 履歴をローカルに集め、SQLite に正規化し、検索できるようにする Rust CLI として取り込まれました。KB上では <code>agent-knowledge-loop</code>、<code>context-file-system</code>、<code>compiled-wiki</code>、<code>navigable-agent-skills</code> に接続されています。実務上の価値は、過去の agent session を「消えたチャットログ」ではなく、後から検索・再利用・要約できる作業記憶として扱える点です。</p>
+<p>重要ソース2本目は、<code>Brace - OpenWiki background docs and AGENTS.md updates</code> です。OpenWiki は、repo のドキュメント生成と AGENTS.md 更新を背景で継続し、コードベースを読みやすい状態に保つ仕組みとして整理されました。KBでは <code>compiled-wiki</code>、<code>context-file-system</code>、<code>agent-knowledge-loop</code>、<code>workflow-compilation</code> に接続されています。ポイントは、ドキュメントを「作業後に人間が清掃するもの」ではなく、agent と repo の間に常駐する保守ループとして見ることです。</p>
+<p>重要ソース3本目は、<code>しんや - Slackbot MCP client specification</code> です。今回の capture は記事本文までは取得していませんが、共有された Zenn 記事タイトルから、Slackbot MCP の導入では connection method、authentication、organization-level rollout が中心論点になると整理されています。KBでは <code>approval-policy</code>、<code>managed-agents</code>、<code>tool-accessibility</code>、<code>harness-engineering</code> に接続され、<code>approval-policy-patterns-and-escalation</code> map にも追記されました。MCPは単にツールをつなぐ規格ではなく、どのユーザー・組織権限で、どこまで動かすかを決める approval surface でもある、という読みです。</p>
+<p>4本目の <code>cat - Claude Code computer use setup for Claude Tag</code> は、Claude Code with computer use を Claude Tag のセットアップ面として使う短い product tip です。docs を task specification として渡し、GitHub、data warehouse、Google Drive などの接続対象を bootstrap する、という実践的な示唆として取り込まれました。KBでは <code>managed-agents</code>、<code>context-engineering</code>、<code>tool-accessibility</code>、<code>agent-onboarding-kb-codebase</code> に接続されています。短い投稿なので実装境界の確度は限定的ですが、「docs が人間向け説明ではなく、computer-use agent が進める onboarding script になる」という方向性は重要です。</p>
+<p>今日更新された地図では、<code>agent-harness-landscape</code> に「Agent history and doc maintenance」と「July 2026 xurl bookmarks ingest」が追加され、agent history search と background doc generation が single-session を越える repo legibility を作るものとして位置づけられました。<code>coding-agent-harness-patterns</code> には、Claude Tag setup、ctxrs/ctx、OpenWiki、Slackbot MCP の4本がまとめて追加され、harness の構成要素が runtime や tool API だけでなく、履歴検索、docs upkeep、auth rollout に広がっていることが明確になりました。</p>
+<p>実務上の読みどころは、今日の4本がどれも「モデルを強くする」話ではなく、「作業の周辺構造を長持ちさせる」話である点です。ctxrs/ctx は過去作業の recall を支え、OpenWiki は repo の説明可能性を支え、Claude Tag setup は導入手順を agent に渡しやすくし、Slackbot MCP spec は組織導入時の権限設計を前面に出します。エージェント運用の成熟は、派手な autonomous demo よりも、履歴、docs、権限、接続設定のような地味な surface がどれだけ整うかに依存していきそうです。</p>
+<p>次に追う問いは、agent history index をどの粒度で保存・要約・redact するべきか、AGENTS.md の自動更新にどの review gate を置くべきか、computer-use onboarding で人間が確認すべき境界はどこか、そして Slackbot MCP のような組織導入で approval policy をユーザー単位・workspace単位・ツール単位のどこに置くべきか、の四つです。Podcastでは、「エージェントの能力拡張より、エージェントが働く環境の記憶化・文書化・権限化が進んでいる」という切り口で話すと、今日の更新を一本の流れとして説明しやすいはずです。</p>
+<h2>重要ソース</h2>
+<h3>cat - Claude Code computer use setup for Claude Tag</h3>
+<p>Source note: <code>wiki/sources/cat-claude-tag-computer-use-setup-x-2026-07-03.md</code></p>
+<h1>cat - Claude Code computer use setup for Claude Tag</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/cat-claude-tag-computer-use-setup-x-2026-07-03.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260704T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2073149354412822738</li>
+<li>Author: cat (@_catwu)</li>
+<li>Posted: 2026-07-03T20:58:18.000Z</li>
+<li>Captured: 2026-07-04 via xurl bookmarks capture</li>
+<li>Type: X post / product tip</li>
+<li>Evidence strength: bookmark snapshot metadata plus plaintext setup advice</li>
+</ul>
+<h2>Summary</h2>
+<p>The post suggests using Claude Code with computer use as the setup surface for Claude Tag. Instead of hand-wiring each source one by one, the docs become a task specification that can connect GitHub, a warehouse, Drive, and similar systems.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Claude Code with computer use can be used to bootstrap Claude Tag.</li>
+<li>The setup path is docs-driven and therefore automatable.</li>
+<li>Team data sources can be connected during that bootstrap flow.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet explicitly says to point Claude Code at the Claude Tag docs.</li>
+<li>It names GitHub, a data warehouse, Google Drive, and other sources as connection targets.</li>
+<li>The post is intentionally short, so the details should be read as practical advice rather than a full implementation spec.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / product tip</li>
+<li>Confidence: medium for the onboarding pattern, lower for the exact automation boundaries</li>
+<li>Supports: managed-agents, context-engineering, harness-engineering, tool-accessibility</li>
+<li>Main limitations: no API or implementation details beyond the one-line tip</li>
+<li>Best use: show that docs and computer use can function as an onboarding surface for agent setup</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/managed-agents.md]]</li>
+<li>[[../concepts/context-engineering.md]]</li>
+<li>[</li>
+</ul>
+<h3>ctxrs/ctx - search the coding agent history on your machine</h3>
+<p>Source note: <code>wiki/sources/ctxrs-ctx-search-coding-agent-history-github-2026-07-03.md</code></p>
+<h1>ctxrs/ctx - search the coding agent history on your machine</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/repos/ctxrs-ctx-search-coding-agent-history-github-2026-07-03.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260704T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2072836592868438486</li>
+<li>Primary URL: https://github.com/ctxrs/ctx</li>
+<li>Author: hiroppy (@about_hiroppy)</li>
+<li>Posted: 2026-07-03T00:15:29.000Z</li>
+<li>Captured: 2026-07-04 via xurl bookmarks capture</li>
+<li>Type: GitHub repository</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked GitHub repo</li>
+</ul>
+<h2>Summary</h2>
+<p>ctxrs/ctx is a local Rust CLI for searching coding-agent history already on the machine. The repo description and bookmark text suggest a durable index over Codex, Claude Code, and Cursor histories, which makes past agent work queryable instead of trapped in scattered transcripts.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The tool normalizes coding-agent history into SQLite.</li>
+<li>The search surface stays local to the machine.</li>
+<li>The history span includes Codex, Claude Code, and Cursor.</li>
+<li>The CLI is intended for search and indexing rather than just export.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The GitHub repo title calls it a fast, local CLI for searching agent history.</li>
+<li>The bookmark text says it normalizes older coding-agent history into SQLite.</li>
+<li>The post explicitly names Codex, Claude Code, and Cursor as input sources.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: GitHub repository captured from an X bookmark</li>
+<li>Confidence: high for the local search/indexing framing</li>
+<li>Supports: agent-knowledge-loop, context-file-system, compiled-wiki, navigable-agent-skills</li>
+<li>Main limitations: the bookmark snapshot does not show the full schema or retention policy</li>
+<li>Best use: treat coding-agent history as a searchable local substrate rather than disposable cha</li>
+</ul>
+<h3>Brace - OpenWiki background docs and AGENTS.md updates</h3>
+<p>Source note: <code>wiki/sources/openwiki-background-docs-agents-md-x-2026-07-02.md</code></p>
+<h1>Brace - OpenWiki background docs and AGENTS.md updates</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/openwiki-background-docs-agents-md-x-2026-07-02.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260704T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2072744824470724887</li>
+<li>Primary URL: https://x.com/BraceSproul/status/2072744824470724887/photo/1</li>
+<li>Author: Brace (@BraceSproul)</li>
+<li>Posted: 2026-07-02T18:10:50.000Z</li>
+<li>Captured: 2026-07-04 via xurl bookmarks capture</li>
+<li>Type: X post / photo card</li>
+<li>Evidence strength: bookmark snapshot metadata plus attached photo card</li>
+</ul>
+<h2>Summary</h2>
+<p>OpenWiki is presented as a background docs engine: it generates documentation, keeps AGENTS.md updated, and self-updates so the repo stays readable without manual cleanup after every change. The useful angle here is less &quot;wiki app&quot; and more &quot;continuous repo documentation maintenance.&quot;</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Background generation can keep docs current without a dedicated cleanup pass.</li>
+<li>AGENTS.md can act as a durable onboarding/control file for agents.</li>
+<li>Self-update behavior makes the docs surface part of the maintenance loop.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post text explicitly says OpenWiki runs in the background and updates AGENTS.md.</li>
+<li>The screenshot/card makes it feel like an automation product, not a one-off note generator.</li>
+<li>The claim that it can update itself should be treated as product intent unless the repo docs confirm implementation details.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / photo card</li>
+<li>Confidence: medium for the docs-maintenance framing</li>
+<li>Supports: compiled-wiki, context-file-system, agent-knowledge-loop, workflow-compilation</li>
+<li>Main limitations: the bookmark text is promotional and does not show the implementation</li>
+<li>Best use: compare doc-maintenance tooling</li>
+</ul>
+<h3>しんや - Slackbot MCP client specification</h3>
+<p>Source note: <code>wiki/sources/shinyaa31-slackbot-mcp-client-spec-zenn-x-2026-07-02.md</code></p>
+<h1>しんや - Slackbot MCP client specification</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/shinyaa31-slackbot-mcp-client-spec-zenn-x-2026-07-02.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260704T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2072650961374638530</li>
+<li>Primary URL: https://zenn.dev/truestar/articles/6a5843fa881d72</li>
+<li>Author: しんや (@shinyaa31)</li>
+<li>Posted: 2026-07-02T11:57:51.000Z</li>
+<li>Captured: 2026-07-04 via xurl bookmarks capture</li>
+<li>Type: X post / article share</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked Zenn article title</li>
+</ul>
+<h2>Summary</h2>
+<p>The bookmark points at a Zenn article about Slackbot&#x27;s MCP client spec. Based on the title, the piece appears to organize the implementation around connection methods, authentication, and organization-level rollout caveats.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Slackbot MCP needs a client-side spec, not just a platform announcement.</li>
+<li>Connection method and authentication are central implementation concerns.</li>
+<li>Organization-wide adoption has rollout and governance implications.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet shares an article explicitly titled around connection methods, auth, and organizational deployment concerns.</li>
+<li>The bookmark&#x27;s linked URL points to a Zenn article rather than an X-only teaser.</li>
+<li>The post itself is short, so the note should be read as an inference from the title and share text.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / article share</li>
+<li>Confidence: medium; the article title is informative, but the full article was not fetched in this pass</li>
+<li>Supports: approval-policy, managed-agents, tool-accessibility, harness-engineering</li>
+<li>Main limitations: the current capture only exposes the share text and title, not the article body</li>
+<li>Best use: treat MCP adoption as an auth and rollout problem as much</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/djfarrelly-agent-loop-architecture-x.md]]</li>
+<li>[[../sources/jason-liu-codex-maxxing-heartbeats.md]]</li>
+<li>[[../sources/openai-chatgpt-memory-dreaming-x-2026-06</li>
+</ul>
+<h3>Approval Policy Patterns and Escalation</h3>
+<p>KB note: <code>wiki/maps/approval-policy-patterns-and-escalation.md</code></p>
+<h1>Approval Policy Patterns and Escalation</h1>
+<h2>Purpose</h2>
+<p>Connect approval policy from a vague safety setting into a concrete design space: what gets auto-approved, what gets reviewed, what gets blocked, and how escalation changes throughput.</p>
+<h2>Core idea</h2>
+<p>Approval policy is not one binary switch between autonomy and safety. In practice it is a stack of gates across action type, environment, review path, and failure handling.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/anthropic-claude-code-auto-mode.md]]</li>
+<li>[[../sources/codex-subagents-docs.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/zaid-mercury-agent-security-cost-identity-x.md]]</li>
+<li>[[../sources/akshay-pachaar-opus-4-7-prompting-session-management-x.md]]</li>
+<li>[[../sources/claudedevs-enterprise-managed-auth-extension-to-mcp-x-2026-06-18.md]]</li>
+<li>[[../sources/shinyaa31-slackbot-mcp-client-spec-zenn-x-2026-07-02.md]]</li>
+</ul>
+<h2>Common escalation ladder</h2>
+<h3>1. Auto-allowe</h3>
+<h3>Coding-Agent Harness Patterns</h3>
+<p>KB note: <code>wiki/maps/coding-agent-harness-patterns.md</code></p>
+<h1>Coding-Agent Harness Patterns</h1>
+<h2>Purpose</h2>
+<p>Synthesize practical harness patterns for coding-agent workflows using the KB&#x27;s control vocabulary plus a concrete real-world operator example.</p>
+<h2>Core claim</h2>
+<p>A coding-agent workflow becomes harness engineering when quality and reliability depend on the surrounding artifacts, controls, and review loops rather than on the model prompt alone.</p>
+<h2>Pattern 1. Plan as handoff artifact</h2>
+<p>Use a session-scoped plan file such as <code>plan.md</code> as a durable handoff contract.</p>
+<p>Why it matters:</p>
+<ul>
+<li>makes intent inspectable</li>
+<li>supports context resets and reviewer alignment</li>
+<li>creates a stable object for verifier agents to critique</li>
+</ul>
+<h2>Pattern 2. Verifier split without full multi-agent overhead</h2>
+<p>Use heavy thinking for hard, bounded reasoning: spawn independent temporary thinkers, then have one deliberator critique and synthesize their outputs.</p>
+<p>Use a second agent or model mainly for plan review or implementation review instead of duplicating the whole execution role.</p>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>4</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>

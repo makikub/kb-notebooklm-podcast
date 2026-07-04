@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Deployment Gates and Operational Risk - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-07-05/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 840px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-07-05</a> / 読み物版</header>
+    <p class="eyebrow">2026-07-05 Daily Topic</p>
+    <h1>Agent Deployment Gates and Operational Risk</h1>
+    <p class="lead">エージェントが速くなるほど、問題は「作れるか」から「どこで止めるか」に移る。レビュー、テスト、公開、デプロイの前後に明示的なゲートを置き、生成速度が人間の理解と運用安全を追い越さないようにするための読み物です。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-07-05">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 速さはリスクも増やす</strong>生成量が増えると、単発のミスより先にレビュー容量と理解容量が詰まる。安全性は作業後の気合いでは守れない。</div>
+      <div><strong>2. ゲートは段階ごとに置く</strong>マージ前、デプロイ前、人間承認、公開後の監視で役割が違う。まとめて「レビュー」と呼ぶと抜けが出る。</div>
+      <div><strong>3. 失敗を運用に戻す</strong>検出したズレは、次回のテスト、lint、skill、ルール、観測項目へ昇格させる。ゲートは育てるもの。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは「止めどころ」を設計すること</h2>
+      <p>エージェントがコード、設定、調査、公開文面をどんどん作れるようになると、最初に目立つのは便利さです。作業が速い。待ち時間が減る。細かい修正をためらわずに頼める。</p>
+      <p>でも実務上の危険は、その少し後に来ます。生成された成果物の量が、人間のレビュー、テスト、理解、運用確認の容量を超える。すると、個々の出力がそこそこ正しく見えても、システム全体としては危ない変更が通りやすくなります。</p>
+      <p><code>Agent Deployment Gates and Operational Risk</code> は、このズレを扱うためのノートです。エージェントを信用するかどうかではなく、エージェントの速度に合わせて、どの段階で何を止めるかを明示する話です。</p>
+
+      <h2>マージ前には、構造で落とせるものを落とす</h2>
+      <p>最初のゲートは、マージ前の構造チェックです。lint、型チェック、テスト、フォーマット、リンク、リポジトリ固有の不変条件。ここで落とせる問題は、人間の注意を使う前に落とします。</p>
+      <p>この層で大事なのは、プロンプトで「気をつけて」と言うだけにしないことです。エージェントが読めるルール、失敗したら止まるCI、ファイル構成の制約、機械的に検出できる禁止パターンにしておく。そうすると、レビューの入口が安定します。</p>
+      <p>OpenAI系のハーネス設計で出てくるdocs-as-map、custom linter、machine-checkable invariantsはこの層に効きます。人間が毎回思い出すべきルールを、リポジトリの形そのものに移していく発想です。</p>
+
+      <h2>デプロイ前には、動く場所で確かめる</h2>
+      <p>マージ前チェックを通っても、まだ安心ではありません。実際のブラウザ、実行環境、公開先、権限境界で動かすと初めて見える問題があります。そこで必要になるのが、デプロイ前の検証ゲートです。</p>
+      <p>エンドツーエンドテスト、runtime smoke test、公開URLのHTTP確認、ブラウザスクリーンショット、ログ確認、ロールバック準備。これらは「コードとして正しい」から「運用上出してよい」へ進むための確認です。</p>
+      <p>Anthropicの長時間ハーネスの文脈では、環境検証、bounded increments、clean-state handoffが強調されます。大きな変更を一気に信じるのではなく、検証しやすい単位に分け、次の人や次のエージェントが見ても状態を把握できるようにする。</p>
+
+      <h2>危ないところでは、人間承認を儀式ではなくゲートにする</h2>
+      <p>すべてを自動化する必要はありません。むしろ、危険な操作、破壊的な変更、外部送信、本番デプロイ、影響範囲が曖昧な修正では、人間承認を明示的なゲートとして置くべきです。</p>
+      <p>ここでのポイントは「最後に人間が見る」では弱いということです。どの条件なら人間に上げるのか。何を見れば承認できるのか。承認前にどのログ、差分、テスト結果、ロールバック手順をそろえるのか。そこまで決めて初めて、承認は運用部品になります。</p>
+      <p>独立したレビューエージェントも同じ発想です。OpenAI Codexを別の環境から呼んでレビューさせる、サブエージェントで計画や差分をチェックさせる、別モデルにあえて粗探しをさせる。判断役を分けることで、作った本人の盲点を下げます。</p>
+
+      <h2>公開後にも、ゲートは続く</h2>
+      <p>デプロイしたら終わり、ではありません。公開後には、観測、回帰検出、トレース確認、利用者の反応、繰り返し起きる失敗の整理が必要です。これはエージェント運用では特に重要です。</p>
+      <p>なぜなら、エージェントの失敗は単発のバグとしてだけ現れるとは限らないからです。ローカルには正しい小変更が積み重なって、アーキテクチャの一貫性を削る。レビューで毎回同じ指摘が出る。成果物は増えるのに、チームの理解が追いつかなくなる。</p>
+      <p>Boris Taneの議論が示す品質ドリフトや、Lars Fayeのcomprehension debtはここに接続します。エージェントが速いほど、理解できない変更が残ること自体が負債になります。</p>
+
+      <h2>レビュー崩壊は、モデルの賢さだけでは防げない</h2>
+      <p>このテーマの面白いところは、問題を「もっと賢いモデルが必要」に閉じていないことです。もちろんモデル性能は重要です。でも、運用の失敗はしばしば、モデルが少し間違えることより、生成量がレビュー体制を上回ることで起きます。</p>
+      <p>レビューが詰まると、人間は細部を流し読みし始めます。テスト結果を見ずに雰囲気で通す。外部公開の安全確認を後回しにする。小さな違和感を「まあ大丈夫」にする。この状態になると、良いエージェントほど危ない。速く大量に進められるからです。</p>
+      <p>だから必要なのは、エージェントを遅くすることではありません。速さの前に、機械チェック、環境検証、独立レビュー、人間承認、公開後観測を配置することです。</p>
+
+      <h2>今回のKB運用に引き寄せると</h2>
+      <p>今回の週次読み物ジョブにも、同じ考え方がそのままあります。まずスクリプトがトピックを選び、source.mdとmeta.jsonを作る。次に、人間向けのreading.htmlを別に書く。公開スクリプトでGitHub Pagesに反映し、最後にDiscordへ投稿する。</p>
+      <p>ここでのゲートは、NotebookLM認証や音声生成ではありません。今回のポリシーでは、それらは明示的にやらない。代わりに、公開して読めるHTMLがあるか、source.mdとmeta.jsonがそろっているか、Pages用リポジトリへ反映されたか、Discordにreading.htmlとsource.mdのURLが出たかを見る。</p>
+      <p>つまり、成果物の中心を「音声」から「読み物」に移したうえで、公開前後のチェックもそれに合わせる必要があります。ゲートは目的に合わせて変えるものです。</p>
+
+      <h2>実務で使うなら、まず四つに分ける</h2>
+      <p>導入時は、いきなり重い仕組みにしなくてかまいません。まずは四つに分けるだけで十分効きます。</p>
+      <ul>
+        <li>マージ前: lint、typecheck、テスト、構造チェック、公開禁止情報の検出</li>
+        <li>デプロイ前: smoke test、実環境確認、スクリーンショット、ロールバック手順</li>
+        <li>承認: 本番、外部送信、破壊的操作、曖昧な仕様変更の人間確認</li>
+        <li>公開後: ログ、メトリクス、回帰、レビュー指摘、次回のルール化</li>
+      </ul>
+      <p>これだけでも、「どこまで自動で進めてよいか」と「どこで止まるべきか」がかなり見えます。エージェント運用の怖さは、能力が足りないことより、境界が曖昧なまま能力だけ上がることです。</p>
+
+      <div class="callout">
+        エージェントの速度を上げるなら、同じだけゲートの解像度も上げる。マージ前、デプロイ前、承認、公開後観測を分けて、レビュー容量と理解容量を守る。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>いまのワークフローで、エージェントが人間レビューを追い越している場所はどこか？</li>
+        <li>マージ前に機械で止められるのに、人間が毎回見ている確認は何か？</li>
+        <li>デプロイ前に「動く環境で確かめる」ゲートは十分にあるか？</li>
+        <li>人間承認が必要な操作の境界は、成果物や権限レベルで明文化されているか？</li>
+        <li>公開後に見つかった失敗を、次回のテスト、skill、ルールへ戻せているか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm notes: <code>wiki/maps/agent-deployment-gates-and-operational-risk.md</code>, <code>eval-review-reliability.md</code>, <code>harness-engineering-vendor-comparison.md</code>, <code>agent-harness-landscape.md</code>, <code>coding-agent-harness-patterns.md</code>, <code>coding-agent-cognitive-debt-and-review-capacity.md</code>.</p>
+    </footer>
+  </div>
+</body>
+</html>

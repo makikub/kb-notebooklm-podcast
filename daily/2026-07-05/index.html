@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-05 - Agent Deployment Gates and Operational Risk</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-07-05/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / 2026-07-05</header>
+<h1>Agent Deployment Gates and Operational Risk</h1>
+<div class="note">
+  <strong>読み物:</strong> まず <a href="reading.html">読み物版</a> を読むのがおすすめです。<br>
+  <strong>ソース:</strong> <a href="source.md">source.md</a> はNotebookLMにも追加できます。
+</div>
+<div class="actions">
+  <a href="reading.html">読み物版</a>
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-07-05/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-07-05">GitHub</a>
+</div>
+<h1>Agent Deployment Gates and Operational Risk</h1>
+<ul>
+<li>Date: 2026-07-05</li>
+<li>Primary topic: <code>wiki/maps/agent-deployment-gates-and-operational-risk.md</code></li>
+<li>Purpose: KB由来の材料を、人間がHTMLで読んで理解しやすい読み物にする</li>
+</ul>
+<h2>今日のランダムテーマ</h2>
+<p>Agent Deployment Gates and Operational Risk を入口に、関連するKBノートをつないで実務上の論点を整理する。</p>
+<h2>主要ソース抜粋</h2>
+<h3>Agent Deployment Gates and Operational Risk</h3>
+<h1>Agent Deployment Gates and Operational Risk</h1>
+<h2>Purpose</h2>
+<p>Connect harness engineering ideas to the specific problem of keeping agent-generated work from outrunning review, testing, and production safety.</p>
+<h2>Core thesis</h2>
+<p>Once agents can generate code, configuration changes, or exploit findings faster than humans can inspect them, the harness needs explicit deployment gates. Otherwise the dominant failure shifts from isolated model mistakes to system-level review collapse.</p>
+<h2>Main gate layers</h2>
+<h3>1. Pre-merge structural gates</h3>
+<ul>
+<li>machine-checkable invariants</li>
+<li>repo structure checks</li>
+<li>lint and test requirements</li>
+<li>architecture constraints that agents can read before editing</li>
+</ul>
+<h3>2. Pre-deploy verification gates</h3>
+<ul>
+<li>end-to-end tests</li>
+<li>runtime smoke tests</li>
+<li>browser or environment verification</li>
+<li>explicit rollback readiness and observability checks</li>
+</ul>
+<h3>3. Human escalation gates</h3>
+<ul>
+<li>approval policy for risky actions</li>
+<li>human-in-the-loop checkpoints for deploys, destructive actions, and ambiguous fixes</li>
+<li>adversarial or independent review when the agent is operating near the blast radius boundary</li>
+</ul>
+<h3>4. Post-deploy feedback gates</h3>
+<ul>
+<li>production observability</li>
+<li>regression detection</li>
+<li>trace review for recurring failure modes</li>
+<li>recurring cleanup tasks when drift starts accumulating</li>
+</ul>
+<h2>Cross-source synthesis</h2>
+<h3>Spillwave</h3>
+<p>Frames the main operational danger as review discipline collapsing under higher code volume. The strongest contribution is the argument that deployment safeguards must evolve with agent throughput, not after outages.</p>
+<h3>OpenAI</h3>
+<p>Provides the repo-side view: map-like docs, custom linters, structured plans, and machine-checkable constraints that reduce what reaches later gates.</p>
+<h3>Anthropic long-running harnesses</h3>
+<p>Adds environment verification, bounded increments, and explicit clean-state handoffs so that risky work is easier to inspect before shipping.</p>
+<h3>OpenAI Codex plugin for Claude Code</h3>
+<p>Shows that independent review can itself become a callable gate rather than only a human habit.</p>
+<h3>LangChain</h3>
+<p>Supports the idea that middleware hooks, verification prompts, and trace analysis can materially improve outcomes without changing the model.</p>
+<h3>Boris Tane</h3>
+<p>Adds a concrete quality-drift failure mode: locally correct agent changes can still create system-wide decay if one-way-door architectural choices are not constrained and reviewed tightly.</p>
+<h3>Lars Faye</h3>
+<p>Adds the comprehension-debt angle: deployment gates should not only catch defects, but also prevent generated throughput from exceeding the team’s ability to understand, review, and keep implementation</p>
+<h2>関連ノートからの補助材料</h2>
+<h3>Eval and Review Reliability</h3>
+<p>Source: <code>wiki/maps/eval-review-reliability.md</code></p>
+<h1>Eval and Review Reliability</h1>
+<h2>Purpose</h2>
+<p>Collect the KB&#x27;s evaluation and review ideas into one map focused on practical reliability: how to know whether an agent-produced artifact is good enough, and how to keep review load from becoming the bottleneck.</p>
+<h2>Core thesis</h2>
+<p>Agent output quality improves when evaluation is treated as a separate harness layer, not as an informal final glance by the same agent that produced the work.</p>
+<h2>Reliability layers</h2>
+<h3>1. Deterministic checks first</h3>
+<p>Use cheap checks before semantic review:</p>
+<ul>
+<li>lint and typecheck</li>
+<li>tests and smoke tests</li>
+<li>formatting and structural checks</li>
+<li>repository-specific machine-checkable invariants</li>
+</ul>
+<p>Related concepts: [[../concepts/machine-checkable-invariants.md]], [[../concepts/feedback-controls.md]].</p>
+<h3>2. Task-fit review</h3>
+<p>Check whether the work actually satisfies the request:</p>
+<ul>
+<li>requirements coverage</li>
+<li>edge cases</li>
+<li>backward compatibility</li>
+<li>user-facing behavior</li>
+<li>maintainability</li>
+</ul>
+<p>Related maps: [[coding-agent-review-rubric.md]], [[agent-deployment-gates-and-operational-risk.md]].</p>
+<h3>3. Independent evaluator loop</h3>
+<p>Separate generation from judgment when quality is fuzzy or high-stakes:</p>
+<ul>
+<li>subagent review</li>
+<li>adversarial review</li>
+<li>blocking review gates</li>
+<li>human escalation for ambiguous or high-blast-radius changes</li>
+</ul>
+<p>Related concepts: [[../concepts/generator-evaluator-loop.md]], [[../concepts/self-evaluation-bias.md]], [[../concept</p>
+<h3>Harness Engineering Vendor / Practitioner Comparison</h3>
+<p>Source: <code>wiki/maps/harness-engineering-vendor-comparison.md</code></p>
+<h1>Harness Engineering Vendor / Practitioner Comparison</h1>
+<h2>Purpose</h2>
+<p>Compare how different sources frame harness engineering, what they optimize for, and what distinctive mechanisms they emphasize.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/codex-subagents-docs.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/cursor-3-blog.md]]</li>
+<li>[[../sources/anthropic-claude-code-large-codebases.md]]</li>
+<li>[[../sources/anthropic-2026-agentic-coding-trends-report.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+</ul>
+<h2>Comparison axes</h2>
+<h3>OpenAI</h3>
+<ul>
+<li>Focus: repository design, machine-enforced invariants, agent-recognizable context, continuous cleanup, and cross-agent review / delegation</li>
+<li>Distinctive emphasis: docs as map, custom linters, structured plans, architecture constraints, review loops, interoperable agent tooling, and explicit model-tier routing via subagents</li>
+<li>Main contribution: shows harness engineering as both a production engineering discipline and a composable ecosystem where one agent can check or extend a</li>
+</ul>
+<h3>Agent Harness Landscape</h3>
+<p>Source: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/djfarrelly-agent-loop-architecture-x.md]]</li>
+<li>[[../sources/jason-liu-codex-maxxing-heartbeats.md]]</li>
+<li>[[../sources/openai-chatgpt-memory-dreaming-x-2026-06-04.md]]</li>
+<li>[[../sources/voxyz-ai-openclaw-memory-wiki-x.md]]</li>
+<li>[[../sources/claudeai-introducing-claude-design-by-anthropic-labs-make-prototypes-slides-and-x-2026-04-17.md]]</li>
+<li>[[../sources/figma-figma-mcp-server-slides-figjam-make-x-2026-06-16.md]]</li>
+<li>[[../sources/raytar-stop-being-the-loop-claude-work-while-you-sleep-x-2026-06-23.md]]</li>
+<li>[[../sources/openai-previewing-gpt-5-6-sol-x-2026-06-26.md]]</li>
+</ul>
+<h3>Coding-Agent Harness Patterns</h3>
+<p>Source: <code>wiki/maps/coding-agent-harness-patterns.md</code></p>
+<h1>Coding-Agent Harness Patterns</h1>
+<h2>Purpose</h2>
+<p>Synthesize practical harness patterns for coding-agent workflows using the KB&#x27;s control vocabulary plus a concrete real-world operator example.</p>
+<h2>Core claim</h2>
+<p>A coding-agent workflow becomes harness engineering when quality and reliability depend on the surrounding artifacts, controls, and review loops rather than on the model prompt alone.</p>
+<h2>Pattern 1. Plan as handoff artifact</h2>
+<p>Use a session-scoped plan file such as <code>plan.md</code> as a durable handoff contract.</p>
+<p>Why it matters:</p>
+<ul>
+<li>makes intent inspectable</li>
+<li>supports context resets and reviewer alignment</li>
+<li>creates a stable object for verifier agents to critique</li>
+</ul>
+<h2>Pattern 2. Verifier split without full multi-agent overhead</h2>
+<p>Use heavy thinking for hard, bounded reasoning: spawn independent temporary thinkers, then have one deliberator critique and synthesize their outputs.</p>
+<p>Use a second agent or model mainly for plan review or implementation review instead of duplicating the whole execution role.</p>
+<p>Why it matters:</p>
+<ul>
+<li>captures evaluator benefits cheaply</li>
+<li>reduces self-evaluation bias</li>
+<li>preserves a simple operator mental model</li>
+</ul>
+<h2>Pattern 3. Environment bootstrapping before task work</h2>
+<p>Prepare a runnable repository baseline before asking an agent to solve future coding tasks.</p>
+<p>Why it matters:</p>
+<ul>
+<li>prevents setup failures from consuming the task budget</li>
+<li>gives tests, linters, and smoke commands a mea</li>
+</ul>
+<h2>次に考えるとよさそうな問い</h2>
+<ul>
+<li>このテーマは、どの現場課題を減らすための考え方か？</li>
+<li>人間が見るべき判断軸と、エージェントに任せられる作業はどう分かれるか？</li>
+<li>導入するときに失敗しやすい雑な抽象化は何か？</li>
+<li>既存の開発・レビュー・ナレッジ運用にどう接続できるか？</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm. Source topic: <code>wiki/maps/agent-deployment-gates-and-operational-risk.md</code></p></footer>
+
+</body>
+</html>
