@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-05 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-05/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-07-05</header>
+<h1>KB Daily Digest 2026-07-05</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-05/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-07-05">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-07-05</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest — 2026-07-05</h1>
+<p>今日の knowledge-base-llm は、UTC 2026-07-05 00:08 の <code>kb: ingest 2026-07-05 x bookmarks</code> により、Xブックマーク由来の新規 raw/source note が1本追加されました。新規 raw は <code>raw/x/bookmarks/bookmarks-20260705T0000Z.json</code> と <code>raw/articles/danimal141-ai-implementation-cost-low-engineers-upstream-note-2026-07-03.md</code>、wiki 側の新規 source note は <code>wiki/sources/danimal141-ai-implementation-cost-low-engineers-upstream-note-2026-07-03.md</code> です。あわせて <code>organizational-intent-clarity</code>、<code>product-responsibility-distribution</code>、<code>ai-adoption-thresholds</code>、<code>ai-adoption-roi-and-capability-investment</code> が更新されました。</p>
+<p>今日の全体トレンドは、「AIで実装コストが下がると、エンジニアは上流へ行くべきか」というキャリア相談を、単なる役割拡張ではなく組織設計の問題として読み替えることです。実装が速くなるほど、詰まりやすい場所はコードを書く手前、つまり何を作るか、どの要求を満たすか、結果に誰が責任を持つかへ移ります。KB上ではこの動きが、AI導入ROI、採用フェーズ、組織意図の明確化、プロダクト責任の分散という既存クラスターへ接続されました。</p>
+<p>重要ソース1本目は、いしいさんの note「AIで実装コストが低くなった今、エンジニアは上流に行くべきか？」です。取り込みメモでは、「上流」をひとまとめにせず、PRDや要件を書くこと、何を作るか決めること、結果に責任を持つことの3層に分ける点が中核として整理されています。AIが実装コストを下げると、単にエンジニアがPM化するという話ではなく、これら3つの責任のうち何をどの役割が担うのかを明確にする必要が出ます。</p>
+<p>このソースの実務上の価値は、「上流に行くべきか」という曖昧な問いを、責任配分の設計問題へ変換している点です。実装だけを続けるか、PM的な仕事へ移るか、という二択にすると議論が粗くなります。実際には、仕様作成への関与、プロダクト判断への関与、成果責任の所在は別々に設計できます。AI時代の役割変化を扱うときは、役職名よりも、判断・証拠・責任・成果の流れを見るほうが安全です。</p>
+<p>重要ソース2本目として接続された既存文脈は、DORA の「The ROI of AI-assisted Software Development」です。DORA 系のROIモデルは、AI導入の価値をコード量やツール購入だけで測らず、内部プラットフォーム、AIが読める社内データ、信頼、ユーザー焦点、検証ガードレール、デリバリ指標を通じて見る必要があると整理しています。今日の追加はここに、実装コスト低下が要求定義やプロダクト判断をボトルネック化する、という組織設計の補助線を足しました。</p>
+<p>重要ソース3本目として効いている既存文脈は、しんすげさんの AI-Ops ロードマップです。こちらはAI導入を、ツール導入ではなく行動変容とワークフロー設計の問題として扱い、利用率が低い段階では可視化と早期利用者の発火、中間段階ではリテラシーと部門別ユースケース、広がった後に深い業務変革へ進む、というフェーズ感を与えています。今日のソースは、この導入フェーズの先で「誰が何を決め、誰が結果を持つのか」を再設計する必要があることを補っています。</p>
+<p>更新された概念では、<code>organizational-intent-clarity</code> に、AIが不安定なのではなく組織の意図が曖昧なために委譲が失敗する、という読みがさらに強まりました。AIへ作業を渡すには、目標、制約、成功基準、判断材料を人間側が言語化できている必要があります。実装が安くなるほど、曖昧な意図のまま作り始めるコストも下がるため、かえってレビュー、手戻り、責任の所在不明が増える可能性があります。</p>
+<p><code>product-responsibility-distribution</code> では、プロダクト判断や顧客文脈の解釈、機能責任がPdMだけに集中せず、複数ロールへ分散していくという見方が補強されました。これは「PdMが不要になる」という単純な話ではありません。むしろプロダクト責任そのものは残り、それをエンジニア、デザイナー、FDE的役割、現場に近い人たちへどう配るかが問題になります。分散はスピードと文脈の近さを増やしますが、明示的な成果責任と共有 artifacts がなければ曖昧さも増やします。</p>
+<p>地図レベルでは、<code>ai-adoption-roi-and-capability-investment</code> に「cheaper implementation shifts the bottleneck toward requirements, product judgment, and responsibility allocation」という補助線が入りました。AI ROIを考えるとき、これまでは検証税、Jカーブ、内部基盤、デリバリ指標が中心でしたが、今日の更新で「実装の前段にある意思決定能力」もROIの制約条件として見えやすくなりました。生成速度が上がっても、作るべきものの判断が弱ければ、ROIはむしろ低品質な選択肢の量産で毀損されます。</p>
+<p>次に追う問いは、エンジニアが吸収しやすい上流責任は要件整理・仕様化・成果責任のどれなのか、プロダクト責任を分散しても説明責任を保つ最小 artifacts は何か、AI導入率が高まった組織で「何を作るか」を決める儀式やレビューはどう変わるのか、の三つです。Podcastでは、「実装コストが下がるほど、上流の曖昧さが高くつく」という切り口から、AI導入ROIと組織設計をつなげて話すと、今日の更新の意味が伝わりやすいはずです。</p>
+<h2>重要ソース</h2>
+<h3>いしい - AIで実装コストが低くなった今、エンジニアは上流に行くべきか？</h3>
+<p>Source note: <code>wiki/sources/danimal141-ai-implementation-cost-low-engineers-upstream-note-2026-07-03.md</code></p>
+<h1>いしい - AIで実装コストが低くなった今、エンジニアは上流に行くべきか？</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: [[../../raw/articles/danimal141-ai-implementation-cost-low-engineers-upstream-note-2026-07-03.md]]</li>
+<li>Raw bookmark capture: [[../../raw/x/bookmarks/bookmarks-20260705T0000Z.json]]</li>
+<li>Original URL: https://x.com/i/status/2073366719960342802</li>
+<li>Primary URL: https://note.com/danimal141/n/neeb219bbc03f?sub_rt=share_sb</li>
+<li>Author: いしい (@danimal141)</li>
+<li>Article published: 2026-07-03</li>
+<li>Posted: 2026-07-04T11:22:01.000Z</li>
+<li>Captured: 2026-07-05 via xurl bookmarks capture</li>
+<li>Type: X bookmark share of note.com article</li>
+<li>Evidence quality: bookmark snapshot metadata plus note.com article metadata</li>
+<li>Public metrics at capture: 7 reposts, 0 replies, 24 likes, 0 quotes, 38 bookmarks, 14165 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This essay argues that the real question is not whether engineers should &quot;go upstream&quot; in some vague career sense, but which upstream responsibility they should take on as implementation gets cheaper. It splits upstream into three layers: PRD and requirements, deciding what to build, and accountability for outcomes.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>&quot;Upstream&quot; is an overloaded term unless it is broken into separate layers.</li>
+<li>AI reduces implementation cost, which shifts organizational bottlenecks toward problem definition and product judgment.</li>
+<li>In some organizations, engineers and designers are already absorbing work that used to sit with PMs.</li>
+<li>Career advice that treats upstream movement as a prestige ladder misses the underlying org-design change.</li>
+<li>The useful framing is responsibility distribution, not a simplistic replacement of one role by another.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The article opens with a common new-grad question about whether implementation-only engineers will be disadvantaged.</li>
+<li>It cites SmartBank, LayerX, and CyberA</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>AI Adoption Thresholds</h3>
+<p>KB note: <code>wiki/concepts/ai-adoption-thresholds.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - AI Adoption Thresholds</p>
+<p>  - AI Usage Rate Thresholds</p>
+<p>  - Adoption-Phase AI Rollout</p>
+<hr>
+<h1>AI Adoption Thresholds</h1>
+<h2>Definition</h2>
+<p>AI adoption thresholds are rough usage-rate bands that change which organization-level AI rollout moves are appropriate.</p>
+<h2>Why It Matters</h2>
+<p>AI rollout failures often come from applying the wrong move at the wrong maturity level: buying tools before measuring usage, pushing workflow transformation before literacy, or treating individual experimentation as organization-wide adoption. Thresholds make adoption strategy conditional on observed behavior.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[ai-adoption-j-curve.md]]</li>
+<li>[[ai-roi-model.md]]</li>
+<li>[[organizational-intent-clarity.md]]</li>
+<li>[[agent-management.md]]</li>
+<li>[[context-engineering.md]]</li>
+<li>[[loop-engineering.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/shin-suge-ai-ops-roadmap-behavior-change-note-2026-06-09.md]]</li>
+<li>[[../sources/dora-roi-ai-assisted-software-development.md]]</li>
+<li>[[../sources/suna_gaku-claude-code-champion-kit</li>
+</ul>
+<h3>Organizational Intent Clarity</h3>
+<p>KB note: <code>wiki/concepts/organizational-intent-clarity.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Organizational intent clarity</p>
+<p>  - Goal clarity for AI adoption</p>
+<hr>
+<h1>Organizational Intent Clarity</h1>
+<h2>Definition</h2>
+<p>The degree to which a team can state stable goals, desired outcomes, constraints, and evaluation criteria clearly enough for humans and agents to act on them.</p>
+<h2>Why It Matters</h2>
+<p>When intent is vague or constantly shifting, AI systems look unreliable even when the underlying model is capable. The practical bottleneck moves from “can the model do it?” to “has the organization expressed what should be done, why, and how success will be judged?”</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[context-engineering.md]]</li>
+<li>[[exploratory-organization-lens.md]]</li>
+<li>[[company-brain.md]]</li>
+<li>[[product-responsibility-distribution.md]]</li>
+<li>[[agent-management.md]]</li>
+<li>[[evidence-quality.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/iwashi86-organizational-ai-use-goal-clarity-x.md]]</li>
+<li>[[../sources/anzai-adventurous-organization-emconf-youtube.md]]</li>
+<li>[[../sources/recerqa-pdm-abolished-speakerdeck.md]]</li>
+<li>[[</li>
+</ul>
+<h3>Product Responsibility Distribution</h3>
+<p>KB note: <code>wiki/concepts/product-responsibility-distribution.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Distributed product ownership</p>
+<p>  - Product responsibility distribution</p>
+<hr>
+<h1>Product Responsibility Distribution</h1>
+<h2>Definition</h2>
+<p>An organization-design pattern where product judgment, customer-context interpretation, and feature ownership are distributed across multiple roles instead of being centralized in a single PdM role.</p>
+<h2>Why It Matters</h2>
+<p>When AI lowers the cost of prototyping and customers expect faster operational fit, product management work may need to move closer to the people who hear customer pain, model workflows, and build solutions. The role label can disappear while the underlying product responsibilities become everyone’s work.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[field-deployed-engineer]]</li>
+<li>[[company-brain]]</li>
+<li>[[agent-management]]</li>
+<li>[[harness-engineering]]</li>
+<li>[[organizational-intent-clarity.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/recerqa-pdm-abolished-speakerdeck.md]]</li>
+<li>[[../sources/yuukiyo-ai-dlc-deep-dive-speakerdeck.md]]</li>
+<li>[[../sources/iwashi86-organizationa</li>
+</ul>
+<h3>AI Adoption ROI and Capability Investment</h3>
+<p>KB note: <code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code></p>
+<h1>AI Adoption ROI and Capability Investment</h1>
+<h2>Purpose</h2>
+<p>Map how AI-assisted software development becomes financial value only when capability investments let the organization absorb faster generation safely.</p>
+<h2>Core thesis</h2>
+<p>AI ROI is not a direct function of model quality or code volume. It is a system outcome: AI adoption must be mediated by internal platforms, context/data quality, trust, user focus, verification guardrails, and delivery metrics before it can become durable business value. The strongest upside case is not only cheaper execution of existing backlog, but Jevons-style expansion in software demand when new tools, experiments, and automations become economical.</p>
+<h2>Path from AI adoption to ROI</h2>
+<h3>1. Capability investment first</h3>
+<p>The first question is not “which tool?” but “can the system absorb the tool?” DORA&#x27;s report emphasizes quality internal developer platforms, AI-accessible internal data, clear AI stance/trust, context engineering, user-centric focus, and automated</p>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>1</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
