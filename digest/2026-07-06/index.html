@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-06 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-06/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-07-06</header>
+<h1>KB Daily Digest 2026-07-06</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-06/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-07-06">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-07-06</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-07-06</h1>
+<p>2026-07-06 UTC の knowledge-base-llm には、X bookmarks 由来の新規 ingest が 3本入りました。今回の中心は、自己改善型 agentic systems の段階的な作り方、Google Drive 等における機密情報の扱い、Claude Code の compact 問題と対策です。wiki 側では <code>loop-engineering</code>、<code>agent-safety</code>、<code>context-resets</code>、<code>agent-harness-landscape</code> が更新され、ハーネス設計の地図に「ループをどう育てるか」「秘密をどこに置くか」「長時間セッションをどう回復するか」という実務寄りの論点が加わりました。</p>
+<p>重要ソースの 1本目は、Movez / @0xMovez による Anthropic workshops on self-improving agentic systems の共有です。捕捉された内容はワークショップ本編ではなくタイムテーブル中心ですが、基本 agent、memory、autonomy、proactive agent、self-improving agents へ進む順序が明示されています。KB ではこのソースを <code>loop-engineering</code> と <code>agent-harness-landscape</code> に接続し、自己改善を単発の魔法ではなく、記憶、実行、能動性、改善ループを段階的に積む maturity ladder として扱っています。</p>
+<p>この追加によって <code>loop-engineering</code> の論点は少し締まりました。特に「self-improving agent system」という言葉を、モデル内部が勝手に継続学習する話と混同せず、trace-driven improvement、routine / skill の更新、評価ループ、再実行可能な harness artifact の改善として分解する必要があります。今回のソースは、本編詳細までは未取得ながら、memory を autonomy の前段に置き、その後に proactive behavior と self-improvement を置く順番自体が強い設計シグナルです。</p>
+<p>重要ソースの 2本目は、ryoppippi / @ryoppippi による「機密情報を Google Drive 等にアップロードするのはよいのか？」という記事共有です。捕捉できているのは X 投稿と記事タイトルカードで、本文の細部までは KB に入っていません。ただし投稿者の要約は「要はバランス」であり、KB ではこれを <code>agent-safety</code>、<code>approval-policy</code>、<code>environment-bootstrapping</code>、<code>evidence-quality</code> に接続しました。</p>
+<p>このソースの意味は、エージェント運用における安全性が prompt guardrail だけでは終わらない点にあります。LLM に渡す前のファイル置き場、共有ドライブ、アクセス制御、redaction、チーム内の運用規律が、そのまま agent safety の一部になります。今回の digest では詳細な法務・セキュリティ判断までは踏み込みませんが、「便利だから共有ドライブに置く」でも「機密だから全部禁止」でもなく、データ分類、権限、監査性、モデル入力までの経路で判断する必要がある、という方向づけが加わりました。</p>
+<p>重要ソースの 3本目は、Yuichi Uemura / @u1 による Claude Code compact の問題点と対策に関する記事カードです。こちらはタイトルのみの capture なので、KB の source note も保守的です。それでも、Claude Code の compact が単なる便利機能ではなく、失敗モードと対策を持つ運用論点として扱われ始めていることは重要です。</p>
+<p><code>context-resets</code> には、このソースをきっかけに「compact が信用できなくなった時に reset を強制する信号は何か」という open question が追加されています。長時間セッションでは、compaction は低コストな継続手段ですが、誤った理解やノイズを圧縮して残す危険があります。対して reset は明示的な handoff artifact を必要とするため面倒ですが、状態を再構築することで drift を減らせます。今回の更新は、compaction vs reset を単なる好みではなく、harness の recovery policy として考える流れを強めています。</p>
+<p>全体トレンドとしては、今回の 3本はいずれも「agent を賢くする」話を、モデル性能ではなく周辺の運用面へ引き戻しています。自己改善には loop と memory が必要で、機密情報の扱いには共有基盤と承認ポリシーが必要で、compact の失敗には reset / handoff / verification が必要です。つまり KB の agent harness landscape は、ツール連携や multi-agent 構成だけでなく、情報管理、復旧戦略、改善サイクルまで含む運用 OS のような方向へ広がっています。</p>
+<p>Podcast で掘るなら、論点は 3つあります。第一に、self-improving agent を語る時に「何が改善されるのか」を model、memory、prompt、routine、skill、eval、runner に分解すること。第二に、LLM エージェント時代の機密データ管理では、Google Drive のような汎用共有基盤をどう分類・監査・制限するか。第三に、Claude Code や類似 coding agent の長時間作業で、compact、rewind、reset、handoff の使い分けをどうルール化するかです。</p>
+<h2>Sources</h2>
+<ul>
+<li><code>wiki/sources/movez-anthropic-workshops-self-improving-agentic-systems-x-2026-07-05.md</code></li>
+<li><code>wiki/sources/ryoppippi-google-drive-secrets-balance-article-share-x-2026-07-05.md</code></li>
+<li><code>wiki/sources/u1-claude-code-compact-problems-countermeasures-x-2026-07-04.md</code></li>
+</ul>
+<h2>Updated KB Areas</h2>
+<ul>
+<li><code>wiki/concepts/loop-engineering.md</code></li>
+<li><code>wiki/concepts/agent-safety.md</code></li>
+<li><code>wiki/concepts/context-resets.md</code></li>
+<li><code>wiki/maps/agent-harness-landscape.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Movez - Anthropic workshops on self-improving agentic systems</h3>
+<p>Source note: <code>wiki/sources/movez-anthropic-workshops-self-improving-agentic-systems-x-2026-07-05.md</code></p>
+<h1>Movez - Anthropic workshops on self-improving agentic systems</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/movez-anthropic-workshops-self-improving-agentic-systems-x-2026-07-05.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260706T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2073765125958348964</li>
+<li>Primary URL: https://x.com/0xMovez/status/2073765125958348964/video/1</li>
+<li>Secondary URL: https://x.com/0xCodez/status/2065089060104720776</li>
+<li>Author: Movez (@0xMovez)</li>
+<li>Posted: 2026-07-05T13:45:09.000Z</li>
+<li>Captured: 2026-07-06 via xurl bookmarks capture</li>
+<li>Type: X post / workshop share</li>
+<li>Evidence strength: bookmark snapshot metadata plus workshop timetable text and teaser links</li>
+<li>Public metrics at capture: 67 reposts, 35 replies, 449 likes, 0 quotes, 904 bookmarks, 70148 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Anthropic&#x27;s workshop share turns self-improving agent design into a staged curriculum: ship the first agent, add memory, increase autonomy, set up proactive behavior, then close the loop on self-improvement. The value here is not a single product claim but the visible decomposition of agent maturity into teachable steps.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Anthropic is packaging agent-building as a workshop sequence.</li>
+<li>Memory is treated as a separate step from basic agent operation.</li>
+<li>Autonomy and proactive behavior come after the initial agent and memory layers.</li>
+<li>Self-improvement is presented as the final stage in the sequence.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post literally lists five workshop segments and timestamps.</li>
+<li>The final segment is named &quot;self-improving agents.&quot;</li>
+<li>The share includes both a video teaser and a linked related post.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / workshop share</li>
+<li>Confidence: high for the existence of the workshop sequence and the staged framing</li>
+<li>Supports: lo</li>
+</ul>
+<h3>ryoppippi - Google Drive secret-handling article share</h3>
+<p>Source note: <code>wiki/sources/ryoppippi-google-drive-secrets-balance-article-share-x-2026-07-05.md</code></p>
+<h1>ryoppippi - Google Drive secret-handling article share</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/ryoppippi-google-drive-secrets-balance-article-share-x-2026-07-05.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260706T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2073822628360409420</li>
+<li>Primary URL: https://ryozi.hatenadiary.jp/entry/2026/05/05/124807</li>
+<li>Author: ryoppippi (@ryoppippi)</li>
+<li>Posted: 2026-07-05T17:33:39.000Z</li>
+<li>Captured: 2026-07-06 via xurl bookmarks capture</li>
+<li>Type: X post / article share</li>
+<li>Evidence strength: bookmark snapshot metadata plus article title card</li>
+<li>Public metrics at capture: 1 reposts, 0 replies, 134 likes, 0 quotes, 101 bookmarks, 12627 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark points to an article about whether confidential information should be uploaded to Google Drive. The post&#x27;s useful signal is that the answer is treated as a tradeoff problem: data sensitivity, convenience, and operational discipline all matter at once.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Confidential data handling is not a simple yes/no rule.</li>
+<li>The underlying decision depends on how sensitive the information is and how it will be governed.</li>
+<li>The linked article is meant to provide a detailed, practical explanation rather than a slogan.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet explicitly says the linked article is detailed and helpful.</li>
+<li>The article title asks whether it is okay to upload confidential information to Google Drive.</li>
+<li>The post&#x27;s own summary says &quot;it&#x27;s a balance.&quot;</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / article share</li>
+<li>Confidence: medium for the broad tradeoff framing, low for any finer-grained policy until the article is read directly</li>
+<li>Supports: agent-safety, approval-policy, environment-bootstrapping, evidence-quality</li>
+<li>Main limitations: the bookmark capture does no</li>
+</ul>
+<h3>Yuichi Uemura - Claude Code compaction problems and countermeasures</h3>
+<p>Source note: <code>wiki/sources/u1-claude-code-compact-problems-countermeasures-x-2026-07-04.md</code></p>
+<h1>Yuichi Uemura - Claude Code compaction problems and countermeasures</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/u1-claude-code-compact-problems-countermeasures-x-2026-07-04.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260706T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2073289543948923153</li>
+<li>Primary URL: https://x.com/i/article/2073286645626060800</li>
+<li>Author: Yuichi Uemura (@u1)</li>
+<li>Posted: 2026-07-04T06:15:21.000Z</li>
+<li>Captured: 2026-07-06 via xurl bookmarks capture</li>
+<li>Type: X post / article card</li>
+<li>Evidence strength: bookmark snapshot metadata plus article title only</li>
+<li>Public metrics at capture: 176 reposts, 10 replies, 1568 likes, 75 quotes, 3241 bookmarks, 680074 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>The capture only exposes the article title, but that title is still useful: it points directly at a compaction failure-mode discussion for Claude Code. The most conservative read is that the linked article covers what goes wrong during compact and what to do about it.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Claude Code compaction has recognizable failure modes.</li>
+<li>There are practical countermeasures worth documenting.</li>
+<li>The topic is important enough to merit a standalone article card.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark title names both the problem and the response: &quot;compact&quot; problems and countermeasures.</li>
+<li>No body text was captured, so the note should avoid guessing the specific advice.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / article card</li>
+<li>Confidence: low for specifics, medium for the existence of a compaction-focused article and its general topic</li>
+<li>Supports: context-resets, context-engineering, feedback-controls, self-verification</li>
+<li>Main limitations: title-only capture</li>
+<li>Best use: a pointer into the KB&#x27;s compaction/reset cluster when discussing long-session recovery</li>
+</ul>
+<h2>Related Concep</h2>
+<h2>更新された概念・地図</h2>
+<h3>Agent Safety</h3>
+<p>KB note: <code>wiki/concepts/agent-safety.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent Safety</p>
+<hr>
+<h1>Agent Safety</h1>
+<h2>Definition</h2>
+<p>The set of mechanisms and design choices used to keep an agent helpful, bounded, and resistant to harmful or misaligned behavior.</p>
+<h2>Why It Matters</h2>
+<p>As agents gain tools and autonomy, safety becomes an architectural concern rather than just a prompt concern.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[behavioral stability]]</li>
+<li>[[approval policy]]</li>
+<li>[[human-in-the-loop]]</li>
+<li>[[failure modes]]</li>
+<li>[[middleware-controls]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/newspicks-harness-engineering-what-is-it.md]]</li>
+<li>[[../sources/anthropic-emotion-concepts.md]]</li>
+<li>[[../sources/anthropic-claude-code-auto-mode.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-mythos-preview.md]]</li>
+<li>[[../sources/spillwave-ai-coding-hangover-harness-engineering.md]]</li>
+<li>[[../sources/openclaw-release-v2026-4-11-github.md]]</li>
+<li>[[../sources/keisuke69-ai-agent-security-enterpris</li>
+</ul>
+<h3>Context Resets</h3>
+<p>KB note: <code>wiki/concepts/context-resets.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Context Resets</p>
+<hr>
+<h1>Context Resets</h1>
+<h2>Definition</h2>
+<p>A harness strategy where a new agent session starts from a clean context window and reconstructs state from explicit handoff artifacts rather than compressed conversation memory.</p>
+<h2>Why It Matters</h2>
+<p>Resets can reduce context drift and force higher-quality handoffs, especially on long tasks. In the current source set, they function less like a universal best practice and more like a reliability tactic that becomes valuable when session history turns noisy or self-reinforcing.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[structured-handoff-artifacts]]</li>
+<li>[[long-running-agents]]</li>
+<li>[[self-evaluation-bias]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/trq212-claude-code-usage-context-management-x.md]]</li>
+<li>[[../sources/walden-yan-multi-agent-pragmatic-update-x.md]]</li>
+<li>[[../sources/anthropic-april-23-postmortem-claude-code-qu</li>
+</ul>
+<h3>Loop Engineering</h3>
+<p>KB note: <code>wiki/concepts/loop-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Loop Engineering</p>
+<p>  - Agent Loop Design</p>
+<hr>
+<h1>Loop Engineering</h1>
+<h2>Definition</h2>
+<p>Loop engineering is the practice of designing the repeatable work loop an agent runs inside: objective, context, worker roles, tool access, effort level, checkpoints, grading, retries, and stopping conditions.</p>
+<h2>Origin / Framing</h2>
+<p>The term was popularized in June 2026 by Addy Osmani&#x27;s &quot;Loop Engineering&quot; article. Osmani framed it around two public practitioner signals: Peter Steinberger&#x27;s claim that developers should design loops that prompt coding agents, and Boris Cherny&#x27;s claim that his job had shifted from prompting Claude directly to writing loops.</p>
+<h2>Why It Matters</h2>
+<p>As models handle larger tasks, the operator&#x27;s leverage shifts from writing one perfect prompt toward defining a loop that can generate work, evaluate it, and converge. This makes loop design a practical sub-surface of [[harness-engineering.md]].</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering.md]]</li>
+<li>[[generator-evaluator-loop.md</li>
+</ul>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/djfarrelly-agent-loop-architecture-x.md]]</li>
+<li>[[../sources/jason-liu-codex-maxxing-heartbeats.md]]</li>
+<li>[[../sources/openai-chatgpt-memory-dreaming-x-2026-06</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>3</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
