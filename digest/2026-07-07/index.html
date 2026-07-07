@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-07 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-07/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-07-07</header>
+<h1>KB Daily Digest 2026-07-07</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-07/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-07-07">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-07-07</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-07-07</h1>
+<p>2026-07-07 UTC の knowledge-base-llm には、X bookmarks 由来の新規 ingest が 3本入りました。今回の中心は、Fable を単なる新しい agent 製品ではなく「使い方を学ぶ対象」「operator habit を鍛える対象」として扱う流れと、Claude Code の origin story が Anthropic safety research に接続されたことです。新規 source note は <code>wiki/sources/</code> に 3本追加され、既存の <code>context-engineering</code>、<code>loop-engineering</code>、<code>harness-engineering</code>、<code>long-running-agents</code>、<code>agent-knowledge-loop</code> などに接続されました。</p>
+<p>重要ソースの 1本目は、Thariq / @trq212 による “A Field Guide to Fable” keynote の YouTube 公開告知です。KB が捕捉しているのは X 投稿と YouTube カードで、講演本文や transcript はまだ入っていません。ただし、タイトルが “Field Guide” であること自体が大きなシグナルです。Fable は単なる launch announcement ではなく、現場でどう扱うか、どんな癖や作法が必要かを guide として整理すべき対象になっています。</p>
+<p>このソースは <code>loop-engineering</code>、<code>harness-engineering</code>、<code>long-running-agents</code>、<code>rich-agent-output-artifact</code>、<code>context-engineering</code> に接続されています。つまり KB 上では、Fable を「一回の prompt でうまく動かすツール」ではなく、反復ループ、長時間作業、出力成果物、周辺 harness の組み合わせとして読む位置づけです。今後この keynote の transcript が取れれば、Fable の operator practice をより具体的な checklist や playbook に落とせる可能性があります。</p>
+<p>重要ソースの 2本目は、cat / @_catwu による Fable 向けの prompting tip です。内容は短いものの、「まず自分の unknowns を発見してから prompt する」という実務的なメッセージが明確です。これは context engineering のかなり重要な型で、曖昧な不満や漠然とした依頼を、そのまま agent に投げる前に、自分が何を知らないのか、どこが判断不能なのかを言語化するステップを挟む、という話です。</p>
+<p>この更新の面白さは、良い prompt を「きれいな命令文を書く技術」としてではなく、operator 側の自己診断として捉えている点にあります。Fable のような agentic な環境では、モデルが十分に強くても、依頼者が不確実性を隠したままだと、agent は探索すべき空白を見誤ります。KB ではこのソースを <code>context-engineering</code>、<code>loop-engineering</code>、<code>harness-engineering</code>、<code>agent-knowledge-loop</code> に接続し、unknown discovery を prompt 前の準備動作として扱っています。</p>
+<p>重要ソースの 3本目は、Boris Cherny / @bcherny による Claude Code origin story への言及です。投稿では、Anthropic が Claude Code を最初にどう作り、どう launch したかを初めて語る、そしてその起源が Anthropic safety research にある、とされています。捕捉されているのは quote post と linked first-party Anthropic post への参照で、詳細な本文までは今回の batch には入っていません。そのため KB では evidence strength を保守的に扱いつつ、Claude Code の launch narrative が safety research lineage と結びついた点を記録しています。</p>
+<p>このソースが重要なのは、Claude Code を単なる developer productivity product としてだけでなく、safety research 由来の実験と productization の延長線上に置いていることです。KB の地図では、Claude Code は <code>harness-engineering</code>、<code>context-engineering</code>、<code>long-running-agents</code>、<code>structured-handoff-artifacts</code>、<code>agent-knowledge-loop</code> と強く結びついています。今回の追加は、その設計思想や評価観がどこから来たのかをたどるための narrative anchor になります。</p>
+<p>全体トレンドとしては、今日の更新は「agent はどう作るか」から「agent をどう使える形に育てるか」へ焦点が移っています。Fable 側では field guide と unknown discovery が入り、operator の学習、問いの立て方、ループの設計が前面に出ています。Claude Code 側では、製品の起源が safety research に接続され、coding agent harness の背後にある研究由来の文脈が見え始めています。どちらも、強いモデルを置けば終わりではなく、周辺の使い方、文脈設計、復旧可能な作業単位、知識ループが必要だという KB の既存テーマを補強しています。</p>
+<p>Podcast で掘るなら、論点は 3つあります。第一に、Fable の “field guide” とは何を guide するものなのか。prompt の書き方なのか、agent loop の作り方なのか、成果物レビューや unknown discovery まで含む operator discipline なのか。第二に、unknown discovery を reusable prompt scaffold にできるか。たとえば「自分が知らないこと」「確認が必要な仮定」「agent に探索させたい分岐」を明示してから依頼する型です。第三に、Claude Code の safety research lineage を、現在の coding agent harness 設計にどう接続して読むべきかです。</p>
+<p>次に追うべき問いとしては、まず “A Field Guide to Fable” の transcript 取得が最優先です。今回の source note だけでは、講演の中身よりも「講演が field guide として公開された」という metadata が中心なので、具体的な operator habit はまだ抜けています。次に、cat の unknown discovery tip を Fable 以外の coding agent、Claude Code、Codex、long-running agent workflows に一般化できるかを検証したいところです。最後に、Claude Code origin story の first-party Anthropic post を独立した source note として取り込み、安全研究から product harness への接続をより正確に整理する必要があります。</p>
+<h2>Sources</h2>
+<ul>
+<li><code>wiki/sources/trq212-field-guide-to-fable-youtube-x-2026-07-06.md</code></li>
+<li><code>wiki/sources/cat-fable-unknowns-prompt-better-x-2026-07-03.md</code></li>
+<li><code>wiki/sources/bcherny-claude-code-origins-safety-research-x-2026-07-06.md</code></li>
+</ul>
+<h2>Updated KB Areas</h2>
+<ul>
+<li><code>wiki/concepts/context-engineering.md</code></li>
+<li><code>wiki/concepts/loop-engineering.md</code></li>
+<li><code>wiki/concepts/harness-engineering.md</code></li>
+<li><code>wiki/concepts/long-running-agents.md</code></li>
+<li><code>wiki/concepts/structured-handoff-artifacts.md</code></li>
+<li><code>wiki/concepts/agent-knowledge-loop.md</code></li>
+<li><code>wiki/maps/agent-harness-landscape.md</code></li>
+<li><code>wiki/maps/coding-agent-harness-patterns.md</code></li>
+<li><code>wiki/maps/coding-agent-cognitive-debt-and-review-capacity.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-product-market-fit.md]] — Simon Willison&#x27;s market analysis that Anthropic/OpenAI have found product-market fit through coding/general-purpose agents, API-aligned enterprise pricing, and high-value professional usage.</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents, and org ownership.</li>
+<li>[[about-hiroppy-founders-playbook.md]] — Anthropic&#x27;s official founder playbook PDF: AI-native startup lifecycle across Idea, MVP, Launch, and Scale, with Claude Chat/Cowork/Code stage usage, validation gates, agentic technical debt risks, founder bottleneck removal, and moat formation.</li>
+<li>[[izanami-claude-code-large-codebase-best-practices.md]] — Japanese practitioner explainer on Claude Code large-codebase setup: live repo search, thin layered CLAUDE.md, subdirectory startup, hooks, stale-rule pruning, and adoption ownership.</li>
+<li>[[newspicks-harness-engineering-what-is-it.md]] — Japanese explainer separating evalua</li>
+</ul>
+<h3>Boris Cherny - Claude Code origins story</h3>
+<p>Source note: <code>wiki/sources/bcherny-claude-code-origins-safety-research-x-2026-07-06.md</code></p>
+<h1>Boris Cherny - Claude Code origins story</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/bcherny-claude-code-origins-safety-research-x-2026-07-06.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260707T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2074247226038063316</li>
+<li>Primary URL: https://x.com/claudeai/status/2074244664199115201</li>
+<li>Author: Boris Cherny (@bcherny)</li>
+<li>Posted: 2026-07-06T21:40:50.000Z</li>
+<li>Captured: 2026-07-07 via xurl bookmarks capture</li>
+<li>Type: X post / launch-story quote</li>
+<li>Evidence strength: bookmark metadata plus linked first-party Anthropic post</li>
+<li>Public metrics at capture: 76 reposts, 79 replies, 1089 likes, 7 quotes, 489 bookmarks, 101297 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Cherny says Anthropic is finally telling the Claude Code origin story, tracing it back to safety research and framing the product as still early. The durable signal is that Claude Code is being presented as a research-derived tool whose launch narrative is only now becoming public.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Claude Code&#x27;s origins trace back to Anthropic safety research.</li>
+<li>Anthropic is now telling the public launch story.</li>
+<li>The product is still early, per Cherny&#x27;s &quot;1% done&quot; framing.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text says this is the first time the story is being told.</li>
+<li>The visible claim ties Claude Code to safety research rather than a late-stage product-only origin.</li>
+<li>The quote-tweet points at a first-party Anthropic post, which is the stronger primary artifact.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / launch-story quote</li>
+<li>Confidence: high for the quoted framing, medium for the broader origin story because only the quoted text is visible here</li>
+<li>Supports: harness engineering, context engineering, long-running agents, structured handoff artifacts, agent knowledge loops</li>
+<li>Main limi</li>
+</ul>
+<h3>cat - Fable unknowns and better prompting</h3>
+<p>Source note: <code>wiki/sources/cat-fable-unknowns-prompt-better-x-2026-07-03.md</code></p>
+<h1>cat - Fable unknowns and better prompting</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/cat-fable-unknowns-prompt-better-x-2026-07-03.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260707T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2073101078145724589</li>
+<li>Primary URL: https://x.com/trq212/status/2073100352921215386</li>
+<li>Author: cat (@_catwu)</li>
+<li>Posted: 2026-07-03T17:46:28.000Z</li>
+<li>Captured: 2026-07-07 via xurl bookmarks capture</li>
+<li>Type: X post / practitioner tip</li>
+<li>Evidence strength: bookmark metadata plus quoted Fable-related post</li>
+<li>Public metrics at capture: 396 reposts, 127 replies, 4914 likes, 49 quotes, 8179 bookmarks, 909040 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>The post suggests that Fable becomes more effective when the operator first surfaces their own unknowns and then prompts around that gap. That is a useful context-engineering move because it turns vague dissatisfaction into an explicit information-seeking step.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The operator should identify their own unknowns before prompting Fable.</li>
+<li>Better prompts come from making uncertainty explicit.</li>
+<li>Operator self-diagnosis can improve the quality of the resulting interaction.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The captured text directly says the most important step is discovering unknowns first.</li>
+<li>The post is framed as a practical tip rather than a theory-only essay.</li>
+<li>The quoted post link suggests this is part of a wider Fable practitioner conversation.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / practitioner tip</li>
+<li>Confidence: medium-high for the operator habit; medium for broader generalization because the post is short</li>
+<li>Supports: context engineering, loop engineering, harness engineering, agent knowledge loops</li>
+<li>Main limitations: the capture is short and does not explain the method in detail</li>
+<li>Best use: a com</li>
+</ul>
+<h3>Thariq - A Field Guide to Fable</h3>
+<p>Source note: <code>wiki/sources/trq212-field-guide-to-fable-youtube-x-2026-07-06.md</code></p>
+<h1>Thariq - A Field Guide to Fable</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/trq212-field-guide-to-fable-youtube-x-2026-07-06.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260707T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2074163788853760175</li>
+<li>Primary URL: https://www.youtube.com/watch?is=ejZTRy8t85FIbSGQ&amp;v=9fubhllmsBU&amp;feature=youtu.be</li>
+<li>Author: Thariq (@trq212)</li>
+<li>Posted: 2026-07-06T16:09:18.000Z</li>
+<li>Captured: 2026-07-07 via xurl bookmarks capture</li>
+<li>Type: X post / keynote video teaser</li>
+<li>Evidence strength: bookmark metadata plus attached YouTube card</li>
+<li>Public metrics at capture: 96 reposts, 68 replies, 1210 likes, 19 quotes, 1104 bookmarks, 153091 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Thariq&#x27;s bookmark is a pointer to a keynote video titled &quot;A Field Guide to Fable.&quot; The durable signal is that Fable practice is being packaged as a reusable operator guide, not just a product announcement.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>A keynote video titled &quot;A Field Guide to Fable&quot; is live on YouTube.</li>
+<li>The framing suggests Fable usage is being taught as a field guide.</li>
+<li>The video format makes the talk a likely reusable artifact for operator habits and workflow design.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text explicitly says the keynote is live on YouTube.</li>
+<li>The attached card title names the talk as &quot;A Field Guide to Fable.&quot;</li>
+<li>The bookmark includes strong engagement, which suggests the topic resonated with Fable-adjacent practitioners.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / keynote video teaser</li>
+<li>Confidence: high that the video exists, medium for the detailed substance because no transcript is captured here</li>
+<li>Supports: loop engineering, harness engineering, long-running agents, rich agent output artifact, context engineering</li>
+<li>Main limitations: the bookmark does not include the talk transcr</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>4</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
