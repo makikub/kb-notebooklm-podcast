@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-08 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-08/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-07-08</header>
+<h1>KB Daily Digest 2026-07-08</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-08/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-07-08">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-07-08</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-07-08</h1>
+<p>2026-07-08 UTC の knowledge-base-llm には、X bookmarks 由来の新規 ingest が 7本入りました。新規 raw capture は <code>raw/x/bookmarks/bookmarks-20260708T0000Z.json</code>、新規 source note は <code>wiki/sources/</code> 配下の 7本です。今日の中心は、agent を「一発で答えを出す道具」ではなく、ループ、役割分担、組織文化、オンボーディングの中に埋め込んで運用する流れです。lint でも重複 concept note や orphan source note は見つからず、既存の <code>loop-engineering</code>、<code>agent-harness-landscape</code>、<code>coding-agent-harness-patterns</code>、<code>ai-adoption-roi-and-capability-investment</code>、<code>context-graph-and-company-brain</code> などに自然に接続されています。</p>
+<p>重要ソースの 1本目は、ClaudeDevs による Fable 5 の advisor/executor pattern です。Fable 5 を advisor として置き、実行側のモデルが必要に応じて助言を呼び出す構図が示されており、KB では <code>loop-engineering</code>、<code>generator-evaluator-loop</code>、<code>worker-based-composition</code>、<code>multi-agent-orchestration</code>、<code>self-verification</code> に接続されました。単に強いモデルを常時使うのではなく、安価な executor と高価値な advisor を分けることで、コストと品質の配分を設計対象にする点が大きなシグナルです。</p>
+<p>この advisor/executor split は、今日の batch のなかで最も agent harness らしい更新です。これまでの generator/evaluator loop は「作る役」と「見る役」の分離として読まれることが多かったのに対し、今回の pattern は「実行する役」と「考え方を補正する役」の分離に近いです。executor がどの程度の context を advisor に渡すべきか、advisor を別モデルにするべきか prompt mode にするべきか、レビュー面をどう作るべきかが、今後の実装上の問いになります。</p>
+<p>重要ソースの 2本目は、ClaudeDevs の “Getting started with loops” です。今回捕捉できている意味情報は article card title が中心ですが、bookmark 数と title から見ても、loop design が入門可能な実務カテゴリとして扱われ始めていることは読み取れます。KB では <code>loop-engineering</code>、<code>generator-evaluator-loop</code>、<code>context-resets</code>、<code>incremental-progress</code>、<code>self-verification</code> に接続され、Fable 5 advisor pattern や Anthropic の dynamic loop 関連 source と並ぶ、ループ設計の入口として位置づけられました。</p>
+<p>重要ソースの 3本目は、Sierra founder talk に関する AI-native management and culture の記事カードです。本文までは捕捉されていませんが、タイトルが示す通り、AI-native を単なるツール導入や生産性改善ではなく、management と culture の問題として扱っている点が重要です。KB では <code>ai-native-startup-lifecycle</code>、<code>agent-first-organization</code>、<code>organizational-intent-clarity</code>、<code>company-brain</code> に接続され、既存の <code>ai-adoption-roi-and-capability-investment</code> と <code>context-graph-and-company-brain</code> の地図を補強しました。</p>
+<p>今日のもう一つの組織側シグナルは、Google の manager 10 behaviors に関する記事カードです。これは AI-specific な source ではありませんが、管理行動を rubric として明文化する発想が、AI 時代の組織設計にも接続できます。agent-assisted execution が広がるほど、manager の仕事は細かい作業指示から、意図、判断基準、レビュー境界、責任配分を明確にする方向へ寄ります。その意味で、この source は Sierra の AI-native management と対になる、非AI時代からの管理 baseline として読めます。</p>
+<p>Figma の 2026 AI report article card は、AI を生成速度だけではなく collaboration quality で評価する観点を追加しました。これは design tool の話に見えますが、KB 上では <code>multi-agent-orchestration</code> や <code>rich-agent-output-artifact</code> と相性が良い更新です。agent が複数の案を出す、チームがそれをレビューする、分岐や意図が共有される、という流れでは、成果物そのものよりも「協働が良くなったか」を測る必要があります。</p>
+<p>RevenueCat Shipaton の “Zero to Ship” guide は、agent workflow そのものではありませんが、初学者を blank project から first shipped subscription app へ連れていく conversion-oriented onboarding artifact として有用です。今日の batch 全体で見ると、Fable の loop pattern、Sierra/Google の management rubric、RevenueCat の shipping path が同じ方向を向いています。つまり、強い技術を置くだけでは足りず、利用者が迷わず進める道筋、役割の分け方、評価基準、組織文化が必要だということです。</p>
+<p>全体トレンドとしては、今日の KB 更新は「agentic workflow の実装知」から「agentic workflow を組織と人間の作業設計にどう接続するか」へ広がっています。Fable 5 advisor/executor split と “Getting started with loops” は、実行ループの設計を扱います。Sierra、Google、Figma は、AI を使う組織が何を良い運用と見なすかを扱います。RevenueCat guide は、実際に人を shipping まで運ぶ path design を扱います。これらを合わせると、agent harness は単なる runtime ではなく、学習、レビュー、管理、協働、出荷のための環境設計として読むべきだという見取り図が強まりました。</p>
+<p>Podcast で掘るなら、論点は 3つあります。第一に、advisor/executor split は cost optimization なのか、cognitive architecture なのか。第二に、loop engineering の入門化は、どの程度まで checklist や template に落とせるのか。第三に、AI-native management では manager の役割がどう変わるのかです。特に「executor に任せる範囲」「advisor に上げる判断」「人間がレビューする境界」を一つの operating model として語ると、今日の source 群はきれいにつながります。</p>
+<h2>Sources</h2>
+<ul>
+<li><code>wiki/sources/claudedevs-fable-5-advisor-patterns-x-2026-07-07.md</code></li>
+<li><code>wiki/sources/claude-devs-getting-started-with-loops-x-2026-07-06.md</code></li>
+<li><code>wiki/sources/yutosuzuki-sierra-ai-native-management-culture-x-2026-07-06.md</code></li>
+<li><code>wiki/sources/figma-2026-ai-report-collaboration-x-2026-07-07.md</code></li>
+<li><code>wiki/sources/findurtalents-google-manager-10-behaviors-x-2026-07-04.md</code></li>
+<li><code>wiki/sources/oikon48-zero-to-ship-revenuecat-shipaton-x-2026-07-06.md</code></li>
+<li><code>wiki/sources/ry0_kaga-ai-engineer-worlds-fair-2026-report-x-2026-07-06.md</code></li>
+</ul>
+<h2>Updated KB Areas</h2>
+<ul>
+<li><code>wiki/concepts/loop-engineering.md</code></li>
+<li><code>wiki/concepts/generator-evaluator-loop.md</code></li>
+<li><code>wiki/concepts/worker-based-composition.md</code></li>
+<li><code>wiki/concepts/multi-agent-orchestration.md</code></li>
+<li><code>wiki/concepts/self-verification.md</code></li>
+<li><code>wiki/concepts/ai-native-startup-lifecycle.md</code></li>
+<li><code>wiki/concepts/agent-first-organization.md</code></li>
+<li><code>wiki/concepts/organizational-intent-clarity.md</code></li>
+<li><code>wiki/concepts/company-brain.md</code></li>
+<li><code>wiki/maps/agent-harness-landscape.md</code></li>
+<li><code>wiki/maps/coding-agent-harness-patterns.md</code></li>
+<li><code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code></li>
+<li><code>wiki/maps/context-graph-and-company-brain.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>ClaudeDevs - Getting started with loops</h3>
+<p>Source note: <code>wiki/sources/claude-devs-getting-started-with-loops-x-2026-07-06.md</code></p>
+<h1>ClaudeDevs - Getting started with loops</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/claude-devs-getting-started-with-loops-x-2026-07-06.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260708T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2074208949205881033</li>
+<li>Primary URL: https://x.com/i/article/2074204645845839872</li>
+<li>Author: ClaudeDevs (@ClaudeDevs)</li>
+<li>Posted: 2026-07-06T19:08:45.000Z</li>
+<li>Captured: 2026-07-08 via xurl bookmarks capture</li>
+<li>Type: X post / article card</li>
+<li>Evidence strength: bookmark snapshot metadata plus article card title</li>
+<li>Public metrics at capture: 14647 likes, 1723 reposts, 279 replies, 407 quotes, 32194 bookmarks, 4344836 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>The bookmark exposes an article card titled &quot;Getting started with loops.&quot; The title is enough to place it in the repo&#x27;s loop-engineering cluster as a likely introductory or onboarding piece for loop-based agent design.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Loops are being packaged as a learnable pattern.</li>
+<li>The topic is intro-level enough to warrant a &quot;getting started&quot; title.</li>
+<li>Loop design is becoming a mainstream AI-agent workflow category.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The card title is the only visible semantic payload in the capture.</li>
+<li>The card is highly bookmarked, suggesting the topic resonates.</li>
+<li>The wording implies practical onboarding rather than abstract theory.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / article card</li>
+<li>Confidence: medium because only the title is visible</li>
+<li>Supports: loop-engineering, generator-evaluator-loop, context-resets, incremental-progress, self-verification</li>
+<li>Main limitations: no article body was captured in this bookmark snapshot</li>
+<li>Best use: a lightweight entry point into loop-based agent workflows</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/loop-engineering.md]]</li>
+<li>[[../concepts/generator-eval</li>
+</ul>
+<h3>ClaudeDevs - Fable 5 advisor patterns</h3>
+<p>Source note: <code>wiki/sources/claudedevs-fable-5-advisor-patterns-x-2026-07-07.md</code></p>
+<h1>ClaudeDevs - Fable 5 advisor patterns</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/claudedevs-fable-5-advisor-patterns-x-2026-07-07.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260708T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2074606058128224365</li>
+<li>Primary URL: https://x.com/ClaudeDevs/status/2074606058128224365/photo/1</li>
+<li>Author: ClaudeDevs (@ClaudeDevs)</li>
+<li>Posted: 2026-07-07T21:26:43.000Z</li>
+<li>Captured: 2026-07-08 via xurl bookmarks capture</li>
+<li>Type: X post / pattern note with image</li>
+<li>Evidence strength: bookmark snapshot metadata plus post text and image link</li>
+<li>Public metrics at capture: 9146 likes, 549 reposts, 293 replies, 153 quotes, 8384 bookmarks, 531361 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>The post describes a two-role setup where Fable 5 acts as an advisor and an executor model calls it for guidance. The durable signal is the explicit split between cheaper execution and higher-level advice, which maps cleanly onto orchestration and loop-engineering ideas.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>An advisor/executor role split is a useful agent pattern.</li>
+<li>Token spend can be shifted toward the cheaper executor side.</li>
+<li>The pattern is presented as a repeatable workflow, not a one-off trick.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The visible post text explicitly names the advisor/executor split.</li>
+<li>The post ties the split to lower-rate token billing.</li>
+<li>The image link suggests a pattern diagram or annotated workflow.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / pattern note</li>
+<li>Confidence: high for the advisor/executor framing, medium for any details not visible in the text</li>
+<li>Supports: loop-engineering, generator-evaluator-loop, worker-based-composition, multi-agent-orchestration, self-verification</li>
+<li>Main limitations: the full image content is not parsed in this snapshot</li>
+<li>Best use: a concrete example o</li>
+</ul>
+<h3>Figma&#x27;s 2026 AI report on collaboration</h3>
+<p>Source note: <code>wiki/sources/figma-2026-ai-report-collaboration-x-2026-07-07.md</code></p>
+<h1>Figma&#x27;s 2026 AI report on collaboration</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/figma-2026-ai-report-collaboration-x-2026-07-07.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260708T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2074519895996273124</li>
+<li>Primary URL: https://x.com/i/article/2074516616478355458</li>
+<li>Author: Figma (@figma)</li>
+<li>Posted: 2026-07-07T15:44:20.000Z</li>
+<li>Captured: 2026-07-08 via xurl bookmarks capture</li>
+<li>Type: X post / article card</li>
+<li>Evidence strength: bookmark snapshot metadata plus article card title</li>
+<li>Public metrics at capture: 54 likes, 9 reposts, 6 replies, 2 quotes, 36 bookmarks, 35239 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>The bookmark surfaces a Figma article card focused on whether AI can help people collaborate better. The durable signal is that collaboration quality, not just generation speed, is being treated as a first-class AI product question.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>AI can be evaluated on collaboration quality.</li>
+<li>Figma is treating collaboration as a measurable product outcome.</li>
+<li>The report suggests a product-research framing rather than a mere feature launch.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The X card title names collaboration explicitly.</li>
+<li>The bookmark metadata shows it was shared as an article card, not a short reactive post.</li>
+<li>The post&#x27;s framing broadens the usual &quot;AI in design&quot; conversation toward team coordination.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / article card</li>
+<li>Confidence: medium for the collaboration thesis, high for the title-based framing</li>
+<li>Supports: harness-engineering, multi-agent-orchestration, rich-agent-output-artifact, context-first-development</li>
+<li>Main limitations: the article body is not included in the bookmark snapshot</li>
+<li>Best use: a product-design anchor for evaluating AI by collaboration outcomes</li>
+</ul>
+<h2>Related Concepts</h2>
+<p>-</p>
+<h3>Google manager 10 behaviors</h3>
+<p>Source note: <code>wiki/sources/findurtalents-google-manager-10-behaviors-x-2026-07-04.md</code></p>
+<h1>Google manager 10 behaviors</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/findurtalents-google-manager-10-behaviors-x-2026-07-04.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260708T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2073224439974768798</li>
+<li>Primary URL: https://x.com/i/article/2073224285825732608</li>
+<li>Author: Andy / @findurtalents</li>
+<li>Posted: 2026-07-04T01:56:39.000Z</li>
+<li>Captured: 2026-07-08 via xurl bookmarks capture</li>
+<li>Type: X post / article card</li>
+<li>Evidence strength: bookmark snapshot metadata plus article card title</li>
+<li>Public metrics at capture: 1746 likes, 162 reposts, 9 replies, 70 quotes, 4364 bookmarks, 1899357 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>The bookmark surfaces an article card about the ten management behaviors Google supposedly proved over a decade. For this KB, the useful signal is the management-rubric framing, which is relevant to AI-era leadership, organizational intent, and manager behavior design.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Management behavior can be codified into a durable rubric.</li>
+<li>Long-running company practice can be used as evidence, not just anecdote.</li>
+<li>Manager behavior is a real operational layer when discussing AI adoption.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The card title names a 10-behavior manager framework.</li>
+<li>The post comes from the same account that previously shared Project Oxygen material.</li>
+<li>The large bookmark count suggests strong interest in the management framing.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / article card</li>
+<li>Confidence: medium for the specific article&#x27;s claims, high for the existence of the article card</li>
+<li>Supports: organizational-intent-clarity, agent-first-organization, product-responsibility-distribution, ai-adoption-thresholds</li>
+<li>Main limitations: the article body is not visible in the bookmark snapshot</li>
+<li>Best use: a management</li>
+</ul>
+<h3>RevenueCat Shipaton 2026 - Zero to Ship</h3>
+<p>Source note: <code>wiki/sources/oikon48-zero-to-ship-revenuecat-shipaton-x-2026-07-06.md</code></p>
+<h1>RevenueCat Shipaton 2026 - Zero to Ship</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/oikon48-zero-to-ship-revenuecat-shipaton-x-2026-07-06.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260708T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2073932437919559982</li>
+<li>Primary URL: https://revenuecat.github.io/start/?lang=ja</li>
+<li>Author: Oikon (@oikon48)</li>
+<li>Posted: 2026-07-06T00:49:59.000Z</li>
+<li>Captured: 2026-07-08 via xurl bookmarks capture</li>
+<li>Type: X post / product guide share</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked guide title</li>
+<li>Public metrics at capture: 62 likes, 10 reposts, 0 replies, 1 quote, 34 bookmarks, 9147 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>The post shares a Japanese guide for getting from a blank project to a first shipped subscription app. It is not an agent workflow source, but it is a clean example of a conversion-oriented onboarding artifact aimed at first-time builders.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>First-time mobile builders need a structured path to shipping.</li>
+<li>The guide is meant to reduce decision friction.</li>
+<li>Product onboarding can be framed as a guided route rather than a docs dump.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet explicitly describes the guide as a beginner-friendly route.</li>
+<li>The guide is framed around the user&#x27;s first shipped subscription.</li>
+<li>The artifact is practical and action-oriented rather than conceptual.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / product guide share</li>
+<li>Confidence: high for the guide&#x27;s intent, medium for any broader generalization</li>
+<li>Supports: conversion-packaging, ai-native-startup-lifecycle, ai-adoption-thresholds</li>
+<li>Main limitations: the bookmark does not say much about the underlying technical implementation</li>
+<li>Best use: a reference for onboarding and shipping-path design</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/conversion-pac</li>
+</ul>
+<h3>kagaya - AI Engineer World&#x27;s Fair 2026 participant report</h3>
+<p>Source note: <code>wiki/sources/ry0_kaga-ai-engineer-worlds-fair-2026-report-x-2026-07-06.md</code></p>
+<h1>kagaya - AI Engineer World&#x27;s Fair 2026 participant report</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/ry0_kaga-ai-engineer-worlds-fair-2026-report-x-2026-07-06.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260708T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2074265887410942187</li>
+<li>Primary URL: https://note.com/r_kaga/n/n12bc279182d6</li>
+<li>Author: kagaya (@ry0_kaga)</li>
+<li>Posted: 2026-07-06T22:55:00.000Z</li>
+<li>Captured: 2026-07-08 via xurl bookmarks capture</li>
+<li>Type: X post / article share</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked primary article title</li>
+<li>Public metrics at capture: 43 likes, 2 reposts, 0 replies, 1 quote, 44 bookmarks, 6662 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This is a share for a longer Japanese event report on AI Engineer World&#x27;s Fair 2026. The visible excerpt centers on agentic development, especially the idea of handing development work to a cluster of AI agents under the &quot;Software Factories&quot; framing.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>AI Engineer World&#x27;s Fair 2026 is being discussed through an agentic-development lens.</li>
+<li>The report treats &quot;Software Factories&quot; as a meaningful conference theme.</li>
+<li>The post suggests a shift from &quot;how to use AI&quot; to &quot;how to delegate work to AI.&quot;</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The note.com article title identifies it as a firsthand event report.</li>
+<li>The bookmark excerpt explicitly mentions AI agents taking on development work.</li>
+<li>The conference framing comes from a participant, not only from the event organizers.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / article share</li>
+<li>Confidence: high for the existence of the report and its topic, medium for any inference beyond the visible excerpt</li>
+<li>Supports: loop-engineering, agent-autonomy, trace-driven-improvement, long-running-agents</li>
+<li>Main limitations: only the bookmark excerpt and linked artic</li>
+</ul>
+<h3>Sierra founder talk on AI-native management and culture</h3>
+<p>Source note: <code>wiki/sources/yutosuzuki-sierra-ai-native-management-culture-x-2026-07-06.md</code></p>
+<h1>Sierra founder talk on AI-native management and culture</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/yutosuzuki-sierra-ai-native-management-culture-x-2026-07-06.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260708T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2074281655540547852</li>
+<li>Primary URL: https://x.com/i/article/2074279494521937920</li>
+<li>Author: 鈴木裕斗 / @yutosuzuki</li>
+<li>Posted: 2026-07-06T23:57:39.000Z</li>
+<li>Captured: 2026-07-08 via xurl bookmarks capture</li>
+<li>Type: X post / article card</li>
+<li>Evidence strength: bookmark snapshot metadata plus article card title</li>
+<li>Public metrics at capture: 94 likes, 9 reposts, 0 replies, 2 quotes, 151 bookmarks, 21851 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>The visible signal is an X article card about Sierra&#x27;s founder discussing AI-native management and organizational culture. Even without the full article body in the bookmark snapshot, the title alone makes this a useful organizational-design source rather than a generic AI post.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The article is about AI-native management, not just product usage.</li>
+<li>Organizational culture is part of the story.</li>
+<li>Sierra is being used as a reference point for AI-native operating models.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark exposes only the card title and metadata.</li>
+<li>The card title itself names AI-native management and culture.</li>
+<li>The post is framed as an article share, suggesting a more durable source than a throwaway thread.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / article card</li>
+<li>Confidence: medium for the organizational framing, high for the presence of the article card title</li>
+<li>Supports: ai-native-startup-lifecycle, agent-first-organization, organizational-intent-clarity, company-brain</li>
+<li>Main limitations: the full article content is not captured in this bookmark batch</li>
+<li>Best use: a citation</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>7</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
