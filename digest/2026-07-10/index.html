@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-10 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-10/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-07-10</header>
+<h1>KB Daily Digest 2026-07-10</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-10/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-07-10">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-07-10</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-07-10</h1>
+<p>今日の knowledge-base-llm は、2026-07-10 00:08 UTC の <code>KB: ingest July 10 xurl bookmarks</code> コミットで、X bookmark capture 由来の3本を新規 ingest しました。追加された raw は <code>bcherny-claude-code-checkup-maintenance-loop</code>、<code>fruitriin-addf-loop-engineering-speakerdeck</code>、<code>noriyukitakei-e2e-test-loop-engineering-speakerdeck</code> の3本で、対応する <code>wiki/sources/</code> ノートも作成されています。あわせて <code>loop-engineering</code>、<code>harness-engineering</code>、<code>context-engineering</code>、<code>real-world-evaluation</code> が更新され、今回の更新は「ループ設計をどう日常の運用・保守・テスト生成に落とすか」に寄った一日でした。</p>
+<p>全体トレンドとしては、単発のプロンプトや単発のエージェント実行ではなく、繰り返し回る作業系そのものを設計対象にする流れが強く出ています。Loop Engineering はすでに KB 内で、目的、文脈、役割、ツール、チェックポイント、評価、リトライ、停止条件までを含む「エージェントが走る反復作業の設計」として整理されています。今日の3本はその定義に対して、保守コマンド、汎用フレームワーク、E2E テスト生成という別々の入口から具体例を追加しました。</p>
+<p>重要ソースの1本目は Boris Cherny の Claude Code <code>/checkup</code> maintenance loop です。ここでのポイントは、エージェント harness の保守を「思い出した時に手で片付けるもの」ではなく、明示的なコマンドや操作面として扱っていることです。未使用 extension の整理、project instructions の重複排除、root context から nested files / skills への分割、遅い hooks の無効化といった項目は、どれも context engineering と harness engineering の境界にあります。つまり、良い出力を得るための作業は、モデルに投げる前のコンテキスト整理や周辺機構の清掃にも宿る、という見方を強める更新です。</p>
+<p>2本目は 果物リン の ADDF loop engineering slide deck です。KB ではこのソースを、単なる prompt recipe ではなく「作りたいものを継続的に作れるようにするための named framework」として取り込みました。詳細な実装までは capture から確定しきれないため evidence quality は中程度ですが、重要なのは、loop engineering が個別の coding task だけでなく、作る活動全体を支える operator workflow design として語られている点です。これは、ハーネスやスキルや手順書を「作業の一部」ではなく「作業を増幅する土台」と見る KB の既存地図に自然につながります。</p>
+<p>3本目は Noriyuki Takei の E2E tests 向け loop engineering deck です。ここでの具体的なパターンは <code>testspec-to-code</code> で、テスト仕様を durable handoff artifact として維持し、そこから agent が Playwright code を生成・修正していくループです。これは real-world evaluation の観点でも重要です。E2E テストは現実のユーザー操作に近い一方で、変更や失敗の原因追跡が難しい領域です。だからこそ、仕様書を一回限りの計画メモではなく、生成とレビューの往復に使える source of truth として置く意味があります。</p>
+<p>概念ノート側では、<code>loop-engineering</code> に果物リンと Takei の2本が supporting sources として追加されました。これにより、Loop Engineering の地図は、Addy Osmani や Fable 5 由来の一般論から、より実務的な「フレームワーク化」「テスト仕様からコードへの反復生成」へ広がっています。<code>harness-engineering</code> にも今日の3本が追加され、ハーネスを作ることだけでなく、ハーネスを点検し続けること、そして作業ループをプロダクト化・手順化することが論点に入りました。</p>
+<p><code>context-engineering</code> の更新では、Boris Cherny の <code>/checkup</code> が特に効いています。context は単に増やす・削る対象ではなく、階層化し、重複をなくし、hooks や skills といった周辺要素を含めて整備する運用面になっています。これは、コンテキスト窓の中身だけを考える段階から、context file system、skills、hooks、MCP、起動位置などを含む harness surface 全体へ視野を広げる更新です。</p>
+<p><code>real-world-evaluation</code> には Takei の E2E loop が追加されました。今日の digest で見ると、評価は静的ベンチマークではなく、仕様、生成コード、Playwright 実行、失敗の見直しが往復する環境として捉え直されています。実務上は、E2E テストを agent に「書かせる」だけでは不十分で、どの仕様が source of truth で、どの失敗を人間が確認し、どこから再生成するかまでを含めてループ化する必要があります。</p>
+<p>今日の実務的な読みどころは、エージェント活用の改善ポイントが「より良いプロンプト」から「保守できるループ」へ移っていることです。未使用 extension や重複 instruction を放置すると、実行コスト、レイテンシ、誤作動の余地が増えます。一方で、テスト仕様のような durable artifact を中心に置くと、agent の生成結果をレビューしやすくなり、失敗から次の改善へ戻しやすくなります。Podcast では、<code>/checkup</code> 的な harness hygiene、ADDF のような作業システム化、E2E testspec-to-code の3つを並べて、「ループを作る」と「ループを保守する」は別だが不可分、という論点を掘るとよさそうです。</p>
+<h2>Important Sources</h2>
+<ul>
+<li>Boris Cherny - Claude Code <code>/checkup</code> maintenance loop: <code>wiki/sources/bcherny-claude-code-checkup-maintenance-loop-x-2026-07-08.md</code></li>
+<li>果物リン - ADDF loop engineering slide deck: <code>wiki/sources/fruitriin-addf-loop-engineering-speakerdeck-x-2026-07-08.md</code></li>
+<li>Noriyuki Takei - loop engineering for E2E tests: <code>wiki/sources/noriyukitakei-e2e-test-loop-engineering-speakerdeck-x-2026-07-08.md</code></li>
+</ul>
+<h2>Updated Concepts</h2>
+<ul>
+<li><code>wiki/concepts/loop-engineering.md</code></li>
+<li><code>wiki/concepts/harness-engineering.md</code></li>
+<li><code>wiki/concepts/context-engineering.md</code></li>
+<li><code>wiki/concepts/real-world-evaluation.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Boris Cherny - Claude Code /checkup maintenance loop</h3>
+<p>Source note: <code>wiki/sources/bcherny-claude-code-checkup-maintenance-loop-x-2026-07-08.md</code></p>
+<h1>Boris Cherny - Claude Code /checkup maintenance loop</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/bcherny-claude-code-checkup-maintenance-loop-x-2026-07-08.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260710T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2074997570317779038</li>
+<li>Secondary URL: https://x.com/bcherny/status/2074997570317779038</li>
+<li>Author: Boris Cherny / @bcherny</li>
+<li>Posted: 2026-07-08T23:22:27.000Z</li>
+<li>Captured: 2026-07-10 via xurl bookmarks capture</li>
+<li>Type: X post</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark treats Claude Code maintenance as a first-class workflow. The key signal is a <code>/checkup</code> surface that helps prune unused extensions, deduplicate project instructions, split root context into nested files and skills, and disable slow hooks.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Harness maintenance can be surfaced as an explicit command, not left to manual cleanup.</li>
+<li>Instruction deduplication across root and nested <code>CLAUDE.md</code> files is worth automating.</li>
+<li>Unused skills, MCPs, and plugins can accumulate enough drag that pruning becomes part of regular operations.</li>
+<li>Hook latency matters enough that &quot;turn off slow hooks&quot; is a meaningful maintenance action.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The captured post explicitly lists the <code>/checkup</code> actions.</li>
+<li>The post aligns with the repo&#x27;s broader view that durable agent work depends on context hygiene and stable operator surfaces.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: truncated X post</li>
+<li>Confidence: high for the existence of the listed maintenance actions, medium for how generalizable they are</li>
+<li>Supports: harness engineering, context management, knowledge-loop hygiene, long-running agents</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/context-engineering.md]]</li>
+<li>[[../concepts/agent-knowledge-loop.md]]</li>
+<li>[[../concepts/long-ru</li>
+</ul>
+<h3>果物リン - ADDF loop engineering slide deck</h3>
+<p>Source note: <code>wiki/sources/fruitriin-addf-loop-engineering-speakerdeck-x-2026-07-08.md</code></p>
+<h1>果物リン - ADDF loop engineering slide deck</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/fruitriin-addf-loop-engineering-speakerdeck-x-2026-07-08.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260710T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2074797903949025773</li>
+<li>Primary URL: https://speakerdeck.com/fruitriin/i-didnt-set-out-to-build-loop-engineering-but-addf-did</li>
+<li>Author: 果物リン / @FruitRiin</li>
+<li>Posted: 2026-07-08T10:09:02.000Z</li>
+<li>Captured: 2026-07-10 via xurl bookmarks capture</li>
+<li>Type: X post / slide deck share</li>
+</ul>
+<h2>Summary</h2>
+<p>This slide deck presents ADDF as a loop-engineering framework. The useful signal is that the author is not just describing a one-off prompt recipe; they are describing a way to build a repeatable system that makes many kinds of work easier to carry through.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Loop engineering can be implemented as a named framework rather than an ad hoc set of habits.</li>
+<li>The framework is motivated by wanting to make many things, not by a single coding task.</li>
+<li>The deck sits in the same broad family as other loop and harness notes in this KB, but it leans more toward operator workflow design than model capability.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The deck title explicitly says it is a framework for loop engineering.</li>
+<li>The card description emphasizes the goal of building a system that can produce more of the things the author wants to make.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: slide deck share with limited transcript</li>
+<li>Confidence: medium for the framing, lower for any unquoted implementation details</li>
+<li>Supports: loop engineering, harness engineering, repeated-deliverable workflows</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/loop-engineering.md]]</li>
+<li>[[../concepts/harness-engineering.md]]</li>
+<li>[[../concepts/agent-knowledge-loop.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps/cod</li>
+</ul>
+<h3>Noriyuki Takei - loop engineering for E2E tests</h3>
+<p>Source note: <code>wiki/sources/noriyukitakei-e2e-test-loop-engineering-speakerdeck-x-2026-07-08.md</code></p>
+<h1>Noriyuki Takei - loop engineering for E2E tests</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/noriyukitakei-e2e-test-loop-engineering-speakerdeck-x-2026-07-08.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260710T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2075001763682509238</li>
+<li>Primary URL: https://speakerdeck.com/noriyukitakei/e2ebyloop</li>
+<li>Author: Noriyuki Takei / @noriyukitakei</li>
+<li>Posted: 2026-07-08T23:39:06.000Z</li>
+<li>Captured: 2026-07-10 via xurl bookmarks capture</li>
+<li>Type: X post / slide deck share</li>
+</ul>
+<h2>Summary</h2>
+<p>This deck is a concrete example of loop engineering applied to test automation. The main signal is the explicit <code>testspec-to-code</code> pattern: keep a test-spec artifact as the source of truth, then let an agent generate and revise Playwright code from it.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>E2E test work can be structured as a loop between a specification artifact and generated code.</li>
+<li>The loop should be repeatable enough to act like a self-running environment.</li>
+<li>Test spec documents can be treated as durable handoff artifacts instead of one-time planning notes.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text names the talk as an implementation of loop engineering for E2E testing.</li>
+<li>The deck metadata explicitly references <code>testspec-to-code</code> and Playwright code generation / revision.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: slide deck share with partial transcript</li>
+<li>Confidence: medium for the overall pattern, lower for any implementation details not visible in the capture</li>
+<li>Supports: loop engineering, coding agents, structured handoff artifacts, eval-review reliability</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/loop-engineering.md]]</li>
+<li>[[../concepts/coding-agents.md]]</li>
+<li>[[../concepts/structured-handoff-artifacts.md]]</li>
+<li>[[../concepts/real-world-evaluation.md]]</li>
+</ul>
+<h2>Related Maps</h2>
+<ul>
+<li>[[../maps</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Context Engineering</h3>
+<p>KB note: <code>wiki/concepts/context-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Context Engineering</p>
+<hr>
+<h1>Context Engineering</h1>
+<h2>Definition</h2>
+<p>The practice of deliberately deciding what information enters an agent&#x27;s context window, what is compressed, what is retrieved on demand, and what is dropped.</p>
+<h2>Why It Matters</h2>
+<p>Context is both a cost surface and a reliability surface. Poorly selected context can increase token spend, hide relevant signal, preserve stale mistakes, and make agents appear less capable than they are.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[context-file-system.md]]</li>
+<li>[[context-resets.md]]</li>
+<li>[[compiled-wiki.md]]</li>
+<li>[[structured-handoff-artifacts.md]]</li>
+<li>[[evidence-quality.md]]</li>
+<li>[[self-verification.md]]</li>
+<li>[[llm-inference-performance.md]]</li>
+<li>[[kv-cache.md]]</li>
+<li>[[organizational-intent-clarity.md]]</li>
+<li>[[conversational-feedback-learning.md]]</li>
+<li>[[workflow-compilation.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/machinelearningmastery-effective-context-engineering-ai-agents.md]]</li>
+<li>[[../sources</li>
+</ul>
+<h3>Harness Engineering</h3>
+<p>KB note: <code>wiki/concepts/harness-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Harness Engineering</p>
+<hr>
+<h1>Harness Engineering</h1>
+<h2>Definition</h2>
+<p>The design of the environment, artifacts, controls, tooling, and feedback loops around an agent so that it can produce more reliable results over time.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, performance depends less on the model alone and more on the structure that surrounds it.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[guides and sensors]]</li>
+<li>[[agent recognizable repository]]</li>
+<li>[[structured handoff artifacts]]</li>
+<li>[[machine-checkable invariants]]</li>
+<li>[[heavy-thinking.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/martin-fowler-harness-engineering.md]]</li>
+<li>[[../sources/gota-purpose-first-harness-design-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-how-to-approach-harness-engineering-speakerdeck.md]]</li>
+<li>[[../sources/rkaga-what-harness-engineering-is-and-is-not-zenn.md]]</li>
+<li>[[../sources/sergicalsix-harness-engineering-overview-design-philosophy-speakerdeck.md]]</li>
+<li>[[../sources/yuukiyo-ai-dlc</li>
+</ul>
+<h3>Loop Engineering</h3>
+<p>KB note: <code>wiki/concepts/loop-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Loop Engineering</p>
+<p>  - Agent Loop Design</p>
+<hr>
+<h1>Loop Engineering</h1>
+<h2>Definition</h2>
+<p>Loop engineering is the practice of designing the repeatable work loop an agent runs inside: objective, context, worker roles, tool access, effort level, checkpoints, grading, retries, and stopping conditions.</p>
+<h2>Origin / Framing</h2>
+<p>The term was popularized in June 2026 by Addy Osmani&#x27;s &quot;Loop Engineering&quot; article. Osmani framed it around two public practitioner signals: Peter Steinberger&#x27;s claim that developers should design loops that prompt coding agents, and Boris Cherny&#x27;s claim that his job had shifted from prompting Claude directly to writing loops.</p>
+<h2>Why It Matters</h2>
+<p>As models handle larger tasks, the operator&#x27;s leverage shifts from writing one perfect prompt toward defining a loop that can generate work, evaluate it, and converge. This makes loop design a practical sub-surface of [[harness-engineering.md]].</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering.md]]</li>
+<li>[[generator-evaluator-loop.md</li>
+</ul>
+<h3>Real-World Evaluation</h3>
+<p>KB note: <code>wiki/concepts/real-world-evaluation.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Real-World Evaluation</p>
+<hr>
+<h1>Real-World Evaluation</h1>
+<h2>Definition</h2>
+<p>Evaluation of agent systems in settings closer to actual user tasks, constraints, and long-running workflows rather than only static single-turn benchmarks.</p>
+<h2>Why It Matters</h2>
+<p>A system can look strong on benchmarks while still failing under realistic multi-step conditions.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[durability]]</li>
+<li>[[trace-driven-improvement]]</li>
+<li>[[harness-engineering]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/philipp-schmid-agent-harness-2026.md]]</li>
+<li>[[../sources/cursor-bootstrapping-composer-with-autoinstall.md]]</li>
+<li>[[../sources/langchain-deep-agents-harness-engineering.md]]</li>
+<li>[[../sources/kevin-gu-autoagent-x-thread.md]]</li>
+<li>[[../sources/anthropic-claude-mythos-preview.md]]</li>
+<li>[[../sources/anthropic-economic-index-march-2026-report.md]]</li>
+</ul>
+<ul>
+<li>[[../sources/swarm-ai-cloud-argos-ci-x.md]]</li>
+<li>[[../sources/gota-bara-uxaudit-claude-code-plugin-x.md]]</li>
+<li>[[../sources/noriyukitakei-e2e-test-loop-engineering-speakerdeck-x-2026</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>3</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
