@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coding-Agent Harness Patterns - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-07-12/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 840px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-07-12</a> / 読み物版</header>
+    <p class="eyebrow">2026-07-12 Daily Topic</p>
+    <h1>Coding-Agent Harness Patterns</h1>
+    <p class="lead">コーディングエージェントの成果は、モデル単体では決まらない。計画、実行環境、テスト、レビュー、メモリ、公開後の監視までを小さく組み合わせることで、速い生成を「続けて任せられる仕事」に変えていくための読み物です。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-07-12">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. ハーネスは作業の外側にある</strong>プロンプトを磨くだけでは足りない。計画ファイル、repoルール、検証コマンド、権限境界までが成果品質を支える。</div>
+      <div><strong>2. 小さく分けるほど任せやすい</strong>計画、実装、確認、レビュー、公開を短い循環にすると、人間もエージェントもズレを早く見つけられる。</div>
+      <div><strong>3. 失敗は次回の仕組みに戻す</strong>繰り返す指摘は会話で終わらせず、テスト、skill、rubric、AGENTS.md、監視に昇格させる。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは「エージェントに任せる形」を作ること</h2>
+      <p>コーディングエージェントは、もう単にコード片を出す道具ではありません。調査して、計画して、実装して、テストして、PRを作り、レビューコメントにも戻ってこられる。できることが増えるほど、問いは「どのモデルが一番賢いか」だけでは済まなくなります。</p>
+      <p>実務で効いてくるのは、そのエージェントがどんな環境で働くかです。何を読めるか。どこまで自動で触ってよいか。何を作業記録として残すか。どのチェックで止まるか。誰がレビューするか。ここまで含めて設計するのが、今回の <code>Coding-Agent Harness Patterns</code> です。</p>
+      <p>KBの中心命題はかなりはっきりしています。コーディングエージェントのワークフローは、品質と信頼性がプロンプトではなく、周囲の成果物、制御、レビュー循環に依存し始めたときに、ハーネスエンジニアリングになる。</p>
+
+      <h2>最初の部品は、引き継げる計画</h2>
+      <p>一番軽く始められるパターンは、計画を会話の中に閉じ込めないことです。<code>plan.md</code> のようなセッション単位の計画ファイル、タスクリスト、受け入れ条件、対象外にする範囲を残す。これだけで、エージェントの作業はかなり見えやすくなります。</p>
+      <p>計画がファイルになると、人間が途中で読めます。別のレビューエージェントに見せられます。コンテキストが切れても復帰できます。完了後に「何を約束して、何を変えたか」を比較できます。</p>
+      <p>ここで重要なのは、計画を重い仕様書にしないことです。エージェント時代の計画は、固定された契約というより、短い作業の現在地を示す地図に近い。実装で分かったことがあれば、specやチェックリストも一緒に更新する。これが、計画を生きたハンドオフ成果物にします。</p>
+
+      <h2>実行前に、環境を走れる状態にする</h2>
+      <p>次に大事なのは、タスクそのものに入る前の環境整備です。依存関係が壊れている、テストが動かない、ローカル起動方法が曖昧、生成物やvendorファイルが検索に混ざる。こういう状態でエージェントに作業を頼むと、問題解決の前に環境のノイズで予算を使います。</p>
+      <p>だから、リポジトリはエージェントにとって読みやすい形にしておく必要があります。rootとサブディレクトリの指示ファイル、スコープされたテストコマンド、無視すべき生成物、コードベースマップ、LSPで辿れる構造。これらは地味ですが、エージェントの探索コストを下げます。</p>
+      <p>大規模コードベースでは、これが特に効きます。広いモノレポを丸ごと読ませるより、どの入口から入るべきか、どのコマンドで確認すべきか、どの設計判断を守るべきかが見えているほうが、実装もレビューも安定します。</p>
+
+      <h2>検証は、できるだけ安く、できるだけ近くに置く</h2>
+      <p>ハーネスの中核は、安い決定的チェックです。lint、型チェック、unit test、end-to-end test、リンクチェック、schemaチェック、pre-commit hook。これらは、エージェントが作業した直後に何度でも回せます。</p>
+      <p>これは「AIにもテストを書かせよう」というだけの話ではありません。生成が速いなら、検証も速くなければいけない。エージェントが小さな変更を作るたびに、すぐ機械で落とせる問題を落とす。そうすると、人間レビューは型エラーや形式ミスではなく、設計、意味、UX、公開可否に集中できます。</p>
+      <p>KBの制御分類でいうと、これは after-action control です。作業後に成果物や環境状態を確かめる。ただし、チェックを近くに置けば置くほど、実質的には作業中のブレーキにもなります。安い検証は、最後の儀式ではなく、作業の呼吸に近いものになります。</p>
+
+      <h2>意味の判断は、レビュー役を分ける</h2>
+      <p>一方で、すべてを決定的チェックにできるわけではありません。依頼に合っているか。読みやすいか。UIとして自然か。公開してよい情報だけか。既存設計の意図を壊していないか。こうした判断には、意味を読むレビューが必要です。</p>
+      <p>ここで効くのが verifier split です。作ったエージェントに自己採点させるだけでなく、別のモデルや別セッションに計画や差分を見せて、粗探しや実装レビューをさせる。大きなマルチエージェント基盤を作らなくても、計画レビューと実装レビューだけ分ければかなり効果があります。</p>
+      <p>さらに、レビュー観点はrubricとして固定しておくとよいです。毎回「ちゃんと見て」では揺れます。受け入れ条件、対象外、リスク、公開可否、テスト結果、ユーザー影響を短い観点に落とすと、人間レビューとAIレビューの会話が揃います。</p>
+
+      <h2>ハーネスはローカル作業で終わらない</h2>
+      <p>コーディングエージェントのハーネスは、ローカルでテストが通ったところで終わりません。commit、push、PR作成、CI、レビューコメント、autofix、再レビュー、デプロイ、公開後監視まで続きます。</p>
+      <p>特に面白いのは、heartbeat型の運用です。PRコメント、ドキュメントコメント、Slackのフィードバック、障害通知、未完了タスクを監視し、新しい入力が来たら再開する。エージェントを一回の回答者ではなく、状態を持った運用ループとして使う発想です。</p>
+      <p>ただし、ここで大事なのは何でも自動で進めることではありません。外部送信、本番デプロイ、破壊的操作、権限変更のような危ない場所では、人間承認を明示的なゲートにする。速く回す場所と止める場所を分けるから、安心して自動化できます。</p>
+
+      <h2>道具は増やすより、選んで組む</h2>
+      <p>最近のエージェント周辺には、skills、subagents、MCP servers、hooks、IDE連携、memory layer、履歴検索、ドキュメント生成ツールが大量にあります。KBではこれを、エコシステムの寄せ集めではなく、ハーネス部品のカタログとして扱っています。</p>
+      <p>とはいえ、全部入れると別の失敗になります。プラグインが多すぎて挙動が読めない。権限境界が曖昧になる。似たようなルールが複数箇所で競合する。便利な道具が、ハーネスの信頼性を下げることもあります。</p>
+      <p>だから、まずは小さな信頼済みセットでよい。計画ファイル、検証コマンド、レビューrubric、作業メモリ、公開前チェック、必要最小限の外部ツール。使ってよかったものだけを、次の標準部品に昇格させる。</p>
+
+      <h2>失敗は、次回のルールに変える</h2>
+      <p>一番運用に効くパターンは、繰り返す失敗を会話で終わらせないことです。毎回同じ指摘をしているなら、それはプロンプトではなくハーネスの穴です。</p>
+      <p>たとえば、レビューで毎回「source.mdをそのまま出さず、人間向けのreading.htmlを書いて」と言われるなら、その条件はスクリプト、skill、cron payload、公開チェックに入れるべきです。毎回「テスト結果も報告して」と言われるなら、完了前の必須項目にするべきです。</p>
+      <p>この rule-update loop は、非エンジニアにも使えます。よく頼む出力形式、承認が必要な操作、送信前に見たい情報、繰り返す修正指示を、小さな作業ルールファイルに移す。すると、エージェントとのやり取りは「毎回説明する」から「既存ルールに沿って進める」に変わります。</p>
+
+      <h2>個人運用なら、小さな循環で十分始められる</h2>
+      <p>この話は、組織的なAI基盤だけのものではありません。個人の開発や知識ベース運用でも、そのまま使えます。</p>
+      <p>まず、短い計画を書く。次に、対象リポジトリを走れる状態にする。実装や生成を小さく進める。すぐ決定的チェックを回す。意味のレビューが必要なら、別の視点を入れる。外部公開や送信の前だけ明示的に止める。最後に、今回の失敗や学びを次回のルールに戻す。</p>
+      <p>これは大げさなプラットフォームではありません。むしろ、日々の作業を少しずつファイル、テスト、メモリ、レビュー面に外出しすることです。会話の中だけにある注意は消えます。ハーネスに入った注意は、次回の初動を変えます。</p>
+
+      <div class="callout">
+        よいコーディングエージェント運用は、強いプロンプトよりも、強い作業環境を育てる。計画で入口を作り、安い検証で足元を固め、レビュー役を分け、失敗を次回のルールに戻す。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>いまの作業で、会話の中にしか残っていない重要な約束は何か？</li>
+        <li>エージェントに頼む前に、リポジトリや環境をどこまで走れる状態にできるか？</li>
+        <li>人間レビューの前に、機械で安く落とせるチェックは何か？</li>
+        <li>生成役とレビュー役を分けるべき作業の境界はどこか？</li>
+        <li>繰り返し出る指摘を、どのskill、テスト、rubric、運用ルールに昇格できるか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm notes: <code>wiki/maps/coding-agent-harness-patterns.md</code>, <code>agent-harness-landscape.md</code>, <code>harness-engineering-vendor-comparison.md</code>, <code>multi-agent-orchestration.md</code>, <code>harness-engineering.md</code>, <code>agent-harness-control-taxonomy.md</code>.</p>
+    </footer>
+  </div>
+</body>
+</html>
