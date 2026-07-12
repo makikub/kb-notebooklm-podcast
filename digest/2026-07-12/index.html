@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-12 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-12/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-07-12</header>
+<h1>KB Daily Digest 2026-07-12</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-12/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-07-12">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-07-12</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-07-12</h1>
+<p>今日の knowledge-base-llm は、UTC 2026-07-12 00:00 頃の xurl bookmarks ingest によって、raw 3本、wiki source 3本、map更新 3本が追加・更新された。新規ソースは、Takanori Suzuki さんの「AI agents use five graph types」、Emil Kowalski さんの design engineers 向け skills repo、そして t-wada さんの「code How, tests What, commits Why, comments Why not」という短い実践知である。全体としては、エージェントの知識基盤を「Markdownだけで足りるか、グラフが必要か」と問う流れと、skills / comments / commits のような小さな運用アーティファクトを再利用可能なハーネス部品として扱う流れが合流している。</p>
+<p>重要ソースの1本目は、Takanori Suzuki さんの「AI agents use five graph types」。KB上では <code>context-graph</code>、<code>company-brain</code>、<code>compiled-wiki</code>、<code>agent-knowledge-loop</code> に接続された。ポイントは、AI agent の記憶や知識を単一の knowledge graph として雑に語るのではなく、用途に応じた複数の graph 型として分解する必要がある、という方向づけである。bookmark時点のノートでは、Markdown file approach の弱さにも触れており、今のKBが採っている「inspectable Markdown as compiled wiki」と、runtimeで使う「typed graph / context graph」の役割分担を考える材料になっている。</p>
+<p>2本目は、Emil Kowalski さんの <code>skills</code> repo。特に <code>/apple-design</code> skill が、WWDC videos から抽出した design / motion principles を operational artifact にしている点が取り込まれた。これは coding agent の skill だけでなく、design engineer の判断、レビュー、motion guidance も、再利用可能で versionable な skill としてパッケージできることを示す例である。KBでは <code>navigable-agent-skills</code>、<code>skill-optimization</code>、<code>harness-engineering</code>、<code>tool-accessibility</code> に接続され、<code>agent-harness-landscape</code> と <code>coding-agent-harness-patterns</code> の「design harnesses beyond coding」側を補強している。</p>
+<p>3本目は、t-wada さんの「code How, tests What, commits Why, comments Why not」。これは短い mnemonic だが、今日の更新の中ではかなり実務的な芯になっている。コードは実装方法、テストは振る舞い、コミットログは理由、コメントは「なぜそうしないのか」を担う、という分担は、agent handoff や long-running work で説明責任をどこに置くかの設計指針になる。KBでは <code>structured-handoff-artifacts</code>、<code>workflow-compilation</code>、<code>context-first-development</code>、<code>knowledge-base-linting</code> と結びついた。</p>
+<p>map更新では、<code>context-graph-and-company-brain.md</code> が今日の中心に近い。ここでは Markdown wiki と typed graph の比較が整理され、Markdownは inspect / edit / diff / commit に強く、typed graph は relationship traversal、validity windows、permissions、structured invalidation に強い、という分担が明示された。Takanori Suzuki さんの five-graph 記事は、この「knowledge graph だけではない」という注意書きを足す source anchor として効いている。</p>
+<p><code>agent-harness-landscape.md</code> と <code>coding-agent-harness-patterns.md</code> も更新された。前者には design-engineering skills の例として Emil Kowalski repo が追加され、後者には t-wada mnemonic が「artifact separation rule」として入った。つまり今日のトレンドは、巨大な agent platform の話だけではなく、skill repo、commit message、commenting rule のような小さな作法も、agent harness の品質を左右する部品として扱う方向にある。</p>
+<p>全体トレンドとしては、「エージェントの経験をどこに残すか」という問いが一段具体化した日だった。経験を Markdown wiki に残すだけなら人間が読みやすいが、権限・時系列・関係探索・無効化を扱うには graph layer が欲しくなる。一方で、すべてを graph に寄せると、レビュー可能性や編集しやすさを失う可能性がある。今日のKB更新は、Markdownを audit / editorial layer、graphを runtime memory layer、skillsやcommitsを procedural / rationale layer と見る合成案に近づいている。</p>
+<p>次に追うべき問いは3つある。第一に、five graph types の具体的な分類をKB内の <code>context-graph</code> mapへどう落とすか。第二に、design engineer向けの skill package を、coding skill と同じレビュー・versioning・evaluation の枠で扱えるか。第三に、Why / Why not を commit / comment / wiki / skill のどこへ残すと、将来のagentが最も安全に再利用できるか。今日の追加分は小粒に見えるが、KBの「compiled wiki と context graph を併用する」設計思想を補強する更新だった。</p>
+<h2>Important Sources</h2>
+<ul>
+<li>Takanori Suzuki - AI agents use five graph types: <code>wiki/sources/takanorisuzuki-ai-agent-five-graph-types-zenn-x-2026-07-11.md</code></li>
+<li>Emil Kowalski - skills for design engineers: <code>wiki/sources/emilkowalski-skills-design-engineers-github-2026-07-09.md</code></li>
+<li>Takuto Wada - code How, tests What, commits Why, comments Why not: <code>wiki/sources/t_wada-code-how-tests-what-commit-why-comments-why-not-x-2026-07-10.md</code></li>
+</ul>
+<h2>Changed Maps</h2>
+<ul>
+<li><code>wiki/maps/context-graph-and-company-brain.md</code></li>
+<li><code>wiki/maps/agent-harness-landscape.md</code></li>
+<li><code>wiki/maps/coding-agent-harness-patterns.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Emil Kowalski - skills for design engineers</h3>
+<p>Source note: <code>wiki/sources/emilkowalski-skills-design-engineers-github-2026-07-09.md</code></p>
+<h1>Emil Kowalski - skills for design engineers</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/repos/emilkowalski-skills-github-2026-07-09.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260712T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2075188252877672732</li>
+<li>Primary URL: https://github.com/emilkowalski/skills</li>
+<li>Author: Emil Kowalski / @emilkowalski</li>
+<li>Posted: 2026-07-09T12:00:09.000Z</li>
+<li>Captured: 2026-07-12 via xurl bookmarks capture</li>
+<li>Type: X post / GitHub repository share</li>
+<li>Evidence strength: bookmark snapshot metadata plus repo title</li>
+<li>Public metrics at capture: 12282 likes, 823 reposts, 110 replies, 79 quotes, 21475 bookmarks, 1677434 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>The repository is framed as a skill pack for design engineers, with the bookmark specifically highlighting an <code>/apple-design</code> skill distilled from WWDC videos into 17 design and motion principles. As a KB source, it is a concrete example of skill packaging for a non-coding specialty instead of a generic prompt library.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>reusable skills can encode design-engineering judgment</li>
+<li>domain-specific skills can be derived from a curated source set such as WWDC videos</li>
+<li>motion and design review can be operationalized as a skill rather than a one-off checklist</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The repository title says it is for &quot;Skills for Design Engineers.&quot;</li>
+<li>The tweet says the author created a new <code>/apple-design</code> skill.</li>
+<li>The tweet says the skill is based on 17 design and motion principles extracted from favorite WWDC videos.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / repo share</li>
+<li>Confidence: high for the existence of the repo and the skill framing, medium for any broader claim about adoption</li>
+<li>Supports: navigable-agent-skills, skill-optimization, harness-engineering, tool-accessibility</li>
+<li>Main limitations:</li>
+</ul>
+<h3>Takuto Wada - code How, tests What, commits Why, comments Why not</h3>
+<p>Source note: <code>wiki/sources/t_wada-code-how-tests-what-commit-why-comments-why-not-x-2026-07-10.md</code></p>
+<h1>Takuto Wada - code How, tests What, commits Why, comments Why not</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/t_wada-code-comments-why-not-x-2026-07-10.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260712T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/904916106153828352</li>
+<li>Author: Takuto Wada / @t_wada</li>
+<li>Posted: 2017-09-05T03:56:26.000Z</li>
+<li>Captured: 2026-07-12 via xurl bookmarks capture</li>
+<li>Type: X post</li>
+<li>Evidence strength: bookmark snapshot metadata and the post text itself</li>
+<li>Public metrics at capture: 11045 likes, 3326 reposts, 11 replies, 277 quotes, 5022 bookmarks, 0 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This post compresses a useful documentation-separation rule into one line: code should explain How, tests What, commit logs Why, and comments Why not. It is a durable writing heuristic because it assigns each artifact a different job instead of making every layer carry every kind of explanation.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>source code is the place for implementation details</li>
+<li>tests are the place for behavioral intent</li>
+<li>commit logs should preserve rationale</li>
+<li>comments should explain negative space and rejected alternatives</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The entire bookmark text is the mnemonic itself.</li>
+<li>The phrasing maps cleanly to versioned engineering artifacts rather than abstract documentation theory.</li>
+<li>The distinction fits repo practices where repeated rationale should move into durable artifacts instead of being re-explained in chat.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post</li>
+<li>Confidence: high for the mnemonic and its utility as a documentation heuristic</li>
+<li>Supports: structured-handoff-artifacts, workflow-compilation, context-first-development, knowledge-base-linting</li>
+<li>Main limitations: this is a short practitioner aphorism, not a formal methodology</li>
+<li>Best use: a compact rule</li>
+</ul>
+<h3>Takanori Suzuki - AI agents use five graph types</h3>
+<p>Source note: <code>wiki/sources/takanorisuzuki-ai-agent-five-graph-types-zenn-x-2026-07-11.md</code></p>
+<h1>Takanori Suzuki - AI agents use five graph types</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/takanorisuzuki-ai-agent-five-graph-types-zenn-x-2026-07-11.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260712T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2075905048073445758</li>
+<li>Primary URL: https://zenn.dev/knowledge_graph/articles/ai-agent-five-graph-types</li>
+<li>Author: Takanori Suzuki / @takanorisuzuki</li>
+<li>Posted: 2026-07-11T11:28:26.000Z</li>
+<li>Captured: 2026-07-12 via xurl bookmarks capture</li>
+<li>Type: X post / article share</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked Zenn title</li>
+<li>Public metrics at capture: 57 likes, 7 reposts, 0 replies, 0 quotes, 50 bookmarks, 2626 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>The article argues that AI-agent systems use more than a single knowledge graph. The bookmark description says it covers five graph usage patterns and also explains why the same idea is weaker when implemented only with Markdown files.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>AI agents use multiple graph types, not just knowledge graphs</li>
+<li>graph choice matters for enterprise AI workflows</li>
+<li>Markdown can work as an interface, but it may be weaker than a graph-backed representation for some tasks</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The article title explicitly says it is about &quot;five graph types&quot; for AI agents.</li>
+<li>The bookmark description says the author wrote about caveats in using graphs for enterprise AI.</li>
+<li>The bookmark text says the article also explains why a Markdown-file approach is weaker for the same purpose.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / technical article share</li>
+<li>Confidence: high for the article&#x27;s framing, medium for any generalized graph taxonomy beyond what is visible in the bookmark</li>
+<li>Supports: context-graph, company-brain, compiled-wiki, agent-knowledge-loop</li>
+<li>Main limitation</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/djfarrelly-agent-loop-architecture-x.md]]</li>
+<li>[[../sources/jason-liu-codex-maxxing-heartbeats.md]]</li>
+<li>[[../sources/openai-chatgpt-memory-dreaming-x-2026-06</li>
+</ul>
+<h3>Coding-Agent Harness Patterns</h3>
+<p>KB note: <code>wiki/maps/coding-agent-harness-patterns.md</code></p>
+<h1>Coding-Agent Harness Patterns</h1>
+<h2>Purpose</h2>
+<p>Synthesize practical harness patterns for coding-agent workflows using the KB&#x27;s control vocabulary plus a concrete real-world operator example.</p>
+<h2>Core claim</h2>
+<p>A coding-agent workflow becomes harness engineering when quality and reliability depend on the surrounding artifacts, controls, and review loops rather than on the model prompt alone.</p>
+<h2>Pattern 1. Plan as handoff artifact</h2>
+<p>Use a session-scoped plan file such as <code>plan.md</code> as a durable handoff contract.</p>
+<p>Why it matters:</p>
+<ul>
+<li>makes intent inspectable</li>
+<li>supports context resets and reviewer alignment</li>
+<li>creates a stable object for verifier agents to critique</li>
+</ul>
+<h2>Pattern 2. Verifier split without full multi-agent overhead</h2>
+<p>Use heavy thinking for hard, bounded reasoning: spawn independent temporary thinkers, then have one deliberator critique and synthesize their outputs.</p>
+<p>Use a second agent or model mainly for plan review or implementation review instead of duplicating the whole execution role.</p>
+<h3>Context Graph and Company Brain</h3>
+<p>KB note: <code>wiki/maps/context-graph-and-company-brain.md</code></p>
+<h1>Context Graph and Company Brain</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging vocabulary around company-scale agent memory: compiled wiki, context graph, Company Brain, and context farming.</p>
+<h2>Core Pattern</h2>
+<p>1. Raw organizational signals enter the system: docs, chat, logs, emails, tickets, meetings, and decisions.</p>
+<p>2. A context layer extracts entities, relationships, rules, provenance, and validity windows.</p>
+<p>3. Agents query the layer before acting, ideally receiving only context that is relevant, permitted, and still valid.</p>
+<p>4. Humans maintain the layer through review, invalidation, conflict resolution, and context farming.</p>
+<p>5. Dreaming-style background review can propose memory cleanup and cross-session pattern promotion, but should preserve provenance and review boundaries.</p>
+<p>In an agent-first company, this context layer also becomes an operating surface: named agents read and update role docs, taskboards, status files, decision records, handoffs, and feedback-strength notes so the organiza</p>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>3</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
