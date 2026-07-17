@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-17 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-17/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-07-17</header>
+<h1>KB Daily Digest 2026-07-17</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-17/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-07-17">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-07-17</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-07-17</h1>
+<p>今日の knowledge-base-llm は、UTC 2026-07-17 00:10 の <code>Ingest July 17 X bookmarks batch</code> によって、raw bookmark snapshot 1本、raw article 4本、wiki source 4本、<code>wiki/INDEX.md</code>、複数の concept / map note が追加・更新された。新規ソースは、Claude Code <code>/code-review</code> の effort levels、Gemini Managed Agents の free tier / token guardrail / scheduled triggers、Gartner の小規模ソフトウェアチーム予測、そしてその Gartner 予測に対する naoya さんの解釈である。全体トレンドは、「AIで人が不要になる」という単純な縮小論ではなく、agent を実務に入れるための運用制御と、AI前提のチーム設計をどう現実的に読むかへ寄っている。</p>
+<p>1本目の重要ソースは、ClaudeDevs の Claude Code <code>/code-review</code> effort levels である。<code>/code-review</code> に低・高のような effort control が入り、低 effort は token cost を抑えつつ十分な finding を出し、高 effort はより高い recall が必要な場面に向く、という位置づけになっている。KB上では <code>feedback-controls</code>、<code>loop-engineering</code>、<code>harness-engineering</code>、<code>coding-agents</code> に接続された。ここで重要なのは、review が単なる実行コマンドではなく、品質・費用・探索深度を調整する操作面を持ち始めている点である。</p>
+<p>この更新は、agentic coding の評価ループを「常に最大努力で見てもらう」から、「状況に応じて review depth を選ぶ」方向へ動かす。たとえば軽微な差分なら低 effort で早く回し、リリース前や大きな設計変更では高 effort にして recall を重視する、といった運用が考えやすくなる。KBの <code>feedback-controls</code> に追加された意味もそこにあり、フィードバックは存在すればよいのではなく、速さ、費用、曖昧さ、モデルが取り込める形という制約の中で設計する必要がある。</p>
+<p>2本目の重要ソースは、Jack Wotherspoon による Gemini Managed Agents release share である。Gemini API 経由の free tier、<code>max_total_tokens</code> による token budget guardrail、scheduled triggers による recurring agent runs が示されている。KB上では <code>managed-agents</code>、<code>background-agents</code>、<code>loop-engineering</code>、<code>tool-accessibility</code> に接続された。これは、agent がローカルの prompt pattern ではなく、定期実行、予算上限、運用境界を持つ hosted runtime になっていく流れを補強している。</p>
+<p>このソースの実務上の読みどころは、managed agent の価値が「賢いモデルを呼べる」ことだけではなく、実行の繰り返し方、止め方、使いすぎを防ぐ方法、運用者が理解できる制御面にあることだ。free tier は試用の入口を広げる一方で、scheduled triggers は background execution の設計を必要にする。<code>max_total_tokens</code> のような制御は、コスト対策であると同時に暴走防止や predictable operation の一部として読むべきである。</p>
+<p>3本目の重要ソースは、Gartner の「2029年までに60%の組織がより小さなソフトウェアエンジニアリングチームを採用する」という予測である。ただし、このソースは小規模チームを単純な cost-saving tactic として扱っていない。AIは roles と teams を再構成し、需要を減らすというより、むしろより多くのソフトウェアエンジニア需要を生む可能性がある、という慎重な立て付けになっている。今日の KB では <code>agent-first-organization</code>、<code>ai-adoption-thresholds</code>、<code>ai-roi-model</code> に接続された。</p>
+<p>naoya さんの Gartner 読みも、この誤読防止に効いている。論点は「1人チームになる」ではなく、今の 4〜5人が 2〜3人に近づくような、少人数化と需要増が同時に起きる可能性である。つまり、AI導入の問いは「人を何人減らせるか」だけではなく、「人間とAIの組み合わせで、どの単位のチームがどの責任を持つと速く・安全に動けるか」に移る。KBの <code>agent-first-organization</code> でも、named agents、taskboard、decision records、handoff、builder/reviewer split といった operating surfaces が重要になる。</p>
+<p>今日の概念・地図更新を見ると、2つの流れが合流している。ひとつは、Claude Code review effort や Gemini Managed Agents のような、agent runtime / feedback loop に具体的な knob が増える流れ。もうひとつは、Gartner / naoya のような、AI前提でチームサイズや役割分担を読み替える流れである。全体として、KBは「モデル性能」よりも、制御可能な運用面、反復可能な loop、AIを含む小さな組織単位の設計へ重心を置いている。</p>
+<p>次に追うべき問いは、review effort をどの差分・リスク・リリース段階で切り替えるべきか、managed agent の token guardrail と scheduled trigger をどの監査・停止機構と組み合わせるべきか、そして小規模チーム化を cost-cutting の合図ではなく役割再設計として扱うために、どんな evidence と operating surface が必要かである。今日は4本の追加だが、agent を「使う」段階から、費用、品質、実行頻度、チーム責任を含めて「運用する」段階へ進んでいることがよく見える更新だった。</p>
+<h2>Important Sources</h2>
+<ul>
+<li>ClaudeDevs - Claude Code <code>/code-review</code> effort levels: <code>wiki/sources/claudedevs-code-review-effort-levels-x-2026-07-16.md</code></li>
+<li>Jack Wotherspoon - Gemini Managed Agents release: <code>wiki/sources/jackwoth98-gemini-managed-agents-free-tier-guardrails-triggers-x-2026-07-16.md</code></li>
+<li>Gartner - Tiny teams are not a cost-saving tactic: <code>wiki/sources/gartner-tiny-teams-not-cost-saving-tactic-2026-07-07.md</code></li>
+</ul>
+<h2>Other New Source</h2>
+<ul>
+<li>naoya - Gartner small-team reading: <code>wiki/sources/naoya-gartner-smaller-teams-demand-x-2026-07-15.md</code></li>
+</ul>
+<h2>Changed Concepts And Maps</h2>
+<ul>
+<li><code>wiki/INDEX.md</code></li>
+<li><code>wiki/concepts/feedback-controls.md</code></li>
+<li><code>wiki/concepts/loop-engineering.md</code></li>
+<li><code>wiki/concepts/managed-agents.md</code></li>
+<li><code>wiki/concepts/agent-first-organization.md</code></li>
+<li><code>wiki/concepts/ai-adoption-thresholds.md</code></li>
+<li><code>wiki/concepts/ai-roi-model.md</code></li>
+<li><code>wiki/maps/agent-harness-landscape.md</code></li>
+<li><code>wiki/maps/harness-engineering-vendor-comparison.md</code></li>
+</ul>
+<p>公開HTML: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-17/</p>
+<p>NotebookLM用 source.md: https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-17/source.md</p>
+<h2>重要ソース</h2>
+<h3>ClaudeDevs - Claude Code /code-review effort levels</h3>
+<p>Source note: <code>wiki/sources/claudedevs-code-review-effort-levels-x-2026-07-16.md</code></p>
+<h1>ClaudeDevs - Claude Code /code-review effort levels</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/claudedevs-code-review-effort-levels-x-2026-07-16.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260717T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2077840057130692886</li>
+<li>Photo URL: https://x.com/ClaudeDevs/status/2077840057130692886/photo/1</li>
+<li>Author: ClaudeDevs / @ClaudeDevs</li>
+<li>Author ID: 2024518793679294464</li>
+<li>Posted: 2026-07-16T19:37:28.000Z</li>
+<li>Captured: 2026-07-17 via xurl bookmarks capture</li>
+<li>Type: X post / product feature update</li>
+<li>Evidence strength: bookmark snapshot metadata plus captured post text</li>
+<li>Public metrics at capture: 2486 likes, 127 reposts, 150 replies, 33 quotes, 865 bookmarks, 175642 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This post makes <code>/code-review</code> effort a first-class knob in Claude Code. The useful detail is the explicit tradeoff: lower effort finds many issues cheaply, while higher effort improves recall when deeper scrutiny is worth the tokens.</p>
+<h2>Key Claims</h2>
+<ul>
+<li><code>/code-review</code> now exposes effort levels.</li>
+<li>Each effort level rewrites the review rather than merely adjusting a hidden budget.</li>
+<li>Low effort can outperform other review tools on findings per token.</li>
+<li>High effort is the mode for deeper recall.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post text states the effort-level feature directly.</li>
+<li>The comparison language makes token cost part of the product story, not a post-hoc inference.</li>
+<li>This is a concrete example of feedback control becoming productized inside a coding-agent workflow.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: official-ish product update share from ClaudeDevs</li>
+<li>Confidence: high for the feature announcement, medium for the performance comparison because it is a marketing-style claim</li>
+<li>Supports: feedback-controls, loop-engineering, harness-engineerin</li>
+</ul>
+<h3>Gartner - Tiny teams are not a cost-saving tactic</h3>
+<p>Source note: <code>wiki/sources/gartner-tiny-teams-not-cost-saving-tactic-2026-07-07.md</code></p>
+<h1>Gartner - Tiny teams are not a cost-saving tactic</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/gartner-tiny-teams-not-cost-saving-tactic-2026-07-07.md</code></li>
+<li>Primary URL: https://www.gartner.com/en/newsroom/press-releases/2026-07-07-gartner-predicts-60-percent-of-organizations-will-adopt-smaller-software-engineering-teams-by-2029</li>
+<li>Author: Gartner</li>
+<li>Posted: 2026-07-07</li>
+<li>Captured: 2026-07-17 via source-note compilation</li>
+<li>Type: press release</li>
+<li>Evidence strength: primary source press release</li>
+</ul>
+<h2>Summary</h2>
+<p>Gartner predicts that 60% of organizations will adopt smaller software engineering teams by 2029, but the release explicitly says tiny teams are not a cost-saving tactic. The more durable reading is role redesign, platform support, and demand growth rather than pure headcount compression.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>AI is reshaping software engineering roles and team structure.</li>
+<li>The release says tiny teams are not a cost optimization tactic.</li>
+<li>Typical tiny teams are still multi-person teams, often 4-5 people and sometimes 2-3.</li>
+<li>Organizations should not interpret the trend as a simple junior-role purge.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The press release headline and body directly state the 60% adoption prediction.</li>
+<li>The release says AI is fueling demand for more software engineers, not fewer.</li>
+<li>The release warns that cutting junior hiring can weaken the talent pipeline.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: primary-source press release</li>
+<li>Confidence: high for the reported Gartner statements</li>
+<li>Supports: ai-adoption-thresholds, agent-first-organization, ai-roi-model, organizational-intent-clarity</li>
+<li>Main limitations: Gartner is making a forecast, not reporting observed universal practice</li>
+<li>Best use: macro evidence for team-shape change without assuming software demand collapses</li>
+</ul>
+<h2>Related Concept</h2>
+<h3>Jack Wotherspoon - Gemini Managed Agents release</h3>
+<p>Source note: <code>wiki/sources/jackwoth98-gemini-managed-agents-free-tier-guardrails-triggers-x-2026-07-16.md</code></p>
+<h1>Jack Wotherspoon - Gemini Managed Agents release</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/jackwoth98-gemini-managed-agents-free-tier-guardrails-triggers-x-2026-07-16.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260717T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2077811074259456149</li>
+<li>Video URL: https://x.com/JackWoth98/status/2077811074259456149/video/1</li>
+<li>Author: Jack Wotherspoon / @JackWoth98</li>
+<li>Author ID: 1862257064</li>
+<li>Posted: 2026-07-16T17:42:18.000Z</li>
+<li>Captured: 2026-07-17 via xurl bookmarks capture</li>
+<li>Type: X post / feature release share</li>
+<li>Evidence strength: bookmark snapshot metadata plus post text and video-card link</li>
+<li>Public metrics at capture: 381 likes, 33 reposts, 15 replies, 3 quotes, 176 bookmarks, 22863 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This post highlights Gemini Managed Agents as a hosted agent surface with a free tier, token guardrails, and scheduled triggers. The durable signal is that Gemini is exposing the same control ideas the KB has been tracking elsewhere: budgets, recurring execution, and managed runtime behavior.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Gemini Managed Agents has a free tier via the Gemini API.</li>
+<li><code>max_total_tokens</code> is used as a guardrail for agent budgets.</li>
+<li>Scheduled triggers can run the agent on a recurring basis.</li>
+<li>The product is treating background agent operation as a core surface, not an edge feature.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post text names the three product controls directly.</li>
+<li>The video-card link suggests the post is an announcement/demo share rather than a casual observation.</li>
+<li>The signal is strong enough to justify a source note, but the post text alone does not explain how scheduling, auth, or connector scope work.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / feature release share</li>
+<li>Confidence: medium-high for the control-su</li>
+</ul>
+<h3>naoya - Gartner small-team reading</h3>
+<p>Source note: <code>wiki/sources/naoya-gartner-smaller-teams-demand-x-2026-07-15.md</code></p>
+<h1>naoya - Gartner small-team reading</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>raw/articles/naoya-gartner-smaller-teams-demand-x-2026-07-15.md</code></li>
+<li>Raw bookmark capture: <code>raw/x/bookmarks/bookmarks-20260717T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2077260280778932418</li>
+<li>Primary URL: https://www.gartner.com/en/newsroom/press-releases/2026-07-07-gartner-predicts-60-percent-of-organizations-will-adopt-smaller-software-engineering-teams-by-2029</li>
+<li>Author: naoya / @naoya_ito</li>
+<li>Author ID: 89389479</li>
+<li>Posted: 2026-07-15T05:13:39.000Z</li>
+<li>Captured: 2026-07-17 via xurl bookmarks capture</li>
+<li>Type: X post / commentary on a press release</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked press-release title/snippet</li>
+<li>Public metrics at capture: 322 likes, 60 reposts, 1 reply, 8 quotes, 216 bookmarks, 37883 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark is a reaction to Gartner&#x27;s prediction about smaller software engineering teams. The value is the interpretation: the post pushes back on a simplistic &quot;everyone becomes a solo engineer&quot; reading and says the report still implies multi-person teams and growing demand.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>&quot;Smaller teams&quot; should be read as 2-3 engineers, not one-person teams.</li>
+<li>The report is not saying engineering demand shrinks.</li>
+<li>Team-size reduction is part of a broader demand-expansion story.</li>
+<li>The main value is the corrective framing around how to interpret the press release.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text explicitly reframes the Gartner claim.</li>
+<li>The press-release URL provides the primary source context.</li>
+<li>The post is better treated as an organizational interpretation than as a technical pattern.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / commentary on a vendor press release</li>
+<li>Confidence: medium for the framing, lower for any broad generalization beyon</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent-First Organization</h3>
+<p>KB note: <code>wiki/concepts/agent-first-organization.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent-First Organization</p>
+<p>  - AI-Native Organization</p>
+<p>  - AI-First Company</p>
+<hr>
+<h1>Agent-First Organization</h1>
+<h2>Definition</h2>
+<p>An agent-first organization is an operating model where named AI agents own durable work surfaces, carry persistent context, coordinate through shared artifacts, and communicate with each other directly, while humans retain direction, judgment, trust work, and external accountability.</p>
+<h2>Why It Matters</h2>
+<p>Most AI adoption starts as individual acceleration. Agent-first organization design asks a harder question: what changes when the company itself coordinates through agents, taskboards, status files, decision records, handoffs, and review loops rather than through humans relaying every message?</p>
+<h2>Minimum Operating Surfaces</h2>
+<ul>
+<li>Named agent identities and addresses.</li>
+<li>Written role docs such as AGENTS.md or CLAUDE.md.</li>
+<li>Shared taskboard with IDs, owners, status, and priorities.</li>
+<li>Decision records and status files.</li>
+<li>Structured handoffs between role surface</li>
+</ul>
+<h3>AI Adoption Thresholds</h3>
+<p>KB note: <code>wiki/concepts/ai-adoption-thresholds.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - AI Adoption Thresholds</p>
+<p>  - AI Usage Rate Thresholds</p>
+<p>  - Adoption-Phase AI Rollout</p>
+<hr>
+<h1>AI Adoption Thresholds</h1>
+<h2>Definition</h2>
+<p>AI adoption thresholds are rough usage-rate bands that change which organization-level AI rollout moves are appropriate.</p>
+<h2>Why It Matters</h2>
+<p>AI rollout failures often come from applying the wrong move at the wrong maturity level: buying tools before measuring usage, pushing workflow transformation before literacy, or treating individual experimentation as organization-wide adoption. Thresholds make adoption strategy conditional on observed behavior.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[ai-adoption-j-curve.md]]</li>
+<li>[[ai-roi-model.md]]</li>
+<li>[[organizational-intent-clarity.md]]</li>
+<li>[[agent-management.md]]</li>
+<li>[[context-engineering.md]]</li>
+<li>[[loop-engineering.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/shin-suge-ai-ops-roadmap-behavior-change-note-2026-06-09.md]]</li>
+<li>[[../sources/dora-roi-ai-assisted-software-development.md]]</li>
+<li>[[../sources/suna_gaku-claude-code-champion-kit</li>
+</ul>
+<h3>AI ROI Model</h3>
+<p>KB note: <code>wiki/concepts/ai-roi-model.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - AI ROI Model</p>
+<p>  - ROI of AI-assisted Software Development</p>
+<p>  - AI Value Model</p>
+<hr>
+<h1>AI ROI Model</h1>
+<h2>Definition</h2>
+<p>A structured way to estimate the return on AI-assisted software development by linking AI adoption to delivery metrics, business value, and adoption costs.</p>
+<h2>Why It Matters</h2>
+<p>AI productivity claims are not enough for enterprise adoption. A credible model connects engineering indicators to financial outcomes while accounting for hard costs, learning costs, instability, and uncertainty.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[ai-adoption-j-curve]]</li>
+<li>[[verification-tax]]</li>
+<li>[[evidence-quality]]</li>
+<li>[[organizational-intent-clarity]]</li>
+<li>[[product-responsibility-distribution]]</li>
+<li>[[sustainable-ai-work]]</li>
+<li>[[agentic-jevons-paradox]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/dora-roi-ai-assisted-software-development.md]]</li>
+<li>[[../sources/simon-willison-gitlab-act-2.md]]</li>
+<li>[[../sources/simon-willison-product-market-fit.md]]</li>
+<li>[[../sources/tsunoda-legalon-ai-driven-hiring-token-budget-x-2026-05-</li>
+</ul>
+<h3>Feedback Controls</h3>
+<p>KB note: <code>wiki/concepts/feedback-controls.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Feedback Controls</p>
+<hr>
+<h1>Feedback Controls</h1>
+<h2>Definition</h2>
+<p>Controls that inspect outcomes after the agent acts and provide signals that support self-correction.</p>
+<h2>Why It Matters</h2>
+<p>They help catch mistakes the agent cannot prevent perfectly in advance.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[guides-and-sensors]]</li>
+<li>[[feedforward-controls]]</li>
+<li>[[machine-checkable-invariants]]</li>
+<li>[[conversational-feedback-learning.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/martin-fowler-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-cwc-long-running-agents-repo.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/arxiv-social-meta-learning-language-feedback.md]]</li>
+<li>[[../sources/claudedevs-code-review-effort-levels-x-2026-07-16.md]]</li>
+</ul>
+<h2>Tradeoffs / Tensions</h2>
+<ul>
+<li>Feedback that is too slow or too vague creates wasted loops.</li>
+<li>File-based evidence gates can make proof structural, but weak bindings between evidence and criteria can still allow shallow compliance.</li>
+<li>High-quality inferential feedback c</li>
+</ul>
+<h3>Loop Engineering</h3>
+<p>KB note: <code>wiki/concepts/loop-engineering.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Loop Engineering</p>
+<p>  - Agent Loop Design</p>
+<hr>
+<h1>Loop Engineering</h1>
+<h2>Definition</h2>
+<p>Loop engineering is the practice of designing the repeatable work loop an agent runs inside: objective, context, worker roles, tool access, effort level, checkpoints, grading, retries, and stopping conditions.</p>
+<h2>Origin / Framing</h2>
+<p>The term was popularized in June 2026 by Addy Osmani&#x27;s &quot;Loop Engineering&quot; article. Osmani framed it around two public practitioner signals: Peter Steinberger&#x27;s claim that developers should design loops that prompt coding agents, and Boris Cherny&#x27;s claim that his job had shifted from prompting Claude directly to writing loops.</p>
+<h2>Why It Matters</h2>
+<p>As models handle larger tasks, the operator&#x27;s leverage shifts from writing one perfect prompt toward defining a loop that can generate work, evaluate it, and converge. This makes loop design a practical sub-surface of [[harness-engineering.md]].</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering.md]]</li>
+<li>[[generator-evaluator-loop.md</li>
+</ul>
+<h3>Managed Agents</h3>
+<p>KB note: <code>wiki/concepts/managed-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Managed Agent</p>
+<p>  - Managed Agents</p>
+<hr>
+<h1>Managed Agents</h1>
+<h2>Definition</h2>
+<p>Hosted or product-managed agent runtimes that package model execution with tools, permissions, memory, tracing, sandboxing, and operational controls.</p>
+<h2>Why It Matters</h2>
+<p>Managed agents turn agent operation into a deployable surface rather than a local prompt pattern. They make it easier to build roleful domain agents, but they also move important governance decisions into the runtime: what tools are exposed, how memory persists, what is sandboxed, and how humans inspect or intervene.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[multi-agent-orchestration.md]]</li>
+<li>[[agent-dreaming.md]]</li>
+<li>[[outcomes.md]]</li>
+<li>[[tool-accessibility.md]]</li>
+<li>[[agent-management.md]]</li>
+<li>[[agent-safety.md]]</li>
+<li>[[background-agents.md]]</li>
+<li>[[context-engineering.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/claudeai-claude-managed-agents-intro-x.md]]</li>
+<li>[[../sources/claude-new-in-managed-agents-dreaming-outcomes-orchestration.md]]</li>
+<li>[[../sources/oikon48-claude-ma</li>
+</ul>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/djfarrelly-agent-loop-architecture-x.md]]</li>
+<li>[[../sources/jason-liu-codex-maxxing-heartbeats.md]]</li>
+<li>[[../sources/openai-chatgpt-memory-dreaming-x-2026-06</li>
+</ul>
+<h3>Harness Engineering Vendor / Practitioner Comparison</h3>
+<p>KB note: <code>wiki/maps/harness-engineering-vendor-comparison.md</code></p>
+<h1>Harness Engineering Vendor / Practitioner Comparison</h1>
+<h2>Purpose</h2>
+<p>Compare how different sources frame harness engineering, what they optimize for, and what distinctive mechanisms they emphasize.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/codex-subagents-docs.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/cursor-3-blog.md]]</li>
+<li>[[../sources/anthropic-claude-code-large-codebases.md]]</li>
+<li>[[../sources/anthropic-2026-agentic-coding-trends-report.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+</ul>
+<h2>Comparison axes</h2>
+<h3>OpenAI</h3>
+<ul>
+<li>Focus: repository design, machine-enforced invariants, agent-recognizable contex</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>4</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
