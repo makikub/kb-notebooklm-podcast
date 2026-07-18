@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Context Management Decision Map - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-07-19/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 840px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-07-19</a> / 読み物版</header>
+    <p class="eyebrow">2026-07-19 Daily Topic</p>
+    <h1>Context Management Decision Map</h1>
+    <p class="lead">長く動くエージェントで一番むずかしいのは、賢く続けることだけではない。続ける、巻き戻す、消す、圧縮する、任せる、リセットする、あとで起こす。その判断を、気分ではなくハーネスの部品として扱うための読み物です。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-07-19">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 文脈は資産でも負債でもある</strong>直前の会話には価値があるが、誤解やノイズも残る。続行が常に正解ではない。</div>
+      <div><strong>2. 復帰手段を選べるようにする</strong>continue、rewind、clear、compact、delegate、reset、loopを、状況別の操作として持つ。</div>
+      <div><strong>3. 引き継ぎ artifact が鍵になる</strong>計画、進捗、検証結果、公開物が残っていれば、リセットしても仕事は失われない。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは「どの文脈で続けるか」</h2>
+      <p>エージェントが長く働けるようになるほど、会話を続けるかどうか自体が設計問題になります。人間とのやり取り、読んだファイル、試したコマンド、途中の仮説、失敗した枝。これらは次の判断を助けますが、同時に誤解や古い前提も運びます。</p>
+      <p><code>Context Management Decision Map</code> は、その場の勘で「まだ続ける」「一回やり直す」を決めないための地図です。文脈をそのまま使うのか、圧縮するのか、消すのか、別作業へ逃がすのか。長時間エージェントの信頼性は、この選択をどれだけ明示できるかで大きく変わります。</p>
+      <p>ここでの主役はモデルの記憶力ではありません。ハーネス側に、文脈を残す方法と捨てる方法の両方を持たせることです。</p>
+
+      <h2>Continue は、まだ地図が汚れていないときに使う</h2>
+      <p>一番自然なのは、そのまま続けることです。直前の作業がまだ明確で、次にやることも近く、会話の中に有用な判断材料が多いなら、continue が一番安い。読み直しも引き継ぎも少なく、作業の勢いを保てます。</p>
+      <p>ただし、continue は便利なぶん、惰性で選ばれがちです。途中で間違った前提が入り、古い方針が残り、話題が広がりすぎた状態でも続けてしまうと、エージェントは「覚えていること」に引っ張られます。</p>
+      <p>だから continue の判断基準は、「まだ作業文脈が助けになっているか」です。現在の次の一手が明快で、ユーザーの最新指示と矛盾せず、検証結果も読めている。そこまで揃っているなら、文脈は資産として使えます。</p>
+
+      <h2>Rewind と Clear は、間違った枝を扱うための操作</h2>
+      <p>失敗した枝に入ったとき、全部を捨てる必要はありません。推論の途中だけが間違っていて、周囲の状態はまだ使えるなら rewind が効きます。最後に正しかった地点まで戻り、そこから別の分岐を試す。</p>
+      <p>一方で、ユーザーが「この前提は消したい」「ここからは見える情報を絞りたい」と考えているなら clear の出番です。明示的に会話文脈を拭き取り、必要な artifact だけを入口にして始める。これは単なる忘却ではなく、見えるものを制御するための操作です。</p>
+      <p>この二つは似ていますが、目的が違います。rewind は作業の枝刈り、clear は可視状態の制御です。どちらも、長い会話の中で「何を持ち越すか」を人間が選べるようにするためにあります。</p>
+
+      <h2>Compact は、捨てずに軽くする技術</h2>
+      <p>文脈が大きくなりすぎたけれど、まだ価値がある。そんなときは compact です。会話全体を残すのではなく、決定、未完了、検証結果、変更ファイル、次の一手だけに縮める。</p>
+      <p>圧縮の難しさは、短くすることではありません。何を落としてよいかを見分けることです。冗長なログ、古い仮説、すでに解決した寄り道は落とす。反対に、ユーザーの最新要求、外部に出す成果物、未検証のリスク、失敗したコマンドは残す。</p>
+      <p>良い compact は、次のエージェントに「続きをやるための最低限」を渡します。悪い compact は、気持ちよく短くなっているだけで、復帰に必要な根拠が抜けています。ここでも、圧縮は要約テクニックではなくハーネス設計です。</p>
+
+      <h2>Delegate は、親の文脈を汚さないために使う</h2>
+      <p>専門的でノイズの多い調査、長いログの探索、別視点のレビュー、独立した検証。こうした作業を親セッションで全部抱えると、会話が膨らみ、判断軸がぼやけます。そこで delegate が効きます。</p>
+      <p>サブエージェントや別ワーカーに、狭い目的だけを渡す。親は依頼内容、戻り値、採用した判断だけを受け取る。これにより、探索のノイズは隔離され、親の文脈は意思決定に必要な情報へ寄ります。</p>
+      <p>これはマルチエージェントを派手に使う話ではありません。むしろ、親の作業面を汚さないための小さな分離です。レビュー役を分ける、ログ解析を分ける、候補出しを分ける。そのくらいでも十分に効果があります。</p>
+
+      <h2>Reset は、成果物から立ち上がれるときに強い</h2>
+      <p>セッションが長くなりすぎ、方針の drift や隠れた混乱が増えてきたら、reset を選びます。新しいセッションで、明示的な handoff artifact から状態を再構築する。</p>
+      <p>ここで重要なのは、reset ができるように普段から作業することです。<code>PROGRESS.md</code>、計画ファイル、コミット、検証ログ、公開URL、未完了リストが残っていれば、会話を捨てても仕事は続きます。逆に、重要な判断がチャットの奥にしかないなら、reset は危険になります。</p>
+      <p>長時間ハーネスが進捗ファイルや小さなコミットを重視する理由はここにあります。文脈を永遠に保持するより、外部 artifact から復帰できるほうが、運用としては強い。</p>
+
+      <h2>Loop と Wake は、時間をまたぐ仕事のためにある</h2>
+      <p>すべての仕事が一回のセッションで終わるわけではありません。PRのレビュー待ち、公開反映待ち、定期レポート、外部状態の監視、毎週の読み物生成。こうした作業では、loop や wake が文脈管理の一部になります。</p>
+      <p>scheduled loop は、一定の条件や時刻で作業を再開します。Monitor 型の wakeup は、新しい入力や状態変化を見て戻ってきます。どちらも、会話をずっと開いたままにするのではなく、必要なときに短い文脈で復帰する発想です。</p>
+      <p>ただし、時間をまたぐほど artifact の質が問われます。前回何を選んだか、何を公開したか、何を待っているか、次に何をすればよいか。これが残っていない loop は、ただ定期的に迷う仕組みになります。</p>
+
+      <h2>判断地図は、ハーネス全体につながっている</h2>
+      <p>このテーマは、単独の会話術ではありません。KBの <code>Agent Harness Landscape</code> や <code>Coding-Agent Harness Patterns</code> とつながっています。エージェントの性能は、モデルだけでなく、リポジトリ構造、検証、レビュー、権限、メモリ、公開後の循環で決まる。</p>
+      <p>文脈管理は、その中でも「次の判断に何を見せるか」を決める層です。見せすぎるとノイズになる。見せなさすぎると再発見になる。圧縮しすぎると根拠が消える。残しすぎると古い前提に引っ張られる。</p>
+      <p>だから実務では、判断地図をチェックリストとして使うとよいです。まだ continue でよいか。失敗枝だけ rewind できるか。clear が必要か。compact すべきか。delegate すべきか。reset できるだけの artifact はあるか。待ちがあるなら loop に逃がせるか。</p>
+
+      <div class="callout">
+        長く働くエージェントに必要なのは、文脈をたくさん持つことだけではない。いつ続け、いつ捨て、いつ圧縮し、いつ別の作業面に逃がすかを選べることが、信頼できる運用を作る。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>いまの作業は continue で進めるべきか、それとも compact してから続けるべきか？</li>
+        <li>失敗した枝だけを rewind できるほど、直前の正しい地点は明確か？</li>
+        <li>新しいセッションで reset しても復帰できる handoff artifact は残っているか？</li>
+        <li>親セッションから delegate したほうがよいノイズの多い作業は何か？</li>
+        <li>時間待ちや定期確認を、会話の記憶ではなく loop / wake に移せるか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm notes: <code>wiki/maps/context-management-decisions.md</code>, <code>agent-harness-landscape.md</code>, <code>coding-agent-harness-patterns.md</code>, <code>harness-engineering-vendor-comparison.md</code>, <code>research-os-query-paths.md</code>, <code>harness-engineering.md</code>.</p>
+    </footer>
+  </div>
+</body>
+</html>
