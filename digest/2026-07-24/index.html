@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-24 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-24/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-07-24</header>
+<h1>KB Daily Digest 2026-07-24</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-24/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-07-24">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-07-24</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-07-24</h1>
+<p>2026-07-24 UTC の knowledge-base-llm 更新は、X bookmark の日次 ingest から raw article 6本、wiki source 6本が追加され、<code>agent-harness-landscape</code> と <code>coding-agent-harness-patterns</code> の2つの地図が更新された。全体としては、AIエージェントの話題が「単体のコーディング支援」から、開発組織の運用、知識創造、音声による制御面へ広がっている。</p>
+<p>今回の中心トレンドは2つある。ひとつは AI DevEx Conference 2026 由来の実践者スライド群で、agentic software engineering、vibe coding を超える開発原則、生成AI導入の期待外れを乗り越える開発フロー改革、AIエージェントとの1年単位の知識創造がまとまって入った。もうひとつは OpenAI と Claude の音声モード発表で、voice が単なる会話UIではなく、複数エージェントや connected tools を動かす操作面になりつつあることを示している。</p>
+<p>重要ソースの1本目は、OpenAI の「ChatGPT Voice in the desktop app」。この source note は、ChatGPT Voice がデスクトップアプリに入り、コンピュータ操作や ChatGPT Work / Codex 上の複数エージェント指示に関わるものとして整理している。KB上では <code>managed-agents</code>、<code>multi-agent-orchestration</code>、<code>tool-accessibility</code>、<code>agent-management</code> を支える一次発表として扱われ、音声指示がどこまで直接実行できるのか、危険操作の確認や監査ログはどうなるのか、という未解決問いも明示された。</p>
+<p>重要ソースの2本目は、Claude の「Voice mode with connected tools」。Claude 側でも voice mode がより高性能なモデルと connected tools に接続され、会話中にツールへ届く制御面として位置づけられている。OpenAI のデスクトップ voice と並べて見ると、主要プロダクトが同時に「音声 + ツール + エージェント運用」へ寄っており、KBの地図では voice をアクセシビリティ機能だけでなく agent harness の入力・確認・権限設計の問題として扱う方向が強まった。</p>
+<p>重要ソースの3本目は、t_wada さんの「Agentic Software Engineering 2026-07 Findy Edition」。現時点の capture は keynote slide deck pointer であり、本文までは取り込めていないため証拠強度は medium だが、実践者コミュニティが agentic software engineering という語でソフトウェア開発を再整理しているシグナルとして重要度が高い。関連して「Beyond Just Vibe Coding」は、AI駆動開発を classic principles と組み合わせる方向を示し、生成AI導入の期待外れを扱う deck は、問題がモデル性能だけでなく開発フローと組織変革にあることを補強している。</p>
+<p>地図の更新では、<code>wiki/maps/agent-harness-landscape.md</code> に July 24 bookmarks のクラスターが追加された。AI DevEx の複数 deck は、知識創造、開発フロー改革、hybrid classical-plus-AI practice、agentic software engineering をひとまとまりの実践者シグナルとして扱われている。また OpenAI と Claude の voice 発表は、voice が会話フロントエンドから multi-agent work の control surface へ変わっている、という地図上の見立てを追加した。</p>
+<p><code>wiki/maps/coding-agent-harness-patterns.md</code> も同じ方向で更新された。ここでは、coding-agent harness の論点が prompt novelty から、具体的な engineering workflow、組織変革、古典的な開発原則との併用へ移っていることが記録された。さらに voice control surface の広がりにより、command visibility、confirmations、audit trails の重要性が増す、という運用面の問いが追記されている。</p>
+<p>実務上の読みどころは、「エージェントをどう賢くするか」だけでなく、「どの操作面で、誰が、何を、どの確認つきで任せるか」に焦点が移っている点だ。音声は自然で速い入力だが、ツール実行や複数エージェント指示と結びつくと、誤認識、過剰実行、権限境界、あとから見返せる証跡が一気に重要になる。開発組織側では、vibe coding の速度感を取り込みつつも、設計、レビュー、検証、フロー改革、知識蓄積をどう保つかが継続課題になる。</p>
+<p>Podcastで掘るなら、まず「voice は agent harness のどの層に入るのか」を入口にすると話しやすい。次に、AI DevEx の deck 群を、個人の生産性向上ではなく組織の operating model 変更として読み替えるとよい。最後に、KBが次に追うべき問いとして、音声起点のエージェント操作に必要な確認UI、監査ログ、権限管理、そして classic software engineering principles をAI駆動開発にどう再配置するかを並べると、NotebookLM の会話素材としても流れが作りやすい。</p>
+<h2>重要ソース</h2>
+<h3>Claude - Voice mode with connected tools</h3>
+<p>Source note: <code>wiki/sources/claudeai-voice-mode-connected-tools-x-2026-07-23.md</code></p>
+<h1>Claude - Voice mode with connected tools</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/claudeai-voice-mode-connected-tools-x-2026-07-23.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260724T0000Z.json</code></li>
+<li>Canonical URL: https://x.com/i/status/2080376094939603366</li>
+<li>Media URL: https://x.com/claudeai/status/2080376094939603366/video/1</li>
+<li>Author: Claude / @claudeai</li>
+<li>Posted: 2026-07-23T19:34:47.000Z</li>
+<li>Captured: 2026-07-24 via xurl bookmarks capture</li>
+<li>Type: first-party product announcement</li>
+<li>Evidence strength: high for feature existence; the post is a direct product announcement</li>
+<li>Public metrics at capture: 448 reposts, 480 replies, 6962 likes, 248 quotes, 1433 bookmarks, 676414 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Claude announced that voice mode now runs on more capable models and can reach connected tools mid-conversation. The post widens voice from a conversational interface into a tool-aware control surface.</p>
+<h2>Notable points</h2>
+<ul>
+<li>Voice mode is now tied to stronger models.</li>
+<li>Tool access happens mid-conversation rather than in a separate workflow.</li>
+<li>The feature is explicitly multilingual, which matters for accessibility and global use.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The official post explicitly says voice mode can reach connected tools.</li>
+<li>It also says voice mode now runs on more capable models.</li>
+<li>The language claim broadens the feature beyond a narrow English-only beta.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: first-party product announcement</li>
+<li>Confidence: high for the feature and general capability claim</li>
+<li>Supports: tool-accessibility, managed-agents, coding-agents, agent-management</li>
+<li>Main limitations: no detail on permissions, approval flow, or guardrails</li>
+<li>Best use: evidence that voice is being integrated into tool-using agent workflows</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concep</li>
+</ul>
+<h3>広木 大地 - AI agents and a year of knowledge creation</h3>
+<p>Source note: <code>wiki/sources/hiroki-daichi-ai-agents-knowledge-creation-year-aidevex-x-2026-07-23.md</code></p>
+<h1>広木 大地 - AI agents and a year of knowledge creation</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/hiroki-daichi-ai-agents-knowledge-creation-year-aidevex-x-2026-07-23.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260724T0000Z.json</code></li>
+<li>Canonical URL: https://x.com/i/status/2080207204591050880</li>
+<li>Primary URL: https://slide.rector.co.jp/rp/aidevex2026</li>
+<li>Author: 広木 大地 / @hiroki_daichi</li>
+<li>Posted: 2026-07-23T08:23:40.000Z</li>
+<li>Captured: 2026-07-24 via xurl bookmarks capture</li>
+<li>Type: conference slide deck pointer</li>
+<li>Evidence strength: medium; title and card metadata are clear, but the slide body was not captured</li>
+<li>Public metrics at capture: 13 reposts, 0 replies, 31 likes, 0 quotes, 19 bookmarks, 1707 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This deck is a practitioner signal about a year of knowledge creation with AI agents. It is useful for understanding how long-running knowledge work and collaboration patterns change once agents become part of the workflow.</p>
+<h2>Notable points</h2>
+<ul>
+<li>The deck frames AI agents as collaborators over an extended time horizon.</li>
+<li>The source is about knowledge creation, not just coding output.</li>
+<li>The card metadata suggests a conference talk with practitioner experience behind it.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The title explicitly mentions AI agents and &quot;one year&quot; of knowledge creation.</li>
+<li>The bookmark links to a slide deck rather than a short social post.</li>
+<li>The conference framing makes it a useful field signal for agent-mediated knowledge work.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: conference slide deck pointer</li>
+<li>Confidence: medium</li>
+<li>Supports: agent-first-organization, managed-agents, multi-agent-orchestration</li>
+<li>Main limitations: no detailed slide content in this capture</li>
+<li>Best use: a source for long-running AI-assisted knowledge work</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[</li>
+</ul>
+<h3>いとひろ - Beyond Just Vibe Coding</h3>
+<p>Source note: <code>wiki/sources/itohiro73-beyond-just-vibe-coding-ai-driven-development-x-2026-07-23.md</code></p>
+<h1>いとひろ - Beyond Just Vibe Coding</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/itohiro73-beyond-just-vibe-coding-ai-driven-development-x-2026-07-23.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260724T0000Z.json</code></li>
+<li>Canonical URL: https://x.com/i/status/2080216113670234413</li>
+<li>Primary URL: https://speakerdeck.com/itohiro73/beyond-just-vibe-coding-combining-classic-principles-with-ai-driven-development</li>
+<li>Author: いとひろ / @itohiro73</li>
+<li>Posted: 2026-07-23T08:59:04.000Z</li>
+<li>Captured: 2026-07-24 via xurl bookmarks capture</li>
+<li>Type: conference slide deck pointer</li>
+<li>Evidence strength: medium; title and card metadata are clear, but the slide body was not captured</li>
+<li>Public metrics at capture: 13 reposts, 0 replies, 31 likes, 0 quotes, 19 bookmarks, 1707 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>The deck is about going beyond &quot;vibe coding&quot; by combining classic software-engineering principles with AI-driven development. It is a compact practitioner signal that the field is moving toward hybrid workflows rather than pure prompt-based coding.</p>
+<h2>Notable points</h2>
+<ul>
+<li>The title explicitly rejects treating vibe coding as the whole story.</li>
+<li>The subtitle emphasizes a blend of classic principles and AI-driven development.</li>
+<li>The source is best treated as a pointer to a practitioner framing, not a detailed method claim.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The Speaker Deck title uses &quot;Beyond Just Vibe Coding.&quot;</li>
+<li>The subtitle directly mentions classic principles and AI-driven development.</li>
+<li>The bookmark is a conference slide-deck share rather than a casual commentary post.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: conference slide deck pointer</li>
+<li>Confidence: medium</li>
+<li>Supports: coding-agents, harness-engineering, workflow-compilation</li>
+<li>Main limitations: the detailed slide content was not captured here</li>
+<li>Best use: a sou</li>
+</ul>
+<h3>OpenAI - ChatGPT Voice in the desktop app</h3>
+<p>Source note: <code>wiki/sources/openai-chatgpt-voice-desktop-app-x-2026-07-23.md</code></p>
+<h1>OpenAI - ChatGPT Voice in the desktop app</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/openai-chatgpt-voice-desktop-app-x-2026-07-23.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260724T0000Z.json</code></li>
+<li>Canonical URL: https://x.com/i/status/2080378182469857576</li>
+<li>Media URL: https://x.com/OpenAI/status/2080378182469857576/video/1</li>
+<li>Author: OpenAI / @OpenAI</li>
+<li>Posted: 2026-07-23T19:43:04.000Z</li>
+<li>Captured: 2026-07-24 via xurl bookmarks capture</li>
+<li>Type: first-party product announcement</li>
+<li>Evidence strength: high for feature existence; the post is a direct product announcement</li>
+<li>Public metrics at capture: 731 reposts, 676 replies, 7470 likes, 566 quotes, 1782 bookmarks, 1030936 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>OpenAI announced that ChatGPT Voice is now available in the desktop app. The post frames voice as a way to control the computer and direct multiple agents running in ChatGPT Work or Codex, with GPT-Live coordinating speaking, listening, and work in the app at the same time.</p>
+<h2>Notable points</h2>
+<ul>
+<li>Voice is no longer just conversational input; it is a desktop control surface.</li>
+<li>The announcement directly names multi-agent work in ChatGPT Work or Codex.</li>
+<li>The post makes concurrent speaking, listening, and coordination part of the product story.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The official post explicitly says ChatGPT Voice is in the desktop app.</li>
+<li>It also explicitly says voice can control the computer and direct multiple agents.</li>
+<li>The linked video anchors the announcement as a live product surface.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: first-party product announcement</li>
+<li>Confidence: high for the feature and the surface described</li>
+<li>Supports: managed-agents, multi-agent-orchestration, tool-accessibility, agent-management</li>
+<li>Main limitations: no technical detail on permissions,</li>
+</ul>
+<h3>ちー - Overcoming the disappointment of genAI adoption</h3>
+<p>Source note: <code>wiki/sources/starfish0206-genai-adoption-friction-development-flow-aidevex-x-2026-07-23.md</code></p>
+<h1>ちー - Overcoming the disappointment of genAI adoption</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/starfish0206-genai-adoption-friction-development-flow-aidevex-x-2026-07-23.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260724T0000Z.json</code></li>
+<li>Canonical URL: https://x.com/i/status/2080204517375938656</li>
+<li>Primary URL: https://speakerdeck.com/starfish719/sheng-cheng-aidao-ru-no-qi-dai-wai-re-wocheng-riyue-eru-kai-fa-hurogai-ge-gamu-zhi-su-zhen-nozu-zhi-bian-ge</li>
+<li>Author: ちー / @starfish0206</li>
+<li>Posted: 2026-07-23T08:12:59.000Z</li>
+<li>Captured: 2026-07-24 via xurl bookmarks capture</li>
+<li>Type: conference slide deck pointer</li>
+<li>Evidence strength: medium; title and card metadata are clear, but the slide body was not captured</li>
+<li>Public metrics at capture: 8 reposts, 1 reply, 47 likes, 1 quote, 30 bookmarks, 2249 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This deck is about overcoming the disappointment of genAI adoption by reforming the development flow and aiming for real organizational transformation. It is a useful signal that many AI adoption problems are workflow and operating-model problems rather than just model problems.</p>
+<h2>Notable points</h2>
+<ul>
+<li>The title explicitly names disappointment as the thing being overcome.</li>
+<li>The subtitle points to development-flow reform and organizational change.</li>
+<li>The source reads like a practitioner diagnosis of adoption friction.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The deck title frames the talk around genAI adoption disappointment.</li>
+<li>The subtitle ties the solution to development-flow reform.</li>
+<li>The conference deck format suggests the content comes from real practice.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: conference slide deck pointer</li>
+<li>Confidence: medium</li>
+<li>Supports: real-world-evaluation, harness-engineering, agent-first-organization</li>
+<li>Main limitations: no detailed sli</li>
+</ul>
+<h3>Takuto Wada - Agentic Software Engineering 2026-07 Findy Edition</h3>
+<p>Source note: <code>wiki/sources/t_wada-agentic-software-engineering-2026-07-findy-edition-x-2026-07-23.md</code></p>
+<h1>Takuto Wada - Agentic Software Engineering 2026-07 Findy Edition</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/t_wada-agentic-software-engineering-2026-07-findy-edition-x-2026-07-23.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260724T0000Z.json</code></li>
+<li>Canonical URL: https://x.com/i/status/2080423868213387567</li>
+<li>Primary URL: https://speakerdeck.com/twada/agentic-software-engineering-2026-07-findy-edition</li>
+<li>Author: Takuto Wada / @t_wada</li>
+<li>Posted: 2026-07-23T22:44:37.000Z</li>
+<li>Captured: 2026-07-24 via xurl bookmarks capture</li>
+<li>Type: keynote slide deck pointer</li>
+<li>Evidence strength: medium; title and card metadata are clear, but the slide body was not captured</li>
+<li>Public metrics at capture: 36 reposts, 0 replies, 101 likes, 1 quote, 65 bookmarks, 5745 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark points to an AI DevEx Conference 2026 keynote deck about agentic software engineering. The visible title is enough to preserve the deck as a practitioner signal for how people are reframing software development in the AI era.</p>
+<h2>Notable points</h2>
+<ul>
+<li>The deck is explicitly framed as an agentic-software-engineering talk.</li>
+<li>The post is a conference artifact, not a generic product announcement.</li>
+<li>The source is useful as an orienting signal, even though the deck body was not captured here.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet says the AI DevEx Conference 2026 keynote slides were published.</li>
+<li>The Speaker Deck title names &quot;Agentic Software Engineering 2026-07 Findy Edition.&quot;</li>
+<li>The conference and slide URLs make the provenance easy to trace.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: keynote slide deck pointer</li>
+<li>Confidence: medium</li>
+<li>Supports: coding-agents, harness-engineering, real-world-evaluation</li>
+<li>Main limitations: no detailed slide content in this capture</li>
+<li>Best use: follow-up signal for pr</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/djfarrelly-agent-loop-architecture-x.md]]</li>
+<li>[[../sources/jason-liu-codex-maxxing-heartbeats.md]]</li>
+<li>[[../sources/openai-chatgpt-memory-dreaming-x-2026-06</li>
+</ul>
+<h3>Coding-Agent Harness Patterns</h3>
+<p>KB note: <code>wiki/maps/coding-agent-harness-patterns.md</code></p>
+<h1>Coding-Agent Harness Patterns</h1>
+<h2>Purpose</h2>
+<p>Synthesize practical harness patterns for coding-agent workflows using the KB&#x27;s control vocabulary plus a concrete real-world operator example.</p>
+<h2>Core claim</h2>
+<p>A coding-agent workflow becomes harness engineering when quality and reliability depend on the surrounding artifacts, controls, and review loops rather than on the model prompt alone.</p>
+<h2>Pattern 1. Plan as handoff artifact</h2>
+<p>Use a session-scoped plan file such as <code>plan.md</code> as a durable handoff contract.</p>
+<p>Why it matters:</p>
+<ul>
+<li>makes intent inspectable</li>
+<li>supports context resets and reviewer alignment</li>
+<li>creates a stable object for verifier agents to critique</li>
+</ul>
+<h2>Pattern 2. Verifier split without full multi-agent overhead</h2>
+<p>Use heavy thinking for hard, bounded reasoning: spawn independent temporary thinkers, then have one deliberator critique and synthesize their outputs.</p>
+<p>Use a second agent or model mainly for plan review or implementation review instead of duplicating the whole execution role.</p>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>6</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
