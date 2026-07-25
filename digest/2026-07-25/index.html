@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-25 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-25/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-07-25</header>
+<h1>KB Daily Digest 2026-07-25</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-25/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-07-25">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-07-25</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-07-25</h1>
+<p>2026-07-25 UTC の knowledge-base-llm 更新は、X bookmark の日次 ingest から raw article 4本、wiki source 4本が追加され、<code>ai-adoption-roi-and-capability-investment</code>、<code>context-management-decisions</code>、<code>eval-review-reliability</code> の3つの地図が更新された。全体としては、新しいモデル発表を単体の性能ニュースとして扱うのではなく、より少ないプロンプト、よりよいハーネス、評価負荷、ROI設計へ接続して読む流れが強い。</p>
+<p>今日の中心トレンドは、「モデルが強くなるほど、指示を盛るよりも周辺アーティファクトと運用設計が重要になる」という方向だ。Claude Opus 5 の発表は、フロンティア級に近い能力をより低い価格帯で使えるという能力・価格のシグナルとして入った。一方で、Claude 5 向け context engineering の記事ポインタは、Claude Code の system prompt を大きく削ったという話を通じて、巨大なルール束から、system prompt、skills、Claude.MD、repo内の明示的な手がかりへ制御面を分散させる流れを示している。</p>
+<p>重要ソースの1本目は、Claude 公式の「Introducing Claude Opus 5」。捕捉できている本文は短いが、Opus 5 が「thoughtful and proactive」と位置づけられ、Fable 5 に近い frontier intelligence を半額で提供するという価格比較が明記されている。KB上では <code>agent-autonomy</code> や <code>ai-adoption-roi-and-capability-investment</code> に関係する材料で、モデル能力だけでなく「どの価格なら強いモデルを日常ワークフローに組み込めるか」という採用判断の論点を押し上げる。</p>
+<p>重要ソースの2本目は、Thariq による Anthropic X Article ポインタ「The new rules of context engineering for Claude 5 models」。記事本文は今回のcaptureには入っていないため、詳細なルールリストは追跡対象として残る。ただし、プレビューが示す「Claude Code system prompt の約80%削減」は強いシグナルで、context engineering が単に長い指示を書く技術ではなく、モデルの判断力、skills、Claude.MD、構造化されたhandoff artifactをどう組み合わせるかの設計問題へ移っていることを示している。</p>
+<p>重要ソースの3本目は、fukabori.fm ep.138 の告知だ。AI engineering、従来の software engineering との違い、context / harness engineering、実務における評価の難しさと多角的な評価マトリクスが明示されている。episode page や transcript は未取得なので証拠強度は限定的だが、実践者コミュニティ側でも「context」「harness」「evaluation」がひとつの reliability conversation として扱われていることが読み取れる。</p>
+<p>もう1本の補助的に重要なソースは、まっちゃら / FOLIO の「AI x 開発生産性を取り巻く予算戦略と投資対効果」。こちらも slide body は未取得で、現時点では title / deck pointer レベルの材料だが、開発生産性AIを予算戦略とROIの問題として扱う点が重要だ。KBの <code>ai-adoption-roi-and-capability-investment</code> 地図には、Claude Opus 5 の低価格化シグナルと合わせて、ライセンス費、利用量、verification tax、instability tax を分けて見る必要性が追記された。</p>
+<p>地図更新では、<code>context-management-decisions</code> に Claude 5 context engineering が追加され、continue / rewind / clear / compact / delegate / reset / loop という既存の回復・継続判断に、「何を明示指示として残し、何をモデル判断や外部アーティファクトへ移すか」という新しい圧力が加わった。<code>eval-review-reliability</code> では、fukabori.fm の告知が practitioner evaluation signal として入り、評価は単なる最終確認ではなく、AI engineering 実務の中心にあるという見方を補強している。</p>
+<p>実務上の読みどころは、AI導入の議論が「高性能モデルを買うか」から「高性能モデルをどう安定して吸収するか」へ移っていることだ。安い強モデルは自動化の閾値を下げるが、生成量が増えればレビュー、検証、環境再現、権限、ログ、handoff の負荷も増える。逆に、system prompt を削れるほどモデル判断が上がるなら、チームはプロンプト本文よりも、repo構造、skills、評価ルーブリック、実行前後の証跡に投資すべき場面が増える。</p>
+<p>Podcastで掘るなら、まず「Claude 5 世代では、なぜ長いプロンプトから周辺ハーネスへ重心が移るのか」を入口にするとよい。次に「低価格な強モデルはROIを改善するのか、それとも利用量増とverification taxを増やすのか」を対立軸に置ける。最後に、fukabori.fm と AI DevEx ROI deck をつないで、AI engineering を traditional software engineering の置き換えではなく、評価・予算・運用を含む新しい組織能力として捉える、という流れで締めると今日のKB更新の意味が見えやすい。</p>
+<h2>今日の重要ソース</h2>
+<ul>
+<li><code>wiki/sources/trq212-context-engineering-for-claude-5-models-x-2026-07-24.md</code></li>
+<li><code>wiki/sources/claudeai-introducing-claude-opus-5-x-2026-07-24.md</code></li>
+<li><code>wiki/sources/iwashi86-fukabori-fm-ep-138-ai-engineering-harness-evaluation-x-2026-07-24.md</code></li>
+<li><code>wiki/sources/matsu-chara-ai-devex-budget-strategy-roi-x-2026-07-23.md</code></li>
+</ul>
+<h2>更新された地図</h2>
+<ul>
+<li><code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code></li>
+<li><code>wiki/maps/context-management-decisions.md</code></li>
+<li><code>wiki/maps/eval-review-reliability.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Claude - Introducing Claude Opus 5</h3>
+<p>Source note: <code>wiki/sources/claudeai-introducing-claude-opus-5-x-2026-07-24.md</code></p>
+<h1>Claude - Introducing Claude Opus 5</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/claudeai-introducing-claude-opus-5-x-2026-07-24.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260725T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2080699495453528290</li>
+<li>Author: Claude / @claudeai</li>
+<li>Posted: 2026-07-24T16:59:51.000Z</li>
+<li>Captured: 2026-07-25T00:00:33.063Z via xurl bookmarks capture</li>
+<li>Type: X product announcement</li>
+<li>Evidence strength: high for the existence and positioning of the model, low for detailed behavioral claims beyond the short post</li>
+<li>Public metrics at capture: 49,551 likes, 5,948 reposts, 2,573 replies, 4,108 quotes, 5,171 bookmarks, 9,488,377 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Claude announced Opus 5 as a thoughtful and proactive model positioned close to the frontier intelligence of Fable 5 at half the price. The bookmark is a compact but important capability-and-pricing signal.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Claude Opus 5 is a real model release, not a rumor or speculative mention.</li>
+<li>Anthropic is positioning it as thoughtful and proactive.</li>
+<li>The price comparison makes the announcement relevant to adoption economics as well as capability.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post text explicitly names &quot;Claude Opus 5.&quot;</li>
+<li>The post gives a direct pricing comparison against Fable 5.</li>
+<li>The large engagement numbers suggest the announcement was broadly visible, though engagement is not proof of quality.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X product announcement</li>
+<li>Confidence: high for existence and release framing</li>
+<li>Supports: agent-autonomy, agent-harness-landscape, ai-adoption-roi-and-capability-investment</li>
+<li>Main limitations: no benchmark table, usage guide, or technical note was captured</li>
+<li>Best use: evidence of model capability being tied to a lower-cost positioning</li>
+</ul>
+<h2>Relat</h2>
+<h3>iwashi86 - fukabori.fm ep.138 on AI engineering, context engineering, and evaluation</h3>
+<p>Source note: <code>wiki/sources/iwashi86-fukabori-fm-ep-138-ai-engineering-harness-evaluation-x-2026-07-24.md</code></p>
+<h1>iwashi86 - fukabori.fm ep.138 on AI engineering, context engineering, and evaluation</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/iwashi86-fukabori-fm-ep-138-ai-engineering-harness-evaluation-x-2026-07-24.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260725T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2080487652638523824</li>
+<li>Author: iwashi / Yoshimasa Iwase (@iwashi86)</li>
+<li>Posted: 2026-07-24T02:58:04.000Z</li>
+<li>Captured: 2026-07-25T00:00:33.063Z via xurl bookmarks capture</li>
+<li>Type: X podcast announcement</li>
+<li>Evidence strength: medium-low; the episode announcement is clear, but the episode page was not captured</li>
+<li>Public metrics at capture: 23 likes, 4 reposts, 0 replies, 1 quote, 12 bookmarks, 5,599 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark is an episode announcement for fukabori.fm ep.138. The post says the episode with @ry0_kaga will cover AI engineering, differences from traditional software engineering, context and harness engineering, and the difficulty of evaluation in practice.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The episode exists and is publicly announced.</li>
+<li>The conversation explicitly includes context engineering and harness engineering as discussion topics.</li>
+<li>Practical evaluation is a central part of the episode framing.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet names the episode number and guest.</li>
+<li>The bullet list in the tweet includes context/harness engineering and evaluation matrix ideas.</li>
+<li>No episode page or transcript was captured, so the note should stay at the announcement level.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: podcast announcement</li>
+<li>Confidence: medium for topic framing, low for detailed argumentation</li>
+<li>Supports: harness-engineering, real-world-evaluation, feedback-controls</li>
+<li>Main limitations: no episode page or transcript in this pass</li>
+<li>Best use: practitio</li>
+</ul>
+<h3>まっちゃら / FOLIO - AI x 開発生産性を取り巻く予算戦略と投資対効果</h3>
+<p>Source note: <code>wiki/sources/matsu-chara-ai-devex-budget-strategy-roi-x-2026-07-23.md</code></p>
+<h1>まっちゃら / FOLIO - AI x 開発生産性を取り巻く予算戦略と投資対効果</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/matsu-chara-ai-devex-budget-strategy-roi-x-2026-07-23.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260725T0000Z.json</code></li>
+<li>Canonical URL: https://x.com/i/status/2080138272718872653</li>
+<li>Primary URL: https://speakerdeck.com/i35_267/ai-x-kai-fa-sheng-chan-xing-woqu-rijuan-kuyu-suan-zhan-lue-totou-zi-dui-xiao-guo</li>
+<li>Author: まっちゃら / @matsu_chara</li>
+<li>Posted: 2026-07-23T03:49:45.000Z</li>
+<li>Captured: 2026-07-25T00:00:33.063Z via xurl bookmarks capture</li>
+<li>Type: X post / slide deck pointer</li>
+<li>Evidence strength: medium; the deck title and card metadata are clear, but the slide body was not fetched</li>
+<li>Public metrics at capture: 10 likes, 1 repost, 0 replies, 0 quotes, 3 bookmarks, 606 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark points to a conference deck about budgeting strategy and ROI around AI-assisted development productivity. It is a useful organizational signal because it frames AI adoption as an investment and measurement problem rather than a pure tooling choice.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>AI productivity should be discussed in budget and ROI terms.</li>
+<li>Conference material exists on the topic in the AI DevEx 2026 context.</li>
+<li>The source is about development productivity, not only generic AI adoption.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text names the topic directly.</li>
+<li>The linked Speaker Deck title also names budget strategy and investment effect.</li>
+<li>The capture includes the conference deck URL, which makes provenance straightforward even though the slides were not fetched.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: slide-deck pointer</li>
+<li>Confidence: medium</li>
+<li>Supports: ai-roi-model, verification-tax, instability-tax</li>
+<li>Main limitations: no slide body in this pass</li>
+<li>Best use: organizational framing for AI ad</li>
+</ul>
+<h3>Anthropic - The new rules of context engineering for Claude 5 models</h3>
+<p>Source note: <code>wiki/sources/trq212-context-engineering-for-claude-5-models-x-2026-07-24.md</code></p>
+<h1>Anthropic - The new rules of context engineering for Claude 5 models</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/trq212-context-engineering-for-claude-5-models-x-2026-07-24.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260725T0000Z.json</code></li>
+<li>Canonical URL: https://x.com/i/status/2080710971228918066</li>
+<li>Article URL: https://x.com/i/article/2080703729385512960</li>
+<li>Author: Thariq / @trq212</li>
+<li>Posted: 2026-07-24T17:45:27.000Z</li>
+<li>Captured: 2026-07-25T00:00:33.063Z via xurl bookmarks capture</li>
+<li>Type: X article pointer</li>
+<li>Evidence strength: high for the title and the product-direction claim; medium for any deeper rule list because the article body was not fetched</li>
+<li>Public metrics at capture: 6,782 likes, 650 reposts, 192 replies, 212 quotes, 13,207 bookmarks, 910,510 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark points to an Anthropic X Article about &quot;new rules&quot; for context engineering on Claude 5 models. The captured preview says Anthropic removed about 80% of the Claude Code system prompt for the newest models and learned how to write system prompts, skills, and Claude.MDs for them.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Anthropic is actively changing how much instruction density it expects in the system prompt for newer Claude Code models.</li>
+<li>The relevant control surface now includes system prompts, skills, and Claude.MD files rather than only a large prompt blob.</li>
+<li>The direction appears to be fewer explicit rules and more reliance on model judgment plus better surrounding artifacts.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The article title explicitly names context engineering for Claude 5 models.</li>
+<li>The preview text says roughly 80% of the Claude Code system prompt was removed for the newest models.</li>
+<li>The bookmark is an X Article pointer, so it is a better provenance artifact than a comment-only post.</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>AI Adoption ROI and Capability Investment</h3>
+<p>KB note: <code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code></p>
+<h1>AI Adoption ROI and Capability Investment</h1>
+<h2>Purpose</h2>
+<p>Map how AI-assisted software development becomes financial value only when capability investments let the organization absorb faster generation safely.</p>
+<h2>Core thesis</h2>
+<p>AI ROI is not a direct function of model quality or code volume. It is a system outcome: AI adoption must be mediated by internal platforms, context/data quality, trust, user focus, verification guardrails, and delivery metrics before it can become durable business value. The strongest upside case is not only cheaper execution of existing backlog, but Jevons-style expansion in software demand when new tools, experiments, and automations become economical.</p>
+<h2>Path from AI adoption to ROI</h2>
+<h3>1. Capability investment first</h3>
+<p>The first question is not “which tool?” but “can the system absorb the tool?” DORA&#x27;s report emphasizes quality internal developer platforms, AI-accessible internal data, clear AI stance/trust, context engineering, user-centric focus, and automated</p>
+<h3>Context Management Decision Map</h3>
+<p>KB note: <code>wiki/maps/context-management-decisions.md</code></p>
+<h1>Context Management Decision Map</h1>
+<h2>Purpose</h2>
+<p>Compare the main recovery and continuity moves available to long-running agent systems.</p>
+<h2>Core moves</h2>
+<h3>Continue</h3>
+<ul>
+<li>Keep the current session and context as-is.</li>
+<li>Best when the session is still coherent and the next task is closely related.</li>
+</ul>
+<h3>Rewind</h3>
+<ul>
+<li>Remove a failed branch and restart from the last good point.</li>
+<li>Best when the current line of reasoning is clearly wrong but the session still has useful surrounding state.</li>
+</ul>
+<h3>Clear</h3>
+<ul>
+<li>Explicitly wipe the session context and start over from artifacts.</li>
+<li>Best when the human wants tight control over what remains visible.</li>
+</ul>
+<h3>Compact</h3>
+<ul>
+<li>Condense the current session into a shorter summary.</li>
+<li>Best when the work is still relevant but the raw history is too large or noisy.</li>
+</ul>
+<h3>Delegate</h3>
+<ul>
+<li>Spawn a subagent or separate worker for a noisy or specialized subtask.</li>
+<li>Best when the subtask should not pollute the parent context.</li>
+</ul>
+<h3>Reset</h3>
+<ul>
+<li>Rebuild state from explicit handoff artifacts in a fresh sessi</li>
+</ul>
+<h3>Eval and Review Reliability</h3>
+<p>KB note: <code>wiki/maps/eval-review-reliability.md</code></p>
+<h1>Eval and Review Reliability</h1>
+<h2>Purpose</h2>
+<p>Collect the KB&#x27;s evaluation and review ideas into one map focused on practical reliability: how to know whether an agent-produced artifact is good enough, and how to keep review load from becoming the bottleneck.</p>
+<h2>Core thesis</h2>
+<p>Agent output quality improves when evaluation is treated as a separate harness layer, not as an informal final glance by the same agent that produced the work.</p>
+<h2>Reliability layers</h2>
+<h3>1. Deterministic checks first</h3>
+<p>Use cheap checks before semantic review:</p>
+<ul>
+<li>lint and typecheck</li>
+<li>tests and smoke tests</li>
+<li>formatting and structural checks</li>
+<li>repository-specific machine-checkable invariants</li>
+</ul>
+<p>Related concepts: [[../concepts/machine-checkable-invariants.md]], [[../concepts/feedback-controls.md]].</p>
+<h3>2. Task-fit review</h3>
+<p>Check whether the work actually satisfies the request:</p>
+<ul>
+<li>requirements coverage</li>
+<li>edge cases</li>
+<li>backward compatibility</li>
+<li>user-facing behavior</li>
+<li>maintainability</li>
+</ul>
+<p>Related maps: [[coding-agent-review-rubric.md]], [</p>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>4</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
