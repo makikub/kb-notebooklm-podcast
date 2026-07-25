@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eval and Review Reliability - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-07-26/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 840px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-07-26</a> / 読み物版</header>
+    <p class="eyebrow">2026-07-26 Daily Topic</p>
+    <h1>Eval and Review Reliability</h1>
+    <p class="lead">エージェントが作ったものを「だいたい良さそう」で受け取らないための読み物です。品質をモデルの自信や最後の目視確認に閉じず、機械チェック、タスク適合レビュー、独立した評価役、公開前ゲート、失敗からのルール更新に分けて考えます。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-07-26">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 評価は生成と分ける</strong>作った本人の自己確認だけでは、同じ前提や盲点が残る。判断する層を別に置く。</div>
+      <div><strong>2. 先に機械で落とす</strong>lint、型、テスト、構造、リンクなど、決定的に分かる問題は人間レビュー前に片づける。</div>
+      <div><strong>3. レビュー結果を資産化する</strong>繰り返す指摘は、rubric、skill、テスト、ゲートに昇格させて次回の初動を強くする。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは「レビューを設計対象にする」こと</h2>
+      <p>エージェントが速くなると、作ること自体よりも、作られたものをどう確かめるかが先に詰まります。コード、調査、設定、公開ページ、運用メッセージ。どれも出力は速いのに、最後の確認が人間の気合いだけだと、レビューが追いつかなくなります。</p>
+      <p><code>Eval and Review Reliability</code> は、この詰まりを「レビュー担当者を増やす」だけで解決しようとしません。評価をハーネスの一部として置き、安い検証から意味の判断までを層に分ける。そうすると、人間が見るべき場所と、機械や別エージェントに任せる場所がはっきりします。</p>
+      <p>大事なのは、評価を最後の儀式にしないことです。生成物が出たあとに一度だけ眺めるのではなく、作業の入口、途中、出口にそれぞれチェックポイントを持たせる。これが、エージェント運用の信頼性を支える基本形になります。</p>
+
+      <h2>最初に通すのは、決定的なチェック</h2>
+      <p>レビューの前には、まず機械で分かる失敗を落とします。lint、typecheck、unit test、smoke test、format、schema、リンク、ファイル構造、公開URLのHTTPステータス。こうした確認は、安く、何度でも、同じ基準で回せます。</p>
+      <p>これは人間レビューを省くためではありません。むしろ、人間の注意を本当に人間にしか見えないところへ残すためです。型エラー、壊れたJSON、存在しないファイル、リンク切れを人間が見つける運用は、エージェントの速度が上がるほどすぐに破綻します。</p>
+      <p>KBでいう <code>machine-checkable invariants</code> は、この入口を強くする考え方です。「このリポジトリでは必ずこうなっているべき」という条件を、会話の注意ではなくコマンドやスクリプトに移す。すると、レビューは毎回ゼロから始まりません。</p>
+
+      <h2>次に見るのは、依頼に合っているか</h2>
+      <p>機械チェックを通った成果物でも、依頼に合っているとは限りません。ユーザーが欲しかった粒度か。公開してよい内容だけか。既存のスタイルに合っているか。端のケースを落としていないか。あとから保守できる形か。ここからは、タスク適合性のレビューです。</p>
+      <p>この層では、rubricが効きます。たとえば今回の読み物ページなら、単にMarkdownをHTML化するだけでは足りません。日本語の独立した読み物になっているか、lead paragraphがあるか、3つの要約カードがあるか、calloutと次の問いがあるか、public-safeか。こうした観点を明文化しておくと、評価が気分に寄りにくくなります。</p>
+      <p>タスク適合レビューは、テストより少し曖昧です。だからこそ、短い観点に分解しておく価値があります。「良い感じ」ではなく、「依頼された条件を満たしている」と言える状態に近づけるためです。</p>
+
+      <h2>あいまいな品質は、別の目で見る</h2>
+      <p>生成したエージェント自身に「これで大丈夫？」と聞くと、一定の確認はできます。ただし、同じ文脈、同じ仮説、同じ見落としを持ったまま判断しているので、品質があいまいな領域では弱くなります。これが自己評価バイアスです。</p>
+      <p>そこで、生成役と評価役を分けます。別のサブエージェントにレビューさせる。別モデルにバグ探しをさせる。人間承認をゲートにする。重要な公開物なら、成果物と検証結果をいったん別の作業面に渡して、fresh contextで見直す。</p>
+      <p>これは派手なマルチエージェント構成でなくても十分です。小さな実務なら、作業後に「要件漏れ、公開リスク、リンク切れ、説明不足だけを探す」という独立レビューを入れるだけでも、自己確認より強くなります。</p>
+
+      <h2>レビューの崩壊は、成功したあとに起きる</h2>
+      <p>エージェント導入の怖さは、単発の間違いだけではありません。うまく使えるようになったあと、成果物の量が増え、レビュー容量を超えることです。生成が速くなるほど、未確認の変更や未読の成果物が積み上がります。</p>
+      <p>この段階で必要になるのが、deployment gateやoperational riskの考え方です。マージ前、デプロイ前、公開前、外部送信前に、どのチェックが必須なのか。どの種類の変更は人間確認が必要なのか。どの範囲なら自動でよいのか。境界を先に決めておく必要があります。</p>
+      <p>強いゲートは、作業を遅くするためのものではありません。止めるべき場所でだけ止め、通してよいものは迷わず通すための仕組みです。曖昧な不安を毎回抱えるより、境界を明文化したほうが、運用はむしろ速くなります。</p>
+
+      <h2>失敗は、次のハーネス改善に変える</h2>
+      <p>良いレビュー運用は、同じ指摘を何度も人間に言わせません。レビューで見つかった問題を、その場の修正で終わらせず、次回から先に防げる形へ移します。テストを追加する。lintを足す。テンプレートを直す。skillを更新する。公開スクリプトに検証を入れる。</p>
+      <p>KBの <code>trace-driven improvement</code> は、この循環を表しています。実際の失敗ログやレビュー指摘を見て、次の作業環境を少しだけ強くする。モデルを叱るのではなく、失敗をハーネスの材料にする。</p>
+      <p>たとえば「公開ページは必ずHTTP 200を確認する」「Discord投稿にはreading.html URLとsource.md URLの両方を入れる」「NotebookLM authはこのジョブでは使わない」といったルールは、会話の記憶ではなく、スクリプトやcron payloadやskillに置くほど再現性が上がります。</p>
+
+      <h2>制御は、タイミングと性質で分けると見やすい</h2>
+      <p>関連ノートの <code>Agent Harness Control Taxonomy</code> は、ハーネス制御を二つの軸で整理しています。いつ効くのか。つまり、行動前、作業中、作業後。どう効くのか。つまり、決定的な制御か、意味的な推論による制御か。</p>
+      <p>行動前の制御には、計画、repo map、ルール、テンプレート、権限境界があります。作業中の制御には、フック、予算、ドリフト検知、人間チェックポイントがあります。作業後の制御には、テスト、AIレビュー、証拠確認、公開後の観測、失敗トレースの見直しがあります。</p>
+      <p>この分類を持っておくと、「ガードレール」という一語で全部をぼかさずに済みます。今ほしいのは事前に迷わせない仕組みなのか、途中で逸れたときに戻す仕組みなのか、終わったあとに確かめる仕組みなのか。必要な部品が選びやすくなります。</p>
+
+      <h2>個人のKB運用にも、そのまま効く</h2>
+      <p>この話は、大きな開発組織だけのものではありません。個人の知識ベースや定期ジョブにもそのまま効きます。毎週の読み物生成なら、トピック選定、source.md生成、reading.html作成、公開、Discord投稿という流れに、それぞれ確認ポイントを置けます。</p>
+      <p>source.mdは材料、reading.htmlは人間向け成果物。ここを分けるだけでも、レビューしやすくなります。材料として正しいことと、読み物として読めることは別の品質だからです。さらに、公開URLとソースURLを両方出すことで、読む人はまず本文を読み、必要なら根拠へ戻れます。</p>
+      <p>エージェント運用の信頼性は、特別な大仕掛けだけで上がるわけではありません。毎回の小さな完了条件、公開前チェック、投稿後の記録。そういう地味な層が積み重なって、「速いけれど危なっかしい」から「速くて戻れる」へ変わります。</p>
+
+      <div class="callout">
+        レビューは最後に人間が頑張る場所ではなく、作業全体に散らす制御層です。機械で落とせるものを先に落とし、意味の判断はrubricと独立評価で支え、繰り返す失敗は次のルールに変える。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>いま人間が毎回確認している項目のうち、機械チェックにできるものは何か？</li>
+        <li>生成役と評価役を分けるべき作業の境界はどこか？</li>
+        <li>公開、デプロイ、外部送信の前に必ず通すゲートは何か？</li>
+        <li>レビューで繰り返し出る指摘を、どのテスト、skill、rubricに移せるか？</li>
+        <li>「良さそう」ではなく「この条件を満たした」と言える完了条件は何か？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm notes: <code>wiki/maps/eval-review-reliability.md</code>, <code>coding-agent-harness-patterns.md</code>, <code>agent-harness-landscape.md</code>, <code>agent-deployment-gates-and-operational-risk.md</code>, <code>harness-engineering-vendor-comparison.md</code>, <code>agent-harness-control-taxonomy.md</code>.</p>
+    </footer>
+  </div>
+</body>
+</html>
