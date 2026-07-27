@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-27 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-27/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-07-27</header>
+<h1>KB Daily Digest 2026-07-27</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-27/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-07-27">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-07-27</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-07-27</h1>
+<p>2026-07-27 UTC の knowledge-base-llm 更新は、<code>kb: ingest 2026-07-27 xurl bookmarks</code> による X ブックマーク取り込みが中心でした。新規 raw は <code>raw/x/bookmarks/bookmarks-20260727T0000Z.json</code> と、そこから切り出された <code>raw/articles/elonmusk-grok-46-47-roadmap-tease-x-2026-07-24.md</code> です。wiki 側では <code>wiki/sources/elonmusk-grok-46-47-roadmap-tease-x-2026-07-24.md</code> が追加され、<code>wiki/INDEX.md</code> も更新されました。</p>
+<p>今日の全体トレンドは、「モデルの実能力そのもの」よりも「 frontier model の公開ロードマップが、採用判断や期待値形成にどう効くか」です。追加されたソースは、Elon Musk が X に投稿した短いロードマップ示唆で、Grok 4.6 が投稿時点から約2週間後、Grok 4.7 が約4週間後というタイミングを述べています。技術詳細やベンチマーク、公式ドキュメントは付いていないため、KBでは強い技術証拠ではなく、ベンダー cadence と市場向けシグナルとして扱うのが妥当です。</p>
+<p>重要ソース1本目は、原投稿 <code>https://x.com/i/status/2080724087593226311</code> です。本文は「Grok 4.6 in 2 weeks and Grok 4.7 in 4 weeks」という単一のリリース時期 claim だけで、機能差分や評価指標は示されていません。ただし、公開投稿としての可視性は高く、取得時点で 1,633,357 impressions、10,888 likes、975 reposts が記録されています。これは技術的な確度を上げるものではありませんが、期待値形成の規模を見る補助情報になります。</p>
+<p>重要ソース2本目は、raw記事ノート <code>raw/articles/elonmusk-grok-46-47-roadmap-tease-x-2026-07-24.md</code> です。このノートでは、投稿者、投稿日時、取得日時、取得経路、公開指標が保存され、証拠強度が「exact timeline については low-medium、roadmap tease の存在については medium」と整理されています。短い投稿をそのままニュース化するのではなく、「何が言え、何が言えないか」を明示している点が、後続の判断に使いやすい形です。</p>
+<p>重要ソース3本目は、wiki source ノート <code>wiki/sources/elonmusk-grok-46-47-roadmap-tease-x-2026-07-24.md</code> です。ここでは、Grok 4.6/4.7 の具体的な能力差分ではなく、xAI が近い間隔でモデル更新を示唆しているという cadence signal として位置づけています。また、関連概念として <code>agentic-product-market-fit</code> と <code>ai-roi-model</code>、関連マップとして <code>ai-adoption-roi-and-capability-investment</code> に接続されています。</p>
+<p>KB上の意味は、モデル比較の表に新しい行を足すことではなく、採用タイミングと投資判断の uncertainty を扱う材料が増えたことです。組織がAI導入を検討するとき、ロードマップ投稿は「待つべきか、今のモデルで進めるべきか」という会話を誘発します。しかし、今回のソースにはベンチマークも仕様もないため、意思決定上は「観測点」として保留し、実リリース、公式 release notes、第三者評価、既存ワークフローでの検証結果を待つのがよい読み方です。</p>
+<p>実務上の示唆は、ロードマップ情報を「採用判断の根拠」と「監視対象のトリガー」に分けて扱うことです。今回のような短文 tease は、すぐに基盤モデル移行を決める根拠には弱い一方で、評価計画を前倒しで準備する合図にはなります。特に Grok を候補に入れているチームなら、4.6/4.7 が出た時点で比較すべきタスク、既存評価セット、コスト・レイテンシ・安全性の基準を先に定義しておく価値があります。</p>
+<p>次に追うべき問いは3つです。第一に、Grok 4.6/4.7 が実際に出た場合、どの能力差分が公式に説明されるのか。第二に、その差分は <code>agentic-product-market-fit</code> や <code>ai-roi-model</code> の観点で、既存の採用判断を変えるほど大きいのか。第三に、ロードマップ tease のような弱いシグナルを、KB内でどの程度の重みでリンクし、どの時点で「リリース済みの実証ソース」に置き換えるべきかです。</p>
+<h2>Important Sources</h2>
+<ul>
+<li><code>https://x.com/i/status/2080724087593226311</code></li>
+<li><code>raw/articles/elonmusk-grok-46-47-roadmap-tease-x-2026-07-24.md</code></li>
+<li><code>wiki/sources/elonmusk-grok-46-47-roadmap-tease-x-2026-07-24.md</code></li>
+</ul>
+<h2>New / Changed Files</h2>
+<ul>
+<li><code>raw/x/bookmarks/bookmarks-20260727T0000Z.json</code></li>
+<li><code>raw/articles/elonmusk-grok-46-47-roadmap-tease-x-2026-07-24.md</code></li>
+<li><code>wiki/sources/elonmusk-grok-46-47-roadmap-tease-x-2026-07-24.md</code></li>
+<li><code>wiki/INDEX.md</code></li>
+<li><code>outputs/lint/2026-07-27-xurl-bookmarks-light-lint.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Elon Musk - Grok 4.6 roadmap tease</h3>
+<p>Source note: <code>wiki/sources/elonmusk-grok-46-47-roadmap-tease-x-2026-07-24.md</code></p>
+<h1>Elon Musk - Grok 4.6 roadmap tease</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/elonmusk-grok-46-47-roadmap-tease-x-2026-07-24.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260727T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2080724087593226311</li>
+<li>Author: Elon Musk / @elonmusk</li>
+<li>Posted: 2026-07-24T18:37:35.000Z</li>
+<li>Captured: 2026-07-27T00:00:19.415Z via xurl bookmarks capture</li>
+<li>Type: X roadmap tease</li>
+<li>Evidence strength: low-medium for the exact schedule; medium for the existence of a public roadmap signal</li>
+<li>Public metrics at capture: 10,888 likes, 975 reposts, 970 replies, 562 quotes, 593 bookmarks, 1,633,357 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Elon Musk posted a terse roadmap tease saying Grok 4.6 is due in about two weeks and Grok 4.7 in about four weeks. The bookmark is useful mainly as a cadence signal rather than a substantive technical announcement.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Grok 4.6 is expected in roughly two weeks from the post.</li>
+<li>Grok 4.7 is expected in roughly four weeks from the post.</li>
+<li>xAI is using public timing language to shape expectations around near-term model cadence.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post text contains only the release timeline claim.</li>
+<li>There are no benchmarks, feature descriptions, or documentation links in the captured bookmark.</li>
+<li>The engagement numbers show the post had visibility, but they do not strengthen the technical claim itself.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X roadmap tease</li>
+<li>Confidence: medium for the existence of the tease, low for the exact delivery dates</li>
+<li>Supports: [[../concepts/agentic-product-market-fit.md]], [[../concepts/ai-roi-model.md]]</li>
+<li>Main limitations: no technical details, no official blog post, and no validation that the dates are commitments rather than optimistic estimates</li>
+<li>Best use: track vendo</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>1</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
