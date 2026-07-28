@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-28 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-28/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-07-28</header>
+<h1>KB Daily Digest 2026-07-28</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-28/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-07-28">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-07-28</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-07-28</h1>
+<p>2026-07-28 UTC の knowledge-base-llm 更新は、Anthropic が公開した open-weights models に関する立場表明の取り込みが中心でした。新規 raw は <code>raw/x/bookmarks/bookmarks-20260728T0000Z.json</code> と <code>raw/articles/anthropic-our-position-on-open-weights-models-x-2026-07-27.md</code>、wiki 側では <code>wiki/sources/anthropic-our-position-on-open-weights-models-x-2026-07-27.md</code> が追加され、既存の地図 <code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code> にも反映されています。</p>
+<p>今日の全体トレンドは、「open weights を技術選定の自由度やコストの話だけで扱うのではなく、チップアクセス、蒸留、能力閾値、安全性評価、組織のROIモデルまで含む governance / adoption の論点として再配置する」ことです。Anthropic の投稿自体は短い告知ですが、リンク先の公式エッセイは、open-weights model を一律に否定するのではなく、低リスクなモデルは公共財になりうる一方で、十分に高能力なモデルには安全性評価やアクセス制御が必要だという立場を示しています。</p>
+<p>重要ソース1本目は、Anthropic の公式エッセイ <code>https://www.anthropic.com/news/position-open-weights-models</code> です。KB上では、X投稿よりもこちらを実質的な一次ソースとして扱うのが適切です。論点は open weights の是非そのものではなく、強力なモデルの重み公開がどの能力段階で安全保障・悪用・規制の問題になるか、また frontier model の流通をどのように検査可能にするかにあります。</p>
+<p>重要ソース2本目は、X投稿 <code>https://x.com/i/status/2081864750296658008</code> と raw bookmark capture です。投稿本文は、Anthropic が open-weights models に関する立場を「full」に説明したという告知にとどまります。ただし、取得時点で 530,691 impressions、2,680 likes、373 reposts、834 replies、569 quotes、1,200 bookmarks が記録されており、単なる社内方針ではなく、市場・政策コミュニティに向けた可視性の高い発信だったことが分かります。</p>
+<p>重要ソース3本目は、KB source ノート <code>wiki/sources/anthropic-our-position-on-open-weights-models-x-2026-07-27.md</code> です。このノートでは、証拠強度を「告知とエッセイの存在については高いが、政策・市場含意の解釈は中程度」と切り分けています。また関連概念として <code>ai-roi-model</code>、<code>agentic-jevons-paradox</code>、<code>agent-safety</code>、<code>evidence-quality</code> に接続し、関連マップとして <code>ai-adoption-roi-and-capability-investment</code> と <code>evidence-quality-and-source-trust</code> に接続しています。</p>
+<p>KB地図側の更新で重要なのは、<code>AI Adoption ROI and Capability Investment</code> の「Practical case signals」に Anthropic の open-weights position が追加されたことです。これにより、モデル配布方式は単なる調達・価格・性能の選択肢ではなく、組織がAI導入のROIを評価する際の governance cost と risk management の変数として扱われるようになりました。open weights は低リスク領域ではコスト低下や実験余地の拡大につながりえますが、高能力モデルでは検証、アクセス制御、悪用耐性、規制対応がROIを左右します。</p>
+<p>実務上の読みどころは、open weights を「安いから使う」「自由だから採用する」という単純な軸に閉じないことです。導入側の組織にとっては、モデル重みの可用性が推論コストやオンプレ運用、カスタマイズ性を改善する可能性があります。一方で、十分に強いモデルを扱う場合には、モデルそのものの性能だけでなく、利用者の制御、監査、蒸留対策、社内の安全性評価能力が投資項目になります。</p>
+<p>Podcastで掘るなら、第一に「open weights は公共財か、危険な能力拡散か」という二項対立をほどくこと、第二に「closed model / open weights / distillation / chip control」が同じ政策空間でどうつながるか、第三に「AI ROIモデルに governance cost をどう織り込むか」を話すとよさそうです。今回の更新は1ソース中心ですが、AI導入の地図にとっては、モデル選定と安全性、経済性、政策の接点を太くする更新です。</p>
+<p>次に追うべき問いは3つです。第一に、Anthropic がいう「sufficiently capable」なモデルの閾値は、どの評価や規制枠組みで実装されるのか。第二に、open weights を使う組織は、どの能力段階から安全性評価やアクセス管理を自前の運用コストとして見積もるべきか。第三に、今後他社が open weights 方針を出したとき、KBでは技術的なモデル比較ではなく、ROI・安全性・流通管理の地図にどう接続していくべきかです。</p>
+<h2>Important Sources</h2>
+<ul>
+<li><code>https://www.anthropic.com/news/position-open-weights-models</code></li>
+<li><code>https://x.com/i/status/2081864750296658008</code></li>
+<li><code>wiki/sources/anthropic-our-position-on-open-weights-models-x-2026-07-27.md</code></li>
+</ul>
+<h2>New / Changed Files</h2>
+<ul>
+<li><code>raw/x/bookmarks/bookmarks-20260728T0000Z.json</code></li>
+<li><code>raw/articles/anthropic-our-position-on-open-weights-models-x-2026-07-27.md</code></li>
+<li><code>wiki/sources/anthropic-our-position-on-open-weights-models-x-2026-07-27.md</code></li>
+<li><code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Anthropic - Our position on open-weights models</h3>
+<p>Source note: <code>wiki/sources/anthropic-our-position-on-open-weights-models-x-2026-07-27.md</code></p>
+<h1>Anthropic - Our position on open-weights models</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/anthropic-our-position-on-open-weights-models-x-2026-07-27.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260728T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2081864750296658008</li>
+<li>Primary URL: https://www.anthropic.com/news/position-open-weights-models</li>
+<li>Author: Anthropic / @AnthropicAI</li>
+<li>Posted: 2026-07-27T22:10:10.000Z</li>
+<li>Captured: 2026-07-28T00:00:20.513Z via xurl bookmarks capture</li>
+<li>Type: X post linking to policy essay</li>
+<li>Evidence strength: high for the launch signal and the existence of the linked essay; moderate for any interpretation beyond the bookmark text</li>
+<li>Public metrics at capture: 2,680 likes, 373 reposts, 834 replies, 569 quotes, 1,200 bookmarks, 530,691 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Anthropic used a bookmark-worthy X post to point to a policy essay explaining its position on open-weights models. The post itself is short, but the linked official essay matters because it clarifies that Anthropic is not calling for a blanket ban on open-weights models. Instead, it argues for keeping powerful chips out of authoritarian hands, cracking down on industrial-scale distillation, and requiring safety testing for sufficiently capable models whether they are open or closed.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Anthropic is publicly clarifying its position on open-weights models.</li>
+<li>The X post is only a pointer; the linked Anthropic essay is the stronger source for the substantive argument.</li>
+<li>Anthropic does not advocate a blanket ban on open-weights models as a category.</li>
+<li>The policy emphasis is on chip access, distillation, and mandatory safety testing for sufficiently capable models.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text says Anthropic has outlined its views &quot;in full&quot;</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>AI Adoption ROI and Capability Investment</h3>
+<p>KB note: <code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code></p>
+<h1>AI Adoption ROI and Capability Investment</h1>
+<h2>Purpose</h2>
+<p>Map how AI-assisted software development becomes financial value only when capability investments let the organization absorb faster generation safely.</p>
+<h2>Core thesis</h2>
+<p>AI ROI is not a direct function of model quality or code volume. It is a system outcome: AI adoption must be mediated by internal platforms, context/data quality, trust, user focus, verification guardrails, and delivery metrics before it can become durable business value. The strongest upside case is not only cheaper execution of existing backlog, but Jevons-style expansion in software demand when new tools, experiments, and automations become economical.</p>
+<h2>Path from AI adoption to ROI</h2>
+<h3>1. Capability investment first</h3>
+<p>The first question is not “which tool?” but “can the system absorb the tool?” DORA&#x27;s report emphasizes quality internal developer platforms, AI-accessible internal data, clear AI stance/trust, context engineering, user-centric focus, and automated</p>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>1</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
