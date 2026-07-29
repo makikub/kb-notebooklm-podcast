@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-29 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-29/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-07-29</header>
+<h1>KB Daily Digest 2026-07-29</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-29/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-07-29">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-07-29</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-07-29</h1>
+<p>2026-07-29 UTC の knowledge-base-llm 更新は、X bookmark の新規取り込みと、Anthropic / Claude の Skills 関連一次情報を中心にした追加コンパイルが重なった日でした。新規 raw は <code>raw/x/bookmarks/bookmarks-20260729T0000Z.json</code>、OpenAI Voice / Apple SpeechAnalyzer / OpenAI Codex Security の記事ノート、さらに Anthropic の Skills PDF、Agent Skills engineering blog、Claude Skills 解説、Claude Code チームの skills 運用記事です。wiki 側では <code>wiki/sources/</code> に7本の新規 source note が追加され、<code>agent-harness-landscape</code>、<code>coding-agent-harness-patterns</code>、<code>eval-review-reliability</code>、<code>evidence-quality-and-source-trust</code> などの地図にも反映されました。</p>
+<p>今日の全体トレンドは、「エージェントの能力を上げる」という話が、モデル単体ではなく、再利用可能な手順、音声やデスクトップの操作面、セキュリティ検査、CI、証拠品質までを含む harness design の話に寄っていることです。特に Anthropic / Claude の Skills 系ソースは、プロンプトを毎回頑張るのではなく、手順・ツール・参照資料・スクリプトをフォルダとして保存し、必要なときだけ読み込ませる「progressive disclosure」を強く支える更新でした。</p>
+<p>重要ソース1本目は、Anthropic の公式PDF <code>The Complete Guide to Building Skills for Claude</code> です。KBでは、Skills の用途を「document and asset creation」「workflow automation」「MCP enhancement」に分ける実務的な分類として取り込みました。ここで大事なのは、MCP が外部サービスへの接続を与える一方で、Skills はその接続をどう使うかという業務知識や判断手順を持つ、という役割分担です。これは単なる Claude 専用機能の説明ではなく、agent harness 全体における reusable workflow packaging の設計原則として使えます。</p>
+<p>重要ソース2本目は、Anthropic engineering blog <code>Equipping agents for the real world with Agent Skills</code> です。このノートは、Skills を「instructions, scripts, resources を含む composable folder」として整理し、最初に小さなメタデータだけを見せ、必要になったときに <code>SKILL.md</code> や deeper files、実行スクリプトを読むという progressive disclosure を中心概念として扱っています。KBの <code>navigable-agent-skills</code>、<code>memory-skill-harness</code>、<code>context-file-system</code> の枝にとって、かなり基礎的な参照点になります。</p>
+<p>重要ソース3本目は、Claude Code チームの記事 <code>Lessons from building Claude Code: How we use skills</code> です。ここでは Anthropic 内部で hundreds of skills を運用している経験から、9種類の skill type が示されました。特に <code>Library and API reference</code>、<code>Product verification</code>、<code>Code quality and review</code>、<code>Runbooks</code>、<code>Infrastructure operations</code> は、今後 KB 側で「どのスキルを作るべきか」を棚卸しするときの分類軸として使いやすいです。さらに、verification skills が内部的に品質改善へ大きく効いたという主張は、<code>eval-review-reliability</code> と <code>verification-harness</code> の実務寄りな根拠になります。</p>
+<p>X bookmark 側では、OpenAI の ChatGPT Voice desktop app と Apple SpeechAnalyzer が、音声を単なる会話入力ではなく agent control surface として扱う方向を補強しました。OpenAI の投稿は、デスクトップアプリ上の ChatGPT Voice がコンピュータ操作や複数エージェントへの指示に使えるという product surface の信号です。一方、Apple SpeechAnalyzer は、独自の音声入力・音声分析ワークフローを作るための低レイヤーAPIとして位置づけられます。前者がプロダクト化された操作面、後者がカスタム harness に埋め込める入力 primitive という対比です。</p>
+<p>もう一つの実務的な更新は、OpenAI Codex Security repo です。KBでは、脆弱性検出が CLI と TypeScript SDK として提供され、リポジトリスキャン、変更レビュー、findings の追跡、CIチェックに入るという点を、<code>coding-agent-harness-patterns</code> の「Productized specialized checks」と <code>eval-review-reliability</code> のセキュリティレビュー層に接続しました。ここでの含意は、セキュリティレビューを人間の最後の目視だけに置くのではなく、repo / CI / agent workflow の中で再実行可能な検査として扱うことです。ただし、blocking policy、false positive、scan coverage はまだ追加調査が必要です。</p>
+<p>KB地図としては、<code>agent-harness-landscape</code> が voice and speech primitives を新しい節として明示し、<code>coding-agent-harness-patterns</code> は specialized checks をパターンとして強めました。<code>eval-review-reliability</code> には OpenAI Codex Security repo が加わり、deterministic checks、independent evaluator loop、trace-driven improvement の議論にセキュリティ領域の具体例が追加されています。<code>evidence-quality-and-source-trust</code> も更新され、X bookmark のような入口ソースと、公式ドキュメント・公式ブログ・GitHub repo のような一次ソースの扱い分けがより重要になりました。</p>
+<p>実務上の読みどころは、Skills、Voice、Security CLI が別々のニュースではなく、同じ「agent harness の外部化」の流れにあることです。繰り返す手順は skill folder に落とす。人間の操作面は voice / desktop / tool surface に広げる。品質と安全性は CLI / SDK / CI / evaluator に逃がす。こうすると、モデルに毎回すべてを覚えさせるのではなく、周辺のファイル、ツール、検査、UIがエージェントの能力を支える構造になります。</p>
+<p>Podcastで掘るなら、第一に「Skills は prompt の上位互換ではなく、手順と資産を必要時に読み込むための知識パッケージである」という話、第二に「MCP は接続、Skills は使い方、CI/CLI は検証、という分業」、第三に「Voice が入ると人間の指示は速くなるが、監査・確認・権限の設計がさらに重要になる」という論点がよさそうです。今日の更新は、エージェントを賢くする話というより、エージェントが働ける環境をどう設計するかに軸足があります。</p>
+<p>次に追うべき問いは3つです。第一に、KB内の既存 workflow / runbook / verification ノートを、Claude Code チームの9分類で棚卸しすると何が足りないか。第二に、voice control surface では、音声で発火した操作の確認・ログ・取消・権限境界をどう設計すべきか。第三に、Codex Security のような specialized check を、どこまで merge gate にし、どこから advisory signal にとどめるかです。</p>
+<h2>Important Sources</h2>
+<ul>
+<li><code>https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf</code></li>
+<li><code>https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills</code></li>
+<li><code>https://claude.com/blog/lessons-from-building-claude-code-how-we-use-skills</code></li>
+<li><code>https://github.com/openai/codex-security</code></li>
+<li><code>https://developer.apple.com/documentation/speech/speechanalyzer</code></li>
+<li><code>https://x.com/OpenAI/status/2080378182469857576</code></li>
+</ul>
+<h2>New / Changed Files</h2>
+<ul>
+<li><code>raw/x/bookmarks/bookmarks-20260729T0000Z.json</code></li>
+<li><code>raw/articles/apple-speechanalyzer-x-2026-07-28.md</code></li>
+<li><code>raw/articles/openai-chatgpt-voice-desktop-app-x-2026-07-23.md</code></li>
+<li><code>raw/articles/openai-codex-security-cli-typescript-sdk-github-x-2026-07-28.md</code></li>
+<li><code>raw/articles/anthropic-complete-guide-building-skills-for-claude-pdf-2026.md</code></li>
+<li><code>raw/articles/anthropic-equipping-agents-real-world-agent-skills-2025-10-16.md</code></li>
+<li><code>raw/articles/claude-skills-explained-ja-2026-03-05.md</code></li>
+<li><code>raw/articles/claude-lessons-from-building-claude-code-how-we-use-skills-2026-06-03.md</code></li>
+<li><code>wiki/sources/apple-speechanalyzer-x-2026-07-28.md</code></li>
+<li><code>wiki/sources/openai-chatgpt-voice-desktop-app-x-2026-07-23.md</code></li>
+<li><code>wiki/sources/openai-codex-security-cli-typescript-sdk-github-x-2026-07-28.md</code></li>
+<li><code>wiki/sources/anthropic-complete-guide-building-skills-for-claude-pdf.md</code></li>
+<li><code>wiki/sources/anthropic-equipping-agents-real-world-agent-skills.md</code></li>
+<li><code>wiki/sources/claude-skills-explained-ja.md</code></li>
+<li><code>wiki/sources/claude-lessons-from-building-claude-code-how-we-use-skills.md</code></li>
+<li><code>wiki/maps/agent-harness-landscape.md</code></li>
+<li><code>wiki/maps/coding-agent-harness-patterns.md</code></li>
+<li><code>wiki/maps/eval-review-reliability.md</code></li>
+<li><code>wiki/maps/evidence-quality-and-source-trust.md</code></li>
+<li><code>wiki/INDEX.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Apple - SpeechAnalyzer documentation</h3>
+<p>Source note: <code>wiki/sources/apple-speechanalyzer-x-2026-07-28.md</code></p>
+<h1>Apple - SpeechAnalyzer documentation</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/apple-speechanalyzer-x-2026-07-28.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260729T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2082101877546832246</li>
+<li>Primary URL: https://developer.apple.com/documentation/speech/speechanalyzer</li>
+<li>Author: 松濤Vimmer / @shotovim</li>
+<li>Posted: 2026-07-28T13:52:25.000Z</li>
+<li>Captured: 2026-07-29T00:00:25.239Z via xurl bookmarks capture</li>
+<li>Type: X bookmark to Apple Developer Documentation</li>
+<li>Evidence strength: high that the docs page exists; medium for the workflow claim</li>
+<li>Public metrics at capture: 30 likes, 4 reposts, 0 replies, 0 quotes, 53 bookmarks, 2615 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Apple&#x27;s SpeechAnalyzer documentation is a useful signal that speech-analysis APIs are mature enough to support custom voice-input workflows. The bookmarked post is anecdotal, but it claims the author replaced several subscription voice-input tools with a self-built app using SpeechAnalyzer and found the result comparable.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Apple has a documented SpeechAnalyzer API/page.</li>
+<li>The bookmark&#x27;s author used SpeechAnalyzer to build a usable voice-input app.</li>
+<li>Speech analysis can be part of a practical local or custom app workflow instead of only a vendor subscription.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The card title names SpeechAnalyzer directly.</li>
+<li>The card description says it analyzes spoken audio content in various ways and manages the analysis session.</li>
+<li>The bookmark text says the author now operates a self-built voice-input app using SpeechAnalyzer without obvious loss in usefulness.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X bookmark pointing to Apple documentation</li>
+<li>Confidence: high for the existence of the docs page, medium for the anecdotal usability claim</li>
+</ul>
+<p>-</p>
+<h3>OpenAI - ChatGPT Voice desktop app</h3>
+<p>Source note: <code>wiki/sources/openai-chatgpt-voice-desktop-app-x-2026-07-23.md</code></p>
+<h1>OpenAI - ChatGPT Voice desktop app</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/openai-chatgpt-voice-desktop-app-x-2026-07-23.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260729T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2080378182469857576</li>
+<li>Media URL: https://x.com/OpenAI/status/2080378182469857576/video/1</li>
+<li>Author: OpenAI / @OpenAI</li>
+<li>Posted: 2026-07-23T19:43:04.000Z</li>
+<li>Captured: 2026-07-29T00:00:25.239Z via xurl bookmarks capture</li>
+<li>Type: X product announcement / video</li>
+<li>Evidence strength: high for feature existence; low for unverified implementation details</li>
+<li>Public metrics at capture: 12874 likes, 1382 reposts, 1217 replies, 1245 quotes, 3400 bookmarks, 4453959 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>OpenAI announced ChatGPT Voice in the desktop app and framed it as a way to control the computer and direct multiple agents in ChatGPT Work or Codex using voice. The bookmark matters because it treats voice as a live control surface rather than only a conversational input mode.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>ChatGPT Voice is available in the desktop app.</li>
+<li>Voice can be used to control the computer and direct multiple agents.</li>
+<li>The voice surface spans ChatGPT Work and Codex.</li>
+<li>The product is being positioned as speaking, listening, and coordinating work in one app.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post text explicitly says ChatGPT Voice is now in the desktop app.</li>
+<li>The post says voice can control the computer and direct multiple agents.</li>
+<li>The announcement says the capability is rolling out globally.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: first-party product announcement</li>
+<li>Confidence: high for the product-surface claim, low for implementation details not captured in the post</li>
+<li>Supports: tool-accessibility, managed-agents, coding-agents, agent-management</li>
+<li>Main limitations:</li>
+</ul>
+<h3>OpenAI - Codex Security CLI and TypeScript SDK</h3>
+<p>Source note: <code>wiki/sources/openai-codex-security-cli-typescript-sdk-github-x-2026-07-28.md</code></p>
+<h1>OpenAI - Codex Security CLI and TypeScript SDK</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/openai-codex-security-cli-typescript-sdk-github-x-2026-07-28.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260729T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2082241164850364555</li>
+<li>Primary URL: https://github.com/openai/codex-security</li>
+<li>Author: Tibo / @thsottiaux</li>
+<li>Posted: 2026-07-28T23:05:54.000Z</li>
+<li>Captured: 2026-07-29T00:00:25.239Z via xurl bookmarks capture</li>
+<li>Type: X bookmark linking to GitHub repository</li>
+<li>Evidence strength: high for repo existence; medium for product scope until repo docs are read</li>
+<li>Public metrics at capture: 2160 likes, 177 reposts, 168 replies, 23 quotes, 1380 bookmarks, 67651 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>OpenAI&#x27;s Codex Security repo is a notable harness signal because it packages vulnerability finding as both a CLI and a TypeScript SDK. The bookmark explicitly says it can find, validate, and fix security issues, scan repositories, review changes, track findings over time, and run security checks in CI.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Codex Security is available as an open-source CLI and TypeScript SDK.</li>
+<li>The tool is intended to find, validate, and fix vulnerabilities.</li>
+<li>It supports repository scans, change review, longitudinal finding tracking, and CI checks.</li>
+<li>Security review is being productized as a reusable developer workflow surface.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text spells out the CLI and TypeScript SDK shape.</li>
+<li>The post explicitly mentions repository scanning and CI integration.</li>
+<li>The linked GitHub repo is the stronger source for implementation detail, but the bookmark is already strong enough to justify an indexable source note.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X bookmark to GitHub repository</li>
+<li>Confidence: high for the repo</li>
+</ul>
+<h3>Anthropic - The Complete Guide to Building Skills for Claude</h3>
+<p>Source note: <code>wiki/sources/anthropic-complete-guide-building-skills-for-claude-pdf.md</code></p>
+<h1>Anthropic - The Complete Guide to Building Skills for Claude</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/anthropic-complete-guide-building-skills-for-claude-pdf-2026.md</code></li>
+<li>Original URL: https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf</li>
+<li>Author: Anthropic</li>
+<li>Captured: 2026-07-29</li>
+<li>Type: official PDF guide</li>
+<li>Evidence strength: high for Anthropic&#x27;s recommended skill design categories and authoring heuristics</li>
+</ul>
+<h2>Summary</h2>
+<p>Anthropic&#x27;s guide explains skills as reusable instruction folders for Claude, then walks through planning, structure, testing, distribution, and troubleshooting. Its most reusable taxonomy is the three common skill use case categories: document and asset creation, workflow automation, and MCP enhancement.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Skills are useful when workflows repeat and the user would otherwise need to restate preferences, process, or domain expertise.</li>
+<li>Strong skills usually start from 2-3 concrete use cases with trigger phrases, steps, required tools, embedded knowledge, and success criteria.</li>
+<li>Common skill categories are document/asset creation, workflow automation, and MCP enhancement.</li>
+<li>MCP gives Claude access to services; skills encode the workflow knowledge for using that access well.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>Document &amp; Asset Creation covers consistent outputs such as documents, presentations, apps, designs, and code.</li>
+<li>Workflow Automation covers multi-step processes with methodology, validation gates, templates, and iterative refinement.</li>
+<li>MCP Enhancement covers domain workflow guidance layered on top of MCP servers, including call sequencing, context, and error handling.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: first-party Anthropic PDF guide.</li>
+<li>Confidence: high for Anthropic&#x27;s skill authoring guidance; medi</li>
+</ul>
+<h3>Anthropic - Equipping agents for the real world with Agent Skills</h3>
+<p>Source note: <code>wiki/sources/anthropic-equipping-agents-real-world-agent-skills.md</code></p>
+<h1>Anthropic - Equipping agents for the real world with Agent Skills</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/anthropic-equipping-agents-real-world-agent-skills-2025-10-16.md</code></li>
+<li>Original URL: https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills</li>
+<li>Author: Anthropic</li>
+<li>Published: 2025-10-16</li>
+<li>Captured: 2026-07-29</li>
+<li>Type: engineering blog</li>
+<li>Evidence strength: high for Anthropic&#x27;s Agent Skills design pattern and best-practice framing</li>
+</ul>
+<h2>Summary</h2>
+<p>Anthropic presents Agent Skills as composable folders of instructions, scripts, and resources that let general-purpose agents dynamically load domain-specific expertise. The key design pattern is progressive disclosure: the agent sees small metadata first, reads the core <code>SKILL.md</code> only when relevant, and opens deeper files or executes bundled code only as the task requires.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Real work requires procedural knowledge and organizational context, not just model capability.</li>
+<li>Skills let teams specialize agents by packaging expertise instead of creating many fragmented custom agents.</li>
+<li>The skill folder pattern scales because it keeps most context out of the prompt until needed.</li>
+<li>Executable scripts inside skills can make deterministic sub-tasks cheaper and more reliable than token generation.</li>
+<li>Useful skills should be built from observed task gaps, representative evaluations, and iteration on actual agent behavior.</li>
+<li>Skills can complement MCP by teaching agents workflows over external tools, not merely granting access to those tools.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The article walks through a PDF skill with <code>SKILL.md</code>, supporting files, and a Python script for form extraction.</li>
+<li>It recommends starting with evaluation, splitting large skills into referenced files, monitoring real us</li>
+</ul>
+<h3>Claude - Lessons from building Claude Code: How we use skills</h3>
+<p>Source note: <code>wiki/sources/claude-lessons-from-building-claude-code-how-we-use-skills.md</code></p>
+<h1>Claude - Lessons from building Claude Code: How we use skills</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/claude-lessons-from-building-claude-code-how-we-use-skills-2026-06-03.md</code></li>
+<li>Original URL: https://claude.com/blog/lessons-from-building-claude-code-how-we-use-skills</li>
+<li>Author: Thariq Shihipar / Anthropic</li>
+<li>Published: 2026-06-03</li>
+<li>Captured: 2026-07-29</li>
+<li>Type: Claude blog / Claude Code practice article</li>
+<li>Evidence strength: high for Anthropic&#x27;s internal skill taxonomy and practical skill-authoring guidance</li>
+</ul>
+<h2>Summary</h2>
+<p>Anthropic&#x27;s Claude Code team reports lessons from building and scaling hundreds of internal skills. The core contribution is a nine-category taxonomy of skill types, led by &quot;Library and API reference,&quot; plus pragmatic advice for writing skills that add high-signal context rather than repeating what Claude already knows.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Skills are one of Claude Code&#x27;s most-used extension points internally at Anthropic.</li>
+<li>Useful skills tend to fit cleanly into one skill type; overly broad skills that straddle several types can confuse the agent.</li>
+<li>Library/API reference skills are valuable because they explain correct library, CLI, or SDK usage and capture gotchas.</li>
+<li>Verification skills had the most measurable internal impact on Claude output quality.</li>
+<li>Good skills use gotchas sections, filesystem-based progressive disclosure, scripts, setup config, usage logging, and careful marketplace/distribution practices.</li>
+</ul>
+<h2>Nine Skill Types</h2>
+<ul>
+<li>Library and API reference</li>
+<li>Product verification</li>
+<li>Data fetching and analysis</li>
+<li>Business process and team automation</li>
+<li>Code scaffolding and templates</li>
+<li>Code quality and review</li>
+<li>CI/CD and deployment</li>
+<li>Runbooks</li>
+<li>Infrastructure operations</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: first-party Claude Code team practice article.</li>
+</ul>
+<h3>Claude - スキル解説：スキルとプロンプト、プロジェクト、MCP、サブエージェントとの比較</h3>
+<p>Source note: <code>wiki/sources/claude-skills-explained-ja.md</code></p>
+<h1>Claude - スキル解説：スキルとプロンプト、プロジェクト、MCP、サブエージェントとの比較</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/claude-skills-explained-ja-2026-03-05.md</code></li>
+<li>Original URL: https://claude.com/ja/blog/skills-explained</li>
+<li>Canonical URL: https://claude.com/blog/skills-explained</li>
+<li>Author: Claude / Anthropic</li>
+<li>Published: 2026-03-05</li>
+<li>Captured: 2026-07-29</li>
+<li>Type: Claude blog guidance article</li>
+<li>Evidence strength: high for Anthropic&#x27;s recommended &quot;when to use skills&quot; taxonomy</li>
+</ul>
+<h2>Summary</h2>
+<p>This Claude blog article explains where skills fit relative to prompts, projects, MCP, subagents, and related agent-building tools. Its most relevant taxonomy is the &quot;when to use skills&quot; section: skills are useful for specialized work that should be performed reliably and efficiently across repeated tasks.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Skills are dynamically discovered instruction/resource folders for specialized work.</li>
+<li>Skills are best for repeatable specialized work, not one-off conversational instructions.</li>
+<li>The article names three useful-skill categories: organizational workflows, domain expertise, and personal preferences.</li>
+<li>Prompts remain better for one-off, conversational, immediate context.</li>
+<li>MCP provides external tool access; skills encode reusable workflow knowledge around when and how to do the work.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>Organizational workflows: brand guidelines, compliance procedures, document templates.</li>
+<li>Domain expertise: Excel formulas, PDF operations, data analysis.</li>
+<li>Personal preferences: note-taking systems, coding patterns, research methods.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: first-party Claude blog guidance.</li>
+<li>Confidence: high for taxonomy and product-positioning guidance.</li>
+<li>Supports: navigable-agent-skills, memory-skill-harness, tool-accessibility, workflow packaging</li>
+<li>Main limitations: produ</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/djfarrelly-agent-loop-architecture-x.md]]</li>
+<li>[[../sources/jason-liu-codex-maxxing-heartbeats.md]]</li>
+<li>[[../sources/openai-chatgpt-memory-dreaming-x-2026-06</li>
+</ul>
+<h3>Coding-Agent Harness Patterns</h3>
+<p>KB note: <code>wiki/maps/coding-agent-harness-patterns.md</code></p>
+<h1>Coding-Agent Harness Patterns</h1>
+<h2>Purpose</h2>
+<p>Synthesize practical harness patterns for coding-agent workflows using the KB&#x27;s control vocabulary plus a concrete real-world operator example.</p>
+<h2>Core claim</h2>
+<p>A coding-agent workflow becomes harness engineering when quality and reliability depend on the surrounding artifacts, controls, and review loops rather than on the model prompt alone.</p>
+<h2>Pattern 1. Plan as handoff artifact</h2>
+<p>Use a session-scoped plan file such as <code>plan.md</code> as a durable handoff contract.</p>
+<p>Why it matters:</p>
+<ul>
+<li>makes intent inspectable</li>
+<li>supports context resets and reviewer alignment</li>
+<li>creates a stable object for verifier agents to critique</li>
+</ul>
+<h2>Pattern 2. Verifier split without full multi-agent overhead</h2>
+<p>Use heavy thinking for hard, bounded reasoning: spawn independent temporary thinkers, then have one deliberator critique and synthesize their outputs.</p>
+<p>Use a second agent or model mainly for plan review or implementation review instead of duplicating the whole execution role.</p>
+<h3>Eval and Review Reliability</h3>
+<p>KB note: <code>wiki/maps/eval-review-reliability.md</code></p>
+<h1>Eval and Review Reliability</h1>
+<h2>Purpose</h2>
+<p>Collect the KB&#x27;s evaluation and review ideas into one map focused on practical reliability: how to know whether an agent-produced artifact is good enough, and how to keep review load from becoming the bottleneck.</p>
+<h2>Core thesis</h2>
+<p>Agent output quality improves when evaluation is treated as a separate harness layer, not as an informal final glance by the same agent that produced the work.</p>
+<h2>Reliability layers</h2>
+<h3>1. Deterministic checks first</h3>
+<p>Use cheap checks before semantic review:</p>
+<ul>
+<li>lint and typecheck</li>
+<li>tests and smoke tests</li>
+<li>formatting and structural checks</li>
+<li>repository-specific machine-checkable invariants</li>
+</ul>
+<p>Related concepts: [[../concepts/machine-checkable-invariants.md]], [[../concepts/feedback-controls.md]].</p>
+<h3>2. Task-fit review</h3>
+<p>Check whether the work actually satisfies the request:</p>
+<ul>
+<li>requirements coverage</li>
+<li>edge cases</li>
+<li>backward compatibility</li>
+<li>user-facing behavior</li>
+<li>maintainability</li>
+</ul>
+<p>Related maps: [[coding-agent-review-rubric.md]], [</p>
+<h3>Evidence Quality and Source Trust</h3>
+<p>KB note: <code>wiki/maps/evidence-quality-and-source-trust.md</code></p>
+<h1>Evidence Quality and Source Trust</h1>
+<h2>Purpose</h2>
+<p>Turn the KB from a flat summary collection into a research OS that can reason about claim strength, provenance, and safe reuse.</p>
+<h2>Core thesis</h2>
+<p>The wiki should not only answer &quot;what does this source say?&quot; It should answer &quot;how much should we trust this source for this specific claim, and what can it safely support?&quot;</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/contextconor-enterprise-understanding-context-graph-x.md]]</li>
+<li>[[../sources/masaki-claude-code-harness-operation-note.md]]</li>
+<li>[[../sources/anthropic-april-23-postmortem-claude-code-quality.md]]</li>
+<li>[[../sources/arxiv-aris-autonomous-research-adversarial-multi-agent-collaboration.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/spillwave-ai-coding-hangover-harness-engineering.md]]</li>
+</ul>
+<h2>Evidence tiers</h2>
+<h3>Tier 1: Direct primary evidence</h3>
+<p>Use for definitions, product behavior, and hard constraints.</p>
+<ul>
+<li>official docs</li>
+<li>source repositories</li>
+<li>pa</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>7</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
