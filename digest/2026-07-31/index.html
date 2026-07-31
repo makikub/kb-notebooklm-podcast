@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-31 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-31/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-07-31</header>
+<h1>KB Daily Digest 2026-07-31</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-07-31/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-07-31">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-07-31</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-07-31</h1>
+<p>2026-07-31 UTC の knowledge-base-llm 更新は、<code>raw/x/bookmarks/bookmarks-20260731T0000Z.json</code> を入口に、Cognition / Devin と GitHub stacked pull requests を中心にした4本の source note が追加された日でした。追加された raw / wiki source は、Devin Cloud Agents の macOS/Xcode/iOS simulator 対応、Devin の GitHub stacked PR 対応、GitHub 自体の stacked pull requests public preview、Namespace と Cognition の devbox 連携です。X post 由来が多いため evidence strength は medium が中心ですが、GitHub Changelog への primary URL を持つ stacked PR preview は、機能公開の存在確認としては強めの根拠です。</p>
+<p>今日の全体トレンドは、「coding agent の価値がエディタ内のコード生成から、実行環境、レビュー単位、ブランチ構造、クラウド devbox まで広がっている」ことです。Devin が macOS を持つ、Xcode と iOS simulator を動かす、 signing setup まで含める、という話は、モバイル開発のような環境依存の強い作業を agent harness の内側へ入れる動きです。一方、stacked PR は、大きな変更を小さな差分列に分解し、順序・依存・ downstream rebase を扱う review topology の話です。つまり今日の更新は、実行面とレビュー面の両方で「agent が動く土台そのもの」が製品化されているシグナルとして読めます。</p>
+<p>重要ソース1本目は Cognition / Devin の macOS 対応デモです。投稿は「iOS apps cannot be built without a Mac」という制約を起点に、Devin Cloud Agents が real macOS environment 上で Xcode、iOS simulator、signing setup、full computer use を扱えるようになったと説明しています。KB上では、これは単なるリモート実行ではなく、artifact-native mobile development loop の証拠として扱えます。コードを書く agent が、ビルド対象の実機に近い環境、シミュレータ、署名設定、実行結果の観察まで同じ環境に持つと、テストとレビューの粒度が変わります。</p>
+<p>重要ソース2本目は GitHub Changelog の stacked pull requests public preview です。stacked PR は、大きな変更を互いに積み重なる小さな PR に分解し、個別にもまとめても review / merge できるという変更管理の機能です。これは agentic coding にとってかなり重要です。agent は大きな変更を一気に出すほどレビュー負荷を上げがちですが、stack を work unit にできるなら、分解、依存、コメント修正、downstream rebase、merge order を明示的に扱えるようになります。KBの <code>eval-review-reliability</code> と <code>coding-agent-harness-patterns</code> にとって、review surface が単一PRから stack へ拡張する意味は大きいです。</p>
+<p>重要ソース3本目は Devin の GitHub stacked PR native support です。Cognition の投稿は、Devin が large changes を smaller, reviewable diffs に分解し、stack across comments を直し、downstream changes を自動 rebase できると述べています。GitHub 側が stacked PR を public preview として出し、同日に Devin 側が native support を出しているため、これは人間の review workflow と agent の execution workflow が同じ構造へ寄っていく例です。stacked PR は人間レビューの便利機能に見えますが、agent harness の観点では、変更分解とレビュー応答を機械が扱いやすい単位へ変える interface でもあります。</p>
+<p>Namespace の devbox update は、Cognition との連携により Devin が Apple Silicon の macOS Devboxes と Linux にアクセスできるというインフラ側の補助線です。これにより、Devin の macOS 対応は単独機能というより、cloud devbox vendor と agent product の境界が結びつく流れとして見えてきます。agent が「どこで実行されるか」は、権限、監査、再現性、warm pool、snapshot、ビルド性能、OS固有ツールの可用性を左右します。KBの <code>harness-engineering-vendor-comparison</code> では、Cognition / Devin の軸に macOS/Xcode execution、stacked PR support、devbox-environment partnerships が加わりました。</p>
+<p>KB地図の更新としては、<code>agent-harness-landscape</code> に Cognition / Devin と GitHub stacked PR の項目が明示的に足され、cloud-agent runtime が generic ではなく environment-specific になっている点が整理されました。<code>coding-agent-harness-patterns</code> では、risk-routed AI review の近くに stacked PR が review unit として追加され、さらに embedded runtime review surface として iOS simulator panel 的な読み方が補強されています。<code>eval-review-reliability</code> では、single-diff inspection だけではなく、artifact-native、stack-aware workflow へ review reliability が移動しているという見方が入りました。</p>
+<p>実務上の読みどころは、agent 導入のボトルネックが「モデルに何を指示するか」だけではなくなっていることです。iOS のような環境依存タスクでは、agent が正しい shell command を知っていても、macOS、Xcode、simulator、signing、UI inspection が揃わなければ閉じたループになりません。大きな変更のレビューでは、agent がコードを書けても、差分が大きすぎたり、レビューコメント修正が downstream branch に波及したりすると、人間の負荷が跳ね上がります。今日の4本は、その2つの詰まりをそれぞれ runtime substrate と review topology で解こうとしているように見えます。</p>
+<p>Podcastで掘るなら、第一に「cloud coding agent はもはやリモートCLIではなく、OS・デバイス・シミュレータ・署名・レビューUIを含む実行面そのものになっている」という話が中心になります。第二に「stacked PR は人間のための整理術であると同時に、agent が大きな変更を扱うための制御構造でもある」という論点があります。第三に「GitHub のレビュー構造と Devin の agent workflow が同じ日に同じ方向へ動いたことは、プラットフォームと agent vendor の境界が近づいている兆候かもしれない」という読み方もできます。</p>
+<p>次に追うべき問いは3つあります。まず、Devin の macOS/Xcode 環境で、署名情報、Apple Developer account、秘密情報、監査ログがどのように扱われるのか。次に、GitHub stacked PR preview が一般化したとき、AI review、auto-merge、risk routing、downstream rebase の失敗検知はどのレイヤーで設計されるのか。最後に、Namespace のような devbox provider と agent vendor の組み合わせが進むと、企業は coding agent を「ツール」として買うのか、それとも「管理された実行環境」として買うのか、という調達・ガバナンス上の問いです。</p>
+<h2>Important Sources</h2>
+<ul>
+<li><code>https://x.com/i/status/2082868506576519560</code></li>
+<li><code>https://github.blog/changelog/2026-07-30-stacked-pull-requests-are-now-in-public-preview</code></li>
+<li><code>https://x.com/i/status/2082870779775959249</code></li>
+<li><code>https://x.com/i/status/2082890935617171677</code></li>
+</ul>
+<h2>New / Changed Files</h2>
+<ul>
+<li><code>raw/x/bookmarks/bookmarks-20260731T0000Z.json</code></li>
+<li><code>raw/articles/cognition-devin-cloud-agents-macos-xcode-ios-simulator-x-2026-07-30.md</code></li>
+<li><code>raw/articles/cognition-devin-github-stacked-prs-x-2026-07-30.md</code></li>
+<li><code>raw/articles/ghchangelog-stacked-pull-requests-public-preview-github-x-2026-07-30.md</code></li>
+<li><code>raw/articles/namespacelabs-devboxes-cognition-macos-linux-x-2026-07-30.md</code></li>
+<li><code>wiki/sources/cognition-devin-cloud-agents-macos-xcode-ios-simulator-x-2026-07-30.md</code></li>
+<li><code>wiki/sources/cognition-devin-github-stacked-prs-x-2026-07-30.md</code></li>
+<li><code>wiki/sources/ghchangelog-stacked-pull-requests-public-preview-github-x-2026-07-30.md</code></li>
+<li><code>wiki/sources/namespacelabs-devboxes-cognition-macos-linux-x-2026-07-30.md</code></li>
+<li><code>wiki/INDEX.md</code></li>
+<li><code>wiki/maps/agent-harness-landscape.md</code></li>
+<li><code>wiki/maps/coding-agent-harness-patterns.md</code></li>
+<li><code>wiki/maps/eval-review-reliability.md</code></li>
+<li><code>wiki/maps/harness-engineering-vendor-comparison.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Cognition - Devin Cloud Agents on macOS</h3>
+<p>Source note: <code>wiki/sources/cognition-devin-cloud-agents-macos-xcode-ios-simulator-x-2026-07-30.md</code></p>
+<h1>Cognition - Devin Cloud Agents on macOS</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/cognition-devin-cloud-agents-macos-xcode-ios-simulator-x-2026-07-30.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260731T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2082868506576519560</li>
+<li>Author: nader dabit (@dabit3)</li>
+<li>Posted: 2026-07-30T16:38:44.000Z</li>
+<li>Captured: 2026-07-31T00:00:18.198Z via xurl bookmarks capture</li>
+<li>Type: X post / video card</li>
+<li>Evidence strength: medium; the post is a demo clip rather than a full spec or docs page</li>
+<li>Public metrics at capture: 509 likes, 31 reposts, 54 replies, 16 quotes, 254 bookmarks, 104506 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>The post claims Devin Cloud Agents can now run macOS with Xcode, the iOS simulator, and signing setup available in the same environment, and that a demo used this to build and test a native iOS game. The main KB signal is that mobile app work is becoming executable inside a remote agent environment with the relevant platform tools already in place.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Devin Cloud Agents can run on macOS.</li>
+<li>Xcode and the iOS simulator are available inside that environment.</li>
+<li>Signing setup is part of the surfaced workflow.</li>
+<li>The environment is usable for both building and testing a native iOS app.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post explicitly names macOS, Xcode, the iOS simulator, and signing setup.</li>
+<li>It says the demo builds a native iOS game and then plays/tests it.</li>
+<li>The clip therefore combines compile, run, and verification in one agent workspace.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / demo video</li>
+<li>Confidence: medium-high for the feature direction, medium for implementation details</li>
+<li>Supports: managed-agents, long-running-agents, human-in-the-loop, self-verification</li>
+<li>Main limitations: no docs page or repr</li>
+</ul>
+<h3>Cognition - Devin now supports GitHub stacked PRs</h3>
+<p>Source note: <code>wiki/sources/cognition-devin-github-stacked-prs-x-2026-07-30.md</code></p>
+<h1>Cognition - Devin now supports GitHub stacked PRs</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/cognition-devin-github-stacked-prs-x-2026-07-30.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260731T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2082870779775959249</li>
+<li>Author: Cognition (@cognition)</li>
+<li>Posted: 2026-07-30T16:47:46.000Z</li>
+<li>Captured: 2026-07-31T00:00:18.198Z via xurl bookmarks capture</li>
+<li>Type: X post / video card</li>
+<li>Evidence strength: medium; the post is a demo signal without a linked primary source</li>
+<li>Public metrics at capture: 333 likes, 34 reposts, 28 replies, 39 quotes, 54 bookmarks, 67191 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Cognition says Devin natively supports GitHub stacked PRs, including breaking work into smaller diffs, fixing comments across the stack, and automatically rebasing downstream changes. This is a useful KB signal because it connects agent workflows to a more explicit review topology.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Devin can work with GitHub stacked PRs natively.</li>
+<li>Stacked PRs let the agent break work into smaller, reviewable diffs.</li>
+<li>Devin can address comments across the stack and rebase downstream changes automatically.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post explicitly lists the three capabilities.</li>
+<li>It sits alongside GitHub&#x27;s own public-preview announcement for stacked pull requests.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / demo video</li>
+<li>Confidence: medium</li>
+<li>Supports: self-verification, human-in-the-loop, feedback-controls, task-decomposition</li>
+<li>Main limitations: no docs page or reproducible implementation notes were captured</li>
+<li>Best use: evidence that agent products are adapting to stacked-review workflows</li>
+</ul>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[../concepts/self-verification.md]]</li>
+<li>[[../concepts/human-in-the-loop.md]]</li>
+<li>[[../concepts/feedback-controls.md</li>
+</ul>
+<h3>GitHub Changelog - Stacked pull requests public preview</h3>
+<p>Source note: <code>wiki/sources/ghchangelog-stacked-pull-requests-public-preview-github-x-2026-07-30.md</code></p>
+<h1>GitHub Changelog - Stacked pull requests public preview</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/ghchangelog-stacked-pull-requests-public-preview-github-x-2026-07-30.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260731T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2082870109912072588</li>
+<li>Primary URL: https://github.blog/changelog/2026-07-30-stacked-pull-requests-are-now-in-public-preview</li>
+<li>Author: GitHub Changelog (@GHchangelog)</li>
+<li>Posted: 2026-07-30T16:45:06.000Z</li>
+<li>Captured: 2026-07-31T00:00:18.198Z via xurl bookmarks capture</li>
+<li>Type: X post pointing to GitHub Changelog</li>
+<li>Evidence strength: high for the feature preview and primary announcement</li>
+<li>Public metrics at capture: 51 likes, 14 reposts, 0 replies, 4 quotes, 16 bookmarks, 3614 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>GitHub&#x27;s stacked pull request preview makes large changes easier to split into ordered, reviewable layers. That matters to the KB because it turns &quot;review&quot; from a single merge gate into a structured workflow for building, fixing, and merging change stacks.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Stacked pull requests let large work be split into smaller ordered diffs.</li>
+<li>Reviewers can work through the stack independently or merge the whole stack together.</li>
+<li>The feature is now in public preview.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text explicitly describes reviewable PRs that build on each other in order.</li>
+<li>The linked GitHub changelog entry is the primary source for the feature preview.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X bookmark plus GitHub changelog</li>
+<li>Confidence: high</li>
+<li>Supports: self-verification, human-in-the-loop, feedback-controls, task-decomposition</li>
+<li>Main limitations: public preview status means the UX and rollout details may still change</li>
+<li>Best use: a concrete review-structure example for coding-</li>
+</ul>
+<h3>Namespace - Devbox update with Cognition</h3>
+<p>Source note: <code>wiki/sources/namespacelabs-devboxes-cognition-macos-linux-x-2026-07-30.md</code></p>
+<h1>Namespace - Devbox update with Cognition</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/namespacelabs-devboxes-cognition-macos-linux-x-2026-07-30.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260731T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2082890935617171677</li>
+<li>Author: Namespace (@namespacelabs)</li>
+<li>Posted: 2026-07-30T18:07:51.000Z</li>
+<li>Captured: 2026-07-31T00:00:18.198Z via xurl bookmarks capture</li>
+<li>Type: X post / product update</li>
+<li>Evidence strength: medium; the post is mostly a summary update with one visible media card</li>
+<li>Public metrics at capture: 6 likes, 0 reposts, 0 replies, 0 quotes, 4 bookmarks, 438 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Namespace says it has partnered with Cognition so Devin can use macOS Devboxes with Apple Silicon as well as Linux. The signal is less about the marketing copy and more about the deployment surface: cloud-agent workflows are now being packaged around specific devbox environments rather than only generic remote compute.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Namespace is shipping new devbox-related improvements.</li>
+<li>Cognition / Devin can access macOS Devboxes with Apple Silicon and Linux.</li>
+<li>The devbox is positioned as a usable surface for the agent, not just a general-purpose machine image.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post explicitly names a partnership with Cognition.</li>
+<li>It explicitly mentions macOS Devboxes with Apple Silicon and Linux.</li>
+<li>The visible card suggests the update is product-facing, not merely internal infrastructure.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / product update</li>
+<li>Confidence: medium for the surface claim, low for any deeper operational details</li>
+<li>Supports: managed-agents, agent-management, tool-accessibility, harness-engineering</li>
+<li>Main limitations: no engineering docs or benchmarks were captured</li>
+<li>Best use: eviden</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/djfarrelly-agent-loop-architecture-x.md]]</li>
+<li>[[../sources/jason-liu-codex-maxxing-heartbeats.md]]</li>
+<li>[[../sources/openai-chatgpt-memory-dreaming-x-2026-06</li>
+</ul>
+<h3>Coding-Agent Harness Patterns</h3>
+<p>KB note: <code>wiki/maps/coding-agent-harness-patterns.md</code></p>
+<h1>Coding-Agent Harness Patterns</h1>
+<h2>Purpose</h2>
+<p>Synthesize practical harness patterns for coding-agent workflows using the KB&#x27;s control vocabulary plus a concrete real-world operator example.</p>
+<h2>Core claim</h2>
+<p>A coding-agent workflow becomes harness engineering when quality and reliability depend on the surrounding artifacts, controls, and review loops rather than on the model prompt alone.</p>
+<h2>Pattern 1. Plan as handoff artifact</h2>
+<p>Use a session-scoped plan file such as <code>plan.md</code> as a durable handoff contract.</p>
+<p>Why it matters:</p>
+<ul>
+<li>makes intent inspectable</li>
+<li>supports context resets and reviewer alignment</li>
+<li>creates a stable object for verifier agents to critique</li>
+</ul>
+<h2>Pattern 2. Verifier split without full multi-agent overhead</h2>
+<p>Use heavy thinking for hard, bounded reasoning: spawn independent temporary thinkers, then have one deliberator critique and synthesize their outputs.</p>
+<p>Use a second agent or model mainly for plan review or implementation review instead of duplicating the whole execution role.</p>
+<h3>Eval and Review Reliability</h3>
+<p>KB note: <code>wiki/maps/eval-review-reliability.md</code></p>
+<h1>Eval and Review Reliability</h1>
+<h2>Purpose</h2>
+<p>Collect the KB&#x27;s evaluation and review ideas into one map focused on practical reliability: how to know whether an agent-produced artifact is good enough, and how to keep review load from becoming the bottleneck.</p>
+<h2>Core thesis</h2>
+<p>Agent output quality improves when evaluation is treated as a separate harness layer, not as an informal final glance by the same agent that produced the work.</p>
+<h2>Reliability layers</h2>
+<h3>1. Deterministic checks first</h3>
+<p>Use cheap checks before semantic review:</p>
+<ul>
+<li>lint and typecheck</li>
+<li>tests and smoke tests</li>
+<li>formatting and structural checks</li>
+<li>repository-specific machine-checkable invariants</li>
+</ul>
+<p>Related concepts: [[../concepts/machine-checkable-invariants.md]], [[../concepts/feedback-controls.md]].</p>
+<h3>2. Task-fit review</h3>
+<p>Check whether the work actually satisfies the request:</p>
+<ul>
+<li>requirements coverage</li>
+<li>edge cases</li>
+<li>backward compatibility</li>
+<li>user-facing behavior</li>
+<li>maintainability</li>
+</ul>
+<p>Related maps: [[coding-agent-review-rubric.md]], [</p>
+<h3>Harness Engineering Vendor / Practitioner Comparison</h3>
+<p>KB note: <code>wiki/maps/harness-engineering-vendor-comparison.md</code></p>
+<h1>Harness Engineering Vendor / Practitioner Comparison</h1>
+<h2>Purpose</h2>
+<p>Compare how different sources frame harness engineering, what they optimize for, and what distinctive mechanisms they emphasize.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/codex-subagents-docs.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/cursor-3-blog.md]]</li>
+<li>[[../sources/anthropic-claude-code-large-codebases.md]]</li>
+<li>[[../sources/anthropic-2026-agentic-coding-trends-report.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+</ul>
+<h2>Comparison axes</h2>
+<h3>OpenAI</h3>
+<ul>
+<li>Focus: repository design, machine-enforced invariants, agent-recognizable contex</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>4</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
