@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-08-01 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-01/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-08-01</header>
+<h1>KB Daily Digest 2026-08-01</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-01/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-08-01">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-08-01</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-08-01</h1>
+<p>2026-08-01 UTC の knowledge-base-llm 更新は、X bookmarks batch と Namespace 公式ドキュメントの手動 ingest が重なった日でした。新規 raw は <code>raw/x/bookmarks/bookmarks-20260801T0000Z.json</code> と4本の X 由来 article note、さらに Namespace の Devin on Devboxes 公式ドキュメント HTML/Markdown です。wiki 側には5本の source note が追加され、<code>managed-agents</code>、<code>environment-bootstrapping</code>、<code>agent-harness-landscape</code>、<code>harness-engineering-vendor-comparison</code> が更新されました。X 由来の4本はスナップショット/カード中心なので evidence strength は medium 前後ですが、Namespace 公式ドキュメントは統合アーキテクチャとセットアップ手順の根拠として強めです。</p>
+<p>今日の全体トレンドは、「coding agent の性能や実用性はモデル単体ではなく、知識の構造化、実行環境、ツール接続、製品化された常時稼働 runtime の組み合わせで決まる」という方向です。Claude 向け ontology、LLM Wiki、remote MCP、Gemini Spark、Devin on Namespace Devboxes は一見ばらばらですが、KB の地図では同じ問題に接続します。つまり、エージェントがうまく働くには、情報をどう整理するか、どこで実行するか、外部ツールへどう安全に繋ぐか、どの単位で管理・監査するかが重要になる、という読みです。</p>
+<p>重要ソース1本目は Namespace の公式 Devin integration docs です。ここでは Devin Cloud が orchestration、planning、context management、inference を担い、Namespace Devboxes が shell commands、file edits、repository access、builds、tests を担うと明確に分離されています。Devin session が queue されると Namespace が fresh Devbox を provision し、その中で Devin Outposts worker が起動し、worker は outbound HTTPS で Devin Cloud へ接続します。session 終了時には worker が exit し Devbox が tear down されるため、cloud agent の「頭脳」と「手足」が別 plane になっている実例として読めます。</p>
+<p>重要ソース2本目は Claude Code研究所の ontology / structure signal です。記事本文は今回の snapshot では取れていませんが、カードタイトルは「Claude の性能改善には、素材を増やすより ontology と構造が効く」という主張を示しています。これは KB 自身の raw/wiki 分離とかなり相性がよい更新です。raw を増やすだけではなく、source note、concept、map、open question へ編み直すことが、Claude や coding agent に渡す context の品質を上げるという仮説を補強します。</p>
+<p>重要ソース3本目は HedgehogPython の LLM Wiki / codebase knowledge signal です。こちらも X bookmark 経由の Qiita 共有であり、本文の深掘りは次回課題ですが、「コードベース知識は LLM Wiki で十分かもしれない」という実務的な方向を示しています。RAG や検索基盤に raw source を積むだけではなく、コードベースを理解しやすい compiled wiki として整える発想は、agent に長期作業を任せる時の context engineering と workflow compilation の中心に近いです。</p>
+<p>残りの2本も、agent harness の周辺地図を広げています。Mark Kretschmann の Gemini Spark global availability は、Google AI Pro / Ultra users 向けに 24/7 cloud agent が globally available になったという rollout signal で、long-running / managed agent が実験段階から配布面へ移る流れを示します。Yusuke Wada の Hono + TypeScript SDK v2 による remote MCP server signal は、agent の tool surface が特殊基盤ではなく ordinary web stack でも構築しやすくなっていることを示します。常時稼働の managed runtime と、軽量に立てられる remote tool server が並ぶことで、agent product の「操作面」と「接続面」の両方が現実的になっています。</p>
+<p>KB 地図の更新としては、<code>managed-agents</code> に「cloud orchestration plane と fresh per-session execution plane の分離」が入り、<code>environment-bootstrapping</code> には predefined remote environments が setup entropy を下げる一方で、image freshness、access mode、teardown behavior、credential handling を設計問題として持ち込む、という tension が追加されました。<code>agent-harness-landscape</code> では Devin / Namespace の連携が、generic remote CLI ではなく environment-specific runtime substrate の例として補強されました。<code>harness-engineering-vendor-comparison</code> でも Cognition / Devin の distinctive emphasis に Devin Outposts worker と orchestration/execution-plane separation が加わっています。</p>
+<p>実務上の読みどころは、エージェント運用の投資先が三層に分かれてきたことです。第一層は ontology / LLM Wiki のような知識編成で、モデルに渡す context の形を整える。第二層は Namespace Devbox や Gemini Spark のような managed runtime で、エージェントがどこで、どの権限で、どの lifecycle で動くかを決める。第三層は remote MCP のような tool connectivity で、agent が外部システムとやり取りする interface を整える。この三層が揃わないと、モデル性能だけを上げても現場の workflow には届きにくい、というのが今日の更新の中心です。</p>
+<p>Podcastで掘るなら、まず「知識を増やすこと」と「知識を構造化すること」の違いを扱うとよさそうです。次に、Devin on Namespace Devboxes を例に、cloud agent の頭脳と実行環境が分離することで、セキュリティ、監査、再現性、credential handling がどう変わるかを話せます。最後に、Gemini Spark と remote MCP を並べて、agent が常時動くことと、必要な tool surface を普通の web framework で足せることが組み合わさると、企業の agent harness はどのような管理単位になるのか、という問いに展開できます。</p>
+<p>次に追うべき問いは3つあります。まず、Namespace Devbox の isolation、secret handling、audit log、failure recovery は公式 docs の外でどこまで確認できるのか。次に、ontology / LLM Wiki の効果を「体感」ではなく coding agent の task success、review latency、context churn でどう測るのか。最後に、remote MCP が普通の web stack に乗るほど、auth、tenant boundary、tool permission、observability を誰がどのレイヤーで標準化するのか、です。</p>
+<h2>Important Sources</h2>
+<ul>
+<li><code>https://namespace.so/docs/devbox/devin</code></li>
+<li><code>https://x.com/i/status/2082446956710998379</code></li>
+<li><code>https://x.com/i/status/2082714025969037383</code></li>
+<li><code>https://x.com/i/status/2082859528765178176</code></li>
+<li><code>https://x.com/i/status/2083146706326344182</code></li>
+</ul>
+<h2>New / Changed Files</h2>
+<ul>
+<li><code>raw/x/bookmarks/bookmarks-20260801T0000Z.json</code></li>
+<li><code>raw/articles/claudecode-lab-ontology-for-improving-claude-performance-x-2026-07-29.md</code></li>
+<li><code>raw/articles/hedgehogpython-codebase-knowledge-llm-wiki-enough-x-2026-07-30.md</code></li>
+<li><code>raw/articles/mark-k-gemini-spark-global-availability-x-2026-07-30.md</code></li>
+<li><code>raw/articles/yusuke-wada-remote-mcp-server-hono-typescript-sdk-v2-x-2026-07-31.md</code></li>
+<li><code>raw/articles/namespace-devin-ai-devbox-doc-2026-07-21.md</code></li>
+<li><code>raw/articles/namespace-devin-ai-devbox-doc-2026-07-21.html</code></li>
+<li><code>wiki/sources/claudecode-lab-ontology-for-improving-claude-performance-x-2026-07-29.md</code></li>
+<li><code>wiki/sources/hedgehogpython-codebase-knowledge-llm-wiki-enough-x-2026-07-30.md</code></li>
+<li><code>wiki/sources/mark-k-gemini-spark-global-availability-x-2026-07-30.md</code></li>
+<li><code>wiki/sources/yusuke-wada-remote-mcp-server-hono-typescript-sdk-v2-x-2026-07-31.md</code></li>
+<li><code>wiki/sources/namespace-devin-ai-devbox-doc.md</code></li>
+<li><code>wiki/INDEX.md</code></li>
+<li><code>wiki/concepts/environment-bootstrapping.md</code></li>
+<li><code>wiki/concepts/managed-agents.md</code></li>
+<li><code>wiki/maps/agent-harness-landscape.md</code></li>
+<li><code>wiki/maps/harness-engineering-vendor-comparison.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-product-market-fit.md]] — Simon Willison&#x27;s market analysis that Anthropic/OpenAI have found product-market fit through coding/general-purpose agents, API-aligned enterprise pricing, and high-value professional usage.</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents, and org ownership.</li>
+<li>[[about-hiroppy-founders-playbook.md]] — Anthropic&#x27;s official founder playbook PDF: AI-native startup lifecycle across Idea, MVP, Launch, and Scale, with Claude Chat/Cowork/Code stage usage, validation gates, agentic technical debt risks, founder bottleneck removal, and moat formation.</li>
+<li>[[izanami-claude-code-large-codebase-best-practices.md]] — Japanese practitioner explainer on Claude Code large-codebase setup: live repo search, thin layered CLAUDE.md, subdirectory startup, hooks, stale-rule pruning, and adoption ownership.</li>
+<li>[[newspicks-harness-engineering-what-is-it.md]] — Japanese explainer separating evalua</li>
+</ul>
+<h3>Namespace - Devin on Devboxes documentation</h3>
+<p>Source note: <code>wiki/sources/namespace-devin-ai-devbox-doc.md</code></p>
+<h1>Namespace - Devin on Devboxes documentation</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/namespace-devin-ai-devbox-doc-2026-07-21.md</code></li>
+<li>Raw HTML: <code>../../raw/articles/namespace-devin-ai-devbox-doc-2026-07-21.html</code></li>
+<li>Original URL: https://namespace.so/docs/devbox/devin</li>
+<li>Publisher: Namespace</li>
+<li>Page title: Devin AI | Namespace</li>
+<li>Last updated: 2026-07-21</li>
+<li>Captured: 2026-08-01</li>
+<li>Type: official product documentation</li>
+<li>Evidence strength: high for documented architecture and setup flow; low for performance or reliability claims because no benchmarks are provided</li>
+</ul>
+<h2>Summary</h2>
+<p>Namespace documents a native Devin integration where Devin Cloud handles orchestration, planning, context management, and inference, while Namespace Devboxes handle shell commands, file edits, repository access, builds, and tests. The integration uses Devin Outposts: a Devin session is queued for a worker, Namespace provisions a fresh Devbox, starts the Devin worker inside it, and the worker connects outward to Devin Cloud over HTTPS. When the session ends, the worker exits and the Devbox is torn down.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Devin agents are natively supported on Namespace Devboxes.</li>
+<li>Devin&#x27;s agent loop, planning, context management, and inference remain in Devin&#x27;s cloud.</li>
+<li>Namespace Devboxes execute commands, edits, repository access, builds, and tests.</li>
+<li>Devboxes can run Linux or macOS, and macOS environments include mobile-development tools such as iOS simulators.</li>
+<li>The Devin Outposts connection uses outbound HTTPS only, with no inbound ports, public IPs, or VPN tunnels to configure.</li>
+<li>Each Devin session gets a freshly provisioned Devbox, and the Devbox is torn down when the session ends.</li>
+<li>Setup requires a Namespace account, Devin Cloud account, a Devbox blueprint, and connecting that blueprint to th</li>
+</ul>
+<h3>Claude Code Research Lab - Ontology for improving Claude performance</h3>
+<p>Source note: <code>wiki/sources/claudecode-lab-ontology-for-improving-claude-performance-x-2026-07-29.md</code></p>
+<h1>Claude Code Research Lab - Ontology for improving Claude performance</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/claudecode-lab-ontology-for-improving-claude-performance-x-2026-07-29.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260801T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2082446956710998379</li>
+<li>Primary URL: https://x.com/i/article/2081012579737157632</li>
+<li>Author: Claude Code研究所|スパルタClaude Code塾 (@claudecode_lab)</li>
+<li>Posted: 2026-07-29T12:43:39.000Z</li>
+<li>Captured: 2026-08-01T00:00:22.073Z via xurl bookmarks capture</li>
+<li>Type: X post / article card</li>
+<li>Evidence strength: bookmark snapshot metadata plus X article card title</li>
+<li>Public metrics at capture: 225 likes, 30 reposts, 3 replies, 8 quotes, 450 bookmarks, 39323 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This is an article-card-only bookmark, but the title is useful: it argues that ontology and structure improve Claude performance more than simply adding more source material. That fits this KB&#x27;s bias toward compiled, connected knowledge rather than raw accumulation.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Knowledge structure matters for Claude performance.</li>
+<li>Ontology is presented as a more important lever than adding more documents.</li>
+<li>The article is part 1 of a series, so the framing is likely meant to be systematic rather than anecdotal.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark contains only the article card title, so the strongest evidence is the title itself.</li>
+<li>The title explicitly contrasts better structure with simply adding more material.</li>
+<li>The post is useful mainly as a signal that ontology work can pay off in agent performance contexts.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / article card</li>
+<li>Confidence: medium for the general structural claim, low-medium for any deeper specifics not present in the snapshot</li>
+<li>Supports: [[../</li>
+</ul>
+<h3>HedgehogPython - LLM Wiki may be enough for codebase knowledge</h3>
+<p>Source note: <code>wiki/sources/hedgehogpython-codebase-knowledge-llm-wiki-enough-x-2026-07-30.md</code></p>
+<h1>HedgehogPython - LLM Wiki may be enough for codebase knowledge</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/hedgehogpython-codebase-knowledge-llm-wiki-enough-x-2026-07-30.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260801T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2082714025969037383</li>
+<li>Primary URL: https://qiita.com/Syoitu/items/ff38655fed51a2920910</li>
+<li>Author: HedgehogPython (@HedgehogPython)</li>
+<li>Posted: 2026-07-30T06:24:53.000Z</li>
+<li>Captured: 2026-08-01T00:00:22.073Z via xurl bookmarks capture</li>
+<li>Type: X post / link share to Qiita</li>
+<li>Evidence strength: bookmark snapshot metadata plus captured article title card</li>
+<li>Public metrics at capture: 28 likes, 4 reposts, 0 replies, 1 quote, 23 bookmarks, 3420 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark is a direct reminder that the Karpathy-style LLM Wiki pattern is still resonating as a practical alternative to dumping source material into a retrieval layer and hoping for the best. The signal aligns with this KB&#x27;s own compiled/raw split.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>A codebase knowledge layer can be built with an LLM Wiki pattern.</li>
+<li>The value is in curated compilation, not just in retrieval infrastructure.</li>
+<li>The Qiita article is framed as a practical explanation rather than a speculative architecture essay.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text explicitly says the article argues that LLM Wiki may be enough for codebase knowledge.</li>
+<li>The linked Qiita title is about codebase knowledge and LLM Wiki.</li>
+<li>The post sits in the same design space as this repo&#x27;s own raw/wiki separation.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post pointing to a Qiita article</li>
+<li>Confidence: medium for the practical claim, high that the article is a relevant practitioner signal</li>
+<li>Supports: [[../concepts/compiled-wiki.md]], [[../concepts/context-e</li>
+</ul>
+<h3>Mark Kretschmann - Gemini Spark global availability</h3>
+<p>Source note: <code>wiki/sources/mark-k-gemini-spark-global-availability-x-2026-07-30.md</code></p>
+<h1>Mark Kretschmann - Gemini Spark global availability</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/mark-k-gemini-spark-global-availability-x-2026-07-30.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260801T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2082859528765178176</li>
+<li>Linked media URL: https://x.com/mark_k/status/2082859528765178176/photo/1</li>
+<li>Author: Mark Kretschmann (@mark_k)</li>
+<li>Posted: 2026-07-30T16:03:03.000Z</li>
+<li>Captured: 2026-08-01T00:00:22.073Z via xurl bookmarks capture</li>
+<li>Type: X post / product availability update</li>
+<li>Evidence strength: bookmark snapshot metadata plus visible media card</li>
+<li>Public metrics at capture: 764 likes, 44 reposts, 72 replies, 15 quotes, 220 bookmarks, 54827 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Gemini Spark shows up here as a globally available, always-on cloud agent for Google AI Pro and Ultra users. This is a useful companion signal to the earlier Gemini Spark summary note because it moves the product from concept into availability.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Gemini Spark is available globally.</li>
+<li>It is offered to Google AI Pro and Ultra users.</li>
+<li>The product is positioned as a 24/7 cloud agent.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text states the global rollout directly.</li>
+<li>The post&#x27;s visible card supports the product-announcement framing.</li>
+<li>The note should be read as a rollout signal, not a deep architecture disclosure.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post / product availability update</li>
+<li>Confidence: high for the rollout signal, medium for the agent-runtime interpretation</li>
+<li>Supports: [[../concepts/agent-autonomy.md]], [[../concepts/long-running-agents.md]], [[../concepts/managed-agents.md]], [[../concepts/coding-agents.md]]</li>
+<li>Main limitations: no engineering details are present in the snapshot</li>
+<li>Best use: evidence that always-o</li>
+</ul>
+<h3>Yusuke Wada - Remote MCP server with Hono and TypeScript SDK v2</h3>
+<p>Source note: <code>wiki/sources/yusuke-wada-remote-mcp-server-hono-typescript-sdk-v2-x-2026-07-31.md</code></p>
+<h1>Yusuke Wada - Remote MCP server with Hono and TypeScript SDK v2</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/yusuke-wada-remote-mcp-server-hono-typescript-sdk-v2-x-2026-07-31.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260801T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2083146706326344182</li>
+<li>Linked X URL: https://twitter.com/ClaudeDevs/status/2082164248697069935</li>
+<li>Author: Yusuke Wada (@yusukebe)</li>
+<li>Posted: 2026-07-31T11:04:12.000Z</li>
+<li>Captured: 2026-08-01T00:00:22.073Z via xurl bookmarks capture</li>
+<li>Type: X post / technical implementation signal</li>
+<li>Evidence strength: bookmark snapshot metadata plus linked X reference to a ClaudeDevs example</li>
+<li>Public metrics at capture: 291 likes, 19 reposts, 3 replies, 2 quotes, 147 bookmarks, 31127 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This post is a compact implementation signal for remote MCP infrastructure. The useful part is not just that remote MCP exists, but that it can apparently be built with a lightweight web framework plus the TypeScript SDK v2.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Remote MCP servers can be implemented with Hono.</li>
+<li>The TypeScript SDK v2 includes the support needed for that path.</li>
+<li>A ClaudeDevs example is relevant enough to be linked from the bookmark.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text explicitly says remote MCP servers can be written this way.</li>
+<li>The post includes a photo/card and a direct cross-link to a ClaudeDevs tweet.</li>
+<li>The capture does not include a deeper walkthrough, so the note stays at the implementation-signal level.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X technical implementation signal</li>
+<li>Confidence: medium-high for the implementation claim, medium for the broader tooling implications</li>
+<li>Supports: [[../concepts/tool-accessibility.md]], [[../concepts/harness-engineering.md]], [[../concepts/coding-</li>
+</ul>
+<h3>Claude - Lessons from building Claude Code: How we use skills</h3>
+<p>Source note: <code>wiki/sources/claude-lessons-from-building-claude-code-how-we-use-skills.md</code></p>
+<h1>Claude - Lessons from building Claude Code: How we use skills</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/claude-lessons-from-building-claude-code-how-we-use-skills-2026-06-03.md</code></li>
+<li>Original URL: https://claude.com/blog/lessons-from-building-claude-code-how-we-use-skills</li>
+<li>Author: Thariq Shihipar / Anthropic</li>
+<li>Published: 2026-06-03</li>
+<li>Captured: 2026-07-29</li>
+<li>Type: Claude blog / Claude Code practice article</li>
+<li>Evidence strength: high for Anthropic&#x27;s internal skill taxonomy and practical skill-authoring guidance</li>
+</ul>
+<h2>Summary</h2>
+<p>Anthropic&#x27;s Claude Code team reports lessons from building and scaling hundreds of internal skills. The core contribution is a nine-category taxonomy of skill types, led by &quot;Library and API reference,&quot; plus pragmatic advice for writing skills that add high-signal context rather than repeating what Claude already knows.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Skills are one of Claude Code&#x27;s most-used extension points internally at Anthropic.</li>
+<li>Useful skills tend to fit cleanly into one skill type; overly broad skills that straddle several types can confuse the agent.</li>
+<li>Library/API reference skills are valuable because they explain correct library, CLI, or SDK usage and capture gotchas.</li>
+<li>Verification skills had the most measurable internal impact on Claude output quality.</li>
+<li>Good skills use gotchas sections, filesystem-based progressive disclosure, scripts, setup config, usage logging, and careful marketplace/distribution practices.</li>
+</ul>
+<h2>Nine Skill Types</h2>
+<ul>
+<li>Library and API reference</li>
+<li>Product verification</li>
+<li>Data fetching and analysis</li>
+<li>Business process and team automation</li>
+<li>Code scaffolding and templates</li>
+<li>Code quality and review</li>
+<li>CI/CD and deployment</li>
+<li>Runbooks</li>
+<li>Infrastructure operations</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: first-party Claude Code team practice article.</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Environment Bootstrapping</h3>
+<p>KB note: <code>wiki/concepts/environment-bootstrapping.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Environment Bootstrapping</p>
+<p>  - Autoinstall</p>
+<hr>
+<h1>Environment Bootstrapping</h1>
+<h2>Definition</h2>
+<p>The process of turning a fresh repository checkout into a runnable, testable, and often partially mocked environment that an agent can use for future coding or evaluation tasks.</p>
+<h2>Why It Matters</h2>
+<p>Coding agents learn and operate through tools. If the environment is broken before the actual task starts, the agent spends context and compute debugging setup, and downstream tests or reward signals may become meaningless.</p>
+<h2>Operational Pattern</h2>
+<ul>
+<li>Inspect repository docs, Makefiles, package managers, common language tools, and available tests.</li>
+<li>Identify target commands whose successful execution would indicate a usable base environment.</li>
+<li>Install dependencies and create missing configuration.</li>
+<li>Mock external services or data when necessary, while recording what was mocked.</li>
+<li>Validate by running target commands and comparing outputs to expected behavior.</li>
+<li>Discard or retry environments</li>
+</ul>
+<h3>Managed Agents</h3>
+<p>KB note: <code>wiki/concepts/managed-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Managed Agent</p>
+<p>  - Managed Agents</p>
+<hr>
+<h1>Managed Agents</h1>
+<h2>Definition</h2>
+<p>Hosted or product-managed agent runtimes that package model execution with tools, permissions, memory, tracing, sandboxing, and operational controls.</p>
+<h2>Why It Matters</h2>
+<p>Managed agents turn agent operation into a deployable surface rather than a local prompt pattern. They make it easier to build roleful domain agents, but they also move important governance decisions into the runtime: what tools are exposed, how memory persists, what is sandboxed, and how humans inspect or intervene.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[multi-agent-orchestration.md]]</li>
+<li>[[agent-dreaming.md]]</li>
+<li>[[outcomes.md]]</li>
+<li>[[tool-accessibility.md]]</li>
+<li>[[agent-management.md]]</li>
+<li>[[agent-safety.md]]</li>
+<li>[[background-agents.md]]</li>
+<li>[[context-engineering.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/claudeai-claude-managed-agents-intro-x.md]]</li>
+<li>[[../sources/claude-new-in-managed-agents-dreaming-outcomes-orchestration.md]]</li>
+<li>[[../sources/oikon48-claude-ma</li>
+</ul>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/djfarrelly-agent-loop-architecture-x.md]]</li>
+<li>[[../sources/jason-liu-codex-maxxing-heartbeats.md]]</li>
+<li>[[../sources/openai-chatgpt-memory-dreaming-x-2026-06</li>
+</ul>
+<h3>Harness Engineering Vendor / Practitioner Comparison</h3>
+<p>KB note: <code>wiki/maps/harness-engineering-vendor-comparison.md</code></p>
+<h1>Harness Engineering Vendor / Practitioner Comparison</h1>
+<h2>Purpose</h2>
+<p>Compare how different sources frame harness engineering, what they optimize for, and what distinctive mechanisms they emphasize.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/codex-subagents-docs.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/cursor-3-blog.md]]</li>
+<li>[[../sources/anthropic-claude-code-large-codebases.md]]</li>
+<li>[[../sources/anthropic-2026-agentic-coding-trends-report.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+</ul>
+<h2>Comparison axes</h2>
+<h3>OpenAI</h3>
+<ul>
+<li>Focus: repository design, machine-enforced invariants, agent-recognizable contex</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>7</code>, commits: <code>2</code></p></footer>
+
+</body>
+</html>
