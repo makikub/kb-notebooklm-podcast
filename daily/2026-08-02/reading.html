@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harness Engineering Vendor / Practitioner Comparison - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-02/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-08-02</a> / 読み物版</header>
+    <p class="eyebrow">2026-08-02 Weekly Topic</p>
+    <h1>Harness Engineering Vendor / Practitioner Comparison</h1>
+    <p class="lead">ハーネスエンジニアリングを、単なる「AIに詳しい人のプロンプト術」ではなく、環境、権限、レビュー、実行基盤、UI、組織導入まで含む実務設計として読むための比較です。OpenAI、Cursor、Cognition / Devin、Anthropic、OpenClaw系の実践を並べると、それぞれが同じ問題の別の面を強調していることが見えてきます。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-08-02">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. モデル単体では足りない</strong>成果は、repo構造、テスト、権限、レビュー、記録、実行環境まで含めた周辺設計で決まる。</div>
+      <div><strong>2. 各社の焦点は違う</strong>OpenAIは開発規律、Cursorは作業面と訓練環境、Devinはクラウド実行基盤、Anthropicは長時間運用を強調する。</div>
+      <div><strong>3. 導入単位は小さくできる</strong>最初から巨大基盤を作らず、計画、検証、レビュー、公開ゲートを一つずつ固定するだけでも効果が出る。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは「誰が何をハーネスと呼んでいるか」</h2>
+      <p>ハーネスエンジニアリングという言葉は、便利ですが少し広い言葉です。ある人はリポジトリ構造やテストの話として使い、別の人はクラウド上でエージェントを安全に走らせる実行基盤の話として使います。さらに別の文脈では、レビューUI、サブエージェント、スキル、長時間タスク、組織の権限設計まで含まれます。</p>
+      <p>ここで大事なのは、どれが正解かを一つに決めることではありません。同じ「AIエージェントを実務で使えるようにする」という課題に対して、各社や実践者がどのレイヤーを一番痛みとして見ているかを読むことです。</p>
+      <p>今回のKBノートは、OpenAI、Cursor、Cognition / Devin、Anthropic、OpenClaw系の実践を比較しながら、ハーネスをモデルの外側にある制御層として整理しています。つまり、プロンプトだけで頑張る話から、作業環境そのものを設計する話へ視点を移す読み物です。</p>
+
+      <h2>OpenAIは、開発規律としてのハーネスを強調する</h2>
+      <p>OpenAI系の文脈で目立つのは、リポジトリをエージェントが理解しやすく保つこと、機械で守れる不変条件を増やすこと、計画やレビューを構造化することです。ドキュメントは飾りではなく地図であり、lintやテストは単なる品質確認ではなく、エージェントの行動を縛るセンサーになります。</p>
+      <p>ここでのハーネスは、プロダクションエンジニアリングに近いです。repo map、AGENTS.md、カスタムlint、検証コマンド、レビューrubric、サブエージェントによる独立確認。これらを合わせて、エージェントが迷いにくく、間違いを後から見つけやすい環境を作ります。</p>
+      <p>面白いのは、ハーネスが一つのエージェントだけのためではないところです。あるエージェントが実装し、別のエージェントがレビューし、さらに別のツールが検証する。モデルやツールを入れ替えても機能する、相互運用可能な作業面としてハーネスを見る発想があります。</p>
+
+      <h2>Cursorは、作業体験と訓練環境をつないで見る</h2>
+      <p>Cursorの文脈では、ハーネスはユーザーが触るプロダクトUIにも近づきます。複数エージェントの作業状況を見えるようにする。ローカルとクラウドを行き来できるようにする。複数リポジトリをまたぐ変更やレビューを扱いやすくする。こうした作業面の設計が、そのままエージェント利用の品質に効きます。</p>
+      <p>もう一つ重要なのは、ハーネスが訓練環境にもなることです。古いモデルを使って実行可能な強化学習環境を自動で整え、次のモデルの学習に渡す。これは、実務で使いやすい作業環境と、モデルを改善するための環境がつながっているという見方です。</p>
+      <p>この視点では、ハーネスは裏側の補助部品ではありません。ユーザーに見えるレビュー面、エージェントの進捗表示、環境の再現性、モデルを鍛えるための測定系まで含めた、かなり広いプロダクト設計になります。</p>
+
+      <h2>Cognition / Devinは、クラウド実行基盤の現実を前面に出す</h2>
+      <p>Devin系の話で強いのは、クラウドエージェントを実際に走らせるための基盤です。microVMによる隔離、スナップショット、ウォームプール、権限継承、監査ログ、macOSやXcodeの実行、stacked PR、devbox環境との連携。ここでは、エージェントは単なるリモートCLIではありません。</p>
+      <p>長時間・非同期で働くエージェントには、途中で止めても再開できる状態管理が必要です。組織で使うなら、誰の権限で何をしたのか、どの環境で走ったのか、どの変更がどのレビューを通ったのかも必要になります。つまり、クラウド上の実行面とガバナンスがハーネスの中心になります。</p>
+      <p>この立場から見ると、ハーネスエンジニアリングは「よいプロンプトを書く」よりずっと重い話です。エージェントがコードを書く前に、実行環境、認可、監査、復旧、レビューの通路をどう作るか。組織導入の難所は、モデル性能だけではなくこの運用面にあります。</p>
+
+      <h2>Anthropicは、長時間エージェントの扱い方を細かく見る</h2>
+      <p>Anthropic系のノートでは、長時間動くエージェントのためのハーネス設計が目立ちます。タスクをどう分割するか。途中状態をどう保存するか。ユーザーや開発者がどこで介入するか。fresh contextの評価役をどう置くか。Claude Codeのskillsやweb scheduled tasksも、この文脈で読むと分かりやすいです。</p>
+      <p>長時間タスクでは、エージェントは途中で文脈を失ったり、作業目的から少しずつ逸れたりします。だから、計画、状態、チェックポイント、レビュー、再開手順が重要になります。これは、単発のチャット応答とは別の設計問題です。</p>
+      <p>また、skillsという形で手順やドメイン知識を外部化する発想も、ハーネスらしいところです。毎回プロンプトに詰め込むのではなく、再利用できる作業単位として保管する。エージェントの知識を会話の外に置くことで、セッションをまたいだ再現性が上がります。</p>
+
+      <h2>OpenClaw系の実践は、個人エージェント運用として読むと近い</h2>
+      <p>OpenClaw系の実践は、個人の生活や仕事に近い場所でエージェントを動かす話として読めます。メモリ、wiki、cron、Discord投稿、外部ツール、公開ページ、スキル、確認ポリシー。これらは小さく見えますが、実際にはかなり濃いハーネスです。</p>
+      <p>たとえば今回の週次KB読み物ジョブも、ひとつの小さなハーネスです。トピックを選ぶスクリプトがあり、source.mdとmeta.jsonがあり、reading.htmlを人間向け成果物として作り、公開スクリプトでGitHub Pagesへ送り、Discordへ通知します。さらに、NotebookLM authを使わない、音声を作らない、公開安全性を守る、という運用ルールがあります。</p>
+      <p>ここで効いているのは、派手なAI機能よりも、境界の明確さです。何を作るのか。何を作らないのか。人間に見せる成果物はどれか。ソース companion はどれか。どこに投稿するのか。こうした細かい決めごとが、毎週の自動化を安定させます。</p>
+
+      <h2>比較すると、ハーネスの層が見えてくる</h2>
+      <p>各社の強調点は違いますが、並べると層が見えてきます。まず、エージェントが読むための層があります。repo構造、ドキュメント、タスク計画、スキル、過去の判断、ナレッジベース。次に、エージェントが動くための層があります。ローカル環境、クラウド環境、コンテナ、microVM、権限、実行ログ。</p>
+      <p>さらに、エージェントの出力を確かめる層があります。lint、テスト、smoke test、リンクチェック、rubric、サブエージェントレビュー、人間承認。最後に、組織や個人の運用へつなぐ層があります。監査、通知、公開、ロールバック、memory、wiki、LinearやDiscordのような作業面です。</p>
+      <p>ハーネスエンジニアリングを一言で片づけるなら、「モデルの能力を、現場で使える作業系に変換する設計」です。モデルが賢くなるほど、この変換の重要性は下がるのではなく上がります。できることが増えるぶん、どこで止め、どこで確かめ、どこへ記録するかが重要になるからです。</p>
+
+      <h2>導入は、小さい部品からでいい</h2>
+      <p>この比較を読むと、つい大きな基盤を作りたくなります。でも、最初からDevin級の実行基盤やCursor級のUIを作る必要はありません。個人や小さなチームなら、まずは小さいハーネス部品で十分です。</p>
+      <p>たとえば、作業前に計画ファイルを残す。完了前に必ず検証コマンドを走らせる。公開物にはpublic-safeチェックを入れる。外部投稿にはURLと成果物パスを残す。レビューで繰り返す指摘はskillやscriptに移す。これだけでも、エージェントの出力はかなり扱いやすくなります。</p>
+      <p>重要なのは、ハーネスを「いつか作る立派な基盤」と見ないことです。毎回の作業で一つだけ不安を減らす。迷った場所を次回のルールにする。失敗を記録し、検証に変える。そういう小さな改善の積み上げが、実務のハーネスになります。</p>
+
+      <h2>今日の読みどころ</h2>
+      <p>今回の比較でいちばん面白いのは、各社が同じ山を別の登り口から見ていることです。OpenAIは開発規律と相互レビューから見ている。Cursorは作業面と訓練環境から見ている。Devinはクラウド実行基盤とガバナンスから見ている。Anthropicは長時間タスクと再利用可能な手順から見ている。OpenClaw系の実践は、個人の自動化と記憶の運用から見ている。</p>
+      <p>どの入口から入っても、結論は近いです。AIエージェントの性能は、モデルそのものだけでは決まりません。周囲にある地図、道具、制約、検証、記録、レビュー、公開ゲートが、成果の質を大きく左右します。</p>
+      <div class="callout">
+        ハーネスエンジニアリングは、モデルを賢く見せる飾りではなく、モデルの能力を現場の成果物へ変換するための作業環境設計です。比較のポイントは「どのレイヤーを一番痛みとして見ているか」にあります。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>自分のエージェント運用で、いま一番弱い層はどこか。文脈、実行環境、検証、レビュー、記録のどれか？</li>
+        <li>毎回人間が思い出している注意点を、どのファイル、skill、script、チェックに移せるか？</li>
+        <li>公開前、外部送信前、デプロイ前に必ず止めるべきゲートは何か？</li>
+        <li>作業UIとして見えるハーネスと、裏側の実行基盤としてのハーネスをどう分けて考えるか？</li>
+        <li>モデルを変えても残る、自分たち固有の作業環境の強みは何か？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm notes: <code>wiki/maps/harness-engineering-vendor-comparison.md</code>, <code>agent-harness-landscape.md</code>, <code>coding-agent-harness-patterns.md</code>, <code>harness-engineering.md</code>, <code>eval-review-reliability.md</code>, <code>multi-agent-orchestration.md</code>.</p>
+    </footer>
+  </div>
+</body>
+</html>
