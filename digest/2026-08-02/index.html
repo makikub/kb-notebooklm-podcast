@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-08-02 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-02/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-08-02</header>
+<h1>KB Daily Digest 2026-08-02</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-02/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-08-02">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-08-02</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-08-02</h1>
+<p>2026-08-02 UTC の knowledge-base-llm 更新は、X bookmarks batch から3本の source note が新規追加され、2つの map が更新された日でした。新規 raw は <code>raw/x/bookmarks/bookmarks-20260802T0000Z.json</code> と、GPT-5.6 routing、PDF routing、GPT-5.6 pricing に関する3本の article note です。wiki 側には <code>daniel_mac8-sol-advisor-gpt-56-routing-x-2026-08-01.md</code>、<code>nickscamara-pdf-inspector-fast-pdf-routing-x-2026-07-31.md</code>、<code>openai-gpt-56-pricing-update-luna-terra-fast-sol-x-2026-07-30.md</code> が追加され、<code>agent-harness-landscape</code> と <code>ai-adoption-roi-and-capability-investment</code> が更新されました。</p>
+<p>今日の全体トレンドは、「モデルを選ぶ」から「モデル・前処理・実行経路を組み合わせて routing する」への移行です。OpenAI の価格/速度更新、Dan McAteer の Sol/Luna/Terra 使い分け、Nicolas Camara の <code>pdf-inspector</code> は別々の話題に見えますが、KB では同じ設計論に接続します。高いモデルに全部を投げるのではなく、どの入力をどの処理経路へ流すかを harness 側で決めることが、コスト、レイテンシ、品質、レビュー負荷を左右するという読みです。</p>
+<p>重要ソース1本目は OpenAI の GPT-5.6 pricing update です。公式 X post として、GPT-5.6 Luna が80%安くなり、GPT-5.6 Terra が20%安くなり、GPT-5.6 Sol にはより速い API option が出る、という一次情報として扱えます。KB 上では <code>ai-roi-model</code>、<code>llm-inference-performance</code>、<code>worker-based-composition</code>、<code>agentic-jevons-paradox</code> に接続されました。ポイントは値下げそのものだけではなく、モデルファミリー内で cost/speed/capability の差が明示的な routing surface になってきたことです。</p>
+<p>重要ソース2本目は Dan McAteer の &quot;sol-advisor&quot; routing pattern です。GPT-5.6 Sol High を orchestrator、Luna Max を routine implementation、Terra Max を more complex implementation に使うという実践的な分担案で、評価データや詳細な policy はまだ捕捉されていませんが、モデル tier を composition system として扱う具体例になっています。OpenAI の価格更新と合わせて読むと、安くなった worker tier と速くなった orchestrator tier をどう組ませるか、という実務上の問いが立ち上がります。</p>
+<p>重要ソース3本目は Nicolas Camara の <code>pdf-inspector</code> です。Rust library として PDF inspection、classification、text extraction を行い、PDF が scanned か text-based かを高速に判定して、OCR など重い処理へ進む前に経路を分けられる、という主張が捕捉されています。200 PDFs を2.8秒で処理したという具体例もあり、KB では <code>llm-inference-performance</code>、<code>feedback-controls</code>、<code>task-decomposition</code>、<code>harness-engineering</code>、<code>evidence-quality</code> に接続されました。こちらはモデル routing ではなく document pipeline routing ですが、発想は同じです。</p>
+<p><code>agent-harness-landscape</code> の更新では、GPT-5.6 family の価格と routing が harness 設計の一部として追加されました。これまでの地図は、repo 構造、tests、review loops、memory、tool surface、cloud runtime といった周辺設計を中心に扱っていましたが、今回の更新で「どの model tier にどの役割を持たせるか」も同じ harness 問題としてはっきり入りました。さらに <code>pdf-inspector</code> は agentic fetch/extraction の枝に加わり、agent が読む前の軽量な分類・抽出も harness primitive として位置づけられました。</p>
+<p><code>ai-adoption-roi-and-capability-investment</code> では、GPT-5.6 の価格更新と sol-advisor pattern が ROI モデルに追加されました。Luna/Terra が安くなると、これまで高コストで見送っていた routine implementation や parallel worker execution が現実的になる可能性があります。一方で、安くなったからといって自動的に ROI が出るわけではありません。安い worker を増やすほど review capacity、verification tax、instability tax も増えうるため、価格低下は「使えば得」ではなく「routing と検証を設計すれば投資余地が増える」と読むのが安全です。</p>
+<p>実務上の示唆は、agent harness の設計単位が少し細かくなってきたことです。コード作業なら、Sol のような上位モデルに plan/review/orchestration を寄せ、Luna/Terra のような worker tier に routine/complex implementation を振り分ける。文書処理なら、PDF をいきなり OCR/LLM に投げず、先に scanned/text-based を判定して cheap path と expensive path を分ける。どちらも、入口で分類し、仕事を分解し、処理ごとの期待値とコストを変えるという同じ control loop です。</p>
+<p>Podcast で掘るなら、まず「価格改定は単なる節約ニュースではなく、agent 設計の選択肢を増やすニュースである」という観点から始めるとよさそうです。次に、sol-advisor を例に model-tier orchestration の具体像を話し、最後に <code>pdf-inspector</code> を並べて「入力を読む前に route する」ことの価値へ広げられます。議論の中心は、強いモデルをどう使うかではなく、強いモデルに任せる前に何を切り分け、安い worker やローカル前処理でどこまで済ませるか、です。</p>
+<p>次に追うべき問いは3つあります。まず、Sol/Luna/Terra の routing criteria をどう測るのか。難易度、uncertainty、blast radius、review cost のどれを使うべきか。次に、PDF routing のような軽量 classifier は、実データでどの程度誤判定し、その誤判定が downstream の品質とコストにどのくらい効くのか。最後に、価格低下で task volume が増えたとき、review と eval の capacity をどう先回りして増やすべきか、です。</p>
+<h2>Important Sources</h2>
+<ul>
+<li><code>https://x.com/i/status/2082878156483219672</code></li>
+<li><code>https://x.com/i/status/2083607027813662810</code></li>
+<li><code>https://x.com/i/status/2083295265793212827</code></li>
+<li><code>https://github.com/firecrawl/pdf-inspector</code></li>
+</ul>
+<h2>New / Changed Files</h2>
+<ul>
+<li><code>raw/x/bookmarks/bookmarks-20260802T0000Z.json</code></li>
+<li><code>raw/articles/daniel_mac8-sol-advisor-gpt-56-routing-x-2026-08-01.md</code></li>
+<li><code>raw/articles/nickscamara-pdf-inspector-fast-pdf-routing-x-2026-07-31.md</code></li>
+<li><code>raw/articles/openai-gpt-56-pricing-update-luna-terra-fast-sol-x-2026-07-30.md</code></li>
+<li><code>wiki/sources/daniel_mac8-sol-advisor-gpt-56-routing-x-2026-08-01.md</code></li>
+<li><code>wiki/sources/nickscamara-pdf-inspector-fast-pdf-routing-x-2026-07-31.md</code></li>
+<li><code>wiki/sources/openai-gpt-56-pricing-update-luna-terra-fast-sol-x-2026-07-30.md</code></li>
+<li><code>wiki/INDEX.md</code></li>
+<li><code>wiki/maps/agent-harness-landscape.md</code></li>
+<li><code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>Dan McAteer - sol-advisor for GPT-5.6 routing</h3>
+<p>Source note: <code>wiki/sources/daniel_mac8-sol-advisor-gpt-56-routing-x-2026-08-01.md</code></p>
+<h1>Dan McAteer - sol-advisor for GPT-5.6 routing</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/daniel_mac8-sol-advisor-gpt-56-routing-x-2026-08-01.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260802T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2083607027813662810</li>
+<li>Referenced X URL: https://twitter.com/daniel_mac8/status/2083218469680549930</li>
+<li>Linked media URL: https://x.com/daniel_mac8/status/2083607027813662810/video/1</li>
+<li>Author: Dan McAteer (@daniel_mac8)</li>
+<li>Posted: 2026-08-01T17:33:21.000Z</li>
+<li>Captured: 2026-08-02T00:00:27.089Z via xurl bookmarks capture</li>
+<li>Type: X post / routing pattern</li>
+<li>Evidence strength: medium; the bookmark gives a concrete routing heuristic but does not explain the full decision policy</li>
+<li>Public metrics at capture: 1378 likes, 98 reposts, 38 replies, 7 quotes, 2560 bookmarks, 144750 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Dan McAteer proposes &quot;sol-advisor&quot; as a practical tiered-model routing pattern: GPT-5.6 Sol High orchestrates the work, GPT-5.6 Luna Max handles routine implementation, and GPT-5.6 Terra Max handles more complex implementation. The useful signal is that the model family is being treated as a composition system rather than as a single monolithic choice.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>GPT-5.6 Sol High can act as an orchestrator.</li>
+<li>GPT-5.6 Luna Max can be used for routine implementation tasks.</li>
+<li>GPT-5.6 Terra Max can be used for more complex implementation tasks.</li>
+<li>The overall pattern is explicitly framed as a way to take advantage of GPT-5.6 efficiency and capability.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text names the three roles directly.</li>
+<li>The attached X video suggests the author is demonstrating the routing pattern rather than merely discussing it abstractly.</li>
+<li>The referenced X post may provide the larger context, but this note s</li>
+</ul>
+<h3>Nicolas Camara - pdf-inspector for fast PDF routing</h3>
+<p>Source note: <code>wiki/sources/nickscamara-pdf-inspector-fast-pdf-routing-x-2026-07-31.md</code></p>
+<h1>Nicolas Camara - pdf-inspector for fast PDF routing</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/nickscamara-pdf-inspector-fast-pdf-routing-x-2026-07-31.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260802T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2083295265793212827</li>
+<li>Primary URL: https://github.com/firecrawl/pdf-inspector</li>
+<li>Linked media URL: https://x.com/nickscamara_/status/2083295265793212827/photo/1</li>
+<li>Author: Nicolas Camara (@nickscamara_)</li>
+<li>Posted: 2026-07-31T20:54:31.000Z</li>
+<li>Captured: 2026-08-02T00:00:27.089Z via xurl bookmarks capture</li>
+<li>Type: X post / GitHub repo highlight</li>
+<li>Evidence strength: medium-high; the post includes a specific repo card and concrete performance claims, but this note does not inspect the repo contents directly</li>
+<li>Public metrics at capture: 6128 likes, 445 reposts, 152 replies, 74 quotes, 11924 bookmarks, 1001890 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Nicolas Camara&#x27;s bookmark highlights <code>pdf-inspector</code>, a Rust library for PDF inspection, classification, and text extraction. The operationally interesting part is the claim that it can quickly classify PDFs as scanned or text-based so the pipeline can choose a cheaper path before OCR or other heavier extraction work.</p>
+<h2>Key Claims</h2>
+<ul>
+<li><code>pdf-inspector</code> is a Rust library for PDF inspection, classification, and text extraction.</li>
+<li>It can detect scanned versus text-based PDFs quickly, around the 20 ms range.</li>
+<li>It extracts markdown locally and is framed as helping agents avoid waiting on OCR.</li>
+<li>The repo card claims strong table and graph extraction quality.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text states the classification and local extraction claims directly.</li>
+<li>The GitHub repo card title reinforces that the project is about PDF inspection and text extraction.</li>
+<li>The post include</li>
+</ul>
+<h3>OpenAI - GPT-5.6 pricing update and faster Sol API option</h3>
+<p>Source note: <code>wiki/sources/openai-gpt-56-pricing-update-luna-terra-fast-sol-x-2026-07-30.md</code></p>
+<h1>OpenAI - GPT-5.6 pricing update and faster Sol API option</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/openai-gpt-56-pricing-update-luna-terra-fast-sol-x-2026-07-30.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260802T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2082878156483219672</li>
+<li>Linked media URL: https://x.com/OpenAI/status/2082878156483219672/photo/1</li>
+<li>Author: OpenAI (@OpenAI)</li>
+<li>Posted: 2026-07-30T17:17:05.000Z</li>
+<li>Captured: 2026-08-02T00:00:27.089Z via xurl bookmarks capture</li>
+<li>Type: X post / pricing update</li>
+<li>Evidence strength: high for the pricing announcement, medium for broader interpretation without the linked product page</li>
+<li>Public metrics at capture: 18427 likes, 1873 reposts, 1201 replies, 1788 quotes, 2599 bookmarks, 10682320 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>OpenAI says GPT-5.6 Luna becomes 80 percent cheaper, GPT-5.6 Terra becomes 20 percent cheaper, and GPT-5.6 Sol gets a faster API option. The note is useful because it shows model family tiering as an active cost and speed control surface.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>GPT-5.6 Luna prices are being reduced by 80 percent.</li>
+<li>GPT-5.6 Terra prices are being reduced by 20 percent.</li>
+<li>A faster GPT-5.6 Sol option is being offered in the API.</li>
+<li>OpenAI is explicitly tying the update to cost efficiency, capability, and speed.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text states the price changes directly.</li>
+<li>The tweet is an official OpenAI product post, so the pricing and API-option claims are first-party.</li>
+<li>The visible card suggests a product announcement rather than a casual commentary thread.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: official OpenAI X post</li>
+<li>Confidence: high for the pricing changes and fast-Sol API signal, medium for any inferred product-strategy implications</li>
+<li>Supports: [[../concepts/ai-roi-mode</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/djfarrelly-agent-loop-architecture-x.md]]</li>
+<li>[[../sources/jason-liu-codex-maxxing-heartbeats.md]]</li>
+<li>[[../sources/openai-chatgpt-memory-dreaming-x-2026-06</li>
+</ul>
+<h3>AI Adoption ROI and Capability Investment</h3>
+<p>KB note: <code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code></p>
+<h1>AI Adoption ROI and Capability Investment</h1>
+<h2>Purpose</h2>
+<p>Map how AI-assisted software development becomes financial value only when capability investments let the organization absorb faster generation safely.</p>
+<h2>Core thesis</h2>
+<p>AI ROI is not a direct function of model quality or code volume. It is a system outcome: AI adoption must be mediated by internal platforms, context/data quality, trust, user focus, verification guardrails, and delivery metrics before it can become durable business value. The strongest upside case is not only cheaper execution of existing backlog, but Jevons-style expansion in software demand when new tools, experiments, and automations become economical.</p>
+<h2>Path from AI adoption to ROI</h2>
+<h3>1. Capability investment first</h3>
+<p>The first question is not “which tool?” but “can the system absorb the tool?” DORA&#x27;s report emphasizes quality internal developer platforms, AI-accessible internal data, clear AI stance/trust, context engineering, user-centric focus, and automated</p>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>3</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
