@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-08-03 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-03/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-08-03</header>
+<h1>KB Daily Digest 2026-08-03</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-03/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-08-03">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-08-03</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-08-03</h1>
+<p>2026-08-03 UTC の knowledge-base-llm 更新は、X bookmarks batch から2本の source note が新規追加され、2つの concept と1つの map が更新された日でした。新規 raw は <code>raw/x/bookmarks/bookmarks-20260803T0000Z.json</code> と、RevenueCat Test Store、Yuki Yoshida さんの AI 時代の強いチーム作りに関する2本の article note です。wiki 側には <code>nogu66-revenuecat-test-store-docs-x-2026-08-02.md</code> と <code>yshd-building-strong-teams-in-the-age-of-ai-speakerdeck-x-2026-07-31.md</code> が追加され、<code>agent-management</code>、<code>conversion-packaging</code>、<code>agent-harness-landscape</code> が更新されました。</p>
+<p>今日の全体トレンドは、「AI/agent の価値を出すには、モデルや機能そのものよりも、最初の接触面と運用の型を設計する必要がある」という方向です。RevenueCat の Test Store は、サブスク検証の最初の一歩からプラットフォーム設定の重さを外す例として読めます。一方、Yuki Yoshida さんのデッキは、AI をチームに足す話ではなく、フェーズ、ゲート、役割、スコープ調整を含むチーム運用そのものを設計対象にする話として KB に入りました。</p>
+<p>重要ソース1本目は、RevenueCat の Test Store docs highlight です。bookmark から見える範囲では、Test Store は built-in な testing environment で、platform setup なしに即座に使えることが強調されています。KB ではこれを <code>conversion-packaging</code> に接続しました。サブスクリプションのように、実ストア、端末、審査、支払いリスクが絡む領域では、最初の meaningful action までの摩擦が大きいほど検証が遅れます。Test Store は、購入体験そのものを安全に早く試せる「低摩擦な入口」として重要です。</p>
+<p>重要ソース2本目は、Yuki Yoshida さんの &quot;Building strong teams in the age of AI&quot; / 「AI時代の強いチームの作り方」デッキです。取り込まれたカード説明からは、AI-DLC workflows、phase gates、explicit role structure、adaptive scope といった語彙が読み取れます。KB では <code>agent-management</code> と <code>agent-harness-landscape</code> に接続され、AI 活用を個人の prompt skill ではなく、チームの operating model として扱う材料になりました。</p>
+<p>重要ソース3本目として扱うべきなのは、今回の <code>xurl bookmarks</code> batch と lint note 自体です。20件の bookmark を捕捉し、重複や薄い pointer を落とし、2件だけを source note に昇格した判断が残っています。これは日次 ingest の品質管理として大事で、KB が単にリンクを増やすのではなく、既存概念に新しい再利用可能な観点を足すものだけを promoted item にする、という compile 方針を示しています。</p>
+<p><code>conversion-packaging</code> の更新では、既存の「first visible surfaces」「outcomes before instructions」「one action per state」といった heuristic に、frictionless sandbox が追加されました。これは agent artifacts にも応用できます。たとえば、生成された dashboard、report、automation workflow が本当に価値を伝えるには、ユーザーが本番設定や権限付与を済ませる前に、何が起きるのかを試せる preview、sandbox、sample run が必要になります。RevenueCat の例は monetization 文脈ですが、KB 的には agent output の packaging とも接続します。</p>
+<p><code>agent-management</code> の更新では、AI-era team design のデッキが supporting source に加わり、tradeoff として「methodology deck は roles/phases を明示できるが、一組織の運用に過剰適合する危険もある」という注意が入りました。ここが今日のもう一つの焦点です。チーム運用の型を明示することは、handoff、review、scope control を楽にしますが、その型を universal law として読むと、現場の制約やプロダクトの性質を見落とします。</p>
+<p><code>agent-harness-landscape</code> では、Yuki Yoshida さんのデッキが design harnesses / workflow surfaces の流れに追加されました。これまでの map は repo structure、tests、review loops、memory、tool surface、cloud runtime など、主に agent を動かす周辺構造を扱ってきました。今回の更新で、チームの phase design、stage gate、role definition、adaptive scope も harness の一部として扱う読みが強まりました。つまり harness はコード実行環境だけではなく、人間チームが AI と一緒に働く運用面まで含む、という整理です。</p>
+<p>実務上の示唆は、低摩擦な「最初の試行」と、明示された「継続運用」の両方を設計することです。前者は RevenueCat Test Store のように、最初の検証をすぐ始められる sandbox を用意する話です。後者は AI 時代のチームデッキのように、誰が、どの段階で、何を判断し、どこで scope を変えるのかを明文化する話です。agent 導入が失敗するときは、片方だけを見ていることが多い。触りやすい demo はあるが運用がない、または方法論はあるが最初に試す入口が重い、というズレです。</p>
+<p>Podcast で掘るなら、「AI 活用のボトルネックは model capability だけではなく、入口設計と運用設計に移っている」という切り口がよさそうです。RevenueCat の話から first meaningful action の摩擦を下げる重要性を話し、Yuki Yoshida さんのデッキから roles/phases/gates を明示する重要性へつなげる。そのうえで、KB の compile 方針として、薄い bookmark を増やすのではなく、既存概念を更新できる signal を選別した点も取り上げると、日次更新の意味が伝わりやすくなります。</p>
+<p>次に追うべき問いは3つあります。まず、agent workflow や internal tool で RevenueCat Test Store に相当する sandbox は何か。次に、AI-era team methodology のどの部分が汎用的な pattern で、どの部分が組織依存の local practice なのか。最後に、日次 bookmark ingest の promote/drop 判断を、将来的にどこまで機械的な evidence quality rule に落とせるのか、です。</p>
+<h2>Important Sources</h2>
+<ul>
+<li><code>https://www.revenuecat.com/docs/test-and-launch/sandbox/test-store</code></li>
+<li><code>https://speakerdeck.com/yuukiyo/building-strong-teams-in-the-age-of-ai</code></li>
+<li><code>raw/x/bookmarks/bookmarks-20260803T0000Z.json</code></li>
+</ul>
+<h2>New / Changed Files</h2>
+<ul>
+<li><code>raw/x/bookmarks/bookmarks-20260803T0000Z.json</code></li>
+<li><code>raw/articles/nogu66-revenuecat-test-store-docs-x-2026-08-02.md</code></li>
+<li><code>raw/articles/yshd-building-strong-teams-in-the-age-of-ai-speakerdeck-x-2026-07-31.md</code></li>
+<li><code>wiki/sources/nogu66-revenuecat-test-store-docs-x-2026-08-02.md</code></li>
+<li><code>wiki/sources/yshd-building-strong-teams-in-the-age-of-ai-speakerdeck-x-2026-07-31.md</code></li>
+<li><code>wiki/INDEX.md</code></li>
+<li><code>wiki/concepts/agent-management.md</code></li>
+<li><code>wiki/concepts/conversion-packaging.md</code></li>
+<li><code>wiki/maps/agent-harness-landscape.md</code></li>
+</ul>
+<h2>重要ソース</h2>
+<h3>nogu66 - RevenueCat Test Store</h3>
+<p>Source note: <code>wiki/sources/nogu66-revenuecat-test-store-docs-x-2026-08-02.md</code></p>
+<h1>nogu66 - RevenueCat Test Store</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/nogu66-revenuecat-test-store-docs-x-2026-08-02.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260803T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2083734065145102447</li>
+<li>Primary URL: https://www.revenuecat.com/docs/test-and-launch/sandbox/test-store</li>
+<li>Author: nogu / @_nogu66</li>
+<li>Posted: 2026-08-02T01:58:09.000Z</li>
+<li>Captured: 2026-08-03T00:00:21.689Z via xurl bookmarks capture</li>
+<li>Type: X post / docs highlight</li>
+<li>Evidence strength: medium-high; the bookmark includes a RevenueCat docs card with a clear title and short description, but the full docs page was not re-read in this pass</li>
+<li>Public metrics at capture: 7 likes, 2 reposts, 0 replies, 0 quotes, 2 bookmarks, 485 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>RevenueCat&#x27;s Test Store looks like a built-in sandbox for subscription testing that avoids platform setup. The signal here is not just that the docs exist, but that test purchases can be exercised immediately in a way that mirrors real subscription behavior.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Test Store is a built-in testing environment.</li>
+<li>It works immediately without platform setup.</li>
+<li>It is meant for testing purchase behavior in a sandbox instead of only in a live store flow.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The bookmark text says the test store is good for testing purchases as if they were real.</li>
+<li>The docs card description explicitly emphasizes immediate use and no platform setup.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post plus RevenueCat docs card</li>
+<li>Confidence: high for the existence of the test-store surface, medium for broader generalization about app monetization workflows</li>
+<li>Supports: [[../concepts/conversion-packaging.md]], [[../concepts/evidence-quality.md]]</li>
+<li>Main limitations: the note does not inspect th</li>
+</ul>
+<h3>Yuki Yoshida - Building strong teams in the age of AI</h3>
+<p>Source note: <code>wiki/sources/yshd-building-strong-teams-in-the-age-of-ai-speakerdeck-x-2026-07-31.md</code></p>
+<h1>Yuki Yoshida - Building strong teams in the age of AI</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/yshd-building-strong-teams-in-the-age-of-ai-speakerdeck-x-2026-07-31.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260803T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2083114167981256773</li>
+<li>Primary URL: https://speakerdeck.com/yuukiyo/building-strong-teams-in-the-age-of-ai</li>
+<li>Author: Yuki Yoshida / @yshd</li>
+<li>Posted: 2026-07-31T08:54:54.000Z</li>
+<li>Captured: 2026-08-03T00:00:21.689Z via xurl bookmarks capture</li>
+<li>Type: X post / Speakerdeck talk deck</li>
+<li>Evidence strength: medium-high; the bookmark includes a very detailed Speakerdeck card description, but the deck itself was not re-read in this pass</li>
+<li>Public metrics at capture: 1002 likes, 119 reposts, 3 replies, 14 quotes, 932 bookmarks, 86635 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Yuki Yoshida&#x27;s deck looks like a methodology-level argument for AI-era team design rather than a simple tooling talk. The card copy suggests explicit phases, role definitions, approval gates, and adaptive scope as part of the operating model for a strong team.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>The deck frames AI work as a team design problem, not just a prompt problem.</li>
+<li>It describes a staged methodology with explicit phases and gates.</li>
+<li>It treats role structure and adaptive scope as design variables.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The Speakerdeck card title is &quot;AI時代の強いチームの作り方&quot; and the description includes phase breakdowns and role counts.</li>
+<li>The bookmarked text says the slides were shared as a talk deck for people who might find it useful.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post plus Speakerdeck card</li>
+<li>Confidence: medium-high for the existence of the methodology framing, medium for any deeper generalization until the deck itself is inspected</li>
+<li>Supports: [[../c</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent Management</h3>
+<p>KB note: <code>wiki/concepts/agent-management.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent Management</p>
+<hr>
+<h1>Agent Management</h1>
+<h2>Definition</h2>
+<p>The human work of assigning tasks, monitoring progress, adjusting the environment, and deciding when to intervene in agent workflows.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, value comes not just from using them but from managing them well. The current source set suggests that workflow design, escalation choices, and background-task supervision are becoming durable human responsibilities rather than temporary scaffolding.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent-captain]]</li>
+<li>[[background-agents]]</li>
+<li>[[harness-engineering]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/ignorance-ai-emerging-harness-engineering-playbook.md]]</li>
+<li>[[../sources/mitchell-hashimoto-ai-adoption-journey.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/nyk-builderz-4-agent-hermes-operator-layer-x.md]]</li>
+<li>[[../sources/sydneyrunkle-agent-harness-vs-runtime-production-x.md]]</li>
+<li>[[../sources/brett-goldstein-agentic-micro-</li>
+</ul>
+<h3>Conversion Packaging</h3>
+<p>KB note: <code>wiki/concepts/conversion-packaging.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Packaging problem</p>
+<p>  - Product packaging</p>
+<p>  - Conversion packaging</p>
+<hr>
+<h1>Conversion Packaging</h1>
+<h2>Definition</h2>
+<p>The product discipline of making a thing immediately understandable, desirable, and actionable at the first decision surfaces before optimizing for more traffic or throughput.</p>
+<h2>Why It Matters</h2>
+<p>When implementation and content generation become cheap, teams can ship many artifacts, apps, dashboards, or agent workflows that technically work but fail to earn attention. Conversion packaging keeps the first impression aligned with the actual value: what is this, why should I care, what outcome will I get, and what should I do next?</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[rich-agent-output-artifact]]</li>
+<li>[[product-responsibility-distribution]]</li>
+<li>[[evidence-quality]]</li>
+<li>[[agent-recognizable-repository]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/paulsolt-indie-app-packaging-x.md]]</li>
+<li>[[../sources/lenny-cat-wu-claude-code-product-lessons-x.md]]</li>
+<li>[[../sources/nogu66-revenuecat-test-store-docs-</li>
+</ul>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/djfarrelly-agent-loop-architecture-x.md]]</li>
+<li>[[../sources/jason-liu-codex-maxxing-heartbeats.md]]</li>
+<li>[[../sources/openai-chatgpt-memory-dreaming-x-2026-06</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>2</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
