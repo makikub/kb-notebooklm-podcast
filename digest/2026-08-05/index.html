@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-08-05 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-05/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-08-05</header>
+<h1>KB Daily Digest 2026-08-05</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-05/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-08-05">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-08-05</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest — 2026-08-05</h1>
+<p>2026-08-05 UTC の knowledge-base-llm 更新では、X bookmarks の取り込みを起点に4本の source note が追加されました。中心テーマは、AIエージェントを「単発のチャット」から、CI/CD、PRレビュー、デザインシステム、音声UIといった既存ワークフローの制御面へ埋め込む動きです。今回の更新は概念ノートそのものを大きく書き換えるよりも、既存の agent harness / managed agents / tool accessibility / memory-skill-harness 系の地図に、新しい実例を足す性格が強いです。</p>
+<p>重要ソースの1本目は Cloudflare の CI Workflows です。Cloudflare は install、lint、test、deploy といったCI/CDの各段階を Workflow として扱い、組み込みリトライや自己修復エージェントによる失敗ステップの修正、コミットまでを打ち出しています。KB的には「agentic CI/CD」が抽象論ではなく、プロダクト化される対象になっている点が重要です。特に、失敗を観測し、修復し、変更を戻す/進める判断をどこまで自動化するかは、managed agents と agent-safety の接点として追う価値があります。</p>
+<p>2本目は CodeRabbit (JP) 経由で取り込まれた Claude Code Routines による自動コードレビュー事例です。ここでのポイントは、Routines が単なるスケジュール実行やリマインダーではなく、PRレビューのような反復的・運用的な品質管理ループに入ってきていることです。レビューコメントを作るだけでなく、同じ問題が繰り返される場合にどうエスカレーションするか、どのチェックを人間の初回確認なしで走らせるか、という human-in-the-loop 設計が今後の論点になります。</p>
+<p>3本目は LINE Yahoo の AI-ready internal design system です。内部デザインシステムの品質基準を、AIが読める知識として整備し、MCP、Skill、<code>DESIGN.md</code> のような配布面に載せるという流れが明示されています。これはデザインシステムを「人間向けの規約集」から「エージェントが実行時に参照できる操作知識」へ変える動きです。KB内では tool-accessibility、navigable-agent-skills、memory-skill-harness、context-file-system に強く接続します。</p>
+<p>4本目の OpenAI GPT-Live continuous voice stack は、音声が自然な入出力モードを超えて、推論やツール利用を中断しないリアルタイム制御ループになっていく兆候として読めます。発話中にも聞き続け、クライアントからモデルまで音声が継続的に流れるという主張は、単なる音質改善ではなく、作業の流れを止めずにツール呼び出しや確認を進めるためのインターフェイス更新です。KBでは tool-accessibility と managed agents の双方にまたがる材料です。</p>
+<p>全体トレンドとしては、「AIを使う」から「AIが既存の業務面に常駐する」への移行が見えます。CI/CD、PRレビュー、デザインシステム、音声操作はそれぞれ別領域ですが、どれもエージェントに渡すべき知識、権限、監査可能性、失敗時の復帰手順を必要とします。したがって今回の4本は、個別ニュースというより、エージェント運用のための harness が各現場で具体化している証拠群として扱うのがよさそうです。</p>
+<p>実務上の示唆は、AI導入の成否がモデル性能だけではなく、周辺の「機械可読な運用資産」に強く依存し始めていることです。CI/CDであれば再試行可能な段階分解、レビューであればルーチン化された判断基準、デザインであればAIが読める設計原則、音声であればツール実行を途切れさせないインタラクション設計が必要になります。これは KB の context-first development や workflow compilation の文脈とも相性がよく、次に概念側を更新するなら「どの運用知識をどの表面に置くべきか」を整理する価値があります。</p>
+<p>今日の更新で追うべき問いは3つあります。第一に、自己修復や自動レビューで「自動コミットしてよい変更」と「人間承認が必要な変更」の境界をどう定義するか。第二に、<code>DESIGN.md</code> や Skill のようなAI向け知識パッケージを、実際の組織内標準とどう同期し続けるか。第三に、音声UIがツール実行面に入るとき、確認・監査・取り消しの設計をどこに置くかです。</p>
+<p>重要ソース3本としては、Cloudflare CI Workflows、LINE Yahoo の AI-ready design system、OpenAI GPT-Live を優先します。Cloudflare は実行基盤と自己修復、LINE Yahoo は知識パッケージ化、OpenAI は人間とエージェントのリアルタイム操作面という、それぞれ違う層を代表しているためです。CodeRabbit/Claude Code Routines は、これらを現場運用の反復ループに落とす補助線として読むと位置づけが明確になります。</p>
+<h2>重要ソース</h2>
+<h3>Cloudflare - CI/CD as Cloudflare Workflow</h3>
+<p>Source note: <code>wiki/sources/cloudflare-ci-workflows-agentic-ci-cd-x-2026-08-04.md</code></p>
+<h1>Cloudflare - CI/CD as Cloudflare Workflow</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/cloudflare-ci-workflows-agentic-ci-cd-x-2026-08-04.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260805T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2084710136950714679</li>
+<li>Primary URL: https://blog.cloudflare.com/ci-workflows/</li>
+<li>Author: Cloudflare Developers / @CloudflareDev</li>
+<li>Posted: 2026-08-04T18:36:43.000Z</li>
+<li>Captured: 2026-08-05T00:00:18.620Z via xurl bookmarks capture</li>
+<li>Type: X post / official blog launch</li>
+<li>Evidence strength: high; the tweet and blog title both describe the CI/CD workflow shape directly</li>
+<li>Public metrics at capture: 61 likes, 8 reposts, 3 replies, 0 quotes, 26 bookmarks, 3573 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Cloudflare is presenting CI/CD itself as a workflow object: install, lint, test, and deploy can each be retried, and a self-healing agent can repair broken steps and push commits. The useful KB signal is that Cloudflare is productizing agentic CI/CD rather than just describing it as a custom integration.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Cloudflare Workflow can drive a CI/CD pipeline.</li>
+<li>Each stage supports built-in retries.</li>
+<li>A self-healing agent can fix broken steps and push commits.</li>
+<li>Access is gated behind a request flow, suggesting the feature is still in a controlled rollout.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post text names the pipeline stages directly.</li>
+<li>The blog title frames the feature as CI/CD on Cloudflare, not a generic automation demo.</li>
+<li>The self-healing claim is unusually concrete for a product announcement and makes the workflow worth tracking.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post plus official Cloudflare blog title/snippet</li>
+<li>Confidence: high for the product direction, medium for details that may shift during rollout</li>
+<li>Supports: [[../conce</li>
+</ul>
+<h3>CodeRabbit (JP) - Claude Code Routines for automated code review</h3>
+<p>Source note: <code>wiki/sources/coderabbitaija-claude-code-routines-auto-code-review-x-2026-08-04.md</code></p>
+<h1>CodeRabbit (JP) - Claude Code Routines for automated code review</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/coderabbitaija-claude-code-routines-auto-code-review-x-2026-08-04.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260805T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2084474500180046217</li>
+<li>Primary URL: https://zenn.dev/rehabforjapan/articles/claude-code-routines-pr-review-202607</li>
+<li>Author: CodeRabbit (JP) / @Coderabbitaija</li>
+<li>Posted: 2026-08-04T03:00:23.000Z</li>
+<li>Captured: 2026-08-05T00:00:18.620Z via xurl bookmarks capture</li>
+<li>Type: X post / blog share</li>
+<li>Evidence strength: medium-high; the bookmark includes a clear article title and a concrete automation use case</li>
+<li>Public metrics at capture: 4 likes, 1 reposts, 0 replies, 0 quotes, 2 bookmarks, 239 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>The bookmark points to a Zenn article about using Claude Code Routines for automated code review inside a subscription workflow. The durable signal is that routines are being used as recurring review automation, not just as scheduled reminders.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Claude Code Routines can be used for automated code review.</li>
+<li>The workflow can operate inside a subscription or recurring operational loop.</li>
+<li>The article is framed around practical PR-review automation, not abstract feature demoing.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The linked article title names the automated review use case directly.</li>
+<li>The tweet text makes the subscription context explicit.</li>
+<li>The source complements other KB notes about Claude Code routines and background automation.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post plus linked technical blog title/snippet</li>
+<li>Confidence: medium-high for the workflow shape, medium for details that would require reading the article itself</li>
+<li>Supports: [[../concepts/background-agents</li>
+</ul>
+<h3>LINE Yahoo - AI-ready internal design system</h3>
+<p>Source note: <code>wiki/sources/lineyahoo-ai-ready-design-system-design-md-mcp-skill-x-2026-08-04.md</code></p>
+<h1>LINE Yahoo - AI-ready internal design system</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/line-yahoo-ai-ready-design-system-md-mcp-skill-x-2026-08-04.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260805T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2084434371348762761</li>
+<li>Primary URL: https://lydesign.jp/n/n75576fb2d210?sub_rt=share_pw</li>
+<li>Author: 金 成奎 / @seikei_kin</li>
+<li>Posted: 2026-08-04T00:20:55.000Z</li>
+<li>Captured: 2026-08-05T00:00:18.620Z via xurl bookmarks capture</li>
+<li>Type: X post / note share</li>
+<li>Evidence strength: medium-high; the bookmark includes a clear note title/snippet and specific AI-ready packaging language</li>
+<li>Public metrics at capture: 242 likes, 21 reposts, 0 replies, 0 quotes, 249 bookmarks, 25848 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This bookmark points to LINE Yahoo&#x27;s internal-design-system write-up about making design systems AI-ready. The notable part is the explicit pipeline: decide the quality bar, encode it into AI-readable knowledge, then deliver it through MCP, Skill, and <code>DESIGN.md</code>.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Internal design-system quality needs to be translated into knowledge that AI can understand.</li>
+<li><code>MCP</code>, <code>Skill</code>, and <code>DESIGN.md</code> are being used as the delivery surfaces for that knowledge.</li>
+<li>Design-system governance is moving from human-only conventions toward machine-consumable instructions.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text is a compact but unusually specific workflow statement.</li>
+<li>The linked note title indicates the broader article is about making an internal design system AI-ready.</li>
+<li>The source pairs design-system operations with knowledge packaging, not just tooling.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X post plus official note title/snippet</li>
+<li>Confidence: medium-high for the packaging pattern, medium for any broader organizational cla</li>
+</ul>
+<h3>OpenAI - GPT-Live continuous voice stack</h3>
+<p>Source note: <code>wiki/sources/openai-gpt-live-continuous-voice-stack-x-2026-08-03.md</code></p>
+<h1>OpenAI - GPT-Live continuous voice stack</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/openai-gpt-live-continuous-voice-stack-x-2026-08-03.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260805T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2084378415818579975</li>
+<li>Media URL: https://x.com/OpenAI/status/2084378415818579975/photo/1</li>
+<li>Author: OpenAI / @OpenAI</li>
+<li>Posted: 2026-08-03T20:38:34.000Z</li>
+<li>Captured: 2026-08-05T00:00:18.620Z via xurl bookmarks capture</li>
+<li>Type: X product announcement / video card</li>
+<li>Evidence strength: high for the product-surface claim, lower for implementation details beyond the tweet copy</li>
+<li>Public metrics at capture: 9884 likes, 847 reposts, 490 replies, 251 quotes, 3473 bookmarks, 1061545 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>OpenAI says GPT-Live can listen while it speaks and that the voice stack was rebuilt from client to model so audio keeps flowing continuously. The KB signal is that voice is becoming a first-class control surface for deeper reasoning and tool use instead of a bolted-on input mode.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>GPT-Live supports continuous speaking and listening.</li>
+<li>The voice stack was rebuilt end-to-end.</li>
+<li>Continuous audio flow is meant to avoid interrupting reasoning and tool use.</li>
+<li>The product is being framed as a more natural real-time control loop at ChatGPT scale.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet states the continuous voice behavior explicitly.</li>
+<li>The architecture claim is broad, but the direction is consistent with other ChatGPT Voice surface updates in the KB.</li>
+<li>The mention of tool use makes this more than a media-quality improvement.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: first-party product announcement</li>
+<li>Confidence: high for the surface behavior, medium for implementation details not independently verified</li>
+<li>Supports: [[../</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>4</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
