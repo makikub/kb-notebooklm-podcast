@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-08-07 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-07/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-08-07</header>
+<h1>KB Daily Digest 2026-08-07</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-07/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-08-07">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-08-07</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest — 2026-08-07</h1>
+<p>2026-08-07 UTC の knowledge-base-llm 更新では、OpenAI Developers の Agent Plugins 告知が新規 source note として追加され、<code>tool-accessibility</code> と <code>agent-harness-landscape</code> が更新されました。件数としては1本の取り込みですが、KB上の意味は大きめです。全体トレンドは、エージェントの能力拡張が「個別クライアントごとの便利機能」から、「スキル、MCP設定、配布、マーケットプレイスを含む共通パッケージ面」へ寄っていることです。</p>
+<p>重要ソースの1本目は、OpenAI Developers の X 告知です。短い文面ではありますが、「一度プラグインを作れば、互換性のある agent client で使える」というメッセージが中心にあります。KBでは、この一文を単なる製品告知ではなく、agent tool surface のポータビリティに関するシグナルとして扱っています。つまり、エージェントに何を使わせるかという問題が、プロンプトやローカル設定だけでなく、配布可能なプラグイン単位へ移り始めているという読みです。</p>
+<p>2本目の重要ソースは OpenAI の plugins ドキュメントです。source note では、Agent Plugins が Agent Skills と MCP server configurations をまとめる共有形式として整理されています。ここで重要なのは、スキルと外部サービス接続が同じ「プラグイン」という配布単位に入る点です。KBの <code>tool-accessibility</code> から見ると、これは人間用ツールをエージェントが発見し、権限つきで使えるようにするための中間層が、より明示的な標準形式へ寄っていることを示します。</p>
+<p>3本目の重要ソースは Codex の changelog / build plugins ドキュメントです。Codex が Agent Plugins manifest、workspace plugin publishing、追加の plugin marketplace をサポートするという記述は、プラグインが単なるローカル拡張ではなく、ワークスペース単位・マーケットプレイス単位で流通するものとして扱われていることを示しています。これは、個人の作業環境だけでなく、チームや組織の agent harness にも関わる更新です。</p>
+<p>概念ノートでは、<code>tool-accessibility</code> に今回の source note が supporting source として追加されました。この概念は「人間が頼っているツールが、エージェントにとって発見可能かつ効果的に使える形で露出している度合い」を扱っています。Agent Plugins はその定義にかなり直接的に当たります。特に、MCP server config と Agent Skills をまとめて共有できるなら、ツール接続・操作手順・利用文脈をバラバラに管理するより、エージェントが利用できる能力パッケージとして扱いやすくなります。</p>
+<p>地図ノートでは、<code>agent-harness-landscape</code> の OpenAI セクションに Agent Plugins が追記されました。これにより、この地図の OpenAI 関連の流れは、Codex の実行環境、モデル階層やルーティング、音声やメモリのような continuity surface に加えて、プラグイン配布という harness infrastructure の層も含むようになりました。エージェントの性能はモデル単体ではなく、周辺のツール、権限、設定、配布、レビュー、継続性によって決まるという、このKBの中心命題に沿った更新です。</p>
+<p>実務上の読みどころは、エージェント導入で作るべきものが「良いプロンプト」だけではなくなっている点です。チームが繰り返し使う操作、外部サービス連携、内部ツールへの接続、レビューや検証の手順は、今後はスキルやMCP設定を含むプラグインとして管理する方が自然になるかもしれません。その場合、重要になるのは機能の追加だけでなく、権限、監査、バージョン管理、公開範囲、マーケットプレイスでの発見性です。</p>
+<p>次に追う問いは3つです。第一に、Agent Plugins の「互換性」は、実際にはどのメタデータ、権限モデル、実行環境まで共有されるのか。第二に、Agent Skills と MCP configs は、別クライアントへ持ち出されたときにどれだけ意味を保てるのか。第三に、プラグインの流通面は共通マーケットプレイスへ収束するのか、それとも各agent clientごとのマーケットプレイスが並立するのかです。今日は小さな取り込みですが、agent harness の標準化と配布の方向を示す更新として記録しておく価値があります。</p>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-product-market-fit.md]] — Simon Willison&#x27;s market analysis that Anthropic/OpenAI have found product-market fit through coding/general-purpose agents, API-aligned enterprise pricing, and high-value professional usage.</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[cloudflare-os-open-platform-agents-apps-work-x-2026-08-06.md]] — Cloudflare OS launch signal: browser-based agent workspace, curated org context and skills, persistent state, internal-system access, and deployable open-source runtime.</li>
+<li>[[cloudflare-workers-local-tracing-x-2026-08-06.md]] — Cloudflare&#x27;s local tracing launch: <code>wrangler dev</code> emits structured traces for local requests and exposes agent-readable observability for Workers debugging.</li>
+<li>[[openaidevs-agent-plugins-open-standard-x-2026-08-06.md]] — OpenAI Developers&#x27; Agent Plugins signal: a shared plugin format plus marketplace publishing across compatible agent clients.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthropic-claude-code-large-codebases.md]] — Anthropic on Claude Code at large-codebase scale: live-code navigation, harness extension points, layered context files, LSP/subagents,</li>
+</ul>
+<h3>OpenAI Developers - Agent Plugins</h3>
+<p>Source note: <code>wiki/sources/openaidevs-agent-plugins-open-standard-x-2026-08-06.md</code></p>
+<h1>OpenAI Developers - Agent Plugins</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/openaidevs-agent-plugins-open-standard-x-2026-08-06.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260807T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2085398373511918022</li>
+<li>Primary URLs:</li>
+</ul>
+<p>  - https://developers.openai.com/codex/whats-new</p>
+<p>  - https://developers.openai.com/plugins</p>
+<p>  - https://developers.openai.com/codex/build-plugins</p>
+<ul>
+<li>Author: OpenAI Developers / @OpenAIDevs</li>
+<li>Posted: 2026-08-06T16:11:31.000Z</li>
+<li>Captured: 2026-08-07T00:00:48.104Z via xurl bookmarks capture</li>
+<li>Type: X post / official docs announcement</li>
+<li>Evidence strength: high; the X post and official OpenAI docs both describe Agent Plugins as a cross-client plugin surface with marketplace publishing</li>
+<li>Public metrics at capture: 5014 likes, 405 reposts, 227 replies, 242 quotes, 2891 bookmarks, 942068 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>OpenAI Developers is positioning Agent Plugins as a shared plugin format that can be built once and used across compatible agent clients. The official docs reinforce that Codex now supports Agent Plugins manifests, workspace plugin publishing, and additional plugin marketplaces.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Agent Plugins aims to let one plugin work across compatible agent clients.</li>
+<li>The shared format packages Agent Skills and MCP server configurations.</li>
+<li>Codex now supports Agent Plugins manifests.</li>
+<li>OpenAI&#x27;s plugin docs frame plugins as reusable skills and connections to external services.</li>
+<li>The docs also describe public and personal plugin distribution paths.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The X post says to build a plugin once and use it across compatible agent clients.</li>
+<li>The OpenAI Codex changelog explicitly mentions support for Agent Plugins manifests, workspace plugin publishing, and additiona</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Tool Accessibility</h3>
+<p>KB note: <code>wiki/concepts/tool-accessibility.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Tool Accessibility</p>
+<hr>
+<h1>Tool Accessibility</h1>
+<h2>Definition</h2>
+<p>The degree to which the tools humans rely on are exposed in forms agents can discover and use effectively.</p>
+<h2>Why It Matters</h2>
+<p>If agents cannot access the relevant tools and context, their practical usefulness stays artificially low.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[harness-engineering]]</li>
+<li>[[agent-recognizable-repository]]</li>
+<li>[[coding-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/ignorance-ai-emerging-harness-engineering-playbook.md]]</li>
+<li>[[../sources/anthropic-harnessing-claudes-intelligence.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-skills-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-setup-x.md]]</li>
+<li>[[../sources/storybook-mcp-react-blog.md]]</li>
+<li>[[../sources/browser-use-cli-2-changelog.md]]</li>
+<li>[[../sources/google-gemma-4-blog.md]]</li>
+<li>[[../sources/difit-review-blog.md]]</li>
+<li>[[../sources/jerry-liu-rese</li>
+</ul>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/djfarrelly-agent-loop-architecture-x.md]]</li>
+<li>[[../sources/jason-liu-codex-maxxing-heartbeats.md]]</li>
+<li>[[../sources/openai-chatgpt-memory-dreaming-x-2026-06</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>2</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
