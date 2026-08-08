@@ -1,0 +1,15 @@
+{
+  "date": "2026-08-09T03:00:11.591172+09:00",
+  "topic_id": "wiki/maps/okf-adoption-for-knowledge-base-llm.md",
+  "title": "OKF Adoption for knowledge-base-llm",
+  "output_dir": "outputs/notebooklm-podcast/2026-08-09",
+  "page": "outputs/notebooklm-podcast/2026-08-09/notebooklm-source.md",
+  "related": [
+    "wiki/concepts/open-knowledge-format.md",
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/maps/research-os-query-paths.md",
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/sources/google-cloud-open-knowledge-format.md"
+  ],
+  "char_count": 8994
+}

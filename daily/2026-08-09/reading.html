@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OKF Adoption for knowledge-base-llm - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-09/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-08-09</a> / 読み物版</header>
+    <p class="eyebrow">2026-08-09 Weekly Topic</p>
+    <h1>OKF Adoption for knowledge-base-llm</h1>
+    <p class="lead">このKBをOpen Knowledge Formatに寄せるべきか、という判断メモです。結論は「全面移行ではなく、増分採用」。すでにMarkdown wikiとしての骨格は近いので、まずはfrontmatter、型、lintを小さく足して、他のエージェントや可視化ツールから扱いやすい知識パッケージへ育てる。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-08-09">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 方向性は合っている</strong>このKBはすでにMarkdown、ディレクトリ、source / concept / map、リンクを中心にしたOKF的な形になっている。</div>
+      <div><strong>2. 欠けているのは主にメタデータ</strong>OKF v0.1で必要な<code>type</code>付きfrontmatterがまだ広く入っていないため、そのままでは準拠とは言いにくい。</div>
+      <div><strong>3. まず新規・更新分から始める</strong>既存572件を一気に変換せず、型語彙とcheckerを先に作り、触ったノートから揃える。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは「知識ベースを持ち運べる形にする」こと</h2>
+      <p>knowledge-base-llmは、単なるメモ置き場ではありません。source note、concept note、map note、navigation、glossaryを組み合わせて、LLMや人間が同じ知識空間をたどれるようにしたcompiled wikiです。</p>
+      <p>この構造は、Open Knowledge Format、略してOKFの狙いとかなり近いです。OKFは、知識をMarkdownファイル、YAML frontmatter、ファイルパス、Markdownリンクで束ねるための最小フォーマットです。特定のRAGサービスやSDKに閉じず、人間、エージェント、カタログ、可視化ツールが同じ素材を読めるようにする発想です。</p>
+      <p>今回の判断は、そこにこのKBをどう合わせるかです。答えは派手な移行ではなく、増分採用。すでにある設計を壊さず、足りないメタデータと検証を少しずつ足します。</p>
+
+      <h2>OKFが足すのは、知識の「最低限の読み取り契約」</h2>
+      <p>OKF v0.1の価値は、複雑なデータモデルではありません。むしろ逆で、かなり小さい約束に価値があります。Markdownを使う。パスを概念の識別子として扱う。リンクを関係として扱う。予約された<code>index.md</code>や<code>log.md</code>を、案内や履歴の入口にする。</p>
+      <p>そのうえで、非予約の概念ファイルにはYAML frontmatterを置き、少なくとも空でない<code>type</code>を持たせる。必要に応じて<code>title</code>、<code>description</code>、<code>resource</code>、<code>tags</code>、<code>timestamp</code>のような項目を足す。これで、別のツールが「これはSourceなのか、Conceptなのか、Mapなのか」を最低限解釈できます。</p>
+      <p>つまりOKFは、知識の中身を全部支配する規格ではなく、外から読めるようにする薄いインターフェースです。knowledge-base-llmにとっては、今あるwikiをより交換可能にするためのラベル付けに近い。</p>
+
+      <h2>このKBは、構造としてはすでにOKFに近い</h2>
+      <p>fitはかなり強いです。このKBは、データベースを第一にしたRAG storeではなく、Markdownを第一にしたwikiです。エージェントは<code>wiki/INDEX.md</code>、<code>wiki/navigation/</code>、maps、concepts、sourcesから読み始め、リンクをたどり、必要なら新しいノートを書き戻します。</p>
+      <p>この「ファイルシステムが知識の地図で、リンクが移動経路になる」という形は、OKFの考え方と相性がいい。source / concept / mapの分離も、型語彙に落とし込みやすいです。</p>
+      <p>関連ノートにあるResearch OSの考え方ともつながります。よいcompiled wikiは、ただ情報を貯めるだけではなく、繰り返し出る問いに対して、どのmapから入り、どのconceptを見て、どのsourceを根拠に答えるかを示します。OKFは、その探索路を他のエージェントにも読ませやすくします。</p>
+
+      <h2>ただし、まだOKF準拠とは呼べない</h2>
+      <p>注意点もはっきりしています。2026-06-17時点のsnapshotでは、<code>wiki/</code>配下のMarkdownは572件、非予約のconcept documentは571件。そのうちYAML frontmatterを持つものは85件で、OKF v0.1の必須項目である<code>type</code>を持つものは0件でした。</p>
+      <p>これは「設計が悪い」という話ではありません。今のKBは、運用としてはOKF-likeでも、仕様としてはOKF-conformantではない、というだけです。実用上の差は、外部ツールに渡したときに出ます。人間や慣れたエージェントならディレクトリ名やファイル名から推測できますが、汎用ツールは推測では動けません。</p>
+      <p>また、OKF v0.1自体も最小仕様です。provenance、confidence、permission、freshness、evidence qualityのような、実務では重要な意味論までは解いてくれません。ここをOKFに期待しすぎると、規格がないところに安心感だけを乗せてしまいます。</p>
+
+      <h2>採用するなら、型語彙を先に決める</h2>
+      <p>推奨されている導入順は現実的です。まず、このKBのローカルな型語彙を決める。候補は<code>Source</code>、<code>Concept</code>、<code>Map</code>、<code>Navigation</code>、<code>Glossary</code>、<code>Open Questions</code>、<code>Index</code>あたりです。</p>
+      <p>ここを曖昧にしたまま大量変換すると、後から修正しにくいノイズが増えます。特にmapとconceptの境界、navigationとindexの境界、source noteにどこまで加工した要約を含めるかは、KBの読み方に直結します。</p>
+      <p>型を決めたら、新規ノートと更新されたノートだけにfrontmatterを足す。次に軽いconformance checkerを作る。最後に、既存ノートをカテゴリごとに小さく変換する。この順番なら、作業量を抑えながら、毎週のingestやcompileの流れにも自然に乗せられます。</p>
+
+      <h2>ハーネスエンジニアリングとして見ると、OKFは制約の一部になる</h2>
+      <p>関連ノートのcoding-agent harness patternsを見ると、OKF採用は単なる文書整理ではなく、エージェント運用のハーネス強化として読めます。エージェントの成果は、プロンプトだけでなく、周囲のファイル構造、検証、レビュー、記録、権限設計に支えられます。</p>
+      <p>OKF frontmatterは、その中でも「エージェントが迷わないための地図」に近いです。あるファイルが根拠ソースなのか、概念定義なのか、複数ノートをつなぐmapなのかを明示すると、探索、要約、更新、lint、可視化が安定します。</p>
+      <p>Research OSのquery pathとも同じ方向です。 recurring question に対して、start map、inspectするconcept、strongest sources、output shape、writeback先を決める。この一連の経路は、OKF的なメタデータがあるほど機械的に扱いやすくなります。</p>
+
+      <h2>一気に変換しない理由</h2>
+      <p>全面移行は魅力的に見えます。572件のMarkdownにfrontmatterを入れて、全部OKF-readyにしたくなる。でも、このKBでは急がないほうがいいです。</p>
+      <p>理由は三つあります。第一に、OKF v0.1はまだ小さく、周辺ツールも成熟途中です。第二に、既存ノートにはこれまでの運用に合わせた表現があり、機械変換だけでは意味の粒度を間違える可能性があります。第三に、frontmatterは増やした瞬間から保守対象になります。</p>
+      <p>だから、まずcheckerを置くのが大事です。ルールを作ってから変換する。変換してから人間が目で頑張るのではなく、repo側に「どこがまだ足りないか」を言わせる。これはKB運用らしい進め方です。</p>
+
+      <h2>今日の読みどころ</h2>
+      <p>このテーマの面白さは、標準化を目的ではなく、運用を軽くする手段として見ているところです。OKFに合わせること自体がゴールではありません。ゴールは、knowledge-base-llmを人間にもエージェントにも読みやすく、検証しやすく、他のツールへ渡しやすい知識パッケージにすることです。</p>
+      <p>今のKBは、すでにOKFの方向を向いています。だからこそ、次の一手は大改造ではなく、小さな明示化です。型を決める。frontmatterを足す。checkerを作る。新規・更新分から守る。既存分はカテゴリごとにゆっくり揃える。</p>
+      <div class="callout">
+        OKF採用は「全部を規格に従わせる」話ではなく、KBの読み方を外部化する話です。まずはtype付きfrontmatterと軽いcheckerで、エージェントが迷わない最低限の地図を作る。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>このKBで使う<code>type</code>語彙は、Source / Concept / Mapだけで足りるか？</li>
+        <li>source noteのfrontmatterに、provenanceやconfidenceをどこまで持たせるべきか？</li>
+        <li>OKF checkerは、最初にどのルールだけを見ると運用負荷が低いか？</li>
+        <li>既存ノートを変換するとき、どのカテゴリから始めるのが一番効果が大きいか？</li>
+        <li>OKF化したKBを、どの可視化ツールや別エージェントに渡して試すべきか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm notes: <code>wiki/maps/okf-adoption-for-knowledge-base-llm.md</code>, <code>open-knowledge-format.md</code>, <code>coding-agent-harness-patterns.md</code>, <code>research-os-query-paths.md</code>, <code>agent-harness-landscape.md</code>, <code>google-cloud-open-knowledge-format.md</code>.</p>
+    </footer>
+  </div>
+</body>
+</html>
