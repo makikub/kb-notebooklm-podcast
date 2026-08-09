@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-08-09 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-09/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-08-09</header>
+<h1>KB Daily Digest 2026-08-09</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-09/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-08-09">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-08-09</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest — 2026-08-09</h1>
+<p>2026-08-09 UTC の knowledge-base-llm 更新では、X bookmark ingest から2本の新規 source note が追加されました。どちらも短い practitioner tip ですが、共通しているのは「どのモデルに、どの役割を、どの実行面で 맡せるか」を環境変数や起動パスのような harness 設定として扱っている点です。KB全体の流れとしては、coding agents、agent management、loop engineering、worker-based composition にまたがる小さな更新です。</p>
+<p>重要ソースの1本目は、コキチーズ / @k2wanko さんによる Fable 5 と Sonnet 5 の Plan Mode 設定メモです。投稿の主張はシンプルで、<code>ANTHROPIC_DEFAULT_OPUS_MODEL</code> を <code>claude-fable-5[1m]</code>、<code>ANTHROPIC_DEFAULT_SONNET_MODEL</code> を <code>claude-sonnet-5[1m]</code>、<code>ANTHROPIC_MODEL</code> を <code>opusplan</code> にすることで、Plan Mode は Fable 5、それ以外は Sonnet 5 に振り分けられる、というものです。ベンチマークではありませんが、planning と execution を別モデルにルーティングする実例として明確です。</p>
+<p>この1本目の読みどころは、モデル選択がユーザーの都度判断ではなく、実行環境のデフォルトとして固定されている点です。Plan Mode は高い推論品質や長い検討が求められる場面、通常作業は別モデルで十分な場面、という役割分担が暗黙にあります。KB上では、loop engineering や agent management の文脈で、ループの各段階に異なるモデル/コスト/能力を割り当てる harness knob として扱えます。</p>
+<p>重要ソースの2本目は、ミロ / @ml0_1337 さんによる「GPT-5.6 Luna を Codex App の subagent として使う」セットアップメモです。具体的には <code>CODEX_CLI_PATH</code> を ChatGPT.app の実行パスへ向けて Codex App を起動する、という path override の話で、投稿者はこれによって token 消費量がかなり改善しそうだと見ています。これも単体では anecdotal な tips ですが、サブエージェント選択をアプリ起動層で制御する例として興味深いものです。</p>
+<p>2本を並べると、今日の全体トレンドは「モデルルーティングがプロンプト内の相談から、環境変数・CLIパス・Plan Mode・subagent selection といった外側の操作面へ移っている」です。つまり、エージェントを賢く使うための工夫が、毎回の指示文ではなく、あらかじめ作った harness の形に近づいています。これは、長時間運用やチーム内標準化に向く一方で、サポート外の設定や brittle な path override に依存するリスクも含みます。</p>
+<p>KB内の概念更新としては、新規 source note が <code>coding-agents</code>、<code>agent-management</code>、<code>loop-engineering</code>、<code>long-running-agents</code>、<code>intelligent-delegation</code>、<code>worker-based-composition</code> に接続されました。特に <code>agent-management</code> との接続は重要です。人間が「今回はこのモデルで」と毎回判断するのではなく、作業フェーズやサブエージェントの役割に応じて既定ルートを作ることは、エージェント群を管理する実務の一部になりつつあります。</p>
+<p>実務上の含意は、モデルを1種類の汎用知能として見るよりも、planning、editing、background work、subagent work、review などの役割に分解して、それぞれに最小十分なモデルと権限を割り当てる設計が効きやすいということです。ただし、今日のソースはいずれも短いX投稿で、再現性・移植性・安全性の検証はまだ薄いです。したがって、KBでは「有望な運用パターンのシグナル」として扱い、強い一般則にはしないのが妥当です。</p>
+<p>次に追う問いは3つです。第一に、Plan Mode と通常実行でモデルを分けたとき、品質、速度、コスト、修正回数は実際にどう変わるのか。第二に、<code>CODEX_CLI_PATH</code> のような path override は、公式に支えられた設定面なのか、それともリリース更新で壊れやすい local hack なのか。第三に、サブエージェントの token efficiency は、モデル選択だけでなく、タスク分割、context handoff、権限範囲、成果物フォーマットとどう相互作用するのか。今日の更新は2本だけですが、agent harness を「モデルを差し替える場所」として読む流れを補強する更新として記録する価値があります。</p>
+<h2>重要ソース</h2>
+<h3>K2wanko - Fable 5 plan-mode config</h3>
+<p>Source note: <code>wiki/sources/k2wanko-fable-5-plan-mode-config-x-2026-07-01.md</code></p>
+<h1>K2wanko - Fable 5 plan-mode config</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/k2wanko-fable-5-plan-mode-config-x-2026-07-01.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260809T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2072409890195464627</li>
+<li>Author: コキチーズ / @k2wanko</li>
+<li>Posted: 2026-07-01T19:59:55.000Z</li>
+<li>Captured: 2026-08-09T00:00:22.001Z via xurl bookmarks capture</li>
+<li>Type: X configuration tip / snippet</li>
+<li>Evidence strength: medium; the post is a short setup note, but the configuration itself is explicit</li>
+<li>Public metrics at capture: 666 likes, 65 reposts, 5 replies, 11 quotes, 952 bookmarks, 90312 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>K2wanko describes a setup where Fable 5 handles planning and Sonnet 5 handles the rest of the work. The post does not present a benchmark or a general rule, but it does give a concrete environment-variable split that treats plan mode and routine execution as separate routing surfaces.</p>
+<h2>Key Claims</h2>
+<ul>
+<li><code>ANTHROPIC_DEFAULT_OPUS_MODEL</code> can be set to <code>claude-fable-5[1m]</code>.</li>
+<li><code>ANTHROPIC_DEFAULT_SONNET_MODEL</code> can be set to <code>claude-sonnet-5[1m]</code>.</li>
+<li><code>ANTHROPIC_MODEL</code> can be set to <code>opusplan</code>.</li>
+<li>With that setup, Plan Mode uses Fable 5 while other work uses Sonnet 5.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The note includes the exact shell exports.</li>
+<li>The author states the resulting behavior in plain language at the end of the post.</li>
+<li>The post is short, so there is no additional explanation of why this split works beyond the implied cost/quality tradeoff.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X practitioner config note</li>
+<li>Confidence: medium for the existence of the setup, low for any broad claim that it is the best configuration</li>
+<li>Supports: [[../concepts/coding-agents.md]], [[../concepts/loop-engineering.md]], [[../concepts/agent-management.md]], [[..</li>
+</ul>
+<h3>Miro - Codex App subagent with GPT-5.6 Luna</h3>
+<p>Source note: <code>wiki/sources/ml0-1337-codex-app-subagent-gpt-56-luna-x-2026-08-08.md</code></p>
+<h1>Miro - Codex App subagent with GPT-5.6 Luna</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/ml0-1337-codex-app-subagent-gpt-56-luna-x-2026-08-08.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260809T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2085989856380121439</li>
+<li>Linked media URL: https://x.com/ml0_1337/status/2085989856380121439/photo/1</li>
+<li>Author: ミロ / @ml0_1337</li>
+<li>Posted: 2026-08-08T07:21:52.000Z</li>
+<li>Captured: 2026-08-09T00:00:22.001Z via xurl bookmarks capture</li>
+<li>Type: X practitioner tip / screenshot post</li>
+<li>Evidence strength: medium; the setup is explicit, but the support is a single screenshot-and-caption post</li>
+<li>Public metrics at capture: 129 likes, 6 reposts, 1 reply, 2 quotes, 222 bookmarks, 16614 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>Miro says they found a way to use GPT-5.6 Luna as a subagent inside Codex App, which they expect to reduce token consumption. The concrete mechanism is an environment-variable override that points <code>CODEX_CLI_PATH</code> at the ChatGPT app binary, so the post is really about harness wiring rather than model theory.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>GPT-5.6 Luna can be used as a Codex App subagent.</li>
+<li>The setup may materially improve token efficiency.</li>
+<li>The user can influence Codex behavior by setting <code>CODEX_CLI_PATH</code> before launching the app.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The post gives a step-by-step setup.</li>
+<li>The visible command overrides <code>CODEX_CLI_PATH</code> to a ChatGPT app path on macOS.</li>
+<li>The caption explicitly claims the subagent behavior is achieved through that path selection.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X practitioner tip with a screenshot</li>
+<li>Confidence: medium for the reported setup, low for portability without more context</li>
+<li>Supports: [[../concepts/coding-agents.md]], [[../concepts/intelligent-delegation.md]], [[../concepts/worker-based-</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>2</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
