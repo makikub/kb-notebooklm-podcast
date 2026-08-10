@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-08-10 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-10/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-08-10</header>
+<h1>KB Daily Digest 2026-08-10</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-10/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-08-10">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-08-10</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest - 2026-08-10</h1>
+<p>UTC 2026-08-10 の knowledge-base-llm 更新は、X ブックマーク取り込みから <code>diagram-design</code> を新規ソースとして追加した小さめの ingest でした。コミットは <code>cb38444</code>、件名は <code>Ingest xurl bookmarks diagram-design skill</code> です。今日のバッチでは 20 件相当のブックマーク確認のうち、19 件は既存 KB にすでに表現されている、または近い内容として扱われ、実質的に新規シグナルとして残ったのは 1 件でした。</p>
+<p>新規ソースの中心は、Cathryn Lavery 氏の GitHub リポジトリ <code>diagram-design</code> です。X 投稿と GitHub README の両方に基づき、KB では「Claude Code skill として使える、ブランド適合型の編集図生成ツール」として整理されています。27 種類の図を生成でき、出力はビルド不要の self-contained HTML + SVG、さらに対象サイトを読んで色やフォントを取り込み、図のスタイルガイドに反映できる、という点が主要な主張です。</p>
+<p>重要ソースは本日 1 本のみです。<code>wiki/sources/trendtech33566-diagram-design-skill-x-2026-08-08.md</code> は、単なる図作成ノウハウではなく、再利用可能な「視覚アウトプット skill」として評価されています。図をその場限りのプロンプトで作るのではなく、図種、スタイル、ブランドオンボーディング、インストール経路をまとめてパッケージ化している点が、KB の harness / artifact 系の議論に接続されました。</p>
+<p>更新された地図は <code>wiki/maps/agent-harness-landscape.md</code> です。ここでは Claude Code エコシステムの構成要素として、skills、subagents、MCP、hooks、commands、IDE integrations などに加え、<code>diagram-design</code> が「ブランドに合わせた視覚成果物」まで harness の出力面が広がっている例として追記されています。つまり、harness engineering はテキストやコードの実行管理だけでなく、成果物の見た目、配布形式、使い回しやすさまで含む方向に伸びています。</p>
+<p>全体トレンドとしては、「エージェントが何を考えるか」よりも「エージェントがどんな形式で成果物を出せるように囲われているか」が重要になっている、という流れが強まっています。今回の <code>diagram-design</code> は、モデルに自由に SVG を描かせる話ではなく、27 タイプの型、ブランド抽出、HTML + SVG という配布可能な形、Claude Code / Claude plugin / Codex skill への導入経路を持っています。これは KB が追っている「rich agent output artifact」や「navigable agent skills」の実例として読みやすい更新です。</p>
+<p>実務上の読みどころは、ブランド適合の自動化をどこまで任せるべきかです。サイトから色とフォントを拾えることは便利ですが、過度にブランドへ寄せると図の可読性や汎用性を損なう可能性もあります。KB の open question でも、どのチームがこのオンボーディングを自然に再利用できるのか、27 種類の図セットが実務で十分なのか、それとも専門 skill として限定的に使うべきなのかが残されています。</p>
+<p>Podcast で掘るなら、今日の論点は「図を生成する AI」ではなく「図を生成する skill をどう設計するか」です。テンプレート、ブランドトークン、図種のカタログ、出力形式、インストール経路が揃うと、図作成は一回ごとの創作ではなく、チームの成果物生成フローになります。これは design harness、docs harness、coding harness が同じ方向へ近づいていることを示す小さいけれど重要なサンプルです。</p>
+<p>次に追うべき問いは、同種の「ブランド付きアウトプット skill」が他領域にも増えるかです。スライド、レポート、ダッシュボード、提案書、仕様書などで同じ構造が現れれば、KB 側では「diagramming」だけでなく、より広い「branded output surface」や「artifact packaging」概念として分ける価値が出てきます。今日の段階では、既存概念に接続するだけで十分で、専用概念の新設は保留されています。</p>
+<h2>重要ソース</h2>
+<h3>Source Notes</h3>
+<p>Source note: <code>wiki/sources/README.md</code></p>
+<h1>Source Notes</h1>
+<p>Each note in this folder should summarize one source from <code>raw/</code>.</p>
+<p>Recommended structure:</p>
+<ul>
+<li>source metadata</li>
+<li>short summary</li>
+<li>key claims</li>
+<li>evidence / examples</li>
+<li>evidence quality when the source is anecdotal, preview-only, benchmark-heavy, or captured from truncated material</li>
+<li>related concepts</li>
+<li>open questions</li>
+<li>backlinks to raw material</li>
+<li>[[simon-willison-product-market-fit.md]] — Simon Willison&#x27;s market analysis that Anthropic/OpenAI have found product-market fit through coding/general-purpose agents, API-aligned enterprise pricing, and high-value professional usage.</li>
+<li>[[simon-willison-gitlab-act-2.md]] — Simon Willison on GitLab&#x27;s Act 2 announcement, organization flattening, smaller empowered R&amp;D teams, and the agentic-era Jevons-style software demand thesis.</li>
+<li>[[cloudflare-os-open-platform-agents-apps-work-x-2026-08-06.md]] — Cloudflare OS launch signal: browser-based agent workspace, curated org context and skills, persistent state, internal-system access, and deployable open-source runtime.</li>
+<li>[[cloudflare-workers-local-tracing-x-2026-08-06.md]] — Cloudflare&#x27;s local tracing launch: <code>wrangler dev</code> emits structured traces for local requests and exposes agent-readable observability for Workers debugging.</li>
+<li>[[openaidevs-agent-plugins-open-standard-x-2026-08-06.md]] — OpenAI Developers&#x27; Agent Plugins signal: a shared plugin format plus marketplace publishing across compatible agent clients.</li>
+<li>[[trendtech33566-diagram-design-skill-x-2026-08-08.md]] — diagram-design: 27 editorial diagram types with website-driven brand onboarding and self-contained HTML/SVG output.</li>
+<li>[[google-research-nested-learning-continual-learning.md]] — Google Research on Nested Learning, continuum memory systems, and Hope as a model-internal continual-learning architecture.</li>
+<li>[[anthr</li>
+</ul>
+<h3>GitHub AI Projects Community - diagram-design skill</h3>
+<p>Source note: <code>wiki/sources/trendtech33566-diagram-design-skill-x-2026-08-08.md</code></p>
+<h1>GitHub AI Projects Community - diagram-design skill</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/trendtech33566-diagram-design-skill-x-2026-08-08.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260810T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2086219407160905901</li>
+<li>Primary URL: https://github.com/cathrynlavery/diagram-design</li>
+<li>Author: GitHub AI Projects Community 🇯🇵 / @trendtech33566</li>
+<li>Posted: 2026-08-08T22:34:01.000Z</li>
+<li>Captured: 2026-08-10T00:00:18.837Z via xurl bookmarks capture</li>
+<li>Type: X post / GitHub repo card</li>
+<li>Evidence strength: high; the X post and repo README both describe the same 27-type diagram skill and its brand-onboarding flow</li>
+<li>Public metrics at capture: 923 likes, 102 reposts, 8 replies, 2 quotes, 1733 bookmarks, 85598 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>GitHub AI Projects Community shared a bookmark to <code>diagram-design</code>, a Claude Code skill for making editorial diagrams that match a website&#x27;s brand. The repo says it generates 27 diagram types, renders them as self-contained HTML + SVG, and can pull a site&#x27;s palette and font stack into a style guide in about a minute.</p>
+<h2>Key Claims</h2>
+<ul>
+<li><code>diagram-design</code> is a reusable Claude Code skill for branded diagram generation.</li>
+<li>The skill ships 27 diagram types, including architecture, flow, sequence, state, and loop diagrams.</li>
+<li>The output is self-contained HTML + SVG with no build step and no external image dependency.</li>
+<li>The skill can onboard a brand by reading the target website and mapping colors and fonts into semantic style tokens.</li>
+<li>The repo supports installation as a Claude Code skill, a Claude plugin, and a Codex skill.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The X post says the skill can produce 27 kinds of diagrams and match colors/fonts from the target site.</li>
+<li>The GitHub README says diagrams are &quot;s</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent Harness Landscape</h3>
+<p>KB note: <code>wiki/maps/agent-harness-landscape.md</code></p>
+<h1>Agent Harness Landscape</h1>
+<h2>Purpose</h2>
+<p>This map connects the emerging idea of harness engineering across several sources and shows how it fits into the broader LLM agents knowledge base.</p>
+<h2>Core thesis</h2>
+<p>Agent performance is not just a function of the model. It depends heavily on the harness: the repository structure, controls, artifacts, tests, review loops, and orchestration patterns around the model.</p>
+<h2>Source anchors</h2>
+<ul>
+<li>[[../sources/karpathy-personal-llm-kb.md]]</li>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/djfarrelly-agent-loop-architecture-x.md]]</li>
+<li>[[../sources/jason-liu-codex-maxxing-heartbeats.md]]</li>
+<li>[[../sources/openai-chatgpt-memory-dreaming-x-2026-06</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>2</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
