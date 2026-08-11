@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-08-11 - KB Daily Digest</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-11/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / Daily Digest / 2026-08-11</header>
+<h1>KB Daily Digest 2026-08-11</h1>
+<div class="note">
+  <strong>読み物/NotebookLM用ソース:</strong> <a href="source.md">source.md</a><br>
+  その日のKB ingest/compileを、Discord通知より詳しく読める文章にした公開ページです。
+</div>
+<div class="actions">
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/digest/2026-08-11/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/digest/2026-08-11">GitHub</a>
+</div>
+<h1>KB Daily Digest Source — 2026-08-11</h1>
+<p>このページは、knowledge-base-llm の日次更新を NotebookLM に読み込ませるための公開向けソースページです。</p>
+<p>Discord通知よりも文脈を厚めに残し、Podcast化しやすいように、今日追加・更新されたソース、概念、地図を文章中心で整理します。</p>
+<h2>今日の全体像</h2>
+<h1>KB Daily Digest 2026-08-11</h1>
+<p>2026-08-11 UTC の knowledge-base-llm 更新は、新規 ingest と compile がありました。コミット <code>8a7d558</code> で X ブックマークのスナップショット <code>raw/x/bookmarks/bookmarks-20260811T0000Z.json</code> が入り、そこから2本の practitioner note が raw/source 化されています。あわせて <code>agent-management</code>、<code>background-agents</code>、<code>context-resets</code>、<code>structured-handoff-artifacts</code>、<code>agent-safety</code>、<code>approval-policy</code>、<code>human-in-the-loop</code> などの概念ページが更新されました。</p>
+<p>全体トレンドは、「エージェントを増やして回す運用」と「増えた自律性をどこで止めるか」が同時に前に出てきたことです。片方では Claude Code Web の session-to-session 生成によって、コーディネーターが複数セッションを fleet として扱う可能性が見えています。もう片方では、Coding Agent が commit を作る現場で、署名鍵や秘密情報をどこに置き、どの操作を人間の承認境界に残すかが具体的な問題になっています。</p>
+<p>重要ソース1本目は、mizchi による Claude Code Web の session spawning / fleet control の報告です。短い実践メモではありますが、既存セッションから新しいセッションを作る内部スキルがあるらしい、という点が KB 的に大きい。これは単なる background agent の追加ではなく、セッション自体を作業単位として増殖・制御する coordinator pattern の兆候です。著者が「1日で Max プランの90%を消費した」と書いている点も重要で、能力の拡張はそのまま予算・上限・監視の問題に変わります。</p>
+<p>このソースは <code>background-agents</code>、<code>agent-management</code>、<code>context-resets</code>、<code>structured-handoff-artifacts</code> に接続されました。特に <code>context-resets</code> との接続が面白く、セッションを増やせる世界では、会話履歴を引きずるよりも明示的な handoff artifact を渡して新しいセッションを立てる設計が現実味を帯びます。ただし、セッション生成が簡単になるほど、どの時点で要約し、何を引き継ぎ、どこで停止するかの運用設計が弱いと、コストだけが先に膨らむリスクがあります。</p>
+<p>重要ソース2本目は、matsuu による Secure Enclave / Secretive を使った git commit signing の実践メモです。リンク先記事のカード情報と投稿本文から、SSH 鍵を Secure Enclave 側に置き、Secretive 経由で SSH key management と git commit signing を行う流れが KB に取り込まれました。<code>SSH_AUTH_SOCK</code> の設定に触れているのが実務的で、抽象的な安全論ではなく、CLI 開発フローに組み込めるローカル保護の具体例になっています。</p>
+<p>このソースは <code>agent-safety</code>、<code>approval-policy</code>、<code>human-in-the-loop</code> に接続されました。Coding Agent が commit を作るようになると、「commit は自動で作れるが、署名権限はどこにあるのか」という問いが出ます。Secure Enclave や生体認証を含むローカル署名フローは、エージェントの速度を完全には止めずに、秘密鍵と最終的な署名権限を人間の端末側へ残す設計として読めます。</p>
+<p>重要ソース3本目は、同日の bookmark snapshot 全体です。コンパイル対象になった2本以外にも、Claude の組織設定・段階的な制限緩和、サブエージェント利用時の巨大な token 消費、AI オールイン組織の報告、diagram-design のような生成物品質改善ツールなどが含まれていました。今日の compile では2本に絞られていますが、スナップショット全体を見ると、組織導入、コスト、エージェント fleet、セキュリティ境界、表現品質が同じ日の観測点として並んでいます。</p>
+<p>KB 内の地図更新としては、agent-first な運用が「ツールを使う」段階から「セッション、権限、コスト、handoff を管理する」段階へ進んでいることがよりはっきりしました。<code>agent-management</code> には fleet 運用の監督責任が足され、<code>approval-policy</code> には branch restriction や stop-path review gate だけでなく、署名・秘密鍵・人間承認の境界も読み込まれました。<code>structured-handoff-artifacts</code> は、長い作業を別セッションへ渡すための補助ではなく、複数セッション運用そのものの制御面になりつつあります。</p>
+<p>Podcast で掘るなら、第一の論点は「セッションを増やせることは生産性なのか、それとも管理対象の爆発なのか」です。第二の論点は「人間が承認すべき単位は、コマンド、commit、署名、push、release のどこなのか」です。第三の論点は「コスト上限や plan 消費を、approval policy や agent management の一部として扱うべきか」です。今日の更新は派手な新機能紹介ではなく、エージェント運用が実務の摩擦面に降りてきたことを示す一日でした。</p>
+<h2>重要ソース</h2>
+<h3>matsuu - Secure Enclave git commit signing with Secretive</h3>
+<p>Source note: <code>wiki/sources/matsuu-secure-enclave-git-commit-signing-secretive-x-2026-08-10.md</code></p>
+<h1>matsuu - Secure Enclave git commit signing with Secretive</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/matsuu-secure-enclave-git-commit-signing-secretive-x-2026-08-10.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260811T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2086606894333047141</li>
+<li>Primary URL: https://www.mizdra.net/entry/2026/08/07/101542</li>
+<li>Author: matsuu / @matsuu</li>
+<li>Posted: 2026-08-10T00:13:45.000Z</li>
+<li>Captured: 2026-08-11T00:00:19.925Z via xurl bookmarks capture</li>
+<li>Type: X post / article card / practitioner note</li>
+<li>Evidence strength: medium-high; the tweet includes a concrete local workflow and the card title/snippet points to a specific blog post</li>
+<li>Public metrics at capture: 472 likes, 50 reposts, 1 reply, 9 quotes, 795 bookmarks, 180232 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This source points to a workflow for keeping git commit-signing keys inside Secure Enclave and using Secretive as the interface for SSH key management and signing. The practical detail is that the author keeps signing keys local and still makes them usable through a normal CLI-based development flow.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Secure Enclave can be used to protect SSH and commit-signing keys.</li>
+<li>Secretive provides a practical interface for that key management.</li>
+<li><code>SSH_AUTH_SOCK</code> needs to be set for the signing flow to work.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet explicitly says the author uses Secretive to manage SSH keys in Secure Enclave.</li>
+<li>The tweet also says commit signing happens through Secretive.</li>
+<li>The card title names a blog post dedicated to Secure Enclave commit-signing key management.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X practitioner note plus article card</li>
+<li>Confidence: medium-high for the described local workflow, medium for broader recommendations</li>
+<li>Supports: [[../concepts/agen</li>
+</ul>
+<h3>mizchi - Claude Code Web session spawning and fleet control</h3>
+<p>Source note: <code>wiki/sources/mizchi-claude-code-web-session-spawning-fleet-x-2026-08-09.md</code></p>
+<h1>mizchi - Claude Code Web session spawning and fleet control</h1>
+<h2>Source Metadata</h2>
+<ul>
+<li>Raw path: <code>../../raw/articles/mizchi-claude-code-web-session-spawning-fleet-x-2026-08-09.md</code></li>
+<li>Raw bookmark capture: <code>../../raw/x/bookmarks/bookmarks-20260811T0000Z.json</code></li>
+<li>Original URL: https://x.com/i/status/2086381307484164293</li>
+<li>Author: mizchi / @mizchi</li>
+<li>Posted: 2026-08-09T09:17:21.000Z</li>
+<li>Captured: 2026-08-11T00:00:19.925Z via xurl bookmarks capture</li>
+<li>Type: X post / practitioner note</li>
+<li>Evidence strength: medium; short self-report with no implementation details</li>
+<li>Public metrics at capture: 204 likes, 14 reposts, 5 replies, 4 quotes, 59 bookmarks, 28038 impressions</li>
+</ul>
+<h2>Summary</h2>
+<p>This post suggests that Claude Code Web now includes an internal skill that can spawn a new session from an existing session, which makes coordinator-style fleet control possible. The author also notes that trying this burned through most of a Max plan in one day, which is a useful warning about the resource cost of session fleets.</p>
+<h2>Key Claims</h2>
+<ul>
+<li>Claude Code Web can create a session from a session.</li>
+<li>A coordinator can loop over sessions as a fleet-control mechanism.</li>
+<li>Session-fleet operation can consume plan capacity rapidly.</li>
+</ul>
+<h2>Evidence / Examples</h2>
+<ul>
+<li>The tweet text explicitly describes &quot;Session から Session&quot; creation and fleet-style operation.</li>
+<li>The post&#x27;s plan-consumption note is a concrete operational signal, not just a theory claim.</li>
+</ul>
+<h2>Evidence Quality</h2>
+<ul>
+<li>Source type: X practitioner note</li>
+<li>Confidence: medium; the post is direct but does not explain the implementation</li>
+<li>Supports: [[../concepts/background-agents.md]], [[../concepts/structured-handoff-artifacts.md]], [[../concepts/context-resets.md]], [[../concepts/agent-management.md]]</li>
+<li>Main limitations: no docs or code link were provided in the bookmark snaps</li>
+</ul>
+<h2>更新された概念・地図</h2>
+<h3>Agent Management</h3>
+<p>KB note: <code>wiki/concepts/agent-management.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent Management</p>
+<hr>
+<h1>Agent Management</h1>
+<h2>Definition</h2>
+<p>The human work of assigning tasks, monitoring progress, adjusting the environment, and deciding when to intervene in agent workflows.</p>
+<h2>Why It Matters</h2>
+<p>As agents become more capable, value comes not just from using them but from managing them well. The current source set suggests that workflow design, escalation choices, and background-task supervision are becoming durable human responsibilities rather than temporary scaffolding.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[agent-captain]]</li>
+<li>[[background-agents]]</li>
+<li>[[harness-engineering]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/ignorance-ai-emerging-harness-engineering-playbook.md]]</li>
+<li>[[../sources/mitchell-hashimoto-ai-adoption-journey.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/nyk-builderz-4-agent-hermes-operator-layer-x.md]]</li>
+<li>[[../sources/sydneyrunkle-agent-harness-vs-runtime-production-x.md]]</li>
+<li>[[../sources/brett-goldstein-agentic-micro-</li>
+</ul>
+<h3>Agent Safety</h3>
+<p>KB note: <code>wiki/concepts/agent-safety.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Agent Safety</p>
+<hr>
+<h1>Agent Safety</h1>
+<h2>Definition</h2>
+<p>The set of mechanisms and design choices used to keep an agent helpful, bounded, and resistant to harmful or misaligned behavior.</p>
+<h2>Why It Matters</h2>
+<p>As agents gain tools and autonomy, safety becomes an architectural concern rather than just a prompt concern.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[behavioral stability]]</li>
+<li>[[approval policy]]</li>
+<li>[[human-in-the-loop]]</li>
+<li>[[failure modes]]</li>
+<li>[[middleware-controls]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/newspicks-harness-engineering-what-is-it.md]]</li>
+<li>[[../sources/anthropic-emotion-concepts.md]]</li>
+<li>[[../sources/anthropic-claude-code-auto-mode.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-mythos-preview.md]]</li>
+<li>[[../sources/spillwave-ai-coding-hangover-harness-engineering.md]]</li>
+<li>[[../sources/openclaw-release-v2026-4-11-github.md]]</li>
+<li>[[../sources/keisuke69-ai-agent-security-enterpris</li>
+</ul>
+<h3>Approval Policy</h3>
+<p>KB note: <code>wiki/concepts/approval-policy.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Approval Policy</p>
+<hr>
+<h1>Approval Policy</h1>
+<h2>Definition</h2>
+<p>A rule system that decides which actions an agent may take automatically and which require explicit user approval.</p>
+<h2>Why It Matters</h2>
+<p>Approval policy is one of the main levers for balancing agent speed and operational safety.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[human-in-the-loop]]</li>
+<li>[[agent-autonomy]]</li>
+<li>[[agent-safety]]</li>
+<li>[[coding-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-claude-code-auto-mode.md]]</li>
+<li>[[../sources/codex-subagents-docs.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/claudecode-love-boris-30-claude-code-tips-x.md]]</li>
+<li>[[../sources/blader-adversarial-subagent-review-gate-goal-x-2026-05-23.md]]</li>
+<li>[[../sources/bcherny-auto-mode-multi-clauding-x-2026-05-24.md]]</li>
+<li>[[../sources/cloudflare-agents-stripe-projects-blog.md]]</li>
+<li>[[../sources/openclaw-clawsweeper-repo.md]]</li>
+<li>[[../sources/google-workspace-mcp-servers-docs.md]</li>
+</ul>
+<h3>Background Agents</h3>
+<p>KB note: <code>wiki/concepts/background-agents.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Background Agents</p>
+<hr>
+<h1>Background Agents</h1>
+<h2>Definition</h2>
+<p>Agents launched to work asynchronously while the human focuses elsewhere or is offline.</p>
+<h2>Why It Matters</h2>
+<p>They can create leverage by using otherwise idle time and by parallelizing exploratory work.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[long-running-agents]]</li>
+<li>[[task-decomposition]]</li>
+<li>[[agent-management]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/gargetisha-openclaw-under-the-hood-x-article.md]]</li>
+<li>[[../sources/mitchell-hashimoto-ai-adoption-journey.md]]</li>
+<li>[[../sources/anthropic-claude-code-on-the-web-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-web-scheduled-tasks-docs.md]]</li>
+<li>[[../sources/anthropic-claude-code-scheduled-tasks-x.md]]</li>
+<li>[[../sources/anthropic-claude-code-scheduled-tasks-dynamic-loop-docs.md]]</li>
+<li>[[../sources/noahzweben-dynamic-loop-x.md]]</li>
+<li>[[../sources/oikon48-monitor-tool-x.md]]</li>
+<li>[[../sources/noahzweben-autofix-pr-x.md]]</li>
+<li>[[../sources/openai-codex-plugin-cc-github.md]]</li>
+<li>[[../sources/cursor-3-blog.md]]</li>
+<li>[[.</li>
+</ul>
+<h3>Context Resets</h3>
+<p>KB note: <code>wiki/concepts/context-resets.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Context Resets</p>
+<hr>
+<h1>Context Resets</h1>
+<h2>Definition</h2>
+<p>A harness strategy where a new agent session starts from a clean context window and reconstructs state from explicit handoff artifacts rather than compressed conversation memory.</p>
+<h2>Why It Matters</h2>
+<p>Resets can reduce context drift and force higher-quality handoffs, especially on long tasks. In the current source set, they function less like a universal best practice and more like a reliability tactic that becomes valuable when session history turns noisy or self-reinforcing.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[structured-handoff-artifacts]]</li>
+<li>[[long-running-agents]]</li>
+<li>[[self-evaluation-bias]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-harness-design-long-running-apps.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/trq212-claude-code-usage-context-management-x.md]]</li>
+<li>[[../sources/walden-yan-multi-agent-pragmatic-update-x.md]]</li>
+<li>[[../sources/anthropic-april-23-postmortem-claude-code-qu</li>
+</ul>
+<h3>Human in the Loop</h3>
+<p>KB note: <code>wiki/concepts/human-in-the-loop.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Human in the Loop</p>
+<hr>
+<h1>Human in the Loop</h1>
+<h2>Definition</h2>
+<p>An operating pattern where the human remains the final or periodic decision-maker for selected agent actions or checkpoints.</p>
+<h2>Why It Matters</h2>
+<p>It allows practical deployment of more capable agents without requiring full trust in autonomous action.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[approval-policy]]</li>
+<li>[[agent-autonomy]]</li>
+<li>[[agent-safety]]</li>
+<li>[[intelligent-delegation.md]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/anthropic-claude-code-auto-mode.md]]</li>
+<li>[[../sources/tsumotokai-context-graphs-agent-long-term-memory-x.md]]</li>
+</ul>
+<ul>
+<li>[[../sources/y-matsuwitter-harness-roles-meta-definition-x.md]]</li>
+<li>[[../sources/zento-ai-claude-web-slack-summary-routine-x.md]]</li>
+<li>[[../sources/claudeai-claude-code-routines-research-preview-x.md]]</li>
+<li>[[../sources/noahzweben-claude-code-routines-x.md]]</li>
+<li>[[../sources/trq212-ultraplan-x.md]]</li>
+<li>[[../sources/arxiv-intelligent-ai-delegation.md]]</li>
+<li>[[../sources/aws-japan-aws-blocks-ai-agent-intro-zenn.md]]</li>
+<li>[[../so</li>
+</ul>
+<h3>Structured Handoff Artifacts</h3>
+<p>KB note: <code>wiki/concepts/structured-handoff-artifacts.md</code></p>
+<hr>
+<p>aliases:</p>
+<p>  - Structured Handoff Artifacts</p>
+<hr>
+<h1>Structured Handoff Artifacts</h1>
+<h2>Definition</h2>
+<p>Persistent artifacts such as progress logs, feature lists, plans, and commit history that allow one agent session to hand work off to another cleanly.</p>
+<h2>Why It Matters</h2>
+<p>Without structured handoffs, long-running work across multiple context windows becomes brittle and repetitive.</p>
+<h2>Related Concepts</h2>
+<ul>
+<li>[[initializer-agent]]</li>
+<li>[[rich-agent-output-artifact.md]]</li>
+<li>[[context-resets]]</li>
+<li>[[incremental-progress]]</li>
+<li>[[long-running-agents]]</li>
+</ul>
+<h2>Supporting Sources</h2>
+<ul>
+<li>[[../sources/openai-harness-engineering.md]]</li>
+<li>[[../sources/anthropic-effective-harnesses-long-running-agents.md]]</li>
+<li>[[../sources/oikon48-team-onboarding-x.md]]</li>
+<li>[[../sources/oikon48-ultraplan-x.md]]</li>
+<li>[[../sources/anthropic-claude-code-ultraplan-docs.md]]</li>
+<li>[[../sources/cursor-pr-demos-x.md]]</li>
+<li>[[../sources/noahzweben-autofix-pr-x.md]]</li>
+<li>[[../sources/aparnadhinak-harness-vs-sandbox-trajectory-x.md]]</li>
+<li>[[../sources/nyk-builderz-4-agent-h</li>
+</ul>
+<h2>NotebookLM Podcast用メモ</h2>
+<ul>
+<li>まず今日の全体トレンドを話してから、重要ソースを3本に絞って深掘りする。</li>
+<li>ソース単体の紹介で終わらせず、既存KBの概念や地図がどう更新されたかを会話に含める。</li>
+<li>最後に、明日以降の調査問いを2〜3個提示する。</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm daily digest. Sources: <code>2</code>, commits: <code>1</code></p></footer>
+
+</body>
+</html>
