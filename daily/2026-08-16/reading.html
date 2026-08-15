@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Context Management Decision Map - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-16/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-08-16</a> / 読み物版</header>
+    <p class="eyebrow">2026-08-16 Weekly Topic</p>
+    <h1>Context Management Decision Map</h1>
+    <p class="lead">長時間エージェントをうまく動かすには、「今の会話を続けるか」「巻き戻すか」「要約して残すか」「別の作業者へ逃がすか」を、その場の気分ではなく運用上の判断として扱う必要があります。今日のテーマは、コンテキストを単なる容量制限ではなく、回復と継続のための設計対象として見ることです。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-08-16">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 続けるだけが正解ではない</strong>continue、rewind、clear、compact、delegate、reset、loopを使い分けると、失敗やノイズを作業全体へ広げにくくなる。</div>
+      <div><strong>2. リセットには成果物が要る</strong>新しい文脈で再開するには、plan、progress、commit、test result、source noteのような明示的な引き継ぎが必要になる。</div>
+      <div><strong>3. ハーネスが判断を支える</strong>コンテキスト管理はプロンプト術ではなく、repo構造、評価、レビュー、スケジュール、サブエージェントまで含む運用設計の一部。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは「文脈をどう回復するか」</h2>
+      <p>AIエージェントとの作業は、短い質問なら会話の流れだけで進みます。でも、調査、実装、検証、公開、定期運用のように長くなると、会話そのものがだんだん重くなります。古い判断、失敗した枝、途中の仮説、関係ないログが残り、次の一手を曇らせる。</p>
+      <p>そこで必要になるのが、コンテキスト管理です。ここでいう管理は、単に「トークン数を節約する」話ではありません。今の文脈を続けるべきか、捨てるべきか、圧縮すべきか、別の作業者へ分けるべきかを選ぶ、長時間エージェントの回復設計です。</p>
+      <p>今回の入口である <code>Context Management Decision Map</code> は、その判断を小さな操作の集合として整理しています。continue、rewind、clear、compact、delegate、reset、loop / wake。名前を付けるだけでも、運用の迷いはかなり減ります。</p>
+
+      <h2>まず「続ける」が向いている場面を見極める</h2>
+      <p><code>Continue</code> は、現在のセッションと文脈をそのまま使い続ける選択です。作業がまだ一貫していて、次のタスクが直前の流れと強くつながっているなら、これがいちばん自然です。読みかけのコード、直前に立てた仮説、今走らせたテスト結果を、そのまま次の判断に使えます。</p>
+      <p>ただし、continueは惰性にもなります。エージェントが同じ前提を握ったまま進み、途中で間違えた解釈をずっと引きずることがある。人間側も「ここまで話したからこのまま行こう」と思いがちです。</p>
+      <p>だからcontinueは、文脈がまだ新鮮で、目的がずれておらず、失敗した枝が主流に混ざっていないときに使うものです。流れがあるから続けるのではなく、流れがまだ信頼できるから続ける。</p>
+
+      <h2>間違った枝は巻き戻す</h2>
+      <p><code>Rewind</code> は、失敗した分岐を消して、最後に良かった地点からやり直す動きです。会話全体を捨てるほどではないけれど、ある実装方針や調査経路がはっきり外れたときに効きます。</p>
+      <p>これはソフトウェア開発のgitに近い感覚です。全部を初期化するのではなく、壊れた差分を取り除き、まだ使える周辺知識は残す。エージェント運用でも同じで、「この仮説は違った」「このファイル編集は戻したい」「この調査方向はノイズだった」と明示できると、次の試行がすっきりします。</p>
+      <p>rewindがうまくいくには、どこが最後の良い状態だったかが見えている必要があります。plan、commit、test result、メモ、会話内の合意点。こうした足場がないと、巻き戻しではなく単なる混乱になります。</p>
+
+      <h2>圧縮は、記憶を捨てるのではなく引き継ぐために使う</h2>
+      <p><code>Compact</code> は、作業に必要な情報を短くまとめて、長すぎる履歴を扱いやすくする選択です。人間の会話でも「つまりここまでの結論は」と整理するのと同じです。</p>
+      <p>ポイントは、圧縮が要約芸ではないことです。良いcompactは、決定事項、未解決の問い、変更したファイル、検証結果、次の一手、避けるべき失敗を残します。逆に、雑なcompactは細部を落としすぎて、あとから同じ調査や同じ失敗を繰り返します。</p>
+      <p>Anthropic系の長時間ハーネスの話でも、明示的なhandoff artifactが重要になります。<code>PROGRESS.md</code>、セッションごとのcommit、テスト結果、作業メモのようなものがあると、圧縮後も作業の連続性を保てます。</p>
+
+      <h2>文脈を汚す作業は分ける</h2>
+      <p><code>Delegate</code> は、騒がしい作業や専門的な作業をサブエージェントや別ワーカーに渡す動きです。ログの多い調査、大量ファイルの探索、レビュー、別モデルによる批判、独立した検証などが向いています。</p>
+      <p>親セッションに全部を抱え込ませると、重要な判断の横にノイズが積み上がります。たとえば「候補を広く探す」「複数の実装案を比較する」「レビューだけする」作業は、親の文脈から切り離したほうが、最後の判断が読みやすい。</p>
+      <p>これはmulti-agentを派手に組む話ではありません。必要なときだけ別の視点を呼び、結果だけを親へ返す。KBのcoding-agent harness patternsがいう verifier split も、この延長にあります。生成役と評価役を軽く分けるだけで、自己評価バイアスや文脈汚染を減らせます。</p>
+
+      <h2>完全にやり直すなら、resetは成果物から始める</h2>
+      <p><code>Reset</code> は、今のセッションを離れ、新しい文脈で明示的な成果物から再構築する選択です。会話が長くなりすぎた、隠れた混乱が多い、判断の前提が信用できない。そういうときは、無理に続けるより、作業状態をファイルに落としてから新しく始めたほうがよい。</p>
+      <p>ここで重要なのは、resetを「全部忘れる」と混同しないことです。良いresetは、ファイル、issue、commit、検証ログ、公開URL、source noteのような外部化された状態から再開します。つまり、会話を捨てても仕事は捨てない。</p>
+      <p>逆に、成果物がないresetは危険です。会話だけが唯一の記憶だった場合、新しいセッションは同じ前提を復元できません。長時間エージェントの運用では、こまめな書き出しがreset可能性を作ります。</p>
+
+      <h2>定期的に戻る仕事にはloop / wakeを使う</h2>
+      <p><code>Loop / wake</code> は、時間をまたぐ仕事のための選択です。毎週のKB読み物ページ、日次digest、監視、長い待ち、外部状態が変わるまでのフォローアップなどは、単一セッションで持ち続けるより、スケジュールされた起床として扱うほうが自然です。</p>
+      <p>heartbeatやcronは、単なる自動実行ではありません。前回のstateを読み、必要な成果物を更新し、条件を見て次のcadenceを決める、小さな継続ハーネスです。ここでも鍵になるのは、会話ではなくartifactです。history、meta.json、公開先、検証結果が残っているから、次のwakeが迷わず動けます。</p>
+      <p>今回の読み物ページ生成も、その一例です。NotebookLM authや音声生成には触れず、KBから公開安全なsourceとreading.htmlを作り、Pagesへ出し、Discordへ通知する。方針が明文化されているから、定期実行でも同じ判断を繰り返せます。</p>
+
+      <h2>ハーネス設計として見ると、判断軸が変わる</h2>
+      <p>コンテキスト管理は、モデルの内側だけの問題ではありません。Agent Harness Landscapeが示すように、エージェントの成果は、モデル単体ではなく、リポジトリ構造、テスト、レビュー、手順、権限、スケジュール、サブエージェント、memoryの組み合わせで決まります。</p>
+      <p>この視点に立つと、「プロンプトを短くする」「要約する」だけでは足りません。どの情報をrepoに置くか。どの判断をmetaに残すか。どの作業を別エージェントへ渡すか。どこで人間レビューを入れるか。どの失敗を次のルールに昇格させるか。こうした周辺設計が、長い仕事の品質を支えます。</p>
+      <p>Research OSのquery pathも同じ方向です。問いに対して、start map、概念、強いソース、出力形、writeback先を決める。これにより、セッションが変わっても、知識のたどり方は残ります。</p>
+
+      <h2>今日の読みどころ</h2>
+      <p>このテーマのおいしいところは、「コンテキストが長いほど強い」とは見ていない点です。長い文脈は便利ですが、ノイズも混ざります。作業が長くなるほど、いつ続けるか、いつ切るか、何を残すか、誰に分けるかを決める必要があります。</p>
+      <p>continueで勢いを保ち、rewindで失敗した枝を外し、compactで必要な記憶を残し、delegateでノイズを分離し、resetで新しい文脈へ戻し、loop / wakeで時間をまたぐ。この小さな操作群を持つと、エージェント運用は「会話を長く保つ」から「仕事を継続可能にする」へ変わります。</p>
+      <div class="callout">
+        文脈管理の目的は、たくさん覚えることではなく、次の判断を曇らせないことです。会話に抱え込む情報と、artifactとして外へ出す情報を分けるほど、長時間エージェントはやり直しやすくなります。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>今の作業で、continueではなくcompactやresetを選ぶべき兆候は何か？</li>
+        <li>失敗した枝をrewindできるように、どの時点でcommitやprogress noteを残すべきか？</li>
+        <li>親セッションを汚さないために、delegateしたほうがよい探索やレビューは何か？</li>
+        <li>loop / wakeで運用する仕事に、最低限どのstateファイルと検証結果が必要か？</li>
+        <li>人間が判断すべき文脈と、エージェントがartifactから復元できる文脈はどう分けられるか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm notes: <code>wiki/maps/context-management-decisions.md</code>, <code>agent-harness-landscape.md</code>, <code>coding-agent-harness-patterns.md</code>, <code>harness-engineering-vendor-comparison.md</code>, <code>research-os-query-paths.md</code>, <code>eval-review-reliability.md</code>.</p>
+    </footer>
+  </div>
+</body>
+</html>
