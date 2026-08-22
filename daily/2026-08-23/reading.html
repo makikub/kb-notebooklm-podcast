@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Onboarding with Domain KB + Codebase - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-23/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-08-23</a> / 読み物版</header>
+    <p class="eyebrow">2026-08-23 Weekly Topic</p>
+    <h1>Agent Onboarding with Domain KB + Codebase</h1>
+    <p class="lead">エージェントに仕事を任せるとき、本当に渡したいのは「作業指示」だけではありません。プロダクトが何を意味しているのかを説明するドメインKBと、実際にどう動いているかを示すコードベース。この二つを一緒に読ませると、エージェントは単なる実装係から、意図と現実のずれを見つけて更新できる作業者に近づきます。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-08-23">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. KBは意味を教える</strong>用語、判断、期待、失敗例、運用ルールを小さく保つと、エージェントは毎回ゼロから空気を読む必要がなくなる。</div>
+      <div><strong>2. コードは現実を教える</strong>実装、テスト、命名、制約、実行時の挙動を読むことで、KBの理想論と実際のシステムとの差分が見える。</div>
+      <div><strong>3. 差分を書き戻す</strong>作業で見つけた設計判断、ずれ、レビュー観点、TODOをKBへ戻すと、次のオンボーディングが少し賢くなる。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは「エージェントをどう育てるか」</h2>
+      <p>人間の開発者が新しいチームに入るとき、いきなりコードだけを渡されても困ります。画面上の言葉の意味、顧客が何に困っているか、過去に却下された設計、レビューで重視される癖、触ってはいけない境界。こうした背景があって、ようやくコードの意味が読めるようになります。</p>
+      <p>エージェントも同じです。モデルが賢くなっても、プロジェクト固有の意味までは最初から知りません。そこで効くのが、ドメインKBとコードベースを組み合わせたオンボーディングです。KBが「このシステムは何を大事にしているか」を教え、コードが「いま実際にどうなっているか」を教える。</p>
+      <p>今回の入口である <code>Agent Onboarding with Domain KB + Codebase</code> は、KBを単なるメモ置き場ではなく、エージェントが繰り返し学び直すための基盤として見ています。重要なのは、読むだけで終わらないことです。作業を通じて分かったことを、またKBへ戻す。</p>
+
+      <h2>KBは、コードに書かれていない意味を持つ</h2>
+      <p>コードベースには、実装された事実が残ります。でも、なぜそうしたのか、別案をなぜ選ばなかったのか、ユーザーがどんな言葉で困りごとを表現するのかは、コードだけでは分かりません。変数名やテスト名から推測できることもありますが、推測は推測です。</p>
+      <p>ドメインKBは、その隙間を埋めます。プロダクト用語、業務ルール、設計判断、ユーザー期待、よくある失敗、公開してよい情報と避けるべき情報。こうしたものを短く整理しておくと、エージェントは作業の初手で迷いにくくなります。</p>
+      <p>ここで大事なのは、全部を読ませようとしないことです。常に読むパックは小さく、安定させる。KB index、glossary、主要なarchitecture map、coding conventions、安全境界、最新のopen questionsくらいに絞る。深いノートは、タスクに応じて取りに行けばいい。</p>
+
+      <h2>コードベースは、KBの言い分を検証する</h2>
+      <p>一方で、KBだけを読んだエージェントは危ういです。KBには理想、古い判断、まだ実装されていない構想も混ざります。人間が書いた説明は、時間が経つと実装からずれます。だから、非自明な実装タスクではコード検査が必須になります。</p>
+      <p>コードベースは、今のシステムの現実です。どの関数が呼ばれているか、どんなテストがあるか、命名がどう揃っているか、どこに例外処理があるか、どの制約が実装上の本当の境界になっているか。これを読むことで、KBの記述がまだ正しいのかを確かめられます。</p>
+      <p>良いエージェントは、KBを信じ切るのではなく、コードと照合します。「KBではこう書いてあるが、実装は違う」「設計意図は残っているがテストがない」「コード上の慣習がKBに反映されていない」。この差分こそ、次に保存すべき知識です。</p>
+
+      <h2>オンボーディングパックは小さく作る</h2>
+      <p>エージェント用の常読パックは、厚いマニュアルではありません。毎回読むものが大きすぎると、トークンを使うだけでなく、重要な注意が埋もれます。人間向けにも、エージェント向けにも、入口は短いほうが強い。</p>
+      <p>たとえば、最初に読むべきものは、現在の焦点、用語集、主要なシステム地図、安全境界、最近の未解決リスクです。これだけで、エージェントは「何を調べればよいか」を選べるようになります。全部を知っている状態ではなく、正しい探し方を知っている状態を作る。</p>
+      <p>深いノート、過去のPR判断、失敗モード、サポート事例、実装マップは、just-in-time retrievalに回します。タスクが関係したときだけ読む。これにより、初動は軽く、必要なときは深くできます。</p>
+
+      <h2>作業フローは「読む、照合する、書き戻す」</h2>
+      <p>この運用の最小ループは単純です。エージェントがタスクを受ける。オンボーディングパックを読む。タスク固有のKBノートを探す。コードとテストを読む。実装、レビュー、回答、調査のいずれかを行う。そして、作業で分かった耐久性のあることを書き戻す。</p>
+      <p>書き戻す対象は、成果物そのものだけではありません。新しい設計判断、既存KBとの不一致、テストから分かった仕様、命名規則、レビューで見つけた注意、次に調べるべきTODO。こうした小さな発見が、次のエージェントの足場になります。</p>
+      <p>Research OS Query Pathsの発想もここにつながります。問いごとに、最初に開くmap、見るべきconcept、強いsource、出力形、writeback先を決めておく。すると、セッションが変わっても、知識のたどり方は残ります。</p>
+
+      <h2>ハーネスは、プロンプトの外側にある</h2>
+      <p>このテーマは、広い意味ではharness engineeringの一部です。エージェントの品質は、モデルとプロンプトだけでは決まりません。repo構造、テスト、lint、ドキュメント、plan、review、権限、cron、サブエージェント、公開チェック。周辺の仕組みが、作業の再現性を支えます。</p>
+      <p>Coding-Agent Harness Patternsでは、planをhandoff artifactとして扱うこと、評価役を分けること、作業前に環境を起動可能にしておくことが強調されています。これはKBオンボーディングとも相性がいい。planが意図を固定し、KBが意味を補い、コードとテストが現実を検証する。</p>
+      <p>Vendor / Practitioner Comparisonに出てくるOpenAI、Anthropic、Cursor、Devin、LangChainなどの見方も、少しずつ違いはあっても同じ方向を向いています。モデル単体ではなく、周囲のartifact、control、review loopをどう設計するかが、実務での差になります。</p>
+
+      <h2>人間だけの出力を超える可能性は、蓄積にある</h2>
+      <p>この考え方がおもしろいのは、「エージェントが人間より賢いから勝つ」という話ではないところです。強みは、毎回の作業結果を次回の足場に変えることです。人間の暗黙知は、Slack、Discord、issue、PR comment、個人の記憶に散らばりやすい。KBとコードベースのループは、それを少しずつ回収できます。</p>
+      <p>もちろん、KBは放っておくと腐ります。古いノート、弱い根拠、リンク切れ、実装とのずれ、重複した用語が増える。だからperiodic lintや棚卸しが必要です。エージェントが読む基盤だからこそ、KB自体も検証対象になります。</p>
+      <p>それでも、よく保たれたKBは強いです。新しいエージェントが毎回オンボーディングできる。過去の判断を再利用できる。実装とのずれを見つけられる。出力が次の学習材料になる。この複利が、人間だけで散らばったメモを追う運用より強くなる可能性を作ります。</p>
+
+      <h2>今日の読みどころ</h2>
+      <p>このテーマの核は、KBを「読む資料」から「作業環境の一部」へ昇格させることです。エージェントに、ドメインの意味だけを渡しても足りない。コードだけを渡しても足りない。両方を読ませ、照合させ、差分を書き戻させることで、オンボーディングは一回きりの説明ではなく、継続するシステムになります。</p>
+      <p>実務で最初にやるなら、大きな知識管理システムを作る必要はありません。小さなalways-read packを決める。タスクごとのquery pathを作る。実装後にKBとの差分を一つだけ書き戻す。レビューで繰り返した指摘をルールに昇格させる。これだけでも、次のエージェントは少し速く、少し正確になります。</p>
+      <div class="callout">
+        良いKBは、エージェントに答えを暗記させるための場所ではありません。問いの入口、判断の背景、コードとの照合点、そして次回へ残す差分を置く場所です。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>このプロジェクトで、エージェントが毎回読むべき最小のオンボーディングパックは何か？</li>
+        <li>コードにはあるのにKBに書かれていない慣習や制約はどこにあるか？</li>
+        <li>KBには書かれているが、実装やテストでは確認できない主張は何か？</li>
+        <li>作業後に必ず書き戻すべき差分は、決定、TODO、失敗例、レビュー観点のどれか？</li>
+        <li>次のエージェントが迷わないように、query pathやindexをどう整えるべきか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm notes: <code>wiki/maps/agent-onboarding-kb-codebase.md</code>, <code>coding-agent-harness-patterns.md</code>, <code>agent-harness-landscape.md</code>, <code>research-os-query-paths.md</code>, <code>harness-engineering-vendor-comparison.md</code>.</p>
+    </footer>
+  </div>
+</body>
+</html>
