@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coding-Agent Harness Patterns for Always-On Agents - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-24/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-08-24</a> / 読み物版</header>
+    <p class="eyebrow">2026-08-24 Weekly Topic</p>
+    <h1>Coding-Agent Harness Patterns for Always-On Agents</h1>
+    <p class="lead">8月17日の Cursor Origin beta と、8月19日の Cloud Agents（Subscriptions / <code>/goal</code> / subagent VMs）は、コーディングエージェントを「一回の回答」から「起きているあいだ仕事を続けるシステム」へ寄せた。KBの8パターンは、その常時稼働を安全に走らせるための読み方になる。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-08-24">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 常時稼働はハーネスの話</strong><code>/goal</code> と Subscriptions はモデルを賢くするのではなく、計画・イベント・検証の寿命を伸ばす。プロンプトより先に、周囲の成果物が品質を決める。</div>
+      <div><strong>2. 8パターンが製品になった</strong>計画、検証役の分離、環境起動、安いチェック、進捗の可視化、PRまでのループ、rubric、部品の選別。Cursorの1週間は、この8つをクラウドに出した。</div>
+      <div><strong>3. 速さと停止を分ける</strong>CIとbot commentsは自動で回してよい。本番、秘密、破壊的操作は人間ゲート。常時稼働は、止める場所がないと事故を複利にする。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは「起きていてよい形」を作ること</h2>
+      <p>knowledge-base-llm の <code>Coding-Agent Harness Patterns</code> は、はっきりした中心命題を持っています。コーディングエージェントのワークフローは、品質と信頼性がプロンプトではなく、周囲の成果物、制御、レビュー循環に依存し始めたときに、ハーネスエンジニアリングになる。</p>
+      <p>マップ自体は Pattern 21 まで伸びています。今日は最初の8つに絞ります。2026-08-17 の Origin beta と、2026-08-19 の Cloud Agents 更新が、その8つを製品の言葉で言い直した週だからです。</p>
+      <p>Cursor changelog はこう書いています。cloud agents を改善して、always-on agents がシステムとして動き、各ループで人間が介入しなくてもソフトウェアを作って出せるようにする。イベントで仕事を拾い、目標を完了まで持ち、長いセッションでもコースを外さない。</p>
+
+      <h2>この1週間の Cursor 角</h2>
+      <p>8月17日、Origin が early beta として有料プランに出ました。repos、pull requests、コード閲覧と検索、GitHub 双方向同期が Cursor の Codebase タブに入ります。公式の整理では、GitHub から始めたものは GitHub が source of truth のまま。pushes も GitHub へ行く。agent-native な機能は「ship soon」と先送りされています。つまり今の Origin は、移行先というより、エージェントの隣に置かれたレビュー面です。</p>
+      <p>8月19日の更新は、その面の上でエージェントを常時稼働にします。Subscriptions は PR、Slack thread、scheduled tasks を監視し、何かが起きたら起きる。作った PR には自動で subscribe し、CI を直し、bot comments に返す。Slack では <code>@cursor check back in an hour and keep going until that feedback is in</code> と言える。</p>
+      <p><code>/goal</code> は長い目標を完了まで持たせる。changelog の例は <code>/goal fix all flaky tests and make CI green</code>。Custom Mode は skill をピン留めする always-on skill。subagent は独立 VM で、隔離されたプロジェクトコピーと clean context を持つ。steering は今の操作を切らず、次の tool call まで待つ。</p>
+
+      <h2>Pattern 1–2. 計画を残し、採点役を分ける</h2>
+      <p>最初のパターンは、計画を会話に閉じ込めないことです。<code>plan.md</code> のようなセッション単位の計画は、意図を見える化し、context reset からの復帰を支え、verifier が批評できる安定した対象になります。<code>/goal</code> は、その計画の寿命を製品側で伸ばしたものです。ファイルに残らない <code>/goal</code> は、ただの長いチャットです。</p>
+      <p>二番目は verifier split です。実行役を丸ごと複製しなくてよい。計画レビューか実装レビューだけ、別のモデルや別セッションに出せば、自己採点バイアスはかなり減ります。subagent VMs は、この分離を物理的にします。親と同じ汚れを共有せず、新鮮な環境で試す。常時稼働では、同じ文脈が何時間も続くので、この分離は贅沢ではなく保険です。</p>
+
+      <h2>Pattern 3–4. 起きる前に走らせ、安く落とす</h2>
+      <p>三番目は、タスクの前に環境を走れる状態にすることです。依存が壊れている、テストが赤、起動手順が曖昧、生成物が検索に混ざる。このまま subagent を増やしても、壊れた baseline が複製されるだけです。Subscriptions は、壊れた環境を定期的に起こす機械にもなります。</p>
+      <p>四番目は、安い決定的チェックを実装のすぐ隣に置くことです。lint、hooks、pre-commit、tests。再生成が安いなら、検証も安くなければいけません。Cloud agents が CI と bot comments を追い続けるなら、その信号が安定していないと、ループはノイズを往復します。flaky な CI に <code>/goal</code> を向けると、エージェントは「直し続ける」が、人間は完了条件を失います。</p>
+
+      <h2>Pattern 5–6. 進捗を残し、ローカルの外まで伸ばす</h2>
+      <p>五番目は、軽い成果物で進捗を見ることです。task list、生きた spec、残件。重いスキーマは要りません。Subscriptions は「いつの間にか進んでいる」状態を作ります。朝戻ったときに読むべきは、チャット全文ではなく、更新された計画と PR の checks です。Origin の timeline と diffs は、その可視性を IDE の中に寄せます。</p>
+      <p>六番目は、ハーネスをローカル実行で終わらせないことです。commit、push、PR、autofix、自動レビュー、heartbeat。8月19日の Subscriptions は、まさにこのパターンの製品化です。Origin は、そのループが触る repo と PR をエージェントの隣に置きます。GitHub が source of truth でも、統合面でしか出ない問題を、同じ作業面で拾えるようになります。</p>
+
+      <h2>Pattern 7–8. 意味の物差しを揃え、部品は選ぶ</h2>
+      <p>七番目は、決定的チェックと共有 rubric を対にすることです。受け入れ条件、対象外、リスク、公開可否、ユーザー影響。これが無いと、常時稼働の返信は量だけ増えます。Custom Mode は焦点を固定できますが、ピン留めするものが曖昧なら、癖が always-on になります。</p>
+      <p>八番目は、生態系をカタログとして見て、作業ハーネスには小さな信頼済みセットだけを入れることです。Origin、Subscriptions、<code>/goal</code>、subagent VMs、Custom Modes、steering を一度に全部オンにする必要はありません。先に、計画、安いチェック、隔離された検証、PR までのループ、止める場所。常時稼働は、未整理な道具箱を一晩中振る機械にもなります。</p>
+
+      <h2>3層で見ると、製品の置き場所が分かる</h2>
+      <p>KBは制御を3層に分けています。Feedforward は plan、<code>/goal</code>、repo conventions、Custom Mode。In-loop は hooks、Subscriptions、steering、task list、subagent VMs。Feedback は lint、tests、PR review、autofix、人間の accept / reject。</p>
+      <p>Cursor の1週間は、この3層をクラウドへ伸ばしました。だからニュースの核は「賢いモデルが常時動く」ではありません。「3層がイベントで起きる」。速く回してよい層と、人間が止める層を分けたときだけ、always-on は複利になります。</p>
+      <p>マップ後半の rule-update loop や harness owner、manager-subagent fleet は、この8つが回ってから効きます。常時稼働は、その順番を飛ばす誘惑を強くします。今夜エージェントを起きていてよいなら、まず完了条件と安いチェックと停止ゲートをファイルに置いてからにしてください。</p>
+
+      <div class="callout">
+        よい always-on 運用は、強いプロンプトを常時オンにすることではない。計画で入口を作り、安い検証で心拍を取り、検証役を分け、PRの外までループを伸ばし、繰り返す失敗だけを次回のルールに戻す。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>今夜エージェントを起きていてよいイベント源は、PR、Slack、スケジュールのどれか？</li>
+        <li><code>/goal</code> の完了条件は、CI 緑だけか。rubric 上の意味も含むか？</li>
+        <li>subagent に渡す前に、どの環境チェックが必須か？</li>
+        <li>Origin をレビュー面として使うとして、source of truth はどこに残すか？</li>
+        <li>繰り返している指摘を、どのテスト、skill、hook に昇格させるか？</li>
+        <li>人間だけが止めるべき変更は、どれか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/coding-agent-harness-patterns.md</code>, framed with Cursor Origin beta (2026-08-17) and Cloud Agents / Subscriptions / <code>/goal</code> / subagent VMs (2026-08-19).</p>
+    </footer>
+  </div>
+</body>
+</html>

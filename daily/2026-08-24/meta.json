@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-24",
+  "title": "Coding-Agent Harness Patterns for Always-On Agents",
+  "theme": "coding-agent-harness-patterns",
+  "source": "daily/2026-08-24/source.md",
+  "generated_at": "2026-08-24T01:30:00Z",
+  "topic_id": "wiki/maps/coding-agent-harness-patterns.md",
+  "output_dir": "daily/2026-08-24",
+  "page": "daily/2026-08-24/source.md",
+  "related": [
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/harness-engineering-vendor-comparison.md",
+    "wiki/concepts/harness-engineering.md",
+    "wiki/maps/agent-harness-control-taxonomy.md"
+  ],
+  "news_context": [
+    "Cursor Origin early beta (2026-08-17)",
+    "Cursor Cloud Agents Subscriptions / /goal / subagent VMs (2026-08-19)"
+  ],
+  "char_count": 5934
+}
