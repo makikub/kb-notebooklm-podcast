@@ -40,7 +40,7 @@
 <li>Theme slug: <code>coding-agent-review-rubric</code></li>
 <li>Primary topic: <code>wiki/maps/coding-agent-review-rubric.md</code></li>
 <li>Purpose: NotebookLM向けの対話用ソース。KBの6軸レビュー規準を、実装前の計画レビューとして読み直す</li>
-<li>News angle: X の「新人として計画を書き直す」(catnose99) + <code>/grill-me</code> と GPT-5.6 Sol で設計ドリフトを止める (izutorishima)。公式一次ページに 8/24–25 の大型更新は無し</li>
+<li>News angle: X の「新人として計画を書き直す」(catnose99) + <code>/grill-me</code> と GPT-5.6 Sol で実装前の齟齬を grill する (izutorishima)。公式一次ページに 8/24–25 の大型更新は無し</li>
 </ul>
 <h2>Talking points（3〜5分）</h2>
 <ol>
@@ -53,7 +53,7 @@
 <h2>今日の読み方</h2>
 <p>knowledge-base-llm の <code>Coding-Agent Review Rubric</code> は、レビューするエージェント、人間、自動レビューが同じ判断軸を使うための、短い運用標準である。KBにはハーネス制御の語彙は多いが、それをコンパクトなレビュー規準にまで落としたノートは、まだ少ない。このマップはその橋である。</p>
 <p>昨日までの読み物は、常時稼働のハーネスと、KB＋コードベースのオンボーディングだった。今日はレビュー側に回る。理由は、公式一次ページに新しい大型ドロップが無いからだ。製品面が静かな日は、現場がすでに回している手続きが見える。</p>
-<p>X では、catnose99 が計画を「スレッドを一度も見ていない新人」向けに書き直せ、と言っている。izutorishima は、コーディングの前に <code>/grill-me</code> を使い、GPT-5.6 Sol で設計ドリフトを止めよ、と言っている。どちらも「もっと賢く書け」ではない。「採点できる対象を先に作れ」である。</p>
+<p>X では、catnose99 が計画を「スレッドを一度も見ていない新人」向けに書き直せ、と言っている。izutorishima は、コーディングの前に <code>/grill-me</code> を使い、GPT-5.6 Sol で実装前の齟齬を見つけよ、と言っている。どちらも「もっと賢く書け」ではない。「採点できる対象を先に作れ」である。</p>
 <p>今日の問いは「新しいモデルが何を書いたか」ではない。「書く前の計画が、6軸で落ちるかどうか」である。</p>
 <h2>1. Correctness — 意図は新人にも届くか</h2>
 <p>変更は意図した要件を満たすか。既存の振る舞いを壊していないか。失敗パスは雑に扱われていないか。</p>
