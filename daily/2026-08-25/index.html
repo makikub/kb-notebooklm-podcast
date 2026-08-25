@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-08-25 - Coding-Agent Review Rubric Against Design Drift</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-25/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / 2026-08-25</header>
+<h1>Coding-Agent Review Rubric Against Design Drift</h1>
+<div class="note">
+  <strong>読み物:</strong> まず <a href="reading.html">読み物版</a> を読むのがおすすめです。<br>
+  <strong>ソース:</strong> <a href="source.md">source.md</a> はNotebookLMにも追加できます。
+</div>
+<div class="actions">
+  <a href="reading.html">読み物版</a>
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-25/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-08-25">GitHub</a>
+</div>
+<h1>Coding-Agent Review Rubric Against Design Drift</h1>
+<ul>
+<li>Date: 2026-08-25</li>
+<li>Theme slug: <code>coding-agent-review-rubric</code></li>
+<li>Primary topic: <code>wiki/maps/coding-agent-review-rubric.md</code></li>
+<li>Purpose: NotebookLM向けの対話用ソース。KBの6軸レビュー規準を、実装前の計画レビューとして読み直す</li>
+<li>News angle: X の「新人として計画を書き直す」(catnose99) + <code>/grill-me</code> と GPT-5.6 Sol で設計ドリフトを止める (izutorishima)。公式一次ページに 8/24–25 の大型更新は無し</li>
+</ul>
+<h2>Talking points（3〜5分）</h2>
+<ol>
+<li>8月24–25日に公式の大型ドロップは無い。今日のニュースは製品発表ではなく、計画をレビュー可能にする現場の型である。</li>
+<li>レビュー rubric は PR の後だけのものではない。同じ6軸を実装前に使うと、設計ドリフトが差分になる前に止まる。</li>
+<li>「スレッドを見ていない新人として計画を書き直す」は、理解可能性という軸そのものだ。</li>
+<li><code>/grill-me</code> と GPT-5.6 Sol は、生成役と採点役を分ける verifier split を、コーディングより前に置く。</li>
+<li>正しさ、爆破半径、単純さ、テスト、リポジトリ適合、理解可能性。この6問が、grill の質問一覧になる。</li>
+</ol>
+<h2>今日の読み方</h2>
+<p>knowledge-base-llm の <code>Coding-Agent Review Rubric</code> は、レビューするエージェント、人間、自動レビューが同じ判断軸を使うための、短い運用標準である。KBにはハーネス制御の語彙は多いが、それをコンパクトなレビュー規準にまで落としたノートは、まだ少ない。このマップはその橋である。</p>
+<p>昨日までの読み物は、常時稼働のハーネスと、KB＋コードベースのオンボーディングだった。今日はレビュー側に回る。理由は、公式一次ページに新しい大型ドロップが無いからだ。製品面が静かな日は、現場がすでに回している手続きが見える。</p>
+<p>X では、catnose99 が計画を「スレッドを一度も見ていない新人」向けに書き直せ、と言っている。izutorishima は、コーディングの前に <code>/grill-me</code> を使い、GPT-5.6 Sol で設計ドリフトを止めよ、と言っている。どちらも「もっと賢く書け」ではない。「採点できる対象を先に作れ」である。</p>
+<p>今日の問いは「新しいモデルが何を書いたか」ではない。「書く前の計画が、6軸で落ちるかどうか」である。</p>
+<h2>1. Correctness — 意図は新人にも届くか</h2>
+<p>変更は意図した要件を満たすか。既存の振る舞いを壊していないか。失敗パスは雑に扱われていないか。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>正しさは「動いた」ではなく「頼んだことに対して動いた」</li>
+<li>エージェントは隣接する正しさを量産できる</li>
+<li>計画が曖昧だと、後から正しさを採点できない</li>
+</ul>
+<p>今日の角:<br>
+スレッドの文脈を共有した人だけが読める計画は、正しさの契約になっていない。新人として書き直すと、「何が完了か」「何を壊してはいけないか」が表に出る。<code>/grill-me</code> の最初の一撃は、実装の好みではなく、この意図の穴である。</p>
+<p>対話の種:<br>
+「この計画を、会話を見ていない人が読んで、完了条件を同じ言葉で言えるか。」</p>
+<h2>2. Safety / Blast Radius — 焼くなら差分の前</h2>
+<p>変更範囲は課題に釣り合うか。危険な副作用、権限ミス、データ破壊、危ない自動化は無いか。巻き戻しと封じ込めは現実的か。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>実装後の指摘は、すでに広い差分の上に乗る</li>
+<li>爆破半径は、コード量より権限と自動化で決まる</li>
+<li>計画段階の縮小は、レビューより安い</li>
+</ul>
+<p>今日の角:<br>
+公式の新機能が静かな日でも、エージェントは昨日の常時稼働ループの上で書き続けられる。だから grill は「書いてから危なくないか」ではなく、「書いてよい範囲か」を先に聞く。Sol のような強いモデルをここに置くのは、文章を美しくするためではない。範囲を狭めるためである。</p>
+<p>対話の種:<br>
+「この計画のまま実装してよい範囲と、人間だけが触る範囲は、一文で分かるか。」</p>
+<h2>3. Maintainability / Simplicity — 複雑な設計を先に落とす</h2>
+<p>変更は局所的に理解できるか。責務は分かれているか。不要な複雑さを増やしていないか。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>生成は複雑さを安く増やせる</li>
+<li>単純さは実装後より、設計の選択の時点で安い</li>
+<li>レビュアーの頭に載らない設計は、後から分割しても遅い</li>
+</ul>
+<p>今日の角:<br>
+<code>/grill-me</code> が効くのは、実装の好みを議論するからではない。まだ書いていない複雑さを、計画の文章として見える化するからだ。新人向けに書き直せない設計は、すでに複雑すぎる。</p>
+<p>対話の種:<br>
+「この計画の中心は何をやらないかまで書いているか。それとも全部やる気か。」</p>
+<h2>4. Test Adequacy — 主張を先にテスト可能にする</h2>
+<p>テストは変更に釣り合うか。ハッピーパス以外もあるか。主張した振る舞いは、可能な限り決定的チェックで踏まれるか。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>決定的チェックは意味のレビューを減らす</li>
+<li>「後でテストする」は、計画では未レビューと同じ</li>
+<li>テスト不能な完了条件は、grill で落ちるべきである</li>
+</ul>
+<p>今日の角:<br>
+公式ドキュメントに新しいテスト機能は出ていない。だから今日増やすのは製品ではなく、計画の中の検証契約である。grill は「テストを書くつもり」を褒めない。「どのコマンドが赤なら、この計画は失敗か」を聞く。</p>
+<p>対話の種:<br>
+「この計画が成功したことを、人間の感想ではなく、どのテストが言うのか。」</p>
+<h2>5. Repo Fit / Harness Fit — 計画はリポジトリの契約か</h2>
+<p>命名、構造、既存アーキテクチャに合うか。plan や handoff に残った意図と揃っているか。lint、hook、pre-commit、既存のレビューハーネスを尊重しているか。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>正しいが場違い、はエージェント特有の失敗</li>
+<li>ハーネスを迂回する計画は、後から全部赤になる</li>
+<li>計画がリポジトリの言葉を使っていないと、実装が別物になる</li>
+</ul>
+<p>今日の角:<br>
+新人向けの書き直しは、スレッド用語をリポジトリ用語に戻す作業でもある。「昨日のチャットではこう言った」は、handoff ではない。今日の計画が、既存の hook とテストとディレクトリに載るか。それが repo fit である。</p>
+<p>対話の種:<br>
+「この計画は、リポジトリの今あるレールに乗るか。新しいレールを先に敷こうとしていないか。」</p>
+<h2>6. Comprehension / Reviewability — 今日のニュースの中心</h2>
+<p>責任あるレビュアーは、設計と失敗モードを説明できるか。差分は深く見られる大きさか、分割すべきか。生成がテスト、文書、人間のメンタルモデルを追い越していないか。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>理解できない変更は、PASS できない</li>
+<li>レビュー負荷は、エージェント速度の本当の上限である</li>
+<li>計画が読めなければ、実装を読めるはずがない</li>
+</ul>
+<p>今日の角:<br>
+catnose99 の「スレッドを見ていない新人として書け」は、この軸の運用手順である。会話にいた人の記憶を、計画が肩代わりしなければならない。izutorishima の grill は、その書き直した計画を、作った人ではないモデルに渡す。同じスレッドを知っているモデルに「良さそう」と言わせても、理解可能性は測れない。</p>
+<p>対話の種:<br>
+「この計画を、作ったチャットを知らないモデルが読んで、失敗モードを列挙できるか。」</p>
+<h2>判定の型</h2>
+<p>短い rubric は、判定も短くする。</p>
+<ul>
+<li><code>PASS</code></li>
+<li><code>PASS WITH NITS</code></li>
+<li><code>NEEDS FIX</code></li>
+</ul>
+<p>出力は、Verdict、Critical issues、Nits、Suggested fix、Confidence。点数表はいらない。カテゴリ判定で、実装してよいか、直してからかを分ける。</p>
+<p><code>/grill-me</code> の出力を、この型に固定すると、Sol の長文が「感想」から「ゲート」に変わる。Confidence が低いなら、実装ではなく、計画の書き直しに戻る。</p>
+<h2>なぜハーネス部品になるか</h2>
+<ul>
+<li>verifier に採点基準を渡せる</li>
+<li>レビュー回ごとのドリフトが減る</li>
+<li>人間とモデルの意味レビューが比較できる</li>
+<li>lint やテストを置き換えず、機械が取れない判断だけを担う</li>
+</ul>
+<p>KBの言葉では、これは guides-and-sensors を具体的なレビュー道具にしたものであり、machine-checkable invariants の隣に置く inferential control である。Fowler の計算的制御と推論的制御の分け方に乗る。</p>
+<p>今日の X の型は、その推論的制御を「PR の後」から「最初のファイル」へ前倒ししている。公式の大型更新が無い日に見えるのは、その前倒しである。</p>
+<h2>トレードオフ</h2>
+<p>短い rubric は再利用しやすいが、領域固有の品質を落とす。長い rubric は精密だが、儀式になる。repo-fit は、チームが規約を見直さないと保守的になる。</p>
+<p>だから今日の使い方は、6軸を増やすことではない。計画を新人向けに書き、同じ6問で焼き、<code>NEEDS FIX</code> ならコードを開かない。UX、性能、セキュリティが本丸のリポジトリだけ、6番目の隣に1軸足す。</p>
+<h2>実務のとりはじめ</h2>
+<p>大きな基盤は要らない。今日からできる最小セット:</p>
+<ul>
+<li>実装前に、スレッドを知らない人向けの <code>plan.md</code> を書く</li>
+<li>その計画を、作ったモデルではない強いモデルに <code>/grill-me</code> する</li>
+<li>聞くことはこの6軸。出力は PASS / PASS WITH NITS / NEEDS FIX</li>
+<li><code>NEEDS FIX</code> ならコードを触らず、計画を書き直す</li>
+<li>通った軸は、PR レビューでも同じ言葉で再採点する</li>
+</ul>
+<p>昨日の常時稼働パターンは、計画を残し、検証役を分け、安いチェックを回す話だった。今日の rubric は、その検証役が何を聞くかの台本である。公式が静かな日は、台本を先に固定する日になる。</p>
+<h2>次に考えるとよさそうな問い</h2>
+<ul>
+<li>今の計画は、スレッドを見ていない新人に渡せるか？</li>
+<li><code>/grill-me</code> の採点役は、計画を書いたモデルと同じか？</li>
+<li>6軸のうち、このリポジトリで毎回落ちる軸はどれか？</li>
+<li><code>NEEDS FIX</code> のとき、コードではなく計画に戻るルールはあるか？</li>
+<li>公式更新が無い日に、現場の手続きだけが先行していないか？</li>
+<li>人間だけが <code>PASS</code> を出してよい変更は、どれか？</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm. Source topic: <code>wiki/maps/coding-agent-review-rubric.md</code></p></footer>
+
+</body>
+</html>
