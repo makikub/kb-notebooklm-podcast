@@ -1,0 +1,23 @@
+{
+  "date": "2026-08-25",
+  "title": "Coding-Agent Review Rubric Against Design Drift",
+  "theme": "coding-agent-review-rubric",
+  "source": "daily/2026-08-25/source.md",
+  "generated_at": "2026-08-25T00:50:00Z",
+  "topic_id": "wiki/maps/coding-agent-review-rubric.md",
+  "output_dir": "daily/2026-08-25",
+  "page": "daily/2026-08-25/source.md",
+  "related": [
+    "wiki/maps/coding-agent-review-rubric.md",
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/concepts/guides-and-sensors.md",
+    "wiki/concepts/machine-checkable-invariants.md"
+  ],
+  "news_context": [
+    "X: rewrite the plan as if a newcomer never saw the thread (catnose99)",
+    "X: /grill-me + GPT-5.6 Sol before coding to stop design drift (izutorishima)",
+    "Official primary pages: no major drop on 2026-08-24/25"
+  ],
+  "char_count": 4783
+}

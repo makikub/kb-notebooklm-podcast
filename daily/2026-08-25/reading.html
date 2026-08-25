@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coding-Agent Review Rubric Against Design Drift - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-25/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-08-25</a> / 読み物版</header>
+    <p class="eyebrow">2026-08-25 Weekly Topic</p>
+    <h1>Coding-Agent Review Rubric Against Design Drift</h1>
+    <p class="lead">公式一次ページに 8月24–25日の大型更新は無い。今日見えるのは製品ではなく、現場の型だ。計画を「スレッドを見ていない新人」向けに書き直し、コーディングの前に <code>/grill-me</code> と GPT-5.6 Sol で焼く。KBの6軸ルーブリックは、その grill の質問一覧になる。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-08-25">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 公式が静かな日</strong>8月24–25日に一次ページの大型ドロップは無い。ニュースは新機能ではなく、計画を採点できる対象にする手続きである。</div>
+      <div><strong>2. 6軸を実装前に使う</strong>正しさ、爆破半径、単純さ、テスト、リポジトリ適合、理解可能性。同じ軸を PR の後だけに残すと、設計ドリフトはすでに差分になっている。</div>
+      <div><strong>3. 生成役と採点役を分ける</strong>新人向けに書き直した計画を、書いたモデルではない強いモデルへ <code>/grill-me</code> する。<code>NEEDS FIX</code> ならコードを開かない。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは「採点できる計画」を先に作ること</h2>
+      <p>knowledge-base-llm の <code>Coding-Agent Review Rubric</code> は、短い運用標準です。レビューするエージェント、人間、自動レビューが、同じ判断軸を使う。KBにはハーネス制御の語彙は多い。それをコンパクトなレビュー規準まで落としたノートは、まだ少ない。このマップはその橋です。</p>
+      <p>昨日までの読み物は、常時稼働のハーネスと、KB＋コードベースのオンボーディングでした。今日はレビュー側に回ります。公式一次ページに新しい大型ドロップが無いからです。製品面が静かな日は、現場がすでに回している手続きが見えます。</p>
+      <p>X では、catnose99 が計画を「スレッドを一度も見ていない新人」向けに書き直せ、と言っています。izutorishima は、コーディングの前に <code>/grill-me</code> を使い、GPT-5.6 Sol で設計ドリフトを止めよ、と言っています。どちらも「もっと賢く書け」ではありません。「採点できる対象を先に作れ」です。</p>
+
+      <h2>ニュースは製品ではなく、前倒しである</h2>
+      <p>レビュー rubric を PR の後だけに置くと、設計ドリフトはすでに広い差分の上に乗っています。今日の現場の型は、同じ6軸を実装前に使います。計画が落ちるなら、コードを開かない。</p>
+      <p>新人向けの書き直しは、正しさと理解可能性の契約です。会話にいた人の記憶を、計画が肩代わりしなければならない。スレッド用語のままでは、完了条件も壊してはいけないものも、採点できません。</p>
+      <p><code>/grill-me</code> と Sol は、verifier split をコーディングより前に置きます。作ったモデルに「良さそう」と言わせても、理解可能性は測れません。強いモデルをここに置くのは、文章を美しくするためではありません。範囲を狭め、複雑さを先に落とし、テスト不能な完了条件を落とすためです。</p>
+
+      <h2>6軸は grill の質問一覧になる</h2>
+      <p>Correctness は、動いたかではなく、頼んだことに対して動いたか。計画が曖昧だと、後から正しさを採点できません。grill の最初の一撃は、実装の好みではなく、意図の穴です。</p>
+      <p>Safety / Blast Radius は、書いてから危なくないかではなく、書いてよい範囲か。爆破半径はコード量より、権限と自動化で決まります。公式の新機能が静かな日でも、エージェントは昨日の常時稼働ループの上で書き続けられます。縮小は、レビューより計画の段階が安い。</p>
+      <p>Maintainability / Simplicity は、まだ書いていない複雑さを文章として見える化します。新人向けに書き直せない設計は、すでに複雑すぎます。Test Adequacy は、「後でテストする」を未レビューとして扱います。どのコマンドが赤なら、この計画は失敗か。</p>
+      <p>Repo Fit / Harness Fit は、スレッド用語をリポジトリ用語に戻す作業です。「昨日のチャットではこう言った」は handoff ではありません。今日の計画が、既存の hook とテストとディレクトリに載るか。Comprehension / Reviewability が、今日のニュースの中心です。計画が読めなければ、実装を読めるはずがありません。</p>
+
+      <h2>判定は短く、ゲートにする</h2>
+      <p>短い rubric は、判定も短くします。<code>PASS</code>、<code>PASS WITH NITS</code>、<code>NEEDS FIX</code>。出力は Verdict、Critical issues、Nits、Suggested fix、Confidence。点数表はいりません。</p>
+      <p><code>/grill-me</code> の出力をこの型に固定すると、Sol の長文が感想からゲートに変わります。Confidence が低いなら、実装ではなく計画の書き直しに戻る。通った軸は、PR レビューでも同じ言葉で再採点します。</p>
+      <p>KBの言葉では、これは guides-and-sensors を具体的なレビュー道具にしたものであり、machine-checkable invariants の隣に置く inferential control です。lint やテストを置き換えません。機械が取れない判断だけを担います。</p>
+
+      <h2>増やさず、前に置く</h2>
+      <p>短い rubric は再利用しやすいが、領域固有の品質を落とします。長い rubric は精密だが、儀式になります。repo-fit は、チームが規約を見直さないと保守的になります。</p>
+      <p>だから今日の使い方は、6軸を増やすことではありません。計画を新人向けに書き、同じ6問で焼き、<code>NEEDS FIX</code> ならコードを開かない。UX、性能、セキュリティが本丸のリポジトリだけ、6番目の隣に1軸足します。</p>
+      <p>昨日の常時稼働パターンは、計画を残し、検証役を分け、安いチェックを回す話でした。今日の rubric は、その検証役が何を聞くかの台本です。公式が静かな日は、台本を先に固定する日になります。</p>
+
+      <div class="callout">
+        よい設計ドリフト対策は、強いモデルに先に書かせることではない。スレッドを知らない人向けの計画を先に残し、書いたモデルではない採点役に6軸で焼かせ、<code>NEEDS FIX</code> ならコードを開かない。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>今の計画は、スレッドを見ていない新人に渡せるか？</li>
+        <li><code>/grill-me</code> の採点役は、計画を書いたモデルと同じか？</li>
+        <li>6軸のうち、このリポジトリで毎回落ちる軸はどれか？</li>
+        <li><code>NEEDS FIX</code> のとき、コードではなく計画に戻るルールはあるか？</li>
+        <li>公式更新が無い日に、現場の手続きだけが先行していないか？</li>
+        <li>人間だけが <code>PASS</code> を出してよい変更は、どれか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/coding-agent-review-rubric.md</code>, framed with X notes from catnose99 (rewrite the plan for a newcomer) and izutorishima (<code>/grill-me</code> + GPT-5.6 Sol before coding). Official primary pages had no major drop on 2026-08-24/25.</p>
+    </footer>
+  </div>
+</body>
+</html>
