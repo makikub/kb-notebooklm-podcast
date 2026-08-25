@@ -6,7 +6,7 @@
 - Theme slug: `coding-agent-review-rubric`
 - Primary topic: `wiki/maps/coding-agent-review-rubric.md`
 - Purpose: NotebookLM向けの対話用ソース。KBの6軸レビュー規準を、実装前の計画レビューとして読み直す
-- News angle: X の「新人として計画を書き直す」(catnose99) + `/grill-me` と GPT-5.6 Sol で実装前の齟齬を grill する (izutorishima)。公式一次ページに 8/24–25 の大型更新は無し
+- News angle: X の「新人として計画を書き直す」(catnose99) + `/grill-me` と GPT-5.6 Sol で実装前の齟齬を grill する (izutorishima)。公式一次ページに 8/24–25 の大型更新は無し。補足: OpenAI 8/24 に GPT-5.6 family が AWS Kiro へ（https://openai.com/index/gpt-5-6-in-kiro/）
 
 ## Talking points（3〜5分）
 
@@ -22,7 +22,7 @@ knowledge-base-llm の `Coding-Agent Review Rubric` は、レビューするエ�
 
 昨日までの読み物は、常時稼働のハーネスと、KB＋コードベースのオンボーディングだった。今日はレビュー側に回る。理由は、公式一次ページに新しい大型ドロップが無いからだ。製品面が静かな日は、現場がすでに回している手続きが見える。
 
-X では、catnose99 が計画を「スレッドを一度も見ていない新人」向けに書き直せ、と言っている。izutorishima は、コーディングの前に `/grill-me` を使い、GPT-5.6 Sol で実装前の齟齬を見つけよ、と言っている。どちらも「もっと賢く書け」ではない。「採点できる対象を先に作れ」である。
+X では、catnose99 が計画を「スレッドを一度も見ていない新人」向けに書き直せ、と言っている。izutorishima は、コーディングの前に `/grill-me` を使い、GPT-5.6 Sol で実装前の齟齬を見つけよ、と言っている。どちらも「もっと賢く書け」ではない。「採点できる対象を先に作れ」である。OpenAI は 8/24、GPT-5.6 family が AWS Kiro に入ったと書いたが、今日の主題は rubric のままである。
 
 今日の問いは「新しいモデルが何を書いたか」ではない。「書く前の計画が、6軸で落ちるかどうか」である。
 
