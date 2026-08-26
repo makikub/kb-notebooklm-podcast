@@ -110,7 +110,7 @@
       <h2>今日のテーマは「編集可能な面」を分類すること</h2>
       <p>knowledge-base-llm の <code>Agent Harness Control Taxonomy</code> は、ハーネス工学の語彙を揃える短い地図です。「ガードレール」は便利ですが、中身が違う機械を一つに潰します。このマップは、いつ効くか（行動の前、途中、後）と、どう効くか（決定的か、推論的か）を分けてから、評価・実行・文脈・安全という範囲を重ねます。</p>
       <p>昨日までの読み物は、実装前のレビュー規準、常時稼働のパターン、KB＋コードベースのオンボーディングでした。今日は制御の分類そのものに戻ります。公式の製品 changelog が静かでも、編集可能な面の話が出ているからです。製品面が静かな日に見えるのは、誰がどの層を触ってよいかです。</p>
-      <p>X では、Anthropic 社員の trq212 が、Claude Code はより hackable になると書いています。<code>Agents.MD</code> と system prompt の改変が来る、と。OpenAI の Tibo は、チームや中小企業向けに Pro 相当の $100 プランを出し、ChatGPT / Work / Codex と SSO を載せる、と書いています。どちらも「もっと賢いモデル」ではありません。「誰が文脈面を編集でき、誰が組織の境界を持つか」です。Anthropic 公式は 8/25、$5M の wellbeing eval grants を出していますが、今日の主題は taxonomy のままです。</p>
+      <p>X では、Anthropic 社員の trq212 が、Claude Code はより hackable になると書いています。<code>Agents.MD</code> と system prompt の改変が来る、と。OpenAI の Tibo は、チームや中小企業向けに Pro 相当の $100 プランを出し、ChatGPT / Work / Codex と SSO を載せる、と書いています。どちらも「もっと賢いモデル」ではありません。「誰が文脈面を編集でき、誰が組織の境界を持つか」です。Anthropic 公式は 8/25、$5M の wellbeing eval grants を出していますが、今日の主題は taxonomy のままです。OpenAI は Jalapeño の first results と Work/Codex 向け Admin plugin を出し、Anthropic は Cowork で chat と共有メモリを載せていますが、主題は動かしません。Jalapeño は推論基盤、Admin plugin は安全の管理面、共有メモリは context harness の一行です。</p>
 
       <h2>ニュースはモデルではなく、開閉である</h2>
       <p>hackable を「もっとプロンプトを書ける」と読むと、軸が消えます。<code>Agents.MD</code> は、会話に消える指示ではなく、リポジトリに残る before-action の契約です。system prompt の改変は、さらに強い feedforward になります。利点は、現場が文脈面を自分の言葉にできることです。代償は、誰でも軌道を曲げられることです。</p>
@@ -148,7 +148,7 @@
     </main>
 
     <footer>
-      <p>Generated from knowledge-base-llm <code>wiki/maps/agent-harness-control-taxonomy.md</code>, framed with X notes from trq212 (Claude Code will become more hackable; <code>Agents.MD</code> and system prompt modifications coming) and Tibo (team/small-company plan like Pro $100: ChatGPT/Work/Codex + SSO). Official product changelogs were otherwise quiet. One-line aside: Anthropic 8/25 $5M wellbeing eval grants (<a href="https://www.anthropic.com/news/wellbeing-research-grants">anthropic.com/news/wellbeing-research-grants</a>).</p>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/agent-harness-control-taxonomy.md</code>, framed with X notes from trq212 (Claude Code will become more hackable; <code>Agents.MD</code> and system prompt modifications coming) and Tibo (team/small-company plan like Pro $100: ChatGPT/Work/Codex + SSO). Official product changelogs were otherwise quiet. One-line asides: Anthropic 8/25 $5M wellbeing eval grants (<a href="https://www.anthropic.com/news/wellbeing-research-grants">anthropic.com/news/wellbeing-research-grants</a>); OpenAI Jalapeño first results (<a href="https://openai.com/index/jalapeno-first-results/">openai.com/index/jalapeno-first-results</a>) + Work/Codex Admin plugin; Anthropic Cowork shared memory.</p>
     </footer>
   </div>
 </body>

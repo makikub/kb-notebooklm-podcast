@@ -6,7 +6,7 @@
 - Theme slug: `agent-harness-control-taxonomy`
 - Primary topic: `wiki/maps/agent-harness-control-taxonomy.md`
 - Purpose: NotebookLM向けの対話用ソース。KBの制御分類を、ハーネス面がユーザー編集可能になる局面として読み直す
-- News angle: X の「Claude Code はより hackable になる / Agents.MD と system prompt 改変」(trq212) + 「チーム/中小企業向け Pro 相当 $100、ChatGPT/Work/Codex + SSO」(Tibo)。公式製品 changelog は静か。補足: Anthropic 8/25 に $5M wellbeing eval grants（https://www.anthropic.com/news/wellbeing-research-grants）
+- News angle: X の「Claude Code はより hackable になる / Agents.MD と system prompt 改変」(trq212) + 「チーム/中小企業向け Pro 相当 $100、ChatGPT/Work/Codex + SSO」(Tibo)。公式製品 changelog は静か。補足: Anthropic 8/25 に $5M wellbeing eval grants（https://www.anthropic.com/news/wellbeing-research-grants）。追加の一行: OpenAI Jalapeño first results（https://openai.com/index/jalapeno-first-results/）+ Work/Codex Admin plugin、Anthropic Cowork の共有メモリ
 
 ## Talking points（3〜5分）
 
@@ -22,7 +22,7 @@ knowledge-base-llm の `Agent Harness Control Taxonomy` は、ハーネス工学
 
 昨日までの読み物は、実装前のレビュー規準、常時稼働のパターン、KB＋コードベースのオンボーディングだった。今日は制御の分類そのものに戻る。理由は、公式の製品 changelog が静かでも、編集可能な面の話が出ているからだ。製品面が静かな日に見えるのは、誰がどの層を触ってよいかである。
 
-X では、Anthropic 社員の trq212 が、Claude Code はより hackable になると書いている。`Agents.MD` と system prompt の改変が来る、と。OpenAI の Tibo は、チームや中小企業向けに Pro 相当の $100 プランを出し、ChatGPT / Work / Codex と SSO を載せる、と書いている。どちらも「もっと賢いモデル」ではない。「誰が文脈面を編集でき、誰が組織の境界を持つか」である。Anthropic 公式は 8/25、$5M の wellbeing eval grants を出したが、今日の主題は taxonomy のままである。
+X では、Anthropic 社員の trq212 が、Claude Code はより hackable になると書いている。`Agents.MD` と system prompt の改変が来る、と。OpenAI の Tibo は、チームや中小企業向けに Pro 相当の $100 プランを出し、ChatGPT / Work / Codex と SSO を載せる、と書いている。どちらも「もっと賢いモデル」ではない。「誰が文脈面を編集でき、誰が組織の境界を持つか」である。Anthropic 公式は 8/25、$5M の wellbeing eval grants を出したが、今日の主題は taxonomy のままである。OpenAI は Jalapeño の first results と Work/Codex 向け Admin plugin を出し、Anthropic は Cowork で chat と共有メモリを載せたが、主題は動かさない。Jalapeño は推論基盤、Admin plugin は安全の管理面、共有メモリは context harness の一行である。
 
 今日の問いは「新しいプロンプトをどう書くか」ではない。「編集可能になった面を、どの軸の制御として扱うか」である。
 
