@@ -18,7 +18,10 @@
     "X: Claude Code will become more hackable; Agents.MD and system prompt modifications coming (trq212)",
     "X: OpenAI team/small-company plan like Pro $100 (ChatGPT/Work/Codex + SSO) (Tibo)",
     "Official product changelogs: otherwise quiet",
-    "Anthropic 2026-08-25: $5M wellbeing eval grants (https://www.anthropic.com/news/wellbeing-research-grants)"
+    "Anthropic 2026-08-25: $5M wellbeing eval grants (https://www.anthropic.com/news/wellbeing-research-grants)",
+    "OpenAI 2026-08-25: Jalapeño first results (https://openai.com/index/jalapeno-first-results/)",
+    "OpenAI: Admin plugin for Work/Codex",
+    "Anthropic: shared memory in Cowork (chat + Cowork)"
   ],
-  "char_count": 6444
+  "char_count": 6760
 }
