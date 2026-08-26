@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Harness Control Taxonomy for Editable Harnesses - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-26/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-08-26</a> / 読み物版</header>
+    <p class="eyebrow">2026-08-26 Weekly Topic</p>
+    <h1>Agent Harness Control Taxonomy for Editable Harnesses</h1>
+    <p class="lead">公式の製品 changelog は静かだ。今日見えるのは新モデルではなく、誰がハーネスを編集できるかである。Claude Code がより hackable になり、<code>Agents.MD</code> と system prompt を触れるようになる。OpenAI はチーム向けに SSO 付きの Pro 相当プランを載せる。KBの制御分類は、その開閉を「ガードレール」一語に潰さないための棚になる。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-08-26">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 公式が静かな日</strong>製品 changelog に大型ドロップは無い。ニュースは新機能ではなく、context harness と safety harness の開閉である。</div>
+      <div><strong>2. hackable は文脈面</strong><code>Agents.MD</code> と system prompt の改変は、before-action / context harness がユーザー所有になる話だ。権限やテストをプロンプトに落とさない。</div>
+      <div><strong>3. 軸を先に名指す</strong>いつ効くか（前 / 途中 / 後）と、どう効くか（決定的 / 推論的）。SSO は安全境界、wellbeing grants は評価基盤の一行。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは「編集可能な面」を分類すること</h2>
+      <p>knowledge-base-llm の <code>Agent Harness Control Taxonomy</code> は、ハーネス工学の語彙を揃える短い地図です。「ガードレール」は便利ですが、中身が違う機械を一つに潰します。このマップは、いつ効くか（行動の前、途中、後）と、どう効くか（決定的か、推論的か）を分けてから、評価・実行・文脈・安全という範囲を重ねます。</p>
+      <p>昨日までの読み物は、実装前のレビュー規準、常時稼働のパターン、KB＋コードベースのオンボーディングでした。今日は制御の分類そのものに戻ります。公式の製品 changelog が静かでも、編集可能な面の話が出ているからです。製品面が静かな日に見えるのは、誰がどの層を触ってよいかです。</p>
+      <p>X では、Anthropic 社員の trq212 が、Claude Code はより hackable になると書いています。<code>Agents.MD</code> と system prompt の改変が来る、と。OpenAI の Tibo は、チームや中小企業向けに Pro 相当の $100 プランを出し、ChatGPT / Work / Codex と SSO を載せる、と書いています。どちらも「もっと賢いモデル」ではありません。「誰が文脈面を編集でき、誰が組織の境界を持つか」です。Anthropic 公式は 8/25、$5M の wellbeing eval grants を出していますが、今日の主題は taxonomy のままです。</p>
+
+      <h2>ニュースはモデルではなく、開閉である</h2>
+      <p>hackable を「もっとプロンプトを書ける」と読むと、軸が消えます。<code>Agents.MD</code> は、会話に消える指示ではなく、リポジトリに残る before-action の契約です。system prompt の改変は、さらに強い feedforward になります。利点は、現場が文脈面を自分の言葉にできることです。代償は、誰でも軌道を曲げられることです。</p>
+      <p>だから編集可能にするなら、何を書いてよいか、何を決定的な境界の外に出さないかを先に決めます。権限、SSO、sandbox は safety harness です。テスト、lint、スキーマは after-action の決定的層です。昨日のレビュー規準は、この前段階の文章を採点する道具でした。今日の taxonomy は、その文章がどの層かを名指します。</p>
+      <p>Tibo のチームプランは、identity という決定的な安全境界を、小さい組織にも配ります。同じ「プラン」に ChatGPT / Work / Codex が載っても、SSO は文脈面ではありません。8/25 の助成は evaluation harness を外部に開く一行です。今日は深く入りません。評価基盤と実行ループを混ぜない、とだけ覚えます。</p>
+
+      <h2>四つの範囲は、同じ「ハーネス」ではない</h2>
+      <p>ソースがハーネスと言うとき、機械が違います。Evaluation は採点基盤。Runtime は推論とツールと再試行のループ。Context は、モデルに見える指示、ルール、記憶、skill、MCP。Safety は、外からかける権限と監査です。</p>
+      <p>hook は中身次第で、実行中の制御にも、文脈注入にも、安全境界にもなります。memory-skill の見方は、context を鋭くします。skill は手続き記憶です。記憶は、その手続きを経路づけ、拘束し、改訂できるときだけ役に立ちます。</p>
+      <p>trq212 の hackable は、主に context がユーザー編集可能になる話です。Tibo の SSO は、safety を中小企業まで製品化しています。wellbeing grants は、評価を外に開く話です。三つを「AI安全」にまとめると、どこを編集してよいかが消えます。</p>
+
+      <h2>走り始めてからと、終わってからを混ぜない</h2>
+      <p>system prompt をユーザーが触れるようになると、in-loop の hook が「隠れた第二の system prompt」になりやすい。hackable のつもりが、見えにくい middleware の積み上げになります。操舵ファイルや予算、完了前の評価は残してよい。ただし、それは context harness のコピーではありません。</p>
+      <p>after-action を「レビューの礼儀」にしないでください。文脈面は嘘をつけます。テストは嘘をつきにくい。<code>Agents.MD</code> をどれだけうまく書いても、テストが赤なら失敗です。公式の大型ドロップが無い日でも、編集可能な面は増える方向にあります。だから決定的チェックが本体になります。</p>
+      <p>Fowler の分け方が、ここでききます。<code>Agents.MD</code> と system prompt は、それ自体が推論的制御の入力です。モデルが読む文章を増やしても、決定的境界は増えません。SSO は逆です。hackable な文脈面と、決定的な安全面は、同じ制御ではありません。</p>
+
+      <h2>増やさず、棚の名前を固定する</h2>
+      <p>強い before-action は、最初の一歩を近づけますが、エージェントを縛りすぎます。弱い before-action は、後段の修正に全部を預けます。middleware はモデルを変えずに済みますが、振る舞いの説明が難しくなります。決定的チェックは安いが、意味を落とします。推論的チェックは意味に届くが、高くて漂います。</p>
+      <p>だから今日の使い方は、分類を増やすことではありません。編集可能になる面を context / before-action と名指し、SSO と権限を safety に残し、テストと lint を after-action の決定的層に残します。推論的レビューは、決定的チェックの隣に置きます。代わりにはしません。</p>
+      <p>昨日の rubric は、計画を6軸で焼く話でした。今日の taxonomy は、焼いた計画や編集した指示が、どの棚の制御かを固定する話です。公式が静かな日は、棚の名前を先に固定する日になります。</p>
+
+      <div class="callout">
+        よい hackable 化は、system prompt を誰でも触れるようにすることではない。<code>Agents.MD</code> を before-action / context と名指し、権限と SSO を safety に残し、誰が指示を書いても赤なら止める決定的チェックを after-action に残す。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>今の <code>Agents.MD</code> は、before-action か。それとも実行中の第二の system prompt か？</li>
+        <li>system prompt を誰が改変してよいか。リポジトリの契約か、個人の好みか？</li>
+        <li>SSO と権限は、文脈面から分離されているか？</li>
+        <li>文脈面を誰が編集しても、赤なら止める決定的チェックはどれか？</li>
+        <li>推論的レビューを、決定的チェックの代わりに使っていないか？</li>
+        <li>モデルが自分で担えるようになった制御を、外す規則はあるか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/agent-harness-control-taxonomy.md</code>, framed with X notes from trq212 (Claude Code will become more hackable; <code>Agents.MD</code> and system prompt modifications coming) and Tibo (team/small-company plan like Pro $100: ChatGPT/Work/Codex + SSO). Official product changelogs were otherwise quiet. One-line aside: Anthropic 8/25 $5M wellbeing eval grants (<a href="https://www.anthropic.com/news/wellbeing-research-grants">anthropic.com/news/wellbeing-research-grants</a>).</p>
+    </footer>
+  </div>
+</body>
+</html>
