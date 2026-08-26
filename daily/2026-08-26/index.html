@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-08-26 - Agent Harness Control Taxonomy for Editable Harnesses</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-26/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / 2026-08-26</header>
+<h1>Agent Harness Control Taxonomy for Editable Harnesses</h1>
+<div class="note">
+  <strong>読み物:</strong> まず <a href="reading.html">読み物版</a> を読むのがおすすめです。<br>
+  <strong>ソース:</strong> <a href="source.md">source.md</a> はNotebookLMにも追加できます。
+</div>
+<div class="actions">
+  <a href="reading.html">読み物版</a>
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-26/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-08-26">GitHub</a>
+</div>
+<h1>Agent Harness Control Taxonomy for Editable Harnesses</h1>
+<ul>
+<li>Date: 2026-08-26</li>
+<li>Theme slug: <code>agent-harness-control-taxonomy</code></li>
+<li>Primary topic: <code>wiki/maps/agent-harness-control-taxonomy.md</code></li>
+<li>Purpose: NotebookLM向けの対話用ソース。KBの制御分類を、ハーネス面がユーザー編集可能になる局面として読み直す</li>
+<li>News angle: X の「Claude Code はより hackable になる / Agents.MD と system prompt 改変」(trq212) + 「チーム/中小企業向け Pro 相当 $100、ChatGPT/Work/Codex + SSO」(Tibo)。公式製品 changelog は静か。補足: Anthropic 8/25 に $5M wellbeing eval grants（<a href="https://www.anthropic.com/news/wellbeing-research-grants">anthropic.com/news/wellbeing-research-grants</a>）</li>
+</ul>
+<h2>Talking points（3〜5分）</h2>
+<ol>
+<li>公式の製品 changelog は静かだ。今日のニュースは新モデルではなく、誰がハーネスを編集できるかである。</li>
+<li>Claude Code がより hackable になる（<code>Agents.MD</code> と system prompt の改変）は、context harness / before-action がユーザー所有になる話だ。</li>
+<li>OpenAI のチーム/中小企業向け Pro 相当 $100（ChatGPT/Work/Codex + SSO）は、identity と組織境界という safety harness の話だ。</li>
+<li>hackable を「ガードレール」一語に潰すと、いつ効く制御か、どう効く制御かが消える。</li>
+<li>Anthropic の $5M wellbeing eval grants は evaluation harness の一行。主題は、編集可能な面が増えたあと、何を決定的制御として残すかである。</li>
+</ol>
+<h2>今日の読み方</h2>
+<p>knowledge-base-llm の <code>Agent Harness Control Taxonomy</code> は、ハーネス工学の語彙を揃えるための短い地図である。「ガードレール」という言葉は便利だが、中身が違う機械を一つに潰す。このマップは、いつ効くか（行動の前、途中、後）と、どう効くか（決定的か、推論的か）を分けてから、評価・実行・文脈・安全という範囲を重ねる。</p>
+<p>昨日までの読み物は、実装前のレビュー規準、常時稼働のパターン、KB＋コードベースのオンボーディングだった。今日は制御の分類そのものに戻る。理由は、公式の製品 changelog が静かでも、編集可能な面の話が出ているからだ。製品面が静かな日に見えるのは、誰がどの層を触ってよいかである。</p>
+<p>X では、Anthropic 社員の trq212 が、Claude Code はより hackable になると書いている。<code>Agents.MD</code> と system prompt の改変が来る、と。OpenAI の Tibo は、チームや中小企業向けに Pro 相当の $100 プランを出し、ChatGPT / Work / Codex と SSO を載せる、と書いている。どちらも「もっと賢いモデル」ではない。「誰が文脈面を編集でき、誰が組織の境界を持つか」である。Anthropic 公式は 8/25、$5M の wellbeing eval grants を出したが、今日の主題は taxonomy のままである。</p>
+<p>今日の問いは「新しいプロンプトをどう書くか」ではない。「編集可能になった面を、どの軸の制御として扱うか」である。</p>
+<h2>1. 二つの軸 — いつ効くか、どう効くか</h2>
+<p>ハーネス制御は、二つの実務軸に沿う。</p>
+<ol>
+<li><strong>いつ効くか</strong> — 行動の前、行動の途中、行動の後</li>
+<li><strong>どう効くか</strong> — 決定的 / 計算的か、意味的 / 推論的か</li>
+</ol>
+<p>この二つは排他ではない。同じ hook が、実行中の介入にも、文脈の注入にも、安全境界にもなりうる。だから「ガードレールを足した」では、比較できない。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>比較できない語彙は、導入の議論を感想にする</li>
+<li>いつ効くかが分からないと、失敗の責任も分からない</li>
+<li>どう効くかが分からないと、コストと信頼を見誤る</li>
+</ul>
+<p>今日の角:<br>
+<code>Agents.MD</code> と system prompt の改変は、まず「いつ」では before-action、「範囲」では context harness である。SSO 付きのチームプランは、まず safety harness である。同じ「hackable」でも、軸が違う。</p>
+<p>対話の種:<br>
+「今足そうとしているものは、行動の前に効くのか、途中か、後か。決定的か、推論的か。」</p>
+<h2>2. 範囲の四分割 — 評価、実行、文脈、安全</h2>
+<p>ソースが「ハーネス」と言うとき、機械が違うことがある。</p>
+<ul>
+<li><strong>Evaluation harness</strong>: モデルや提出物を採点する基盤。lm-evaluation-harness や SWE-bench 型の grader</li>
+<li><strong>Runtime harness</strong>: 推論、ツール、観察、状態、再試行を交替させるエージェントループ</li>
+<li><strong>Context harness</strong>: 指示、ルールファイル、記憶、検索、ツール、hook、skill、MCP、モデルに見える他の文脈面</li>
+<li><strong>Safety harness</strong>: sandbox、権限境界、承認フロー、identity、監査ログ、外からかけるリスク制御</li>
+</ul>
+<p>これらの範囲は、タイミング軸と交差する。hook は中身次第で、実行中の制御にも、文脈注入にも、安全境界にもなる。</p>
+<p>memory-skill の見方は、context harness を鋭くする。skill は手続き記憶である。記憶は、その手続きを経路づけ、拘束し、改訂できるときだけ役に立つ。</p>
+<p>今日の角:<br>
+trq212 の hackable は、主に context harness がユーザー編集可能になる話だ。Tibo の SSO は、safety harness を中小企業まで製品化している。8/25 の wellbeing grants は、evaluation harness を外部に開く一行である。三つを「AI安全」にまとめると、どこを編集してよいかが消える。</p>
+<p>対話の種:<br>
+「この変更は、採点基盤か、ループか、文脈面か、安全境界か。一つに決まらないなら、混ぜている。」</p>
+<h2>3. Before-action — 今日のニュースの中心</h2>
+<p>行動前の制御は、意味のある一歩の前に軌道を形作る。</p>
+<p>典型:</p>
+<ul>
+<li>タスクの範囲と分解</li>
+<li>リポジトリマップ、計画、アーキテクチャ文書</li>
+<li>承認ポリシーと、使ってよいツールの境界</li>
+<li>テンプレート、skill、初期化成果物</li>
+<li>段階的な文脈ロードと検索ルール</li>
+</ul>
+<p>なぜ効くか:</p>
+<ul>
+<li>最初の一歩が、すでに近い場所から始まる</li>
+<li>編集可能な面は、ここが増える</li>
+<li>前で狭めないと、途中と後の制御が全部を引き受ける</li>
+</ul>
+<p>今日の角:<br>
+<code>Agents.MD</code> は、会話に消える指示ではなく、リポジトリに残る before-action の契約である。system prompt の改変は、さらに強い feedforward になる。hackable の利点は、現場が文脈面を自分の言葉にできることだ。代償は、誰でも軌道を曲げられることだ。だから編集可能にするなら、何を書いてよいか、何を deterministic な境界の外に出さないかを先に決める。昨日のレビュー規準は、この前段階の文章を採点する道具だった。今日の taxonomy は、その文章がどの層かを名指す。</p>
+<p>対話の種:<br>
+「<code>Agents.MD</code> に書いてよいことと、権限やテストに残すべきことは、一文で分かるか。」</p>
+<h2>4. In-loop — 編集した面が走り始めてから</h2>
+<p>実行中の制御は、エージェントがすでに動いているあいだに介入する。</p>
+<p>典型:</p>
+<ul>
+<li>モデル呼び出しやツール呼び出しのまわりの middleware hook</li>
+<li>ループ検出と予算ヒューリスティック</li>
+<li>完了前に走る評価プロンプト</li>
+<li>いまの状態に応じた動的な文脈注入</li>
+<li>危ない遷移での人間チェックポイント</li>
+<li>実行中に stop / redirect ファイルを出す操作者の操舵</li>
+</ul>
+<p>なぜ効くか:</p>
+<ul>
+<li>ドリフトは、終わってからより途中の方が安い</li>
+<li>編集された <code>Agents.MD</code> は、ループの中で増幅される</li>
+<li>途中の介入は、モデルを変えずに軌道を戻せる</li>
+</ul>
+<p>今日の角:<br>
+system prompt をユーザーが触れるようになると、in-loop の hook が「隠れた第二の system prompt」になりやすい。hackable のつもりが、見えにくい middleware の積み上げになる。操舵ファイルや予算、完了前の評価は残してよい。ただし、それは context harness のコピーではない。実行中に効くものと、行動前に残すものを分ける。</p>
+<p>対話の種:<br>
+「走り始めてから効く制御は、編集可能な指示ファイルと役割が重なっていないか。」</p>
+<h2>5. After-action — 編集を信頼しない層</h2>
+<p>行動後の制御は、一歩のあとに、出力、環境、本番の振る舞いを見る。</p>
+<p>典型:</p>
+<ul>
+<li>テスト、lint、構造チェック</li>
+<li>AI レビューや、別の評価エージェント</li>
+<li>証拠と主張の対応、claim ledger</li>
+<li>スクリーンショットやログを開くまで status を更新しない evidence gate</li>
+<li>デプロイゲート、rollback、可観測性</li>
+<li>トレースレビューと、定期的な掃除</li>
+</ul>
+<p>なぜ効くか:</p>
+<ul>
+<li>文脈面は嘘をつける。テストは嘘をつきにくい</li>
+<li>hackable なほど、後の決定的チェックが本体になる</li>
+<li>改善のフィードバックは、後からシステムへ戻る</li>
+</ul>
+<p>今日の角:<br>
+公式の大型ドロップが無い日でも、編集可能な面は増える方向にある。だから after-action を「レビューの礼儀」にしない。<code>Agents.MD</code> をどれだけうまく書いても、テストが赤なら失敗である。wellbeing eval grants は、この層の評価版を、製品の外に開く話だ。今日は深く入らない。評価基盤と実行ループを混ぜない、とだけ覚える。</p>
+<p>対話の種:<br>
+「文脈面を誰が編集しても、赤なら止める決定的チェックはどれか。」</p>
+<h2>6. 決定的か、推論的か</h2>
+<p>Martin Fowler の分け方が、いまのKBで一番きれいである。</p>
+<p>決定的 / 計算的:</p>
+<ul>
+<li>構造テスト、lint、スキーマ、命名や配置のルール、硬い承認境界</li>
+<li>強い点: 繰り返しが安い、信頼しやすい、同じ失敗を曖昧にしない</li>
+<li>弱い点: 意味や好みには脆い。測れるものだけが最適化される</li>
+</ul>
+<p>推論的 / 意味的:</p>
+<ul>
+<li>評価エージェント、AI レビュー、rubric 採点、完了や UX のモデル判定</li>
+<li>強い点: ニュアンスに届く。主観や開いた課題に合う</li>
+<li>弱い点: 高くてノイズが多い。評価役のドリフトと自己採点バイアス</li>
+</ul>
+<p>今日の角:<br>
+<code>Agents.MD</code> と system prompt は、それ自体が推論的制御の入力である。モデルが読む文章を増やしても、決定的境界は増えない。SSO は逆で、identity という決定的な安全境界を、小さい組織にも配る。hackable な文脈面と、決定的な安全面は、同じ「プラン」には載っても、同じ制御ではない。</p>
+<p>対話の種:<br>
+「いま足している文章は、モデルへの入力か。機械が同じ結果を返す境界か。」</p>
+<h2>なぜ分類が部品になるか</h2>
+<ul>
+<li>ソース同士を、同じ語彙で比較できる</li>
+<li>編集可能な面を足すとき、どの層を開いているか言える</li>
+<li>決定的チェックがあるのに、推論的レビューだけを足さない</li>
+<li>モデルが自分で担えるようになった制御を、外す判断ができる</li>
+</ul>
+<p>KBの言葉では、これは feedforward、middleware、feedback を、範囲（評価 / 実行 / 文脈 / 安全）と交差させる地図である。昨日の6軸 rubric は推論的制御の採点台本だった。今日の taxonomy は、その台本をどの層に置くかの棚である。</p>
+<p>今日の X の型は、context harness をユーザーに開き、safety harness をチームプランに載せる。公式の大型更新が無い日に見えるのは、その開閉である。</p>
+<h2>トレードオフ</h2>
+<p>強い before-action は、最初の一歩を近づけるが、エージェントを縛りすぎる。弱い before-action は、後段の修正に全部を預けてしまう。middleware はモデルを変えずに済むが、振る舞いの説明が難しくなる。決定的チェックは安いが、意味を落とす。推論的チェックは意味に届くが、高くて漂う。</p>
+<p>だから今日の使い方は、分類を増やすことではない。編集可能になる面を context / before-action と名指し、SSO と権限を safety に残し、テストと lint を after-action の決定的層に残す。評価助成は、評価基盤の話として横に置く。</p>
+<h2>実務のとりはじめ</h2>
+<p>大きな基盤は要らない。今日からできる最小セット:</p>
+<ul>
+<li><code>Agents.MD</code> や system prompt に書く前に、それが before-action / context だとラベルする</li>
+<li>権限、SSO、sandbox は、プロンプトに落とさず safety に残す</li>
+<li>編集した文脈面が走り始めたら、予算・操舵・完了前チェックを in-loop に置く</li>
+<li>テスト、lint、スキーマは、誰が指示を書いても赤なら止める</li>
+<li>推論的レビューは、決定的チェックの隣に置く。代わりにはしない</li>
+</ul>
+<p>昨日の rubric は、計画を6軸で焼く話だった。今日の taxonomy は、焼いた計画や編集した指示が、どの棚の制御かを固定する話である。公式が静かな日は、棚の名前を先に固定する日になる。</p>
+<h2>次に考えるとよさそうな問い</h2>
+<ul>
+<li>今の <code>Agents.MD</code> は、before-action か。それとも実行中の第二の system prompt か？</li>
+<li>system prompt を誰が改変してよいか。リポジトリの契約か、個人の好みか？</li>
+<li>SSO と権限は、文脈面から分離されているか？</li>
+<li>文脈面を誰が編集しても、赤なら止める決定的チェックはどれか？</li>
+<li>推論的レビューを、決定的チェックの代わりに使っていないか？</li>
+<li>モデルが自分で担えるようになった制御を、外す規則はあるか？</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm. Source topic: <code>wiki/maps/agent-harness-control-taxonomy.md</code></p></footer>
+
+</body>
+</html>
