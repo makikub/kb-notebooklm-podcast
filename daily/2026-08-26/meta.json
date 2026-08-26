@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-26",
+  "title": "Agent Harness Control Taxonomy for Editable Harnesses",
+  "theme": "agent-harness-control-taxonomy",
+  "source": "daily/2026-08-26/source.md",
+  "generated_at": "2026-08-26T00:30:00Z",
+  "topic_id": "wiki/maps/agent-harness-control-taxonomy.md",
+  "output_dir": "daily/2026-08-26",
+  "page": "daily/2026-08-26/source.md",
+  "related": [
+    "wiki/maps/agent-harness-control-taxonomy.md",
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/maps/coding-agent-review-rubric.md",
+    "wiki/concepts/feedforward-controls.md",
+    "wiki/concepts/machine-checkable-invariants.md"
+  ],
+  "news_context": [
+    "X: Claude Code will become more hackable; Agents.MD and system prompt modifications coming (trq212)",
+    "X: OpenAI team/small-company plan like Pro $100 (ChatGPT/Work/Codex + SSO) (Tibo)",
+    "Official product changelogs: otherwise quiet",
+    "Anthropic 2026-08-25: $5M wellbeing eval grants (https://www.anthropic.com/news/wellbeing-research-grants)"
+  ],
+  "char_count": 6444
+}
