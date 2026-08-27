@@ -18,7 +18,9 @@
     "OpenAI 2026-08-26: Hugging Face incident writeup — research security, alignment, 30-minute pause on severe alerts (https://openai.com/index/hugging-face-incident-and-the-road-ahead/)",
     "Anthropic 2026-08-26: Compliance API GA for Cowork/Claude Code sessions (https://claude.com/blog/compliance-api-cowork-and-claude-code)",
     "Anthropic: Admin API now in ant CLI and official SDKs under client.beta.organization",
-    "Cursor changelog: otherwise quiet (last official drop 2026-08-19)"
+    "Cursor changelog: otherwise quiet (last official drop 2026-08-19)",
+    "Google 2026-08-26: Gemini 3.5 Transcribe (https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/)",
+    "Z.ai 2026-08-26: GLM-5.3-Flash (https://z.ai/blog/glm-5.3-flash)"
   ],
-  "char_count": 6954
+  "char_count": 7260
 }
