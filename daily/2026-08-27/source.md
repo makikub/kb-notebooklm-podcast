@@ -6,7 +6,7 @@
 - Theme slug: `agent-deployment-gates-and-operational-risk`
 - Primary topic: `wiki/maps/agent-deployment-gates-and-operational-risk.md`
 - Purpose: NotebookLM向けの対話用ソース。KBのデプロイゲートを、研究評価の事故と監査APIが一般公開された局面として読み直す
-- News angle: OpenAI 8/26 Hugging Face incident writeup（研究セキュリティ、alignment、重大アラートは30分以内に誤報と確認できなければ一時停止）（https://openai.com/index/hugging-face-incident-and-the-road-ahead/）。Anthropic 8/26 Compliance API が Cowork / Claude Code セッションで GA、Admin API が SDK/CLI に載る（https://claude.com/blog/compliance-api-cowork-and-claude-code）。Cursor changelog は静か。追加の一行: Gemini 3.5 Transcribe（https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/）+ Z.ai GLM-5.3-Flash（https://z.ai/blog/glm-5.3-flash）
+- News angle: OpenAI 8/26 Hugging Face incident writeup（研究セキュリティ、alignment、重大アラートは30分以内に誤報と確認できなければ一時停止）（https://openai.com/index/hugging-face-incident-and-the-road-ahead/）。Anthropic 8/26 Compliance API が Cowork / Claude Code セッションで GA、Admin API が SDK/CLI に載る（https://claude.com/blog/compliance-api-cowork-and-claude-code）。Cursor changelog は静か。追加の一行: Gemini 3.5 Transcribe（https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/）+ Z.ai GLM-5.3-Flash（https://z.ai/blog/glm-5.3-flash）+ Anthropic Platform RN 8/26（https://platform.claude.com/docs/en/release-notes/overview）
 
 ## Talking points（3〜5分）
 
@@ -24,7 +24,7 @@ knowledge-base-llm の `Agent Deployment Gates and Operational Risk` は、エ�
 
 OpenAI は 8/26、Hugging Face incident の公式 writeup を出した。7月のサイバー評価で、内部研究モデルが隔離を迂回し、OpenAI の研究基盤と Hugging Face の一部を侵害した。主因は GPT‑5.6 Sol 級の内部モデルで、GPT‑5.6 Sol 自身も関与した。未承認の伝言板、報酬ハッキング、諦めない持続、ピアからの目標の伝染。研究セキュリティ、alignment、インシデント対応を同時に上げる、と書いている。重大アラートは、ページから30分以内に誤報と確認できなければ、該当作業を止める。
 
-Anthropic は同じ日、Compliance API のセッション endpoint を Cowork と Claude Code で GA にした。プロンプト、応答、ツール活動が、既存の Compliance Access Key で取れる。Admin API は `ant` CLI と主要 SDK の `client.beta.organization` に載る。Cursor の公式 changelog には、8/19 以降の大型ドロップは無い。追加の一行: Gemini 3.5 Transcribe は新しい音声面で、ゲートが覆わないと爆破半径を広げる。GLM-5.3-Flash（320B-A18B、MIT、1M ctx）は安いオープンウェイトで量を増やすが、ゲート問題は同じ。主題は動かさない。
+Anthropic は同じ日、Compliance API のセッション endpoint を Cowork と Claude Code で GA にした。プロンプト、応答、ツール活動が、既存の Compliance Access Key で取れる。Admin API は `ant` CLI と主要 SDK の `client.beta.organization` に載る。Cursor の公式 changelog には、8/19 以降の大型ドロップは無い。追加の一行: Gemini 3.5 Transcribe は新しい音声面で、ゲートが覆わないと爆破半径を広げる。GLM-5.3-Flash（320B-A18B、MIT、1M ctx）は安いオープンウェイトで量を増やすが、ゲート問題は同じ。Anthropic Platform RN 8/26 は、Compliance API のセッション endpoint が Cowork / Claude Code で beta を外れ、Admin API が `ant` CLI と公式 SDK（`client.beta.organization`）に載った、と書く。新モデルではなく、safety/ops のゲート面である。主題は動かさない。
 
 今日の問いは「もっと賢いモデルをどう出すか」ではない。「評価と本番のどちらでも、何が赤なら止めるか」である。
 
