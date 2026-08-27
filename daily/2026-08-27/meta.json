@@ -20,7 +20,8 @@
     "Anthropic: Admin API now in ant CLI and official SDKs under client.beta.organization",
     "Cursor changelog: otherwise quiet (last official drop 2026-08-19)",
     "Google 2026-08-26: Gemini 3.5 Transcribe (https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/)",
-    "Z.ai 2026-08-26: GLM-5.3-Flash (https://z.ai/blog/glm-5.3-flash)"
+    "Z.ai 2026-08-26: GLM-5.3-Flash (https://z.ai/blog/glm-5.3-flash)",
+    "Anthropic 2026-08-26 Platform RN: Compliance API session endpoints out of beta for Cowork/Claude Code; Admin API in ant CLI and official SDKs (client.beta.organization) (https://platform.claude.com/docs/en/release-notes/overview)"
   ],
-  "char_count": 7260
+  "char_count": 7537
 }
