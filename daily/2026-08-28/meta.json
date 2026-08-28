@@ -1,0 +1,26 @@
+{
+  "date": "2026-08-28",
+  "title": "The Harness Leaves GitHub — Origin Scratch and Model Hardware",
+  "theme": "agent-harness-landscape",
+  "source": "daily/2026-08-28/source.md",
+  "generated_at": "2026-08-28T00:25:00Z",
+  "topic_id": "wiki/maps/agent-harness-landscape.md",
+  "output_dir": "daily/2026-08-28",
+  "page": "daily/2026-08-28/source.md",
+  "related": [
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/agent-harness-control-taxonomy.md",
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/maps/harness-engineering-vendor-comparison.md",
+    "wiki/concepts/harness-engineering.md"
+  ],
+  "news_context": [
+    "Cursor 2026-08-27: Start from scratch — Cloud Agents no longer need GitHub or another SCM; Origin repo, browser live preview, Vercel publish (https://cursor.com/changelog/start-from-scratch)",
+    "Anthropic 2026-08-27: Model Hardware Standard research preview — MCP/CLI/code-file control of lab and factory devices; Janelia origin; physical safety evals before open source (https://www.anthropic.com/news/model-hardware-standard-research-preview)",
+    "Anthropic 2026-08-27: scientist Team plan, 10k seats, Standard free / Premium $15; biology still Opus-class, Fable blocks professional biology (https://www.anthropic.com/news/expanding-support-for-scientists)",
+    "Anthropic 2026-08-27 Platform RN: Claude Console personal keys and service account keys (https://platform.claude.com/docs/en/release-notes/overview)",
+    "OpenAI 2026-08-27/28: no new model or API (education/Brazil posts are thin)",
+    "X bookmarks this run: 0"
+  ],
+  "char_count": 8995
+}

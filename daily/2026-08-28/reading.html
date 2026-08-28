@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Harness Leaves GitHub — Origin Scratch and Model Hardware - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-28/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-08-28</a> / 読み物版</header>
+    <p class="eyebrow">2026-08-28 Weekly Topic</p>
+    <h1>The Harness Leaves GitHub — Origin Scratch and Model Hardware</h1>
+    <p class="lead">ハーネスは長いあいだ、GitHub リポジトリがあることを前提にしていた。今日 Cursor は Cloud Agents からその前提を外す。Start from scratch は Origin repo とブラウザ preview と Vercel publish を、SCM 接続の前に置く。Anthropic の Model Hardware Standard は同じバスを実験台と工場へ伸ばす。新モデルではない。地図の命題は、性能がハーネスで決まる、である。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-08-28">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 箱が先、SCM は後</strong>Cloud Agents は GitHub や他社 SCM 無しで始められる。裏で Origin repo が立ち、気に入ったら Create repo。履歴は消えない。最初の接続が外れる。</div>
+      <div><strong>2. 検証がリポジトリの前に来る</strong>live preview はブラウザへポートフォワードされる。Vercel で publish すると URL が付く。緑の第一面が、GitHub Checks より前に立つ。</div>
+      <div><strong>3. 同じバスが装置に届く</strong>MHS は新 Claude モデルではない。MCP / CLI / code-file で装置を動かし、安全限界をドライバが強制する。開源の前に物理評価を置く。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマはハーネスの境界が伸びること</h2>
+      <p>knowledge-base-llm の <code>Agent Harness Landscape</code> は、エージェントの性能がモデル単体ではなく、リポジトリ構造、制御、成果物、テスト、レビューループ、オーケストレーションの周辺で決まる、と書く短い地図です。五つの次元は、行動前の案内、行動後の修正、セッションをまたぐ継続、自律の制御、役割の分離です。昨日までの読み物は、デプロイゲート、制御の分類、実装前のレビュー規準、常時稼働のパターン、KB＋コードベースのオンボーディングでした。今日は分類とゲートを棚に戻し、ハーネスの境界そのものがどこまで伸びたかを見ます。</p>
+      <p>Cursor は 8/27、Cloud Agents が GitHub や他社 SCM を接続しなくても始められる、と書きました。リポジトリピッカーで Start from scratch を選び、そのままプロンプトします。裏で Origin repo が作られます。気に入ったら Create repo。名前は自分で付けるか提案から選び、可視性は private か internal。足場の付いた Origin repo が残り、Codebase タブから辿れます。クラウドエージェントの環境はブラウザへポートフォワードされ、design mode も使えます。Vercel アカウントを繋いで publish すると live URL が付きます。publish には Vercel が要ります。</p>
+      <p>Anthropic は同じ日、Model Hardware Standard の研究プレビューを開きました。AI エージェントが物理装置を安全に操作するための共有仕様です。最初の相手は科学研究ラボと先進製造。顕微鏡、分注機、ロボットアームを並列に動かし、定型の創薬実験から量子コンピュータのレーザー校正までを扱います。起源は Anthropic と HHMI Janelia。新モデルではありません。モデル非依存のドライバと、MCP を共通バスにしたハーネス面です。開源の前に、物理安全の評価と運用の型をパートナーと作ります。</p>
+      <p>OpenAI は 8/27-28 に新モデルも新 API も出していません。教育やブラジルの投稿は、今日の主題を動かしません。X bookmarks は今ラン 0。追加の一行だけ置きます。科学者向け Team plan は 1万席、Standard 無料、Premium 月 15 ドル、生物は当面 Opus 級、Fable はプロの生物・創薬を遮断します。Claude Console では personal key と service account key が作れ、アカウントを外すとキーも止まります。主題はハーネスの境界です。</p>
+
+      <h2>五次元に、生まれ場所と接触面が入る</h2>
+      <p>KBはハーネスを五つに置きます。案内、検証、継続、自律の制限、役割分かです。性能の差分をモデル名ではなく周辺の層で比べられます。層を混ぜると、誰が何を編集してよいかが消えます。新しい製品面は、新しいモデルではなく、この五つのどれかが伸びた合図になります。</p>
+      <p>昨日のゲート地図は「赤なら止める」層でした。今日の landscape は、その層を含む地図全体です。Cursor の Origin scratch は、継続面が GitHub 履歴を前提にしなくなった話です。MHS は、装置特性タグ、リアルタイム監視、安全限界を実験台に載せた話です。同じ「ハーネスが伸びた」でも、伸びる軸が違います。</p>
+
+      <h2>Git を捨てる話ではない</h2>
+      <p>Start from scratch は「リポジトリが無い」ではありません。プロンプトの時点で、裏に Origin repo が立ちます。気に入ったあと Create repo を押すと、足場付きの箱が残ります。継続面は消えません。所属先の SCM が、最初の一歩の外側に下がります。</p>
+      <p>進捗と履歴は、GitHub の PR 履歴である必要がなくなります。代わりに Origin が、セッションをまたぐ成果物の箱になります。Fowler の語彙では、ガイド（プロンプトと計画）が、センサ（コミット履歴）より先に走ります。センサは後から、好きなときに箱へ固定されます。</p>
+      <p>「SCM 不要」を「履歴不要」と読むと、軸が消えます。最初に要らなくなったのは、第三者 SCM の認証と、空のリモートを先に作る手続きです。ハーネスが GitHub を離れる、とは、コードの生まれ場所が、接続済みリモートから、プロンプト可能な箱へ移る話です。</p>
+
+      <h2>緑の第一面が、Checks より前に立つ</h2>
+      <p>クラウドエージェントの環境はブラウザへ届きます。live preview はセンサです。Vercel の URL は、さらに外側の公開センサです。どちらも Create repo の前に触れます。検証の第一面が、リモートの PR ではなく、エージェントがいま動かしている環境そのものになります。</p>
+      <p>代償もあります。publish は Vercel に依存します。Preview が緑でも、箱がまだ private Origin のままだと、レビュー役が入れる場所がありません。見られる面がブラウザと Vercel に先に立つなら、GitHub の Checks は後段のゲートになります。順番を混ぜると、何が正式な検証かが消えます。</p>
+
+      <h2>MHS は新モデルではない</h2>
+      <p>MHS は、装置ごとの特注統合を標準ドライバに畳みます。read と write のような命令、標準形式の発見、自然言語の特性タグ。ドライバは、測れること、変えられること、強制される安全限界を含む参照ファイルを自動で作ります。これが行動前の案内になります。</p>
+      <p>制御の口は MCP、CLI、code-file の三つです。長い作業は、ドライバ命令をファイルに連ね、装置側で確定的に走らせます。Anthropic は、Claude がレーザーを調整し、カメラで見て、学習をスクリプトに固めた例を書いています。探索は推論、繰り返しはファイルです。伸びたのはモデルではなく、装置を発見し、限界をファイルにし、三つの口で操る層です。</p>
+      <p>Genentech、ワシントン大学、CMU、Janelia、QuEra の初期例は、ラボと製造に寄っています。QuEra は量子マシン内レーザーの lock を、介入なしで 99.3% 回復する制御を書きました。本文はモデル非依存で、どのエージェントハーネスも MCP などの標準プロトコルで触れる、と書きます。Janelia 起源の共有メモリ辞書が、AI を載せるバスになった経緯も、同じ層の話です。</p>
+
+      <h2>バスの両端と、開源前の限界</h2>
+      <p>今日の二本は、MCP という共通バスの両端が同時に伸びます。一端は Origin とブラウザと Vercel。もう一端は顕微鏡と分注機とアームの read / write です。口が三つあるのは、対話で探る速度と、装置が自分で走る速度を分けるためです。バスが届く範囲が爆破半径になります。限界はモデルの慎重さではなく、ドライバが強制する値です。</p>
+      <p>Genentech の泡の例が、この層を具体にします。Claude は泡立ちをソフトウェアバグと読み、物理の失敗だと専門家に教えられるまで戻りませんでした。空間と物理の推論には、まだ専門家の監督が要ります。MCP で口が揃っても、センサの解釈は推論的なまま残ります。</p>
+      <p>MHS は研究プレビューです。開源の前に、パートナーと安全評価と運用の型を作ります。プログラムインタフェースの無い装置はまだ対象外です。科学者向け 1万席と Console のキー種別は、identity の棚です。装置バスの開閉とは別記録にします。OpenAI が静かなのはモデル面です。ハーネス面は、生まれ場所と接触面で同時に動いています。</p>
+
+      <div class="callout">
+        よい読みは、MHS を新 Claude モデルだと思わないことである。コードの箱を Origin と名指し、装置の口を MCP / CLI / code-file と名指し、安全限界をドライバの参照ファイルに残す。席とキーは identity の棚に残す。Git を捨てる話にも、宇宙発射の話にもしない。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>最初のコミットは、GitHub か。Origin か。まだ箱が無いか？</li>
+        <li>live preview と Vercel の URL は、正式な検証か。デモ面か？</li>
+        <li>この装置の安全限界は、モデルの慎重さか。ドライバが強制する値か？</li>
+        <li>MCP で揃えた口は、ソフトの箱か。実験台の read/write か？</li>
+        <li>長い装置操作を、いつ code-file に固めるか？</li>
+        <li>開源前に、どの物理評価が緑ならよいか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/agent-harness-landscape.md</code>, framed with Cursor's 8/27 Start from scratch (Cloud Agents no longer need GitHub or another SCM; Origin repo, browser live preview, Vercel publish; <a href="https://cursor.com/changelog/start-from-scratch">cursor.com/changelog/start-from-scratch</a>) and Anthropic's 8/27 Model Hardware Standard research preview (MCP / CLI / code-file control of lab and factory devices; Janelia origin; physical safety evals before open source; <a href="https://www.anthropic.com/news/model-hardware-standard-research-preview">anthropic.com/news/model-hardware-standard-research-preview</a>). OpenAI shipped no new model or API on 8/27-28. X bookmarks this run: 0. One-line asides: Anthropic scientist Team plan, 10k seats, Standard free / Premium $15, biology still Opus-class, Fable blocks professional biology (<a href="https://www.anthropic.com/news/expanding-support-for-scientists">anthropic.com/news/expanding-support-for-scientists</a>); Claude Console personal and service-account API keys (<a href="https://platform.claude.com/docs/en/release-notes/overview">platform.claude.com/docs/en/release-notes/overview</a>).</p>
+    </footer>
+  </div>
+</body>
+</html>
