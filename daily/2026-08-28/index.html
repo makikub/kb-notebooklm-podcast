@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-08-28 - The Harness Leaves GitHub — Origin Scratch and Model Hardware</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-28/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / 2026-08-28</header>
+<h1>The Harness Leaves GitHub — Origin Scratch and Model Hardware</h1>
+<div class="note">
+  <strong>読み物:</strong> まず <a href="reading.html">読み物版</a> を読むのがおすすめです。<br>
+  <strong>ソース:</strong> <a href="source.md">source.md</a> はNotebookLMにも追加できます。
+</div>
+<div class="actions">
+  <a href="reading.html">読み物版</a>
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-28/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-08-28">GitHub</a>
+</div>
+<h1>The Harness Leaves GitHub — Origin Scratch and Model Hardware</h1>
+<ul>
+<li>Date: 2026-08-28</li>
+<li>Theme slug: <code>agent-harness-landscape</code></li>
+<li>Primary topic: <code>wiki/maps/agent-harness-landscape.md</code></li>
+<li>Purpose: NotebookLM向けの対話用ソース。KBのハーネス地図を、コードの生まれ場所が SCM の外に出て、同じバスが実験台と工場の装置まで届く局面として読み直す</li>
+<li>News angle: Cursor 8/27 Start from scratch（Cloud Agents は GitHub/他社 SCM 不要。Origin repo、ブラウザ live preview、Vercel publish）（<a href="https://cursor.com/changelog/start-from-scratch">cursor.com/changelog/start-from-scratch</a>）。Anthropic 8/27 Model Hardware Standard 研究プレビュー（MCP / CLI / code-file でラボ・工場装置を制御。Janelia 起源。開源前に物理安全評価）（<a href="https://www.anthropic.com/news/model-hardware-standard-research-preview">anthropic.com/news/model-hardware-standard-research-preview</a>）。追加の一行: 科学者向け Team plan 1万席（Standard 無料 / Premium $15。生物は当面 Opus 級、Fable はプロ生物を遮断）（<a href="https://www.anthropic.com/news/expanding-support-for-scientists">anthropic.com/news/expanding-support-for-scientists</a>）+ Claude Console の personal / service-account API keys（<a href="https://platform.claude.com/docs/en/release-notes/overview">platform.claude.com/docs/en/release-notes/overview</a>）。OpenAI は 8/27-28 に新モデル/API を出していない（教育・ブラジル投稿は薄い）。X bookmarks は今ラン 0</li>
+</ul>
+<h2>Talking points（3〜5分）</h2>
+<ol>
+<li>ハーネスは長いあいだ、GitHub リポジトリがあることを前提にしていた。今日 Cursor は Cloud Agents からその前提を外す。</li>
+<li>Start from scratch は、プロンプトから入り、裏で Origin repo を作り、ブラウザの live preview と Vercel publish まで届ける。コードの生まれ場所が、SCM 接続の前に来る。</li>
+<li>Anthropic の Model Hardware Standard（MHS）は同じ発想を物理機器へ伸ばす。MCP / CLI / code-file で顕微鏡、分注機、ロボットアームを動かす。新 Claude モデルではない。</li>
+<li>地図の命題は「性能はモデルだけでなくハーネス」。いまハーネスは、コードがどこで生まれるか（no-SCM の Origin）と、エージェントがどの装置に触ってよいか（MHS ドライバと安全限界）を含む。</li>
+<li>OpenAI は 8/27-28 に新モデル/API を出していない。X bookmarks は 0。主題は動かさない。科学者向け席と Console のキー種別は、ハーネス面の一行である。</li>
+</ol>
+<h2>今日の読み方</h2>
+<p>knowledge-base-llm の <code>Agent Harness Landscape</code> は、エージェントの性能がモデル単体ではなく、リポジトリ構造、制御、成果物、テスト、レビューループ、オーケストレーションの周辺で決まる、と書く短い地図である。五つの次元は、行動前の案内、行動後の修正、セッションをまたぐ継続、自律の制御、役割の分離である。昨日までの読み物は、デプロイゲート、制御の分類、実装前のレビュー規準、常時稼働のパターン、KB＋コードベースのオンボーディングだった。今日は分類とゲートを棚に戻し、ハーネスの境界そのものがどこまで伸びたかを見る。</p>
+<p>理由は公式の二本である。Cursor は 8/27、Cloud Agents が GitHub や他社 SCM を接続しなくても始められる、と書いた。リポジトリピッカーで Start from scratch を選び、そのままプロンプトする。裏で Origin repo が作られる。気に入ったら Create repo。名前は自分で付けるか提案から選ぶ。可視性は private か internal。足場の付いた Origin repo が残り、Codebase タブから辿れる。クラウドエージェントの環境はブラウザへポートフォワードされ、design mode も使える。Vercel アカウントを繋いで publish すると live URL が付く。publish には Vercel が要る。</p>
+<p>Anthropic は同じ日、Model Hardware Standard の研究プレビューを開いた。AI エージェントが物理装置を安全に操作するための共有仕様である。最初の相手は科学研究ラボと先進製造。顕微鏡、分注機、ロボットアームを並列に動かし、定型の創薬実験から量子コンピュータのレーザー校正までを扱う。起源は Anthropic と HHMI Janelia。統合を数週〜数か月から時間や分へ落とす、と主張する。新モデルではない。モデル非依存のドライバと、MCP を共通バスにしたハーネス面である。開源の前に、物理安全の評価と運用の型をパートナーと作る。</p>
+<p>OpenAI は 8/27-28 に新モデルも新 API も出していない。教育やブラジルの投稿はあるが、今日の主題を動かさない。X bookmarks は今ラン 0。追加の一行だけ置く。Anthropic は科学者向け Team plan を 1万席開き、Standard は無料、Premium は月 15 ドル、生物は当面 Opus 級、Fable はプロの生物・創薬クエリを遮断する。Claude Console では personal key と service account key が作れる。アカウントを外すとキーも止まる。主題はハーネスの境界である。</p>
+<p>今日の問いは「もっと賢いモデルをどう出すか」ではない。「コードはどの箱で生まれ、エージェントはどの装置に触ってよいか」である。</p>
+<h2>1. 五次元の地図 — 生まれ場所と接触面が入る</h2>
+<p>KBはハーネスを五つの次元に置く。</p>
+<ol>
+<li><strong>Guidance before action</strong> — 短い地図、計画、テンプレート、skill、編集前に読める制約</li>
+<li><strong>Correction after action</strong> — テスト、lint、構造検査、ブラウザ検証、評価役、掃除</li>
+<li><strong>Continuity across sessions</strong> — 進捗ログ、コミット履歴、成果物、initializer、コンテキストのリセット</li>
+<li><strong>Control of autonomy</strong> — 承認ポリシー、HITL、分類器、機械が同じ結果を返す不変条件</li>
+<li><strong>Role separation</strong> — planner / generator / evaluator / 保守役</li>
+</ol>
+<p>なぜ効くか:</p>
+<ul>
+<li>性能の差分を、モデル名ではなく周辺の層で比べられる</li>
+<li>層を混ぜると、誰が何を編集してよいかが消える</li>
+<li>新しい製品面は、新しいモデルではなく、この五つのどれかが伸びた合図になる</li>
+</ul>
+<p>今日の角:<br>
+昨日のゲート地図は「赤なら止める」層だった。今日の landscape は、その層を含む地図全体である。Cursor の Origin scratch は、3 の継続面が GitHub 履歴を前提にしなくなった話だ。MHS は、1 の装置特性タグ、2 のリアルタイム監視、4 の安全限界を、実験台に載せた話だ。同じ「ハーネスが伸びた」でも、伸びる軸が違う。</p>
+<p>対話の種:<br>
+「いま足そうとしているものは、案内か、検証か、継続か、自律の制限か、役割分か。それとも、コードの箱と装置のバスか。」</p>
+<h2>2. Origin scratch — GitHub 前提を外す</h2>
+<p>ソースの中心命題は単純である。エージェントの性能は、リポジトリ構造とレビューループを含むハーネスで決まる。長いあいだそのリポジトリは、GitHub か他社 SCM に先に繋がっていることが多かった。Cloud Agents は、その接続を開始条件から外した。</p>
+<p>Start from scratch は「リポジトリが無い」ではない。プロンプトの時点で、裏に Origin repo が立つ。気に入ったあと Create repo を押すと、足場付きの箱が残る。可視性は private か internal。Codebase タブが、その箱への入口になる。継続面は消えない。所属先の SCM が、最初の一歩の外側に下がる。</p>
+<p>これは landscape の 3 を動かす。進捗と履歴は、GitHub の PR 履歴である必要がなくなる。代わりに Origin が、セッションをまたぐ成果物の箱になる。Fowler の語彙では、ガイド（プロンプトと計画）が、センサ（コミット履歴）より先に走る。センサは後から、好きなときに箱へ固定される。</p>
+<p>今日の角:<br>
+「SCM 不要」を「履歴不要」と読むと、軸が消える。履歴は遅れて付く。最初に要らなくなったのは、第三者 SCM の認証と、空のリモートを先に作る手続きである。ハーネスが GitHub を離れる、とは、Git を捨てる話ではない。コードの生まれ場所が、接続済みリモートから、プロンプト可能な箱へ移る話である。</p>
+<p>対話の種:<br>
+「最初のコミットは、どの箱に残るか。GitHub か。Origin か。それとも、まだ箱が無いままブラウザだけか。」</p>
+<h2>3. ブラウザ preview と Vercel — 検証が SCM の前に来る</h2>
+<p>行動後の修正は、テストとブラウザ検証だった。今日の Cursor は、クラウドエージェントの環境をブラウザへポートフォワードする。design mode も、その面の上で使える。publish は Vercel アカウントを繋いで live URL を出す。</p>
+<p>これは landscape の 2 が、マージ前の GitHub Checks より前に出てきた形である。検証の第一面が、リモートの PR ではなく、エージェントがいま動かしている環境そのものになる。live preview はセンサである。Vercel の URL は、さらに外側の公開センサである。どちらも、Create repo の前に触れる。</p>
+<p>代償もある。publish は Vercel に依存する。検証面が特定のホストに寄ると、ハーネスの可搬性が下がる。Preview が緑でも、箱がまだ private Origin のままだと、レビュー役が入れる場所が無い。役割分離の evaluator は、共有できる箱か URL を必要とする。</p>
+<p>今日の角:<br>
+昨日のデプロイゲートは、評価ランと本番を誰が止めるかだった。今日の preview / publish は、止める前に「見られる面」がどこに立つかである。見られる面がブラウザと Vercel に先に立つなら、GitHub の Checks は後段のゲートになる。順番を混ぜると、何が正式な検証かが消える。</p>
+<p>対話の種:<br>
+「緑を出した面は、ブラウザ preview か。Vercel の URL か。Origin のテストか。GitHub の Checks か。」</p>
+<h2>4. MHS — 同じバスが実験台と工場に届く</h2>
+<p>MHS は、装置ごとの特注統合を、標準ドライバに畳む。プリミティブは単純で、read（温度を取れ）と write（温度をセットせよ）のような命令である。装置は標準形式で発見される。エージェントは、見たことのない機械でも、特性を読める。重さのように、コードだけからは分からない値も、タグに自然言語で書ける。ドライバはそのタグから、測れること、変えられること、強制される安全限界を含む参照ファイルを自動で作る。これが行動前の案内になる。</p>
+<p>制御の口は三つである。MCP、コマンドライン、code-file（API）。長い作業や、オンライン推論では間に合わない速さでは、ドライバ命令を code-file に連ね、装置側で確定的に走らせる。Anthropic は、Claude がレーザーを調整し、カメラで結果を見て、学習をスクリプトに固めた例を書いている。探索は推論、繰り返しはファイル、である。新モデルの能力発表ではない。ハーネスが、一度理解した手順を装置側の確定実行に渡す話である。</p>
+<p>初期例はラボと製造に寄っている。Genentech は BCA 定量で分注機・アーム・プレートリーダを繋いだ。ワシントン大学は曲線を見て止める qPCR と、衝突しないプレート受け渡し。CMU は用量反応を約3倍速くし、互換の無い三台をまたいだ。Janelia は七つのベンダープログラムが同居していた顕微鏡リグを束ねた。QuEra は量子マシン内レーザーの lock を、介入なしで 99.3% 回復する制御を書いた。ベンダー側では AWS Strands Robots、Automata、Tecan、Universal Robots などがドライバ対応を試している。Hugging Face の LeRobot と Raspberry Pi の Camera ドライバは、次の位相の行である。</p>
+<p>今日の角:<br>
+MHS を「Claude が実験室を動かす新モデル」と読むと、地図が壊れる。本文はモデル非依存で、どのエージェントハーネスも MCP などの標準プロトコルで触れる、と書く。伸びたのはモデルではなく、装置を発見し、限界をファイルにし、三つの口で操る層である。Janelia 起源の共有メモリ辞書が、AI を載せるバスになった、という経緯も、同じ層の話である。</p>
+<p>対話の種:<br>
+「この装置の限界は、プロンプトに書いてあるか。ドライバが強制する参照ファイルに書いてあるか。」</p>
+<h2>5. MCP という共通バス — ソフトとハードを同じ語彙で繋ぐ</h2>
+<p>landscape は、ツール面をハーネスの一部として扱ってきた。MCP は、その面の共通バスだった。今日の二本は、バスの両端が同時に伸びる。</p>
+<p>一端は Origin scratch である。エージェントは、接続済み GitHub ではなく、Cursor が立てた箱と、ブラウザに届く実行環境と、Vercel の公開面をツールとして持つ。もう一端は MHS である。同じ MCP が、顕微鏡と分注機とアームの read / write になる。CLI と code-file は、バスの横にある別口である。口が三つあるのは、対話で探る速度と、装置が自分で走る速度を分けるためだ。</p>
+<p>共通バスの利点は、特注の翻訳プログラムを減らせることである。代償は、バスが届く範囲が爆破半径になることである。ソフト側では、未接続の SCM でも Origin と Vercel に成果物が残る。ハード側では、プログラム可能な装置であれば、安全限界の書き方次第でレーザーもアームも動く。KBの自律制御は、ここで決定的になる。限界はモデルの慎重さではなく、ドライバが強制する値である。</p>
+<p>今日の角:<br>
+Genentech の泡の例が、この層を具体にする。Claude は泡立ちをソフトウェアバグと読み、物理の失敗だと専門家に教えられるまで戻らなかった。空間と物理の推論には、まだ専門家の監督が要る、と本文も書いている。MCP で口が揃っても、センサの解釈は推論的なまま残る。決定的なのは、安全限界と、止める権限である。</p>
+<p>対話の種:<br>
+「MCP で揃えた口は、ソフトの箱か。装置の read/write か。限界を強制しているのは、モデルか、ドライバか。」</p>
+<h2>6. 開源前の物理評価 — ハーネスが工場に入る条件</h2>
+<p>MHS は研究プレビューである。開源の前に、パートナーと安全評価と運用の型を作る。物理安全のロードマップも、誤用に対する方針と執行を厚くするため、と書いている。プログラムインタフェースの無い装置はまだ対象外で、製造側にドライバを載せる作業が残る。</p>
+<p>これは landscape の 4 である。ソフトのハーネスでは、承認ポリシーと機械検査可能な不変条件が、自律の上限だった。物理では、その不変条件が温度、速度、衝突、レーザーの lock になる。開源は配布面である。配布の前に評価が無いと、バスだけが先に広がる。昨日のゲート地図が「評価ランもデプロイである」と書いた延長に、実験台と工場が入る。</p>
+<p>科学者向け Team plan の一行は、この境界の運用面である。1万席、Standard 無料、Premium 月 15 ドル、一年。PI が検証され、研究室を足せる。生物と化学は当面 Opus 級に留まり、Fable はプロの生物・創薬を遮断する。席を増やすことと、装置バスを開くことは、同じ「科学者向け」でも層が違う。前者は利用面、後者は接触面である。</p>
+<p>Claude Console の personal / service-account key も一行で止める。キーは人またはサービスアカウントとして動き、組織から外すと止まる。これは安全ハーネスの identity 面で、MHS のドライバ限界とは別の棚である。混ぜると、誰のキーでどの装置を動かしたかが消える。</p>
+<p>今日の角:<br>
+OpenAI が静かな日に、物理バスと席とキー種別だけが動く。静かなのはモデル面である。ハーネス面は、生まれ場所と接触面で同時に動いている。</p>
+<p>対話の種:<br>
+「この装置バスを開源する前に、どの物理評価が緑ならよいか。席のプランと、キーの種別は、同じ棚か。」</p>
+<h2>なぜ境界が部品になるか</h2>
+<ul>
+<li>性能の差分を、モデル名ではなく、箱とバスと限界で比べられる</li>
+<li>GitHub 前提の継続面と、Origin 前提の継続面を、同じ五次元で読める</li>
+<li>ソフトの preview / publish と、ハードの read / write を、MCP という一語に潰さない</li>
+<li>席のプランやキー種別を、装置の安全限界と混ぜない</li>
+</ul>
+<p>KBの言葉では、五つの棚に生まれ場所と接触面を足した地図である。昨日のゲートは、棚のうちどれが止めるかだった。今日は、棚自体が GitHub の外と実験台の上まで伸びた話である。公式の型は、開始条件から第三者 SCM を外し、装置側に標準ドライバと三つの制御口を載せる。MHS は新 Claude モデルではない。OpenAI の新モデルでもない。</p>
+<h2>トレードオフ</h2>
+<p>Origin に寄せすぎると、組織の GitHub 規則と監査が後回しになる。GitHub に寄せすぎると、最初の一歩が認証と空リポジトリ作成で止まる。preview / Vercel を正式な検証にすると速いが、可搬性とレビュー役の入口が痩せる。MHS のバスを広くすると統合は短いが、限界の書き方が爆破半径になる。推論的な慎重さに限界を預けると、泡立ちをバグと読む。決定的な限界だけにすると、探索が止まる。</p>
+<p>だから今日の使い方は、地図を増やすことではない。コードの箱を Origin と名指し、装置の口を MCP / CLI / code-file と名指し、安全限界をドライバの参照ファイルに残す。席とキーは identity の棚に残す。新モデルの話にはしない。</p>
+<h2>実務のとりはじめ</h2>
+<p>大きな基盤は要らない。今日からできる最小セット:</p>
+<ul>
+<li>最初の成果物が残る箱を、GitHub / Origin / ブラウザのみ、のどれか一文で書く</li>
+<li>live preview と Vercel URL と、箱のテストのどれを正式な緑にするか決める</li>
+<li>装置をエージェントに渡すなら、測れること・変えられること・限界を、プロンプトではなくドライバ側のファイルに置く</li>
+<li>長い装置操作は、毎回推論せず code-file に固める条件を先に書く</li>
+<li>物理の失敗を、ソフトウェアバグとして閉じない監督者を名前で置く</li>
+<li>科学者席と API キー種別は、装置バスの開閉と別記録にする</li>
+</ul>
+<p>昨日のゲートは止める層、今日は箱の場所と装置のバスを地図に足す話である。モデル面が静かな日は、境界を先に名指す日になる。</p>
+<h2>次に考えるとよさそうな問い</h2>
+<ul>
+<li>最初のコミットは、GitHub か。Origin か。まだ箱が無いか？</li>
+<li>live preview と Vercel の URL は、正式な検証か。デモ面か？</li>
+<li>この装置の安全限界は、モデルの慎重さか。ドライバが強制する値か？</li>
+<li>MCP で揃えた口は、ソフトの箱か。実験台の read/write か？</li>
+<li>長い装置操作を、いつ code-file に固めるか？</li>
+<li>開源前に、どの物理評価が緑ならよいか？</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm. Source topic: <code>wiki/maps/agent-harness-landscape.md</code></p></footer>
+
+</body>
+</html>
