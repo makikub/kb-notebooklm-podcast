@@ -6,7 +6,7 @@
 - Theme slug: `agent-harness-landscape`
 - Primary topic: `wiki/maps/agent-harness-landscape.md`
 - Purpose: NotebookLM向けの対話用ソース。KBのハーネス地図を、コードの生まれ場所が SCM の外に出て、同じバスが実験台と工場の装置まで届く局面として読み直す
-- News angle: Cursor 8/27 Start from scratch（Cloud Agents は GitHub/他社 SCM 不要。Origin repo、ブラウザ live preview、Vercel publish）（https://cursor.com/changelog/start-from-scratch）。Anthropic 8/27 Model Hardware Standard 研究プレビュー（MCP / CLI / code-file でラボ・工場装置を制御。Janelia 起源。開源前に物理安全評価）（https://www.anthropic.com/news/model-hardware-standard-research-preview）。追加の一行: 科学者向け Team plan 1万席（Standard 無料 / Premium $15。生物は当面 Opus 級、Fable はプロ生物を遮断）（https://www.anthropic.com/news/expanding-support-for-scientists）+ Claude Console の personal / service-account API keys（https://platform.claude.com/docs/en/release-notes/overview）。OpenAI は 8/27-28 に新モデル/API を出していない（教育・ブラジル投稿は薄い）。X bookmarks は今ラン 0
+- News angle: Cursor 8/27 Start from scratch（Cloud Agents は GitHub/他社 SCM 不要。Origin repo、ブラウザ live preview、Vercel publish）（https://cursor.com/changelog/start-from-scratch）。Anthropic 8/27 Model Hardware Standard 研究プレビュー（MCP / CLI / code-file でラボ・工場装置を制御。Janelia 起源。開源前に物理安全評価）（https://www.anthropic.com/news/model-hardware-standard-research-preview）。追加の一行: 科学者向け Team plan 1万席（Standard 無料 / Premium $15。生物は当面 Opus 級、Fable はプロ生物を遮断）（https://www.anthropic.com/news/expanding-support-for-scientists）+ Claude Console の personal / service-account API keys（https://platform.claude.com/docs/en/release-notes/overview）+ Cowork 内蔵ブラウザ（https://claude.com/blog/cowork-built-in-browser）。OpenAI は 8/27-28 に新モデル/API を出していない（教育・ブラジル投稿は薄い）。X bookmarks は今ラン 0
 
 ## Talking points（3〜5分）
 
@@ -24,7 +24,7 @@ knowledge-base-llm の `Agent Harness Landscape` は、エージェントの性�
 
 Anthropic は同じ日、Model Hardware Standard の研究プレビューを開いた。AI エージェントが物理装置を安全に操作するための共有仕様である。最初の相手は科学研究ラボと先進製造。顕微鏡、分注機、ロボットアームを並列に動かし、定型の創薬実験から量子コンピュータのレーザー校正までを扱う。起源は Anthropic と HHMI Janelia。統合を数週〜数か月から時間や分へ落とす、と主張する。新モデルではない。モデル非依存のドライバと、MCP を共通バスにしたハーネス面である。開源の前に、物理安全の評価と運用の型をパートナーと作る。
 
-OpenAI は 8/27-28 に新モデルも新 API も出していない。教育やブラジルの投稿はあるが、今日の主題を動かさない。X bookmarks は今ラン 0。追加の一行だけ置く。Anthropic は科学者向け Team plan を 1万席開き、Standard は無料、Premium は月 15 ドル、生物は当面 Opus 級、Fable はプロの生物・創薬クエリを遮断する。Claude Console では personal key と service account key が作れる。アカウントを外すとキーも止まる。主題はハーネスの境界である。
+OpenAI は 8/27-28 に新モデルも新 API も出していない。教育やブラジルの投稿はあるが、今日の主題を動かさない。X bookmarks は今ラン 0。追加の一行だけ置く。Anthropic は科学者向け Team plan を 1万席開き、Standard は無料、Premium は月 15 ドル、生物は当面 Opus 級、Fable はプロの生物・創薬クエリを遮断する。Claude Console では personal key と service account key が作れる。アカウントを外すとキーも止まる。Cowork 内蔵ブラウザ（8/26）は、デスクトップ側パネルで Claude 自身のブラウザを開き、移動・読み取り・クリック・入力する。拡張は不要。ユーザーのタブ/ブックマーク/パスワードは見ない。Cookie はサイト単位（macOS は Chrome/Edge/Firefox、Windows/Linux は Firefox）。銀行/メール/SSO は選ばない限り外す。今週 Pro/Max/Team のデスクトップへ（macOS/Windows/Linux beta）。Enterprise は Organization settings → Cowork → Built-in browser で今すぐ有効化でき、届いたら既定オン。Web/スマホはデスクトップが開いていれば駆動でき、それ以外は Claude in Chrome。新モデルではなく runtime/tool 面である。主題はハーネスの境界である。
 
 今日の問いは「もっと賢いモデルをどう出すか」ではない。「コードはどの箱で生まれ、エージェントはどの装置に触ってよいか」である。
 
