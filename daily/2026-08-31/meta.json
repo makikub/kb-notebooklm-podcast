@@ -1,0 +1,28 @@
+{
+  "date": "2026-08-31",
+  "title": "Tier-1 or It Didn't Happen — OpenAI's Cursor Wind-down",
+  "theme": "evidence-quality-and-source-trust",
+  "source": "daily/2026-08-31/source.md",
+  "generated_at": "2026-08-31T00:20:00Z",
+  "topic_id": "wiki/maps/evidence-quality-and-source-trust.md",
+  "output_dir": "daily/2026-08-31",
+  "page": "daily/2026-08-31/source.md",
+  "related": [
+    "wiki/maps/evidence-quality-and-source-trust.md",
+    "wiki/concepts/evidence-quality.md",
+    "wiki/maps/research-os-query-paths.md",
+    "wiki/concepts/compiled-wiki.md",
+    "wiki/concepts/knowledge-base-linting.md"
+  ],
+  "news_context": [
+    "OpenAI 2026-08-28: notified SpaceX it will wind down the contract supplying OpenAI models to Cursor; proposed shutoff November 12, 2026 (maximum contractual notice); change-of-control cancellation window; Astra will not be provided to Cursor; ToS/confidence argument citing Twitter/X contract breach after Musk acquisition and Musk under-oath admission that xAI (now part of SpaceX) violated OpenAI ToS (https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/)",
+    "OpenAI Help: BYOK for local Chat/Agent only (OpenAI API billing); Codex IDE extension is a separate agent and does not power Cursor Tab/Auto/Cloud/Background Agents/CLI/API/SDK; gateway/Bedrock/Azure/OpenAI-compatible URL is another local path; Cursor may end access sooner than Nov 12; official end date TBD until both companies confirm (https://help.openai.com/en/articles/20001506-using-openai-models-in-cursor)",
+    "Cursor.com as of 2026-08-31: no first-party changelog or blog reply after 8/27 Start from scratch; absence is an evidence point, not a Cursor statement",
+    "Google 2026-08-27: Gemini Omni 1.1 Flash video API — scene extend to 40s, keyframe interpolation, 360p draft / 4K upscale (https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-omni-1-1-flash/)",
+    "OpenAI Thailand startups / education / Brazil posts are thin",
+    "X bookmarks this run: 0",
+    "SpaceX.com/updates fetch failed (JS shell); no invented launches",
+    "Secondary IPO/acquisition coverage omitted"
+  ],
+  "char_count": 9187
+}

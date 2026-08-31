@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tier-1 or It Didn't Happen — OpenAI's Cursor Wind-down - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-31/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-08-31</a> / 読み物版</header>
+    <p class="eyebrow">2026-08-31 Weekly Topic</p>
+    <h1>Tier-1 or It Didn't Happen — OpenAI's Cursor Wind-down</h1>
+    <p class="lead">8/23 から六日、ハーネスの地図が続いた。月曜は証拠の強さに戻る。今日あるのは OpenAI の一次ページである。ページが支えるのは、巻き戻しの通知と提案の 11/12 である。支えないのは、確定した終了日、Astra の仕様、Cursor の公式応答である。無いものは書かない。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-08-31">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. Tier-1 がある</strong>OpenAI 8/28 の公式決定文は、供給契約の巻き戻しと提案の遮断日 11/12 を支える。ヘルプ記事が運用の境界を足す。</div>
+      <div><strong>2. 支えないものがある</strong>確定した終了日、Astra の仕様、Cursor の公式応答、発射記録。ページが書いていない文は、一次の続きにしない。</div>
+      <div><strong>3. 不在も記録する</strong>Cursor.com は 2026-08-31 時点で、8/27 以降の一次応答が無い。無いページを、同意にも反論にもしない。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは、一次がどの文を支えるか</h2>
+      <p>knowledge-base-llm の <code>Evidence Quality and Source Trust</code> は、wiki を平坦な要約の束から、主張の強さと出自を扱う研究 OS に変える短い地図です。中心命題は、ソースが何を言ったかを記録するだけでは足りない、です。そのソースが、どの主張を、どの強さで支えてよいかを書け、です。</p>
+      <p>昨日までの読み物は、ハーネスの境界、デプロイゲート、制御の分類、実装前のレビュー規準、常時稼働のパターン、KB＋コードベースのオンボーディングでした。六日続いたその列を、今日は棚に戻します。公式の一次ページが出たからです。製品面の続きとして読むと、地図を取り違えます。今日読むのは、出自と証拠の段です。</p>
+      <p>OpenAI は 8/28、SpaceX に通知したと書きました。Cursor へ OpenAI モデルを供給する契約を巻き戻す。提案の遮断日は 2026年11月12日。契約が許す最長の通知を置いた、とあります。理由は、SpaceX が OpenAI の技術を利用規約の内側で使うと自信を持てないこと。根拠として、Musk 買収後の Twitter/X 契約違反と、xAI（いま SpaceX の一部）が OpenAI の ToS を破ったという宣誓を挙げます。支配権変更のあとに契約を解除できる窓がある。次期モデル Astra は Cursor に渡しません。約4年の提携を尊重しつつ、影響を受けるのは開発者だ、と結びます。</p>
+      <p>同じ会社のヘルプ記事が、運用の境界を足します。移行期間として 11/12 を提案する。そのあいだ、いま Cursor が使っている OpenAI モデルへのアクセスは続きます。Cursor がより早く切る可能性があります。公式の終了日は、両社が確定し次第共有します。BYOK はローカルの Chat と Agent だけであり、課金は OpenAI API です。Codex IDE 拡張は、ChatGPT か API キーで動く別エージェントであり、Cursor の Tab / Auto / Cloud / Background Agents / CLI / API / SDK を駆動しません。gateway、Bedrock、Azure、OpenAI 互換 URL は、もう一つのローカル経路です。</p>
+      <p>Cursor.com を 2026-08-31 時点で見ると、8/27 の Start from scratch 以降に、この決定への changelog も blog もありません。不在は空白ではありません。一次応答がまだ無い、という記録です。Cursor の声明を補いません。二次の IPO や買収報道も、一次の穴を埋めません。Google の Gemini Omni 1.1 Flash は 8/27 の公式ブログで、シーン延長 40秒、キーフレーム補間、360p の下書きと 4K の拡大を書きます。動画面の一行です。タイのスタートアップ、教育、ブラジルの投稿は薄い。X bookmarks は今ラン 0。SpaceX.com/updates は JS shell で取得に失敗しました。発射は書きません。</p>
+
+      <h2>四段階のうち、今日の核は Tier 1</h2>
+      <p>KBは証拠を四つに置きます。公式ドキュメントと再現できる例。一人称の運用報告。X や二次のまとめ。KB自身の合成です。同じ文でも、段が違えば再利用の範囲が違います。段を混ぜると、公式の制約と噂の隙間が同じ太さになります。</p>
+      <p>地図は product announcements を Tier 3 に置くことがあります。今日の OpenAI ページは、機能発表の弱い読みではありません。会社が硬い制約を書いた公式の決定文です。Tier 1 の official docs と hard constraints に載せます。ヘルプ記事も同じ段です。この読み物自体は Tier 4 の合成であり、依拠は二つの一次 URL に限ります。</p>
+
+      <h2>支える文と、支えない文</h2>
+      <p>ソースノートの型は、Source type、Confidence、Supports、Limitations、Best use です。決定文が支えるのは、SpaceX への通知、契約の巻き戻し、提案の 11/12、最長通知、支配権変更の窓、Astra を渡さない、ToS への自信の欠如、Twitter/X の契約違反、xAI の宣誓、約4年の提携、影響を受けるのは開発者、です。支えないのは、終了日の双方確定、Astra の仕様、Cursor の応答です。</p>
+      <p>ヘルプは運用境界でそれを伸ばします。移行期間としての 11/12。そのあいだ現在のモデルアクセスを続ける。Cursor がより早く切る可能性。公式終了日は両社確定待ち。BYOK はローカル Chat/Agent のみ。Codex 拡張は別エージェント。Tab / Auto / Cloud / CLI / API / SDK は Cursor 供給。記事自身が directional と書き、最新は Cursor 公式を見よ、ともします。</p>
+      <p>「Cursor は今日モデルを失った」は、どちらのページも支えません。提案の 11/12 と、公式終了日は未確定、は同じ会社の二つの一次です。混ぜると「11/12 に切れる」という別の文になります。</p>
+
+      <h2>不在は、空白ではない</h2>
+      <p>Cursor.com の changelog の先頭は、8/27 の Start from scratch のままです。blog にも、8/28 の決定への応答はありません。2026-08-31 時点で、一次応答は観測されていません。これは「Cursor が同意した」でも「隠している」でもありません。一次文が無い、という負の記録です。</p>
+      <p>不在は contradicts ではありません。反論する文が無いからです。supports するのでもありません。同意する文が無いからです。記録できるのは、「この日までに、この面に一次応答は無かった」です。Tier 1 の欠落を、Tier 3 の買収報道や二次の IPO 記事で埋めると、段が崩れます。二次は使いません。</p>
+      <p>SpaceX.com/updates は、今ランでは JS shell で本文が取れませんでした。取得失敗は、発射が無かったことの証拠ではありません。書けない、という限界です。</p>
+
+      <h2>Claim source と、発見経路</h2>
+      <p>公開文にするとき、地図は二つの出自を分けます。Claim source は、事実の文を直接支える一次です。Discovery source は、その一次を KB に運んだ経路です。今日の Claim source は、openai.com の決定文と help.openai.com の運用記事です。Discovery は今ランの公式ウォッチです。X bookmarks は 0 なので、X を発見経路にも核にもしません。</p>
+      <p>同じドメインでも、ページが違えば支えが違います。タイ・教育・ブラジルの投稿は、今日の決定文を支えません。Omni 1.1 Flash の公式ブログは、動画 API の Claim source になり得ます。主題の Claim source にはなりません。一行で止めます。</p>
+
+      <h2>制約の定義と、まだ空欄のまま残すもの</h2>
+      <p>ヘルプが定義するのは、残る経路の形です。ローカル Chat/Agent の BYOK。Codex 拡張という別エージェント。gateway / Bedrock / Azure というローカル経路。残らない面も定義します。Tab、Auto、Cloud、Background Agents、Automations、CLI、API、SDK は、Cursor が供給または経路するモデルであり、持ち込んだ OpenAI キーでは動きません。これはハーネス地図の続きではありません。一次がどの振る舞いを定義したか、です。</p>
+      <p>決定文は Astra を渡さない、と書きます。仕様、日程、性能は書きません。名前と非提供だけが支えます。未来モデルのゲートを、未公開の仕様で埋めると、Tier 1 を超えます。切れる日は、提案の 11/12 か、Cursor がより早く切る日か、両社が後で確定する日か、の三つの文があります。一つに潰すと、ページが支えていない確定日が生まれます。</p>
+
+      <div class="callout">
+        よい読みは、Cursor の一文を発明しないことである。決定文とヘルプを Claim source と名指し、Cursor の不在を不在のまま残し、Astra の仕様と発射記録と二次の買収報道を捨てる。ハーネス列の続きにも、確定した終了日の話にもしない。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>この文を支えているのは、どの Tier のどの URL か？</li>
+        <li>11/12 は提案か。両社が確定した終了日か？</li>
+        <li>Cursor の公式文は、どの URL にあるか。無いなら、無いと書いたか？</li>
+        <li>Astra について、ページが支えているのは名前と非提供か。仕様か？</li>
+        <li>BYOK が届く面と、Cursor 供給のまま残る面を、混ぜていないか？</li>
+        <li>二次の買収報道や、薄い公式投稿を、核に昇格させていないか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/evidence-quality-and-source-trust.md</code>, framed with OpenAI's 8/28 decision to wind down the contract supplying OpenAI models to Cursor after the SpaceX acquisition (proposed shutoff November 12, 2026, maximum contractual notice; Astra not provided; <a href="https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/">openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex</a>) and the companion help article (BYOK for local Chat/Agent only; Codex IDE extension is a separate agent; Tab/Auto/Cloud/CLI/API/SDK stay on Cursor-routed models; Cursor may end access sooner; official end date TBD; <a href="https://help.openai.com/en/articles/20001506-using-openai-models-in-cursor">help.openai.com/en/articles/20001506-using-openai-models-in-cursor</a>). Cursor.com as of 2026-08-31 has no first-party changelog or blog reply after the 8/27 Start from scratch post. X bookmarks this run: 0. One-line aside: Google 8/27 Gemini Omni 1.1 Flash video API — scene extend to 40s, keyframe interpolation, 360p draft / 4K upscale (<a href="https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-omni-1-1-flash/">blog.google/.../build-with-gemini-omni-1-1-flash</a>). SpaceX.com/updates fetch failed (JS shell); no invented launches. Secondary IPO/acquisition coverage omitted.</p>
+    </footer>
+  </div>
+</body>
+</html>
