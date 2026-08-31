@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-08-31 - Tier-1 or It Didn't Happen — OpenAI's Cursor Wind-down</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-31/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / 2026-08-31</header>
+<h1>Tier-1 or It Didn't Happen — OpenAI's Cursor Wind-down</h1>
+<div class="note">
+  <strong>読み物:</strong> まず <a href="reading.html">読み物版</a> を読むのがおすすめです。<br>
+  <strong>ソース:</strong> <a href="source.md">source.md</a> はNotebookLMにも追加できます。
+</div>
+<div class="actions">
+  <a href="reading.html">読み物版</a>
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-08-31/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-08-31">GitHub</a>
+</div>
+<h1>Tier-1 or It Didn't Happen — OpenAI's Cursor Wind-down</h1>
+<ul>
+<li>Date: 2026-08-31</li>
+<li>Theme slug: <code>evidence-quality-and-source-trust</code></li>
+<li>Primary topic: <code>wiki/maps/evidence-quality-and-source-trust.md</code></li>
+<li>Purpose: NotebookLM向けの対話用ソース。KBの証拠品質地図を、OpenAI の一次ページが Cursor 供給の巻き戻しを書いた局面として読み直す。ハーネス地図の続きではない</li>
+<li>News angle: OpenAI 8/28 が SpaceX に、Cursor へ OpenAI モデルを供給する契約を巻き戻すと通知（提案の遮断は 2026-11-12。契約上の最長通知）（<a href="https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/">openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex</a>）。理由は ToS 内で使う自信が持てないこと。Twitter/X の契約違反と、xAI（いま SpaceX の一部）が ToS を破ったという宣誓。支配権変更の解除窓。次期モデル Astra は Cursor に渡さない。約4年の提携。影響を受けるのは開発者。Companion: BYOK はローカル Chat/Agent のみ（OpenAI API 課金）。Codex IDE 拡張は別エージェントで Tab/Auto/Cloud/Background Agents/CLI/API/SDK を駆動しない。gateway/Bedrock/Azure は別のローカル経路。Cursor が 11/12 より早く切る可能性。公式終了日は両社が合意するまで未確定（<a href="https://help.openai.com/en/articles/20001506-using-openai-models-in-cursor">help.openai.com/en/articles/20001506-using-openai-models-in-cursor</a>）。Cursor.com は 2026-08-31 時点で 8/27 Start from scratch 以降の一次応答なし（不在自体が証拠点。Cursor の声明は発明しない）。追加の一行: Google 8/27 Gemini Omni 1.1 Flash 動画 API（シーン延長 40秒、キーフレーム補間、360p draft / 4K upscale）（<a href="https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-omni-1-1-flash/">blog.google/.../build-with-gemini-omni-1-1-flash</a>）。動画面であり主題ではない。タイ・教育・ブラジル投稿は薄い。X bookmarks は今ラン 0。SpaceX.com/updates は取得失敗（JS shell）。発射記録は発明しない。二次の IPO/買収報道は使わない</li>
+</ul>
+<h2>Talking points（3〜5分）</h2>
+<ol>
+<li>8/23 から六日、ハーネスとコーディングエージェントの地図が続いた。月曜は証拠の強さに戻る。今日あるのは OpenAI の一次ページである。</li>
+<li>KBの問いは「何を言っているか」だけではない。「この主張を、このソースはどこまで支えてよいか」である。</li>
+<li>ページが支えるのは、巻き戻しの通知、提案の 11/12、支配権変更の窓、Astra を渡さない、ToS への自信の欠如である。支えないのは、確定した終了日、Astra の仕様、Cursor の公式応答、発射記録である。</li>
+<li>Cursor.com に 8/27 以降の一次応答が無いこと自体が、証拠点である。無いページを、同意にも反論にもしない。</li>
+<li>X bookmarks は 0。Gemini Omni 1.1 Flash は動画面の一行。タイ・教育・ブラジルは薄い。主題は動かさない。</li>
+</ol>
+<h2>今日の読み方</h2>
+<p>knowledge-base-llm の <code>Evidence Quality and Source Trust</code> は、wiki を平坦な要約の束から、主張の強さと出自を扱う研究 OS に変える短い地図である。中心命題は単純である。ソースが何を言ったかを記録するだけでは足りない。そのソースが、どの主張を、どの強さで支えてよいかを書け、である。</p>
+<p>昨日までの読み物は、ハーネスの境界、デプロイゲート、制御の分類、実装前のレビュー規準、常時稼働のパターン、KB＋コードベースのオンボーディングだった。六日続いたその列を、今日は棚に戻す。理由は、公式の一次ページが出たからだ。製品面の続きとして読むと、地図を取り違える。今日読むのは、出自と証拠の段である。</p>
+<p>OpenAI は 8/28、SpaceX に通知したと書いた。Cursor へ OpenAI モデルを供給する契約を巻き戻す。提案の遮断日は 2026年11月12日。契約が許す最長の通知を置いた、とある。理由は、SpaceX が OpenAI の技術を利用規約の内側で使うと自信を持てないこと。根拠として、Musk 買収後の Twitter/X 契約違反と、xAI（いま SpaceX の一部）が OpenAI の ToS を破ったという宣誓を挙げる。支配権変更のあとに契約を解除できる窓がある。次期モデル Astra は Cursor に渡さない。約4年の提携を尊重しつつ、影響を受けるのは開発者だ、と結ぶ。</p>
+<p>同じ会社のヘルプ記事が、運用の境界を足す。移行期間として 11/12 を提案する。そのあいだ、いま Cursor が使っている OpenAI モデルへのアクセスは続ける。Cursor がより早く切る可能性がある。公式の終了日は、両社が確定し次第共有する。BYOK はローカルの Chat と Agent だけであり、課金は OpenAI API である。Codex IDE 拡張は、ChatGPT か API キーで動く別エージェントであり、Cursor の Tab / Auto / Cloud / Background Agents / CLI / API / SDK を駆動しない。gateway、Bedrock、Azure、OpenAI 互換 URL は、もう一つのローカル経路である。</p>
+<p>Cursor.com を 2026-08-31 時点で見ると、8/27 の Start from scratch 以降に、この決定への changelog も blog も無い。不在は空白ではない。一次応答がまだ無い、という記録である。Cursor の声明を補わない。二次の IPO や買収報道も、一次の穴を埋めない。Google の Gemini Omni 1.1 Flash は 8/27 の公式ブログで、シーン延長 40秒、キーフレーム補間、360p の下書きと 4K の拡大を書く。動画面の一行である。タイのスタートアップ、教育、ブラジルの投稿は薄い。X bookmarks は今ラン 0。SpaceX.com/updates は JS shell で取得に失敗した。発射は書かない。</p>
+<p>今日の問いは「Cursor のハーネスがどう変わったか」ではない。「この一次ページは、どの文を支えて、どの文を支えないか」である。</p>
+<h2>1. 四段階 — 今日の一次は Tier 1</h2>
+<p>KBは証拠を四段階に置く。</p>
+<ol>
+<li><strong>Tier 1: Direct primary evidence</strong> — 公式ドキュメント、ソースリポジトリ、手法の見える論文、再現できる例。定義、製品の振る舞い、硬い制約に使う。信頼は高い。ただし取得が部分的か古いときは落とす</li>
+<li><strong>Tier 2: Practitioner operational evidence</strong> — 一人称の運用報告、ポストモーテム、実装ノート。この場でこの型が動いた、には中〜高。一般化には低い</li>
+<li><strong>Tier 3: Public synthesis and commentary</strong> — X スレッド、ポッドキャスト要約、二次のまとめ、製品発表の弱い読み。語彙と手がかり。核の主張を一人で支えてはいけない</li>
+<li><strong>Tier 4: KB synthesis</strong> — 地図、比較ノート、耐久回答。信頼は引用に依存する。依拠したソースを見せる</li>
+</ol>
+<p>なぜ効くか:</p>
+<ul>
+<li>同じ文でも、段が違えば再利用の範囲が違う</li>
+<li>段を混ぜると、公式の制約と噂の隙間が同じ太さになる</li>
+<li>新しい一次ページは、新しいモデルではなく、核を載せ替えてよい合図になる</li>
+</ul>
+<p>今日の角:<br>
+地図は product announcements を Tier 3 に置くことがある。今日の OpenAI ページは、機能発表の弱い読みではない。会社が硬い制約を書いた公式の決定文である。Tier 1 の「official docs」と「hard constraints」に載せる。ヘルプ記事も同じ段の公式ドキュメントである。この読み物自体は Tier 4 の合成であり、依拠は二つの一次 URL に限る。</p>
+<p>対話の種:<br>
+「いま書こうとしている文は、Tier 1 のどの URL が支えているか。それとも、発表を要約した二次か。」</p>
+<h2>2. ページが支えること、支えないこと</h2>
+<p>ソースノートの型は、<code>Source type</code>、<code>Confidence</code>、<code>Supports</code>、<code>Main limitations</code>、<code>Best use</code> である。今日の決定文に当てると、型が先に決まる。</p>
+<ul>
+<li>Source type: 公式の会社決定文（openai.com/index）</li>
+<li>Confidence: ページが書いた範囲では高い。取得は今ランで確認した</li>
+<li>Supports: SpaceX への通知、契約の巻き戻し、提案の遮断日 11/12、最長通知、支配権変更の解除窓、Astra を渡さない、ToS への自信の欠如、Twitter/X の契約違反、xAI の宣誓、約4年の提携、影響を受けるのは開発者</li>
+<li>Main limitations: 一方の当事者の文である。終了日の双方確定は書いていない。Astra の仕様は書いていない。Cursor の応答は書いていない</li>
+<li>Best use: 硬い制約の定義。製品の振る舞いの一般論や、発射記録には使わない</li>
+</ul>
+<p>ヘルプ記事は同じ会社の別ノートである。</p>
+<ul>
+<li>Source type: 公式ヘルプ（help.openai.com）</li>
+<li>Confidence: 運用境界の記述では高い</li>
+<li>Supports: 移行期間としての 11/12、そのあいだ現在のモデルアクセスを続ける、Cursor がより早く切る可能性、公式終了日は両社確定待ち、BYOK はローカル Chat/Agent のみ、Codex 拡張は別エージェント、Tab/Auto/Cloud/CLI/API/SDK は Cursor 供給、gateway/Bedrock/Azure はローカル経路</li>
+<li>Main limitations: 「directional」であり、Cursor 側が機能を変える可能性を自ら書いている。Cursor 公式ドキュメントを最新とせよ、とも</li>
+<li>Best use: 製品の振る舞いと、終了日が未確定であることの定義</li>
+</ul>
+<p>関係語は短い。決定文は巻き戻しの通知を <code>supports</code> する。ヘルプは運用境界でそれを <code>extends</code> する。両者は <code>contradicts</code> しない。提案の 11/12 と、公式終了日は未確定、は同じ会社の二つの一次であり、混ぜると「11/12 に切れる」という別の文になる。この読み物は両方に <code>depends_on</code> する。</p>
+<p>今日の角:<br>
+「Cursor は今日モデルを失った」は、どちらのページも支えない。アクセスは、提案の 11/12 まで続くとヘルプが書く。それより早く切る権限は Cursor 側にある、とも書く。確定日はまだ無い。Astra の仕様を、渡さないという一文から足すこともできない。</p>
+<p>対話の種:<br>
+「11/12 は提案か。確定か。Astra について、ページが支えているのは名前と非提供か。仕様か。」</p>
+<h2>3. 不在は証拠である</h2>
+<p>地図は、弱い信号を核に載せない、と書く。今日の弱い信号は、噂のスレッドではない。Cursor 側の一次ページが、まだ無いことである。</p>
+<p>Cursor.com の changelog の先頭は、8/27 の Start from scratch のままである。blog にも、8/28 の決定への応答は無い。2026-08-31 時点で、一次応答は観測されていない。これは「Cursor が同意した」でも「隠している」でもない。一次文が無い、という負の記録である。</p>
+<p>KBの関係語では、不在は <code>contradicts</code> ではない。反論する文が無い。<code>supports</code> するのでもない。同意する文が無い。記録できるのは、「この日までに、この面に一次応答は無かった」である。Tier 1 の欠落を、Tier 3 の買収報道や二次の IPO 記事で埋めると、段が崩れる。二次は使わない。</p>
+<p>SpaceX.com/updates は、今ランでは JS shell で本文が取れなかった。取得失敗は、発射が無かったことの証拠ではない。書けない、という限界である。無いキャプチャを、無い事実にしない。</p>
+<p>今日の角:<br>
+沈黙を物語にすると、地図が壊れる。よい読みは、Cursor の一文を発明しないことである。OpenAI の二枚と、Cursor の不在と、取得失敗の三つの状態を、別の棚に置く。</p>
+<p>対話の種:<br>
+「Cursor の公式文は、どの URL にあるか。無いなら、無いと書くか。二次で埋めるか。」</p>
+<h2>4. Claim source と Discovery source</h2>
+<p>公開文にするとき、地図は二つの出自を分ける。<code>Claim source</code> は、事実の文を直接支える一次である。<code>Discovery / posting source</code> は、その一次を KB に運んだ経路である。X 由来なら、投稿者、URL、投稿時刻、取得時刻、リンク先の一次 URL を残す。</p>
+<p>今日の Claim source は二つである。openai.com の決定文と、help.openai.com の運用記事。Discovery source は、今ランの公式ウォッチである。X bookmarks は 0 なので、X を発見経路にも核にもしない。投稿ハンドルを足して、公式文の重みを増やさない。</p>
+<p>タイのスタートアップ、教育、ブラジルの投稿は、同じ日の OpenAI 面にある。薄い。今日の決定文を <code>supports</code> しない。同じドメインでも、ページが違えば支えが違う。Omni 1.1 Flash の公式ブログは、動画 API の Claim source になり得る。主題の Claim source にはならない。一行で止める。</p>
+<p>今日の角:<br>
+「OpenAI が書いた」は、出自の全部ではない。どの URL の、どの文が、どの主張を支えるかである。決定文を、ヘルプの BYOK 境界の代わりに使わない。ヘルプを、Astra 非提供の代わりに使わない。Omni のブログを、供給契約の代わりに使わない。</p>
+<p>対話の種:<br>
+「この文の Claim source はどれか。Discovery の X や二次報道を、Claim に昇格させていないか。」</p>
+<h2>5. Companion は制約の定義である</h2>
+<p>Tier 1 は、製品の振る舞いと硬い制約に使う。ヘルプ記事が定義するのは、残る経路の形である。ローカル Chat/Agent の BYOK。Codex 拡張という別エージェント。gateway / Bedrock / Azure というローカル経路。残らない面も定義する。Tab、Auto、Cloud、Background Agents、Automations、CLI、API、SDK は、Cursor が供給または経路するモデルであり、利用者が持ち込んだ OpenAI キーでは動かない。</p>
+<p>これはハーネス地図の続きではない。今日の読みは、ヘルプがどの振る舞いを定義し、どの振る舞いを「Cursor が変えるかもしれない」と留保したかである。記事自身が directional と書く。最新は Cursor 公式ドキュメントを見よ、とも。一次であっても、キャプチャの鮮度と、相手側が変える余地を、<code>Main limitations</code> に残す。</p>
+<p>決定文は Astra を渡さない、と書く。仕様、日程、性能は書かない。名前と非提供だけが <code>supports</code> される。未来モデルのゲートを、未公開の仕様で埋めると、Tier 1 を超える。</p>
+<p>今日の角:<br>
+「全部のモデルが今日消えた」は、ヘルプが否定する。いまのアクセスは続く。切れる日は、提案の 11/12 か、Cursor がより早く切る日か、両社が後で確定する日か、の三つの文がある。一つに潰すと、ページが支えていない確定日が生まれる。</p>
+<p>対話の種:<br>
+「BYOK が届く面は、Chat/Agent か。Tab か。Cloud か。公式終了日を、提案の 11/12 と書いていないか。」</p>
+<h2>6. 二次と薄い投稿を核に載せない</h2>
+<p>地図の Tier 3 は、語彙と手がかりである。核の主張を一人で支えてはいけない。今日、二次の IPO や買収報道は使わない。OpenAI の決定文が支配権変更に触れているので、買収そのものを二次から足す必要は無い。薄い投稿（タイ、教育、ブラジル）も、同じ日の公式面でも核にしない。</p>
+<p>X bookmarks が 0 であることは、現場の声が無いことではない。今ランのブックマーク取得が空だった、という記録である。空の取得を、「誰も書いていない」に一般化しない。一般化は Tier 2 ですらない。</p>
+<p>この読み物は Tier 4 である。合成は、依拠を見せる。依拠は、決定文、ヘルプ、Cursor.com の不在、Omni の一行、X=0、SpaceX.com/updates の取得失敗である。取得失敗の上に発射を置かない。不在の上に Cursor の声明を置かない。提案日の上に確定を置かない。</p>
+<p>今日の角:<br>
+六日読んだハーネス列は、今日の核ではない。供給契約の話を、ベンダー比較や制御分類に折り返すと、証拠の段が消える。月曜の仕事は、一次が支えた文だけを残し、支えない文を捨てることである。</p>
+<p>対話の種:<br>
+「核の一文から、二次と薄い投稿と、無い公式文を剥がせるか。」</p>
+<h2>なぜ段が部品になるか</h2>
+<ul>
+<li>同じ出来事でも、Tier 1 の文と Tier 3 の文は再利用の範囲が違う</li>
+<li>一方の公式文と、相手の沈黙と、取得失敗を、同じ「事実」に潰さない</li>
+<li>提案日と確定日、名前と仕様、不在と声明を、混ぜない</li>
+<li>発見経路の X を、Claim source に昇格させない</li>
+</ul>
+<p>KBの言葉では、主張の強さと出自を先に書く地図である。昨日までのハーネス列は、周辺の層が性能を決める話だった。今日は、公式の二枚がどの文を支えて、どの文を支えないかの話である。公式の型は、巻き戻しの通知と提案の 11/12 を一次で固定し、確定終了日と Astra 仕様と Cursor の応答を、まだ空欄のまま残す。</p>
+<h2>トレードオフ</h2>
+<p>Tier 1 だけに寄せすぎると、運用の感触が消える。今日はそれでよい。相手の一次が無い日に、感触を二次で足すと段が崩れる。沈黙を同意に読むと速いが、無い文を足す。沈黙を隠蔽に読むと物語になるが、ページが支えない。11/12 を確定にすると予定が立つが、ヘルプが否定する。Astra の名前から仕様を足すと具体になるが、一次を超える。SpaceX.com の取得失敗を「発射なし」にすると完結するが、キャプチャの失敗を事実にする。</p>
+<p>だから今日の使い方は、地図を増やすことではない。決定文とヘルプを Claim source と名指し、Cursor の不在を不在のまま残し、Omni を一行に残す。ハーネス列の続きにはしない。二次の買収報道にはしない。</p>
+<h2>実務のとりはじめ</h2>
+<p>大きな基盤は要らない。今日からできる最小セット:</p>
+<ul>
+<li>決定文とヘルプに、Source type / Confidence / Supports / Limitations を一文ずつ書く</li>
+<li>ページが支えない文（確定終了日、Astra 仕様、Cursor 声明、発射）を、別箇条で残す</li>
+<li>Cursor.com を「2026-08-31 時点で一次応答なし」と日付付きで記録する</li>
+<li>Omni は動画面の一行、タイ・教育・ブラジルは薄い、と別記録にする</li>
+<li>X=0 を、現場の沈黙ではなく、今ランの取得空として書く</li>
+<li>二次の IPO/買収報道を、一次の穴埋めに使わない</li>
+</ul>
+<p>昨日までの列はハーネスの層、今日は一次が支えた文だけを残す話である。公式ページが出た日は、段を先に名指す日になる。</p>
+<h2>次に考えるとよさそうな問い</h2>
+<ul>
+<li>この文を支えているのは、どの Tier のどの URL か？</li>
+<li>11/12 は提案か。両社が確定した終了日か？</li>
+<li>Cursor の公式文は、どの URL にあるか。無いなら、無いと書いたか？</li>
+<li>Astra について、ページが支えているのは名前と非提供か。仕様か？</li>
+<li>BYOK が届く面と、Cursor 供給のまま残る面を、混ぜていないか？</li>
+<li>二次の買収報道や、薄い公式投稿を、核に昇格させていないか？</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm. Source topic: <code>wiki/maps/evidence-quality-and-source-trust.md</code></p></footer>
+
+</body>
+</html>
