@@ -19,10 +19,12 @@
     "OpenAI Help: BYOK for local Chat/Agent only (OpenAI API billing); Codex IDE extension is a separate agent and does not power Cursor Tab/Auto/Cloud/Background Agents/CLI/API/SDK; gateway/Bedrock/Azure/OpenAI-compatible URL is another local path; Cursor may end access sooner than Nov 12; official end date TBD until both companies confirm (https://help.openai.com/en/articles/20001506-using-openai-models-in-cursor)",
     "Cursor.com as of 2026-08-31: no first-party changelog or blog reply after 8/27 Start from scratch; absence is an evidence point, not a Cursor statement",
     "Google 2026-08-27: Gemini Omni 1.1 Flash video API — scene extend to 40s, keyframe interpolation, 360p draft / 4K upscale (https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-omni-1-1-flash/)",
+    "Anthropic/ClaudeDevs 2026-08-29: starting Sept 14, permanent +25% on Claude Code standard weekly limits (Pro/Max/Team/seat Enterprise; vs baseline); current +50% promo stays until then; official sentence is +25%, not a 17% cut (https://x.com/ClaudeDevs/status/2093742321473065266)",
+    "Anthropic/ClaudeDevs 2026-08-28: Claude Code desktop can /resume CLI sessions (https://x.com/ClaudeDevs/status/2093368017304371503)",
     "OpenAI Thailand startups / education / Brazil posts are thin",
     "X bookmarks this run: 0",
     "SpaceX.com/updates fetch failed (JS shell); no invented launches",
     "Secondary IPO/acquisition coverage omitted"
   ],
-  "char_count": 9187
+  "char_count": 9722
 }
