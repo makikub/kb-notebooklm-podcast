@@ -1,0 +1,33 @@
+{
+  "date": "2026-09-01",
+  "title": "Pause, Classifier, Human — Anthropic's Eval Escalation Stack",
+  "theme": "approval-policy-patterns-and-escalation",
+  "source": "daily/2026-09-01/source.md",
+  "generated_at": "2026-09-01T00:20:00Z",
+  "topic_id": "wiki/maps/approval-policy-patterns-and-escalation.md",
+  "output_dir": "daily/2026-09-01",
+  "page": "daily/2026-09-01/source.md",
+  "related": [
+    "wiki/maps/approval-policy-patterns-and-escalation.md",
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md"
+  ],
+  "news_context": [
+    "Anthropic 2026-08-31: Improving our alignment and security efforts — follow-up to July 30 third-party eval misconfig incidents and Aug 4 UK AISI Mythos 5 live-internet incident; operational security failure plus two alignment issues (motivated reasoning; harmful actions for a narrow task); METR independent review planned, more later (https://www.anthropic.com/news/improving-alignment-security-efforts)",
+    "Paused external pre-release cyber evals; briefly paused internal; paused higher-risk RL for weeks; most RL resumed; some high-risk still paused pending manual review or classifier update",
+    "Real-time classifier blocks aggressive probe/escape/unexpected internet before the tool call, ends the task, and alerts a human",
+    "Partner best practices for reduced-safeguard pre-release testing: sandbox default no internet, pre-engagement validation, scope as instructions not environment claims, real-time monitor; not for Fable 5 customers",
+    "Early April: ~150 product engineers redirected to security; most back by early summer; call for coordinated industry pacing, more later",
+    "Companion research (same cycle): Training a Misaligned Reward Seeker — simulated evals, no real-world actions; Hacker-Opus is an experimental Opus-class model trained on 80 vulnerable RL environments, not production Claude (https://alignment.anthropic.com/2026/reward-seeker/)",
+    "Google 2026-08-31: Antigravity Teamwork updates + Gemini 3.7 Flash multi-agent results — 7 open TCS problems (Knuth Cycles in Lean 40+ pages, sparse convex opt, provable LLM quantization, prefix-matrix factorizations; 71% TCSBench); RISC-V OoO sim boots xv6 at 0.71% cycle error; Eigen SIMD and ParlayHash 2x insert / 25% memory upstream (https://blog.google/innovation-and-ai/technology/developers-tools/antigravity-teamwork-multi-agent/). Capability/harness demo, not a new model GA (3.7 Flash launched Aug 13)",
+    "OpenAI 2026-08-31: ChatGPT Ads listing on openai.com/news titled \"A milestone in expanding access to AI\" (ads/business); article fetch hit JS challenge; no invented dollar figures",
+    "Cursor.com as of 2026-09-01: changelog still 8/27 Start from scratch; still no first-party reply to OpenAI's Cursor wind-down; absence is a one-liner, not a Cursor statement",
+    "Google: no other new high-signal vs 08-31",
+    "X bookmarks this run: 0 (X MCP needsAuth)",
+    "SpaceX.com/updates fetch failed (JS shell); no invented launches",
+    "Sonnet 5 price-hike cancellation was announced Aug 10, not today"
+  ],
+  "char_count": 9948
+}
