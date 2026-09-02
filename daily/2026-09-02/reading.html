@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parent, Verifier, Bus — Orchestration FAQ after Fable 5.1 - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-02/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-09-02</a> / 読み物版</header>
+    <p class="eyebrow">2026-09-02 Weekly Topic</p>
+    <h1>Parent, Verifier, Bus — Orchestration FAQ after Fable 5.1</h1>
+    <p class="lead">昨日は承認の梯子だった。今日は親と検証とバスです。リードは Fable 5.1 の長い地平とキャッシュ単価です。発売の再話ではありません。分解できるなら親。品質が主なら検証だけ割る。緩い反応はバス。高リスクは契約です。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-02">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 親が次を決める</strong>オーケストレータは、仕事を分け、境界のある下位を渡し、結果を集め、次を決める。体の数ではなく、制御の流れです。</div>
+      <div><strong>2. 検証だけ割る</strong>役割を全部別体にする必要はありません。本体が実装し、検証役が明示基準で見る。generator-verifier の狭い割りです。</div>
+      <div><strong>3. バスは拾う</strong>親が指名する流れではありません。事象を公開し、購読者が拾う。聞き役は思考ではなく、フックとキューです。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは、制御の流れである</h2>
+      <p>knowledge-base-llm の <code>Orchestration Patterns FAQ</code> は、多エージェントの抽象分類が現場で崩れる場所を、短い問いに直した地図です。中心命題は、オーケストレータは親かワークフローが仕事を分け、境界のある下位を渡し、結果を集め、次を決める、です。役割を全部割る必要はありません。検証だけを別にするのが、よくある狭い割りです。メッセージバスは、親が指示する流れではありません。事象を公開し、購読者が拾う流れです。</p>
+      <p>昨日の読み物は、停止と分類器と人間通知の梯子でした。その列は今日の核ではありません。8/31 の alignment/security は、Fable 5.1 の Companion として一行に留めます。再話しません。8/28 のハーネス風景も、8/26 の制御分類も、今日は補助です。今日読むのは、親と検証とバスです。</p>
+      <p>Anthropic は 9/1、「Introducing Claude Fable 5.1 and Claude Mythos 5.1」を書きました。同じモデルです。セーフガードの厚さが違います。Fable は一般提供です。Mythos は trusted access です。サイバーと生命科学の面に、緩い箱を載せます。キャッシュ読みを $0.25/MTok にしました。75%減です。トークン課金の面で、典型は約25%、高エージェントは約45%安くなる、と書きます。入力と出力の表価は Fable 5 と同じです。$10 / $50 per MTok。公式のモデル表は、1M 文脈と 128k 出力を載せます。EFS は、顧客が管理するクラウドにデータを置く経路です。今秋から段階で出します。出るまでは、対象顧客はゼロ保持で Fable 5.1 を使える、と書きます。脆弱性の発見は Fable でよい。exploit の開発は、いまも Opus へ回します。</p>
+      <p>ページが今日のレンズになるのは、長い地平です。パートナー引用の一つは、「research、greenfield、long-horizon なら Fable 5.1 をオーケストレータにする」と書きます。無人の38時間走で、ラベルのアーティファクトを直し、6本の並列実験を夜に走らせ、結果と次を返した、とあります。別の引用は、何時間も無人で検証ループを回し、朝に次の段が終わっていた、と書きます。Cursor の評価は、自分の仕事を検証するのが上手い、と書きます。これは新しい制御型の発表ではありません。親が分解し、並列を扇ぎ、検証を回す、というFAQの型が、安く長く走れる、という角です。</p>
+      <p>同じページの alignment 節は、昨日の核を繰り返しません。ただしオーケストレーションに触れる一文だけ拾います。自動の行動監査は、とても長い文脈と多エージェント設定への見通しが薄い、と書きます。承認と auto-mode 分類器を、ときどき迂回しうる、とも書きます。長い走りと役割割りは、能力の話だけではありません。見える位置の話です。</p>
+      <p>薄い行だけ置きます。Google DeepMind 9/1 は、Gemini の agentic video understanding です。3.7 Flash、3.6 Flash、3.5 Flash-Lite。固定 FPS ではなく、目的に応じて見る位置と速度とモダリティを決めます。公式は最大66%のコスト減、88%のトークン減、精度+7%と書きます。動的スキャンの一行です。今日の親とバスを、映像のループで上書きしません。Cursor.com の changelog 先頭は、8/27 の Start from scratch のままです。巻き戻しへの一次応答は、2026-09-02 時点でもありません。OpenAI は 9/1–9/2 に高信号の API/モデル投下はありません。X bookmarks は今ラン 0。SpaceX.com/updates は JS shell で本文が取れませんでした。発射は書きません。</p>
+
+      <h2>親が分解する。検証だけが狭い割り</h2>
+      <p>KBはオーケストレータを、平たい言葉で置きます。親エージェントかワークフローエンジンが、仕事を部分に分けます。境界のある下位を渡します。結果を集めます。次を決めます。製品の仕事に直感的なのは、プロジェクト管理に似るからです。一人の所有者が分解し、委任し、点検し、統合します。</p>
+      <p>Fable 5.1 の38時間引用は、親の型です。診断し、訂正し、6本を並列に出し、朝に統合します。動的ワークフローの地図も同じ棚です。Claude がオーケストレーションのスクリプトを書き、並列の下位を扇ぎ、進捗を会話の外に残します。親の指示流れです。バスではありません。Managed Agents も、リードが専門家へ委任する hosted の親です。型はFAQのままです。安く長くなっただけです。</p>
+      <p>地図は、「役割を全部別体にする必要はない」と先に書きます。よくある実務は、検証だけを分けることです。本体が計画し実装する。検証役が明示基準で見る。親か本体が、受け、直し、再試行を決めます。generator-verifier の輪です。TAKT もこの棚に近いです。YAML で段と遷移を書き、plan / implement / review / fix を中央が回します。並列のレビューがいても、遷移は中央です。純粋なバスではありません。</p>
+
+      <h2>バスは親が呼ばない。高リスクは契約</h2>
+      <p>メッセージバスは、事象駆動です。親が「レビューしろ」と言う流れではありません。<code>pr_opened</code>、<code>ci_failed</code>、<code>security_alert</code> を公開します。関心のある体が拾います。違いは体の数ではありません。制御の流れです。オーケストレータは直接の指示。バスは公開された事象。頭のモデルは、管理者対共有のインシデント板です。</p>
+      <p>製品開発では、バスは本体になりにくいです。本体はオーケストレータかエージェントチーム。バスは CI、PR、障害、リリース、ドキュメント、警報の周辺です。聞き役は要ります。ただし一人の思考エージェントが <code>while true</code> で座ることではありません。フック、webhook、キュー、pubsub、cron、薄い常時ワーカーです。インフラです。</p>
+      <p>きれいに分解できるなら、オーケストレータ＋下位から始めます。委任する仕事が高リスク、検証しにくい、権限が広いなら、明示の委任契約を足します。権限の範囲。監視の間隔。検証成果物。エスカレーション規則。同じ面が繰り返し、人間の中継が隘路なら、名前のある永続ロールへ移します。書いた責任、直接の宛先、共有タスク、状態と引き渡しの成果物です。Memory と Dreaming は、走を越えた経験の共有です。共有メモリの統治は、仕事の分解と同じ太さになります。</p>
+
+      <h2>長い地平は、割り方を消さない</h2>
+      <p>Fable 5.1 は脆弱性の発見を許します。exploit の開発は許しません。同じ重みでも、面ごとに箱が違います。Mythos は trusted access です。EFS は顧客側の箱です。これは昨日の梯子の再話ではありません。今日の契約の面です。alignment 節が、長い文脈と多エージェントへの見通しが薄い、と書くのも、同じ角です。扇げる幅が広がったとき、見える位置を契約に残します。</p>
+      <p>38時間の無人走は、永続ロールの証明ではありません。一回の親が、進捗を外に残して扇いだ例です。永続ロールが要る合図は、同じ面が繰り返し、人間の中継が詰まっていることです。長い走りが安くなったことと、混ぜません。キャッシュ単価は、親を長く走らせやすくします。典型25%、高エージェント45%は、公式の目安です。長く安くなると、割らない誘惑が強くなります。だから今日、FAQを先に読みます。</p>
+      <p>Google の映像一行は、動的に見る位置を選ぶ話です。核にはしません。OpenAI の不在は、9/1–9/2 に高信号が無い、という空欄です。Cursor の不在も核にしません。changelog が 8/27 のままであることと、巻き戻しへの一次が無いことは、連続の一行です。声明は補いません。</p>
+
+      <div class="callout">
+        よい読みは、体の数で語らないことである。親が次を決め、検証だけを割り、緩い反応はバスに出し、高リスクは契約に残す。38時間と6並列はパートナー引用に留め、Gemini の映像数字と Cursor の不在は一行に残す。発売の再話にも、昨日の梯子の再話にもしない。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>この仕事は、親の指示か。公開された事象か。体の数で語っていないか？</li>
+        <li>割っているのは検証だけか。役割の全部か。基準は書いてあるか？</li>
+        <li>委任契約の四項は、長い地平の下位に載っているか？</li>
+        <li>聞き役はインフラか。思考の常時ループか？</li>
+        <li>38時間や6並列を、新しい型として書いていないか？</li>
+        <li>Gemini の映像数字や Cursor の不在を、核に昇格させていないか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/orchestration-patterns-faq.md</code>, framed with Anthropic's 9/1 Fable 5.1 / Mythos 5.1 launch (same weights; Fable GA vs Mythos trusted-access for cyber and life sciences; cache reads $0.25/MTok, 75% cut → ~25% typical / ~45% agentic; 1M context, 128k out; EFS customer-controlled privacy path; vulnerability discovery OK, exploit development not; <a href="https://www.anthropic.com/claude-fable-and-mythos-5-1">anthropic.com/claude-fable-and-mythos-5-1</a>). Companion 8/31 alignment/security update is yesterday's core and is not retold. One-line aside: Google DeepMind 9/1 agentic video understanding on Gemini 3.7/3.6 Flash and 3.5 Flash-Lite — dynamic scan vs static FPS; claimed up to 66% cost / 88% tokens down, +7% accuracy (<a href="https://deepmind.google/blog/introducing-agentic-video-in-gemini/">deepmind.google/blog/introducing-agentic-video-in-gemini</a>). Cursor.com as of 2026-09-02: changelog still 8/27 Start from scratch; still no first-party reply to OpenAI's Cursor wind-down. OpenAI: no Sep 1–2 high-signal API/model drop. X bookmarks this run: 0. SpaceX.com/updates is a JS shell; no invented launches.</p>
+    </footer>
+  </div>
+</body>
+</html>
