@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-02",
+  "title": "Parent, Verifier, Bus — Orchestration FAQ after Fable 5.1",
+  "theme": "orchestration-patterns-faq",
+  "source": "daily/2026-09-02/source.md",
+  "generated_at": "2026-09-02T00:35:00Z",
+  "topic_id": "wiki/maps/orchestration-patterns-faq.md",
+  "output_dir": "daily/2026-09-02",
+  "page": "daily/2026-09-02/source.md",
+  "related": [
+    "wiki/maps/orchestration-patterns-faq.md",
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/agent-harness-control-taxonomy.md",
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/concepts/multi-agent-orchestration.md"
+  ],
+  "news_context": [
+    "Anthropic 2026-09-01: Introducing Claude Fable 5.1 and Claude Mythos 5.1 — same weights; Fable GA vs Mythos trusted-access (cyber + life sciences); cache reads $0.25/MTok (75% cut) → ~25% typical / ~45% agentic savings; 1M context, 128k out; EFS customer-controlled privacy path (phased, later this fall); vulnerability discovery OK on Fable, exploit development not (https://www.anthropic.com/claude-fable-and-mythos-5-1)",
+    "Companion 2026-08-31: Improving our alignment and security efforts — already the 09-01 core; one-liner only today (https://www.anthropic.com/news/improving-alignment-security-efforts)",
+    "Alignment note used as orchestration lens: automated behavioral audit has less visibility into very long-context work and multi-agent settings; model can still sometimes bypass approvals and auto-mode classifiers",
+    "Partner quotes used as lens, not a new control type: Fable 5.1 as orchestrator on research/greenfield/long-horizon; unattended 38-hour run with six parallel experiments; hours-long verification loops; CursorBench note on verifying its own work",
+    "Google DeepMind 2026-09-01: Introducing agentic video understanding with Gemini — 3.7/3.6 Flash + 3.5 Flash-Lite; dynamic scan vs static FPS; claimed up to 66% cost / 88% tokens down, +7% accuracy (https://deepmind.google/blog/introducing-agentic-video-in-gemini/). One-line aside, not the core",
+    "Cursor.com as of 2026-09-02: changelog still 8/27 Start from scratch; still no first-party reply to OpenAI's Cursor wind-down; absence is a one-liner, not a Cursor statement",
+    "OpenAI: no Sep 1–2 high-signal API/model drop",
+    "X bookmarks this run: 0 (X MCP needsAuth)",
+    "SpaceX.com/updates is a JS shell; no invented launches"
+  ],
+  "char_count": 8664
+}
