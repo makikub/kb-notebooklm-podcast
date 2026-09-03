@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-03",
+  "title": "Execution Plane Split — Cursor Self-Hosted vs Fairwind Gate",
+  "theme": "harness-engineering-vendor-comparison",
+  "source": "daily/2026-09-03/source.md",
+  "generated_at": "2026-09-03T00:20:00Z",
+  "topic_id": "wiki/maps/harness-engineering-vendor-comparison.md",
+  "output_dir": "daily/2026-09-03",
+  "page": "daily/2026-09-03/source.md",
+  "related": [
+    "wiki/maps/harness-engineering-vendor-comparison.md",
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/agent-harness-control-taxonomy.md",
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md"
+  ],
+  "news_context": [
+    "Cursor 2026-09-02: Self-hosted machines — tool execution entirely on your network; codebase / build outputs / secrets stay on internal machines; agent loop, inference, and planning remain in Cursor cloud; tool outputs flow back and may contain code; transcripts may be processed and stored by Cursor; outbound HTTPS worker via `agent worker start`; Cursor never initiates inbound (https://cursor.com/changelog/self-hosted-machines, https://cursor.com/blog/self-hosted-machines)",
+    "My Machines connects a single laptop or VM for personal workflows; Team Pools are named queues for a team or enterprise, not tied to one repository; pools scale with demand and can hibernate idle machines then restore within a reconnect window",
+    "Cloud agents can execute on existing sandboxes: AWS Lambda, Coder, Cloudflare, Daytona, Modal, Namespace, Vercel, E2B; computer use on Linux and Mac; Cursor-hosted dedicated VMs remain the default",
+    "Google 2026-09-02 aside (same-day cluster, not the core): Gemini 3.8 Flash + 3.8 Flash Cyber — workhorse intro $0.75/$3.75 per MTok until 2026-12-31, then $1.50/$7.50 from 2027-01-01; Cyber gated via Fairwind + CodeMender for trusted defenders (https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/, https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program/)",
+    "Fairwind is a limited-access program for governments and trusted partners; CodeMender + 3.8 Flash Cyber find, verify, and fix vulnerabilities; 3.8 Flash ships CBRN and cyber-offense safeguards; 3.8 Flash Cyber has more permissive cyber mitigations and is limited to trusted defenders; 650+ participating partners; any Google Cloud customer can use CodeMender with public models on Gemini Enterprise Agent Platform",
+    "Vendor-comparison map lens: Cognition / Devin already documented orchestration/execution-plane separation via Outposts (Devin Cloud planning/inference, per-session Devboxes for execution); Cursor self-hosted is the same axis as a first-party product, not a new taxonomy",
+    "Still no Cursor first-party reply to OpenAI's Cursor wind-down; absence is a one-liner, not a Cursor statement",
+    "OpenAI: no Sep 2–3 high-signal API/model drop beyond prior Path to Astra / healthcare",
+    "Yesterday's Fable 5.1 / orchestration FAQ is one-line continuity only, not today's core",
+    "X bookmarks this run: 0 (X MCP needsAuth)",
+    "SpaceX.com/updates is a JS shell; no invented launches"
+  ],
+  "char_count": 9625
+}
