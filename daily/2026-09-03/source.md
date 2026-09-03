@@ -6,7 +6,7 @@
 - Theme slug: `harness-engineering-vendor-comparison`
 - Primary topic: `wiki/maps/harness-engineering-vendor-comparison.md`
 - Purpose: NotebookLM向けの対話用ソース。KBのベンダー比較地図を、Cursor の実行面分割（self-hosted workers）と Google の Fairwind ゲート（CodeMender + Flash Cyber）として読み直す。モデル比較の再話でも、Gemini 発売の再話でも、昨日のオーケストレーションFAQの続きでもない
-- News angle: Cursor 2026-09-02 Self-hosted machines（https://cursor.com/changelog/self-hosted-machines と https://cursor.com/blog/self-hosted-machines）。ツール実行は自ネットワーク。エージェントループ／推論／計画は Cursor cloud のまま。My Machines 対 Team Pools。hibernate。sandboxes は AWS Lambda / Coder / Cloudflare / Daytona / Modal / Namespace / Vercel / E2B。computer use は Linux + Mac。Cursor-hosted が既定。同じ日の aside: Google Gemini 3.8 Flash + 3.8 Flash Cyber（https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/）。workhorse は導入価格 $0.75 / $3.75、2026-12-31 まで。2027-01-01 から $1.50 / $7.50。Cyber は Fairwind + CodeMender で trusted defenders にゲート（https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program/）。Cursor の OpenAI 巻き戻しへの一次応答はまだ無い（不在の一行。Cursor の声明は発明しない）。OpenAI は 9/2–9/3 に、既出の Path to Astra / healthcare を超える高信号の API/モデル投下は無い。X bookmarks は今ラン 0（X MCP は needsAuth）。SpaceX.com/updates は JS shell。発射記録は発明しない。昨日の Fable 5.1 / orchestration FAQ は連続の一行まで
+- News angle: Cursor 2026-09-02 Self-hosted machines（https://cursor.com/changelog/self-hosted-machines と https://cursor.com/blog/self-hosted-machines）。ツール実行は自ネットワーク。エージェントループ／推論／計画は Cursor cloud のまま。My Machines 対 Team Pools。hibernate。sandboxes は AWS Lambda / Coder / Cloudflare / Daytona / Modal / Namespace / Vercel / E2B。computer use は Linux + Mac。Cursor-hosted が既定。同じ日の aside: Google Gemini 3.8 Flash + 3.8 Flash Cyber（https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/）。workhorse は導入価格 $0.75 / $3.75、2026-12-31 まで。2027-01-01 から $1.50 / $7.50。Cyber は Fairwind + CodeMender で trusted defenders にゲート（https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program/）。追加の一行: Anthropic 9/2 background computer use in Cowork / Claude Code（macOS 15+ で背景が既定。Pro/Max。Team / Enterprise は今は無し）（https://support.claude.com/en/articles/14128542-let-claude-use-your-computer-in-cowork と https://x.com/claudeai/status/2095226833293685100）。デスクトップ対 self-hosted 対 Fairwind の一行。核にしない。Cursor の OpenAI 巻き戻しへの一次応答はまだ無い（不在の一行。Cursor の声明は発明しない）。OpenAI は 9/2–9/3 に、既出の Path to Astra / healthcare を超える高信号の API/モデル投下は無い。X bookmarks は今ラン 0（X MCP は needsAuth）。SpaceX.com/updates は JS shell。発射記録は発明しない。昨日の Fable 5.1 / orchestration FAQ は連続の一行まで
 
 ## Talking points（3〜5分）
 
@@ -14,7 +14,7 @@
 2. KBの問いは「どのモデルが強いか」ではない。実行と制御と許可が、どこに住むかである。
 3. 地図が支えるのは、ハーネスは周囲の系である、という収束である。Cursor の軸は、実行を自ネットワークへ移し、ループを cloud に残す。Devin Outposts は、同じ分割を先に書いていた。
 4. Google の Fairwind は、もう一つの極である。CodeMender + Flash Cyber を trusted defenders にゲートする。許可はプログラムの門に住む。
-5. 巻き戻しへの一次はまだ無い。OpenAI の 9/2–9/3 投下は無い。X は 0。主題は動かさない。
+5. 巻き戻しへの一次はまだ無い。OpenAI の 9/2–9/3 投下は無い。Anthropic の background computer use はデスクトップ実行の一行。X は 0。主題は動かさない。
 
 ## 今日の読み方
 
@@ -28,7 +28,7 @@ My Machines は、一台のラップトップか VM を口座へつなぐ。個�
 
 ページが今日のレンズになるのは、分割である。実行は家に残る。ループはベンダーの雲に残る。これは新しいモデルの発表ではない。地図がすでに持っていた実行面の軸が、第一当事者の製品になった、という角である。
 
-同じ日の薄い行だけ置く。Google は Gemini 3.8 Flash と 3.8 Flash Cyber を書いた。Flash は workhorse である。導入価格は $0.75 / $3.75 per MTok。2026-12-31 まで。2027-01-01 から $1.50 / $7.50。Cyber は Fairwind 経由である。CodeMender と組んで、trusted defenders にゲートする。発売の再話にはしない。許可の門として一行置く。Cursor の巻き戻しへの一次応答は、2026-09-03 時点でも無い。OpenAI は 9/2–9/3 に、既出の Path to Astra / healthcare を超える高信号の投下は無い。X bookmarks は今ラン 0。SpaceX.com/updates は JS shell で本文が取れなかった。発射は書かない。
+同じ日の薄い行だけ置く。Google は Gemini 3.8 Flash と 3.8 Flash Cyber を書いた。Flash は workhorse である。導入価格は $0.75 / $3.75 per MTok。2026-12-31 まで。2027-01-01 から $1.50 / $7.50。Cyber は Fairwind 経由である。CodeMender と組んで、trusted defenders にゲートする。発売の再話にはしない。許可の門として一行置く。追加の一行: Anthropic 9/2 は Cowork / Claude Code の background computer use である。macOS 15+ で背景が既定。Pro/Max。Team / Enterprise は今は無い。デスクトップ対 self-hosted 対 Fairwind の一行である。核にしない。Cursor の巻き戻しへの一次応答は、2026-09-03 時点でも無い。OpenAI は 9/2–9/3 に、既出の Path to Astra / healthcare を超える高信号の投下は無い。X bookmarks は今ラン 0。SpaceX.com/updates は JS shell で本文が取れなかった。発射は書かない。
 
 今日の問いは「3.8 Flash は何点か」ではない。「実行はどこか。ループはどこか。許可はどこか」である。
 
@@ -147,7 +147,7 @@ KBの言葉では、各ソースが最適化する対象と、強調する機構
 - sandbox を使うなら、既にある提供者名を書く。自前の隔離層を前提にしない
 - サイバーの能力を語るなら、公開の workhorse と、門の向こうの Cyber を分ける
 - CodeMender のようなハーネスと、モデルと、プログラムの門を、一つの発売にしない
-- 巻き戻しの不在と、OpenAI の空欄と、X=0 は、一行のまま核に載せない
+- 巻き戻しの不在と、OpenAI の空欄と、Anthropic の desktop computer use と、X=0 は、一行のまま核に載せない
 
 昨日は制御の流れを先に名指す話、今日は実行と許可の位置を先に名指す話である。ワーカーを家に置ける公式ページは、分割を先に書く日になる。
 
