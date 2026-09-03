@@ -20,6 +20,7 @@
     "Cloud agents can execute on existing sandboxes: AWS Lambda, Coder, Cloudflare, Daytona, Modal, Namespace, Vercel, E2B; computer use on Linux and Mac; Cursor-hosted dedicated VMs remain the default",
     "Google 2026-09-02 aside (same-day cluster, not the core): Gemini 3.8 Flash + 3.8 Flash Cyber — workhorse intro $0.75/$3.75 per MTok until 2026-12-31, then $1.50/$7.50 from 2027-01-01; Cyber gated via Fairwind + CodeMender for trusted defenders (https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/, https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program/)",
     "Fairwind is a limited-access program for governments and trusted partners; CodeMender + 3.8 Flash Cyber find, verify, and fix vulnerabilities; 3.8 Flash ships CBRN and cyber-offense safeguards; 3.8 Flash Cyber has more permissive cyber mitigations and is limited to trusted defenders; 650+ participating partners; any Google Cloud customer can use CodeMender with public models on Gemini Enterprise Agent Platform",
+    "Anthropic 2026-09-02 aside (not the core): background computer use in Cowork / Claude Code — macOS 15+ background default; Pro/Max; Team/Enterprise no (https://support.claude.com/en/articles/14128542-let-claude-use-your-computer-in-cowork, https://x.com/claudeai/status/2095226833293685100). Desktop vs self-hosted vs Fairwind one-liner",
     "Vendor-comparison map lens: Cognition / Devin already documented orchestration/execution-plane separation via Outposts (Devin Cloud planning/inference, per-session Devboxes for execution); Cursor self-hosted is the same axis as a first-party product, not a new taxonomy",
     "Still no Cursor first-party reply to OpenAI's Cursor wind-down; absence is a one-liner, not a Cursor statement",
     "OpenAI: no Sep 2–3 high-signal API/model drop beyond prior Path to Astra / healthcare",
@@ -27,5 +28,5 @@
     "X bookmarks this run: 0 (X MCP needsAuth)",
     "SpaceX.com/updates is a JS shell; no invented launches"
   ],
-  "char_count": 9625
+  "char_count": 10176
 }
