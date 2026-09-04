@@ -6,7 +6,7 @@
 - Theme slug: `coding-agent-cognitive-debt-and-review-capacity`
 - Primary topic: `wiki/maps/coding-agent-cognitive-debt-and-review-capacity.md`
 - Purpose: NotebookLM向けの対話用ソース。KBの認知負債／レビュー容量地図を、OpenAI GPT-6 Astra の Critical 配備と Daybreak 門、そして誤整列モニタが正当な仕事を止める局面として読み直す。地図の再話でも、昨日の実行面分割の続きでもない
-- News angle: OpenAI 2026-09-03 Safety overview: GPT-6 Astra（https://openai.com/index/safety-overview-gpt-6-astra/）と発売ページ（https://openai.com/index/gpt-6-astra/）。Preparedness Framework のサイバー Critical を満たす、初めて広く配備される OpenAI モデル。高度なサイバーは制限。防御側の経路は Daybreak。誤整列モニタは、正当なエージェント仕事（防御サイバー／長時間走りを含む）を一時停止・停止しうる。ChatGPT / Codex ではレビューを求められることがあり、API ではタスクが止まる。Companion aside（一行。核にしない）: Daybreak for Frontline Defenders（https://openai.com/index/daybreak-for-frontline-defenders/）— 最前線の防御側へ $1B の補助。API aside（一行）: developers.openai.com changelog Sep 3（https://developers.openai.com/api/docs/changelog）— `gpt-6-astra` が API で GA。ツールは Responses 必須。async tools。mid-turn steering。none-effort なし。custom temperature なし。昨日の Cursor Self-hosted / Gemini 3.8 は連続の一行まで。X bookmarks は今ラン 0（X MCP は needsAuth）。Cursor の OpenAI 巻き戻しへの一次応答は発明しない
+- News angle: OpenAI 2026-09-03 Safety overview: GPT-6 Astra（https://openai.com/index/safety-overview-gpt-6-astra/）と発売ページ（https://openai.com/index/gpt-6-astra/）。Preparedness Framework のサイバー Critical を満たす、初めて広く配備される OpenAI モデル。高度なサイバーは制限。防御側の経路は Daybreak。誤整列モニタは、正当なエージェント仕事（防御サイバー／長時間走りを含む）を一時停止・停止しうる。ChatGPT / Codex ではレビューを求められることがあり、API ではタスクが止まる。Companion aside（一行。核にしない）: Daybreak for Frontline Defenders（https://openai.com/index/daybreak-for-frontline-defenders/）— 最前線の防御側へ $1B の補助。API aside（一行）: developers.openai.com changelog Sep 3（https://developers.openai.com/api/docs/changelog）— `gpt-6-astra` が API で GA。ツールは Responses 必須。async tools。mid-turn steering。none-effort なし。custom temperature なし。追加の一行: ClaudeDevs が Claude Code の Function Hooks を探索（未出荷。フィードバックは https://github.com/anthropics/claude-code/issues/91870 と https://x.com/ClaudeDevs/status/2095572891941351550）。拡張の拍だけ。核にしない。任意の一行: 有料 ChatGPT は Astra 待ちの日ごとに banked reset（X のみ。@thsottiaux https://x.com/thsottiaux/status/2095651088502591861）。昨日の Cursor Self-hosted / Gemini 3.8 は連続の一行まで。X bookmarks は今ラン 0（X MCP は needsAuth）。Cursor の OpenAI 巻き戻しへの一次応答は発明しない
 
 ## Talking points（3〜5分）
 
@@ -14,7 +14,7 @@
 2. KBの問いは「モデルが何点か」ではない。スループットが理解を追い越すとき、監督の技量が残っているかである。
 3. 地図が支えるのは、ハーネスは自動化の段数を増やす装置ではない、という収束である。レビュー容量と実装接触を残せ。今日の角は二つある。モデルが理解を追い越す。モニタが仕事を止める。どちらでも、人が判断できなければならない。
 4. 高度なサイバーは制限される。Daybreak は防御側の門である。$1B の補助は一行。一般面の Astra と、門の向こうを混ぜない。
-5. API は Responses 必須、async、mid-turn steering。none-effort も custom temp も無い。X は 0。巻き戻しへの Cursor 声明は書かない。主題は動かさない。
+5. API は Responses 必須、async、mid-turn steering。none-effort も custom temp も無い。ClaudeDevs の Function Hooks は未出荷の拡張の一行。有料 ChatGPT の banked reset は待ちの一行。X は 0。巻き戻しへの Cursor 声明は書かない。主題は動かさない。
 
 ## 今日の読み方
 
@@ -26,7 +26,7 @@ OpenAI は 9/3、「Safety overview: GPT-6 Astra」を出し、同日に GPT-6 A
 
 ページが今日のレンズになるのは、門とモニタである。能力が Critical になっても、人が理解できる量は増えない。誤整列モニタは、モデルの推論と行動を見て、無許可の動きを止めうる。公式は、追加の安全検査が、正当な仕事を遅くし、一時停止し、止めうると書く。防御サイバーを含む。サイバーに見えない仕事や、エージェントが長く走る仕事も含みうる。ChatGPT / Codex では、続ける前にレビューを求められることがある。API では、タスクが止まる。
 
-同じ日の薄い行だけ置く。Daybreak for Frontline Defenders は、$1B の補助である。最前線の防御側へ、助成されたアクセスを載せる。核にしない。門の幅の一行である。API changelog の 9/3 は、`gpt-6-astra` が GA である。ツール呼び出しは Responses API 必須である。Chat Completions でツールを使うなら、移行が要る。async tool calling は、アプリが関数を走らせている間も、モデルを続けさせる。mid-turn steering は、進行中の応答へ、追加の指示を載せる。none の reasoning effort は無い。custom temperature も無い。top_p も logprobs も無い。誤整列モニタは、対応する Responses 要求で、エージェント仕事の途中を非同期に見る。安全警報を出し、会話をレビューのために止めうる。型の一行である。核にしない。昨日の Self-hosted / Fairwind は、連続の一行である。再話しない。X bookmarks は今ラン 0。X MCP は needsAuth である。現場の沈黙ではない。Cursor の巻き戻しへの一次応答は、書かない。無い文を足さない。
+同じ日の薄い行だけ置く。Daybreak for Frontline Defenders は、$1B の補助である。最前線の防御側へ、助成されたアクセスを載せる。核にしない。門の幅の一行である。API changelog の 9/3 は、`gpt-6-astra` が GA である。ツール呼び出しは Responses API 必須である。Chat Completions でツールを使うなら、移行が要る。async tool calling は、アプリが関数を走らせている間も、モデルを続けさせる。mid-turn steering は、進行中の応答へ、追加の指示を載せる。none の reasoning effort は無い。custom temperature も無い。top_p も logprobs も無い。誤整列モニタは、対応する Responses 要求で、エージェント仕事の途中を非同期に見る。安全警報を出し、会話をレビューのために止めうる。型の一行である。核にしない。追加の一行: ClaudeDevs は Claude Code の Function Hooks を探索している。未出荷である。フィードバックは GitHub issue と X。拡張の拍である。核にしない。任意の一行: 有料 ChatGPT は、Astra に届かない日ごとに banked reset が付く、と @thsottiaux が X で書いた。待ちの一行である。核にしない。昨日の Self-hosted / Fairwind は、連続の一行である。再話しない。X bookmarks は今ラン 0。X MCP は needsAuth である。現場の沈黙ではない。Cursor の巻き戻しへの一次応答は、書かない。無い文を足さない。
 
 今日の問いは「Astra は何点か」ではない。「追い越された理解を、誰がまだ持っているか。止まった仕事を、誰が再開してよいか」である。
 
@@ -127,11 +127,11 @@ OpenAI は 9/3、「Safety overview: GPT-6 Astra」を出し、同日に GPT-6 A
 - 同じ「ゲート」でも、Daybreak の許可と、誤整列モニタの停止は、入る位置が違う
 - 同じ「防御」でも、助成されたアクセスと、理解できるレビューは、混ざらない
 
-KBの言葉では、スループットが理解を追い越し、監督技量が削れ、検証税が財務になる、という地図である。昨日の実行面は、ツールがどこで走るかだった。今日は、走っている仕事と、止まった仕事の両方を、人がまだ持てるかである。公式の型は、Critical の広配備、高度サイバーの制限、Daybreak 経路、モニタによる正当仕事の停止を一次で固定し、$1B と API の型を aside に留め、昨日の実行面を一行に残し、Cursor の声明と X の取得を、空欄のまま残す。
+KBの言葉では、スループットが理解を追い越し、監督技量が削れ、検証税が財務になる、という地図である。昨日の実行面は、ツールがどこで走るかだった。今日は、走っている仕事と、止まった仕事の両方を、人がまだ持てるかである。公式の型は、Critical の広配備、高度サイバーの制限、Daybreak 経路、モニタによる正当仕事の停止を一次で固定し、$1B と API の型と、未出荷の Function Hooks と、Astra 待ちの banked reset を aside に留め、昨日の実行面を一行に残し、Cursor の声明と X の取得を、空欄のまま残す。
 
 ## トレードオフ
 
-長い走りを許すと、塊がレビュー窓を超える。async を足すと、見ていない時間が増える。steering を足すと、見ていない軌道修正が増える。モニタを厚くすると、正当な防御と長い走りが止まる。薄くすると、無許可の軌道が残る。Daybreak を発売の再話にすると、門が消える。$1B を核にすると、助成がレビュー容量に見える。Critical の点数を核にすると、理解の負債がベンチマークになる。昨日の Self-hosted を今日の核にすると、レビュー容量が実行面の続きになる。巻き戻しの不在を声明にすると、無い文を足す。
+長い走りを許すと、塊がレビュー窓を超える。async を足すと、見ていない時間が増える。steering を足すと、見ていない軌道修正が増える。モニタを厚くすると、正当な防御と長い走りが止まる。薄くすると、無許可の軌道が残る。Daybreak を発売の再話にすると、門が消える。$1B を核にすると、助成がレビュー容量に見える。Function Hooks を核にすると、未出荷の拡張が主題になる。Critical の点数を核にすると、理解の負債がベンチマークになる。昨日の Self-hosted を今日の核にすると、レビュー容量が実行面の続きになる。巻き戻しの不在を声明にすると、無い文を足す。
 
 だから今日の使い方は、地図を増やすことではない。追い越す速度と、止まる旗と、再開する人を名指し、Astra の Critical 配備をその上に置く。発売の再話にも、昨日の実行面の再話にもしない。
 
@@ -144,7 +144,7 @@ KBの言葉では、スループットが理解を追い越し、監督技量が
 - 防御サイバーを語るなら、一般面の拒否と、Daybreak の門と、モニタの旗を分ける
 - 規則の「なぜ」を、ADR か制約か、意図が読めるテスト名に一箇所残す
 - steering する前に、自分の期待を一文書く。モデルの枠を先に借りない
-- $1B と API の型と、昨日の実行面と、X=0 は、一行のまま核に載せない
+- $1B と API の型と、未出荷の Function Hooks と、Astra 待ちの banked reset と、昨日の実行面と、X=0 は、一行のまま核に載せない
 - Cursor の巻き戻し声明は、無い。補わない
 
 昨日は実行と許可の位置を先に名指す話、今日は理解と再開の位置を先に名指す話である。Critical を広く渡す公式ページは、レビュー容量を先に書く日になる。
