@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Outrun and Interrupt — Cognitive Debt after Astra Critical - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-04/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-09-04</a> / 読み物版</header>
+    <p class="eyebrow">2026-09-04 Weekly Topic</p>
+    <h1>Outrun and Interrupt — Cognitive Debt after Astra Critical</h1>
+    <p class="lead">昨日は実行がどこで走るかでした。今日は、人がまだレビューできるかです。リードは GPT-6 Astra の Critical 配備です。Self-hosted の再話ではありません。モデルが理解を追い越す。モニタが仕事を止めます。どちらでも、人が判断できなければなりません。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-04">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 追い越す速度</strong>Critical は能力の段です。人が一度に読める量は増えません。長い走りと async は、塊を大きくします。</div>
+      <div><strong>2. 止まる旗</strong>誤整列モニタは、正当な防御サイバーや長い走りを一時停止・停止しえます。再開はゴム印ではありません。</div>
+      <div><strong>3. Daybreak は門</strong>高度なサイバーは制限されます。$1B の補助は一行です。一般面と門の向こうを混ぜません。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは、レビュー容量である</h2>
+      <p>knowledge-base-llm の <code>Coding-Agent Cognitive Debt and Review Capacity</code> は、コーディングエージェントのスループットが、人間の理解とレビュー技量と実装判断を追い越す、と警告する地図です。中心リスクは、モデルが間違えることだけではありません。チームが、理解できない量のコードを作り、受け入れることです。監督に必要な技量まで削ることです。良いハーネスは、段を増やす装置ではありません。レビュー容量と実装接触を残す装置です。</p>
+      <p>昨日の読み物は、実行は家に残り、ループは雲に残る、という分割でした。その列は今日の核ではありません。一行の連続に留めます。今日読むのは、人がまだレビューできるかです。</p>
+      <p>OpenAI は 9/3、「Safety overview: GPT-6 Astra」を出し、同日に GPT-6 Astra を配備しました。Preparedness Framework のサイバー Critical を満たす、初めて広く配備される OpenAI モデルです。適切な道具とアクセスがあれば、未知の欠陥を見つけ、多くの堅牢な系に対して、人が一歩ずつ導かなくても、それを突く方法を組み立てうる、と書きます。高度なサイバーは制限されます。防御側の経路は Daybreak です。一般面では、より進んだサイバー作業を拒否します。Daybreak 経由で、今後数週間、より緩い緩和を広げ、脆弱性／PoC の検証、マルウェア分析、検知エンジニアリングへ届ける、と書きます。</p>
+      <p>ページが今日のレンズになるのは、門とモニタです。能力が Critical になっても、人が理解できる量は増えません。誤整列モニタは、モデルの推論と行動を見て、無許可の動きを止めえます。公式は、追加の安全検査が、正当な仕事を遅くし、一時停止し、止めうると書きます。防御サイバーを含みます。サイバーに見えない仕事や、エージェントが長く走る仕事も含みえます。ChatGPT / Codex では、続ける前にレビューを求められることがあります。API では、タスクが止まります。</p>
+      <p>同じ日の薄い行だけ置きます。Daybreak for Frontline Defenders は、$1B の補助です。最前線の防御側へ、助成されたアクセスを載せます。核にしません。門の幅の一行です。API changelog の 9/3 は、<code>gpt-6-astra</code> が GA です。ツールは Responses 必須です。async tools。mid-turn steering。none-effort なし。custom temperature なし。型の一行です。昨日の Self-hosted / Fairwind は、連続の一行です。再話しません。X bookmarks は今ラン 0。X MCP は needsAuth です。Cursor の巻き戻しへの一次応答は、書きません。無い文を足しません。</p>
+
+      <h2>追い越す速度と、止まる旗</h2>
+      <p>地図の第一の型は、スループットがレビュー容量を超える、です。エージェントは大きな差分を速く出します。レビューが浅いままだと、リスクは入力速度から、隠れた設計負債へ移ります。Astra は、コーディングと computer use を、最初の依頼から成果物まで運びます。Codex では、文脈が埋まってもノートを残し、以前の窓を検索できます。長い走りが安くなります。理解の窓は、同じ速さでは広がりません。</p>
+      <p>地図の第二の型は、監督のパラドックスです。監督する人は、コーディングとデバッグと設計の技量が要ります。エージェントを厚く使うと、手を動かす練習が減ります。今日のモニタは、そのパラドックスを、停止面に出します。公式は、モニタが正当な活動を、サイバー誤用や無許可として旗を立てうると書きます。再開は、ゴム印ではありません。止まった理由を、人が再構成できなければなりません。なぜ止まったか言えないなら、再開する資格がありません。</p>
+      <p>レビュー容量は、差分を読む面だけではありません。旗を読んで再開する面もあります。API で止まる系と、製品面で確認を求める系は、人が入る位置が違います。Daybreak は、高度なサイバーを誰に渡すかの門です。誤整列モニタは、渡したあとの軌道を見る門です。同じ「ゲート」に潰しません。</p>
+
+      <h2>一般面と門を混ぜない。比較点を残す</h2>
+      <p>一般面の Astra は、セキュアなコードレビューとパッチまでは防御側に使えます。より進んだ作業は拒否します。Daybreak は、その先の経路です。$1B は、最前線の防御側へ助成する一行です。核にしません。誰が走らせてよいかと、走った結果を誰が理解できるかは、別の面です。「防御だからレビューは薄い」は、地図が支えない文です。</p>
+      <p>地図は、理解の負債と意図の負債を分けます。コードが分かっていないのが、認知／理解の負債です。コードは分かるが、規則の理由が消えているのが、意図の負債です。Astra が速く書くほど、理解の負債は溜まります。モニタが止めるほど、意図の負債が表に出ます。理由が残っていないと、旗は読めません。</p>
+      <p>有用な委任は、人間側の比較点を残します。降伏は、モデルの枠組みと答えが、人間の答えになります。mid-turn steering は、見ている人のための面です。async tools は、人が見ていない時間を長くします。steering する前に、自分の期待を一文で言えたか。止まったあとに、モデルの説明をそのまま信じていないか。巻き戻しへの Cursor 声明は、今日も書きません。</p>
+
+      <div class="callout">
+        よい読みは、点数で語らないことである。Critical でも理解量は増えない。モニタが正当な仕事を止めても、再開する人は理由を再構成できなければならない。Daybreak は門である。$1B と API の型は一行に残す。発売の再話にも、昨日の実行面の再話にもしない。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>この差分は、一度座って読める大きさか。長い走りを誰が見ているか？</li>
+        <li>止まった仕事を、会話を見ていない人が再開してよいか？</li>
+        <li>止まっているのは誤用か。誤検知か。証拠はどこにあるか？</li>
+        <li>これは一般面の拒否か。Daybreak の門か。モニタの旗か？</li>
+        <li>この制限の理由は、暗黙の記憶なしで残っているか？</li>
+        <li>steering の前に、自分の期待を言えたか。モデルの自信を借りていないか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/coding-agent-cognitive-debt-and-review-capacity.md</code>, framed with OpenAI's 9/3 GPT-6 Astra safety overview and launch — first broadly deployed OpenAI model at Preparedness Framework Critical for cyber; advanced cyber limited; Daybreak pathway for defenders; misalignment monitors can pause/stop legitimate agent work including defensive cyber and long-running agents; ChatGPT/Codex may ask for review, API stops the task (<a href="https://openai.com/index/safety-overview-gpt-6-astra/">openai.com/index/safety-overview-gpt-6-astra</a>, <a href="https://openai.com/index/gpt-6-astra/">openai.com/index/gpt-6-astra</a>). Companion aside, not the core: Daybreak for Frontline Defenders — $1B subsidized access for frontline defenders (<a href="https://openai.com/index/daybreak-for-frontline-defenders/">openai.com/index/daybreak-for-frontline-defenders</a>). API aside: Sep 3 changelog — <code>gpt-6-astra</code> GA; Responses-required tools; async tools; mid-turn steering; no none-effort; no custom temperature (<a href="https://developers.openai.com/api/docs/changelog">developers.openai.com/api/docs/changelog</a>). Yesterday's Cursor Self-hosted / Gemini 3.8 is one-line continuity only. Do not invent a Cursor reply to OpenAI's Cursor wind-down. X bookmarks this run: 0 (X MCP needsAuth).</p>
+    </footer>
+  </div>
+</body>
+</html>
