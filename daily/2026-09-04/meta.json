@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-04",
+  "title": "Outrun and Interrupt — Cognitive Debt after Astra Critical",
+  "theme": "coding-agent-cognitive-debt-and-review-capacity",
+  "source": "daily/2026-09-04/source.md",
+  "generated_at": "2026-09-04T01:20:00Z",
+  "topic_id": "wiki/maps/coding-agent-cognitive-debt-and-review-capacity.md",
+  "output_dir": "daily/2026-09-04",
+  "page": "daily/2026-09-04/source.md",
+  "related": [
+    "wiki/maps/coding-agent-cognitive-debt-and-review-capacity.md",
+    "wiki/maps/coding-agent-review-rubric.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md",
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/maps/agent-harness-landscape.md"
+  ],
+  "news_context": [
+    "OpenAI 2026-09-03: Safety overview GPT-6 Astra + launch — first broadly deployed OpenAI model at Preparedness Framework Critical for cyber; advanced cyber limited; Daybreak pathway for defenders; misalignment monitors can pause/stop legitimate agent work including defensive cyber and long-running agents; ChatGPT/Codex may ask for review, API stops the task (https://openai.com/index/safety-overview-gpt-6-astra/, https://openai.com/index/gpt-6-astra/)",
+    "Companion aside (not the core): Daybreak for Frontline Defenders — $1B subsidized access for frontline defenders (https://openai.com/index/daybreak-for-frontline-defenders/)",
+    "API aside (not the core): Sep 3 changelog — gpt-6-astra GA on API; tool calling requires Responses API; async tool calling; mid-turn steering; no none reasoning effort; no custom temperature / top_p / logprobs; misalignment monitoring can alert or stop a conversation for review (https://developers.openai.com/api/docs/changelog)",
+    "Cognitive-debt map lens: throughput can outrun human comprehension and review skill; today's second failure mode is monitor interrupts that still require a human who can reconstruct why before resume",
+    "Yesterday's Cursor Self-hosted / Gemini 3.8 Fairwind is one-line continuity only, not today's core",
+    "Do not invent a Cursor first-party reply to OpenAI's Cursor wind-down",
+    "X bookmarks this run: 0 (X MCP needsAuth)"
+  ],
+  "char_count": 8448
+}
