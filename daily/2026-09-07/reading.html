@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Referee is Lean — FLT after Prove2Me - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-07/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-09-07</a> / 読み物版</header>
+    <p class="eyebrow">2026-09-07 Weekly Topic</p>
+    <h1>The Referee is Lean — FLT after Prove2Me</h1>
+    <p class="lead">9/4 は、人がまだレビューできるかでした。今日は、AI規模の証明を、人が同じ速さで審さないための評価層です。リードは FLT の形式化です。Astra の再話ではありません。Lean は核です。Prove2Me の DAG は次の仕事を決める面です。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-07">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 核が合格を決める</strong>新しさは数学ではありません。検証です。Lean は三つの標準公理だけを使い、比較器が Mathlib の FLT 文と合わせます。</div>
+      <div><strong>2. DAG が並走を支える</strong>最初の走りは状態を見失いました。Prove2Me の定理文 DAG が、次に何を証明するかを決めます。</div>
+      <div><strong>3. 査読は行数ではない</strong>1,300万行を人が読む門にはしません。自動形式化は査読負担を減らします。解説は置き換えません。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは、評価が独立しているかである</h2>
+      <p>knowledge-base-llm の <code>Eval and Review Reliability</code> は、エージェント成果物が十分かを知る方法と、レビュー負荷が隘路になるのを防ぐ方法を、一つの地図に集めたものです。中心命題は単純です。評価は、生成した同じエージェントの、最後の一目ではありません。別のハーネス層です。</p>
+      <p>9/4 の読み物は、スループットが理解を追い越し、モニタが正当な仕事を止める、という認知負債でした。その列は今日の核ではありません。一行の連続に留めます。今日読むのは、検証が独立しているかです。</p>
+      <p>Anthropic は 9/4、「Formalizing Fermat's Last Theorem」を出しました。Claude が約11日、ほぼ自律で、フェルマーの最終定理の端から端までの計算機検査証明を、Lean で書いた、と書きます。途中で Lean 1,300万行を書き、中間定理 29,500 を証明した、と書きます。並走したのは数十の Claude エージェントです。公式は、ここでの新しさは検証である、と先に置きます。Wiles 1995 の証明を、計算機が検査できる形に直した、という角です。新しい定理の発見ではありません。</p>
+      <p>ページが今日のレンズになるのは、核と DAG です。Lean は論理をアルゴリズムで検査します。人が自明として飛ばす段も、核は全部見ます。最初の走りは失敗しました。エージェントはプロジェクトの状態を見失い、協働が止まりました。失敗した走りは、最終証明の定型以外の行の約7%を残した、と公式は書きます。成功したのは、Tianyi Peng と Columbia の共同者が作った Prove2Me に切り替えたあとです。定理文の DAG が、次に何を証明するかを決めます。記憶の劣化を緩和し、並走を許します。定理文と証明を別ファイルに分け、Lean のコンパイルを速くします。各定理に自然言語の説明を付け、検索と再利用を簡単にします。Claude Code ベースの複数エージェント・ハーネスと組んで、約2週間弱で完了しました。出力トークンは約60億。内部研究モデルは Claude Fable 5.1 にほぼ相当する、と公式が書きます。できあがった証明は Lean が検査しました。Lean の三つの標準公理だけを使います。比較器が、定理文が Mathlib の FLT 文と一致することを確認しました。</p>
+      <p>同じ週の薄い行だけ置きます。Lyria 3.5 は、Gemini アプリと API の音楽生成です。創作面の一行です。核にしません。任意の一行: 9/3 の <code>ant apply</code> は、エージェント／環境／スキル／記憶／配備をリポジトリのファイルから作ります。計画を承認し、<code>claude-lock.json</code> をコミットします。IaC の一行です。核にしません。9/4 の Astra Critical / Daybreak は、連続の一行です。再審しません。X bookmarks は今ラン 0。X MCP は needsAuth です。Cursor の巻き戻しへの一次応答は、書きません。無い文を足しません。</p>
+
+      <h2>核が合格を決める。DAG が次の仕事を決める</h2>
+      <p>地図の第一層は、意味のレビューの前に、安い決定的検査を置け、です。今日の Lean は、その層の極端な形です。証明支援系は、証明の論理をアルゴリズムで検査します。人が読む証明は自明な段を飛ばします。Lean は飛ばしません。今日の合格は、「Claude が証明した気がする」ではありません。Lean が通し、比較器が文を合わせた、です。公式ページは完全な証明を GitHub に置きます。核が通った成果物です。人が 1,300万行を座って読む門ではありません。</p>
+      <p>評価は別層です。質が曖昧か、賭けが大きいときは、生成と判定を分けます。今日の切り出しは、さらに硬いです。判定者はモデルではありません。Lean の核です。数十のエージェントが概念を定義し、中間定理を証明し、より難しい文へ積みます。核が通らなければ、先へ行けません。最初の走りでは、エージェントが状態を見失い、協働が止まりました。判定が独立でも、作業面が無いと、生成側が折れます。</p>
+      <p>Prove2Me が助けた、と公式が挙げるのは三つです。定理文の DAG が、次に試みる証明を決めます。定理文と証明を別ファイルにし、コンパイルを速くします。各定理文に自然言語の説明を付け、検索と再利用を容易にします。人間の入力は、Tianyi の時々の高レベル指示に限られた、と公式は書きます。設計図は、Wiles を簡略化した Darmon, Diamond, Taylor に沿います。会話を compact しても、根の FLT は残ります。残るのは要約ではありません。検査可能な命題です。</p>
+
+      <h2>査読負担を減らす。解説は置き換えない</h2>
+      <p>地図の実務目的は、レビュー負荷が隘路になるのを防ぐことです。公式は、同じ負荷を、数学の査読で書きます。新しい結果を深く理解し、正しいと確信するまでに、月や年がかかります。Wiles は 129 ページです。1993 年の発表のあと、査読が隙間を見つけ、一年かけて直しました。Kevin Buzzard は、自動形式化が現代の数学文献へ進めば、誤りの除去と査読負担の軽減になり、LLM が出す数学を厳密に検査できる、と公式ページで述べます。公式は、人間が読める解説を置き換えるべきではない、とも書きます。形式化は、コミュニティが追いつくための、実行可能な道でありうると書きます。</p>
+      <p>PASS には、合格条件に対応する開かれた証拠が要ります。今日の証拠は、Lean が通した証明と、Mathlib 文との一致です。13百万行を人が読むことは、証拠ではありません。公式は、Mathlib の 5 倍超である、と書き、この証明は必要以上に長いだろう、とも書きます。長いことは、核が通ったことと両立します。人が読めることとは両立しません。</p>
+      <p>最初の失敗は、能力不足より、状態喪失でした。失敗した努力は、最終証明の定型以外の行の約7%になった、と公式は書きます。小さな実験では、個人の Claude Max プランを三つ使い、Prove2Me だけで協働し、Vinogradov の三素数定理を三日で終えました。足場が主題です。プランの枚数ではありません。人がまだ持つのは、高レベル指示と、核が通ったあとの解説と、設計図の選択です。Astra のモニタ停止と、Lean の合格を、同じ「ゲート」に潰しません。Lyria は創作面の一行です。評価層の話にしません。巻き戻しへの Cursor 声明は、今日も書きません。</p>
+
+      <div class="callout">
+        よい読みは、新定理で語らないことである。新しさは検証である。Lean は核である。Prove2Me の DAG は次の仕事を決める。1,300万行を人が読む門にはしない。Lyria と ant apply は一行に残す。形式化の再話にも、9/4 の再話にもしない。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>この成果物の合格は、核が決めたか。同じエージェントの最後の一目が決めたか？</li>
+        <li>判定は核か。次の仕事を決める面は、どこに残っているか？</li>
+        <li>次の仕事は、会話の記憶にあるか。外に出た DAG にあるか？</li>
+        <li>査読を核に渡したあと、人がまだ持つべきは解説か。行数か？</li>
+        <li>折れた走りの行は、核が残したか。人が残したか？</li>
+        <li>人がまだ持つべきは、核の合格か。経路の選択か。解説か？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/eval-review-reliability.md</code>, framed with Anthropic's 9/4 Formalizing Fermat's Last Theorem — Claude wrote an end-to-end computer-checked Lean proof of FLT in ~11 days, largely autonomously; novelty is verification not new mathematics; Prove2Me DAG multi-agent harness; dozens of agents; ~6B output tokens; internal research model roughly comparable to Claude Fable 5.1; Lean's three standard axioms; comparator confirmed the statement matches Mathlib's FLT (<a href="https://www.anthropic.com/news/formalizing-fermats-last-theorem">anthropic.com/news/formalizing-fermats-last-theorem</a>, <a href="https://github.com/anthropics/fermats-last-theorem">github.com/anthropics/fermats-last-theorem</a>, <a href="https://doi.org/10.48550/arXiv.2608.28433">doi.org/10.48550/arXiv.2608.28433</a>). Creative aside, not the core: Lyria 3.5 in Gemini app and API (<a href="https://blog.google/innovation-and-ai/products/gemini-app/better-tracks-lyria-gemini/">blog.google/.../better-tracks-lyria-gemini</a>). Optional one-liner: ant CLI 1.30.0 <code>ant apply</code> — IaC for agents/environments/skills/memory/deployments; approve the plan; commit <code>claude-lock.json</code> (<a href="https://platform.claude.com/docs/en/release-notes/overview">platform.claude.com/docs/en/release-notes/overview</a>). 9/4 Astra Critical / Daybreak is one-line continuity only. Do not invent a Cursor reply to OpenAI's Cursor wind-down. X bookmarks this run: 0 (X MCP needsAuth).</p>
+    </footer>
+  </div>
+</body>
+</html>
