@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-07",
+  "title": "The Referee is Lean — FLT after Prove2Me",
+  "theme": "eval-review-reliability",
+  "source": "daily/2026-09-07/source.md",
+  "generated_at": "2026-09-07T00:45:00Z",
+  "topic_id": "wiki/maps/eval-review-reliability.md",
+  "output_dir": "daily/2026-09-07",
+  "page": "daily/2026-09-07/source.md",
+  "related": [
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/maps/coding-agent-review-rubric.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md",
+    "wiki/maps/coding-agent-cognitive-debt-and-review-capacity.md",
+    "wiki/maps/agent-harness-control-taxonomy.md"
+  ],
+  "news_context": [
+    "Anthropic 2026-09-04: Formalizing Fermat's Last Theorem — Claude wrote an end-to-end computer-checked Lean proof of FLT in ~11 days, largely autonomously; novelty is verification not new mathematics; Prove2Me DAG multi-agent harness; dozens of agents; ~6B output tokens; internal research model roughly comparable to Claude Fable 5.1; Lean's three standard axioms; comparator confirmed the statement matches Mathlib's FLT; full proof on GitHub (https://www.anthropic.com/news/formalizing-fermats-last-theorem, https://github.com/anthropics/fermats-last-theorem, https://doi.org/10.48550/arXiv.2608.28433)",
+    "Eval-review-reliability map lens: Lean is a deterministic independent evaluator; autoformalization keeps human referee load feasible at AI-scale proof artifacts; generator-evaluator split rather than the same agent's final glance",
+    "Creative aside (not the core): Lyria 3.5 in Gemini app and API (https://blog.google/innovation-and-ai/products/gemini-app/better-tracks-lyria-gemini/)",
+    "Optional one-liner, not the core: ant CLI 1.30.0 ant apply — IaC for agents/environments/skills/memory/deployments; approve the plan; commit claude-lock.json (https://platform.claude.com/docs/en/release-notes/overview)",
+    "9/4 Astra Critical / Daybreak is one-line continuity only, not today's core",
+    "Do not invent a Cursor first-party reply to OpenAI's Cursor wind-down",
+    "X bookmarks this run: 0 (X MCP needsAuth)"
+  ],
+  "char_count": 8859
+}
