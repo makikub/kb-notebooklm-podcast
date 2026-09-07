@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-09-07 - The Referee is Lean — FLT after Prove2Me</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-07/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / 2026-09-07</header>
+<h1>The Referee is Lean — FLT after Prove2Me</h1>
+<div class="note">
+  <strong>読み物:</strong> まず <a href="reading.html">読み物版</a> を読むのがおすすめです。<br>
+  <strong>ソース:</strong> <a href="source.md">source.md</a> はNotebookLMにも追加できます。
+</div>
+<div class="actions">
+  <a href="reading.html">読み物版</a>
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-07/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-07">GitHub</a>
+</div>
+<h1>The Referee is Lean — FLT after Prove2Me</h1>
+<ul>
+<li>Date: 2026-09-07</li>
+<li>Theme slug: <code>eval-review-reliability</code></li>
+<li>Primary topic: <code>wiki/maps/eval-review-reliability.md</code></li>
+<li>Purpose: NotebookLM向けの対話用ソース。KBの評価／レビュー信頼性地図を、Anthropic の FLT 形式化（Prove2Me の DAG と Lean 核）として読み直す。地図の再話でも、9/4 の認知負債の続きでもない</li>
+<li>News angle: Anthropic 2026-09-04 Formalizing Fermat&#x27;s Last Theorem（<a href="https://www.anthropic.com/news/formalizing-fermats-last-theorem">https://www.anthropic.com/news/formalizing-fermats-last-theorem</a>）。Claude が約11日、ほぼ自律で、Wiles 系の既知証明を Lean に書き、端から端まで計算機検査した、と書く。新しいのは数学ではなく検証である。Prove2Me の DAG が次に証明すべき命題を保ち、数十のエージェントが並走する。出力トークンは約60億。内部研究モデルは Claude Fable 5.1 にほぼ相当、と公式が書く。Lean は三つの標準公理だけを使い、比較器が Mathlib の FLT 文と一致を確認した。完全な証明は公式ページが GitHub に置く（<a href="https://github.com/anthropics/fermats-last-theorem">https://github.com/anthropics/fermats-last-theorem</a>）。Prove2Me 論文は Chen et al.（<a href="https://doi.org/10.48550/arXiv.2608.28433">https://doi.org/10.48550/arXiv.2608.28433</a>）。aside（一行。核にしない）: Lyria 3.5 が Gemini アプリ／API に入る（<a href="https://blog.google/innovation-and-ai/products/gemini-app/better-tracks-lyria-gemini/">https://blog.google/innovation-and-ai/products/gemini-app/better-tracks-lyria-gemini/</a>）。任意の一行: ant CLI 1.30.0 の <code>ant apply</code>（<a href="https://platform.claude.com/docs/en/release-notes/overview">https://platform.claude.com/docs/en/release-notes/overview</a>）— エージェント／環境／スキル／記憶／配備の IaC。計画を承認し、<code>claude-lock.json</code> をコミットする。9/4 の Astra Critical / Daybreak は連続の一行まで。再審しない。X bookmarks は今ラン 0（X MCP は needsAuth）。Cursor の OpenAI 巻き戻しへの一次応答は発明しない</li>
+</ul>
+<h2>Talking points（3〜5分）</h2>
+<ol>
+<li>9/4 は、人がまだレビューできるかだった。今日は、AI規模の証明を、人が同じ速さで審さないための評価層である。リードは FLT の形式化である。Astra の再話ではない。Lyria の再話でもない。</li>
+<li>KBの問いは「Claude が FLT を新しく証明したか」ではない。既知の証明を、独立の核が検査できる形にしたかである。公式自身が、新しいのは検証だ、と書く。</li>
+<li>地図が支えるのは、評価は生成と同じエージェントの最後の一目ではない、という収束である。Lean は決定的な検査器である。Prove2Me の DAG は、次に何を証明するかを決める作業面である。</li>
+<li>自動形式化は、査読の負担を減らす。人間向けの解説を置き換えない、と公式は書く。13百万行を人が読む門にはしない。</li>
+<li>Lyria と <code>ant apply</code> は一行。Astra は連続の一行。X は 0。巻き戻しへの Cursor 声明は書かない。主題は動かさない。</li>
+</ol>
+<h2>今日の読み方</h2>
+<p>knowledge-base-llm の <code>Eval and Review Reliability</code> は、エージェント成果物が十分かを知る方法と、レビュー負荷が隘路になるのを防ぐ方法を、一つの地図に集めたものである。中心命題は単純である。評価は、生成した同じエージェントの、最後の一目ではない。別のハーネス層である。</p>
+<p>9/4 の読み物は、スループットが理解を追い越し、モニタが正当な仕事を止める、という認知負債だった。その列は今日の核ではない。一行の連続に留める。今日読むのは、検証が独立しているかである。</p>
+<p>Anthropic は 9/4、「Formalizing Fermat&#x27;s Last Theorem」を出した。Claude が約11日、ほぼ自律で、フェルマーの最終定理の端から端までの計算機検査証明を、Lean で書いた、と書く。途中で Lean 1,300万行を書き、中間定理 29,500 を証明した、と書く。並走したのは数十の Claude エージェントである。公式は、Riemann 予想まわりの最近の仕事とは違い、ここでの新しさは検証である、と先に置く。Wiles 1995 の証明を、計算機が検査できる形に直した、という角である。新しい定理の発見ではない。</p>
+<p>ページが今日のレンズになるのは、核と DAG である。Lean は論理をアルゴリズムで検査する。人が自明として飛ばす段も、核は全部見る。最初の走りは失敗した。エージェントはプロジェクトの状態を見失い、協働が止まった。失敗した走りは、最終証明の定型以外の行の約7%を残した、と公式は書く。成功したのは、Tianyi Peng と Columbia の共同者が作った Prove2Me に切り替えたあとである。定理文の DAG が、次に何を証明するかを決める。記憶の劣化を緩和し、並走を許す。定理文と証明を別ファイルに分け、Lean のコンパイルを速くする。各定理に自然言語の説明を付け、検索と再利用を簡単にする。Claude Code ベースの複数エージェント・ハーネスと組んで、約2週間弱で完了した。出力トークンは約60億。内部研究モデルは Claude Fable 5.1 にほぼ相当する、と公式が書く。できあがった証明は Lean が検査した。Lean の三つの標準公理だけを使う。比較器が、定理文が Mathlib の FLT 文と一致することを確認した。</p>
+<p>同じ週の薄い行だけ置く。Lyria 3.5 は、Gemini アプリと API の音楽生成である。創作面の一行である。核にしない。任意の一行: 9/3 の <code>ant apply</code> は、エージェント／環境／スキル／記憶／配備をリポジトリのファイルから作る。計画を承認し、<code>claude-lock.json</code> をコミットする。IaC の一行である。核にしない。9/4 の Astra Critical / Daybreak は、連続の一行である。再審しない。X bookmarks は今ラン 0。X MCP は needsAuth である。現場の沈黙ではない。Cursor の巻き戻しへの一次応答は、書かない。無い文を足さない。</p>
+<p>今日の問いは「FLT は解けたか」ではない。「13百万行の成果物を、誰が、何で、十分だと判定するか」である。</p>
+<h2>1. 決定的な検査を先に置く — Lean は核である</h2>
+<p>地図の第一層は、意味のレビューの前に、安い決定的検査を置け、である。lint、型、テスト、構造、リポジトリ固有の機械検査可能な不変条件。今日の Lean は、その層の極端な形である。証明支援系は、証明の論理をアルゴリズムで検査する。正しさを疑う余地が残らない、と公式は書く。人が読む証明は自明な段を飛ばす。Lean は飛ばさない。人間の証明は、何世紀もの論文の上に乗る。形式化は、すでに形式化されたごく一部から始める。FLT では、コミュニティの初期設計図だけでも 86 ページだった、と公式は書く。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>核の判定は、生成したエージェントの自信と独立している</li>
+<li>三つの標準公理と、Mathlib 文との比較は、合格条件が外に出ている</li>
+<li>意味の査読を、核の前に置かない</li>
+</ul>
+<p>今日の角:<br>
+地図は、望ましい仕事の形を、人が見る前に読めて強制できる状態にせよ、と書く。今日の合格は、「Claude が証明した気がする」ではない。Lean が通し、比較器が文を合わせた、である。公式ページは完全な証明を GitHub に置く。核が通った成果物である。人が 1,300万行を座って読む門ではない。</p>
+<p>対話の種:<br>
+「この成果物の合格は、核が決めたか。同じエージェントの最後の一目が決めたか。」</p>
+<h2>2. 生成と判定を分ける — 同じエージェントの最後の一目ではない</h2>
+<p>地図の中心命題は、評価を別層にせよ、である。質が曖昧か、賭けが大きいときは、生成と判定を分ける。下位エージェントのレビュー、敵対レビュー、止める門、人が上がる面。KB の generator-evaluator は、検証器だけを切り出す形が、実務では多い、と書く。今日の切り出しは、さらに硬い。判定者はモデルではない。Lean の核である。数十のエージェントが概念を定義し、中間定理を証明し、より難しい文へ積む。核が通らなければ、先へ行けない。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>自己評価の偏りは、同じ文脈の自己採点で増える</li>
+<li>核は、生成側の物語を読まない</li>
+<li>並走するほど、親の一目では状態が持てない</li>
+</ul>
+<p>今日の角:<br>
+公式は、最初の走りではエージェントが状態を見失い、協働が止まった、と書く。判定が独立でも、作業面が無いと、生成側が折れる。Prove2Me の DAG は、評価層を支える作業面である。評価器だけを足しても、次に何を証明するかが共有されなければ、独立検査は空転する。</p>
+<p>対話の種:<br>
+「判定は核か。次の仕事を決める面は、どこに残っているか。」</p>
+<h2>3. DAG は作業面である — 記憶の劣化を緩和する</h2>
+<p>Prove2Me が助けた、と公式が挙げるのは三つである。第一に、定理文の DAG が、次に試みる証明を決める。記憶の劣化を緩和し、複数エージェントの並走を許す。第二に、定理文と証明を別ファイルにし、リンクを独立に保つ。Lean のコンパイルを速くし、資源を抑える。第三に、各定理文に自然言語の説明を付け、検索と再利用を容易にし、証明経路を単純にする。人間の入力は、Tianyi の時々の高レベル指示に限られた、と公式は書く。「Jacobian as a scheme sounds high priority」「push [the] Mazur [theorem] to be done soon」。設計図は、Wiles の証明を簡略化した Darmon, Diamond, Taylor に沿う。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>長い走りの失敗モードは、能力不足より、状態喪失であることが多い</li>
+<li>DAG は、会話履歴ではなく、外に出た命題で連続する</li>
+<li>文と証明を分けることは、コンパイルの話である。評価の単位を小さくする話でもある</li>
+</ul>
+<p>今日の角:<br>
+地図の Anthropic 長時間ハーネスは、増分と、環境検証と、引き渡し成果物と、評価器の分離を支える。今日の DAG は、その引き渡しを、定理文のグラフにしたものである。会話を compact しても、根の FLT は残る。残るのは要約ではない。検査可能な命題である。9/4 の認知負債は、人が読める塊の話だった。今日の塊は、人が読まない。核が読む。</p>
+<p>対話の種:<br>
+「次の仕事は、会話の記憶にあるか。外に出た DAG にあるか。」</p>
+<h2>4. 査読負担を減らす — AI規模の成果物を人が同じ速さで審さない</h2>
+<p>地図の実務目的は、レビュー負荷が隘路になるのを防ぐことである。Spillwave と Boris Tane は、生成が速いとレビューが溢れ、系の質が落ちる、と警告する。DORA は、検証税を一次の費用にする。今日の公式は、同じ負荷を、数学の査読で書く。新しい結果を深く理解し、正しいと確信するまでに、月や年がかかる。Wiles は 129 ページである。1993 年の発表のあと、査読が隙間を見つけ、一年かけて直した。1908 年の懸賞金の初年だけで、誤った試みが 621 あった、と公式は書く。脚注は、Kepler 予想が「99% certain」で四年、Poincaré が約四年、弱い Goldbach がいまも査読中、と並べる。</p>
+<p>Kevin Buzzard は、自動形式化が現代の数学文献へ進めば、誤りの除去と査読負担の軽減になり、LLM が出す数学を厳密に検査できる、と公式ページで述べる。公式は、AI が出す（とされる）証明が増えるほど、形式化が人間査読の負荷を一部引き受ける、と書く。人間が読める解説を置き換えるべきではない、とも書く。形式化は、コミュニティが追いつくための、実行可能な道でありうると書く。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>人が同じ速さで審さない、と先に認めることが、評価層の設計である</li>
+<li>核の合格と、人が理解できる解説は、同じ門ではない</li>
+<li>査読を核に委譲しても、解説を捨てると、意図の負債が残る</li>
+</ul>
+<p>今日の角:<br>
+地図は、PASS には、合格条件に対応する開かれた証拠を要求せよ、と書く。今日の証拠は、Lean が通した証明と、Mathlib 文との一致である。公式ページが GitHub に置くのは、その証拠である。13百万行を人が読むことは、証拠ではない。Mathlib の 5 倍超である、と公式は書く。脚注は、Mathlib は簡潔でよくレビューされているが、この証明は必要以上に長いだろう、と書く。長いことは、核が通ったことと両立する。人が読めることとは両立しない。</p>
+<p>対話の種:<br>
+「査読を核に渡したあと、人がまだ持つべきは解説か。行数か。」</p>
+<h2>5. 失敗した走りは状態を失った — ハーネスが無いと評価層も折れる</h2>
+<p>地図は、繰り返しのレビュー失敗を、より強いハーネス規則へ戻せ、と書く。新しいテスト、より明確な指示、リポジトリ規則、更新されたルーブリック、新しい lint。今日の失敗は、その手前である。最初の走りは、早期には進んだ。すぐに状態を見失い、協働が止まった。失敗した努力は、最終証明の定型以外の行の約7%になった、と公式は書く。核は、折れた走りも、通った行だけを残す。通らなかった協働は、残らない。</p>
+<p>小さな実験も、公式は一行で書く。個人の Claude Max プランを三つ使い、Hardy-Littlewood の円法の応用を形式化した。Prove2Me だけで協働し、Vinogradov の三素数定理を三日で終えた。正しい足場があれば、消費者向けの購読でも、大きな結果の共同形式化は達成できる、と公式は書く。足場が主題である。プランの枚数ではない。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>独立検査があっても、共有状態が無ければ並走は折れる</li>
+<li>失敗の7%が残ることは、核が選別した、ということである</li>
+<li>同じ足場で三日の形式化ができるなら、モデル差より足場差である</li>
+</ul>
+<p>今日の角:<br>
+地図の Cursor autoinstall は、環境が走らなければ報酬信号が消える、と書く。今日の最初の失敗は、環境ではなく、作業グラフが無かったことである。Prove2Me に切り替えてから、約2週間弱で終わった。評価層は、検査器だけでは足りない。次の仕事を決める面と、失敗を残さない面が要る。<code>ant apply</code> のロックファイルは、今日の核ではない。資源の同一性をコミットする一行である。証明の同一性は、核と DAG が持つ。</p>
+<p>対話の種:<br>
+「折れた走りの行は、核が残したか。人が残したか。次の仕事は、どの面が決めたか。」</p>
+<h2>6. 痕跡を規則に戻す — レビュー容量は核の後ろに残る</h2>
+<p>地図は、人間の注意と回復を予算にせよ、と書く。正しい道具でも、密な判断仕事が評価者を疲弊させれば、レビュー信頼性は落ちる。1,300万行は、人のレビュー窓を超える。超えることを、今日の設計は前提にする。人が持つのは、高レベル指示と、核が通ったあとの解説と、設計図の選択である。Wiles を簡略化した経路を選ぶことと、Mazur を急がせることと、「形式化は解説を置き換えない」と書くことである。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>レビュー容量を、行数で測ると、今日の成果物は始めから不合格である</li>
+<li>核の後ろに残る人の仕事は、合格判定ではなく、理解と経路選択である</li>
+<li>9/4 の認知負債は、差分を読む技量だった。今日は、核が通したあとに、何を人が持つかである</li>
+</ul>
+<p>今日の角:<br>
+地図は、重要な主張を生の証拠へ辿れるか、もっともらしいだけか、と問う。今日の主張は「FLT が形式化された」である。証拠は、Lean が通した証明と、Mathlib 文との一致と、公式ページが置く GitHub である。Astra の Critical 配備は、連続の一行である。モニタが仕事を止める話と、核が証明を通す話を、同じ「ゲート」に潰さない。Lyria の音楽生成は、創作面の一行である。評価層の話にしない。</p>
+<p>対話の種:<br>
+「人がまだ持つべきは、核の合格か。経路の選択か。解説か。」</p>
+<h2>なぜ評価信頼性地図が部品になるか</h2>
+<ul>
+<li>同じ「強いモデル」でも、生成する側と、核で通す側は、別の層である</li>
+<li>同じ「複数エージェント」でも、会話で並走する系と、DAG で並走する系は、状態の持ち方が違う</li>
+<li>同じ「レビュー」でも、人が 13百万行を読むことと、核が論理を検査することは、混ざらない</li>
+<li>同じ「ゲート」でも、Astra のモニタ停止と、Lean の合格は、入る位置が違う</li>
+</ul>
+<p>KBの言葉では、評価は別のハーネス層であり、決定的検査を先に置き、生成と判定を分け、痕跡を規則に戻す、という地図である。9/4 は、人がまだレビューできるかだった。今日は、人が同じ速さで審さない成果物を、独立の核が十分だと判定できるかである。公式の型は、既知証明の端から端までの計算機検査、Prove2Me の DAG、Lean の三公理、Mathlib 文との一致、約11日／数十エージェント／約60億トークン／Fable 5.1 相当を一次で固定し、Lyria と <code>ant apply</code> を aside に留め、Astra を一行に残し、Cursor の声明と X の取得を、空欄のまま残す。</p>
+<h2>トレードオフ</h2>
+<p>核を厚くすると、人が読まない行が増える。公式自身が、この証明は必要以上に長いだろう、と書く。DAG を厚くすると、経路が足場に固定される。足場が無いと、状態喪失で折れる。自動形式化を解説の代わりにすると、意図の負債が残る。公式は置き換えるな、と書く。査読を核に委譲すると、人が経路を選ぶ技量が削れることがある。Lyria を核にすると、創作面が主題になる。<code>ant apply</code> を核にすると、資源 IaC が検証の話になる。Astra を今日の核にすると、評価層が認知負債の続きになる。巻き戻しの不在を声明にすると、無い文を足す。</p>
+<p>だから今日の使い方は、地図を増やすことではない。独立の核と、外に出た DAG と、人が同じ速さで審さない負荷を名指し、FLT の形式化をその上に置く。新定理の再話にも、9/4 の再話にもしない。</p>
+<h2>実務のとりはじめ</h2>
+<p>大きな基盤は要らない。今日からできる最小セット:</p>
+<ul>
+<li>合格条件を、同じエージェントの一目ではなく、外の検査器で一文にする</li>
+<li>長い並走を許すなら、次の仕事を決める面を、会話ではなく外のグラフか成果物に置く</li>
+<li>PASS には、合格条件に対応する開かれた証拠を要求する。行数の多さは証拠にしない</li>
+<li>人間向けの解説と、核が通した成果物を、同じ門にしない。公式は置き換えるな、と書く</li>
+<li>折れた走りを、核が残した行と、人が残したい教訓に分ける</li>
+<li>Lyria と <code>ant apply</code> と、9/4 の Astra と、X=0 は、一行のまま核に載せない</li>
+<li>Cursor の巻き戻し声明は、無い。補わない</li>
+<li>公式ページに無い GitHub URL は、足さない。あるのは <code>anthropics/fermats-last-theorem</code> である</li>
+</ul>
+<p>9/4 は理解と再開の位置を先に名指す話、今日は核と DAG の位置を先に名指す話である。既知の証明を計算機が検査した公式ページは、評価を別層に書け、という日になる。</p>
+<h2>次に考えるとよさそうな問い</h2>
+<ul>
+<li>この成果物の合格は、核が決めたか。同じエージェントの最後の一目が決めたか？</li>
+<li>判定は核か。次の仕事を決める面は、どこに残っているか？</li>
+<li>次の仕事は、会話の記憶にあるか。外に出た DAG にあるか？</li>
+<li>査読を核に渡したあと、人がまだ持つべきは解説か。行数か？</li>
+<li>折れた走りの行は、核が残したか。人が残したか？</li>
+<li>人がまだ持つべきは、核の合格か。経路の選択か。解説か？</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm. Source topic: <code>wiki/maps/eval-review-reliability.md</code></p></footer>
+
+</body>
+</html>
