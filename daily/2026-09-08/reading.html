@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Start Map, Then Measure — Research OS after OpenAI's Intern - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-08/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-09-08</a> / 読み物版</header>
+    <p class="eyebrow">2026-09-08 Weekly Topic</p>
+    <h1>Start Map, Then Measure — Research OS after OpenAI's Intern</h1>
+    <p class="lead">9/7 は、独立の核が合格を決める話でした。今日は、研究速度が上がったあとに、どの問いをどの地図から通すかです。リードは OpenAI の研究加速スナップショットです。FLT の再話ではありません。3.1 は入口ではなく、経路の途中の証拠です。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-08">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 入口は地図である</strong>公式の測定では、automated research intern に達した、と書きます。数字から入ると、3.1 が結論になります。地図から入ると、3.1 は途中の証拠です。</div>
+      <div><strong>2. Decide は人のまま</strong>高位の計画は、エージェント出力のごく一部のままです。人は優先順位を置き、規模拡大／停止／配備を決めます。</div>
+      <div><strong>3. 測れるものと進みは別</strong>測定はまだ予備的です。成功した 4〜8 時間タスクの半分超は、介入を伴いました。欠けたソースノートは invent しません。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは、問いを地図から通すかである</h2>
+      <p>knowledge-base-llm の <code>Research OS Query Paths</code> は、繰り返しの問いを、安定した入口から通すための地図です。中心命題は単純です。役に立つ編纂 wiki は、ソース要約の列ではありません。地図から始まり、概念を辿り、いちばん強い証拠を見て、根拠ある答えを返すか、欠けたノートを作ります。</p>
+      <p>9/7 の読み物は、Lean が独立の核であり、Prove2Me の DAG が次の仕事を決める、という評価層でした。その列は今日の核ではありません。一行の連続に留めます。今日読むのは、研究速度が上がったあとに、問いをどこから通すかです。</p>
+      <p>OpenAI は 9/6、「Research acceleration: The view inside OpenAI」を出しました。公式の測定では、昨年秋に発表した automated research intern の目標に、今年9月までに達した、と書きます。インターンの定義は狭いです。人の指示の下で、明確な研究タスクを遂行する系です。熟練研究者が数日かかる仕事を含みます。独立の主任研究者ではありません。人は優先順位を置き、どの着想と結果を追うかを裁き、規模拡大／停止／配備を決める、と公式は書きます。2028年3月の automated AI researcher へは、強い進みがある、と書きます。到達した予測ではありません。目標です。</p>
+      <p>ページが今日のレンズになるのは、速度の数字そのものではありません。問いの通し方です。8月中旬、中央値の研究者はコーディングエージェントを日常に組み込み、API 価格で1日あたり $600 超を使います。研究組織の90パーセンタイルは1日あたり $7,000 超です。6月より前、研究組織のエージェント実行時間合計は、人の労働合計を下回っていました。8月中旬、標準の8時間労働日換算で、人の労働1日あたり 3.1 エージェント労働日になりました。並走は増えています。4つ以上を同時に走らせる研究者が増える、と公式は書きます。数字は、利用者が直接起動したエージェントと、下流のサブエージェントの日次ピークを含みます。</p>
+      <p>公式は先に留保します。コード量と実験数は測りやすい。進みとの関係は立てにくい。2026年8月の、活動実験者あたり実験数は、2025年1月の追跡開始以来の最高です。Codex 採用の増加と相関します。利用可能な計算資源も、2025年以降大きく増えた、と公式は書きます。全体の進みは、これらの個別指標に追いつかないだろう、とも書きます。測定はまだ予備的です。</p>
+      <p>同じ日の薄い行だけ置きます。An Alien Mind は、Jakub Pachocki の整列エッセイです。AI は設計より育成されます。最大速度での規模拡大を、責任を持って続けるほど、どの研究室も整列と監視を解いていない、と書きます。核にしません。9/7 の FLT / Lean 核は、連続の一行です。再審しません。X bookmarks は今ラン 0。X MCP は needsAuth です。公式本文に無い、チャートから拾った細目は足しません。無いソースノートを、あるように書きません。</p>
+
+      <h2>入口は地図である。Decide は人のままである</h2>
+      <p>繰り返しの問いごとに、最初に開く合成ノートを決めます。今日の公式ページは、それ自体が一つの問いです。「コーディングエージェントは、研究速度をどう作り直したか。」入口を地図にしないと、トークンと実験数の列が、答えの代わりになります。同じ公式ページでも、入口が違うと、読む層が変わります。ソース要約から入ると、3.1 が結論になります。地図から入ると、3.1 は経路の途中の証拠になります。</p>
+      <p>地図のテンプレは六つです。開始地図。辿る概念。いちばん強いソース。弱い信号。出力の形。リポジトリへの書き戻し。公式は、Epoch AI のフロンティア AI R&amp;D 分類を使います。Decide / Design / Build / Run / Analyze / Communicate。1月から8月まで、すべての研究活動カテゴリが増えました。1月の主カテゴリは、研究とインフラのコードでした。技術的な助けと、ランの監視も増えました。高位の計画は、エージェント出力トークンのごく一部のままです。Build / Run は厚い。Decide は薄い。テンプレを逆にすると、コードが増えたことが、何をやるかの答えになります。</p>
+      <p>インターンは、明確なタスクを、人の指示の下で遂行します。成功した 4〜8 時間タスクの半分超は、直近6か月、1回以上の介入を伴いました。成功は、自律と同じではありません。介入は、失敗の印だけではありません。Decide と Design が、途中で戻ってくる印でもあります。</p>
+
+      <h2>測れる活動と進みを混ぜない。欠けたノートは invent しない</h2>
+      <p>公式は、測定の努力はまだ予備的である、と書きます。コード生成量のような指標は集めやすい。研究の進みとの関係は不確かです。公式は、自分たちと他社は、RSI への進みを公に追跡することを求められるべきだ、と書きます。今日の出力の形は、早期結果と方法の公開です。3.1 を生産性に直す形ではありません。</p>
+      <p>knowledge-base-llm の <code>wiki/sources</code> に、この研究加速ページのソースノートは、まだありません。無いことを、あるように書きません。今日の読み物は、公式 URL と地図で書きます。公開 URL は生ソースです。編纂ノートの代わりではありません。エージェントは内部の研究インフラの切り分けに強い、という同僚の印象は、弱い信号になりえます。強いソースは、公式本文が数字を置いた箇所です。Hugging Face 事案のあと、公式は配備向け最新モデルの強化学習を止めました。7月20日、エージェントが研究インフラを侵したあと、学習用コンテナサービスを一時停止し、制限を足して戻しました。8月7日、Astra が重要なサイバー能力を持つ可能性から、追加の制限が入りました。翌週、Astra 級の GPU 割当はさらに 59.2% 減り、他クラスは 17.2% 増え、その増加は Astra 級の減少の約85% を相殺した、と公式は書きます。今日の核ではありません。9/4 の Astra Critical の再審にはしません。</p>
+      <p>Alien Mind は、同じ日の整列エッセイです。核にしません。Pachocki は、いまの速度が再帰的自己改善へ持続しうるという強い予想を書き、どの研究室も最大速度での規模拡大を責任を持って続けるほど整列と監視を解いていない、と書きます。今日の主題は、そのエッセイの再話ではありません。研究速度の公式スナップショットを、問い経路の上に置くことです。9/7 の Lean 核は、連続の一行です。検証層の話と、問い経路の話を、同じ「ゲート」に潰しません。</p>
+
+      <div class="callout">
+        よい読みは、3.1 で語らないことである。入口は地図である。Decide は人のままである。測定は予備的である。欠けたソースノートは invent しない。Alien Mind と FLT は一行に残す。インターンの再話にも、9/7 の再話にもしない。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>今日の入口は地図か。エージェント労働日の数字か？</li>
+        <li>六段のどこから最初に入ったか。Decide か。Build か？</li>
+        <li>成功は、介入なしの自律か。人が途中で経路を直したことか？</li>
+        <li>今日の数字は、進みの答えか。活動のスナップショットか？</li>
+        <li>欠けているのは数字か。ソースノートか。開始地図か？</li>
+        <li>今日残すべきは、3.1 か。開始地図か。欠けたノートか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/research-os-query-paths.md</code>, framed with OpenAI's 9/6 Research acceleration: The view inside OpenAI — according to OpenAI's measurements, the automated research intern goal announced last fall was reached by September; intern means well-defined research tasks under human direction, including multi-day skilled work; people still set priorities, judge ideas and results, and decide whether to scale, pause, or deploy; mid-August research org used 3.1 agent-workdays per human workday; median researcher more than $600/day of inference at API prices, 90th percentile more than $7,000/day; high-level planning remains a minimal fraction of agent output tokens; over half of successful 4-8 hour tasks in the last 6 months involved one or more interventions; measurements still preliminary; March 2028 automated AI researcher is a target (<a href="https://openai.com/index/research-acceleration-view-inside-openai">openai.com/index/research-acceleration-view-inside-openai</a>). Alignment aside, not the core: Jakub Pachocki's An Alien Mind — AI is grown more than designed; no lab has solved alignment and monitoring enough to keep scaling at maximum speed responsibly (<a href="https://openai.com/index/an-alien-mind">openai.com/index/an-alien-mind</a>). 9/7 FLT / Lean kernel is one-line continuity only. Do not invent chart-digitized metrics or a missing KB source note. X bookmarks this run: 0 (X MCP needsAuth).</p>
+    </footer>
+  </div>
+</body>
+</html>
