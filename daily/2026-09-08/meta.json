@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-08",
+  "title": "Start Map, Then Measure — Research OS after OpenAI's Intern",
+  "theme": "research-os-query-paths",
+  "source": "daily/2026-09-08/source.md",
+  "generated_at": "2026-09-08T00:40:00Z",
+  "topic_id": "wiki/maps/research-os-query-paths.md",
+  "output_dir": "daily/2026-09-08",
+  "page": "daily/2026-09-08/source.md",
+  "related": [
+    "wiki/maps/research-os-query-paths.md",
+    "wiki/maps/context-graph-and-company-brain.md",
+    "wiki/maps/context-management-decisions.md",
+    "wiki/maps/agent-onboarding-kb-codebase.md",
+    "wiki/maps/eval-review-reliability.md"
+  ],
+  "news_context": [
+    "OpenAI 2026-09-06: Research acceleration: The view inside OpenAI — according to OpenAI's measurements, the automated research intern goal announced last fall was reached by September; intern means well-defined research tasks under human direction, including multi-day skilled work; people still set priorities, judge ideas and results, and decide whether to scale, pause, or deploy; mid-August research org used 3.1 agent-workdays per human workday; median researcher more than $600/day of inference at API prices, 90th percentile more than $7,000/day; Epoch AI six-phase taxonomy; high-level planning remains a minimal fraction of agent output tokens; over half of successful 4-8 hour tasks in the last 6 months involved one or more interventions; measurements still preliminary; March 2028 automated AI researcher is a target (https://openai.com/index/research-acceleration-view-inside-openai)",
+    "Research-os-query-paths map lens: start with a map, traverse concepts, inspect strongest evidence, then return a grounded answer or create a missing note; activity metrics are not the same as research progress; Decide remains human",
+    "Alignment aside (not the core): Jakub Pachocki's An Alien Mind — AI is grown more than designed; no lab has solved alignment and monitoring enough to keep scaling at maximum speed responsibly (https://openai.com/index/an-alien-mind)",
+    "9/7 FLT / Lean kernel is one-line continuity only, not today's core",
+    "knowledge-base-llm has no source note yet for the research-acceleration page; do not invent one or chart-digitized metrics",
+    "X bookmarks this run: 0 (X MCP needsAuth)"
+  ],
+  "char_count": 8342
+}
