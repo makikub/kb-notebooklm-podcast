@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-09",
+  "title": "Absorb the Tool — ROI after The Work Now Within Reach",
+  "theme": "ai-adoption-roi-and-capability-investment",
+  "source": "daily/2026-09-09/source.md",
+  "generated_at": "2026-09-09T00:50:00Z",
+  "topic_id": "wiki/maps/ai-adoption-roi-and-capability-investment.md",
+  "output_dir": "daily/2026-09-09",
+  "page": "daily/2026-09-09/source.md",
+  "related": [
+    "wiki/maps/ai-adoption-roi-and-capability-investment.md",
+    "wiki/maps/research-os-query-paths.md",
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/maps/coding-agent-cognitive-debt-and-review-capacity.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md"
+  ],
+  "news_context": [
+    "OpenAI 2026-09-08: The Work Now Within Reach — GPT-6 Astra as a major capability step; more than 1 billion weekly active users and 2.5 million businesses; individual-plan study: daily message volume roughly 50% higher six months after signup than in the first month, and roughly twice as many distinct tasks; research org uses 3.1 agent-workdays per human workday; people still set research priorities and judge results; GPT-5.6 Sol reduced end-to-end serving costs by 20% and token-generation efficiency rose more than 15%; Jalapeño delivered 1.5 to 1.9 times peak token throughput per watt and 1.7 to 3.6 times lower end-to-end latency; capital judged by demand served, time to productive, and whether returns justify committed capital (https://openai.com/index/the-work-now-within-reach)",
+    "Lab case: GPT-5.6 Sol on Codex connected to MIT EQuS lab software; routine qubit measurements often completed with little intervention when signals were clear; weak or noisy signals took longer and sometimes needed an experienced researcher; current agents can handle clearly defined experimental workflows, while interpreting ambiguous physical results remains a challenge (https://openai.com/index/codex-quantum-computing-experiments)",
+    "Adoption-ROI map lens: ROI is not a direct function of model quality or code volume; first question is whether the system can absorb the tool; activity counters are diagnostics; verification tax stays; Jevons-style demand expansion is an upside scenario not a default",
+    "Product aside (not the core): ChatGPT Images 2.5 — more than 3 billion images a week; up to 50% lower generation latency vs Images 2.0; Sketch, templates, comments, prompt sharing; Flare and Sunburst in the API (https://openai.com/index/introducing-chatgpt-images-2-5)",
+    "Math aside (not the core): internal system produced an analytical proof and Lean formalization of a finite-time Navier-Stokes singularity; OpenAI does not intend to claim the Millennium Prize (https://openai.com/index/navier-stokes-solution)",
+    "9/8 query-paths and 9/7 Lean kernel are one-line continuity only, not today's core",
+    "knowledge-base-llm has no source note yet for The Work Now Within Reach or the quantum-experiments page; do not invent one or unofficial metrics",
+    "X bookmarks this run: 0"
+  ],
+  "char_count": 9432
+}
