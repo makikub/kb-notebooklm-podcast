@@ -1,4 +1,4 @@
-<!-- generated: 2026-09-09T00:50:00Z -->
+<!-- generated: 2026-09-09T01:00:00Z -->
 <!-- primary_topic: wiki/maps/ai-adoption-roi-and-capability-investment.md -->
 # Absorb the Tool — ROI after The Work Now Within Reach
 
@@ -6,7 +6,7 @@
 - Theme slug: `ai-adoption-roi-and-capability-investment`
 - Primary topic: `wiki/maps/ai-adoption-roi-and-capability-investment.md`
 - Purpose: NotebookLM向けの対話用ソース。KBの AI 採用 ROI／能力投資地図を、OpenAI の到達可能な仕事（フロンティアエージェントが科学・知識労働で何を吸収できるか）として読み直す。地図の再話でも、9/8 の問い経路の続きでもない
-- News angle: OpenAI 2026-09-08 The Work Now Within Reach（https://openai.com/index/the-work-now-within-reach/）。Sarah Friar が書く。GPT‑6 Astra は能力の大きな一歩であり、コンピュータ利用、閲覧、ソフトウェア工学、サイバーセキュリティ、科学、専門職で最先端だ、と書く。週次アクティブ利用者は 10 億超、ビジネスは 250 万。個人プランの研究では、登録6か月後の日次メッセージ量は初月より約50%多く、試したタスク種は約2倍。研究組織は人の労働1日あたり 3.1 エージェント労働日を使う、と研究チームの更新を引く。人は研究の優先順位を置き、結果を裁く。GPT‑5.6 Sol は本番配信ソフトウェアを改善し、端から端までの配信コストを 20% 下げた。トークン生成効率は 15% 超増えた。カスタム推論チップ Jalapeño は、比較した商用系に対しワットあたりピークトークンスループット 1.5〜1.9 倍、端から端の遅延は 1.7〜3.6 倍低い。年末までに NVIDIA / AMD 等と並んで配備を始める計画。各投資は、満たせる需要、生産的になる速さ、投下資本を正当化するリターンで裁く、と書く。同日の実験レンズ: How GPT‑5.6 Sol helps run quantum computing experiments（https://openai.com/index/codex-quantum-computing-experiments/）。MIT EQuS の Beatriz Yankelevich が Codex に載せた Sol を実験室ソフトウェアへつなぎ、量子チップの定型測定を走らせ、結果を分析し、次を決めた。信号が明瞭なら介入は少ない。弱くnoisyなら時間がかかり、経験ある研究者の案内が要ることがある。定型ワークフローは扱える。曖昧な物理結果の解釈は課題のまま、と公式は書く。aside（短い。核にしない）: ChatGPT Images 2.5（https://openai.com/index/introducing-chatgpt-images-2-5/）— 週 30 億超の画像、Images 2.0 比で生成遅延最大 50% 減、Sketch / テンプレ / コメント / プロンプト共有。API は Flare と Sunburst。および Navier–Stokes（https://openai.com/index/navier-stokes-solution/）— 内部系が有限時間特異点の解析証明と Lean 形式化を出した、と書く。Millennium Prize は請求しない。核にしない。9/8 の問い経路核と 9/7 の Lean 核は連続の一行まで。再審しない。X bookmarks は今ラン 0。無い数字は足さない
+- News angle: OpenAI 2026-09-08 The Work Now Within Reach（https://openai.com/index/the-work-now-within-reach/）。Sarah Friar が書く。GPT‑6 Astra は能力の大きな一歩であり、コンピュータ利用、閲覧、ソフトウェア工学、サイバーセキュリティ、科学、専門職で最先端だ、と書く。週次アクティブ利用者は 10 億超、ビジネスは 250 万。個人プランの研究では、登録6か月後の日次メッセージ量は初月より約50%多く、試したタスク種は約2倍。研究組織は人の労働1日あたり 3.1 エージェント労働日を使う、と研究チームの更新を引く。人は研究の優先順位を置き、結果を裁く。GPT‑5.6 Sol は本番配信ソフトウェアを改善し、端から端までの配信コストを 20% 下げた。トークン生成効率は 15% 超増えた。カスタム推論チップ Jalapeño は、比較した商用系に対しワットあたりピークトークンスループット 1.5〜1.9 倍、端から端の遅延は 1.7〜3.6 倍低い。年末までに NVIDIA / AMD 等と並んで配備を始める計画。各投資は、満たせる需要、生産的になる速さ、投下資本を正当化するリターンで裁く、と書く。同日の実験レンズ: How GPT‑5.6 Sol helps run quantum computing experiments（https://openai.com/index/codex-quantum-computing-experiments/）。MIT EQuS の Beatriz Yankelevich が Codex に載せた Sol を実験室ソフトウェアへつなぎ、量子チップの定型測定を走らせ、結果を分析し、次を決めた。信号が明瞭なら介入は少ない。弱くnoisyなら時間がかかり、経験ある研究者の案内が要ることがある。定型ワークフローは扱える。曖昧な物理結果の解釈は課題のまま、と公式は書く。aside（短い。核にしない）: ChatGPT Images 2.5（https://openai.com/index/introducing-chatgpt-images-2-5/）— 週 30 億超の画像、Images 2.0 比で生成遅延最大 50% 減、Sketch / テンプレ / コメント / プロンプト共有。API は Flare と Sunburst。および Navier–Stokes（https://openai.com/index/navier-stokes-solution/）— 内部系が有限時間特異点の解析証明と Lean 形式化を出した、と書く。Millennium Prize は請求しない。核にしない。追加の一行: ClaudeDevs が Claude Tag を CI on-call の first responder として共有（SITREP + lessons.md。https://claude.com/blog/ai-ci-cd-on-call と kit https://github.com/anthropics/oncall-kit / https://x.com/ClaudeDevs/status/2097437571634639035）。運用／ハーネスの拍だけ。核にしない。9/8 の問い経路核と 9/7 の Lean 核は連続の一行まで。再審しない。X bookmarks は今ラン 0。無い数字は足さない
 
 ## Talking points（3〜5分）
 
@@ -14,7 +14,7 @@
 2. KBの問いは「3.1 倍の研究者が増えたか」ではない。問いは、能力投資が先か、道具が先かである。地図は、ROI はモデル品質やコード量の直接関数ではない、と書く。
 3. 地図が支えるのは、系が道具を吸収できるか、という収束である。DORA の内部基盤、文脈／データ、信頼、検証のガードレールが先である。量子ページは、実験室ソフトウェアと測定スキルへつないだあとに、定型測定が自律に近づく、と書く。
 4. Friar の「より多くの仕事がやる価値を持つ」は、需要拡大の上振れである。既定の前提ではない。地図は Jevons 型を upside として扱え、と書く。ベンダーは、この語りから利益を得る。
-5. Images と Navier–Stokes は短い aside。9/8 と 9/7 は連続の一行。X は 0。無いソースノートは invent しない。主題は動かさない。
+5. Images と Navier–Stokes は短い aside。Claude Tag は運用／ハーネスの一行。9/8 と 9/7 は連続の一行。X は 0。無いソースノートは invent しない。主題は動かさない。
 
 ## 今日の読み方
 
@@ -28,7 +28,7 @@ OpenAI は 9/8、「The Work Now Within Reach」を出した。Sarah Friar が�
 
 同日の実験ページが、吸収の具体である。「How GPT‑5.6 Sol helps run quantum computing experiments」。MIT の Engineering Quantum Systems Group で、大学院生 Beatriz Yankelevich が、Codex に載せた GPT‑5.6 Sol を実験室ソフトウェアへつないだ。量子チップの定型測定を走らせ、結果を分析し、次に試すことを決めた。信号が明瞭なら、標準の測定列を、研究者の介入は少なく完了した。弱くnoisyなら、パラメータ探しに時間がかかり、経験ある研究者の案内が要ることがある。公式は先に留保する。いまのエージェントは、明確に定義された実験ワークフローを扱える。曖昧な物理結果の解釈は課題のままである。
 
-薄い行だけ置く。ChatGPT Images 2.5 は、週 30 億超の画像、Images 2.0 比で生成遅延最大 50% 減、Sketch／テンプレ／コメント／プロンプト共有である。核にしない。Navier–Stokes は、内部系が有限時間特異点の解析証明と Lean 形式化を出した、と公式が書く。Millennium Prize は請求しない。核にしない。9/7 の Lean 核は、連続の一行である。再審しない。X bookmarks は今ラン 0。公式本文に無い数字は足さない。無いソースノートを、あるように書かない。
+薄い行だけ置く。ChatGPT Images 2.5 は、週 30 億超の画像、Images 2.0 比で生成遅延最大 50% 減、Sketch／テンプレ／コメント／プロンプト共有である。核にしない。Navier–Stokes は、内部系が有限時間特異点の解析証明と Lean 形式化を出した、と公式が書く。Millennium Prize は請求しない。核にしない。追加の一行: ClaudeDevs は Claude Tag を CI on-call の first responder として共有する。SITREP と lessons.md。運用／ハーネスの拍である。核にしない。9/7 の Lean 核は、連続の一行である。再審しない。X bookmarks は今ラン 0。公式本文に無い数字は足さない。無いソースノートを、あるように書かない。
 
 今日の問いは「届いた仕事は何か」ではない。「その仕事を、系は吸収して価値にできるか」である。
 
@@ -129,11 +129,11 @@ knowledge-base-llm の `wiki/sources` に、The Work Now Within Reach と量子�
 - 同じ「定型測定」でも、明瞭な信号の自律と、曖昧な結果の解釈は、段階が違う
 - 同じ「より多くの仕事」でも、上振れシナリオと、既定の前提は、入る位置が違う
 
-KBの言葉では、系が道具を吸収できるかが先であり、ROI は媒介された系の結果である。9/8 は、加速した研究を地図から通せるかだった。今日は、届いた仕事を、能力投資の上で価値にできるかである。公式の型は、10 億超 WAU／250 万ビジネス、6か月後のメッセージ約50%増とタスク種約2倍、研究組織 3.1、人は優先順位と結果の裁きを残す、Sol の配信コスト 20% 減とトークン効率 15% 超、Jalapeño 1.5〜1.9 倍／遅延 1.7〜3.6 倍、量子では明瞭なら介入少なく、曖昧なら人、定型は扱い、解釈は課題、を一次で固定し、Images と Navier–Stokes を aside に留め、9/8 と 9/7 を一行に残し、無いソースノートを空欄のまま残す。
+KBの言葉では、系が道具を吸収できるかが先であり、ROI は媒介された系の結果である。9/8 は、加速した研究を地図から通せるかだった。今日は、届いた仕事を、能力投資の上で価値にできるかである。公式の型は、10 億超 WAU／250 万ビジネス、6か月後のメッセージ約50%増とタスク種約2倍、研究組織 3.1、人は優先順位と結果の裁きを残す、Sol の配信コスト 20% 減とトークン効率 15% 超、Jalapeño 1.5〜1.9 倍／遅延 1.7〜3.6 倍、量子では明瞭なら介入少なく、曖昧なら人、定型は扱い、解釈は課題、を一次で固定し、Images と Navier–Stokes と Claude Tag を aside に留め、9/8 と 9/7 を一行に残し、無いソースノートを空欄のまま残す。
 
 ## トレードオフ
 
-能力投資を厚くすると、今日の公式ページが DORA のチェックリストに固定される。3.1 を核にすると、活動が ROI になる。6か月後の利用増を変革にすると、段階が消える。明瞭な信号の成功を全体の自律にすると、検証税が消える。需要拡大を既定にすると、ベンダーの語りが地図を上書きする。配信コスト 20% を顧客回収率にすると、計算の経済が事業価値になる。Images を核にすると、製品発表が主題になる。Navier–Stokes を核にすると、9/7 の Lean 核の再話になる。9/8 の問い経路を今日の核にすると、吸収が入口地図の続きになる。無いソースノートを invent すると、無い編纂を足す。
+能力投資を厚くすると、今日の公式ページが DORA のチェックリストに固定される。3.1 を核にすると、活動が ROI になる。6か月後の利用増を変革にすると、段階が消える。明瞭な信号の成功を全体の自律にすると、検証税が消える。需要拡大を既定にすると、ベンダーの語りが地図を上書きする。配信コスト 20% を顧客回収率にすると、計算の経済が事業価値になる。Images を核にすると、製品発表が主題になる。Navier–Stokes を核にすると、9/7 の Lean 核の再話になる。Claude Tag を核にすると、運用／ハーネスが主題になる。9/8 の問い経路を今日の核にすると、吸収が入口地図の続きになる。無いソースノートを invent すると、無い編纂を足す。
 
 だから今日の使い方は、地図を増やすことではない。吸収が先であることと、採用段階と、活動カウンタと、検証税と、需要拡大の上振れを名指し、到達可能な仕事の公式ページをその上に置く。インターンの再話にも、問い経路の再話にも、FLT の再話にもしない。
 
@@ -147,7 +147,7 @@ KBの言葉では、系が道具を吸収できるかが先であり、ROI は�
 - 曖昧な結果の検証税を、予算に残す。人が設計へ戻ることと、検証が消えることを混ぜない
 - 「より多くの仕事」は上振れである。既定の前提にしない
 - 配信コストとチップ効率は、能力投資の数字である。顧客回収率にしない
-- Images と Navier–Stokes と、9/8 と 9/7 と、X=0 は、一行のまま核に載せない
+- Images と Navier–Stokes と、Claude Tag と、9/8 と 9/7 と、X=0 は、一行のまま核に載せない
 - 欠けたソースノートを名指す。無い編纂を補わない
 - 公式ページに無い測定は、足さない。あるのは公式 URL の本文である
 
