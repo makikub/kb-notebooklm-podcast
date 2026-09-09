@@ -3,7 +3,7 @@
   "title": "Absorb the Tool — ROI after The Work Now Within Reach",
   "theme": "ai-adoption-roi-and-capability-investment",
   "source": "daily/2026-09-09/source.md",
-  "generated_at": "2026-09-09T00:50:00Z",
+  "generated_at": "2026-09-09T01:00:00Z",
   "topic_id": "wiki/maps/ai-adoption-roi-and-capability-investment.md",
   "output_dir": "daily/2026-09-09",
   "page": "daily/2026-09-09/source.md",
@@ -20,9 +20,10 @@
     "Adoption-ROI map lens: ROI is not a direct function of model quality or code volume; first question is whether the system can absorb the tool; activity counters are diagnostics; verification tax stays; Jevons-style demand expansion is an upside scenario not a default",
     "Product aside (not the core): ChatGPT Images 2.5 — more than 3 billion images a week; up to 50% lower generation latency vs Images 2.0; Sketch, templates, comments, prompt sharing; Flare and Sunburst in the API (https://openai.com/index/introducing-chatgpt-images-2-5)",
     "Math aside (not the core): internal system produced an analytical proof and Lean formalization of a finite-time Navier-Stokes singularity; OpenAI does not intend to claim the Millennium Prize (https://openai.com/index/navier-stokes-solution)",
+    "Ops/harness aside (not the core): ClaudeDevs shares Claude Tag as CI on-call first responder — SITREP + lessons.md (https://claude.com/blog/ai-ci-cd-on-call, https://github.com/anthropics/oncall-kit, https://x.com/ClaudeDevs/status/2097437571634639035)",
     "9/8 query-paths and 9/7 Lean kernel are one-line continuity only, not today's core",
     "knowledge-base-llm has no source note yet for The Work Now Within Reach or the quantum-experiments page; do not invent one or unofficial metrics",
     "X bookmarks this run: 0"
   ],
-  "char_count": 9432
+  "char_count": 9871
 }
