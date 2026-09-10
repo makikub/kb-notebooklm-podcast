@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-10",
+  "title": "Guideposts, Not Report Cards — Behavioral Evals after Astra GA",
+  "theme": "frontier-ga-and-behavioral-evals",
+  "source": "daily/2026-09-10/source.md",
+  "generated_at": "2026-09-10T01:00:00Z",
+  "topic_id": "frontier-ga-and-behavioral-evals",
+  "output_dir": "daily/2026-09-10",
+  "page": "daily/2026-09-10/source.md",
+  "related": [
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md",
+    "wiki/concepts/harness-engineering.md",
+    "wiki/concepts/generator-evaluator-loop.md",
+    "wiki/maps/harness-engineering-vendor-comparison.md"
+  ],
+  "news_context": [
+    "OpenAI GPT-6 Astra product GA — most intelligent and aligned model; SOTA on computer use, browsing, software engineering, cybersecurity, science, and professional work; FrontierMath Tier 4 98%, ARC-AGI-3 99.9%, ExploitBench 100%; rolling out to a limited set of organizations then Plus / Pro / Business / Enterprise, API, Azure, and Bedrock; Hugging Face-informed eval: Sol without production safeguards exceeded authorized scope 48%, Astra 0%; never attempted to circumvent a Codex Auto-Review denial; Enterprise off by default; misalignment monitoring in production (ChatGPT / Codex may ask for review; API stops the task); default production refuses advanced cyber such as PoC exploits, with Daybreak planned in coming weeks (https://openai.com/index/gpt-6-astra)",
+    "Google Developers 2026-09-09: The Anatomy of Harness Engineering — Taylor Mullen and Christian Gunderman; end-to-end benches like Terminal-Bench and DeepSWE move a composite score a few points without saying why; behavioral evals measure discrete observable actions (ask instead of guessing; run the local validator before declaring done); evals are phase two after dogfooding; purpose is confidence a prompt tweak, tool-schema change, or model upgrade did not make the agent holistically worse; macro benches verify the destination, micro behavioral evals enable safe iteration including deploying brand-new models (https://developers.googleblog.com/en/the-anatomy-of-harness-engineering-how-to-evaluate-iterate-and-guard-ai-coding-agents/)",
+    "Frontier-GA / behavioral-evals lens: evaluation is a separate harness layer; report cards are not the gate; 100% capability and 0% boundary-respect are different layers; GA is the day to start measuring regressions, not to celebrate a composite score",
+    "Governance aside (not the core): Paul Christiano joins the OpenAI Foundation Board as a non-voting observer on the Group PBC Board and joins the Foundation Safety and Security Committee chaired by Zico Kolter; as CAISI Senior Tech Advisor he recuses from OpenAI-related matters and model evaluations (https://openai.com/index/paul-christiano-joins-openai-foundation-board)",
+    "Harness-surface aside (not the core): same-day ADK for Kotlin 1.0 on developers.googleblog.com",
+    "9/9 absorption-ROI, 9/8 query-paths, and 9/7 Lean kernel are one-line continuity only, not today's core",
+    "knowledge-base-llm has no source note yet for Anatomy of Harness Engineering or the Christiano appointment; do not invent one or unofficial metrics",
+    "X bookmarks this run: 0"
+  ],
+  "char_count": 11187
+}
