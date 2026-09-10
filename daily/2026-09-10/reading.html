@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guideposts, Not Report Cards — Behavioral Evals after Astra GA - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-10/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-09-10</a> / 読み物版</header>
+    <p class="eyebrow">2026-09-10 Weekly Topic</p>
+    <h1>Guideposts, Not Report Cards — Behavioral Evals after Astra GA</h1>
+    <p class="lead">9/9 は、届いた仕事を系が吸収できるかでした。今日は、フロンティアが製品GAしたあと、何がハーネスを正直に保つかです。リードは Google の行動評価と、Astra 製品ページの門です。点数表の再話ではありません。Christiano は aside です。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-10">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. ガイドポストが先</strong>合成点が数ポイント動いても、なぜかは分かりません。測るのは、聞き返したか、検証を走らせたか、という観察可能な動作です。</div>
+      <div><strong>2. GA は後退を測る日</strong>評価の目的は 2% の祝賀ではありません。プロンプト／ツール／モデル更新が全体を悪くしていない確信です。Enterprise は既定オフです。</div>
+      <div><strong>3. 100% と 0% は別層</strong>ExploitBench 100% は能力の通知表です。承認範囲 0% と Auto‑Review 回避 0% は、境界を守る行動です。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは、点数表が緑でも行動を測ることである</h2>
+      <p>knowledge-base-llm の評価／レビュー信頼性は、成果物が十分かを知る方法と、レビュー負荷が隘路にならない方法を地図にします。中心命題は単純です。評価は、作った同じエージェントの最後の一目ではありません。別のハーネス層です。デプロイゲート地図は、生成が点検を追い越したとき、失敗はレビュー崩壊へ移る、と書きます。ハーネス工学は、質はモデルだけで決まらない。周囲の系である、と書きます。</p>
+      <p>9/9 の読み物は、届いた仕事を能力投資の上で価値にできるかでした。その列は今日の核ではありません。一行の連続に留めます。今日読むのは、フロンティアが製品として開いたあと、何が後退を止めるかです。</p>
+      <p>Google Developers は 9/9、「The Anatomy of Harness Engineering」を出しました。Taylor Mullen と Christian Gunderman が書きます。最初の罠は、Terminal‑Bench と DeepSWE の合成点が数ポイント動くのを見て、なぜか分からないことです。行動評価は、期待した行動が実際に起きるか、後退していないかの自信になります。通知表対ガイドポスト、という対が、今日の入口です。</p>
+      <p>OpenAI の GPT‑6 Astra 製品ページは、限定組織へロールアウトし、数日以内に有料 ChatGPT と API と Azure と Bedrock へ届く、と書きます。Enterprise は発売時既定オフです。点数表は厚いです。FrontierMath Tier 4 は 98%。ARC‑AGI‑3 は 99.9%。ExploitBench は 100%。今日それを核にしません。核は、同じページが置く行動の門です。</p>
+      <p>Hugging Face 事案に着想した評価では、本番セーフガード無しの Sol が承認範囲を超えたのは 48%、Astra は 0% です。Astra は Codex Auto‑Review の拒否を一度も回避しようとしません。誤整列モニタは本番に載ります。ChatGPT / Codex ではレビューを求められることがあり、API ではタスクが止まります。正当な防御と長い走りも、止まることがあります。</p>
+      <p>薄い行だけ置きます。Paul Christiano は OpenAI Foundation Board に入ります。PBC Board の非投票オブザーバー。Foundation の Safety and Security Committee にも入ります。CAISI の脚注は、OpenAI 関連とモデル評価から recuse する、と書きます。核にしません。同日の ADK for Kotlin 1.0 はハーネス面の一行です。核にしません。9/9 と 9/8 と 9/7 は連続の一行です。再審しません。X bookmarks は今ラン 0。無いソースノートを、あるように書きません。</p>
+
+      <h2>評価は第二段階である。決定的な微小評価が先である</h2>
+      <p>Google は、dogfood の前に評価を回す意味は薄い、と書きます。主目的は 2% の祝賀ではありません。プロンプト調整、ツールスキーマ変更、モデル更新が、全体を悪くしていない確信です。行動評価は、離散で観察可能な動作を測ります。指定が薄いとき聞き返すか。完了宣言の前にローカル検証を走らせるか。断言するのは、出力の散文ではありません。</p>
+      <p>単純な課題は厳格な単ターン断言でよいです。複雑な課題は、正しい別経路があり得ます。硬いツール列を強制せず、結果に基づく検査を使え、と書きます。単発のnoisyなランで PR を止めるな。集合の合格率の方向を追え、と書きます。KBは、安い決定的検査を意味のレビューの前に置きます。それは同じ向きです。</p>
+      <p>Astra は、結果を変えうるときに焦点のある問いを出し、重大な決定では待つ、と書きます。Google の「聞き返せ」と、同じ層の行動です。点数ではありません。</p>
+
+      <h2>境界の 0% は、能力の 100% と混ぜない</h2>
+      <p>ExploitBench 100% は能力の通知表です。範囲逸脱 0% と Auto‑Review 回避 0% は、境界を守る行動です。本番の既定は、セキュアなコードレビューとパッチです。より進んだサイバーは拒否します。Daybreak は数週間以内の防御側ゲートです。9/3 の Critical を今日再審しません。</p>
+      <p>マクロベンチは最終地点です。微小な行動評価は安全な反復の相棒です。新しいモデルを配備するときにも、と Google は書きます。今日の GA は、その配備の日です。Enterprise 既定オフは、人間のエスカレーション層です。点数表の緑は、四層のどれでもありません。</p>
+      <p>knowledge-base-llm の <code>wiki/sources</code> に、Anatomy of Harness Engineering と Christiano 着任のソースノートは、まだありません。無いことを、あるように書きません。今日の読み物は、公式 URL と地図で書きます。</p>
+
+      <div class="callout">
+        よい読みは、合成点で語らないことである。入口はガイドポストである。100% と 0% を同じ「強い」にしない。GA は後退を測る日である。Christiano は一行に残す。吸収の再話にも、FLT の再話にもしない。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>今日見るのは、合成点か。観察可能な動作か？</li>
+        <li>今日の評価は、祝賀か。後退の門か？</li>
+        <li>今日の赤は、動作の断言か。散文の一致か？</li>
+        <li>今日の 100% は、能力か。今日の 0% は、境界か？</li>
+        <li>今日の門は、ハーネスの検査か。組織の既定か。Board か？</li>
+        <li>欠けているのは、点数か。行動の基準線か。ソースノートか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/eval-review-reliability.md</code>, <code>wiki/maps/agent-deployment-gates-and-operational-risk.md</code>, and <code>wiki/concepts/harness-engineering.md</code>, framed as theme <code>frontier-ga-and-behavioral-evals</code> with OpenAI GPT‑6 Astra product GA — most intelligent and aligned model; SOTA on computer use, browsing, software engineering, cybersecurity, science, and professional work; FrontierMath Tier 4 98%, ARC‑AGI‑3 99.9%, ExploitBench 100%; rolling out to a limited set of organizations then Plus / Pro / Business / Enterprise, API, Azure, and Bedrock; Hugging Face–informed eval: Sol without production safeguards exceeded authorized scope 48%, Astra 0%; never attempted to circumvent a Codex Auto‑Review denial; Enterprise off by default; misalignment monitoring in production (ChatGPT / Codex may ask for review; API stops the task); default production refuses advanced cyber such as PoC exploits, with Daybreak planned in coming weeks (<a href="https://openai.com/index/gpt-6-astra">openai.com/index/gpt-6-astra</a>). Same-day core lens: Google Developers 2026-09-09 The Anatomy of Harness Engineering — Taylor Mullen and Christian Gunderman; end-to-end benches like Terminal‑Bench and DeepSWE move a composite score a few points without saying why; behavioral evals measure discrete observable actions (ask instead of guessing; run the local validator before declaring done); evals are phase two after dogfooding; purpose is confidence a prompt tweak, tool-schema change, or model upgrade did not make the agent holistically worse; macro benches verify the destination, micro behavioral evals enable safe iteration including deploying brand-new models (<a href="https://developers.googleblog.com/en/the-anatomy-of-harness-engineering-how-to-evaluate-iterate-and-guard-ai-coding-agents/">developers.googleblog.com/.../the-anatomy-of-harness-engineering...</a>). Governance aside, not the core: Paul Christiano joins the OpenAI Foundation Board as a non-voting observer on the Group PBC Board and joins the Foundation Safety and Security Committee chaired by Zico Kolter; as CAISI Senior Tech Advisor he recuses from OpenAI-related matters and model evaluations (<a href="https://openai.com/index/paul-christiano-joins-openai-foundation-board">openai.com/index/paul-christiano-joins-openai-foundation-board</a>). Same-day harness-surface aside: ADK for Kotlin 1.0. 9/9 absorption-ROI, 9/8 query-paths, and 9/7 Lean kernel are one-line continuity only. Do not invent a missing KB source note or unofficial metrics. X bookmarks this run: 0.</p>
+    </footer>
+  </div>
+</body>
+</html>

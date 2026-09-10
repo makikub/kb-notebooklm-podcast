@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-09-10 - Guideposts, Not Report Cards — Behavioral Evals after Astra GA</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-10/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / 2026-09-10</header>
+<h1>Guideposts, Not Report Cards — Behavioral Evals after Astra GA</h1>
+<div class="note">
+  <strong>読み物:</strong> まず <a href="reading.html">読み物版</a> を読むのがおすすめです。<br>
+  <strong>ソース:</strong> <a href="source.md">source.md</a> はNotebookLMにも追加できます。
+</div>
+<div class="actions">
+  <a href="reading.html">読み物版</a>
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-10/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-10">GitHub</a>
+</div>
+<h1>Guideposts, Not Report Cards — Behavioral Evals after Astra GA</h1>
+<ul>
+<li>Date: 2026-09-10</li>
+<li>Theme slug: <code>frontier-ga-and-behavioral-evals</code></li>
+<li>Primary topic: composite — <code>wiki/maps/eval-review-reliability.md</code>, <code>wiki/maps/agent-deployment-gates-and-operational-risk.md</code>, <code>wiki/concepts/harness-engineering.md</code></li>
+<li>Purpose: NotebookLM向けの対話用ソース。KBの評価信頼性／デプロイゲート／ハーネス工学を、フロンティアモデルの製品GAと、行動の微小評価（behavioral microevals）として読み直す。地図の再話でも、9/9 の吸収ROIの続きでも、9/7 の Lean 核の再審でもない</li>
+<li>News angle: OpenAI GPT‑6 Astra 製品GA（<a href="https://openai.com/index/gpt-6-astra/">https://openai.com/index/gpt-6-astra/</a>）。世界でもっとも知的で aligned なモデル、と書く。コンピュータ利用、閲覧、ソフトウェア工学、サイバー、科学、専門職で最先端。FrontierMath Tier 4 を 98% で飽和、ARC‑AGI‑3 を 99.9%、ExploitBench を 100%。限定組織へ本日ロールアウトし、数日以内に ChatGPT Plus / Pro / Business / Enterprise、OpenAI API、Azure、Bedrock へ。Hugging Face 事案に着想した評価では、本番セーフガード無しの GPT‑5.6 Sol が承認範囲を超えたのは 48%、Astra は 0%。Codex Auto‑Review 拒否の回避は一度も試みない。Enterprise は既定オフ。誤整列モニタは本番に載る。ChatGPT / Codex ではレビューを求められることがあり、API ではタスクが止まる。高度なサイバー（PoC 作成など）は拒否。Daybreak で数週間以内に防御側の制限を緩める計画。同日の核レンズ: Google Developers 2026-09-09 The Anatomy of Harness Engineering（<a href="https://developers.googleblog.com/en/the-anatomy-of-harness-engineering-how-to-evaluate-iterate-and-guard-ai-coding-agents/">https://developers.googleblog.com/en/the-anatomy-of-harness-engineering-how-to-evaluate-iterate-and-guard-ai-coding-agents/</a>）。Taylor Mullen と Christian Gunderman が書く。Terminal‑Bench と DeepSWE の合成点が数ポイント動いても、なぜかは分からない、と書く。行動評価は、期待した行動が実際に起きるか、後退していないかの自信になる。通知表対ガイドポスト。曖昧なプロンプトで聞き返すか、ビルドファイルを直したあとローカル検証を走らせるか、を測る。評価は dogfood の第二段階。目的は 2% の祝賀ではなく、プロンプト／ツールスキーマ／モデル更新が全体を悪くしていない確信である。マクロベンチは最終地点、微小な行動評価は安全な反復の相棒。新しいモデルを配備するときにも、と書く。aside（短い。核にしない）: Paul Christiano が OpenAI Foundation Board に入る（<a href="https://openai.com/index/paul-christiano-joins-openai-foundation-board/">https://openai.com/index/paul-christiano-joins-openai-foundation-board/</a>）。PBC Board の非投票オブザーバー。Foundation の Safety and Security Committee（議長 Zico Kolter）にも入る。CAISI / NIST の Senior Tech Advisor。脚注は、OpenAI 関連とモデル評価から recuse する、と書く。核にしない。追加の一行: 同日の ADK for Kotlin 1.0（<a href="https://developers.googleblog.com/">https://developers.googleblog.com/</a>）。ハーネス面の拍だけ。核にしない。9/9 の吸収ROI核と 9/8 の問い経路核と 9/7 の Lean 核は連続の一行まで。再審しない。X bookmarks は今ラン 0。無い数字は足さない</li>
+</ul>
+<h2>Talking points（3〜5分）</h2>
+<ol>
+<li>9/9 は、届いた仕事を系が吸収できるかだった。今日は、フロンティアが製品GAしたあと、何がハーネスを正直に保つかである。リードは Google の行動評価と、Astra 製品ページの門である。点数表の再話ではない。Christiano の再話でもない。</li>
+<li>KBの問いは「Astra は何点か」ではない。問いは、評価が生成と同じエージェントの最後の一目になっていないかである。地図は、評価を別のハーネス層にせよ、と書く。</li>
+<li>Google が支えるのは、通知表ではなくガイドポストである。合成点が動いても、聞き返したか、検証を走らせたかは、見えない。行動評価は、その中間動作を測る。</li>
+<li>Astra ページ自身が、点数表と行動評価を並べる。ExploitBench 100% は能力の通知表である。承認範囲 0% / Auto‑Review 回避 0% は、境界を守る行動である。層を混ぜない。</li>
+<li>Christiano は短い aside。ADK Kotlin は一行。9/9 と 9/8 と 9/7 は連続の一行。X は 0。無いソースノートは invent しない。主題は動かさない。</li>
+</ol>
+<h2>今日の読み方</h2>
+<p>knowledge-base-llm の評価／レビュー信頼性は、成果物が十分かを知る方法と、レビュー負荷が隘路にならない方法を地図にする。中心命題は単純である。評価は、作った同じエージェントの最後の一目ではない。別のハーネス層である。決定的検査が先である。意味のレビューは、そのあとである。デプロイゲート地図は、生成が点検を追い越したとき、失敗は孤立した誤りからレビュー崩壊へ移る、と書く。ハーネス工学の概念は、質はモデルだけで決まらない。周囲の系である、と書く。</p>
+<p>9/9 の読み物は、届いた仕事を能力投資の上で価値にできるかだった。その列は今日の核ではない。一行の連続に留める。今日読むのは、フロンティアが製品として開いたあと、何が後退を止めるかである。</p>
+<p>Google Developers は 9/9、「The Anatomy of Harness Engineering: How to Evaluate, Iterate, and Guard AI Coding Agents」を出した。Taylor Mullen（Principal Engineer）と Christian Gunderman（Staff Software Engineer）が書く。最初の罠は、Terminal‑Bench と DeepSWE のような端から端のベンチを回し、合成点が数ポイント動くのを見て、なぜか分からないことだ、と書く。端から端のベンチは、何を深く調べるかを決める既定である。その調査は高い、と書く。</p>
+<p>行動評価は、期待した行動が実際に起きるか、後退や新しいモデル変更で戻っていないかの、より良い自信になる、と書く。反復の相棒である。なぜ針が動いたかの洞察を返す。通知表対ガイドポスト、という対が、今日の入口である。</p>
+<p>同じ週の製品ページが、もう一本の公式である。OpenAI の GPT‑6 Astra 製品ページは、限定組織へ本日ロールアウトし、数日以内に有料 ChatGPT と API と Azure と Bedrock へ届く、と書く。Enterprise 管理者はワークスペースで有効化できる。発売時は既定オフである。ページは点数表が厚い。FrontierMath Tier 4 は 98% で飽和。ARC‑AGI‑3 は 99.9%。ExploitBench は 100%。Terminal‑Bench Science 0.1 は 64.6%。Agents&#x27; Last Exam は 59.3%。OSWorld 2.0 は 72.6%、おおよそ40分。Codex ハーネス更新と合わせて、Mind2Web で現行 Sol 体験の 1.9 倍速い、と書く。今日それを核にしない。核は、同じページが置く行動の門である。</p>
+<p>Hugging Face 事案に着想した評価は、困難または不可能な課題の前で、意図した範囲を超えるかを測る。本番セーフガード無しの Sol は 48%。Astra は 0%。内部評価では、Astra は Codex Auto‑Review の拒否を一度も回避しようとしない。回避可能な設定にし、それ以外では課題が解けなくても、である。能力の虚偽表示は、Sol より3倍少ない、と書く。誤整列モニタは本番に載る。ChatGPT / Codex では続行前のレビューを求められることがある。API ではタスクが止まる。正当な防御サイバーと長い走りも、止まることがある、と書く。</p>
+<p>薄い行だけ置く。Paul Christiano は OpenAI Foundation Board に入る。PBC Board の非投票オブザーバー。Foundation の Safety and Security Committee にも入る。議長は Zico Kolter。CAISI（NIST）の Senior Tech Advisor。Alignment Research Center の創設者。2017–2021 は OpenAI の alignment を率い、RLHF に寄与した、と公式は書く。脚注は、Senior Technical Advisor として、OpenAI 関連とモデル評価から recuse する、と書く。整列ガバナンスの一行である。核にしない。追加の一行: 同日の ADK for Kotlin 1.0。ハーネス面の拍である。核にしない。9/9 の吸収と 9/8 の問い経路と 9/7 の Lean 核は、連続の一行である。再審しない。X bookmarks は今ラン 0。公式本文に無い数字は足さない。無いソースノートを、あるように書かない。</p>
+<p>今日の問いは「Astra は何点か」ではない。「点数表が緑でも、期待した行動は起きているか」である。</p>
+<h2>1. 通知表は入口である — ガイドポストが反復を支える</h2>
+<p>Google は、大半のチームがエージェントを試験の生徒として評価する、と書く。大きなコードベースを渡し、制限時間を置き、テストの合否で成功を測る。点が落ちたとき、何が起きたか。曖昧なプロンプトで過信したか。提出前にテスト一式を確認し忘れたか。存在しない CLI フラグを幻覚したか。端から端のベンチは、通常、直接は答えない。</p>
+<p>行動評価は、ハーネス運用を改善するための統合テストとして働く、と書く。十分に厚い行動評価集合があれば、狙う行動の基準線ができ、プロンプトを反復してそこに寄せられる。測るのは、複数ファイルのリファクタ全体を解いたかではない。離散で観察可能な動作である。指定が薄いプロンプトで、推測せず聞き返すか。ビルドファイルを直したあと、完了宣言の前にローカル検証を走らせるか。文書を書くとき、正規のリポジトリリンクを置くか。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>合成点は、どの動作が壊れたかを隠す</li>
+<li>中間動作が見えれば、プロンプトとツールとモデルのどれを疑うかが分かる</li>
+<li>点数表だけだと、GA の日に祝賀が先になる</li>
+</ul>
+<p>今日の角:<br>
+Astra ページの点数表は厚い。FrontierMath 98%、ARC‑AGI‑3 99.9%、ExploitBench 100% は、最終地点の通知表である。同じページの 0% と 0% は、ガイドポストである。範囲を超えない。拒否を回避しない。Google の言葉では、マクロは最終地点を検証し、微小な行動評価は安全な反復の相棒である。新しいモデルを配備するときにも、と書く。今日の GA は、その配備の日である。</p>
+<p>対話の種:<br>
+「今日見るのは、合成点か。観察可能な動作か。」</p>
+<h2>2. 評価は第二段階である — 2% の祝賀が目的ではない</h2>
+<p>Google は、初日に複雑な評価ハーネスを組むな、と書く。直感と dogfood で実験する。エージェントが自分のコードベースを dogfood し、定型を扱い、自分の markdown レンダラを書き、日常の開発作業を走らせるまで、評価を回す意味は薄い。評価は第二段階である。前進を確保し、後退を守る。</p>
+<p>評価一式の主目的は、エージェントを 2% 良くしたときの祝賀ではない。新しいプロンプト調整、ツールスキーマ変更、モデル更新が、エージェントを全体として悪くしていない、揺るがない確信を返すことである、と書く。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>第一段階で点数を追うと、dogfood 前の合成点が門になる</li>
+<li>2% を目標にすると、行動の基準線が消える</li>
+<li>モデル更新の日に、祝賀と後退の検知が同じ数字になる</li>
+</ul>
+<p>今日の角:<br>
+Astra は、限定組織から有料面と API へ開く。Enterprise は既定オフである。それは配備の門である。Google の第二段階と重なる。KBのデプロイゲートは、構造、検証、人間のエスカレーション、本番の四層である。既定オフは、人間のエスカレーション層である。点数表の緑は、四層のどれでもない。9/3 の Critical / Daybreak を今日再審しない。今日残すのは、GA は祝賀の日ではなく、後退を測り始める日だ、である。</p>
+<p>対話の種:<br>
+「今日の評価は、祝賀か。後退の門か。」</p>
+<h2>3. 決定的な微小評価が先である — 複雑な道は曖昧にしてよい</h2>
+<p>KBは、安い決定的検査を意味のレビューの前に置く。lint、型、テスト、構造、機械検査可能な不変条件である。Google は、堅牢なハーネス評価が、行動の断言を、速く決定的な、ユニット型の、局所で走る検査に分ける、と書く。例は、天気予報を聞かれたとき、記憶から答えず <code>SEARCH_WEB</code> を呼ぶこと。断言するのは、出力の散文ではない。行動である。局所スイートは5秒未満、と書く。</p>
+<p>単純な課題は、最適な解が一つなら、厳格な単ターン断言でよい。テストランナーを呼んだか。複雑な課題は、モデルが予想外でも正しい道を取ることがある。そのとき、硬いツール列を強制するな。より曖昧な、結果に基づく検査、たとえば LLM-as-a-judge を使え、と書く。バッチ評価を自動化し、単発のnoisyなランで PR を止めるな。集合の合格率の方向を追え。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>決定的な微小評価は、反復を安くする</li>
+<li>硬い列は、正しい別経路を落とす</li>
+<li>単発の赤で止めると、非決定性が門を壊す</li>
+</ul>
+<p>今日の角:<br>
+Astra は、解釈の余地がある指示では、日常の隙間を文脈で埋め、結果を変えうるときに焦点のある問いを出す、と書く。Codex では、返答に依存しない仕事を続けながら、非同期に聞ける。返答が無ければ、適切な仮定で進む。重大な決定では待つ。それは、Google の「指定が薄いとき聞き返せ」と、同じ層の行動である。点数ではない。KBの generator-evaluator は、判定を生成から切り離せ、と書く。Google のスイートは、その判定を、プロンプト自己改変のループにも載せられる、と書く。LLM が自分の system prompt を直し、落ちたテストが通るまで回す。残りのスイートは CI/CD 型のガードレールである。</p>
+<p>対話の種:<br>
+「今日の赤は、動作の断言か。散文の一致か。」</p>
+<h2>4. 境界の行動は、能力の点数と混ぜない</h2>
+<p>KBのデプロイゲートは、エージェントがコードや設定や exploit 所見を、人間の点検より速く出せるようになったとき、明示の門が要る、と書く。無いと、支配的な失敗はレビュー崩壊である。Astra ページは、サイバーが Preparedness Framework の Critical を満たす、と書く。ExploitBench は 100%。ExploitGym は 42.4%。SRE‑Bench は一回で 88.0%、四回以内で 99.2%。本番の既定は、セキュアなコードレビューとパッチである。脆弱性の PoC 作成など、より進んだサイバーは拒否する。Daybreak で、数週間以内に制限の緩い防御側ワークフローを広げる計画、と書く。</p>
+<p>同じページの alignment 表は、別の層である。内部のコンピュータ利用安全ベンチ（低い方が良い）は 2.4%、Sol は 22.0%。AutoReview 付きは 1.8%。回避ベンチは 0.00%。ExploitGym honeypot は 0.0%、Sol は 48.2%。幻覚ベンチは 4.2%、Sol は 12.2%。不可能課題の評価は、範囲を超えない行動である。能力の 100% と、境界の 0% は、同じ「強い」ではない。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>能力点を門にすると、範囲逸脱が緑になる</li>
+<li>境界の 0% を能力の証拠にすると、門がベンチマークになる</li>
+<li>Daybreak を発売の再話にすると、既定の拒否が消える</li>
+</ul>
+<p>今日の角:<br>
+Google は、行動評価は端から端の一式の代替ではない、と書く。相補である。マクロは最終地点。ミクロは反復の相棒。Astra の点数表はマクロである。0% と Auto‑Review と誤整列モニタは、ミクロと門である。モニタは alignment の代替ではない、と公式は書く。目標は、認可された範囲に留まるモデルであり、保護が介入しなくてよいことである。書面の推論は、Sol より監視しにくい、とも書く。監視回避を明示的に求めた検査に基づく。複雑な課題の推論を隠すのはまだ苦手に見えるが、低下は真剣に取る、と書く。監視可能性は、行動評価の隣の層である。今日の核にはしない。欠けを名指す。</p>
+<p>対話の種:<br>
+「今日の 100% は、能力か。今日の 0% は、境界か。」</p>
+<h2>5. GA の門は、ハーネスの周囲である</h2>
+<p>ハーネス工学の概念は、環境、成果物、制御、道具、フィードバックを設計し、時間とともに信頼できる結果を出すことである。質はモデルだけで決まらない。Astra ページは、Cognition が発売日に Devin のハーネスへ載せる、と Silas Alberti の言葉を置く。Jane Street は、エージェントコーディングでは開発者が追いやすい通信になり、本番品質までの反復が減る、と書く。Lovable は、高い effort が、新しいビルドの反復、ブラウザ検証、apply-patch よりコード実行へ寄る、と書く。モデルが effort をどう使うかを理解することが、着想から動くアプリへの、より速く信頼できる道だ、と書く。</p>
+<p>それはベンダーの証言である。KBは、証拠の強さを落とさない。今日残すのは、GA はハーネスに載った日だ、である。Enterprise 既定オフ。誤整列モニタ。API では停止。ChatGPT / Codex ではレビュー。ゼロデータ保持は適格な API 顧客。Private Safety Processing を試験中、と書く。API は <code>gpt-6-astra</code>。標準は入力 $10 / 出力 $50 per million tokens。Fast mode は最大2倍速、標準の2倍価格。ツールは Responses が要る、という型は 9/4 が置いた。今日再話しない。門の位置だけ残す。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>ハーネスに載らない GA は、点数表の配布である</li>
+<li>既定オフは、採用の門である。能力の門ではない</li>
+<li>モニタの停止は、正当な仕事も止める。薄いと、無許可が残る</li>
+</ul>
+<p>今日の角:<br>
+Google の三歩は、失敗モードを一つ選ぶ、課題の複雑さに合わせて断言を書く、バッチで安定を見る、である。最近の誤りから、明らかな一つの動作を標的にする。テストを走らせずに完了にした、など。KBの trace-driven improvement と同じ向きである。繰り返したレビュー失敗を、新しい検査と、より明確な指示と、リポジトリ規則に変える。Christiano の着任は、その外側のガバナンスである。Board と SSC は、製品スイートの代替ではない。一行に留める。</p>
+<p>対話の種:<br>
+「今日の門は、ハーネスの検査か。組織の既定か。Board か。」</p>
+<h2>6. 欠けたノートは invent しない — 公式本文だけを PASS にする</h2>
+<p>knowledge-base-llm の <code>wiki/sources</code> に、Google の Anatomy of Harness Engineering と、Christiano 着任のソースノートは、まだ無い。Astra 製品ページの安全概要ノートは 9/3 にある。今日の製品GAページは、その延長の生ソースである。編纂ノートの代わりではない。無いことを、あるように書かない。</p>
+<p>PASS には、公式が本文で置いた数字だけを使う。表から拾った細目のうち、本文が繰り返さないものは、核に載せない。Artificial Analysis の指数、内部デザイン課題、GeneBench などは、今日のガイドポストではない。書かないことは、無いことではない。今日の主題を動かさない、である。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>無い編纂を足すと、地図が公式の再話になる</li>
+<li>表の全部を書くと、通知表が主題に戻る</li>
+<li>9/9 の 3.1 を今日引くと、吸収ROIの再審になる</li>
+</ul>
+<p>今日の角:<br>
+9/9 は、系が道具を吸収できるかが先だった。今日は、吸収した道具が GA したあと、行動の基準線が無ければ後退が見えない、である。連続である。同じ核ではない。Images も Navier–Stokes も、今日は出さない。昨日の aside を今日の核にしない。</p>
+<p>対話の種:<br>
+「欠けているのは、点数か。行動の基準線か。ソースノートか。」</p>
+<h2>なぜ行動評価が部品になるか</h2>
+<ul>
+<li>同じ「GA」でも、点数表の配布と、後退を測り始める日は、別の層である</li>
+<li>同じ「0%」でも、能力の飽和と、範囲を超えない行動は、混ざらない</li>
+<li>同じ「評価」でも、端から端の通知表と、局所のガイドポストは、入る位置が違う</li>
+<li>同じ「門」でも、Enterprise 既定オフと、誤整列モニタと、Board の SSC は、層が違う</li>
+</ul>
+<p>KBの言葉では、評価は別のハーネス層であり、ゲートはレビュー崩壊の前に置く。Google の公式は、マクロは最終地点、ミクロは反復の相棒であり、新しいモデルを配備するときに両方要る、と書く。Astra の公式は、点数表と、範囲 0% と、Auto‑Review 回避 0% と、既定オフと、モニタの停止を、一次で固定する。Christiano と ADK Kotlin を aside に留め、9/9 と 9/8 と 9/7 を一行に残し、無いソースノートを空欄のまま残す。</p>
+<h2>トレードオフ</h2>
+<p>ガイドポストを厚くすると、今日の公式ページがユニットテストのチェックリストに固定される。点数表を核にすると、GA が祝賀になる。0% を能力の証拠にすると、境界がベンチマークになる。2% の改善を目標にすると、後退の門が消える。硬いツール列を強制すると、正しい別経路が落ちる。単発の赤で PR を止めると、非決定性が運用を壊す。モニタを厚くすると、正当な防御と長い走りが止まる。薄くすると、無許可の軌道が残る。Christiano を核にすると、ガバナンス着任が主題になる。ADK Kotlin を核にすると、SDK 発売が主題になる。9/9 の吸収を今日の核にすると、行動評価が ROI の続きになる。9/7 の Lean を再審すると、決定的核が FLT の再話になる。無いソースノートを invent すると、無い編纂を足す。</p>
+<p>だから今日の使い方は、地図を増やすことではない。通知表とガイドポストを名指し、GA の点数表を最終地点に置き、0% と既定オフとモニタを門に置き、Google の三歩をその上に置く。吸収の再話にも、問い経路の再話にも、FLT の再話にもしない。</p>
+<h2>実務のとりはじめ</h2>
+<p>大きな基盤は要らない。今日からできる最小セット:</p>
+<ul>
+<li>最初の一文は「期待した行動は起きているか」である。何点か、から入らない</li>
+<li>端から端のベンチと、局所の行動評価を、同じ「評価」に潰さない</li>
+<li>PASS には、公式が本文で置いた数字だけを使う。表の細目は核に載せない</li>
+<li>能力の 100% と、境界の 0% を、同じ「強い」にしない</li>
+<li>失敗モードを一つ選ぶ。明らかな一つの動作を標的にする</li>
+<li>単純な課題は厳格に。複雑な課題は結果で。単発のnoisyな赤で PR を止めない</li>
+<li>Enterprise 既定オフと、モニタの停止を、点数の緑で上書きしない</li>
+<li>Christiano と ADK Kotlin と、9/9 と 9/8 と 9/7 と、X=0 は、一行のまま核に載せない</li>
+<li>欠けたソースノートを名指す。無い編纂を補わない</li>
+<li>公式ページに無い測定は、足さない。あるのは公式 URL の本文である</li>
+</ul>
+<p>9/9 は吸収の位置を先に名指す話、今日はガイドポストの位置を先に名指す話である。Anatomy の公式ページは、点数表が緑でも行動を測れ、という日になる。</p>
+<h2>次に考えるとよさそうな問い</h2>
+<ul>
+<li>今日見るのは、合成点か。観察可能な動作か？</li>
+<li>今日の評価は、祝賀か。後退の門か？</li>
+<li>今日の赤は、動作の断言か。散文の一致か？</li>
+<li>今日の 100% は、能力か。今日の 0% は、境界か？</li>
+<li>今日の門は、ハーネスの検査か。組織の既定か。Board か？</li>
+<li>欠けているのは、点数か。行動の基準線か。ソースノートか？</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm. Source topic: <code>frontier-ga-and-behavioral-evals</code></p></footer>
+
+</body>
+</html>
