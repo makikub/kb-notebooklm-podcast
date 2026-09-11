@@ -21,9 +21,10 @@
     "Hardware aside (not the core): Anthropic Model Hardware Standard research preview — already the 8/28 core; one physical-interface line only (https://www.anthropic.com/news/model-hardware-standard-research-preview)",
     "Pattern aside (not the core): Google AI Agents Challenge four engineering patterns — bidirectional MCP, event-driven concurrency, same-bar fallback, tiered routing; one submission handled more than 40% of incoming messages before a full model call (https://developers.googleblog.com/en/4-engineering-patterns-behind-the-strongest-ai-agents-challenge-submissions/)",
     "Skills aside (not the core): Genkit Go Agent Skills progressive disclosure — load SKILL.md frontmatter first, body and references only when needed (https://developers.googleblog.com/en/enable-on-demand-expertise-with-agent-skills-in-genkit-go/)",
+    "Cost/capability aside (not the core): Cognition SWE-2 — FrontierCode 1.1 Main 50.0%, within one point of Fable 5.1, 64% cheaper; Devin Desktop and CLI today (https://cognition.com/blog/swe-2, https://x.com/cognition/status/2098069235733823965)",
     "9/10 behavioral-evals, 9/9 absorption-ROI, and 9/2 parent/bus FAQ are one-line continuity only, not today's core",
     "knowledge-base-llm has no source note yet for Cursor Projects or the Agents API; do not invent one or unofficial metrics; example max_concurrent_subagents: 4 is a config sample, not a product limit",
     "X bookmarks this run: 0"
   ],
-  "char_count": 11648
+  "char_count": 12042
 }
