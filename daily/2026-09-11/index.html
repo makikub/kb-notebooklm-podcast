@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-09-11 - Never Blocked — Coordinators after Cursor Projects</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-11/">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.78; max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+    header, footer { color: #666; font-size: 0.95rem; }
+    h1 { line-height: 1.25; margin-top: 0.4em; }
+    h2 { border-top: 1px solid #ddd; padding-top: 1.1em; margin-top: 1.8em; }
+    h3 { margin-top: 1.5em; }
+    blockquote { border-left: 4px solid #999; margin-left: 0; padding: 0.1em 1em; color: #555; background: rgba(127,127,127,0.08); }
+    code { background: rgba(127,127,127,0.14); padding: 0.1em 0.28em; border-radius: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .actions a { border: 1px solid #999; border-radius: 999px; padding: 6px 12px; text-decoration: none; }
+    .note { background: rgba(80,140,255,0.10); border: 1px solid rgba(80,140,255,0.25); border-radius: 12px; padding: 12px 14px; }
+    @media (prefers-color-scheme: dark) { blockquote { color: #ccc; } header, footer { color: #aaa; } }
+  </style>
+</head>
+<body>
+
+<header><a href="../../">KB Reading Pages</a> / 2026-09-11</header>
+<h1>Never Blocked — Coordinators after Cursor Projects</h1>
+<div class="note">
+  <strong>読み物:</strong> まず <a href="reading.html">読み物版</a> を読むのがおすすめです。<br>
+  <strong>ソース:</strong> <a href="source.md">source.md</a> はNotebookLMにも追加できます。
+</div>
+<div class="actions">
+  <a href="reading.html">読み物版</a>
+  <a href="source.md">Markdown source</a>
+  <a href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-11/source.md">Copy/source URL</a>
+  <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-11">GitHub</a>
+</div>
+<h1>Never Blocked — Coordinators after Cursor Projects</h1>
+<ul>
+<li>Date: 2026-09-11</li>
+<li>Theme slug: <code>project-coordinators-and-managed-agent-apis</code></li>
+<li>Primary topic: composite — <code>wiki/maps/agent-harness-landscape.md</code>, <code>wiki/maps/coding-agent-harness-patterns.md</code>, <code>wiki/maps/context-management-decisions.md</code>, <code>wiki/maps/agent-onboarding-kb-codebase.md</code></li>
+<li>Purpose: NotebookLM向けの対話用ソース。KBのハーネス風景／コーディングハーネス／文脈管理／オンボーディングを、製品化されたコーディネータと、管理されたエージェントAPIとして読み直す。地図の再話でも、9/2 の親・検証・バスFAQの再審でも、8/28 の MHS 核の続きでも、9/10 の行動評価の続きでもない</li>
+<li>News angle: Cursor Projects（2026-09-10、changelog + blog。Alexi Robbins と Fredrika Lindh。<a href="https://cursor.com/changelog/projects">https://cursor.com/changelog/projects</a> と <a href="https://cursor.com/blog/projects">https://cursor.com/blog/projects</a>）。機能、移行、アプリ全体のような大きな仕事を、何ヶ月も文脈を保ち、何千もの下位エージェントへ委任し、促されなくても反復仕事をこなす、と書く。コーディネータ自身はコードを書かない。計画し、委任し、終わった仕事を点検へ戻す。委任するから詰まらず、指示に応答し続ける。既定はクラウド上の専用計算機。ラップトップを閉じても止まらない。手元の検証が要るときだけ、ローカルエージェントを起こす。共有コンテキストは、クラウドとローカルの全マシンへ同期するファイル集合である。調査、成果物、コードベースの学び、好みの仕事の進め方が積み上がる。あるエージェントがサービスの試し方を見つければ、以後のエージェントは同じ指示を使える。購読は Slack チャンネル、スケジュール、全 PR。バグ報告チャンネルを指せば、届くたびに委任が始まる。社内では数百 PR の移行、デザインシステムの維持、Projects 自身の出荷に使った。新規は PR マージが 30% 増、Projects を主に使う利用者は 6 倍、と書く。ガーデニングの一例は、同じ誤りを二度見たら lint を足し、一日 20〜100 PR に触る軌道。ベータ。本日全利用者へ段階提供。同日のもう一本の公式: OpenAI Agents API（<a href="https://openai.com/index/introducing-the-agents-api/">https://openai.com/index/introducing-the-agents-api/</a>）。管理された Codex ハーネス。公開ベータ。追加料金は無く、トークンとツールと、ホスト側サンドボックスなら標準コンテナ料金。OpenAI がセッション、オーケストレーション、文脈の圧縮、回復を持つ。アプリは道具と実行環境を選ぶ。概念は Agent / Environment / Session / Events and items。セッションは耐久の実体である。管理ハーネスは、サンドボックスでのコマンドとコード、スキル、MCP、走行中の操舵、以前の仕事の要約、下位への分割、中断した場所からの再開を支える。ホスト側は Linux 作業場（Python、Node.js、CLI）。作業ディレクトリは <code>/workspace</code>。ターン完了時、<code>/workspace/outputs</code> は不変の成果物になる。無通信が1時間続くとサンドボックスは消えうる。タイムアウトは設定不可。データ所在は当面米国のみ。ZDR は非対応。自己ホストでも ZDR にはならない。自己ホストは Blaxel AI、Cloudflare Dev、Daytona、DigitalOcean、E2B、Modal、Oracle Cloud、Runloop AI、Vercel を一次統合として挙げる。aside（短い。核にしない）: Anthropic Model Hardware Standard 研究プレビュー（<a href="https://www.anthropic.com/news/model-hardware-standard-research-preview">https://www.anthropic.com/news/model-hardware-standard-research-preview</a>）。8/28 の核。今日は物理面の一行。核にしない。Google AI Agents Challenge の四パターン（<a href="https://developers.googleblog.com/en/4-engineering-patterns-behind-the-strongest-ai-agents-challenge-submissions/">https://developers.googleblog.com/en/4-engineering-patterns-behind-the-strongest-ai-agents-challenge-submissions/</a>）。双方向 MCP、事象駆動の並列、同じ棒のフォールバック、段階ルーティング。核にしない。Genkit Go の Agent Skills（<a href="https://developers.googleblog.com/en/enable-on-demand-expertise-with-agent-skills-in-genkit-go/">https://developers.googleblog.com/en/enable-on-demand-expertise-with-agent-skills-in-genkit-go/</a>）。段階開示。SKILL.md の表だけ先に載せる。核にしない。9/10 の行動評価核と 9/9 の吸収ROI核と 9/2 の親・バス核は連続の一行まで。再審しない。X bookmarks は今ラン 0。無い数字は足さない</li>
+</ul>
+<h2>Talking points（3〜5分）</h2>
+<ol>
+<li>9/10 は、GA のあと何がハーネスを正直に保つかだった。今日は、誰がループを持つかである。リードは Cursor Projects のコーディネータと、OpenAI Agents API の管理ハーネスである。親・バスFAQの再話ではない。MHS の再審でもない。</li>
+<li>KBの問いは「エージェントを何体走らせるか」ではない。問いは、コーディネータが自分で書いて詰まっていないかである。地図は、ハーネスがセッションをまたぎ、オンボーディングを一度で済ませ、役割を分ける、と書く。</li>
+<li>Cursor が支えるのは、書かない親である。計画し、委任し、戻す。共有コンテキストが育ち、購読がプロンプトの前に動く。ラップトップを閉じても止まらない。</li>
+<li>Agents API が支えるのは、自分でループを組まないことである。セッションは耐久である。圧縮と回復は製品側である。サンドボックスはホストでも自己でもよい。ZDR は無い。層を混ぜない。</li>
+<li>MHS と Challenge 四パターンと Genkit Skills は短い aside。9/10 と 9/9 と 9/2 は連続の一行。X は 0。無いソースノートは invent しない。主題は動かさない。</li>
+</ol>
+<h2>今日の読み方</h2>
+<p>knowledge-base-llm のハーネス風景は、性能がモデル単体ではなく、案内、修正、セッションをまたぐ継続、自律の制御、役割の分離で決まる、と書く。コーディングハーネスの地図は、常時稼働と委任と成果物の型を置く。文脈管理は、毎回全部を載せるな、と書く。オンボーディングは、コードベースと好みを、次のエージェントが使える形で残せ、と書く。</p>
+<p>9/10 の読み物は、点数表が緑でも行動を測れ、だった。その列は今日の核ではない。一行の連続に留める。9/2 の親と検証とバスも、今日は再審しない。FAQの型を、製品のコーディネータへ置き換える話ではない。今日読むのは、ループを誰が持つかである。</p>
+<p>Cursor は 9/10、Projects を出した。changelog と blog が同じ骨格である。blog は Alexi Robbins と Fredrika Lindh が書く。2月に描いた第三の時代、エージェントの艦隊が仕事の塊を引き受ける、その具体、と書く。抽象を一段上げ、開発者をエージェント管理から外し、仕事そのものを指示させる。コーディネータはコードを書かない。他のエージェントを指揮する。委任するから詰まない。常に指示へ応答する、と書く。</p>
+<p>三つの能力が、それを可能にする。既定はクラウド。専用の計算機を持つ。ラップトップを閉じても止まらない。手元より多い下位を並列に走らせる。手元の検証が要るときだけ、ローカルエージェントを起こす。共有コンテキストは、クラウドとローカルの全マシンへ同期するファイル集合である。調査と成果物と、コードベースの学びと、好みの進め方が残る。あるエージェントがサービスの試し方を見つければ、以後は同じ指示を使える。購読は Slack、スケジュール、全 PR。CI を直し、開閉に応じて動く。促を待たない。</p>
+<p>社内では数か月使った。数百 PR の移行。デザインシステムの一貫。Projects 自身の出荷。新規は PR マージが 30% 増。Projects を主に使う利用者は 6 倍、と書く。三つの型は、機能、移行、ガーデニングである。機能は調査を共有コンテキストへ残し、計画し、部分を並列に実装し、出荷後は同じ Project がログとバグを見る。移行は、安全な型を先に決め、初期は各 PR を厚く見、耐えたら薄くし、コーディネータが残りの移行を続ける。ガーデニングは終わらない仕事である。デザインシステムの例は、最初は各修正を見、いまは新規 PR を走査し、デザインシステムへ入れる部品を抜き、同じ誤りを二度見たら lint を足す。一日 20〜100 PR に触る軌道なので、コーディネータが整理し、エンジニアは注意が要る所だけ見る、と書く。ベータ。本日全利用者へ段階提供。左ナビから始める。単一チャットより長く生きる仕事向き、と書く。</p>
+<p>同じ日のもう一本の公式が、OpenAI の Agents API である。発表ページは（<a href="https://openai.com/index/introducing-the-agents-api/">https://openai.com/index/introducing-the-agents-api/</a>）。ドキュメントは、耐久のクラウドエージェントを、管理された Codex ハーネスで、と書く。公開ベータ。追加料金は無い。トークンとツールと、ホスト側なら標準コンテナ料金。OpenAI がセッション、オーケストレーション、文脈の圧縮、回復を持つ。アプリは道具を渡し、実行環境を選ぶ。概念は四つ。Agent はモデル、指示、道具、MCP。Environment は任意のサンドボックスか計算機。Session は耐久の実体。Events and items は入出力である。ホスト側セッションでは、アプリは入力を送り事象を受け、OpenAI がエージェントを走らせ、サンドボックスを用意する。管理ハーネスは、サンドボックスでのコマンドとコード、スキル、MCP、走行中の操舵、以前の仕事の要約、下位への分割、中断した場所からの再開を支える。ホスト側は Linux 作業場である。Python、Node.js、CLI。作業ディレクトリは <code>/workspace</code>。セッションごとに作業場は分かれる。存在するあいだ、ファイルはターンをまたぐ。ターン完了時、<code>/workspace/outputs</code> は不変の成果物になる。無通信が1時間続くと消えうる。タイムアウトは設定不可。ストリームを閉じても仕事は止まらない。データ所在は当面米国のみ。ZDR は非対応。自己ホストでも ZDR にはならない。自己ホストは、インフラ、私有網、独自ソフトが要るときである。一次統合は Blaxel AI、Cloudflare Dev、Daytona、DigitalOcean、E2B、Modal、Oracle Cloud、Runloop AI、Vercel。環境無し（<code>none</code>）も選べる。そのとき組込みの Bash と apply-patch と作業ファイルは使えない。</p>
+<p>薄い行だけ置く。Anthropic の Model Hardware Standard は 8/27 の研究プレビューである。8/28 の核だった。今日は、物理装置の共有仕様、という一行である。再審しない。Google の AI Agents Challenge は、上位が繰り返した四パターンである。双方向 MCP。事象駆動の並列。同じ棒のフォールバック。段階ルーティング。最初の安価な通過が、ある提出では着信の 40% 超を、本モデルの前に処理した、と書く。核にしない。Genkit Go の Agent Skills は段階開示である。最初は SKILL.md の表だけを載せ、要るとき本体と参照とスクリプトを開く。核にしない。9/10 のガイドポストと 9/9 の吸収と 9/2 の親・バスは、連続の一行である。再審しない。X bookmarks は今ラン 0。公式本文に無い数字は足さない。無いソースノートを、あるように書かない。</p>
+<p>今日の問いは「何体走らせるか」ではない。「誰がループを持ち、何がターンをまたいで残るか」である。</p>
+<h2>1. コーディネータは書かない — 詰まない親が本体である</h2>
+<p>Cursor は、コーディネータ自身はコードを書かない、と書く。計画し、実装するエージェントへ渡し、終わった仕事を点検へ戻す。委任するから詰まない。常に指示へ応答する。Projects は左ナビから入り、必要な数だけ下位を並列に起こす。</p>
+<p>KBのハーネス風景は、役割の分離を五次元の一つに置く。全部を一つのチャットに載せると、計画と実装と点検が同じ手になる。コーディネータが書くと、親が詰まる。親が詰まると、指示の入口が消える。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>書く親は、長い移行の途中で応答を失う</li>
+<li>委任する親は、点検の位置に留まれる</li>
+<li>体の数ではなく、誰が次を決めるかが先に見える</li>
+</ul>
+<p>今日の角:<br>
+Agents API も、同じ層を製品にする。ハーネスがモデルとツールのループを持つ。アプリは仕事を送り、結果を受ける。下位への分割と、走行中の操舵は、管理ハーネスの中にある。9/2 の「親が分解する」を今日再審しない。今日残すのは、書かない親が、製品の入口になった、である。</p>
+<p>対話の種:<br>
+「今日の親は、書いているか。委任しているか。」</p>
+<h2>2. 共有コンテキストは、毎回のオンボーディングを終わらせる</h2>
+<p>Cursor は、タスクのたびにエージェントをオンボードするな、と書く。Project は、クラウドとローカルの全マシンへ同期するファイル集合を持つ。エージェントは調査と成果物を足す。コードベースの学びと、好みの進め方も残る。あるエージェントがサービスの試し方を見つければ、以後のエージェントは同じ指示を使える。共有コンテキストは Project とともに育ち、コーディネータを強くする、と書く。</p>
+<p>機能の型では、最初の調査が共有コンテキストへ残る。フィードバックのたびに、構成と好みを学ぶ。出荷後も、同じ Project が元の判断の全文脈でログとバグを見る。移行の型では、安全な型を一度決め、それをコードベースへ段階で適用する。ガーデニングでは、同じ誤りを二度見たら lint になる。学びが、次の PR の門になる。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>毎回のオンボードは、同じ試し方を何度も発見する</li>
+<li>残らない学びは、コーディネータを強くしない</li>
+<li>好みがファイルに無いと、各下位が別の仕事の仕方をする</li>
+</ul>
+<p>今日の角:<br>
+KBのオンボーディング地図は、ドメインKBとコードベースを、次が使える形で残せ、と書く。文脈管理は、全部を毎回載せるな、と書く。Agents API のスキルと、capability directories と、以前の仕事の要約は、同じ層である。Genkit の段階開示は aside である。表だけ先に載せ、本体は要るとき開く。今日それを核にしない。欠けを名指す。今日の核は、共有ファイルが、オンボードの代わりになる、である。</p>
+<p>対話の種:<br>
+「今日残すのは、プロンプトか。次が使えるファイルか。」</p>
+<h2>3. セッションは耐久である — ラップトップを閉じても止まらない</h2>
+<p>Cursor は、Project はクラウド上の専用計算機で走る、と書く。ラップトップを閉じても止まらない。手元より多い下位を並列に走らせる。手元の検証が要るときだけ、ローカルを起こす。仕事は単一チャットより長く生きる。何ヶ月も文脈を保つ、と書く。</p>
+<p>Agents API は、セッションを耐久の実体として置く。状態を残すので、会話文脈を組み直さずに続けられる。中断した場所から再開する。圧縮は製品側である。ホスト側サンドボックスは、存在するあいだファイルをターンをまたいで残す。<code>/workspace/outputs</code> は、ターン完了時に不変の成果物になる。サンドボックスが切れても、その写しは残る。無通信が1時間続くと、サンドボックスは消えうる。ストリームを閉じても仕事は止まらない。セッションを消すと、掃除を頼む。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>チャット寿命の仕事は、移行もガーデニングも持たない</li>
+<li>耐久が無いと、共有コンテキストは毎回消える</li>
+<li>閉じても止まらない計算機が無いと、艦隊は手元の上限になる</li>
+</ul>
+<p>今日の角:<br>
+KBのハーネス風景は、セッションをまたぐ継続を次元に置く。今日の二本の公式は、それを製品にする。Cursor は Project の計算機である。OpenAI は Session である。層は近い。同じ製品ではない。データ所在は米国のみ、ZDR は無い、は Agents API の門である。自己ホストでも ZDR にはならない。クラウド既定と、所在の門を、同じ「耐久」にしない。</p>
+<p>対話の種:<br>
+「今日の耐久は、Project の計算機か。Session か。成果物の写しか。」</p>
+<h2>4. 購読は、プロンプトを待たない</h2>
+<p>Cursor の購読は、Slack、スケジュール、全 PR である。検知した信号で動く。促を待たない。バグ報告チャンネルを指せば、届くたびに委任が始まる。ガーデニングは、新規 PR を追い、Slack のバグを聴き、スケジュールで走る。終わらない仕事の入口である。</p>
+<p>Agents API は、ストリームと webhook を置く。ストリームは走行中の詳細である。webhook は、ストリームを開けずに状態変化を受ける。自己ホストでは、<code>environment_connection</code> の required action で、実行器の接続を起こす。関数道具のハンドラが居ないと、エージェントは結果待ちのまま残る。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>促待ちの親は、届いたバグを見逃す</li>
+<li>信号で委任が始まると、ガーデニングが本体になる</li>
+<li>webhook が無いと、耐久セッションは開いた接続に縛られる</li>
+</ul>
+<p>今日の角:<br>
+Challenge の事象駆動は aside である。呼出し連鎖では遅延が足し算になる。話題バスでは、互いに要らない二体が同時に動く。今日それを核にしない。今日残すのは、購読がプロンプトの前に来る、である。9/2 のバスFAQを再審しない。バスの分類ではなく、製品の購読である。</p>
+<p>対話の種:<br>
+「今日の入口は、促か。信号か。」</p>
+<h2>5. 管理されたハーネスは、ループを製品にする</h2>
+<p>Agents API の一文は短い。OpenAI がエージェントループを自前の基盤で走らせる。モデル呼び出し、道具、文脈を調整する。能力と、コードとファイルの場所は、利用者が選ぶ。ハーネス、環境、アプリサーバの三片である。ハーネスは環境無しでも動く。環境はホスト、自己、無しである。ホストは用意と接続を製品側が持つ。自己は、用意、再接続、停止、残すファイルを利用者が持つ。</p>
+<p>Cursor Projects は、同じ移動を UI にする。開発者をエージェント管理から外し、仕事を指示させる。コーディネータが下位を作り、管理する。必要な数だけ並列に走る。クラウド既定、ローカルは例外である。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>自分でループを組むと、圧縮と回復が毎回の仕事になる</li>
+<li>管理ハーネスに渡すと、ユニークな能力と環境だけが残る</li>
+<li>UI のコーディネータと API のセッションは、同じ「ループを渡す」である。同じ入口ではない</li>
+</ul>
+<p>今日の角:<br>
+料金は、API 自体の追加料金は無い。トークンとツールと、ホスト側なら標準コンテナである。コンテナを無造作に起こすな、という注意がコミュニティにある。公式の本文は、標準コンテナ料金、と書く。無い単価を invent しない。Cursor の 30% と 6 倍は、社内と利用者の公式である。能力点ではない。採用の数字である。9/9 の吸収ROIを今日再審しない。一行の連続である。</p>
+<p>対話の種:<br>
+「今日渡すのは、プロンプトか。ループか。」</p>
+<h2>6. aside は核にしない — 欠けたノートは invent しない</h2>
+<p>MHS は 8/28 の核である。今日は、物理装置の共有仕様、という一行である。統合を数週〜数か月から時間や分へ、モデル非依存、MCP、開源前の物理安全、は昨日までの地図にある。再話しない。</p>
+<p>Challenge の四パターンは、双方向 MCP、事象駆動、同じ棒のフォールバック、段階ルーティングである。自分用に作った道具を、他のエージェントのサーバにもせよ。フォールバックも同じ検証を通れ。安い決定的検査を、高いモデルの前に置け。ある提出は、最初の通過だけで着信の 40% 超を処理した、と書く。今日の購読と、管理ハーネスの道具面を支える拍である。核にしない。</p>
+<p>Genkit Go の Skills は段階開示である。最初は表だけ。要るとき本体。トークンを、必要になるまで遅らせる。今日の共有コンテキストと、Agents API のスキル適用を支える拍である。核にしない。</p>
+<p>knowledge-base-llm の <code>wiki/sources</code> に、Cursor Projects と Agents API のソースノートは、まだ無い。無いことを、あるように書かない。PASS には、公式が本文で置いた数字だけを使う。30%、6 倍、20〜100 PR、1時間、米国、ZDR 無し。例示の <code>max_concurrent_subagents: 4</code> は設定例である。製品上限として書かない。公式ページに無い測定は足さない。</p>
+<p>なぜ効くか:</p>
+<ul>
+<li>aside を厚くすると、物理標準か Challenge が主題になる</li>
+<li>例示の 4 を上限にすると、設定が門になる</li>
+<li>9/10 の 0% を今日引くと、行動評価の再審になる</li>
+</ul>
+<p>今日の角:<br>
+9/10 は、GA のあと行動の基準線が無ければ後退が見えない、だった。今日は、基準線を測る系が、書かない親と耐久セッションを製品にした、である。連続である。同じ核ではない。Astra の点数表も、Christiano も、今日は出さない。昨日の核を今日の aside にしない。昨日の aside を今日の核にしない。</p>
+<p>対話の種:<br>
+「欠けているのは、ループか。共有ファイルか。ソースノートか。」</p>
+<h2>なぜコーディネータと管理APIが部品になるか</h2>
+<ul>
+<li>同じ「親」でも、書く親と、委任して詰まない親は、別の層である</li>
+<li>同じ「文脈」でも、毎回のプロンプトと、同期するファイル集合は、入る位置が違う</li>
+<li>同じ「耐久」でも、Project の計算機と、Session と、成果物の写しは、層が違う</li>
+<li>同じ「入口」でも、促と、購読と、webhook は、待ち位置が違う</li>
+<li>同じ「ハーネス」でも、UI のコーディネータと、API の管理ループは、渡すものが違う</li>
+</ul>
+<p>KBの言葉では、ハーネスはセッションをまたぎ、オンボードを一度で済ませ、役割を分ける。Cursor の公式は、書かない親と、共有ファイルと、購読と、閉じても止まらない計算機を、一次で固定する。OpenAI の公式は、管理 Codex ハーネスと、耐久セッションと、圧縮と回復と、ホスト／自己／無しの環境と、ZDR 無しを、一次で固定する。MHS と Challenge と Skills を aside に留め、9/10 と 9/9 と 9/2 を一行に残し、無いソースノートを空欄のまま残す。</p>
+<h2>トレードオフ</h2>
+<p>コーディネータを厚くすると、今日の公式が「書くな」チェックリストに固定される。書く親に戻すと、長い仕事の入口が詰まる。共有コンテキストを全部毎回載せると、文脈管理の地図が消える。残さないと、オンボードが毎回始まる。クラウド既定を所在の門と混ぜると、耐久が採用の許可になる。ZDR を自己ホストで足すと、公式に無い保証を invent する。購読をバスFAQに戻すと、9/2 の再審になる。管理ハーネスをベンダー比較に戻すと、9/3 の再審になる。MHS を核にすると、物理標準が主題になる。Challenge を核にすると、四パターンが主題になる。Skills を核にすると、SDK の段階開示が主題になる。9/10 のガイドポストを今日の核にすると、コーディネータが評価の続きになる。無いソースノートを invent すると、無い編纂を足す。</p>
+<p>だから今日の使い方は、地図を増やすことではない。書かない親と耐久セッションを名指し、共有ファイルをオンボードの代わりに置き、購読を促の前に置き、ループの所在を UI と API に分ける。親・バスの再話にも、MHS の再話にも、行動評価の再話にもしない。</p>
+<h2>実務のとりはじめ</h2>
+<p>大きな基盤は要らない。今日からできる最小セット:</p>
+<ul>
+<li>最初の一文は「誰がループを持つか」である。何体か、から入らない</li>
+<li>書く親と、委任する親を、同じ「コーディネータ」に潰さない</li>
+<li>毎回のプロンプトと、同期するファイル集合を、同じ「文脈」にしない</li>
+<li>Project の計算機と、Session と、成果物の写しを、同じ「耐久」にしない</li>
+<li>促待ちと、購読と、webhook を、同じ「入口」にしない</li>
+<li>PASS には、公式が本文で置いた数字だけを使う。30%、6 倍、20〜100、1時間。例示の 4 は上限にしない</li>
+<li>米国所在と ZDR 無しを、自己ホストで上書きしない</li>
+<li>MHS と Challenge と Skills と、9/10 と 9/9 と 9/2 と、X=0 は、一行のまま核に載せない</li>
+<li>欠けたソースノートを名指す。無い編纂を補わない</li>
+<li>公式ページに無い測定は、足さない。あるのは公式 URL の本文である</li>
+</ul>
+<p>9/10 はガイドポストの位置を先に名指す話、今日はループの所在を先に名指す話である。Projects と Agents API の公式ページは、書かない親と耐久セッションが製品になった、という日になる。</p>
+<h2>次に考えるとよさそうな問い</h2>
+<ul>
+<li>今日の親は、書いているか。委任しているか？</li>
+<li>今日残すのは、プロンプトか。次が使えるファイルか？</li>
+<li>今日の耐久は、Project の計算機か。Session か。成果物の写しか？</li>
+<li>今日の入口は、促か。信号か？</li>
+<li>今日渡すのは、プロンプトか。ループか？</li>
+<li>欠けているのは、ループか。共有ファイルか。ソースノートか？</li>
+</ul>
+<footer><p>Generated from knowledge-base-llm. Source topic: <code>project-coordinators-and-managed-agent-apis</code></p></footer>
+
+</body>
+</html>
