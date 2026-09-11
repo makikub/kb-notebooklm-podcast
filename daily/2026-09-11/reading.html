@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Never Blocked — Coordinators after Cursor Projects - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-11/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-09-11</a> / 読み物版</header>
+    <p class="eyebrow">2026-09-11 Weekly Topic</p>
+    <h1>Never Blocked — Coordinators after Cursor Projects</h1>
+    <p class="lead">9/10 は、GA のあと何がハーネスを正直に保つかでした。今日は、誰がループを持つかです。リードは Cursor Projects のコーディネータと、OpenAI Agents API の管理ハーネスです。親・バスFAQの再話ではありません。MHS は aside です。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-11">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. コーディネータは書かない</strong>計画し、委任し、点検へ戻します。委任するから詰まりません。常に指示へ応答します。書く親は、長い仕事の入口を失います。</div>
+      <div><strong>2. 共有ファイルがオンボードになる</strong>試し方と好みは、クラウドとローカルへ同期するファイルに残します。セッションは耐久です。ラップトップを閉じても止まりません。</div>
+      <div><strong>3. ループは製品側である</strong>Agents API は、管理された Codex ハーネスです。圧縮と回復は製品側です。購読は促の前に動きます。ZDR はありません。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは、誰がループを持つかである</h2>
+      <p>knowledge-base-llm のハーネス風景は、性能がモデル単体ではなく、案内、修正、セッションをまたぐ継続、自律の制御、役割の分離で決まる、と書きます。文脈管理は、毎回全部を載せるな、と書きます。オンボーディングは、コードベースと好みを、次のエージェントが使える形で残せ、と書きます。</p>
+      <p>9/10 の読み物は、点数表が緑でも行動を測れ、でした。その列は今日の核ではありません。一行の連続に留めます。9/2 の親と検証とバスも、今日は再審しません。今日読むのは、ループを誰が持つかです。</p>
+      <p>Cursor は 9/10、Projects を出しました。Alexi Robbins と Fredrika Lindh が書きます。コーディネータ自身はコードを書きません。計画し、実装するエージェントへ渡し、終わった仕事を点検へ戻します。委任するから詰まりません。既定はクラウド上の専用計算機です。ラップトップを閉じても止まりません。手元の検証が要るときだけ、ローカルエージェントを起こします。</p>
+      <p>共有コンテキストは、クラウドとローカルの全マシンへ同期するファイル集合です。調査、成果物、コードベースの学び、好みの進め方が積み上がります。あるエージェントがサービスの試し方を見つければ、以後のエージェントは同じ指示を使えます。購読は Slack、スケジュール、全 PR です。バグ報告チャンネルを指せば、届くたびに委任が始まります。社内では数百 PR の移行、デザインシステム、Projects 自身の出荷に使いました。新規は PR マージが 30% 増、Projects を主に使う利用者は 6 倍、と書きます。ガーデニングの一例は、同じ誤りを二度見たら lint を足し、一日 20〜100 PR に触る軌道です。ベータ。本日全利用者へ段階提供です。</p>
+      <p>同じ日のもう一本の公式が、OpenAI の Agents API です。管理された Codex ハーネスです。公開ベータ。追加料金は無く、トークンとツールと、ホスト側なら標準コンテナ料金です。OpenAI がセッション、オーケストレーション、文脈の圧縮、回復を持ちます。アプリは道具と実行環境を選びます。セッションは耐久の実体です。ホスト側は Linux 作業場で、作業ディレクトリは <code>/workspace</code> です。ターン完了時、<code>/workspace/outputs</code> は不変の成果物になります。無通信が1時間続くとサンドボックスは消ええます。データ所在は当面米国のみ。ZDR は非対応です。自己ホストでも ZDR にはなりません。</p>
+      <p>薄い行だけ置きます。Anthropic の Model Hardware Standard は 8/28 の核でした。今日は物理面の一行です。核にしません。Google AI Agents Challenge の四パターンと、Genkit Go の段階開示も aside です。核にしません。9/10 と 9/9 と 9/2 は連続の一行です。再審しません。X bookmarks は今ラン 0。無いソースノートを、あるように書きません。</p>
+
+      <h2>共有コンテキストと購読が、毎回の促を終わらせる</h2>
+      <p>Cursor は、タスクのたびにエージェントをオンボードするな、と書きます。機能の型では、最初の調査が共有コンテキストへ残ります。移行の型では、安全な型を一度決め、初期は各 PR を厚く見、耐えたら薄くします。ガーデニングは終わらない仕事です。学びが、次の PR の門になります。</p>
+      <p>購読は、検知した信号で動きます。促を待ちません。Agents API は、ストリームと webhook を置きます。ストリームを閉じても仕事は止まりません。関数道具のハンドラが居ないと、エージェントは結果待ちのまま残ります。</p>
+      <p>KBのオンボーディング地図は、次が使える形で残せ、と書きます。文脈管理は、全部を毎回載せるな、と書きます。それは同じ向きです。Genkit の段階開示は aside です。表だけ先に載せ、本体は要るとき開きます。</p>
+
+      <h2>管理されたハーネスは、ループを製品にする</h2>
+      <p>Agents API は、OpenAI がエージェントループを自前の基盤で走らせる、と書きます。能力と、コードとファイルの場所は、利用者が選びます。環境はホスト、自己、無しです。ホストは用意と接続を製品側が持ちます。自己は、用意、再接続、停止、残すファイルを利用者が持ちます。一次統合は Blaxel AI、Cloudflare Dev、Daytona、DigitalOcean、E2B、Modal、Oracle Cloud、Runloop AI、Vercel です。</p>
+      <p>Cursor Projects は、同じ移動を UI にします。開発者をエージェント管理から外し、仕事を指示させます。UI のコーディネータと API のセッションは、同じ「ループを渡す」です。同じ入口ではありません。クラウド既定と、所在の門を、同じ「耐久」にしません。</p>
+      <p>knowledge-base-llm の <code>wiki/sources</code> に、Cursor Projects と Agents API のソースノートは、まだありません。無いことを、あるように書きません。今日の読み物は、公式 URL と地図で書きます。</p>
+
+      <div class="callout">
+        よい読みは、体の数で語らないことである。入口は書かない親である。共有ファイルと耐久セッションを同じ「文脈」にしない。促の前に購読を置く。MHS は一行に残す。親・バスの再話にも、行動評価の再話にもしない。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>今日の親は、書いているか。委任しているか？</li>
+        <li>今日残すのは、プロンプトか。次が使えるファイルか？</li>
+        <li>今日の耐久は、Project の計算機か。Session か。成果物の写しか？</li>
+        <li>今日の入口は、促か。信号か？</li>
+        <li>今日渡すのは、プロンプトか。ループか？</li>
+        <li>欠けているのは、ループか。共有ファイルか。ソースノートか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/agent-harness-landscape.md</code>, <code>wiki/maps/coding-agent-harness-patterns.md</code>, <code>wiki/maps/context-management-decisions.md</code>, and <code>wiki/maps/agent-onboarding-kb-codebase.md</code>, framed as theme <code>project-coordinators-and-managed-agent-apis</code> with Cursor Projects — coordinator agents that do not write code; shared project context synced across cloud and local machines; subscriptions to Slack, schedules, and PRs; cloud persistence so closing the laptop does not stop the work; new users merge 30% more PRs, users who primarily use Projects merge six times as many; gardening on track to touch 20 to 100 PRs a day; beta rolling out to all users (<a href="https://cursor.com/changelog/projects">cursor.com/changelog/projects</a>, <a href="https://cursor.com/blog/projects">cursor.com/blog/projects</a>). Same-day core lens: OpenAI Agents API — managed Codex harness; public beta; no extra API fee beyond tokens, tools, and standard container rates for hosted sandboxes; OpenAI manages sessions, orchestration, context compaction, and recovery; durable sessions; hosted Linux workspace at <code>/workspace</code> with immutable artifacts from <code>/workspace/outputs</code>; 1-hour idle sandbox timeout; US data residency only; no ZDR even with a self-hosted sandbox (<a href="https://openai.com/index/introducing-the-agents-api/">openai.com/index/introducing-the-agents-api</a>). Hardware aside, not the core: Anthropic Model Hardware Standard research preview (<a href="https://www.anthropic.com/news/model-hardware-standard-research-preview">anthropic.com/news/model-hardware-standard-research-preview</a>). Pattern aside, not the core: Google AI Agents Challenge four engineering patterns — bidirectional MCP, event-driven concurrency, same-bar fallback, tiered routing (<a href="https://developers.googleblog.com/en/4-engineering-patterns-behind-the-strongest-ai-agents-challenge-submissions/">developers.googleblog.com/.../4-engineering-patterns...</a>). Skills aside, not the core: Genkit Go Agent Skills progressive disclosure (<a href="https://developers.googleblog.com/en/enable-on-demand-expertise-with-agent-skills-in-genkit-go/">developers.googleblog.com/.../agent-skills-in-genkit-go/</a>). 9/10 behavioral-evals, 9/9 absorption-ROI, and 9/2 parent/bus FAQ are one-line continuity only. Do not invent a missing KB source note or unofficial metrics. X bookmarks this run: 0.</p>
+    </footer>
+  </div>
+</body>
+</html>
