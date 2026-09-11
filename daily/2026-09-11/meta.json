@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-11",
+  "title": "Never Blocked — Coordinators after Cursor Projects",
+  "theme": "project-coordinators-and-managed-agent-apis",
+  "source": "daily/2026-09-11/source.md",
+  "generated_at": "2026-09-11T01:00:00Z",
+  "topic_id": "project-coordinators-and-managed-agent-apis",
+  "output_dir": "daily/2026-09-11",
+  "page": "daily/2026-09-11/source.md",
+  "related": [
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/coding-agent-harness-patterns.md",
+    "wiki/maps/context-management-decisions.md",
+    "wiki/maps/agent-onboarding-kb-codebase.md",
+    "wiki/concepts/harness-engineering.md"
+  ],
+  "news_context": [
+    "Cursor Projects 2026-09-10 — coordinator agents that do not write code; plan, delegate, and return finished work for review; never blocked because they delegate; shared project context synced across every cloud and local machine; subscriptions to Slack, schedules, and all PRs; cloud persistence so closing the laptop does not stop the work; local agents only when something must be tested on the machine; new users merge 30% more PRs, users who primarily use Projects merge six times as many; three patterns: feature work, migrations, gardening (design-system project on track to touch 20 to 100 PRs a day); beta rolling out to all users (https://cursor.com/changelog/projects, https://cursor.com/blog/projects)",
+    "OpenAI Agents API 2026-09-10 — managed Codex harness; public beta; no extra API fee beyond tokens, tools, and standard container rates for hosted sandboxes; OpenAI manages sessions, orchestration, context compaction, and recovery; four concepts: Agent, Environment, Session, Events and items; durable sessions that resume where they left off; hosted Linux workspace at /workspace with immutable artifacts from /workspace/outputs; 1-hour idle sandbox timeout (not configurable); US data residency only; no ZDR even with a self-hosted sandbox; first-class self-hosted integrations include Blaxel AI, Cloudflare Dev, Daytona, DigitalOcean, E2B, Modal, Oracle Cloud, Runloop AI, and Vercel (https://openai.com/index/introducing-the-agents-api/)",
+    "Project-coordinator / managed-agent-API lens: the question is who owns the loop; a writing parent blocks; a delegating coordinator stays responsive; shared files replace per-task onboarding; a Project computer and a durable Session are adjacent layers, not the same product; subscriptions move before the prompt; ZDR is not implied by self-hosting",
+    "Hardware aside (not the core): Anthropic Model Hardware Standard research preview — already the 8/28 core; one physical-interface line only (https://www.anthropic.com/news/model-hardware-standard-research-preview)",
+    "Pattern aside (not the core): Google AI Agents Challenge four engineering patterns — bidirectional MCP, event-driven concurrency, same-bar fallback, tiered routing; one submission handled more than 40% of incoming messages before a full model call (https://developers.googleblog.com/en/4-engineering-patterns-behind-the-strongest-ai-agents-challenge-submissions/)",
+    "Skills aside (not the core): Genkit Go Agent Skills progressive disclosure — load SKILL.md frontmatter first, body and references only when needed (https://developers.googleblog.com/en/enable-on-demand-expertise-with-agent-skills-in-genkit-go/)",
+    "9/10 behavioral-evals, 9/9 absorption-ROI, and 9/2 parent/bus FAQ are one-line continuity only, not today's core",
+    "knowledge-base-llm has no source note yet for Cursor Projects or the Agents API; do not invent one or unofficial metrics; example max_concurrent_subagents: 4 is a config sample, not a product limit",
+    "X bookmarks this run: 0"
+  ],
+  "char_count": 11648
+}
