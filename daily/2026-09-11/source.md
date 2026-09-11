@@ -6,7 +6,7 @@
 - Theme slug: `project-coordinators-and-managed-agent-apis`
 - Primary topic: composite — `wiki/maps/agent-harness-landscape.md`, `wiki/maps/coding-agent-harness-patterns.md`, `wiki/maps/context-management-decisions.md`, `wiki/maps/agent-onboarding-kb-codebase.md`
 - Purpose: NotebookLM向けの対話用ソース。KBのハーネス風景／コーディングハーネス／文脈管理／オンボーディングを、製品化されたコーディネータと、管理されたエージェントAPIとして読み直す。地図の再話でも、9/2 の親・検証・バスFAQの再審でも、8/28 の MHS 核の続きでも、9/10 の行動評価の続きでもない
-- News angle: Cursor Projects（2026-09-10、changelog + blog。Alexi Robbins と Fredrika Lindh。https://cursor.com/changelog/projects と https://cursor.com/blog/projects）。機能、移行、アプリ全体のような大きな仕事を、何ヶ月も文脈を保ち、何千もの下位エージェントへ委任し、促されなくても反復仕事をこなす、と書く。コーディネータ自身はコードを書かない。計画し、委任し、終わった仕事を点検へ戻す。委任するから詰まらず、指示に応答し続ける。既定はクラウド上の専用計算機。ラップトップを閉じても止まらない。手元の検証が要るときだけ、ローカルエージェントを起こす。共有コンテキストは、クラウドとローカルの全マシンへ同期するファイル集合である。調査、成果物、コードベースの学び、好みの仕事の進め方が積み上がる。あるエージェントがサービスの試し方を見つければ、以後のエージェントは同じ指示を使える。購読は Slack チャンネル、スケジュール、全 PR。バグ報告チャンネルを指せば、届くたびに委任が始まる。社内では数百 PR の移行、デザインシステムの維持、Projects 自身の出荷に使った。新規は PR マージが 30% 増、Projects を主に使う利用者は 6 倍、と書く。ガーデニングの一例は、同じ誤りを二度見たら lint を足し、一日 20〜100 PR に触る軌道。ベータ。本日全利用者へ段階提供。同日のもう一本の公式: OpenAI Agents API（https://openai.com/index/introducing-the-agents-api/）。管理された Codex ハーネス。公開ベータ。追加料金は無く、トークンとツールと、ホスト側サンドボックスなら標準コンテナ料金。OpenAI がセッション、オーケストレーション、文脈の圧縮、回復を持つ。アプリは道具と実行環境を選ぶ。概念は Agent / Environment / Session / Events and items。セッションは耐久の実体である。管理ハーネスは、サンドボックスでのコマンドとコード、スキル、MCP、走行中の操舵、以前の仕事の要約、下位への分割、中断した場所からの再開を支える。ホスト側は Linux 作業場（Python、Node.js、CLI）。作業ディレクトリは `/workspace`。ターン完了時、`/workspace/outputs` は不変の成果物になる。無通信が1時間続くとサンドボックスは消えうる。タイムアウトは設定不可。データ所在は当面米国のみ。ZDR は非対応。自己ホストでも ZDR にはならない。自己ホストは Blaxel AI、Cloudflare Dev、Daytona、DigitalOcean、E2B、Modal、Oracle Cloud、Runloop AI、Vercel を一次統合として挙げる。aside（短い。核にしない）: Anthropic Model Hardware Standard 研究プレビュー（https://www.anthropic.com/news/model-hardware-standard-research-preview）。8/28 の核。今日は物理面の一行。核にしない。Google AI Agents Challenge の四パターン（https://developers.googleblog.com/en/4-engineering-patterns-behind-the-strongest-ai-agents-challenge-submissions/）。双方向 MCP、事象駆動の並列、同じ棒のフォールバック、段階ルーティング。核にしない。Genkit Go の Agent Skills（https://developers.googleblog.com/en/enable-on-demand-expertise-with-agent-skills-in-genkit-go/）。段階開示。SKILL.md の表だけ先に載せる。核にしない。9/10 の行動評価核と 9/9 の吸収ROI核と 9/2 の親・バス核は連続の一行まで。再審しない。X bookmarks は今ラン 0。無い数字は足さない
+- News angle: Cursor Projects（2026-09-10、changelog + blog。Alexi Robbins と Fredrika Lindh。https://cursor.com/changelog/projects と https://cursor.com/blog/projects）。機能、移行、アプリ全体のような大きな仕事を、何ヶ月も文脈を保ち、何千もの下位エージェントへ委任し、促されなくても反復仕事をこなす、と書く。コーディネータ自身はコードを書かない。計画し、委任し、終わった仕事を点検へ戻す。委任するから詰まらず、指示に応答し続ける。既定はクラウド上の専用計算機。ラップトップを閉じても止まらない。手元の検証が要るときだけ、ローカルエージェントを起こす。共有コンテキストは、クラウドとローカルの全マシンへ同期するファイル集合である。調査、成果物、コードベースの学び、好みの仕事の進め方が積み上がる。あるエージェントがサービスの試し方を見つければ、以後のエージェントは同じ指示を使える。購読は Slack チャンネル、スケジュール、全 PR。バグ報告チャンネルを指せば、届くたびに委任が始まる。社内では数百 PR の移行、デザインシステムの維持、Projects 自身の出荷に使った。新規は PR マージが 30% 増、Projects を主に使う利用者は 6 倍、と書く。ガーデニングの一例は、同じ誤りを二度見たら lint を足し、一日 20〜100 PR に触る軌道。ベータ。本日全利用者へ段階提供。同日のもう一本の公式: OpenAI Agents API（https://openai.com/index/introducing-the-agents-api/）。管理された Codex ハーネス。公開ベータ。追加料金は無く、トークンとツールと、ホスト側サンドボックスなら標準コンテナ料金。OpenAI がセッション、オーケストレーション、文脈の圧縮、回復を持つ。アプリは道具と実行環境を選ぶ。概念は Agent / Environment / Session / Events and items。セッションは耐久の実体である。管理ハーネスは、サンドボックスでのコマンドとコード、スキル、MCP、走行中の操舵、以前の仕事の要約、下位への分割、中断した場所からの再開を支える。ホスト側は Linux 作業場（Python、Node.js、CLI）。作業ディレクトリは `/workspace`。ターン完了時、`/workspace/outputs` は不変の成果物になる。無通信が1時間続くとサンドボックスは消えうる。タイムアウトは設定不可。データ所在は当面米国のみ。ZDR は非対応。自己ホストでも ZDR にはならない。自己ホストは Blaxel AI、Cloudflare Dev、Daytona、DigitalOcean、E2B、Modal、Oracle Cloud、Runloop AI、Vercel を一次統合として挙げる。aside（短い。核にしない）: Anthropic Model Hardware Standard 研究プレビュー（https://www.anthropic.com/news/model-hardware-standard-research-preview）。8/28 の核。今日は物理面の一行。核にしない。Google AI Agents Challenge の四パターン（https://developers.googleblog.com/en/4-engineering-patterns-behind-the-strongest-ai-agents-challenge-submissions/）。双方向 MCP、事象駆動の並列、同じ棒のフォールバック、段階ルーティング。核にしない。Genkit Go の Agent Skills（https://developers.googleblog.com/en/enable-on-demand-expertise-with-agent-skills-in-genkit-go/）。段階開示。SKILL.md の表だけ先に載せる。核にしない。追加の一行: Cognition SWE‑2（https://cognition.com/blog/swe-2 と https://x.com/cognition/status/2098069235733823965）。ベンダー。FrontierCode 1.1 Main 50.0%。Fable 5.1 から1ポイント以内。64%安い。Devin Desktop / CLI は本日。能力／単価の拍だけ。核にしない。9/10 の行動評価核と 9/9 の吸収ROI核と 9/2 の親・バス核は連続の一行まで。再審しない。X bookmarks は今ラン 0。無い数字は足さない
 
 ## Talking points（3〜5分）
 
@@ -14,7 +14,7 @@
 2. KBの問いは「エージェントを何体走らせるか」ではない。問いは、コーディネータが自分で書いて詰まっていないかである。地図は、ハーネスがセッションをまたぎ、オンボーディングを一度で済ませ、役割を分ける、と書く。
 3. Cursor が支えるのは、書かない親である。計画し、委任し、戻す。共有コンテキストが育ち、購読がプロンプトの前に動く。ラップトップを閉じても止まらない。
 4. Agents API が支えるのは、自分でループを組まないことである。セッションは耐久である。圧縮と回復は製品側である。サンドボックスはホストでも自己でもよい。ZDR は無い。層を混ぜない。
-5. MHS と Challenge 四パターンと Genkit Skills は短い aside。9/10 と 9/9 と 9/2 は連続の一行。X は 0。無いソースノートは invent しない。主題は動かさない。
+5. MHS と Challenge 四パターンと Genkit Skills は短い aside。SWE‑2 は能力／単価の一行。9/10 と 9/9 と 9/2 は連続の一行。X は 0。無いソースノートは invent しない。主題は動かさない。
 
 ## 今日の読み方
 
@@ -30,7 +30,7 @@ Cursor は 9/10、Projects を出した。changelog と blog が同じ骨格で�
 
 同じ日のもう一本の公式が、OpenAI の Agents API である。発表ページは（https://openai.com/index/introducing-the-agents-api/）。ドキュメントは、耐久のクラウドエージェントを、管理された Codex ハーネスで、と書く。公開ベータ。追加料金は無い。トークンとツールと、ホスト側なら標準コンテナ料金。OpenAI がセッション、オーケストレーション、文脈の圧縮、回復を持つ。アプリは道具を渡し、実行環境を選ぶ。概念は四つ。Agent はモデル、指示、道具、MCP。Environment は任意のサンドボックスか計算機。Session は耐久の実体。Events and items は入出力である。ホスト側セッションでは、アプリは入力を送り事象を受け、OpenAI がエージェントを走らせ、サンドボックスを用意する。管理ハーネスは、サンドボックスでのコマンドとコード、スキル、MCP、走行中の操舵、以前の仕事の要約、下位への分割、中断した場所からの再開を支える。ホスト側は Linux 作業場である。Python、Node.js、CLI。作業ディレクトリは `/workspace`。セッションごとに作業場は分かれる。存在するあいだ、ファイルはターンをまたぐ。ターン完了時、`/workspace/outputs` は不変の成果物になる。無通信が1時間続くと消えうる。タイムアウトは設定不可。ストリームを閉じても仕事は止まらない。データ所在は当面米国のみ。ZDR は非対応。自己ホストでも ZDR にはならない。自己ホストは、インフラ、私有網、独自ソフトが要るときである。一次統合は Blaxel AI、Cloudflare Dev、Daytona、DigitalOcean、E2B、Modal、Oracle Cloud、Runloop AI、Vercel。環境無し（`none`）も選べる。そのとき組込みの Bash と apply-patch と作業ファイルは使えない。
 
-薄い行だけ置く。Anthropic の Model Hardware Standard は 8/27 の研究プレビューである。8/28 の核だった。今日は、物理装置の共有仕様、という一行である。再審しない。Google の AI Agents Challenge は、上位が繰り返した四パターンである。双方向 MCP。事象駆動の並列。同じ棒のフォールバック。段階ルーティング。最初の安価な通過が、ある提出では着信の 40% 超を、本モデルの前に処理した、と書く。核にしない。Genkit Go の Agent Skills は段階開示である。最初は SKILL.md の表だけを載せ、要るとき本体と参照とスクリプトを開く。核にしない。9/10 のガイドポストと 9/9 の吸収と 9/2 の親・バスは、連続の一行である。再審しない。X bookmarks は今ラン 0。公式本文に無い数字は足さない。無いソースノートを、あるように書かない。
+薄い行だけ置く。Anthropic の Model Hardware Standard は 8/27 の研究プレビューである。8/28 の核だった。今日は、物理装置の共有仕様、という一行である。再審しない。Google の AI Agents Challenge は、上位が繰り返した四パターンである。双方向 MCP。事象駆動の並列。同じ棒のフォールバック。段階ルーティング。最初の安価な通過が、ある提出では着信の 40% 超を、本モデルの前に処理した、と書く。核にしない。Genkit Go の Agent Skills は段階開示である。最初は SKILL.md の表だけを載せ、要るとき本体と参照とスクリプトを開く。核にしない。追加の一行: Cognition の SWE‑2 は、FrontierCode 1.1 Main で 50.0%。Fable 5.1 から1ポイント以内。64%安い。Devin Desktop / CLI は本日、と書く。能力／単価の拍である。核にしない。9/10 のガイドポストと 9/9 の吸収と 9/2 の親・バスは、連続の一行である。再審しない。X bookmarks は今ラン 0。公式本文に無い数字は足さない。無いソースノートを、あるように書かない。
 
 今日の問いは「何体走らせるか」ではない。「誰がループを持ち、何がターンをまたいで残るか」である。
 
@@ -148,11 +148,11 @@ knowledge-base-llm の `wiki/sources` に、Cursor Projects と Agents API の�
 - 同じ「入口」でも、促と、購読と、webhook は、待ち位置が違う
 - 同じ「ハーネス」でも、UI のコーディネータと、API の管理ループは、渡すものが違う
 
-KBの言葉では、ハーネスはセッションをまたぎ、オンボードを一度で済ませ、役割を分ける。Cursor の公式は、書かない親と、共有ファイルと、購読と、閉じても止まらない計算機を、一次で固定する。OpenAI の公式は、管理 Codex ハーネスと、耐久セッションと、圧縮と回復と、ホスト／自己／無しの環境と、ZDR 無しを、一次で固定する。MHS と Challenge と Skills を aside に留め、9/10 と 9/9 と 9/2 を一行に残し、無いソースノートを空欄のまま残す。
+KBの言葉では、ハーネスはセッションをまたぎ、オンボードを一度で済ませ、役割を分ける。Cursor の公式は、書かない親と、共有ファイルと、購読と、閉じても止まらない計算機を、一次で固定する。OpenAI の公式は、管理 Codex ハーネスと、耐久セッションと、圧縮と回復と、ホスト／自己／無しの環境と、ZDR 無しを、一次で固定する。MHS と Challenge と Skills と SWE‑2 を aside に留め、9/10 と 9/9 と 9/2 を一行に残し、無いソースノートを空欄のまま残す。
 
 ## トレードオフ
 
-コーディネータを厚くすると、今日の公式が「書くな」チェックリストに固定される。書く親に戻すと、長い仕事の入口が詰まる。共有コンテキストを全部毎回載せると、文脈管理の地図が消える。残さないと、オンボードが毎回始まる。クラウド既定を所在の門と混ぜると、耐久が採用の許可になる。ZDR を自己ホストで足すと、公式に無い保証を invent する。購読をバスFAQに戻すと、9/2 の再審になる。管理ハーネスをベンダー比較に戻すと、9/3 の再審になる。MHS を核にすると、物理標準が主題になる。Challenge を核にすると、四パターンが主題になる。Skills を核にすると、SDK の段階開示が主題になる。9/10 のガイドポストを今日の核にすると、コーディネータが評価の続きになる。無いソースノートを invent すると、無い編纂を足す。
+コーディネータを厚くすると、今日の公式が「書くな」チェックリストに固定される。書く親に戻すと、長い仕事の入口が詰まる。共有コンテキストを全部毎回載せると、文脈管理の地図が消える。残さないと、オンボードが毎回始まる。クラウド既定を所在の門と混ぜると、耐久が採用の許可になる。ZDR を自己ホストで足すと、公式に無い保証を invent する。購読をバスFAQに戻すと、9/2 の再審になる。管理ハーネスをベンダー比較に戻すと、9/3 の再審になる。MHS を核にすると、物理標準が主題になる。Challenge を核にすると、四パターンが主題になる。Skills を核にすると、SDK の段階開示が主題になる。SWE‑2 を核にすると、能力／単価が主題になる。9/10 のガイドポストを今日の核にすると、コーディネータが評価の続きになる。無いソースノートを invent すると、無い編纂を足す。
 
 だから今日の使い方は、地図を増やすことではない。書かない親と耐久セッションを名指し、共有ファイルをオンボードの代わりに置き、購読を促の前に置き、ループの所在を UI と API に分ける。親・バスの再話にも、MHS の再話にも、行動評価の再話にもしない。
 
@@ -166,7 +166,7 @@ KBの言葉では、ハーネスはセッションをまたぎ、オンボード
 - 促待ちと、購読と、webhook を、同じ「入口」にしない
 - PASS には、公式が本文で置いた数字だけを使う。30%、6 倍、20〜100、1時間。例示の 4 は上限にしない
 - 米国所在と ZDR 無しを、自己ホストで上書きしない
-- MHS と Challenge と Skills と、9/10 と 9/9 と 9/2 と、X=0 は、一行のまま核に載せない
+- MHS と Challenge と Skills と、SWE‑2 と、9/10 と 9/9 と 9/2 と、X=0 は、一行のまま核に載せない
 - 欠けたソースノートを名指す。無い編纂を補わない
 - 公式ページに無い測定は、足さない。あるのは公式 URL の本文である
 
