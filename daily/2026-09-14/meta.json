@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-14",
+  "title": "Inherit the Gate — Data Agents after Put Data to Work",
+  "theme": "workplace-data-agents-and-governed-analytics",
+  "source": "daily/2026-09-14/source.md",
+  "generated_at": "2026-09-14T01:00:00Z",
+  "topic_id": "workplace-data-agents-and-governed-analytics",
+  "output_dir": "daily/2026-09-14",
+  "page": "daily/2026-09-14/source.md",
+  "related": [
+    "wiki/maps/context-graph-and-company-brain.md",
+    "wiki/maps/evidence-quality-and-source-trust.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md",
+    "wiki/maps/approval-policy-patterns-and-escalation.md",
+    "wiki/concepts/company-brain.md"
+  ],
+  "news_context": [
+    "OpenAI Data agent in ChatGPT Work 2026-09-10 — governed natural-language analytics; connects to approved sources including Amazon Redshift, Datadog, Google BigQuery, ClickHouse, Databricks, MongoDB, and Snowflake; Drive and SharePoint files; semantic context from Databricks Genie Ontology, dbt, GitHub, Snowflake Horizon, and BI dashboards; admins choose connections and roles; queries inherit table, row, and column permissions; reviewable evidence; editable, shareable, refreshable dashboards; BI authoring in Omni, Oracle BI, Power BI, Sigma, Tableau, and ThoughtSpot; Slack or email share plus approved actions; nearly all of the product team and over two-thirds of GTM use data agents internally after shared definitions, access rules, and safeguards; listed as Data in Plugins; start with @Data (https://openai.com/index/put-data-to-work/)",
+    "OpenAI ChatGPT for Financial Services 2026-09-10 — vertical ChatGPT Work workspace; hosted premium financial data from providers such as Daloopa, PitchBook, LSEG News, and Crunchbase; granular citations to tables and passages; GPT-6 Astra; design partners Morgan Stanley and Evercore; entitlement work with S&P Capital IQ, LSEG, MSCI, Dow Jones Factiva, and Moody's; 50+ connectors including Datasite, Box, Preqin, FactSet, and Intapp; admin-published Excel, Word, and PowerPoint templates; SAML SSO, SCIM, RBAC, configurable retention, Compliance Platform logs, information barriers via multiple workspaces; available to eligible financial institutions (https://openai.com/index/introducing-chatgpt-financial-services/)",
+    "Workplace data-agent / governed-analytics lens: the question is whether the answer inherits the gate; a plain-language ask is not an open warehouse; the semantic layer is shared definitions, not a prompt glossary; table/row/column permissions walk with the query; a warehouse connector, hosted financial data, and an existing-subscription entitlement are adjacent stores, not the same product; citations and refreshable dashboards are the share condition",
+    "Storage aside (not the core): OpenAI Habitat — online storage platform; 70M+ requests per second, 1B+ people each week, 500 PB+, ~40 regions; Python library then service; Q2 2026 Rust rewrite with 2 engineers, Codex, and GPT-5.5; 95% of production; 6x CPU and 15x memory (https://openai.com/index/scaling-storage-one-billion-users-part-one/)",
+    "Desktop aside (not the core): Google Gemini app for Windows — Alt + Space overlay; Windows 10 and 11 globally (https://blog.google/innovation-and-ai/products/gemini-app/gemini-app-now-on-windows/)",
+    "Weekend frontier discourse is secondary and is not treated as an Anthropic newsroom primary",
+    "9/11 coordinators, 9/10 behavioral-evals, and 9/9 absorption-ROI are one-line continuity only, not today's core",
+    "knowledge-base-llm has no source note yet for the Data agent or ChatGPT for Financial Services; do not invent one or unofficial metrics",
+    "X bookmarks this run: 0"
+  ],
+  "char_count": 12853
+}
