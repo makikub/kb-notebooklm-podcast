@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inherit the Gate — Data Agents after Put Data to Work - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-14/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-09-14</a> / 読み物版</header>
+    <p class="eyebrow">2026-09-14 Weekly Topic</p>
+    <h1>Inherit the Gate — Data Agents after Put Data to Work</h1>
+    <p class="lead">9/11 は、誰がループを持つかでした。今日は、倉庫への問いが、権限と意味と根拠を運ぶかです。リードは ChatGPT Work の Data agent と、金融向けの縦作業場です。コーディネータの再話ではありません。Habitat と Gemini Windows は aside です。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-14">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 承認された店が入口である</strong>平文で聞けることは、倉庫が開いたことではありません。店を開くのは、管理者の接続と役割です。クエリは表、行、列の既存権限を強制します。</div>
+      <div><strong>2. 意味層が定義を残す</strong>業務用語と指標は、Genie、dbt、Horizon、BI から来ます。プロンプトだけの用語は、次の会話で消えます。共有定義が無い NL は倉庫を壊します。</div>
+      <div><strong>3. 根拠が無い答えは共有できない</strong>所見の根拠を見直し、数字を表へ辿ります。倉庫コネクタと、ホスト済み金融データは、同じ店ではありません。情報隔壁は縦作業場の門です。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは、答えが門を相続するかである</h2>
+      <p>knowledge-base-llm の文脈グラフと会社脳は、生の組織信号を、実体、関係、規則、来歴、有効期間、権限へ編む、と書きます。検索で似た文が見つかることと、その情報を使ってよいかは、別です。証拠品質は、ソースがどの主張を、どの強さで支えてよいかを書け、と書きます。デプロイゲートは、生成が点検を追い越すな、と書きます。</p>
+      <p>9/11 の読み物は、書かない親と耐久セッションでした。その列は今日の核ではありません。一行の連続に留めます。9/10 の行動評価も、今日は再審しません。週末のフロンティア談義も二次です。Anthropic のニュースルーム一次としては扱いません。今日読むのは、職場のデータエージェントが、統治された分析になったかです。</p>
+      <p>OpenAI は 9/10、ChatGPT Work の Data agent を出しました。会社のデータへつなぎ、何が変わったかを調べ、共有できる対話型ダッシュボードを作ります。クエリを書かず、新しい分析ツールを学びません。承認されたソースは Amazon Redshift、Datadog、Google BigQuery、ClickHouse、Databricks、MongoDB、Snowflake などです。Google Drive と SharePoint のファイルも分析へ入れます。</p>
+      <p>解釈は、組織の業務用語、指標定義、独自計算、データ関係を使います。この文脈は Databricks Genie Ontology、dbt、GitHub、Snowflake Horizon、BI ダッシュボードから来ます。管理者は、どの接続を使えるか、どの役割が使えるかを選びます。クエリは、接続アカウントの既存権限を強制します。表、行、列の制限を含みます。会話で追問いし、各所見の根拠を見直せます。対話型ダッシュボードは編集、共有、更新できます。Omni、Oracle BI、Power BI、Sigma、Tableau、ThoughtSpot のダッシュボードも、平文で作り、操作できます。Slack かメールで所見を共有し、承認した行動を接続先で実行します。</p>
+      <p>社内では、ほぼ全てのプロダクトチームと、GTM の三分の二超が、ChatGPT Work のデータエージェントで会社データを自分で分析する、と書きます。データチームが共有の業務定義を作り、アクセス規則を置き、機微データへ防護を置きました。NTT DATA は、非エンジニアが平文でダッシュボードを作り更新できた、と書きます。ServiceTitan は、Atlas 利用者のキャンペーン開始が非利用者のおよそ3倍、というダッシュボードを作りました。導入は Plugins の Data。接続のあと、<code>@Data</code> で会話を始めます。</p>
+      <p>同じ週のもう一本の公式核が、ChatGPT for Financial Services です。ChatGPT Work の縦作業場です。組み込みの金融データと GPT‑6 Astra。設計パートナーは Morgan Stanley と Evercore。Daloopa、PitchBook、LSEG News、Crunchbase などのプレミアムデータを、OpenAI が索引しホストします。細かい引用。数字と主張を、特定の表や箇所へ辿れます。既存購読は S&amp;P Capital IQ、LSEG、MSCI、Dow Jones Factiva、Moody’s と、共有サインインを進めます。コネクタは 50 超。管理者は Excel / Word / PowerPoint の社内テンプレートを公開できます。SAML SSO、SCIM、役割ベースのアクセス。業務データは既定で学習に使いません。複数ワークスペースで情報隔壁。対象は適格な金融機関です。</p>
+      <p>薄い行だけ置きます。Habitat は 9/11 のストレージ工学です。毎秒 7000 万超、週 10 億超、500 PB 超。Q2 2026 に Rust。本番の 95%。CPU 6 倍、メモリ 15 倍。核にしません。Gemini app for Windows は Alt + Space です。核にしません。週末のフロンティア談義は二次です。9/11 と 9/10 と 9/9 は連続の一行です。再審しません。X bookmarks は今ラン 0。無いソースノートを、あるように書きません。</p>
+
+      <h2>意味層と表権限が、平文の前にある</h2>
+      <p>平文で聞けることは、店が開いたことではありません。店を開くのは、管理者の接続と役割です。意味層が無い NL は、同じ「売上」を別の列で足します。社内でほぼ全てと三分の二超が自分で分析できる前提は、共有の業務定義とアクセス規則と防護です。</p>
+      <p>権限はクエリと一緒に歩きます。表、行、列の制限は、接続アカウントの既存権限です。Financial Services の情報隔壁は、複数ワークスペースです。Slack やメールへの共有と、承認した行動は、そのあとです。承認していない行動を、エージェントが勝手に実行する、とは公式は書きません。</p>
+      <p>KBの会社脳は、許可され、まだ有効な文脈だけを受けよ、と書きます。証拠品質は、この数字をこの表が支えるかを書け、と書きます。それは同じ向きです。Habitat の ACL と、職場の表権限を、同じ「権限」にしません。</p>
+
+      <h2>縦の作業場は、同じ層の別入口である</h2>
+      <p>Data agent は、顧客の倉庫と BI とファイルへつなぎます。Financial Services は、ホストされたプレミアムデータと、既存購読の entitlement と、引用と、成果物テンプレートを持ちます。50 超のコネクタは、後者の生態系です。前者の倉庫リストを、50 超で上書きしません。Astra を今日の能力核にしません。点数表の再審ではありません。</p>
+      <p>根拠を残さない答えは、共有できません。Data agent は所見の根拠を見直せます。Financial Services は、数字を表や箇所へ辿れます。同じ「cite」ではありません。ホスト済みデータの引用と、倉庫クエリの根拠を、潰しません。</p>
+      <p>knowledge-base-llm の <code>wiki/sources</code> に、Data agent と ChatGPT for Financial Services のソースノートは、まだありません。無いことを、あるように書きません。今日の読み物は、公式 URL と地図で書きます。</p>
+
+      <div class="callout">
+        よい読みは、モデルが倉庫を読めるかで語らないことである。入口は承認された店である。意味層と表権限を同じ「文脈」にしない。倉庫とホストと購読を同じ「店」にしない。Habitat と Gemini は一行に残す。コーディネータの再話にも、行動評価の再話にもしない。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>今日の入口は、会話か。承認された店か？</li>
+        <li>今日の定義は、プロンプトか。共有の意味層か？</li>
+        <li>今日歩くのは、問いだけか。表／行／列もか？</li>
+        <li>今日共有するのは、所見か。辿れる表か？</li>
+        <li>今日の店は、倉庫か。ホストか。購読の entitlement か？</li>
+        <li>欠けているのは、意味層か。表権限か。ソースノートか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/context-graph-and-company-brain.md</code>, <code>wiki/maps/evidence-quality-and-source-trust.md</code>, <code>wiki/maps/agent-deployment-gates-and-operational-risk.md</code>, and <code>wiki/maps/approval-policy-patterns-and-escalation.md</code>, framed as theme <code>workplace-data-agents-and-governed-analytics</code> with OpenAI Data agent in ChatGPT Work — governed natural-language analytics; approved warehouse and ops connectors including Amazon Redshift, Datadog, Google BigQuery, ClickHouse, Databricks, MongoDB, and Snowflake; Drive and SharePoint files; semantic context from Databricks Genie Ontology, dbt, GitHub, Snowflake Horizon, and BI dashboards; admin-chosen connections and roles; queries inherit table, row, and column permissions; reviewable evidence; editable, shareable, refreshable dashboards; BI authoring in Omni, Oracle BI, Power BI, Sigma, Tableau, and ThoughtSpot; Slack or email share plus approved actions; nearly all of the product team and over two-thirds of GTM use data agents internally after shared definitions and safeguards; listed as Data in Plugins, start with <code>@Data</code> (<a href="https://openai.com/index/put-data-to-work/">openai.com/index/put-data-to-work</a>). Same-week core lens: ChatGPT for Financial Services — vertical ChatGPT Work workspace; hosted premium data from providers such as Daloopa, PitchBook, LSEG News, and Crunchbase; granular citations; GPT‑6 Astra; design partners Morgan Stanley and Evercore; entitlement work with S&amp;P Capital IQ, LSEG, MSCI, Dow Jones Factiva, and Moody’s; 50+ connectors; firm templates; SSO, SCIM, RBAC, information barriers; eligible financial institutions (<a href="https://openai.com/index/introducing-chatgpt-financial-services/">openai.com/index/introducing-chatgpt-financial-services</a>). Storage aside, not the core: OpenAI Habitat — 70M+ requests per second, 1B+ weekly users, 500 PB+, ~40 regions; Python service then Rust in Q2 2026; 95% of production; 6x CPU and 15x memory (<a href="https://openai.com/index/scaling-storage-one-billion-users-part-one/">openai.com/index/scaling-storage-one-billion-users-part-one</a>). Desktop aside, not the core: Google Gemini app for Windows — Alt + Space; Windows 10 and 11 (<a href="https://blog.google/innovation-and-ai/products/gemini-app/gemini-app-now-on-windows/">blog.google/.../gemini-app-now-on-windows</a>). Weekend frontier discourse is secondary and is not treated as an Anthropic newsroom primary. 9/11 coordinators, 9/10 behavioral-evals, and 9/9 absorption-ROI are one-line continuity only. Do not invent a missing KB source note or unofficial metrics. X bookmarks this run: 0.</p>
+    </footer>
+  </div>
+</body>
+</html>
