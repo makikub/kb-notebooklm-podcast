@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Check In Less — Production Trust after Perplexity × Astra - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-15/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-09-15</a> / 読み物版</header>
+    <p class="eyebrow">2026-09-15 Weekly Topic</p>
+    <h1>Check In Less — Production Trust after Perplexity × Astra</h1>
+    <p class="lead">9/14 は、倉庫への問いが門を相続するかでした。今日は、点検が薄くなったあと、残る点検が門を相続するかです。リードは Perplexity × Astra の本番信頼です。倉庫NLの再話ではありません。DevFest は aside です。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-15">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 信頼は判断である</strong>公式は、端から端の系へ信頼でき、以前の世代より点検を空けられる、と書きます。誤り率も承認表も本文にはありません。判断を通知表にしないでください。</div>
+      <div><strong>2. 三つは同じ半径ではない</strong>通信を書く。実世界の系を編集する。本番を監視する。同じ文に並びます。爆破半径は同じではありません。門の階層は、公式が置きません。</div>
+      <div><strong>3. 書いたテストは審判ではない</strong>Astra はサービスになり代わり、ワークフローを端から端で試します。それは有用です。作った同じエージェントの最後の一目を、独立した評価にはしません。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは、残る点検が門を相続するかである</h2>
+      <p>knowledge-base-llm のデプロイゲートは、生成が点検を追い越したとき、失敗は孤立した誤りからレビュー崩壊へ移る、と書きます。承認の地図は、広い権限を、促の前の門にせよ、と書きます。評価は、作った同じエージェントの最後の一目ではありません。認知負債は、レビュー容量が生成速度に追いつかない、と書きます。点検を空けることは、容量の主張です。信頼性の測定ではありません。</p>
+      <p>9/14 の読み物は、答えが倉庫の門を相続するかでした。その列は今日の核ではありません。一行の連続に留めます。9/11 の書かない親も、9/10 のガイドポストも、今日は再審しません。今日読むのは、端から端の系へ信頼した、とその公式が書いたあと、残る点検が何を相続するかです。</p>
+      <p>OpenAI は 9/14、「Perplexity trusts GPT‑6 Astra with end-to-end systems」を出しました。Perplexity は Astra で通信を書き、ソフトウェアを変え、本番系を監視し、以前の世代より点検の間隔を空けます。回答エンジンとして、検索と正確さに深く向きます。大量の情報を処理できることが、決定的に重要である、と書きます。</p>
+      <p>Johnny Ho（Cofounder and Chief Strategy Officer）は、モデルがコードを書くたびに検索エンジンも良くなる、と観察します。ウェブと内部情報を探し、ごく簡潔に要約する、より良いプログラムを書けるようになる、と書きます。本当の課題は、その情報面を実世界の系へ適用することです。GPT‑6 Astra でそれが易しくなった、と書きます。引用は、「モデルに通信を書かせ、実世界の系を編集させ、本番ソフトウェアを監視させることができる。以前の世代ではできなかったやり方で」、です。</p>
+      <p>有用な適用の一つは、コードのテストです。手で試す時間が限られるので、Astra に、アプリのまわりに小さなテストプログラムを組ませます。モデルは、別のサービスが返すような現実的な応答を生成します。言語モデル API やコネクタを例に挙げます。そのサービスになり代わり、アプリの応答を見、ワークフローを端から端で試します。締めの引用は、「端から端の系へ実際に信頼でき、以前の世代よりずっと点検の間隔を空けられる」、です。公式本文に、誤り率、節約時間、インシデント数、どの本番操作がまだ承認を要るか、はありません。</p>
+      <p>薄い行だけ置きます。Google DevFest 2026 は 9/14。10/1 から 12/31。約100万の開発者が参加見込み。テーマは Build, Secure, Scale: Developers and Builders in the Agentic Era。800超の催し、115か国。GDG 主催。核にしません。コミュニティの季節と、本番の点検間隔は、同じ「エージェント時代」ではありません。9/14 と 9/11 と 9/10 は連続の一行です。再審しません。X bookmarks は今ラン 0。無いソースノートを、あるように書きません。</p>
+
+      <h2>信頼は判断であり、三つは同じ半径ではない</h2>
+      <p>公式が固定するのは、信頼した、と、点検を空けた、です。門の形は、本文が置きません。無い門を invent しません。通信は外へ出る文です。編集は動く系を変えます。監視は動いている系を見ます。三つを同じ「本番」に潰すと、爆破半径が消えます。</p>
+      <p>9/14 の Data agent は、承認した行動を接続先で実行する、と書きました。承認していない行動の自動実行は、書きませんでした。今日の公式も、編集と監視を書きます。どの編集が促の前の門を通るかは、書きません。無い自動実行を invent しません。</p>
+      <p>間隔の数値もありません。「ずっと」は比較です。空ける理由が、誤りが減ったからか、門が厚くなったからか、仕事の形が変わったからかは、本文にありません。門が残ったまま間隔が空くことと、門が消えて間隔が空くことは、別です。</p>
+
+      <h2>書いたテストと、情報面の改善は、本番面の門ではない</h2>
+      <p>モデルが書いたテストは、有用な適用です。独立した審判である、とは公式は書きません。サービスになり代わることは、本番の依存を試すことではありません。現実的な応答は、契約された応答ではありません。評価は、作った同じエージェントの最後の一目ではありません。</p>
+      <p>検索と要約のプログラムは、情報面です。実世界の系の編集と監視は、本番面です。情報面が良くなることは、本番面の門ではありません。公式が「決定的に重要」と書いたのは、大量の情報を処理できることです。公式が「本当の課題」と書いたのは、実世界の系です。</p>
+      <p>knowledge-base-llm の <code>wiki/sources</code> に、この Perplexity 顧客文のソースノートは、まだありません。無いことを、あるように書きません。二次記事が足したサンドボックスやロールバックを、一次の門にしません。今日の読み物は、公式 URL と地図で書きます。</p>
+
+      <div class="callout">
+        よい読みは、モデルが端から端を書けるかで語らないことである。信頼は判断である。通信と編集と監視を同じ「本番」にしない。書いたテストを独立した審判にしない。空けることを門の撤去にしない。DevFest は一行に残す。倉庫NLの再話にも、点数表の再話にもしない。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>今日の信頼は、測定か。判断か？</li>
+        <li>今日並ぶのは、通信か。編集か。監視か？</li>
+        <li>今日のテストは、なり代わりか。独立した審判か？</li>
+        <li>今日空くのは、点検か。門か？</li>
+        <li>今日良くなるのは、検索か。実世界の系か？</li>
+        <li>欠けているのは、測定か。承認表か。ソースノートか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/agent-deployment-gates-and-operational-risk.md</code>, <code>wiki/maps/approval-policy-patterns-and-escalation.md</code>, <code>wiki/maps/eval-review-reliability.md</code>, and <code>wiki/maps/coding-agent-cognitive-debt-and-review-capacity.md</code>, framed as theme <code>production-trust-and-end-to-end-agent-systems</code> with OpenAI Perplexity × GPT‑6 Astra — customer account that Perplexity trusts Astra with end-to-end systems; crafts communications, edits real-world systems, and monitors production software; checks in much less frequently than with earlier models; Johnny Ho observes that better code-writing improves search programs that query the web and internal information and summarize concisely; the real challenge is applying informational aspects to real-world systems; a useful application is asking Astra to build a small testing program that stands in for services such as a language-model API or a connector and exercises the workflow end to end; official text has no error rates, time-saved figures, incident counts, or approval table (<a href="https://openai.com/index/perplexity-improving-accuracy-with-astra/">openai.com/index/perplexity-improving-accuracy-with-astra</a>). Community aside, not the core: Google DevFest 2026 — Oct 1–Dec 31; nearly 1 million developers expected; theme Build, Secure, Scale: Developers and Builders in the Agentic Era; 800+ events in 115 countries; hosted by GDGs (<a href="https://blog.google/innovation-and-ai/technology/developers-tools/devfest2026/">blog.google/.../devfest2026</a>). 9/14 workplace data agents, 9/11 coordinators, and 9/10 behavioral-evals are one-line continuity only. Do not invent a missing KB source note, unofficial metrics, or secondary-article safeguards. X bookmarks this run: 0.</p>
+    </footer>
+  </div>
+</body>
+</html>
