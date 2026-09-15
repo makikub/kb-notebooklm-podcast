@@ -17,9 +17,10 @@
     "OpenAI Perplexity × GPT-6 Astra 2026-09-14 — customer account: Perplexity trusts Astra with end-to-end systems; crafts communications, edits real-world systems, and monitors production software; checks in much less frequently than with earlier models; Johnny Ho, Cofounder and Chief Strategy Officer; better code-writing improves Perplexity search programs that query the web and internal information and summarize concisely; the real challenge is applying informational aspects to real-world systems; useful application is asking Astra to build a small testing program around an application; the model generates realistic stand-in responses for services such as a language-model API or a connector and exercises the workflow end to end; official text has no error rates, time-saved figures, incident counts, or approval table (https://openai.com/index/perplexity-improving-accuracy-with-astra/)",
     "Production-trust / end-to-end-agent-systems lens: the question is whether the remaining check-in inherits a gate after the interval thins; trust here is a customer judgment, not a measured error rate; communications, software edits, and production monitoring share a sentence and not a blast radius; a model-written stand-in test is not an independent referee; a thinner check-in is a capacity claim, not a removed gate; search-quality gains are not production-edit evidence",
     "Community aside (not the core): Google DevFest 2026 — Oct 1–Dec 31; nearly 1 million developers expected; theme Build, Secure, Scale: Developers and Builders in the Agentic Era; 800+ events in 115 countries; hosted by GDGs (https://blog.google/innovation-and-ai/technology/developers-tools/devfest2026/)",
+    "Preview aside (not the core): Claude Mods (formerly Function Hooks) landed as a flag-gated preview (@bcherny + issue #91870); CLAUDE_CODE_ENABLE_FUNCTION_HOOKS=1; no GA / changelog line yet (https://github.com/anthropics/claude-code/issues/91870)",
     "9/14 workplace data agents, 9/11 coordinators, and 9/10 behavioral-evals are one-line continuity only, not today's core",
     "knowledge-base-llm has no source note yet for the Perplexity × Astra customer account; do not invent one, unofficial metrics, or secondary-article safeguards",
     "X bookmarks this run: 0"
   ],
-  "char_count": 9385
+  "char_count": 10152
 }
