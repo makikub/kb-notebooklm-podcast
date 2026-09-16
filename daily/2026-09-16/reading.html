@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Keep the Line Open — Live Voice after Gemini 3.8 - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-16/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-09-16</a> / 読み物版</header>
+    <p class="eyebrow">2026-09-16 Weekly Topic</p>
+    <h1>Keep the Line Open — Live Voice after Gemini 3.8</h1>
+    <p class="lead">9/15 は、点検を空けたあと残る点検が門を相続するかでした。今日は、会話を止めずに、道具と長い思考が同じ Live 回線に乗るかです。リードは Gemini 3.8 Live と Live API です。本番信頼の再話ではありません。300+言語は aside です。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-16">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 声は連結ではない</strong>開発者頁は native speech-to-speech と書きます。cascaded の耳と脳と口を足したものではありません。文字起こしの WER と、Live の会話は、同じ回線ではありません。</div>
+      <div><strong>2. 思考と会話は同じ回線</strong>Extended Thinking は、推論しながら同時に話します。「Let me check that…」と、進行の語り。沈黙は回線切断ではありません。首位は今日の核ではありません。</div>
+      <div><strong>3. 道具は後ろで動く</strong>API と道具は背景です。声は止めません。モデルと Live API と、LiveKit や Pipecat の基盤は、層が違います。未完了を本線の答えにしないでください。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは、回線を切らずに道具と長い思考が乗るかである</h2>
+      <p>knowledge-base-llm のハーネス風景は、性能がモデル単体ではなく、案内、修正、継続、自律の制御、役割の分離で決まる、と書きます。制御の分類は、いつ効くかとどう効くかを分けよ、と書きます。ベンダー比較は、質は周囲の系である、と書きます。オーケストレーションFAQは、親が分解し、バスは親の指示ではない、と書きます。voice / Live API / speech-to-speech の専用地図は、このランでは未確認です。無い wiki パスを invent しません。</p>
+      <p>9/15 の読み物は、点検を空けたあと残る点検が門を相続するかでした。その列は今日の核ではありません。一行の連続に留めます。Perplexity × Astra の本番信頼は、再審しません。今日読むのは、会話が流れているあいだ、道具と長い思考が同じ回線に乗るかです。</p>
+      <p>Google は 9/15、「Introducing Gemini 3.8 Live and 3.8 Live Extended Thinking」を出しました。Tom Ouyang と Malini Jaganathan（Gemini Audio Team）が書きます。ほぼリアルタイムの推論を、音声エージェントへ載せます。3.8 Live は規模と費用効率。会話の知と、流れる対話と、視覚接地。3.8 Live Extended Thinking は高複雑度。知を上げ、多段の推論を載せます。</p>
+      <p>同じ日の開発者同伴は、Alisa Fortin と Thor Schaeff が書きます。Gemini API と Google AI Studio で、リアルタイムの voice-first を組みます。3.8 Live は native speech-to-speech の一段。対話を保ったまま仕事をこなします。複雑な要求には Extended Thinking。製品ページは Speech to Speech Quality Index 82.6 で総合1位、τ-Voice 68.6%、τ-Voice-banking 35.1%、Big Bench Audio 97.7%、Speech Agent Arena 2位、と置きます。点数表を今日の核にしません。公式が置いた数字として残します。</p>
+      <p>視覚入力をほぼリアルタイムで処理します。97の対応言語を自動検出し、会話の途中で切り替えます。開発者頁は 97+ と書きます。道具と API を背景で実行し、会話は続けます。Extended Thinking は、推論しながら同時に話します。「Let me check that…」のような早い合図。進行の語りで、多段の背景仕事を歩きます。Live API の価格は、音声入力 $0.005/min、音声出力 $0.018/min。脚注は $3 / $12 per 1M tokens からの見積りです。Gemini 3.5 Transcribe は先月。85+言語。WER は streaming 4.0%、non-streaming 2.6%。ロールアウトは Gemini API と AI Studio。Enterprise は private preview。Search Live、Gemini Live、Docs Live / Gmail Live / Keep Live。AI 音声には SynthID の透かし。</p>
+      <p>薄い行だけ置きます。Google「AI for every language」は 9/15。300+言語の里程。核にしません。Live の 97 と、会社全体の 300+ は、同じ「言語」ではありません。Pixel Drop は今日は書きません。9/15 の本番信頼は連続の一行です。再審しません。X bookmarks は今ラン 0。無い voice 専用地図を、あるように書きません。</p>
+
+      <h2>native の声と、背景の道具は、同じ「止めない」ではない</h2>
+      <p>speech-to-speech は、耳と脳と口を直列に繋いだものではありません。cascaded の遅延秒は、本文にありません。無い秒を invent しません。Gemini 3.5 Transcribe は専用の speech-to-text です。同じ音声スイートです。同じ回線ではありません。</p>
+      <p>長い思考は、沈黙ではありません。進行の語りは、答えではありません。Gemini 3.8 Live は規模と費用効率です。Extended Thinking は高複雑度です。同じ Live 面です。同じ仕事ではありません。82.6 は今日の核ではありません。</p>
+      <p>道具と API は背景です。声は止めません。誰が次を決めるかは、本文が置きません。無い親を invent しません。LiveKit や Pipecat は、メディアストリーミングの基盤です。Live モデルではありません。</p>
+
+      <h2>97言語と分単価と WER は、同じ「音声」ではない</h2>
+      <p>視覚接地と、97言語の途中切替と、SynthID は、同じ Live 面の別入口です。97 と 97+ は、公式の書き分けです。300+ で上書きしません。接地と、言語切替と、透かしを、同じ「信頼」にしません。</p>
+      <p>分単価と、トークン見積りは、同じ頁の二つの表し方です。Transcribe の WER と、Live の会話品質は、同じ「うまさ」ではありません。無いレイテンシ秒は足しません。スイートの隣（3.5 Live Translate、Flash TTS、Lyria 3.5）は核に載せません。</p>
+      <p>voice 専用地図は未確認です。検証できたのは、ハーネス風景、制御分類、ベンダー比較、オーケストレーションFAQ です。無い wiki パスを invent しません。今日の読み物は、公式 URL と、検証できた地図で書きます。</p>
+
+      <div class="callout">
+        よい読みは、声で話せるかで語らないことである。回線を開けたままにする。native と連結を分ける。思考と会話を同じ回線に残す。道具を後ろに置く。97 と 300+ を混ぜない。分単価と WER と首位を同じ「音声」にしない。300+言語は一行に残す。本番信頼の再話にも、倉庫NLの再話にもしない。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>今日の声は、native か。連結か？</li>
+        <li>今日残るのは、思考か。会話か？</li>
+        <li>今日動くのは、声か。後ろの道具か？</li>
+        <li>今日接地するのは、映像か。言語か。透かしか？</li>
+        <li>今日測るのは、分単価か。WER か。首位か？</li>
+        <li>欠けているのは、レイテンシか。専用地図か。ソースノートか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/agent-harness-landscape.md</code>, <code>wiki/maps/agent-harness-control-taxonomy.md</code>, <code>wiki/maps/harness-engineering-vendor-comparison.md</code>, and <code>wiki/maps/orchestration-patterns-faq.md</code>, framed as theme <code>realtime-voice-agents-and-live-apis</code> with Google Gemini 3.8 Live and 3.8 Live Extended Thinking — native speech-to-speech live dialogue models; visual grounding; 97 / 97+ languages with mid-conversation switch; background tool/API calls while dialogue continues; Extended Thinking reasons and speaks simultaneously with cues such as “Let me check that…” and live progress narration; Live API pricing $0.005/min audio in and $0.018/min audio out (estimate from $3 / $12 per 1M tokens); Gemini 3.5 Transcribe (last month) 85+ languages, WER 4.0% streaming / 2.6% non-streaming; rollout via Gemini API + AI Studio, Enterprise private preview, Search Live / Gemini Live / Docs Live / Gmail Live / Keep Live; SynthID watermarking on AI audio; official product page cites Speech to Speech Quality Index 82.6, τ-Voice 68.6%, τ-Voice-banking 35.1%, Big Bench Audio 97.7% (<a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/">blog.google/.../gemini-3-8-live-gemini-3-8-live-extended-thinking</a>; companion <a href="https://blog.google/innovation-and-ai/technology/developers-tools/build-real-time-voice-applications-gemini-audio/">blog.google/.../build-real-time-voice-applications-gemini-audio</a>). Language-coverage aside, not the core: Google “AI for every language” — 300+ languages milestone (<a href="https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language/">blog.google/.../ai-for-every-language</a>). Pixel Drop is omitted. 9/15 production-trust is one-line continuity only. Voice / Live API dedicated wiki maps were not verified this run; do not invent wiki paths, unofficial latency seconds, or missing source notes. X bookmarks this run: 0 (App-Only).</p>
+    </footer>
+  </div>
+</body>
+</html>
