@@ -6,7 +6,7 @@
 - Theme slug: `realtime-voice-agents-and-live-apis`
 - Primary topic: composite — `wiki/maps/agent-harness-landscape.md`, `wiki/maps/agent-harness-control-taxonomy.md`, `wiki/maps/harness-engineering-vendor-comparison.md`, `wiki/maps/orchestration-patterns-faq.md`（voice / Live API / speech-to-speech 専用地図は、このランでは未確認。無い wiki パスは invent しない）
 - Purpose: NotebookLM向けの対話用ソース。KBのハーネス風景／制御分類／ベンダー比較／オーケストレーションFAQを、リアルタイムの音声エージェントと、Live API として読み直す。地図の再話でも、9/15 の本番信頼核の続きでも、9/14 の倉庫NL核の再審でもない
-- News angle: Google Gemini 3.8 Live と Gemini 3.8 Live Extended Thinking（2026-09-15。https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/）。見出しは、より進んだ live dialogue モデルである。音声エージェントを、より直感的で知的な会話にする、と書く。3.8 Live は規模と費用効率。会話の知と、流れる対話と、視覚接地。3.8 Live Extended Thinking は高複雑度。知を上げ、多段の推論を載せる。speech-to-speech の Live モデルである。開発者向けの同伴（https://blog.google/innovation-and-ai/technology/developers-tools/build-real-time-voice-applications-gemini-audio/）は、対話を保ったまま仕事をこなす native speech-to-speech、と書く。複雑な要求には Extended Thinking。Artificial Analysis の Speech-to-Speech で首位、と書く。製品ページは Speech to Speech Quality Index 82.6 で総合1位、τ-Voice 68.6%、Sierra の τ-Voice-banking 35.1%、Big Bench Audio 97.7%、Speech Agent Arena 2位、と書く。EVA-Bench では精度と会話品質の Pareto、と書く。無い社内ベンチは足さない。視覚入力をほぼリアルタイムで処理する。97の対応言語を自動検出し、会話の途中で切り替える、と製品は書く。開発者頁は 97+、と書く。道具と API 呼び出しを背景で実行し、会話は続ける。要求を認め、仕事が終わるあいだ話し続けられる、と書く。Extended Thinking は、推論しながら同時に話す。「Let me check that…」のような早い合図。多段の背景仕事を、進行の語りで歩く。開発者頁の Live API 価格は、音声入力 $0.005/min、音声出力 $0.018/min。脚注は、$3/1M tokens 入力、$12/1M tokens 出力からの見積り、と書く。Gemini 3.5 Transcribe は先月。85+言語。WER は streaming 4.0%、non-streaming 2.6%。自動の code-switching、custom_vocabulary 最大1,000語、smart transcription、Interactions API で最大1時間のファイル。ロールアウトは Gemini API と AI Studio。Enterprise は private preview。Search Live、Gemini Live、Workspace の Docs Live / Gmail Live / Keep Live。AI 音声には SynthID 透かし。連携は Agora、Fishjam、LangChain、LiveKit、Pipecat、Vercel、Vision Agents。Salesforce、Genspark、Lumeris を挙げる。cascaded 構成の代わりに、より細い経路、と開発者頁は書く。公式本文に無い数字は足さない。aside（短い。核にしない）: Google「AI for every language」（2026-09-15。https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language/）。300+言語の里程。核にしない。Pixel Drop は今日は書かない。9/15 の本番信頼核は連続の一行まで。再審しない。X bookmarks は今ラン 0（App-Only）。無い数字は足さない
+- News angle: Google Gemini 3.8 Live と Gemini 3.8 Live Extended Thinking（2026-09-15。https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/）。見出しは、より進んだ live dialogue モデルである。音声エージェントを、より直感的で知的な会話にする、と書く。3.8 Live は規模と費用効率。会話の知と、流れる対話と、視覚接地。3.8 Live Extended Thinking は高複雑度。知を上げ、多段の推論を載せる。speech-to-speech の Live モデルである。開発者向けの同伴（https://blog.google/innovation-and-ai/technology/developers-tools/build-real-time-voice-applications-gemini-audio/）は、対話を保ったまま仕事をこなす native speech-to-speech、と書く。複雑な要求には Extended Thinking。Artificial Analysis の Speech-to-Speech で首位、と書く。製品ページは Speech to Speech Quality Index 82.6 で総合1位、τ-Voice 68.6%、Sierra の τ-Voice-banking 35.1%、Big Bench Audio 97.7%、Speech Agent Arena 2位、と書く。EVA-Bench では精度と会話品質の Pareto、と書く。無い社内ベンチは足さない。視覚入力をほぼリアルタイムで処理する。97の対応言語を自動検出し、会話の途中で切り替える、と製品は書く。開発者頁は 97+、と書く。道具と API 呼び出しを背景で実行し、会話は続ける。要求を認め、仕事が終わるあいだ話し続けられる、と書く。Extended Thinking は、推論しながら同時に話す。「Let me check that…」のような早い合図。多段の背景仕事を、進行の語りで歩く。開発者頁の Live API 価格は、音声入力 $0.005/min、音声出力 $0.018/min。脚注は、$3/1M tokens 入力、$12/1M tokens 出力からの見積り、と書く。Gemini 3.5 Transcribe は先月。85+言語。WER は streaming 4.0%、non-streaming 2.6%。自動の code-switching、custom_vocabulary 最大1,000語、smart transcription、Interactions API で最大1時間のファイル。ロールアウトは Gemini API と AI Studio。Enterprise は private preview。Search Live、Gemini Live、Workspace の Docs Live / Gmail Live / Keep Live。AI 音声には SynthID 透かし。連携は Agora、Fishjam、LangChain、LiveKit、Pipecat、Vercel、Vision Agents。Salesforce、Genspark、Lumeris を挙げる。cascaded 構成の代わりに、より細い経路、と開発者頁は書く。公式本文に無い数字は足さない。aside（短い。核にしない）: Google「AI for every language」（2026-09-15。https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language/）。300+言語の里程。核にしない。追加の短い aside: Cognition × AWS の multi-year SCA（Marketplace / dedicated VPC。https://press.aboutamazon.com/aws/2026/9/cognition-and-aws-sign-multi-year-collaboration-agreement）。Devin Outposts で Mac VM + iOS simulator（screen recording / TestFlight。https://devin.ai/blog/introducing-devin-outposts）。Salesforce in Claude が beta（37 sales skills、書込は既定承認。https://claude.com/blog/salesforce-in-claude）。核にしない。Pixel Drop は今日は書かない。9/15 の本番信頼核は連続の一行まで。再審しない。X bookmarks は今ラン 0（App-Only）。無い数字は足さない
 
 ## Talking points（3〜5分）
 
@@ -14,7 +14,7 @@
 2. KBの問いは「声で話せるか」ではない。問いは、speech-to-speech と背景の道具と進行の語りが、同じハーネス面に乗るかである。地図は、性能はモデルだけでなく周囲の系、と書く。
 3. 公式が支えるのは、native speech-to-speech、視覚接地、97言語の途中切替、背景の道具／API、Extended Thinking の同時発話、Live API の分単価、SynthID である。無いレイテンシ秒は足さない。
 4. 文字起こしの WER と、Live の分単価と、Speech-to-Speech の首位は、同じ「音声」ではない。層を混ぜない。
-5. 300+言語は短い aside。Pixel Drop は書かない。9/15 は連続の一行。X は 0。無い voice 専用地図は invent しない。主題は動かさない。
+5. 300+言語は短い aside。Cognition × AWS と Devin Outposts と Salesforce in Claude も短い aside。Pixel Drop は書かない。9/15 は連続の一行。X は 0。無い voice 専用地図は invent しない。主題は動かさない。
 
 ## 今日の読み方
 
@@ -32,7 +32,7 @@ Live API の価格は、音声入力 $0.005/min、音声出力 $0.018/min。脚�
 
 ロールアウトは今日から、と書く。開発者は Gemini API と AI Studio。企業は Gemini Enterprise の private preview。Customer Experience 向けは近日。3.8 Live は Search Live。3.8 Live Extended Thinking は Gemini Live。Workspace は、Docs が Google AI Pro / Ultra、Gmail と Keep が全 Google AI 加入、と書く。Docs Live、Gmail Live、Keep Live。AI 製品が出す音声には、SynthID の透かし。知覚できない透かしを音声へ織る、と書く。連携は Agora、Fishjam、LangChain、LiveKit、Pipecat、Vercel、Vision Agents。Salesforce、Genspark、Lumeris を挙げる。メディアストリーミングの基盤は、連携側が後ろで持つ、と書く。
 
-薄い行だけ置く。Google「AI for every language」は 9/15。技術と製品が 300+言語の日常を支える、という里程。核にしない。Live の 97 と、会社全体の 300+ は、同じ「言語」ではない。Pixel Drop は今日は書かない。9/15 の本番信頼は、連続の一行である。再審しない。X bookmarks は今ラン 0。公式本文に無い数字は足さない。無い voice 専用地図を、あるように書かない。
+薄い行だけ置く。Google「AI for every language」は 9/15。技術と製品が 300+言語の日常を支える、という里程。核にしない。Live の 97 と、会社全体の 300+ は、同じ「言語」ではない。追加の短い aside: Cognition × AWS の multi-year SCA（Marketplace / dedicated VPC）。Devin Outposts で Mac VM + iOS simulator（screen recording / TestFlight）。Salesforce in Claude が beta（37 sales skills、書込は既定承認）。核にしない。Pixel Drop は今日は書かない。9/15 の本番信頼は、連続の一行である。再審しない。X bookmarks は今ラン 0。公式本文に無い数字は足さない。無い voice 専用地図を、あるように書かない。
 
 今日の問いは「声で話せるか」ではない。「会話を止めずに、道具と長い思考は同じ Live 回線に乗るか」である。
 
@@ -123,7 +123,7 @@ PASS には、公式が本文で置いた数字だけを使う。82.6、68.6%、
 
 ## 6. aside は核にしない — 欠けた地図は invent しない
 
-「AI for every language」は 9/15 の里程である。技術と製品が 300+言語の日常を支える。核にしない。Live の 97 と、会社全体の 300+ は、同じ「言語」ではない。無い共通運用を invent しない。Pixel Drop は今日は書かない。書かないことを、あるように書かない。
+「AI for every language」は 9/15 の里程である。技術と製品が 300+言語の日常を支える。核にしない。Live の 97 と、会社全体の 300+ は、同じ「言語」ではない。無い共通運用を invent しない。追加の短い aside: Cognition × AWS の multi-year SCA（Marketplace / dedicated VPC）。Devin Outposts で Mac VM + iOS simulator（screen recording / TestFlight）。Salesforce in Claude が beta（37 sales skills、書込は既定承認）。核にしない。Pixel Drop は今日は書かない。書かないことを、あるように書かない。
 
 9/15 の本番信頼は、連続の一行である。再審しない。点検を空けた話と、回線を切らない声は、同じ「止めない」に見える。同じ核ではない。昨日の核を今日の aside にしない。昨日の aside を今日の核にしない。
 
@@ -131,6 +131,7 @@ voice / Live API / speech-to-speech の専用地図は、このランでは未�
 
 なぜ効くか:
 - 300+ を厚くすると、里程が主題になる
+- Cognition × AWS や Salesforce を厚くすると、契約や営業スキルが主題になる
 - Pixel を足すと、端末が主題になる
 - 昨日の信頼を今日の証拠にすると、顧客文が Live の代わりになる
 - 無い voice 地図を invent すると、無い編纂を足す
@@ -149,11 +150,11 @@ voice / Live API / speech-to-speech の専用地図は、このランでは未�
 - 同じ「言語」でも、Live の 97 と、会社の 300+ は、入口が違う
 - 同じ「音声」でも、分単価と、WER と、Speech-to-Speech の首位は、支えが違う
 
-KBの言葉では、ハーネスは周囲の系であり、制御はいつ効くかとどう効くかを分け、質はモデルだけではない。オーケストレーションは、親と検証とバスの所在を先に名指す。Google の 3.8 Live 公式は、native speech-to-speech と、視覚接地と、97言語の途中切替と、背景の道具／API と、同時発話の Extended Thinking と、Live API の分単価と、SynthID を、一次で固定する。300+言語を aside に留め、Pixel を書かず、9/15 を一行に残し、無い voice 専用地図を空欄のまま残す。
+KBの言葉では、ハーネスは周囲の系であり、制御はいつ効くかとどう効くかを分け、質はモデルだけではない。オーケストレーションは、親と検証とバスの所在を先に名指す。Google の 3.8 Live 公式は、native speech-to-speech と、視覚接地と、97言語の途中切替と、背景の道具／API と、同時発話の Extended Thinking と、Live API の分単価と、SynthID を、一次で固定する。300+言語と Cognition × AWS と Devin Outposts と Salesforce in Claude を aside に留め、Pixel を書かず、9/15 を一行に残し、無い voice 専用地図を空欄のまま残す。
 
 ## トレードオフ
 
-native を厚くすると、今日の公式が「cascaded を捨てよ」チェックリストに固定される。点数表を核にすると、82.6 が主題になる。長い思考を沈黙にすると、回線が切れたように聞こえる。進行の語りを答えにすると、途中経過が確定になる。背景の道具を本線の答えにすると、未完了が確定になる。97 を 300+ に足すと、Live 面が会社の里程になる。分単価を能力点にすると、価格が首位の代わりになる。WER を会話品質にすると、文字起こしが対話になる。300+ を核にすると、里程が主題になる。9/15 の本番信頼を今日の核にすると、Live が点検間隔の続きになる。無い voice 地図を invent すると、無い編纂を足す。
+native を厚くすると、今日の公式が「cascaded を捨てよ」チェックリストに固定される。点数表を核にすると、82.6 が主題になる。長い思考を沈黙にすると、回線が切れたように聞こえる。進行の語りを答えにすると、途中経過が確定になる。背景の道具を本線の答えにすると、未完了が確定になる。97 を 300+ に足すと、Live 面が会社の里程になる。分単価を能力点にすると、価格が首位の代わりになる。WER を会話品質にすると、文字起こしが対話になる。300+ を核にすると、里程が主題になる。Cognition × AWS を核にすると、SCA が主題になる。Devin Outposts を核にすると、Mac VM が主題になる。Salesforce in Claude を核にすると、営業スキルが主題になる。9/15 の本番信頼を今日の核にすると、Live が点検間隔の続きになる。無い voice 地図を invent すると、無い編纂を足す。
 
 だから今日の使い方は、地図を増やすことではない。回線を開けたまま、native と連結を分け、思考と会話を同じ回線に残し、道具を後ろに置き、視覚と97言語と透かしを入口で分け、分単価と WER と首位を混ぜない。本番信頼の再話にも、倉庫NLの再話にも、コーディネータの再話にもしない。
 
@@ -169,6 +170,7 @@ native を厚くすると、今日の公式が「cascaded を捨てよ」チェ�
 - 97 と 97+ と 300+ を、同じ「言語数」にしない
 - PASS には、公式が本文で置いた数字だけを使う。82.6、68.6%、35.1%、97.7%、$0.005、$0.018、4.0%、2.6%
 - 300+言語の里程は、一行のまま核に載せない
+- Cognition × AWS の SCA と、Devin Outposts の Mac VM と、Salesforce in Claude の 37 skills は、一行のまま核に載せない
 - Pixel Drop は書かない
 - 欠けた voice 専用地図を名指す。無い wiki パスを補わない
 - 公式ページに無い測定は、足さない。あるのは公式 URL の本文である
