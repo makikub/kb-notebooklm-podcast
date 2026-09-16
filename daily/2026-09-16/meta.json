@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-16",
+  "title": "Keep the Line Open — Live Voice after Gemini 3.8",
+  "theme": "realtime-voice-agents-and-live-apis",
+  "source": "daily/2026-09-16/source.md",
+  "generated_at": "2026-09-16T00:50:00Z",
+  "topic_id": "realtime-voice-agents-and-live-apis",
+  "output_dir": "daily/2026-09-16",
+  "page": "daily/2026-09-16/source.md",
+  "related": [
+    "wiki/maps/agent-harness-landscape.md",
+    "wiki/maps/agent-harness-control-taxonomy.md",
+    "wiki/maps/harness-engineering-vendor-comparison.md",
+    "wiki/maps/orchestration-patterns-faq.md"
+  ],
+  "news_context": [
+    "Google Gemini 3.8 Live + 3.8 Live Extended Thinking 2026-09-15 — native speech-to-speech live dialogue models; 3.8 Live for scale/cost with conversational intelligence, fluid dialogue, and visual grounding; Extended Thinking for high-complexity multi-step reasoning while conversation keeps flowing; product page cites Speech to Speech Quality Index 82.6 (#1), τ-Voice 68.6%, Sierra τ-Voice-banking 35.1%, Big Bench Audio 97.7%, Speech Agent Arena 2nd; visual grounding; 97 languages (developer page 97+) with mid-conversation switch; background tool/API calls while dialogue continues; progress narration and cues such as “Let me check that…”; SynthID watermarking on AI audio; rollout via Gemini API + AI Studio, Enterprise private preview, Search Live / Gemini Live / Docs Live / Gmail Live / Keep Live (https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/)",
+    "Developer companion — Live API pricing $0.005/min audio in and $0.018/min audio out (estimate from $3 / $12 per 1M tokens); Gemini 3.5 Transcribe (released last month) 85+ languages, WER 4.0% streaming / 2.6% non-streaming; async function calling; alphanumeric precision; partners Agora, Fishjam, LangChain, LiveKit, Pipecat, Vercel, Vision Agents (https://blog.google/innovation-and-ai/technology/developers-tools/build-real-time-voice-applications-gemini-audio/)",
+    "Realtime-voice-agents / Live-API lens: the question is whether tools and long thinking ride the same live line without hanging up; native speech-to-speech is not a cascaded ear-brain-mouth stack; Extended Thinking plus progress narration is not a leaderboard core; background tool calls are not the main-line answer; visual grounding, 97 languages, and SynthID are separate live-surface entries; per-minute price, WER, and Speech-to-Speech rank are not the same 'audio'",
+    "Language-coverage aside (not the core): Google “AI for every language” — 300+ languages milestone (https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language/)",
+    "Pixel Drop is omitted this run",
+    "9/15 production-trust is one-line continuity only, not today's core",
+    "knowledge-base-llm voice / Live API / speech-to-speech dedicated maps were not verified this run (private repo unavailable); do not invent wiki paths, unofficial latency seconds, or missing source notes",
+    "X bookmarks this run: 0 (App-Only)"
+  ],
+  "char_count": 11964
+}
