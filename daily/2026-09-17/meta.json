@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-17",
+  "title": "Watch the Session — Oversight after Agent Anomaly Detection",
+  "theme": "session-oversight-and-agent-anomaly-detection",
+  "source": "daily/2026-09-17/source.md",
+  "generated_at": "2026-09-17T00:40:00Z",
+  "topic_id": "session-oversight-and-agent-anomaly-detection",
+  "output_dir": "daily/2026-09-17",
+  "page": "daily/2026-09-17/source.md",
+  "related": [
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md",
+    "wiki/maps/approval-policy-patterns-and-escalation.md",
+    "wiki/maps/agent-harness-control-taxonomy.md",
+    "wiki/maps/eval-review-reliability.md"
+  ],
+  "news_context": [
+    "Google Agent Anomaly Detection Private Preview on Gemini Enterprise Agent Platform 2026-09-16 — reasoning-based out-of-band/async oversight with no added runtime latency; reads reasoning traces, tool calls, and already-emitted OpenTelemetry/logs; OWASP Agentic Top 10 (2026) ASI02 tool misuse, ASI03 identity/privilege abuse, ASI08 cascading failures, ASI10 rogue agents plus resource exhaustion / token usage escalation; layered pipeline: lightweight statistical scan → LLM reasoning on flagged sessions → optional third layer reconstructing tool calls/offsets; Inventory Agent list_inventory large-batch/offset scraping → Resource exhaustion, Critical, 95% probability with recommended rate-limit or block, authorization checks, large-offset alerts; findings to Security Command Center; API so ADK 1.2+ callback/plugin can block subsequent tool calls or halt the next turn; custom business logic coming soon (https://developers.googleblog.com/agent-anomaly-detection-now-in-private-preview-on-the-gemini-enterprise-agent-platform/)",
+    "Session-oversight lens: a clean ticket is not a passed gate; out-of-band watch is not an in-band runtime gate; statistical scan, LLM reasoning, and tool-call reconstruction are not the same detector; a finding, a subsequent-tool block, and a recommended gate are separate rungs; OWASP's four detectors are shipping, custom business logic is not",
+    "Distinct from the Zero-trust Part 2 overview that listed Anomaly Detection as one of three (Model Armor / Semantic Governance / Anomaly Detection); do not recreate that trio or Gemini 3.8 Live as today's core",
+    "Advertising aside (not the core): OpenAI “Reimagining advertising with AI” / ChatGPT Ads 2026-09-16 — official page HTTP 403 this run; search highlights only: Sponsored Agents after ad click, prompt-based ad creation in ChatGPT Work, Ads Manager AI creative tools, HubSpot first CRM + Shopify first ecommerce, Shopify international from Sep 23 where Ads are available (https://openai.com/index/reimagining-advertising-with-ai/)",
+    "9/16 realtime-voice / Live API and 9/15 production-trust are one-line continuity only, not today's core",
+    "knowledge-base-llm live fetch was private/404 this run; do not invent wiki paths; map claims limited to text already verified in prior daily pages of this repo",
+    "X bookmarks this run: 0 (App-Only)"
+  ],
+  "char_count": 12533
+}
