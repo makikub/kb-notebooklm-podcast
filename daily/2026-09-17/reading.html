@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Watch the Session — Oversight after Agent Anomaly Detection - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-17/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-09-17</a> / 読み物版</header>
+    <p class="eyebrow">2026-09-17 Weekly Topic</p>
+    <h1>Watch the Session — Oversight after Agent Anomaly Detection</h1>
+    <p class="lead">9/16 は、会話を止めずに道具と長い思考が同じ回線に乗るかでした。9/15 は、点検を空けたあと残る点検が門を相続するかでした。今日は、見た目がきれいなセッションのあと、帯域外の監視がセッションを見ているかです。リードは Agent Anomaly Detection の専用発表です。Live 音声の再話ではありません。ChatGPT Ads は aside です。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-17">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. きれいなセッションは門ではない</strong>公式は、見た目が穏当なセッションで被害が起きると書きます。指標ベースの評価は、二度目の目なしで通します。通った指標と、見たセッションは、同じ点検ではありません。</div>
+      <div><strong>2. 帯域外は実行中の門ではない</strong>分析は非同期です。ライブ経路に遅延を足しません。既存のログと OpenTelemetry を読みます。走ったターンを、その場で塞ぐ話ではありません。</div>
+      <div><strong>3. 発見と次の停止は別段</strong>発見は SCC へ出ます。ADK callback は、以後の道具呼び出しか次のターンを止められます。95% は Inventory 一例の確率です。製品精度ではありません。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは、きれいなセッションを帯域外の層が見ているかである</h2>
+      <p>knowledge-base-llm のデプロイゲートは、生成が点検を追い越したとき、失敗は孤立した誤りからレビュー崩壊へ移る、と書きます。承認の地図は、広い権限を二値のスイッチにするな、と書きます。制御の分類は、いつ効くかとどう効くかを分けよ、と書きます。評価は、作った同じエージェントの最後の一目ではありません。knowledge-base-llm のライブ本文は、このランでは private で開けませんでした。無い wiki パスを invent しません。既存日次で検証できた四枚を、セッション監視の複合として読みます。</p>
+      <p>9/16 の読み物は、会話を止めずに道具と長い思考が同じ回線に乗るかでした。9/15 の読み物は、点検を空けたあと残る点検が門を相続するかでした。その列は今日の核ではありません。一行の連続に留めます。Gemini 3.8 Live も、Perplexity × Astra の本番信頼も、再審しません。今日読むのは、チケットがきれいに閉まったセッションを、帯域外の層がまだ見ているかです。</p>
+      <p>Google は 9/16、「Agent Anomaly Detection, now in Private Preview on the Gemini Enterprise Agent Platform」を出しました。Achuth Narayan Rajagopal（Senior Software Engineer）が書きます。より有能なモデルが、自動でより安全なモデルではありません。リスクはコードから行動へ移ります。本当の被害は、見た目が穏当なセッションで起きることが多い、と書きます。きれいな答え。閉じたチケット。触ってはいけない道具。静かに広がった権限。何も露骨には失敗しません。</p>
+      <p>reasoning-based の oversight と audit の層です。推論トレース、道具呼び出し、セッションをまたぐ実行の流れを見ます。すでに出しているログと OpenTelemetry を読みます。帯域外／非同期であり、ライブの要求経路に遅延を足しません。発見は重大度、平文の説明、推奨の次手を持ち、Security Command Center へも出ます。OWASP Agentic Top 10（2026）の焦点セットは、ASI02 道具の誤用、ASI03 身元／特権の濫用、ASI08 連鎖障害、ASI10 rogue agents。加えて資源枯渇とトークン使用のエスカレーション。カスタムの業務論理は coming soon です。今日は無い、と残します。</p>
+      <p>パイプラインは層です。軽い統計の走査が全トラフィックを見ます。旗の付いたセッションを LLM が深く読みます。必要なとき第三層が、個々の道具呼び出しと offset を再構成します。例は Inventory Agent の <code>list_inventory</code>。「一度に100件ずつ」。大きなバッチと offset 跳び。エラーは出ません。発見は Resource exhaustion、Critical、確率 95%。推奨は、その利用者への rate-limit または遮断、一括在庫への認可検査、大きな offset への警告。API でセッションの異常を取れます。ADK の callback／plugin が、以後の道具呼び出しを塞ぐか、次のターンを止められます。Private Preview。ADK 1.2 以降。</p>
+      <p>薄い行だけ置きます。昨日の Zero-trust Part 2 は、Model Armor／Semantic Governance／Anomaly Detection の三つを並べた概観です。今日は専用の製品発表です。三つを今日の核にしません。aside: OpenAI「Reimagining advertising with AI」は 9/16。<a href="https://openai.com/index/reimagining-advertising-with-ai/">openai.com/index/reimagining-advertising-with-ai</a>。このランでは公式本文が HTTP 403。検索ハイライトだけを残します。Sponsored Agents（広告クリック後に、事業が後援するエージェントと会話）。ChatGPT Work の促で広告を作る。Ads Manager の AI 制作道具。HubSpot と Shopify。Shopify の国際は、Ads がある市場で 9/23 から。核にしません。9/16 の Live 音声と、9/15 の本番信頼は連続の一行です。再審しません。X bookmarks は今ラン 0。無いライブ地図を、あるように書きません。</p>
+
+      <h2>帯域外の三層と、次の道具の停止は、同じ「止める」ではない</h2>
+      <p>通った指標と、見たセッションは、同じ点検ではありません。帯域外は、まず行動の後です。走っているターンを、その場で塞ぎません。無いレイテンシ秒を invent しません。</p>
+      <p>統計の走査と、LLM の推理と、道具の再構成は、同じ検知ではありません。95% は、この発見の確率です。製品全体の精度ではありません。評価は、作った同じエージェントの最後の一目ではありません。</p>
+      <p>SCC の発見は、まず助言です。ADK の停止は、以後です。Inventory の推奨（rate-limit、認可、大きな offset への警告）は、発見の文です。すでに付いたゲートである、とは書きません。無い巻き戻しを invent しません。</p>
+
+      <h2>OWASP の四項は今日あり、社内論理はまだ来ない</h2>
+      <p>ASI02、ASI03、ASI08、ASI10 は、出荷された検出器です。資源枯渇とトークン使用のエスカレーションは、本文が「加えて」と置く運用リスクです。無い ASI 番号を invent しません。coming soon の社内論理を、今日の棚にしません。</p>
+      <p>ChatGPT Ads は aside です。公式本文の 403 を隠しません。広告の会話と、セッションの帯域外監視は、同じ「エージェント」ではありません。knowledge-base-llm のライブ本文は未取得です。検証できたのは、デプロイゲート、承認エスカレーション、制御分類、評価信頼性です。無い wiki パスを invent しません。今日の読み物は、公式 URL と、検証できた地図で書きます。</p>
+
+      <div class="callout">
+        よい読みは、異常を見つけられるかで語らないことである。きれいなセッションを二度目の目の対象に残す。帯域外と実行中を分ける。統計と推理と再構成を混ぜない。発見と次の停止と推奨の門を段で名指す。95% を製品精度にしない。ChatGPT Ads は一行に残す。Live 音声の再話にも、本番信頼の再話にもしない。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>今日通ったのは、指標か。セッションか？</li>
+        <li>今日効くのは、走ったあとか。走っている最中か？</li>
+        <li>今日旗を付けたのは、統計か。推理か。再構成か？</li>
+        <li>今日動くのは、発見か。次の道具の停止か。推奨の門か？</li>
+        <li>今日あるのは、OWASP の四項か。社内の論理か？</li>
+        <li>欠けているのは、公式 Ads 本文か。ライブ地図か。ソースノートか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/agent-deployment-gates-and-operational-risk.md</code>, <code>wiki/maps/approval-policy-patterns-and-escalation.md</code>, <code>wiki/maps/agent-harness-control-taxonomy.md</code>, and <code>wiki/maps/eval-review-reliability.md</code> (live fetch of knowledge-base-llm was private/404 this run; claims are limited to text already verified in prior daily pages of this repo), framed as theme <code>session-oversight-and-agent-anomaly-detection</code> with Google Agent Anomaly Detection now in Private Preview on the Gemini Enterprise Agent Platform — reasoning-based out-of-band / async oversight with no added runtime latency; reads reasoning traces, tool calls, and already-emitted OpenTelemetry/logs; OWASP Agentic Top 10 (2026) detectors ASI02 tool misuse, ASI03 identity/privilege abuse, ASI08 cascading failures, ASI10 rogue agents plus resource exhaustion / token usage escalation; layered pipeline of lightweight statistical scan → LLM reasoning on flagged sessions → optional third layer reconstructing tool calls and offsets; Inventory Agent <code>list_inventory</code> large-batch / offset scraping example returns Resource exhaustion, Critical, 95% probability with recommended rate-limit or block, authorization checks, and large-offset alerts; findings to Security Command Center; API so an ADK 1.2+ callback or plugin can block subsequent tool calls or halt the next turn (<a href="https://developers.googleblog.com/agent-anomaly-detection-now-in-private-preview-on-the-gemini-enterprise-agent-platform/">developers.googleblog.com/.../agent-anomaly-detection-now-in-private-preview-on-the-gemini-enterprise-agent-platform</a>). Custom business logic is coming soon, not available in this launch text. Distinct from the Zero-trust Part 2 overview that listed Anomaly Detection as one of three; do not recreate that trio or Gemini 3.8 Live as today's core. Advertising aside, not the core: OpenAI “Reimagining advertising with AI” / ChatGPT Ads — official page HTTP 403 this run; search highlights only: Sponsored Agents after ad click, prompt-based ad creation in ChatGPT Work, Ads Manager AI creative tools, HubSpot CRM + Shopify integrations, Shopify international from Sep 23 where Ads are available (<a href="https://openai.com/index/reimagining-advertising-with-ai/">openai.com/index/reimagining-advertising-with-ai</a>). 9/16 realtime-voice / Live API and 9/15 production-trust are one-line continuity only. Do not invent wiki paths, unofficial latency seconds, or missing source notes. X bookmarks this run: 0 (App-Only).</p>
+    </footer>
+  </div>
+</body>
+</html>
