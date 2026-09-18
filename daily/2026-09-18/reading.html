@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Name the Scope — Verified Access after LSVP - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-18/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-09-18</a> / 読み物版</header>
+    <p class="eyebrow">2026-09-18 Weekly Topic</p>
+    <h1>Name the Scope — Verified Access after LSVP</h1>
+    <p class="lead">9/17 は、きれいなセッションを帯域外の層が見ているかでした。9/16 は回線。9/15 は点検間隔。今日は、生物学が通ったかではありません。通ったのは、名前の付いた grant かです。リードは LSVP です。4 倍の折りたたみは核の隣です。誤整列ハブは aside です。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-18">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 緩い分類器は門ではない</strong>一般公開の Fable では、創薬と臨床が止まります。LSVP は検証したチームへ、より緩い分類器を渡します。緩いことは、開いたことではありません。</div>
+      <div><strong>2. Standard と High-risk は別段</strong>Standard はチームの年一です。High-risk は単一プロジェクトの六ヶ月です。生命科学の遮断を外すのは High-risk です。Mythos の High-risk は少数主体です。</div>
+      <div><strong>3. 4 倍は grant ではない</strong>30 超のモデルを四週間弱で、平均おおよそ 4 倍にします。Big モードは 1 万トークン超です。公開カーネルと、検証済み grant は、同じ「開く」ではありません。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは、より緩い分類器が名前の付いた grant に結び付くかである</h2>
+      <p>knowledge-base-llm の承認地図は、広い権限を二値のスイッチにするな、と書きます。デプロイゲートは、生成が点検を追い越したとき、失敗は孤立した誤りからレビュー崩壊へ移る、と書きます。制御の分類は、いつ効くかとどう効くかを分けよ、と書きます。証拠は、公式一次が支えた文だけを硬くします。knowledge-base-llm のライブ本文は、このランでも private で開けませんでした。無い wiki パスを invent しません。既存日次で検証できた四枚を、検証済みアクセスと生体分子能力の複合として読みます。</p>
+      <p>9/17 の読み物は、きれいなセッションを帯域外の層が見ているかでした。9/16 は回線。9/15 は点検間隔。9/14 は倉庫の門。その列は今日の核ではありません。一行の連続に留めます。Agent Anomaly Detection も、Gemini 3.8 Live も、Perplexity × Astra も、再審しません。今日読むのは、より緩い生物学の分類器が、名前の付いた grant と述べられた用途に結び付いているかです。</p>
+      <p>Anthropic は 9/17、「Introducing the Life Sciences Verification Program」を出しました。<a href="https://www.anthropic.com/news/life-sciences-verification-program">anthropic.com/news/life-sciences-verification-program</a>。生命科学の専門家へ、Mythos、Opus、Sonnet を、生物学関連により緩いセーフガードで渡します。early-access ですでに数十組織。いま広く募集。ベータ。最初はチームと機関。個人の Pro と Max は今後。一般公開の Fable では止まっていた創薬、研究生物学、臨床開発、製造を通します。</p>
+      <p>検証は、研究の資格、セキュリティ基準、倫理的な研究監督です。grant は二種。Standard Use はチームの日次、年一。今日は Mythos 5.1、Opus 5、Sonnet 5。High-risk Use は Standard で止まる領域の add-on。生命科学リクエストを止めるセーフガードをすべて外します。単一プロジェクト。六ヶ月。High-risk は Opus 5 と Sonnet 5 が今日あります。Mythos は追加 vetting の少数主体です。サイバー分類器は残ります。脅威は三つ。アクセス侵害。内部脅威。エージェント誤用（群れや長い地平）。生物学では、ワクチン研究と伝播性の増強を、リクエスト単体で分けにくい、と書きます。共有責任。組織が用途を書き、範囲の外を継続監視します。リアルタイム遮断からオフライン監視へ。LSVP トラフィックは 30 日保持。訓練には使いません。BAA 有効組織はベータ対象外。API と Claude Science は grant を切り替えられます。Claude.ai と Claude Code は、最初は既定 grant だけです。</p>
+      <p>同じ日の研究投稿が、「How Claude is uplifting biomolecular modeling」です。<a href="https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling">anthropic.com/research/claude-uplifts-biomolecular-modeling</a>。Claude Science の中で、30 超のオープンソースモデルを四週間弱で最適化します。平均おおよそ 4 倍。同一出力ではほぼ 2 倍。Big モード。1 万トークン超を 1 NVIDIA GPU ノードで正確に。7 万トークン超の推論も走ります。正確ではありません。FlashPairformer。三角注意 2.7〜2.9 倍、三角乗算 1.7〜3.2 倍。以前は標的あたり最大 1 万ドル。今日は 1 台の H200、24 時間、約 1,100 語、サブエージェント無し。16 標的。合計おおよそ 150 ドルで、以前の in silico 水準。コードを公開します。Adaptyv Bio と競技。Claude クレジット最大 100 万ドル。湿式検証 5,000 超。この面は能力です。grant ではありません。</p>
+      <p>薄い行だけ置きます。aside: OpenAI の Misalignment Notices and Reports。<a href="https://alignment.openai.com/misalignment-reports/">alignment.openai.com/misalignment-reports</a>。誤整列の例を開示するハブです。LSVP の第三脅威「エージェント誤用」の隣に置きます。grant ではありません。RubyGems／DSEwiki／Hugging Face を今日再審しません。9/17 のセッション監視と、9/16 の Live 音声と、9/15 の本番信頼と、9/14 の倉庫NLは連続の一行です。再審しません。X bookmarks は今ラン 0。無いライブ地図を、あるように書きません。</p>
+
+      <h2>Standard と High-risk と、オフライン監視は、同じ「開く」ではない</h2>
+      <p>緩い分類器と、検証と、High-risk の外しは、同じ開くではありません。Standard はチームの年一です。High-risk はプロジェクトの六ヶ月です。Mythos の High-risk を、今日あるように書きません。</p>
+      <p>リアルタイム遮断は、リクエストの前または途中です。オフライン監視は、まず行動の後です。30 日は LSVP トラフィックの保持です。訓練データではありません。管理者への旗は、まず助言です。無い巻き戻しを invent しません。</p>
+      <p>アカウント侵害と、内部の転用と、エージェントの群れは、同じ誤用ではありません。9/17 の帯域外監視は、製品の異常検知でした。今日のオフライン監視は、名前の付いた grant の範囲に対する共有責任です。同じ核ではありません。</p>
+
+      <h2>4 倍の折りたたみは grant ではなく、正確な 1 万と不正確な 7 万は同じ成功ではない</h2>
+      <p>4 倍は、この最適化の平均です。生命科学アクセスの倍率ではありません。150 ドルは、簡略した in silico キャンペーンの合計です。grant の料金ではありません。公開カーネルは、誰でも取れるコードです。検証済み grant ではありません。</p>
+      <p>誤整列ハブは aside です。開示を grant にしません。knowledge-base-llm のライブ本文は未取得です。検証できたのは、承認エスカレーション、デプロイゲート、制御分類、証拠品質です。無い wiki パスを invent しません。今日の読み物は、公式 URL と、検証できた地図で書きます。</p>
+
+      <div class="callout">
+        よい読みは、生命科学を開けるかで語らないことである。名前の付いた grant を残す。Standard と High-risk を混ぜない。リアルタイムとオフラインを分ける。4 倍を grant にしない。正確な 1 万と不正確な 7 万を同じ成功にしない。誤整列ハブは一行に残す。セッション監視の再話にも、Live 音声の再話にもしない。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>今日通ったのは、生物学か。検証か？</li>
+        <li>今日持っているのは、チームの年一か。プロジェクトの六ヶ月か？</li>
+        <li>今日効くのは、リクエストの前か。述べられた範囲のあとか？</li>
+        <li>今日守っているのは、アカウントか。内部か。エージェントか？</li>
+        <li>今日速いのは、カーネルか。緩い分類器か？</li>
+        <li>欠けているのは、Mythos High-risk か。ライブ地図か。ソースノートか？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/approval-policy-patterns-and-escalation.md</code>, <code>wiki/maps/agent-deployment-gates-and-operational-risk.md</code>, <code>wiki/maps/agent-harness-control-taxonomy.md</code>, and <code>wiki/maps/evidence-quality-and-source-trust.md</code> (live fetch of knowledge-base-llm was private/404 this run; claims are limited to text already verified in prior daily pages of this repo), framed as theme <code>life-sciences-verified-access-and-biomolecular-agents</code> with Anthropic Life Sciences Verification Program now in public beta — verified life-science access to Mythos / Opus / Sonnet with refined, more permissive biology safeguards; Standard Use (team-wide, annual; Mythos 5.1, Opus 5, Sonnet 5) vs High-risk Use add-on (single project, six-month; removes life-science blocking safeguards; Opus 5 and Sonnet 5 today, Mythos limited); shift from real-time blocking to offline monitoring with 30-day retention of LSVP traffic, compartmentalized and excluded from training; three threat models (access compromise, insider threats, agent misuse in swarms or long-horizon tasks); shared responsibility against the stated grant scope (<a href="https://www.anthropic.com/news/life-sciences-verification-program">anthropic.com/news/life-sciences-verification-program</a>). Capability companion, not the same core: Claude optimized 30+ open-source structure/design models in under four weeks, roughly 4x on average (nearly 2x with identical outputs); FlashPairformer; Big mode for accurate systems larger than 10,000 tokens on one NVIDIA GPU node and inference above 70,000 tokens (not accurate); open-sourced kernels; Adaptyv Bio protein design competition with up to $1 million in Claude credits and wet-lab validation for over 5,000 designs (<a href="https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling">anthropic.com/research/claude-uplifts-biomolecular-modeling</a>). Aside, not the core: OpenAI Misalignment Notices and Reports hub (<a href="https://alignment.openai.com/misalignment-reports/">alignment.openai.com/misalignment-reports</a>). 9/17 session-oversight, 9/16 realtime-voice / Live API, 9/15 production-trust, and 9/14 workplace data agents are one-line continuity only. Do not invent wiki paths, unofficial applicant counts, Mythos High-risk availability, or missing source notes. X bookmarks this run: 0 (App-Only).</p>
+    </footer>
+  </div>
+</body>
+</html>
