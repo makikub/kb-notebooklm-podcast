@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-18",
+  "title": "Name the Scope — Verified Access after LSVP",
+  "theme": "life-sciences-verified-access-and-biomolecular-agents",
+  "source": "daily/2026-09-18/source.md",
+  "generated_at": "2026-09-18T00:35:00Z",
+  "topic_id": "life-sciences-verified-access-and-biomolecular-agents",
+  "output_dir": "daily/2026-09-18",
+  "page": "daily/2026-09-18/source.md",
+  "related": [
+    "wiki/maps/approval-policy-patterns-and-escalation.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md",
+    "wiki/maps/agent-harness-control-taxonomy.md",
+    "wiki/maps/evidence-quality-and-source-trust.md"
+  ],
+  "news_context": [
+    "Anthropic Life Sciences Verification Program public beta 2026-09-17 — verified life-science access to Mythos / Opus / Sonnet with refined, more permissive biology safeguards than generally available Fable; early-access dozens of orgs, now open applications; Standard Use (team-wide daily work, annual renewal; Mythos 5.1, Opus 5, Sonnet 5) vs High-risk Use add-on (single project, six-month; removes life-science blocking safeguards; Opus 5 and Sonnet 5 today, Mythos limited with extra US-government vetting); cyber classifiers remain; shift from real-time blocking to offline monitoring with 30-day LSVP traffic retention, compartmentalized and excluded from training and from Anthropic life-sciences research teams; three threat models: access compromise, insider threats, agent misuse in swarms or long-horizon tasks; shared responsibility against the stated grant scope; surfaces Claude Science / Claude.ai / Claude Code / API; Enterprise and Team, not individual or third-party yet; BAA orgs out of beta (https://www.anthropic.com/news/life-sciences-verification-program)",
+    "Capability companion, not the same core: Claude in Claude Science optimized 30+ open-source structure/design/genomics/protein-LM models in under four weeks, roughly 4x on average and nearly 2x with identical outputs; FlashPairformer 2.7-2.9x triangle attention and 1.7-3.2x triangle multiplication; Big mode accurate above 10,000 tokens on one NVIDIA GPU node, inference above 70,000 tokens (not accurate); prior de novo binder campaigns used up to $10,000 / ~2,500 H100 hours per target; simplified single-model run on one H200 for 24 hours across 16 targets matches prior in silico ipSAE at ~$150 combined; open-sourced kernels plus technical report; Adaptyv Bio protein design competition — five frontier problems, up to $1 million Claude credits, $250,000 Modal credits, wet-lab validation for over 5,000 designs (https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling)",
+    "Verified-access lens: a more permissive biology classifier is not an opened gate; Standard (team, annual) and High-risk (project, six-month) are not the same grant; offline monitoring against a named scope is not a real-time block; access compromise, insider threats, and agent misuse are not the same misuse; 4x kernels and Big mode are a capability surface, not a grant",
+    "Aside (not the core): OpenAI Misalignment Notices and Reports hub discloses examples of model misalignment; sits next to LSVP's agent-misuse threat model; not a grant and not a verification program (https://alignment.openai.com/misalignment-reports/)",
+    "9/17 session-oversight / Agent Anomaly Detection, 9/16 realtime-voice / Live API, 9/15 production-trust, and 9/14 workplace data agents are one-line continuity only, not today's core",
+    "knowledge-base-llm live fetch was private/404 this run; do not invent wiki paths; map claims limited to text already verified in prior daily pages of this repo",
+    "X bookmarks this run: 0 (App-Only)"
+  ],
+  "char_count": 13399
+}
