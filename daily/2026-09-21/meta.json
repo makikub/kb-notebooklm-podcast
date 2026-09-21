@@ -3,7 +3,7 @@
   "title": "Default Safer — Age Gates after the Australian Blueprint",
   "theme": "age-assurance-gates-and-youth-policy",
   "source": "daily/2026-09-21/source.md",
-  "generated_at": "2026-09-21T00:25:00Z",
+  "generated_at": "2026-09-21T00:45:00Z",
   "topic_id": "age-assurance-gates-and-youth-policy",
   "output_dir": "daily/2026-09-21",
   "page": "daily/2026-09-21/source.md",
@@ -14,13 +14,13 @@
     "wiki/maps/context-graph-and-company-brain.md"
   ],
   "news_context": [
-    "OpenAI official PDF “An Australian Youth Safety Blueprint” (September 2026; Last-Modified 2026-09-18 10:08:43 GMT; HTTP 200) is today's only Claim source — four teen commitments (safety first, real-world support, treat teens like teens, transparency); ChatGPT for Teens began rolling out in Australia in August as the default for users identified as ages 13–17; nearly nine in ten ChatGPT-using teens use it for learning, information, skill-building, or productivity in a given week; privacy-preserving risk-based age prediction that defaults to a safer experience when confidence is insufficient; incorrectly placed under-18 users can confirm age via a selfie to Persona (OpenAI does not see the selfie or ID; Persona deletes verification data within seven days; Privacy Act 1988); six pillars for policymakers (education/AI literacy, age assurance, under-18 safety policies, anti-manipulation, crisis protocol with Triple Zero / Lifeline / Kids Helpline / 13YARN, parental controls); Digital Duty of Care exposure draft, not enacted law; eSafety Codes and Standards class 1 and 2; independent assessments with plain-language summaries (https://cdn.openai.com/pdf/7e70543d-a803-44b7-8754-ca00b3f2ff0c/australian-youth-safety-blueprint.pdf)",
+    "OpenAI official PDF “An Australian Youth Safety Blueprint” (September 2026; Last-Modified 2026-09-18 10:08:43 GMT; HTTP 200) is today's Claim source — four teen commitments; ChatGPT for Teens began rolling out in Australia in August as the default for users identified as ages 13–17; privacy-preserving risk-based age prediction that defaults to a safer experience when confidence is insufficient (teen default surface vs adult capability surface; the age-assurance gate sits before adult capability); incorrectly placed under-18 users can confirm age via a selfie to Persona (OpenAI does not see the selfie or ID; Persona deletes verification data within seven days) to restore full / adult access; six pillars for policymakers; Digital Duty of Care exposure draft, not enacted law (https://cdn.openai.com/pdf/7e70543d-a803-44b7-8754-ca00b3f2ff0c/australian-youth-safety-blueprint.pdf)",
     "Discovery path: openai.com/news listed “Introducing the Australian Youth Safety Blueprint” (Company, Sep 18). This run openai.com HTML returned Cloudflare 403; do not invent the HTML body; do not promote secondary scrapers to Claim source",
-    "Age-gate lens: a published blueprint is not a passed product gate; inferred age prediction is not Persona identity confirmation; default-safer-when-uncertain is not an under-18 output policy; parental layers are not the default; an exposure draft is not enacted law",
-    "Weekend (Sep 19–20) plus Monday-morning official ingest found no other high-signal primary; skip thin Google AI & Economy hiring and Academy events",
+    "Age-gate lens: default teen safeguards are not the adult surface; inferred age prediction is not Persona identity confirmation; the age-assurance gate sits before capability; parental layers are not the default; an exposure draft is not enacted law",
+    "Aside (not the core): Google “Why client SDK generation belongs in the open” 2026-09-17 — Speakeasy OpenAPI generator suite open-sourced under AGPLv3; seven languages; agent-native CLI; documentation MCP server; generated SDK license stays with the user (MIT/Apache etc.); generator modifications remain AGPL; tooling openness, not the youth-safety core (https://developers.googleblog.com/en/why-client-sdk-generation-belongs-in-the-open/)",
     "9/18 LSVP / verified life-science access, 9/17 session-oversight / Agent Anomaly Detection, 9/16 realtime-voice / Live API, 9/15 production-trust, and 9/14 workplace data agents are one-line continuity only, not today's core",
     "knowledge-base-llm live fetch was private/404 this run; do not invent wiki paths; map claims limited to text already verified in prior daily pages of this repo",
     "X bookmarks this run: 0 (App-Only)"
   ],
-  "char_count": 11761
+  "char_count": 12923
 }
