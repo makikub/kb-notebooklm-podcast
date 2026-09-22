@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Same Price, Longer Runs — Calibrated Safeguards after Grok 4.7 - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-22/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-09-22</a> / 読み物版</header>
+    <p class="eyebrow">2026-09-22 Weekly Topic</p>
+    <h1>Same Price, Longer Runs — Calibrated Safeguards after Grok 4.7</h1>
+    <p class="lead">9/21 は、十代の既定面が大人の能力面の前に立つかでした。今日は、年齢でも、生物学の grant でも、セッションでもありません。同じ単価で、より長く走るか。校正されたセーフガードかです。価格性能は、頂点の点数表ではありません。リードは公式 HTML です。Cursor は companion です。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-22">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 同じ単価は同じ価値ではない</strong>Grok 4.7 は 4.6 と同じ $2 / $6 です。CursorBench 4.0 では価格性能のフロンティアです。同じ表で Fable は 51.8%。頂点の点数ではありません。</div>
+      <div><strong>2. 長い走りは検証済みではない</strong>難しい仕事により長く働き、自分の仕事をより注意深く点検します。自己点検は推論的な途中です。独立した検証ではありません。</div>
+      <div><strong>3. 校正は一つのスイッチではない</strong>新しいセーフガード・スタックです。LatchBio 62.4%。HackerBench は危険な促の 3.3% を通します。速い変種は速度も価格も二倍です。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは、同じ単価のより長い走りと校正されたセーフガードである</h2>
+      <p>knowledge-base-llm の能力投資地図は、ROI はモデル品質の直接関数ではない、と書きます。評価は、作った同じエージェントの最後の一目ではありません。証拠は、公式一次が支えた文だけを硬くします。制御の分類は、いつ効くかとどう効くかを分けよ、と書きます。knowledge-base-llm のライブ本文は、このランでも private で開けませんでした。無い wiki パスを invent しません。既存日次で検証できた四枚を、同じ単価のより長い走りと、校正されたセーフガードとして読みます。</p>
+      <p>9/21 の読み物は、十代の既定面が大人の能力面の前に立つかでした。9/18 は grant。9/17 はセッション。9/16 は回線。9/15 は点検間隔。9/14 は倉庫の門。9/11 は書かない親。9/10 は通知表対ガイドポスト。その列は今日の核ではありません。一行の連続に留めます。年齢門も、LSVP も、Astra の行動評価も、再審しません。今日読むのは、同じ単価のまま走りが長くなったとき、価格性能の主張と、校正された拒否が、同じ「出した」になっていないかです。核は単価と走りと校正です。</p>
+      <p>SpaceXAI / xAI の公式 HTML は、「Introducing Grok 4.7」です。<a href="https://x.ai/news/grok-4-7">x.ai/news/grok-4-7</a>。このランで HTTP 200 を確認しました。Claim source はニュース本文です。Cursor のブログは companion です。提供面の一行です。Model Card は公式の補強です。二次のまとめは Claim にしません。</p>
+      <p>coding と knowledge work 向けでもっとも強力です。比較可能なモデルの半分の価格で二倍速い、と書きます。難しい仕事により長く働く。自分の仕事をより注意深く点検する。これまでで最良に校正されたセーフガード。Grok 4.6 と同じ価格と速度。CursorBench 4.0 では価格性能のフロンティア。新しい、より大きな基底。より長い強化学習。何時間もかかる問題へ寄せた混合。Grok Bot harness を原生で理解します。</p>
+      <p>入力 $2、出力 $6 は 4.6 と同じです。Fable 5.1 Max は $10 / $50。GPT-5.6 Sol Max は $4 / $20。CursorBench 4.0 は 46.3%。Fable は 51.8%。同じ表の中で、価格性能のフロンティアと、頂点の点数は、同じ列ではありません。DeepSWE 71.0% は high effort の星印です。EEBench は 64.0%。AA Briefcase は 1,657。Terminal-Bench 4.0 は 38.0%。Fable は 57.9%。Harvey は 19.6%。HealthBench は 56.7%。Fable は 62.1%。同じ「並ぶ」ではありません。</p>
+      <p>安全は、まったく新しいスタックです。拒否とジェイルブレイク耐性で、社内試験でもっとも強い。二重用途では、良性の有用性と危険な拒否の両方で先頭。LatchBio の biosafety は 62.4%。HackerBench v0.3 では、危険な二重用途の促のうち 3.3% だけを通します。正当なセキュリティ仕事は稀にしか止めません。選んだ相手へ、防御研究の red-team を招待制で渡し始めました。提供は今日、Cursor と Grok Build。Grok API、第三者ハーネス、ルータ、クラウド。速い変種は、出力速度が二倍、価格も二倍です。無い既定切替は invent しません。</p>
+      <p>薄い行だけ置きます。companion: Cursor「Introducing Grok 4.7」（9/21）。<a href="https://cursor.com/blog/grok-4-7">cursor.com/blog/grok-4-7</a>。長い走りのコーディングと知識労働向けでもっとも能力がある、と書きます。全文は x.ai を読め、と書きます。本文に表の点数はありません。提供面です。第二の点数表ではありません。核にしません。Model Card（<a href="https://media.x.ai/v1/website/4p7card-5eccc980.pdf">公式 PDF</a>）は、自律高リスク決定には人間の監督を置け、と書きます。Cursor は全プラン。消費者面は後日。事前学習の切れ目は June 2026。カードの別努力段の数字は、ニュース表に混ぜません。二次の 2.1T、合成指数 46、Terminal-Bench 26% は Claim にしません。9/21 の年齢門と、9/18 の LSVP と、9/17 のセッション監視と、9/16 の Live 音声と、9/15 の本番信頼と、9/14 の倉庫NLと、9/11 のコーディネータと、9/10 の行動評価は連続の一行です。再審しません。X bookmarks は今ラン 0。無いライブ地図を、あるように書きません。</p>
+
+      <h2>単価と頂点と、走りと検証は、同じ「先頭」ではない</h2>
+      <p>同じ単価は、同じ仕事のコストではありません。CursorBench 4.0 の価格性能フロンティアは、Fable 51.8% の頂点ではありません。仕事あたりの実費も、採用後の回収率も、本文にはありません。</p>
+      <p>自己点検は、推論的な途中の制御です。CursorBench の 46.3% は、自己点検が通った回数ではありません。DeepSWE 71.0% の星印は high effort です。努力段を外すと、71.0% が既定になります。</p>
+      <p>拒否は前です。HackerBench の 3.3% は漏れです。red-team は選んだ相手への招待です。校正は、良性を通して危険を止める梯子です。全部止めるスイッチではありません。9/18 の grant は、資格を通った主体へ、より緩い分類器を渡す話でした。今日の LatchBio 62.4% は、ベンダーの biosafety 点数です。同じ核ではありません。</p>
+      <p>速い変種は、出力速度が二倍、価格も二倍です。4.6 と同じ $2 / $6 ではありません。公式は、速い変種を既定だ、とは書きません。Cursor の一行は提供面です。x.ai の CursorBench 表ではありません。</p>
+
+      <h2>二次の順位表を Claim にせず、昨日の核を一つのスイッチにしない</h2>
+      <p>Claim source は x.ai のニュース本文です。Cursor は companion です。経路を Claim に昇格させません。二次の 2.1T と合成指数 46 と Terminal-Bench 26% を、公式の 38.0% の穴埋めに使いません。</p>
+      <p>knowledge-base-llm のライブ本文は未取得です。検証できたのは、能力投資、評価信頼性、証拠品質、制御分類です。無い wiki パスを invent しません。今日の読み物は、公式ニュースと、検証できた地図で書きます。</p>
+
+      <div class="callout">
+        よい読みは、頂点かで語らないことである。同じ単価を残す。価格性能と頂点の点数を混ぜない。長い走りと独立した検証を混ぜない。校正を一つのスイッチにしない。速い変種を同じ単価にしない。Cursor は一行に残す。年齢門の再話にも、LSVP の再話にも、行動評価の再話にもしない。
+      </div>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>今日の先頭は、同じ単価か。頂点の点数か。価格性能か？</li>
+        <li>今日長いのは、走りか。自己点検か。独立した検証か？</li>
+        <li>今日効いているのは、拒否か。漏れの 3.3% か。招待制の red-team か？</li>
+        <li>今日の $2 / $6 は、4.6 と同じ単価か。速い変種か。比較可能なモデルの半分か？</li>
+        <li>今日硬いのは、x.ai の表か。Cursor の一行か？</li>
+        <li>欠けているのは、仕事あたりの実費か。自己点検率か。ライブ地図か？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code>, <code>wiki/maps/eval-review-reliability.md</code>, <code>wiki/maps/evidence-quality-and-source-trust.md</code>, and <code>wiki/maps/agent-harness-control-taxonomy.md</code> (live fetch of knowledge-base-llm was private/404 this run; claims are limited to text already verified in prior daily pages of this repo), framed as theme <code>frontier-price-performance-and-calibrated-safeguards</code> with SpaceXAI / xAI’s official HTML “Introducing Grok 4.7” (this run HTTP 200) as the Claim source — same $2 / $6 as Grok 4.6; longer runs and more careful self-checks; best-calibrated safeguards; CursorBench 4.0 frontier in price-performance (46.3%, not Fable’s 51.8% absolute); new safeguard stack with LatchBio 62.4% and HackerBench v0.3 3.3% risky dual-use pass-through; fast variant is 2x output speed at 2x price (<a href="https://x.ai/news/grok-4-7">x.ai/news/grok-4-7</a>). Companion, not a second scorecard: Cursor “Introducing Grok 4.7” (<a href="https://cursor.com/blog/grok-4-7">cursor.com/blog/grok-4-7</a>). Supporting official: Model Card Grok 4.7 — not for autonomous high-stakes decisions without human oversight; Cursor on every plan; consumer surfaces later (<a href="https://media.x.ai/v1/website/4p7card-5eccc980.pdf">official PDF</a>). Do not invent secondary 2.1T / Artificial Analysis 46 / Terminal-Bench 26% as Claim source. 9/21 age-assurance, 9/18 LSVP, 9/17 session-oversight, 9/16 realtime-voice / Live API, 9/15 production-trust, 9/14 workplace data agents, 9/11 coordinators, and 9/10 frontier-ga / behavioral evals are one-line continuity only. Do not invent wiki paths, per-job cost, self-check rates, default fast-variant switch, or missing source notes. X bookmarks this run: 0 (App-Only).</p>
+    </footer>
+  </div>
+</body>
+</html>

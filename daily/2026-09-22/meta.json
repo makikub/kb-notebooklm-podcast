@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-22",
+  "title": "Same Price, Longer Runs — Calibrated Safeguards after Grok 4.7",
+  "theme": "frontier-price-performance-and-calibrated-safeguards",
+  "source": "daily/2026-09-22/source.md",
+  "generated_at": "2026-09-22T00:30:00Z",
+  "topic_id": "frontier-price-performance-and-calibrated-safeguards",
+  "output_dir": "daily/2026-09-22",
+  "page": "daily/2026-09-22/source.md",
+  "related": [
+    "wiki/maps/ai-adoption-roi-and-capability-investment.md",
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/maps/evidence-quality-and-source-trust.md",
+    "wiki/maps/agent-harness-control-taxonomy.md"
+  ],
+  "news_context": [
+    "SpaceXAI / xAI official HTML “Introducing Grok 4.7” (this run HTTP 200) is today's Claim source — coding and knowledge work; same $2 / $6 per million tokens as Grok 4.6; longer runs on hard tasks; more careful self-checks; best-calibrated safeguards to date; CursorBench 4.0 frontier in price-performance (46.3% vs Fable 5.1 Max 51.8% absolute); new larger base and longer RL weighted toward multi-hour work; native Grok Bot harness; new safeguard stack with LatchBio biosafety 62.4% and HackerBench v0.3 3.3% risky dual-use pass-through; invite-only defensive red-team; fast variant is 2x output speed at 2x price (https://x.ai/news/grok-4-7)",
+    "Companion, not a second scorecard: Cursor “Introducing Grok 4.7” 2026-09-21 (research; Cursor Team; HTTP 200) — most capable for long-running coding and knowledge work; read the full announcement on x.ai; no table scores in the Cursor body (https://cursor.com/blog/grok-4-7)",
+    "Supporting official: Model Card Grok 4.7 (September 21, 2026; Revision 2026-09-21) — SpaceXAI is a DBA of XAI LLC; not intended for autonomous high-stakes medicine/law/finance/safety-critical decisions without human oversight; Cursor on every plan; Grok Build default; consumer surfaces later; pretraining cutoff June 2026; do not mix card effort-tier numbers that differ from the news table into PASS (https://media.x.ai/v1/website/4p7card-5eccc980.pdf)",
+    "Price-performance lens: same token price is not the same job cost; price-performance frontier is not the absolute leaderboard; longer runs are not independently verified runs; calibrated safeguards are not a single switch; the fast variant is not the $2 / $6 tier",
+    "Do not promote secondary Decrypt / The Decoder / IT Brief figures (2.1T parameters, Artificial Analysis 46, Terminal-Bench 26%) to Claim source; official Terminal-Bench 4.0 is 38.0%",
+    "9/21 age-assurance / youth-policy, 9/18 LSVP / verified life-science access, 9/17 session-oversight / Agent Anomaly Detection, 9/16 realtime-voice / Live API, 9/15 production-trust, 9/14 workplace data agents, 9/11 coordinators, and 9/10 frontier-ga / behavioral evals are one-line continuity only, not today's core",
+    "knowledge-base-llm live fetch was private/404 this run; do not invent wiki paths; map claims limited to text already verified in prior daily pages of this repo",
+    "X bookmarks this run: 0 (App-Only)"
+  ],
+  "char_count": 13795
+}
