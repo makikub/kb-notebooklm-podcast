@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-23",
+  "title": "Name the Rung — Cheaper Flagship after Opus 5.5",
+  "theme": "efficiency-ladder-cheaper-flagship-and-mid-tier",
+  "source": "daily/2026-09-23/source.md",
+  "generated_at": "2026-09-23T01:20:00Z",
+  "topic_id": "efficiency-ladder-cheaper-flagship-and-mid-tier",
+  "output_dir": "daily/2026-09-23",
+  "page": "daily/2026-09-23/source.md",
+  "related": [
+    "wiki/maps/ai-adoption-roi-and-capability-investment.md",
+    "wiki/maps/evidence-quality-and-source-trust.md",
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/maps/agent-harness-control-taxonomy.md"
+  ],
+  "news_context": [
+    "Anthropic official HTML “Claude Opus 5.5” (September 22, 2026; this run curl followed https://www.anthropic.com/news/claude-opus-5-5 to https://www.anthropic.com/claude-opus-5-5 and returned HTTP 200) is a Claim source — Fable 5.1 level on most work; ~40% less cost than Opus 5 on typical workloads at default settings; input/output $4/$20 per million, 20% under Opus 5’s $5/$25; cache reads $0.20, 60% under $0.50; cache writes $5 vs $6.25; output more than 30% faster; fast mode up to 2.5x at $8/$40; model id claude-opus-5-5; Sonnet 5.5 and Haiku 5.5 coming with no prices stated (https://www.anthropic.com/news/claude-opus-5-5)",
+    "OpenAI official HTML “Introducing GPT-6 Sol and Luna” (browser rendered and text was selected; curl from this environment was Cloudflare 403, so a curl HTTP 200 was not recorded; no visible byline date) is the other Claim source — API prices 50% lower than GPT-5.6 promotional pricing; Sol $4→$2 input and $20→$10 output; Luna $0.20→$0.10 input and $1.20→$0.50 output; table labels both rows 50% cheaper; Astra remains the best model; ChatGPT Work and Codex for Plus, Pro, Business, Enterprise, and Edu; Free and Go get Luna on desktop; not yet in Chat; API ids gpt-6-sol and gpt-6-luna (https://openai.com/index/introducing-gpt-6-sol-and-luna/)",
+    "Supporting, not the news table: GPT-6 Sol and Luna model docs (curl HTTP 200) list the same input/output dollars plus cache prices (Sol cached input $0.20, cache writes $2.50; Luna cached input $0.01, cache writes $0.125). Do not mix those cache dollars into the news-page PASS (https://developers.openai.com/api/docs/models/gpt-6-sol)",
+    "Ladder lens: the 40% workload drop is not the 20% list-price cut, not the 60% cache-read cut, and not fast mode; the mid-tier 50% versus 5.6 promo is not the flagship 40%; Fable-level on most work is not first on every row; effort tiers stay attached; OpenAI cost-per-task does not fill Anthropic’s table; OSWorld 81.8% partial is not the 60.5% offline score",
+    "Companion, not a token rung: SpaceXAI “How SpaceXAI is using Grok Bot to scale customer support” (curl HTTP 200) — tickets up 175%, no new hires, resolutions about $0.20–$0.30 versus a flat $1–$4 (https://x.ai/news/grok-bot-customer-support)",
+    "Optional page https://openai.com/index/priorities-principles-third-party-assessments/ returned 500 in the browser this run and is unused",
+    "9/22 frontier price-performance, 9/21 age-assurance, 9/18 LSVP, 9/17 session-oversight, 9/16 realtime-voice, 9/15 production-trust, 9/14 workplace data agents, and 9/11 coordinators are one-line continuity only, not today's core",
+    "knowledge-base-llm live fetch was 404 this run; do not invent wiki paths; map claims limited to text already verified in prior daily pages of this repo",
+    "X bookmarks were not queried this run"
+  ],
+  "char_count": 22472
+}
