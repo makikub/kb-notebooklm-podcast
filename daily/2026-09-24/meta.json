@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-24",
+  "title": "Three Verdicts — Health after Deploy, without Rolling Back",
+  "theme": "post-merge-health-without-auto-rollback",
+  "source": "daily/2026-09-24/source.md",
+  "generated_at": "2026-09-24T00:40:00Z",
+  "topic_id": "post-merge-health-without-auto-rollback",
+  "output_dir": "daily/2026-09-24",
+  "page": "daily/2026-09-24/source.md",
+  "related": [
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md",
+    "wiki/maps/agent-harness-control-taxonomy.md",
+    "wiki/maps/coding-agent-review-rubric.md",
+    "wiki/maps/eval-review-reliability.md"
+  ],
+  "news_context": [
+    "Cursor changelog “Rollouts and Security Review” (Sep 23, 2026; this run curl HTTP 200) is the Claim source — per-environment verified healthy / regression detected / inconclusive; monitoring plan as an editable PR comment (risks, intended effect, signals, instrumentation gaps); wakes on deploy events for the change's commit and checks logs, metrics, and traces, including intended effect alongside error and latency; staging can be verified while production is still flagged; regression names the suspected change and notifies the author; configuration may open a revert PR for review or hand the finding to a cloud agent; Rollouts does not merge or roll back on its own today; Origin or GitHub, continuous delivery, Datadog and other telemetry; feature-flag integration coming soon; Security Review posts one exploitability comment, skips drafts, leaves style and quality with Bugbot; findings have severity, attack path, and a proposed fix; dismiss with a reason and it will not raise that finding again on that PR; Teams and Enterprise; automations tab; next 10 days of Rollouts trial credits for roughly 50 (Teams) and roughly 500 (Enterprise) changes (https://cursor.com/changelog/rollouts-and-security-reviewer)",
+    "Companion blog “Bots for the last mile” (Sep 23, 2026; Rustam Lalkaka; curl HTTP 200) does not override the changelog — do not promote “acts to restore a healthy state,” “finds and fixes,” a paused progressive rollout, one-click fix, LDAP, Grafana/Honeycomb as required providers, or release-train awareness into the changelog constraints (https://cursor.com/blog/rollouts-and-security-reviewer)",
+    "Aside, not the core: Gemini 3.8 Flash TTS and Flash-Lite TTS are speech generation, not Live. Prices from Gemini API pricing (curl HTTP 200), standard paid audio output $9.00 / $6.00 per 1M tokens through 2026-12-31, then $18.00 / $12.00 from 2027-01-01; text input $0.50 through the same date, then $1.00; model ids gemini-3.8-flash-tts and gemini-3.8-flash-lite-tts (https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/, https://ai.google.dev/gemini-api/docs/pricing)",
+    "Same-day Cursor research note on harness token efficiency (curl HTTP 200) is not today's core; prompt-cache mechanics and its percentages are not imported (https://cursor.com/blog/improved-token-efficiency)",
+    "9/23 efficiency ladder, 9/22 frontier price-performance, 9/21 age-assurance, 9/18 LSVP, 9/17 session-oversight, 9/16 realtime voice, 9/15 production trust, 9/14 workplace data agents, and 9/11 coordinators are one-line continuity only",
+    "knowledge-base-llm live fetch was 404 this run; pull/51 and pull/52 could not be resolved with this token; digest outputs/reports/kb-daily-digest-2026-09-24.md was not read; map claims limited to text already verified in prior daily pages of this repo",
+    "X bookmarks treated as 0 this run; no X aside"
+  ],
+  "char_count": 19451
+}
