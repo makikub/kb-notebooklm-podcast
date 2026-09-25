@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-25",
+  "title": "Name the Category — Billed before Any Output",
+  "theme": "billed-refusal-categories-before-output",
+  "source": "daily/2026-09-25/source.md",
+  "generated_at": "2026-09-25T01:10:00Z",
+  "topic_id": "billed-refusal-categories-before-output",
+  "output_dir": "daily/2026-09-25",
+  "page": "daily/2026-09-25/source.md",
+  "related": [
+    "wiki/maps/approval-policy-patterns-and-escalation.md",
+    "wiki/maps/evidence-quality-and-source-trust.md",
+    "wiki/maps/ai-adoption-roi-and-capability-investment.md",
+    "wiki/maps/agent-harness-control-taxonomy.md"
+  ],
+  "news_context": [
+    "Anthropic Claude API release notes, September 24, 2026 (this run curl HTTP 200 on https://platform.claude.com/docs/en/release-notes/overview) is the Claim source — billed refusals expand to pre-output refusals when stop_details.category is bio, frontier_llm, or reasoning_extraction, the categories where they measure low volumes of false positives. Mid-stream refusals were already billed. Newly billed refusals are charged like any other request, at the rates of the model that ran it. Pre-output refusals in other categories are still not billed. Fallback credit is unchanged. The change applies on all platforms (https://platform.claude.com/docs/en/release-notes/overview)",
+    "Refusals and fallback (curl HTTP 200) names the table the release note does not spell: cyber and general_harms are No in Billed before any output; bio, frontier_llm, and reasoning_extraction are Yes. A pre-output refusal in any other category, or with a null category, is not billed. content is empty either way; token counts appear in usage; the request still counts against rate limits. Mid-stream refusals bill input tokens and output already streamed at normal rates. Fallback credit compensates for the fallback request's prompt-cache miss and is not restated as a new rule. Server-side fallback remains a Claude API beta and is not available on Amazon Bedrock, Google Cloud, or Microsoft Foundry (https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback)",
+    "Companion, not the core: September 23, 2026 release note — Cache diagnostics is out of beta on the Claude API and no longer requires the cache-diagnosis-2026-04-07 beta header. Opt in with the diagnostics object; requests that still send the header work as before. POST /v1/messages always includes diagnostics, null when the object was omitted. The cache diagnostics page (curl HTTP 200) stores a fingerprint only when the object is included; first turn may pass previous_message_id null (https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics)",
+    "Aside, not the core: Google Cloud API Gateway remote MCP, Public Preview. Docs (curl HTTP 200) support initialize, notifications/initialized, tools/list, and tools/call; other methods return JSON-RPC -32601. OpenAPI 2.0, stdio, resources, prompts, and streaming or long-running tool calls are not supported. MCP and Model Routing are mutually exclusive (https://docs.cloud.google.com/api-gateway/docs/mcp-overview). Blog SEPT. 24, 2026 (curl HTTP 200) adds HTTP 204 not exposed, up to 1,000 tools, and Model Armor payload inspection on the roadmap; do not fold those into the docs list (https://developers.googleblog.com/turn-your-rest-apis-into-mcp-tools-with-google-cloud-api-gateway/)",
+    "Thin aside, medium, not the core: MaxText reproduction of AI2 OLMo 3 7B (Google Developers Blog, SEPT. 24, 2026, curl HTTP 200) — stage-1 pre-training and stage-2 mid-training anneal matched on held-out metrics; stage 3 and post-training via Tunix are written recipes not yet run. Do not import the ~5.9T token budget into refusal usage (https://developers.googleblog.com/reproducing-olmo-3-7b-pre-training-in-maxtext-case-study-of-large-scale-training-on-tpus/)",
+    "9/24 post-merge health, 9/23 efficiency ladder, 9/22 frontier price-performance, 9/21 age-assurance, 9/18 LSVP, 9/17 session-oversight, 9/16 realtime voice, 9/15 production trust, 9/14 workplace data agents, and 9/11 coordinators are one-line continuity only",
+    "knowledge-base-llm live fetch was 404 this run; pull/54 could not be resolved with this token; digest was not read; map claims limited to text already verified in prior daily pages of this repo",
+    "X bookmarks treated as 0 this run; no X aside",
+    "No dollar prices or model ids are stated for the billed refusal itself; do not import Opus 5.5 list prices"
+  ],
+  "char_count": 20431
+}

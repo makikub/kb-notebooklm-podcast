@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Name the Category — Billed before Any Output - 読み物版</title>
+  <link rel="canonical" href="https://makikub.github.io/kb-notebooklm-podcast/daily/2026-09-25/reading.html">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f7f1;
+      --text: #22272a;
+      --muted: #60706b;
+      --line: #d8ddd4;
+      --panel: #edf3ec;
+      --accent: #2e6d5f;
+      --accent-2: #9a5a3b;
+      --code: rgba(46, 109, 95, 0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.9;
+      letter-spacing: 0;
+    }
+    .shell { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+    header { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    header a, .actions a, footer a { color: inherit; }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; margin: 0; letter-spacing: 0; max-width: 860px; }
+    .lead { color: var(--muted); font-size: 1.16rem; max-width: 760px; margin: 22px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.38);
+    }
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 34px 0 46px;
+    }
+    .summary div {
+      border-top: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 15px 16px;
+      min-height: 150px;
+    }
+    .summary strong { display: block; margin-bottom: 6px; }
+    main { max-width: 760px; }
+    h2 { border-top: 1px solid var(--line); padding-top: 32px; margin: 42px 0 12px; font-size: 1.55rem; line-height: 1.35; }
+    p { margin: 0 0 18px; }
+    ul { padding-left: 1.4em; margin: 0 0 22px; }
+    li { margin: 5px 0; }
+    code { background: var(--code); border-radius: 5px; padding: 0.12em 0.32em; }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(154, 90, 59, 0.08);
+      padding: 16px 18px;
+      margin: 30px 0;
+    }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; margin-top: 56px; padding-top: 20px; }
+    @media (max-width: 720px) {
+      .shell { padding: 22px 16px 56px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary div { min-height: 0; }
+      h2 { font-size: 1.34rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151817;
+        --text: #e7e7e2;
+        --muted: #aeb7b3;
+        --line: #38413d;
+        --panel: #1d2421;
+        --accent: #7dc4b7;
+        --accent-2: #d39a7b;
+        --code: rgba(125, 196, 183, 0.16);
+      }
+      .actions a { background: rgba(255, 255, 255, 0.04); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><a href="../../">KB Reading Pages</a> / <a href="./">2026-09-25</a> / 読み物版</header>
+    <p class="eyebrow">2026-09-25 Weekly Topic</p>
+    <h1>Name the Category — Billed before Any Output</h1>
+    <p class="lead">9/24 は、環境ごとの三つの健康でした。今日は、出力が一つも出る前の拒否が、どの category なら走ったモデルの料金で残るかです。空の応答は、無料の印ではありません。リードは September 24, 2026 の release notes です。</p>
+    <nav class="actions" aria-label="関連リンク">
+      <a href="./">Source page</a>
+      <a href="source.md">Markdown source</a>
+      <a href="https://github.com/makikub/kb-notebooklm-podcast/tree/main/daily/2026-09-25">GitHub</a>
+    </nav>
+
+    <section class="summary" aria-label="要点">
+      <div><strong>1. 三つの category</strong>出力前に課金されるのは <code>bio</code>、<code>frontier_llm</code>、<code>reasoning_extraction</code> です。走ったモデルの料金です。ドルの表は、このノートにありません。</div>
+      <div><strong>2. ほかは、出典が分かれる</strong>ノートは「ほかの category」と書きます。表が No と書くのは <code>cyber</code> と <code>general_harms</code> です。<code>null</code> は本文です。途中の拒否は、すでに課金されていました。</div>
+      <div><strong>3. credit は動かない</strong>fallback credit は変わらない、とノートが書きます。空の <code>content</code> でも <code>usage</code> とレート制限は残ります。キャッシュ診断の GA は、別の棚です。</div>
+    </section>
+
+    <main>
+      <h2>今日のテーマは、止まったことと、請求されることを分けることである</h2>
+      <p>knowledge-base-llm の承認地図は、安全を二値のスイッチにするな、と書きます。四段は、自動許可、助言レビュー、完了を塞ぐレビュー、人間だけです。証拠は、どの URL がどの語を支えるかを残します。能力投資は、計算の経済を顧客の回収率と分けます。制御は、前と途中と後を分けます。ライブ本文は、このランでも private で開けませんでした。PR 54 も、このトークンでは解決できません。無い wiki パスを invent しません。既存日次で検証できた四枚を、出力前の拒否の請求として読みます。</p>
+      <p>9/24 は環境ごとの三つの健康でした。9/23 は旗艦の四割と中段の半額。9/22 は同じ単価。9/21 は年齢門。9/18 は grant。9/17 はセッション。9/16 は回線。9/15 は点検間隔。9/14 は倉庫。9/11 は書かない親。その列は今日の核ではありません。Rollouts も、TTS も、Opus 5.5 のドル表も、再審しません。</p>
+      <p>Claim は Claude API の release notes です。September 24, 2026。このランの curl は HTTP 200 でした。<a href="https://platform.claude.com/docs/en/release-notes/overview">platform.claude.com/docs/en/release-notes/overview</a>。課金する拒否を広げます。出力が一つも出る前に届く拒否を、<code>stop_details.category</code> が <code>bio</code>、<code>frontier_llm</code>、<code>reasoning_extraction</code> のときに含めます。偽陽性が少ないと測っている category です。率は置きません。途中の拒否は、すでに課金されていました。新しい拒否は、ほかのリクエストと同じように、走ったモデルの料金です。ほかの category の出力前は、いまも課金されません。fallback credit は変わりません。すべてのプラットフォームです。</p>
+
+      <h2>ノートの「ほか」と、表の No は、同じ文ではない</h2>
+      <p>三つ以外の綴りは、ノートにありません。表は別ページです。Refusals and fallback。curl は HTTP 200 でした。<a href="https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback">…/refusals-and-fallback</a>。Billed before any output の列が、Yes と No を分けます。<code>cyber</code> は No。<code>bio</code> は Yes。<code>frontier_llm</code> は Yes。<code>reasoning_extraction</code> は Yes。<code>general_harms</code> は No。五行です。二つの No を、ノートが綴った語として書きません。</p>
+      <p>本文は、ほかの category、または <code>null</code> の category の出力前は課金しない、と書きます。<code>null</code> は表の行ではありません。名前付き category に写らない拒否の、通常の恒久の値です。プレースホルダではありません。<code>stop_details</code> 自体が null なのは、<code>refusal</code> 以外の stop reason です。拒否の無料枠に入れません。<code>explanation</code> は安定しません。表示します。解析して category を足しません。</p>
+      <p>どちらの出力前でも、<code>content</code> は空です。トークン数は <code>usage</code> に出ます。リクエストはレート制限に数えます。空は、Yes と No に共通です。空を無料の印にしません。usage の数を、請求額にもしません。レート制限を、ドルにもしません。走ったモデルの ID は、このノートが書きません。9/23 の <code>$4</code> と <code>$20</code> で埋めません。</p>
+      <p>途中の拒否は、入力トークンと、すでに流した出力を、通常の料金で請求します。部分の出力は未完成として捨てます。捨てたことは、請求の相殺ではありません。前と途中を、一つの「拒否したから無料」にしません。</p>
+
+      <h2>fallback credit は、今日の新設ではない</h2>
+      <p>ノートは、fallback credit は変わらない、と書きます。文書が書く働きは、fallback リクエストのプロンプトキャッシュのミスを埋めることです。会話を二度キャッシュしないためです。この説明を、「今日から埋める」に読み替えません。額のドルは、どちらのページにもありません。足しません。</p>
+      <p>fallback を使うとき、きっかけの拒否を fallback のリクエストに加えて請求するのは、途中で届いたか、課金される category のときです。条件を外しません。条件の外の fallback リクエストを、この文だけで無料にもしません。欠けとして残します。</p>
+      <p>請求の変更は、すべてのプラットフォームです。Claude API、Amazon Bedrock、Claude Platform on AWS、Google Cloud、Microsoft Foundry、と文書が列挙します。サーバ側の fallback は、別の境界です。Claude API の beta です。Message Batches API では未対応です。Bedrock、Google Cloud、Microsoft Foundry では使えません。全プラットフォームの請求を、全プラットフォームの <code>fallbacks</code> にしません。</p>
+
+      <div class="callout">
+        よい読みは、拒否は無料かで語らないことである。出力の前か、途中かを残す。bio と frontier_llm と reasoning_extraction を残す。cyber と general_harms は表の No として、null は本文として、出典を残す。空の content と、usage と、レート制限を混ぜない。fallback credit は、変わらない、のまま置く。
+      </div>
+
+      <h2>キャッシュ診断は、拒否の料金表ではない</h2>
+      <p>September 23, 2026 の同じノートは、Cache diagnostics が Claude API で beta を出たと書きます。<code>cache-diagnosis-2026-04-07</code> は、もう要りません。opt in は <code>diagnostics</code> オブジェクトです。header をまだ送るリクエストは、以前のとおり動きます。<code>POST /v1/messages</code> は、いつも <code>diagnostics</code> を含みます。オブジェクトが無いとき、フィールドは <code>null</code> です。ページも curl は HTTP 200 でした。<a href="https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics">…/cache-diagnostics</a>。フィンガープリントを保存するのは、オブジェクトを含んだリクエストだけです。最初のターンは <code>previous_message_id</code> を null にして opt in できます。分かれる場所は、モデル、システムプロンプト、ツール、メッセージ履歴です。この null を、拒否 category の null とも、キャッシュヒットとも呼びません。9/23 のキャッシュ読み 60% は輸入しません。</p>
+
+      <h2>遠隔のツールと、7B の再現は、一行で足りる</h2>
+      <p>API Gateway のドキュメントは Public Preview です。curl は HTTP 200 でした。<a href="https://docs.cloud.google.com/api-gateway/docs/mcp-overview">docs.cloud.google.com/api-gateway/docs/mcp-overview</a>。遠隔 MCP サーバとして、既存 REST を書き替えずに出します。メソッドは <code>initialize</code>、<code>notifications/initialized</code>、<code>tools/list</code>、<code>tools/call</code> です。ほかは JSON-RPC の <code>-32601</code> です。OpenAPI 2.0、stdio、resources、prompts、streaming と長時間の tool call は未対応です。MCP と Model Routing は同じ設定で両立しません。</p>
+      <p>ブログは SEPT. 24, 2026 です。Sanjay Pujare、Paul Howell、Geir Sjurseth。<a href="https://developers.googleblog.com/turn-your-rest-apis-into-mcp-tools-with-google-cloud-api-gateway/">developers.googleblog.com … api-gateway</a>。curl は HTTP 200 でした。OpenAPI 3.0.x または 3.1.x です。HTTP 204 の空ボディは出さない、最大 1,000 tools、Model Armor のペイロード検査は roadmap、はブログの文です。ドキュメントの <code>-32601</code> を、1,000 で置き換えません。</p>
+      <p>OLMo 3 7B は、さらに薄い aside です。同じ日の Google Developers Blog。curl は HTTP 200 でした。<a href="https://developers.googleblog.com/reproducing-olmo-3-7b-pre-training-in-maxtext-case-study-of-large-scale-training-on-tpus/">…/reproducing-olmo-3-7b-pre-training-in-maxtext…</a>。MaxText が、stage-1 と stage-2 を端から端まで再現し、held-out で合わせました。stage 3 と、Tunix 経由の SFT/RL は、書いたレシピで、まだ走らせていません。約 5.9T は学習の予算です。拒否の usage には足しません。X bookmarks は 0 です。</p>
+
+      <h2>次に考えるとよさそうな問い</h2>
+      <ul>
+        <li>今日課金した出力前の拒否は、bio か。frontier_llm か。reasoning_extraction か。三つ以外を、同じ広げに入れたか？</li>
+        <li>今日の No は、ノートが書いたほか、か。表の cyber と general_harms か。本文の null か？</li>
+        <li>今日の拒否は、出力の前か。すでにトークンが流れた途中か。途中を、新しい無料規則で読んだか？</li>
+        <li>今日の空応答は、課金した三つのどれか。課金しない category か。usage が空だと読んだか？</li>
+        <li>今日の credit は、変わらないとノートが書いたか。新設と読んだか。サーバ側 fallback の beta を、全プラットフォームの請求と混ぜたか？</li>
+        <li>欠けているのは、走ったモデルのドルか。credit の額か。ライブの地図か？</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Generated from knowledge-base-llm <code>wiki/maps/approval-policy-patterns-and-escalation.md</code>, <code>wiki/maps/evidence-quality-and-source-trust.md</code>, <code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code>, and <code>wiki/maps/agent-harness-control-taxonomy.md</code> (live fetch of knowledge-base-llm was 404 this run; pull/54 was unresolved; claims are limited to text already verified in prior daily pages of this repo), framed as theme <code>billed-refusal-categories-before-output</code>. Claim source: Anthropic Claude API release notes, September 24, 2026 (curl HTTP 200) — pre-output refusals are billed when <code>stop_details.category</code> is <code>bio</code>, <code>frontier_llm</code>, or <code>reasoning_extraction</code>, at the rates of the model that ran; mid-stream refusals were already billed; other categories stay unbilled before output; fallback credit is unchanged (<a href="https://platform.claude.com/docs/en/release-notes/overview">platform.claude.com/docs/en/release-notes/overview</a>). The category table, not the release note, names <code>cyber</code> and <code>general_harms</code> as No and states that a null category is not billed before output (<a href="https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback">refusals-and-fallback</a>). Companion: Cache diagnostics GA on September 23, 2026. Asides: API Gateway remote MCP in Public Preview, and a thin MaxText OLMo 3 7B reproduction. Do not import dollar prices, model ids, or a sixth category. 9/24 through 9/11 are one-line continuity only. X bookmarks were 0 this run.</p>
+    </footer>
+  </div>
+</body>
+</html>
