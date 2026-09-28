@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-28",
+  "title": "画像入力の修正後、どこを再検証するか",
+  "theme": "visual-evals-after-a-fix",
+  "generated_at": "2026-09-28T00:44:43Z",
+  "source": "daily/2026-09-28/source.md",
+  "reading": "daily/2026-09-28/reading.html",
+  "page": "daily/2026-09-28/index.html",
+  "related": [
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/maps/coding-agent-cognitive-debt-and-review-capacity.md",
+    "wiki/maps/approval-policy-patterns-and-escalation.md"
+  ],
+  "official_urls": [
+    "https://developers.openai.com/api/docs/changelog",
+    "https://claude.com/blog/build-plugins-for-claude"
+  ],
+  "x_url": "https://x.com/trq212/status/2103576349499855160"
+}
