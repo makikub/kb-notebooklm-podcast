@@ -1,0 +1,11 @@
+{
+  "date": "2026-09-29",
+  "title": "Sonnet 5.5への移行で、最初に確かめるべき「成功したのに失われる状態」",
+  "theme": "sonnet-5-5-migration-state-verification",
+  "source": "daily/2026-09-29/source.md",
+  "reading": "daily/2026-09-29/reading.html",
+  "page": "daily/2026-09-29/index.html",
+  "related": ["wiki/maps/eval-review-reliability.md", "wiki/maps/ai-adoption-roi-and-capability-investment.md"],
+  "official_urls": ["https://www.anthropic.com/claude-sonnet-5-5", "https://platform.claude.com/docs/en/release-notes/overview", "https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide"],
+  "x_url": "https://x.com/cognition/status/2104633216145436831"
+}
