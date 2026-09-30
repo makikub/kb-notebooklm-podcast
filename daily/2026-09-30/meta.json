@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-30",
+  "title": "Dotsの「読み取り専用」は、操作全体の無条件な安全ではない",
+  "theme": "dots-read-only-research-action-approval-context",
+  "source": "daily/2026-09-30/source.md",
+  "reading": "daily/2026-09-30/reading.html",
+  "page": "daily/2026-09-30/index.html",
+  "related": [
+    "wiki/maps/approval-policy-patterns-and-escalation.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md"
+  ],
+  "official_urls": [
+    "https://openai.com/index/introducing-dots/",
+    "https://openai.com/index/how-we-build-safety-security-and-privacy-into-dots/",
+    "https://openai.com/index/introducing-gpt-6-1-sol/",
+    "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+    "https://openai.com/index/devday-2026-recap/"
+  ]
+}
