@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-01",
+  "title": "「100万トークン」を導入可能性と取り違えない",
+  "theme": "gemini-4-argon-rollout-output-limit-and-evaluation-gates",
+  "source": "daily/2026-10-01/source.md",
+  "reading": "daily/2026-10-01/reading.html",
+  "page": "daily/2026-10-01/index.html",
+  "related": ["wiki/maps/agent-deployment-gates-and-operational-risk.md", "wiki/maps/ai-adoption-roi-and-capability-investment.md"],
+  "official_urls": ["https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/", "https://platform.claude.com/docs/en/about-claude/model-deprecations"],
+  "notebooklm": "pending"
+}
