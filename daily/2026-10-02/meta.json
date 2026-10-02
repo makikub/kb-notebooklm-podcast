@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-02",
+  "title": "ブラウザが使えるだけでは任せられない",
+  "theme": "agents-api-browser-approval-and-verification-gates",
+  "source": "daily/2026-10-02/source.md",
+  "reading": "daily/2026-10-02/reading.html",
+  "page": "daily/2026-10-02/index.html",
+  "related": ["wiki/maps/approval-policy-patterns-and-escalation.md", "wiki/maps/agent-deployment-gates-and-operational-risk.md"],
+  "official_urls": ["https://developers.openai.com/api/docs/guides/agents-api/tools/computer-use"],
+  "notebooklm": "pending"
+}
