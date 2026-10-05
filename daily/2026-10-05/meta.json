@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-05",
+  "title": "AI研修を「受講人数」から「現場で再現できる能力」へ",
+  "theme": "ai-training-to-measurable-capability-and-roi",
+  "source": "daily/2026-10-05/source.md",
+  "reading": "daily/2026-10-05/reading.html",
+  "page": "daily/2026-10-05/index.html",
+  "related": ["wiki/maps/ai-adoption-roi-and-capability-investment.md", "wiki/navigation/operations.md"],
+  "official_urls": ["https://www.anthropic.com/news/claude-frontier-academy", "https://dora.dev/research/2025/dora-report/", "https://dora.dev/ai/roi/calculator/", "https://dora.dev/guides/dora-metrics/"],
+  "notebooklm": "pending"
+}
