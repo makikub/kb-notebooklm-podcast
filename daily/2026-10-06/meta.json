@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-06",
+  "title": "AIエージェントの記憶をGitで育てる――Agent Memory Repoの設計と未解決の境界",
+  "theme": "agent-memory-repo-provenance-and-review-boundaries",
+  "source": "daily/2026-10-06/source.md",
+  "reading": "daily/2026-10-06/reading.html",
+  "page": "daily/2026-10-06/index.html",
+  "related": ["wiki/maps/context-graph-and-company-brain.md", "wiki/maps/evidence-quality-and-source-trust.md"],
+  "official_urls": ["https://cognition.com/agent-memory-repo"],
+  "notebooklm": "pending"
+}
