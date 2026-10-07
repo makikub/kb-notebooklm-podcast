@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-07",
+  "title": "AIエージェントの遠隔操作と権限拡大は別物",
+  "theme": "agent-remote-control-and-permission-gates",
+  "source": "daily/2026-10-07/source.md",
+  "reading": "daily/2026-10-07/reading.html",
+  "page": "daily/2026-10-07/index.html",
+  "related": [
+    "wiki/maps/approval-policy-patterns-and-escalation.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md"
+  ],
+  "official_urls": [
+    "https://cursor.com/changelog/remote-control-local-agents",
+    "https://www.anthropic.com/news/cyber-verification-program"
+  ],
+  "notebooklm": "pending"
+}
