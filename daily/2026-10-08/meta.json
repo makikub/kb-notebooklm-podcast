@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-08",
+  "title": "公式文書への近道は、検証の近道ではない",
+  "theme": "evidence-quality-and-source-trust",
+  "source": "daily/2026-10-08/source.md",
+  "reading": "daily/2026-10-08/reading.html",
+  "page": "daily/2026-10-08/index.html",
+  "related": [
+    "wiki/maps/evidence-quality-and-source-trust.md",
+    "wiki/maps/research-os-query-paths.md",
+    "wiki/concepts/evidence-quality.md"
+  ],
+  "official_urls": [
+    "https://developers.googleblog.com/supercharge-your-development-with-the-google-developer-knowledge-api-ecosystem/"
+  ],
+  "notebooklm": "pending"
+}
