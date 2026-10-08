@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>公式文書への近道は、検証の近道ではない｜2026-10-08</title>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f6f8f7; color: #22323a; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; line-height: 1.85; }
+    main { max-width: 760px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+    h1 { font-size: clamp(1.9rem, 5vw, 2.8rem); line-height: 1.4; letter-spacing: -.03em; }
+    h2 { margin-top: 2.5rem; font-size: 1.35rem; line-height: 1.5; color: #185564; }
+    a { color: #116379; text-underline-offset: .2em; }
+    a:focus-visible { outline: 3px solid #b56822; outline-offset: 3px; }
+    .eyebrow { color: #4a746d; font-size: .85rem; letter-spacing: .12em; font-weight: 700; }
+    .lead { font-size: 1.17rem; }
+    .steps { padding-left: 1.4rem; }
+    .steps li { padding-left: .25rem; margin-bottom: 1rem; }
+    .note { border-left: 4px solid #51a38d; background: #e8f1ee; padding: .8rem 1.1rem; margin: 2rem 0; }
+    footer { border-top: 1px solid #cbd8d5; margin-top: 3rem; padding-top: 1.25rem; font-size: .91rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">RESEARCH NOTE · 2026.10.08</p>
+    <h1>公式文書への近道は、検証の近道ではない</h1>
+    <p class="lead">GoogleのDeveloper Knowledge APIは、開発者向け文書をエージェントから探す経路を示した。では、見つかった文書から「正しい答え」へ進むには何が要るだろうか。</p>
+
+    <section aria-labelledby="news">
+      <h2 id="news">今回発表されたのは、文書に辿り着く道具</h2>
+      <p>Googleは10月7日の公式記事で、Developer Knowledge APIを使うgcloud CLI、エージェント向けスキル、クライアントライブラリ、API Explorerを紹介した。Google Cloud、Firebase、Androidなどの開発者向け文書を検索・取得し、文書に基づく回答に利用するための経路だ。<a href="https://developers.googleblog.com/supercharge-your-development-with-the-google-developer-knowledge-api-ecosystem/">Google公式記事</a></p>
+      <p>記事が示すスキルの流れは、まず関連チャンクを検索し、必要ならMarkdown文書を取得するもの。CLIでも、検索する操作、個別文書を取得する操作、回答を得る操作は別のコマンドとして示されている。<a href="https://developers.googleblog.com/supercharge-your-development-with-the-google-developer-knowledge-api-ecosystem/">Google公式記事（CLI・スキル節）</a></p>
+    </section>
+
+    <section aria-labelledby="reading">
+      <h2 id="reading">「見つけた」を「確かめた」に変える</h2>
+      <p>既存の非公開KBには、問いからマップ・概念・強い根拠へ辿る調査経路と、主張ごとに出典の支え方を見分ける整理がある。これを今回の発表に重ねると、次の三つは切り離して扱いたい。<strong>以下は本稿の運用上の推論であり、Googleが検証結果を保証したという意味ではない。</strong></p>
+      <ol class="steps">
+        <li><strong>発見する。</strong>検索チャンクは候補を示す。断片が見つかっただけで、問いへの答えが揃ったわけではない。</li>
+        <li><strong>照合する。</strong>必要な本文を開き、対象製品、条件、例外、更新状況を読む。断片だけで仕様を一般化しない。</li>
+        <li><strong>試して記録する。</strong>答えの根拠となる文書を残し、自分の環境での権限・設定・実行結果は別に確かめる。</li>
+      </ol>
+      <p class="note">公式文書へのアクセスは根拠を強くする入口。しかし、仕様の記述と手元での成功は同じ証拠ではない。</p>
+    </section>
+
+    <section aria-labelledby="next">
+      <h2 id="next">次に試すなら</h2>
+      <ul>
+        <li>検索結果と取得した本文は、同じ対象・条件を説明しているか。</li>
+        <li>重要な主張を一次文書へ戻せるか。</li>
+        <li>文書に書かれたことと自環境で確かめたことを分けたか。</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>一次情報：<a href="https://developers.googleblog.com/supercharge-your-development-with-the-google-developer-knowledge-api-ecosystem/">Google Developers Blog（2026年10月7日）</a>。三段階の読み方は非公開KBの調査経路・証拠品質マップに基づく本稿の推論です。</p>
+      <p><a href="source.md">根拠と限界を含む詳細版</a> · <a href="index.html">この日の入口に戻る</a></p>
+    </footer>
+  </main>
+</body>
+</html>
