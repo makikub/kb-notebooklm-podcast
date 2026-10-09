@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-09",
+  "title": "HTTP 200の先にある失敗を、誰が見つけるか",
+  "theme": "agent-deployment-gates-and-operational-risk",
+  "source": "daily/2026-10-09/source.md",
+  "reading": "daily/2026-10-09/reading.html",
+  "page": "daily/2026-10-09/index.html",
+  "related": [
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md",
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/navigation/operations.md"
+  ],
+  "official_urls": [
+    "https://developers.googleblog.com/the-outer-loop-insights-first-an-ambient-quality-agent-that-diagnoses-your-production-agent/",
+    "https://claude.dev/blog/building-effective-agent-automations/",
+    "https://www.anthropic.com/news/2026-usage-policy-update"
+  ],
+  "notebooklm": "pending"
+}
