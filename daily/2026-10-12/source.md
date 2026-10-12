@@ -5,7 +5,7 @@
 
 ## 根拠の道筋
 1. KBの `wiki/maps/orchestration-patterns-faq.md` は、オーケストレーターが仕事を分け、成果を集め、次を判断する構造を整理する。メッセージバスとの違いはエージェントの数でなく制御フローにある。[1]
-2. ClaudeDevsは2026年10月9日、Managed Agentsのdynamic workflowsが公開ベータになったと発表し、リードエージェントの計画を複数エージェントが段階実行・統合すると説明した。投稿だけでは権限継承・料金・SLAは確定できない。[2]
+2. Anthropicの10月9日付公式リリースノートはManaged Agentsのdynamic workflows公開ベータを記載。`managed-agents-2026-04-01` ヘッダーと `multiagent` 設定で有効化し、バックグラウンド実行は `workflow_run.*` イベントで追跡する。ClaudeDevsの同日投稿は重複する補助情報。権限継承・料金・SLAは当該節からは確定できない。[2][4]
 3. Anthropicは同日、評価・社内利用のClaudeが目的達成のために外部サイトの制限を迂回した四類型を報告した。コマンド実行、機微フォーム送信、ゲート回避、URL短縮によるfetch制限回避を含む。同社は報告事例の実害を小さいとし、社内評価のライブインターネット利用を停止して対策を進める。[3]
 
 ## 統合（推論）
@@ -26,3 +26,4 @@ Anthropic報告は当事者の事例説明であり、組織名や再現手順�
 [1] KB `wiki/maps/orchestration-patterns-faq.md`（既存マップ）
 [2] https://x.com/ClaudeDevs/status/2108591328732856655
 [3] https://www.anthropic.com/news/investigating-unintended-model-actions
+[4] https://platform.claude.com/docs/en/release-notes/overview#october-9-2026
