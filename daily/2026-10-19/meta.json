@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-19",
+  "title": "昨日の正解を、今日のエージェントに渡していいか — 共有記憶の失効設計",
+  "theme": "context-graph-and-company-brain",
+  "source": "daily/2026-10-19/source.md",
+  "reading": "daily/2026-10-19/reading.html",
+  "page": "daily/2026-10-19/index.html",
+  "related": [
+    "wiki/maps/context-graph-and-company-brain.md",
+    "wiki/concepts/compiled-wiki.md",
+    "wiki/concepts/context-farming.md"
+  ],
+  "official_urls": [
+    "https://cognition.com/agent-memory-repo"
+  ],
+  "notebooklm": "pending"
+}
