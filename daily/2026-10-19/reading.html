@@ -1,0 +1,26 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="AIエージェントの共有記憶を更新・失効させる設計。出典、権限、派生先をつなぐ。"><title>昨日の正解を、今日のエージェントに渡していいか</title><style>body{margin:0;background:#f6f5f1;color:#1f3038;font:1.08rem/1.9 -apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN',sans-serif}main{max-width:760px;margin:0 auto;padding:5vh 22px 13vh}h1,h2{line-height:1.38}h1{font-size:2rem;margin-top:2rem}h2{font-size:1.35rem;margin-top:3rem;border-bottom:1px solid #ccd6d5;padding-bottom:.3rem}p,li{overflow-wrap:anywhere}li{margin:.45rem 0}a{color:#11677a}code{font-size:.9em;background:#e5ece9;padding:.1em .25em;border-radius:.2em}strong{color:#0f4953}small{color:#607078}footer{margin-top:4rem;border-top:1px solid #ccd6d5;padding-top:1rem}</style></head><body><main><small>KB Reading / 2026年10月19日</small><h1>昨日の正解を、今日のエージェントに渡していいか — 共有記憶の失効設計</h1>
+<p>2026年10月19日｜AIエージェント運用の読み物</p>
+<h2>問題は「覚えること」の先にある</h2>
+<p>担当者が交代したのに、エージェントが古い手順書に載る前任者へ承認を求める。あるいは、すでに廃止したAPIを使う。これは検索の失敗とは限らない。検索が<strong>古いが整った説明</strong>を正確に取り出した結果かもしれない。共有記憶を持つAIに必要なのは、記録を増やす機能だけでなく「この記述はもう行動の根拠にしてはいけない」と伝える仕組みだ。</p>
+<h2>原資料から共有ノートへ</h2>
+<p>Andrej Karpathyは、原資料を保存し、LLMで相互リンクのあるMarkdown wikiへ整理する知識の流れを提示した。[1] 一度まとめれば、後の質問で原資料を毎回読み直さずに済む。だが、要約が読みやすいことは、その解釈が正しいことも、現在なお有効なことも保証しない。KBのcompiled wiki概念も、編集で誤った主張が下流に積み重なるリスクを明記する。[2]</p>
+<p>Cognitionが紹介するAgent Memory Repoは、Git上の短い<code>MEMORY.md</code>を入口に、出典付きの項目とリンクを残す形式だ。定期的な「Dreaming」で重複や矛盾を整理する構想も示す。[3] これは追跡可能な記憶の実装例である。ただし、Dreamingが矛盾を常に正しく解決するという独立した検証結果ではない。「整理を提案する」と「組織の正式な手順として承認する」は別工程である。</p>
+<h2>更新だけでなく、失効を伝播させる</h2>
+<p>KBのContext Graph and Company Brainマップは、情報の出典、関係、権限、有効期間を文脈レイヤーで扱い、人が訂正・失効・衝突の調停をする設計を整理している。[4] ここからの<strong>設計上の提案</strong>として、共有記憶の一項目に次を結びたい。</p>
+<ol>
+<li><strong>出典と適用範囲</strong>：誰が、どの環境・期間について述べた情報か。</li>
+<li><strong>状態と責任者</strong>：有効・要再確認・失効を誰が確定するか。AIは矛盾を発見しても、権限なしに正式な規則を上書きしない。</li>
+<li><strong>派生先</strong>：原資料だけでなく、そこから作った要約、手順、スキル、回答例のどこに古い記述が残るか。</li>
+<li><strong>利用時のゲート</strong>：高影響の操作の前には、記憶の新しさと権限を確認する。判定できなければ実行を止めて確認する。</li>
+</ol>
+<p>これは特定製品に実装済みの機能一覧ではない。失効を下流へ伝える方法は、同マップでも未解決の設計課題として挙げられている。[4]</p>
+<h2>一件で試すなら</h2>
+<p>たとえば「デプロイ承認者がAからBに交代」と決まったら、決定記録の日付・承認者・適用先を残す。古いノートを失効にし、それを参照する要約とデプロイ手順を探す。Bへの切替が承認されたことを確認するまで、本番デプロイを自動実行しない。その後、古い情報を与えた再現テストで、エージェントがAに依頼せず停止またはBへ誘導するかを確かめる。</p>
+<p>人が共有文脈を耕す「context farming」は、この訂正の地道な作業も含む。[5] どこまで自動化するかより先に、<strong>誰が何を正したとき、どの行動が変わるべきか</strong>を決める。記憶の価値は量だけでなく、間違いを安全に取り消せることにもある。</p>
+<h2>出典と根拠の境界</h2>
+<p>[1] Andrej Karpathy, Personal LLM Knowledge Bases, 2026-04-02: <a href="https://x.com/karpathy/status/2039805659525644595?s=20">https://x.com/karpathy/status/2039805659525644595?s=20</a> （raw→wikiの構想）</p>
+<p>[2] Private KB, <code>wiki/concepts/compiled-wiki.md</code> （編集時の誤解と誤りの累積リスク）</p>
+<p>[3] Cognition, Agent Memory Repo: <a href="https://cognition.com/agent-memory-repo">https://cognition.com/agent-memory-repo</a> （Gitベース記憶とDreamingの提供者説明）</p>
+<p>[4] Private KB, <code>wiki/maps/context-graph-and-company-brain.md</code> （有効期間、権限、失効伝播の未解決課題）</p>
+<p>[5] Private KB, <code>wiki/concepts/context-farming.md</code> （人手による文脈保守の整理）</p>
+<p>限界：ここで挙げた失効ゲートは設計提案であり、事故削減や記憶整理の精度を実測したものではない。非公開KBの本文・Xブックマーク原文は転載していない。</p><footer><a href="source.md">Markdown版</a> · <a href="../../">一覧</a></footer></main></body></html>
