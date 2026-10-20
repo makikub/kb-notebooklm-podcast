@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-20",
+  "title": "仕上がりを見る前に止める — AI生成物の構成レビュー",
+  "theme": "eval-review-reliability",
+  "source": "daily/2026-10-20/source.md",
+  "reading": "daily/2026-10-20/reading.html",
+  "page": "daily/2026-10-20/index.html",
+  "related": ["wiki/maps/eval-review-reliability.md", "wiki/maps/approval-policy-patterns-and-escalation.md"],
+  "official_urls": ["https://blog.google/innovation-and-ai/products/gemini-notebook/co-create-slides-videos/", "https://developers.googleblog.com/evaluating-ai-agents-moving-past-the-vibe-check/"],
+  "notebooklm": "pending"
+}
