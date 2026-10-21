@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-21",
+  "title": "AIの承認ゲートは「どこで止めるか」から設計する",
+  "theme": "approval-policy-patterns-and-escalation",
+  "source": "daily/2026-10-21/source.md",
+  "reading": "daily/2026-10-21/reading.html",
+  "page": "daily/2026-10-21/index.html",
+  "related": [
+    "wiki/maps/approval-policy-patterns-and-escalation.md",
+    "wiki/maps/agent-harness-control-taxonomy.md"
+  ],
+  "official_urls": [
+    "https://platform.claude.com/docs/en/release-notes/overview",
+    "https://platform.claude.com/docs/en/manage-claude/inference-hooks"
+  ],
+  "notebooklm": "pending"
+}
