@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-22",
+  "title": "先回りするエージェントは「通知」と「実行」を分ける",
+  "theme": "orchestration-patterns-faq",
+  "source": "daily/2026-10-22/source.md",
+  "reading": "daily/2026-10-22/reading.html",
+  "page": "daily/2026-10-22/index.html",
+  "related": ["wiki/maps/orchestration-patterns-faq.md", "wiki/maps/approval-policy-patterns-and-escalation.md"],
+  "official_urls": ["https://claude.com/resources/articles/claude-duet", "https://developers.googleblog.com/powering-the-agent-development-lifecycle-with-any-framework-from-adk-to-langchain-and-beyond/"],
+  "notebooklm": "pending"
+}
