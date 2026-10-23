@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-23",
+  "title": "判断は速く、変更は止める——自己修復エージェントの二つのゲート",
+  "theme": "agent-deployment-gates-and-operational-risk",
+  "source": "daily/2026-10-23/source.md",
+  "reading": "daily/2026-10-23/reading.html",
+  "page": "daily/2026-10-23/index.html",
+  "related": [
+    "wiki/maps/agent-harness-control-taxonomy.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md"
+  ],
+  "official_urls": [
+    "https://developers.openai.com/api/docs/guides/decisions.md",
+    "https://developers.googleblog.com/architecting-governed-self-evolving-ai-agents-on-gemini-agent-platform/"
+  ],
+  "notebooklm": "pending"
+}
