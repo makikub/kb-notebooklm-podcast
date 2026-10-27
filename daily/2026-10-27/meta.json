@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-27",
+  "title": "エージェントの自由度を上げる前に、評価と承認をつなぐ",
+  "theme": "agent-deployment-gates-and-operational-risk",
+  "source": "daily/2026-10-27/source.md",
+  "reading": "daily/2026-10-27/reading.html",
+  "page": "daily/2026-10-27/index.html",
+  "related": [
+    "wiki/maps/agent-harness-control-taxonomy.md",
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md"
+  ],
+  "official_urls": [
+    "https://cursor.com/changelog/agent-sdk"
+  ],
+  "notebooklm": "pending"
+}
