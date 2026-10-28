@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-28",
+  "title": "もっともらしい成果ほど、根拠まで戻って確かめる",
+  "theme": "evidence-quality-and-source-trust",
+  "source": "daily/2026-10-28/source.md",
+  "reading": "daily/2026-10-28/reading.html",
+  "page": "daily/2026-10-28/index.html",
+  "related": ["wiki/maps/evidence-quality-and-source-trust.md", "wiki/concepts/evidence-quality.md"],
+  "official_urls": ["https://developers.googleblog.com/reproducing-olmo-3-7b-pre-training-in-maxtext-case-study-of-large-scale-training-on-tpus/"],
+  "notebooklm": "pending"
+}
