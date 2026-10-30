@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-30",
+  "title": "長いエージェント作業、文脈をいつ捨てるか",
+  "theme": "context-management-decisions",
+  "source": "daily/2026-10-30/source.md",
+  "reading": "daily/2026-10-30/reading.html",
+  "page": "daily/2026-10-30/index.html",
+  "related": [
+    "wiki/maps/context-management-decisions.md",
+    "wiki/sources/anthropic-session-management-1m-context.md"
+  ],
+  "official_urls": [
+    "https://claude.com/blog/using-claude-code-session-management-and-1m-context",
+    "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents"
+  ],
+  "notebooklm": "pending"
+}
