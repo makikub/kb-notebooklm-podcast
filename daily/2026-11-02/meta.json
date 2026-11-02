@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-02",
+  "title": "AI安全性の「監視を通る」を、信頼の証拠にしない",
+  "theme": "eval-review-reliability",
+  "source": "daily/2026-11-02/source.md",
+  "reading": "daily/2026-11-02/reading.html",
+  "page": "daily/2026-11-02/index.html",
+  "related": [
+    "wiki/maps/eval-review-reliability.md",
+    "wiki/sources/anthropic-automated-misalignment-x-2026-10-31.md"
+  ],
+  "official_urls": [
+    "https://alignment.anthropic.com/2026/automated-em-search/"
+  ],
+  "notebooklm": "pending"
+}
