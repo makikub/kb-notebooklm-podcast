@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-03",
+  "title": "AIで実装が速くなった後、レビューをどこに置くか",
+  "theme": "agent-deployment-gates-and-operational-risk",
+  "source": "daily/2026-11-03/source.md",
+  "reading": "daily/2026-11-03/reading.html",
+  "page": "daily/2026-11-03/index.html",
+  "related": ["wiki/maps/agent-deployment-gates-and-operational-risk.md", "wiki/maps/coding-agent-cognitive-debt-and-review-capacity.md", "wiki/sources/anthropic-ai-native-sdlc-playbook-x-2026-11-03.md"],
+  "official_urls": ["https://claude.com/resources/articles/the-ai-native-sdlc-playbook"],
+  "notebooklm": "pending"
+}
