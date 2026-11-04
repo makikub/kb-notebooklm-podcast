@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="モデル単価ではなく、成功タスクあたりの費用でエージェント運用を評価する。"><title>安いモデルを選ぶ前に、成功した仕事の費用を測る</title><style>body{background:#f8fafc;color:#172033;font:17px/1.85 system-ui,-apple-system,sans-serif;margin:0}main{max-width:760px;margin:4rem auto;padding:0 1.4rem}h1{font-size:2rem;line-height:1.4}h2{font-size:1.3rem;margin-top:2.3rem}a{color:#1455a3}aside{border-left:4px solid #7086aa;padding:.4rem 1rem;background:#eef2f8}footer{border-top:1px solid #ccd6e3;margin-top:3rem;padding:1rem 0;font-size:.9rem}small{color:#526074}</style></head><body><main>
+<small>2026年11月4日 JST · KB日次読み物</small>
+<h1>安いモデルを選ぶ前に、成功した仕事の費用を測る</h1>
+<p>モデルの単価を下げれば、エージェントの仕事も安くなるだろうか。失敗してやり直す仕事、レビューに要する時間、待ち時間まで含めて、成果として完了した仕事を分母に置く必要がある。<a href="#s1">[1]</a><a href="#s2">[2]</a></p>
+<h2>小さな実験が示したこと</h2>
+<p>Google Developers Blogが11月3日に公開した実験では、50問の自動採点コーディング課題を使い、軽量分類器が問題を振り分けた。Flash-Liteを先に使い、難しい課題を低thinkingのFlashへ送る構成は50問正答。低thinking Flashを最初から使う構成も50問正答だった。分類器そのものの精度が高くても、ルータを入れる便益は比較対象次第で変わる。<a href="#s2">[2]</a></p>
+<p>出力上限を300トークンに狭めるだけでは簡単な課題の思考コストは下がらず、難しい課題のうち7問を壊したという。単純な上限は「思考量のつまみ」ではない。<a href="#s2">[2]</a></p>
+<h2>KBのROIマップから見る</h2>
+<p>非公開KBの「AI Adoption ROI and Capability Investment」は、生成速度やモデル能力だけでROIを決めず、内部基盤・コンテキスト・品質ゲート・デリバリー指標を合わせて考える。Googleの実験をその地図に置けば、モデルルーティングは費用最適化の一部であり、検証や再作業の容量を超えてはいけない。<a href="#s1">[1]</a><a href="#s3">[3]</a></p>
+<aside><strong>試すこと</strong><p>同じ業務タスク群について正答/完了率、API費用、検証と再試行、所要時間を測る。軽量モデル、低thinkingモデル、必要ならルータ付き構成を同条件で比較する。これはKBからの運用提案であり、Google実験による組織全般への効果証明ではない。</p></aside>
+<h2>限界</h2><p>Googleの数値は50問・各設定1回・短い課題での実験。長いリポジトリ文脈を繰り返し送る実際のエージェントでは、キャッシュや課題分布が異なるため再現を確認する必要がある。<a href="#s2">[2]</a></p>
+<footer><h2>出典</h2><ol><li id="s1">非公開KB <code>wiki/maps/ai-adoption-roi-and-capability-investment.md</code> — 採用投資・ROIの整理。</li><li id="s2"><a href="https://developers.googleblog.com/cost-per-task-using-cheap-classifiers-to-route-across-gemini-models-and-thinking-levels/">Google Developers Blog, Cost per task</a>（2026年11月3日）。</li><li id="s3">非公開KB <code>wiki/concepts/verification-tax.md</code> — 検証負担の概念。</li></ol><p><a href="source.md">Markdown原稿</a></p></footer></main></body></html>
