@@ -23,4 +23,4 @@ OpenAIの記事本文は直接HTTP取得で403。ここで確認した11月4日�
 ## 出典
 
 - [1] OpenAI公式ニュースRSS、2026-11-04の「A thousand fewer paths to root」「Daybreak Red is now available in AWS GovCloud (US-East)」: https://openai.com/news/rss.xml
-- [2] 非公開KB `wiki/maps/agent-deployment-gates-and-operational-risk.md` — 展開ゲートの横断的整理。関連原典は同マップから辿れる。
+- [2] 非公開KB `wiki/maps/agent-deployment-gates-and-operational-risk.md` — 展開ゲートの横断的整理。公開原典: OpenAI「Harness engineering」 https://openai.com/ja-JP/index/harness-engineering/ 、Anthropic「Effective harnesses for long-running agents」 https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents 。
