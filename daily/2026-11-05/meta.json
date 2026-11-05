@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-05",
+  "title": "脆弱性を見つけた後に必要な二つのゲート",
+  "theme": "agent-deployment-gates-and-operational-risk",
+  "source": "daily/2026-11-05/source.md",
+  "reading": "daily/2026-11-05/reading.html",
+  "page": "daily/2026-11-05/index.html",
+  "related": [
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md",
+    "wiki/sources/openai-linux-vulnerability-pipeline-2026-11-04.md",
+    "wiki/sources/openai-daybreak-red-govcloud-2026-11-04.md"
+  ],
+  "official_urls": [
+    "https://openai.com/news/rss.xml"
+  ],
+  "notebooklm": "pending"
+}
