@@ -1,0 +1,11 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>エージェントがアプリを公開する前に通す三つのゲート</title><style>body{font-family:system-ui,-apple-system,sans-serif;line-height:1.8;max-width:760px;margin:3rem auto;padding:0 1.2rem;color:#222;background:#fafafa}h1,h2{line-height:1.35}a{color:#174d91}li{margin:.5em 0}</style></head><body><main><h1>エージェントがアプリを公開する前に通す三つのゲート</h1>
+<p>2026-11-06 JST / KB日次読み物</p>
+<h2>1. 構築できることと公開できることを分ける</h2>
+<p>Cursorの発表では、クラウドエージェントがアプリを作り、必要に応じPostgres、Cursor SSO、ホスティングを設定する。[1] ただし公開前には決定的検査とエージェントによるセキュリティ検査が走り、問題を修正したうえで利用者が明示的に公開する。検査が通っただけでは公開されない。[1] これは機能の生成と外部への提供を別段階にする設計だ。検査は安全の保証ではなく、公開判断を支えるゲートと読むべきだ。</p>
+<h2>2. 誰がどこからアクセスできるかを絞る</h2>
+<p>Cursorではチームの共有相手を個人・グループ・チームから選び、チーム共有はCursorサインインで保護する。個人プランなら公開共有も可能だ。[1] AnthropicのIP許可リストは対象サービスへのリクエストを許可したIPv4/IPv6アドレスまたはCIDRに絞り、最大1000件まで登録できる。[2] 両者は同一の製品ではないが、利用者の権限と接続元の制御を分けて設計する、という共通の示唆がある。IP制限だけで本人確認を代替できるとは限らない。</p>
+<h2>3. 失敗・退職・誤公開の後に止められるか</h2>
+<p>Cursorのチーム管理者は公開を止めたり、検査によりブロックされた公開を承認したりできる。[1] AnthropicのサインアウトAPIは指定メンバーのセッション・信頼済み端末・該当組織のOAuthトークンを終了する一方、在籍は維持し再ログインもできる。[2] これは「失効できる」ことと「永続的なアクセス廃止」を混同しないための例だ。APIキー等への影響や対象サービスの全範囲は、詳細ドキュメントを確認するまで断定しない。</p>
+<h2>実務への持ち帰り（KBの推論）</h2>
+<p>非公開KBの wiki/maps/approval-policy-patterns-and-escalation.md と wiki/maps/agent-deployment-gates-and-operational-risk.md は、低リスクの読み取り、公開前の検証、明示承認、事後の停止・観測を別のゲートとして整理している。[3] 新しいエージェント製品を試すなら、①構築と公開の権限を分離、②共有範囲と秘密情報を確認、③検査失敗時と公開後の停止手段を記録する。この三つは本日の一次情報を手掛かりにした運用提案で、両社が同じ実装を採っているという主張ではない。</p>
+<h2>出典</h2><ol><li><a href="https://cursor.com/changelog/build-live-apps">Cursor — Build Live Apps</a></li><li><a href="https://platform.claude.com/docs/en/release-notes/overview">Anthropic Platform release notes</a></li><li><a href="https://openai.com/ja-JP/index/harness-engineering/">OpenAI — Harness engineering</a></li><li><a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">Anthropic — Effective harnesses</a></li></ol></main></body></html>
