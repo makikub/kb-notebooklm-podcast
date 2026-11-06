@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-06",
+  "title": "エージェントがアプリを公開する前に通す三つのゲート",
+  "theme": "approval-policy-patterns-and-escalation",
+  "source": "daily/2026-11-06/source.md",
+  "reading": "daily/2026-11-06/reading.html",
+  "page": "daily/2026-11-06/index.html",
+  "related": [
+    "wiki/maps/approval-policy-patterns-and-escalation.md",
+    "wiki/sources/cursor-build-live-apps-2026-11-05.md",
+    "wiki/sources/anthropic-ip-allowlist-signout-2026-11-05.md"
+  ],
+  "official_urls": [
+    "https://cursor.com/changelog/build-live-apps",
+    "https://platform.claude.com/docs/en/release-notes/overview"
+  ],
+  "notebooklm": "pending"
+}
