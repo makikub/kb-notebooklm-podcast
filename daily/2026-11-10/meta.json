@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-10",
+  "title": "速いモデルと長い文脈、その前に確認する境界",
+  "theme": "agent-deployment-gates-and-operational-risk",
+  "source": "daily/2026-11-10/source.md",
+  "reading": "daily/2026-11-10/reading.html",
+  "page": "daily/2026-11-10/index.html",
+  "related": [
+    "wiki/maps/agent-deployment-gates-and-operational-risk.md",
+    "wiki/sources/anthropic-fable-mythos-5-2-2026-11-09.md",
+    "wiki/sources/google-tpu-8tx-8i-max-2026-11-09.md",
+    "wiki/sources/google-maxtext-context-parallelism-2026-11-09.md"
+  ],
+  "official_urls": [
+    "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+    "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+    "https://developers.googleblog.com/en/announcing-long-context-training-on-tpus-with-maxtext-context-parallelism/"
+  ],
+  "notebooklm": "pending"
+}
