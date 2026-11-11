@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-11",
+  "title": "エージェントをチームで動かすとき、共有するのは何か",
+  "theme": "context-graph-and-company-brain",
+  "source": "daily/2026-11-11/source.md",
+  "reading": "daily/2026-11-11/reading.html",
+  "page": "daily/2026-11-11/index.html",
+  "related": [
+    "wiki/maps/context-graph-and-company-brain.md",
+    "wiki/sources/cursor-multiplayer-2026-11-10.md",
+    "wiki/sources/google-carbon-2026-11-10.md",
+    "wiki/sources/google-mka-2026-11-10.md",
+    "wiki/sources/claude-whiteboards-sheets-data-x-2026-11-10.md"
+  ],
+  "official_urls": [
+    "https://cursor.com/blog/projects-multiplayer",
+    "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+    "https://blog.google/innovation-and-ai/models-and-research/gemini-models/multimodal-knowledge-agent-benchmark/",
+    "https://x.com/claudeai/status/2120206365759094857"
+  ],
+  "notebooklm": "pending"
+}
