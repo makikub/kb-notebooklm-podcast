@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-12",
+  "title": "agentの判断を、承認できる画面に変える",
+  "theme": "agent-harness-control-taxonomy",
+  "source": "daily/2026-11-12/source.md",
+  "reading": "daily/2026-11-12/reading.html",
+  "page": "daily/2026-11-12/index.html",
+  "related": [
+    "wiki/maps/agent-harness-control-taxonomy.md",
+    "wiki/maps/approval-policy-patterns-and-escalation.md",
+    "wiki/sources/google-a2ui-1-0-2026-11-11.md",
+    "wiki/sources/google-gemini-decisions-api-2026-11-11.md"
+  ],
+  "official_urls": [
+    "https://developers.googleblog.com/a2ui-10-build-delightful-fast-reliable-agentic-experiences/",
+    "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/"
+  ],
+  "notebooklm": "pending"
+}
