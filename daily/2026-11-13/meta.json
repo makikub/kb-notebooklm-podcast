@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-13",
+  "title": "速いモデルを選ぶ前に、成功タスク当たり費用を測る",
+  "theme": "ai-adoption-roi-and-capability-investment",
+  "source": "daily/2026-11-13/source.md",
+  "reading": "daily/2026-11-13/reading.html",
+  "page": "daily/2026-11-13/index.html",
+  "related": ["wiki/maps/ai-adoption-roi-and-capability-investment.md", "wiki/maps/agent-deployment-gates-and-operational-risk.md", "wiki/sources/google-gemini-4-hydrogen-2026-11-12.md"],
+  "official_urls": ["https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/"],
+  "notebooklm": "pending"
+}
