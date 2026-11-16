@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-16",
+  "title": "Agentの速度より先に、配布経路とtraceを守る",
+  "theme": "agent-deployment-gates-and-operational-risk",
+  "source": "daily/2026-11-16/source.md",
+  "reading": "daily/2026-11-16/reading.html",
+  "page": "daily/2026-11-16/index.html",
+  "related": ["wiki/maps/agent-deployment-gates-and-operational-risk.md", "wiki/sources/cursor-security-incident-update-2026-11-13.md"],
+  "official_urls": ["https://cursor.com/blog/security-incident-update", "https://cursor.com/blog/claude-code-extension-security-notice"],
+  "notebooklm": "pending"
+}
