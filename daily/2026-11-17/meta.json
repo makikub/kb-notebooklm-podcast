@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-17",
+  "title": "AIエージェントを長く動かす前に：費用、行動、検証の三つの境界",
+  "source": "source.md",
+  "reading": "reading.html",
+  "sources": [
+    "https://developers.googleblog.com/agents-are-sessions-not-requests-size-gke-node-pools-for-ai-agent-sessions/",
+    "https://developers.googleblog.com/securing-your-agents-a-hands-on-guide-to-agent-anomaly-detection/",
+    "https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/"
+  ],
+  "language": "ja"
+}
