@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-18",
+  "title": "AIエージェントの費用を、三つの境界に分けて考える",
+  "source": "source.md",
+  "reading": "reading.html",
+  "sources": [
+    "https://developers.openai.com/api/docs/changelog",
+    "https://platform.claude.com/docs/en/release-notes/overview",
+    "https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/"
+  ],
+  "language": "ja"
+}
