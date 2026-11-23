@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-23",
+  "title": "内部MCPを安全につなぐには、ネットワークと「誰の権限か」を分ける",
+  "source": "source.md",
+  "reading": "reading.html",
+  "sources": [
+    "https://developers.googleblog.com/en/how-to-securely-connect-internal-cloud-run-mcp-servers-to-gemini-enterprise/"
+  ],
+  "language": "ja"
+}
