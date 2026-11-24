@@ -1,0 +1,8 @@
+{
+  "date": "2026-11-24",
+  "title": "AIエージェントに「ファイルを全部読ませない」設計",
+  "source": "source.md",
+  "reading": "reading.html",
+  "sources": ["https://blog.google/innovation-and-ai/technology/developers-tools/file-slicing-controls/"],
+  "language": "ja"
+}
