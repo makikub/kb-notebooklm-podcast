@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-25",
+  "title": "引用付き検索とエージェントの権限境界",
+  "source": "source.md",
+  "reading": "reading.html",
+  "sources": [
+    "https://developers.googleblog.com/from-files-to-cited-answers-in-one-api-call-managed-ingestion-and-searchdocuments-in-agent-retrieval/",
+    "https://developers.googleblog.com/en/how-to-securely-connect-internal-cloud-run-mcp-servers-to-gemini-enterprise/"
+  ],
+  "language": "ja"
+}
