@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-26",
+  "title": "速く作るより、確かに直す — 本番API移行と週100 PRの検証設計",
+  "source": "source.md",
+  "reading": "reading.html",
+  "sources": [
+    "https://www.anthropic.com/research/migrating-api-to-rust",
+    "https://lethain.com/passing-100-prs-in-a-week/",
+    "https://x.com/Lethain/status/2124590238031094043"
+  ],
+  "language": "ja"
+}
