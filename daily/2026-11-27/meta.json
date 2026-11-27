@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-27",
+  "title": "AIが見つけた「候補」は、いつ発見になるのか — 惑星探査に学ぶ検証設計",
+  "source": "source.md",
+  "reading": "reading.html",
+  "sources": [
+    "https://openai.com/index/searching-for-distant-planets-with-astra/",
+    "https://developers.googleblog.com/evaluating-ai-agents-moving-past-the-vibe-check/"
+  ],
+  "language": "ja"
+}
